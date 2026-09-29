@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vyomaraj — The King of Sky | Android • Mac • Web</title>
+<meta name="description" content="Vyomaraj Sovereign AI Platform — Android APK, macOS Dock App & Web Cloud Workspace by Deepak Goyal. One intelligence universe.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif}
+:root{--gold:#f59e0b;--gold2:#fbbf24;--bg:#0a1628;--card:#12284a;--line:rgba(245,158,11,.26);--muted:#94a3b8;--blue:#3b82f6;--blueGlow:rgba(59,130,246,.15)}
+body{background:radial-gradient(900px 600px at 75% -10%,#2a5ad640,transparent),radial-gradient(700px 500px at -10% 15%,#f59e0b14,transparent),radial-gradient(600px 400px at 30% 100%,#0ea5e914,transparent),var(--bg);color:#f8fafc;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.container{max-width:1120px;margin:auto;padding:0 20px}
+.topbar{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(10,22,40,.82);border-bottom:1px solid rgba(99,140,205,.18);padding:14px 0}
+.topbar .row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border-radius:12px;background:radial-gradient(circle at 30% 20%,#ffe9a8,#f59e0b 55%,#92400e);display:grid;place-items:center;font-size:22px;border:1.5px solid #fff3}
+.brand b{letter-spacing:2px;color:var(--gold2)}
+.brand small{display:block;color:var(--muted);font-size:11px;margin-top:1px}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:12px;font-weight:700;color:#cbd5e1}
+.nav a.cta{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;border-color:#f59e0b}
+.hero{padding:54px 0 28px;text-align:center}
+.eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(245,158,11,.12);border:1px solid var(--line);color:var(--gold2);font-size:10px;letter-spacing:1.2px;font-weight:800}
+.hero h1{font-size:46px;line-height:1.05;letter-spacing:-1px;margin:18px auto 10px;max-width:820px}
+.hero h1 span{background:linear-gradient(90deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:#94a3b8;max-width:720px;margin:auto;font-size:15px;line-height:1.6}
+.heroActions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 20px;border-radius:12px;font-weight:800;font-size:14px;border:1px solid transparent;cursor:pointer;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btnGold{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;box-shadow:0 8px 24px rgba(245,158,11,.35)}
+.btnDark{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
+.btnEmerald{background:linear-gradient(135deg,#10b981,#059669);color:#fff;box-shadow:0 8px 24px rgba(16,185,129,.3)}
+.trust{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.pill{font-size:11px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#cbd5e1}
+.pill.gold{border-color:rgba(245,158,11,.4);color:#fde68a;background:rgba(245,158,11,.1)}
+.pill.green{border-color:rgba(16,185,129,.3);color:#a7f3d0;background:rgba(16,185,129,.1)}
+.platforms{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.platforms{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.card{background:linear-gradient(180deg,#162e5a 0%,#0f2340 55%,#0a1628 100%);border:1px solid rgba(99,140,205,.22);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(2,12,30,.45)}
+.card:before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,#f59e0b55,transparent)}
+.card h3{display:flex;align-items:center;gap:10px;font-size:17px}
+.card h3 span.icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.card p{font-size:13px;color:#94a3b8;line-height:1.55}
+.specs{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:11px;color:#cbd5e1}
+.specs li{display:flex;gap:8px;align-items:center}
+.specs li::before{content:"✓";color:#10b981;font-weight:800}
+.card .actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.btnSm{padding:10px 14px;border-radius:10px;font-size:12px;font-weight:800;border:1px solid transparent;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.section{margin-top:42px}
+.section h2{font-size:22px;display:flex;align-items:center;gap:10px}
+.section p.desc{color:#94a3b8;font-size:13px;margin-top:6px;line-height:1.6}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+.feat{background:linear-gradient(180deg,#132a52,#0f2340);border:1px solid rgba(99,140,205,.18);border-radius:16px;padding:18px}
+.feat h4{font-size:13px;display:flex;gap:8px;align-items:center}
+.feat p{font-size:12px;color:#94a3b8;margin-top:6px;line-height:1.6}
+.urlBox{margin-top:16px;background:rgba(8,20,45,.9);border:1px solid rgba(245,158,11,.28);border-radius:14px;padding:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;backdrop-filter:blur(6px)}
+.urlBox code{background:rgba(255,255,255,.06);padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.08);font-size:12px;color:#38bdf8;word-break:break-all}
+.footer{margin-top:42px;padding:24px 0 30px;border-top:1px solid rgba(255,255,255,.06);text-align:center;color:#64748b;font-size:12px}
+.qr{width:110px;height:110px;border-radius:12px;background:#fff;display:grid;place-items:center;font-size:42px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="container row">
+    <div class="brand">
+      <div class="logo">👑</div>
+      <div><b>VYOMARAJ</b><small>The King of Sky • Deepak Goyal</small></div>
+    </div>
+    <nav class="nav">
+      <a href="#platforms">Platforms</a>
+      <a href="#features">Features</a>
+      <a href="/Vyomaraj-App.apk" download>APK</a>
+      <a href="/" class="cta">Open Web App →</a>
+      <button id="themeToggle" onclick="toggleTheme()" title="Toggle Space-Blue ↔ Midnight Black" style="padding:8px 12px;border-radius:999px;border:1px solid rgba(245,158,11,.35);background:rgba(245,158,11,.12);color:#fde68a;font-size:11px;font-weight:800;cursor:pointer;display:inline-flex;gap:6px;align-items:center">🌌 Space-Blue ✓</button>
+    </nav>
+  </div>
+</div>
+
+<div class="container hero">
+  <div class="eyebrow">SOVEREIGN AI • ONE INTELLIGENCE UNIVERSE • WEB + ANDROID + MAC</div>
+  <h1>The Intelligence That <span>Evolves</span> With You</h1>
+  <p>Vyomaraj is Deepak Goyal’s sovereign AI — Creator, Thinker, Scout, Analyst, Guardian & Evolution agents working as one cloud workspace across Web, Android & macOS. Zero autonomous execution — every publish, payment & mutation needs your explicit permission.</p>
+  <div class="heroActions">
+    <a class="btn btnGold" href="/" >🌐 Open Web Workspace</a>
+    <a class="btn btnDark" href="/Vyomaraj-App.apk" download>📱 Download Android APK — 24.8 MB</a>
+    <a class="btn btnEmerald" href="#mac">🍎 Get Mac App</a>
+  </div>
+  <div id="landingSyncHUD" style="margin:18px auto 0; max-width:520px; background:rgba(8,20,45,.85); border:1.5px solid rgba(16,185,129,0.28); border-radius:12px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font-size:11px;">
+    <span style="color:#10b981; font-weight:800;" id="landingSyncText">🔄 Loading sync status…</span>
+    <span style="display:flex; gap:6px; align-items:center;">
+      <span class="pill gold" id="landingSyncProgress" style="font-size:10px;">—</span>
+      <button onclick="landingTriggerSync()" style="background:linear-gradient(135deg,#f59e0b,#d97706); border:none; color:#000; font-weight:800; padding:6px 12px; border-radius:8px; cursor:pointer; font-size:11px;">⚡ Master Sync Now</button>
+    </span>
+  </div>
+  <div class="trust">
+    <span class="pill gold">👑 Owner: Deepak Goyal • dgoyalg@gmail.com</span>
+    <span class="pill green">🛡️ Anti-Jailbreak Shield ACTIVE</span>
+    <span class="pill">⚖️ DPDP Act 2023 • IT Act 2000 • RBI 2FA</span>
+    <span class="pill">☁️ Cloud Sync — Web + Android + Mac</span>
+  </div>
+
+  <div id="platforms" class="platforms">
+    <!-- WEB -->
+    <div class="card">
+      <h3><span class="icon">🌐</span> Web Landing & Cloud Workspace</h3>
+      <p>Zero-install, instant access. Sovereign Console, Food & Gourmet Channel, Governance Gate, and 6 sub-agents — all in one browser tab. PWA-installable.</p>
+      <ul class="specs">
+        <li>Vite + React + Framer Motion — blazing fast</li>
+        <li>PWA — Install to Dock / Home Screen (no URL bar)</li>
+        <li>Live URL + Health check + Food Channel API</li>
+        <li>Cloud-synced with Android & Mac</li>
+      </ul>
+      <div class="actions">
+        <a class="btnSm btnGold" href="/">🌐 Open Web App</a>
+        <a class="btnSm btnDark" href="/health">/health →</a>
+      </div>
+      <div class="urlBox" style="margin-top:10px">
+        <code id="webUrl">https://3000-iz5g8bifcw89o3g7qhvml.e2b.app</code>
+        <button class="btnSm btnDark" onclick="copy('webUrl')">Copy URL</button>
+      </div>
+    </div>
+
+    <!-- ANDROID -->
+    <div class="card" style="border-color:rgba(16,185,129,.25)">
+      <h3><span class="icon">🤖</span> Android — Native APK</h3>
+      <p>Full native Android app built with Kotlin + Jetpack Compose + Material 3. Biometric vault, Room DB, offline-first, 9 sovereign hubs.</p>
+      <ul class="specs">
+        <li>Kotlin • Compose • Room • Biometric • MVVM</li>
+        <li>Package: com.deepakgoyal.vyomarajai v1.1 (2)</li>
+        <li>Min SDK 24 • Target 36 • 24.8 MB signed APK</li>
+        <li>Biometric gate + Master Refresh + Sovereign Hub</li>
+      </ul>
+      <div class="actions">
+        <a class="btnSm" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff" href="/Vyomaraj-App.apk" download>📥 Download APK</a>
+        <a class="btnSm btnDark" href="/download-apk">Direct link</a>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+        <div class="qr">📱</div>
+        <div style="font-size:11px;color:#94a3b8;line-height:1.5">Scan or tap to install.<br>Enable “Install unknown apps” for Chrome/Files.<br><b style="color:#fff">SHA: vyomaraj-1.1 • 24,567,022 bytes</b></div>
+      </div>
+    </div>
+
+    <!-- MAC -->
+    <div id="mac" class="card" style="border-color:rgba(148,163,184,.25)">
+      <h3><span class="icon">🍎</span> macOS — Dock App</h3>
+      <p>Native SwiftUI macOS app. Split-view workspace, Master Refresh orb, Sovereign Review gate. Installs to Dock, no browser chrome.</p>
+      <ul class="specs">
+        <li>SwiftUI • macOS 13+ • Universal (Intel + Apple Silicon)</li>
+        <li>NavigationSplitView — Chats, Reels, Revenue, Sovereign</li>
+        <li>Master Refresh (90s flower-shower sync)</li>
+        <li>Zero-Trust — same governance as Web & Android</li>
+      </ul>
+      <div class="actions">
+        <a class="btnSm btnGold" href="/Vyomaraj-Mac.zip" download>⬇️ Download Mac App (.zip)</a>
+        <a class="btnSm btnDark" href="#mac-build">Build guide ↓</a>
+      </div>
+      <div class="urlBox" style="margin-top:10px;flex-direction:column;align-items:stretch">
+        <code>swift build -c release && open .build/release/VyomarajMac</code>
+        <span style="font-size:11px;color:#94a3b8">Or: open <code>macos-v5</code> in Xcode → Product → Archive → Distribute</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="features" class="section">
+    <h2>⚡ Why Vyomaraj — Picked Stack</h2>
+    <p class="desc">We picked a sovereign-first, offline-capable, cloud-synced stack: one design language (gold + space black), one permission gate, three native-feeling platforms sharing the same intelligence state.</p>
+    <div class="grid3">
+      <div class="feat"><h4>👑 Sovereign Governance</h4><p>Every mutation is <b>PENDING_OWNER_PERMISSION</b> until Deepak Goyal signs with 2FA. Anti-jailbreak firewall across GPT/Claude/Gemini/Llama. DPDP Act 2023 & IT Act inherited.</p></div>
+      <div class="feat"><h4>🍽️ Food & Gourmet Channel</h4><p>6 viral recipes (Royal Shahi Paneer, Truffle Pizza, Turmeric Elixir…) with category chips, like/share, and API at <code>/api/food</code>. Creator Studio auto-generates reels.</p></div>
+      <div class="feat"><h4>🤖 6 Sub-Agents</h4><p>Creator, Thinker, Scout, Analyst, Guardian, Evolution — each with revenue, ROI, views, tasks. Left-panel → right-portal inspector. Flower-shower Master Refresh (1-2 min).</p></div>
+      <div class="feat"><h4>🌐 Web Choice: Vite + React</h4><p>Chosen for instant HMR, PWA installability, and shared design tokens with mobile. Framer Motion for orb, Lucide icons, React Router. Dist is <b>128k gzip</b>.</p></div>
+      <div class="feat"><h4>🤖 Android Choice: Kotlin Compose</h4><p>Chosen for native performance, biometric hardware enclave, Room persistence, and Material 3 theming. Single MainActivity + 19 sovereign screens. Signed release ready.</p></div>
+      <div class="feat"><h4>🍎 Mac Choice: SwiftUI</h4><p>Chosen for first-class macOS citizenship: Dock, Launchpad, SplitView, native blur. Same gold/black theme, same Master Refresh. Builds as universal binary in one command.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>🔗 Live URLs (this sandbox)</h2>
+    <p class="desc">These are your instant preview URLs. They are live as long as this sandbox runs. For production, deploy via Render (render.yaml) or Vercel/Cloudflare.</p>
+    <div class="urlBox">
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--gold2)">WEB LANDING & APK SERVER (web_server.js :3000)</div>
+        <code id="u1">https://3000-iz5g8bifcw89o3g7qhvml.e2b.app</code><br>
+        <code id="u2">https://3000-iz5g8bifcw89o3g7qhvml.e2b.app/Vyomaraj-App.apk</code>
+        <code id="u3">https://3000-iz5g8bifcw89o3g7qhvml.e2b.app/health</code>
+      </div>
+      <button class="btnSm btnGold" onclick="copy('u1')">Copy</button>
+    </div>
+    <div class="urlBox">
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:#10b981">CONTROL-PLANE API + WEB (control-plane :8080)</div>
+        <code id="u4">https://8080-iz5g8bifcw89o3g7qhvml.e2b.app</code> <span style="font-size:11px;color:#94a3b8">— also serves /health, /api/governance, /api/food</span>
+      </div>
+      <button class="btnSm btnDark" onclick="copy('u4')">Copy</button>
+    </div>
+    <div class="urlBox">
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:#38bdf8">VITE WORKSPACE (web-v5 :5173)</div>
+        <code id="u5">https://5173-iz5g8bifcw89o3g7qhvml.e2b.app/Vyomaraj-Agent/</code> <span style="font-size:11px;color:#94a3b8">— React cloud workspace (framer-motion)</span>
+      </div>
+      <button class="btnSm btnDark" onclick="copy('u5')">Copy</button>
+    </div>
+  </section>
+
+  <section id="mac-build" class="section">
+    <h2>🛠️ Build Instructions</h2>
+    <div class="grid3">
+      <div class="feat"><h4>Android — Build APK</h4><p><code>./gradlew assembleDebug</code> → <code>app/build/outputs/apk/debug/app-debug.apk</code><br><code>./gradlew assembleRelease</code> (needs my-upload-key.jks env).<br>Or just use the prebuilt 24.8 MB APK above.</p></div>
+      <div class="feat"><h4>Mac — Build App</h4><p><code>cd macos-v5 && swift build -c release</code><br>or Xcode: open Package.swift → Run (⌘R).<br>Zip is at <code>/Vyomaraj-Mac.zip</code> and <code>/macos-v5/dist</code>.</p></div>
+      <div class="feat"><h4>Web — Build & Deploy</h4><p><code>cd web-v5 && npm run build</code> → <code>dist/</code> (GitHub Pages base /Vyomaraj-Agent/).<br><code>node web_server.js</code> → :3000 serves landing + APK.<br><code>node control-plane/src/server.mjs</code> → :8080 API.</p></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div style="font-weight:800;letter-spacing:1px;color:#fbbf24">VYOMARAJ • The King of Sky</div>
+    <div style="margin-top:4px">Brainchild of Deepak Goyal • dgoyalg@gmail.com • vyomarajai@gmail.com</div>
+    <div style="margin-top:6px;color:#475569">© 2026 Vyomaraj Sovereign AI • Zero autonomous execution • All publishing requires owner permission • Statutory inheritance: DPDP Act 2023, IT Act 2000, RBI 2FA, GDPR Art.22</div>
+  </div>
+</div>
+
+<script>
+let isBlue = true;
+function toggleTheme(){
+  isBlue = !isBlue;
+  const btn = document.getElementById('themeToggle');
+  if(isBlue){
+    document.documentElement.style.setProperty('--bg','#0a1628');
+    document.documentElement.style.setProperty('--card','#12284a');
+    document.body.style.background = 'radial-gradient(900px 600px at 75% -10%,#2a5ad640,transparent),radial-gradient(700px 500px at -10% 15%,#f59e0b14,transparent),radial-gradient(600px 400px at 30% 100%,#0ea5e914,transparent),var(--bg)';
+    document.querySelector('.topbar').style.background='rgba(10,22,40,.82)';
+    document.querySelector('.topbar').style.borderBottom='1px solid rgba(99,140,205,.18)';
+    btn.textContent='🌌 Space-Blue ✓';
+    btn.style.background='rgba(245,158,11,.12)'; btn.style.color='#fde68a';
+  } else {
+    // Midnight Black — original dark sovereign
+    document.documentElement.style.setProperty('--bg','#050914');
+    document.documentElement.style.setProperty('--card','#0d1324');
+    document.body.style.background = 'radial-gradient(800px 500px at 70% -10%,#1a2d5a40,transparent),radial-gradient(600px 400px at -10% 20%,#f59e0b12,transparent),var(--bg)';
+    document.querySelector('.topbar').style.background='rgba(5,9,20,.78)';
+    document.querySelector('.topbar').style.borderBottom='1px solid rgba(255,255,255,.07)';
+    btn.textContent='🌑 Midnight Black';
+    btn.style.background='rgba(255,255,255,.06)'; btn.style.color='#cbd5e1';
+  }
+  // also adjust cards / feats
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.background = isBlue ? 'linear-gradient(180deg,#162e5a 0%,#0f2340 55%,#0a1628 100%)' : 'linear-gradient(180deg,#0f1a33 0%,#0a1224 100%)';
+    c.style.borderColor = isBlue ? 'rgba(99,140,205,.22)' : 'rgba(255,255,255,.07)';
+  });
+  document.querySelectorAll('.feat').forEach(f=>{
+    f.style.background = isBlue ? 'linear-gradient(180deg,#132a52,#0f2340)' : '#0d1324';
+    f.style.borderColor = isBlue ? 'rgba(99,140,205,.18)' : 'rgba(255,255,255,.06)';
+  });
+}
+function copy(id){
+  const el=document.getElementById(id);
+  const text=el.innerText||el.textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    el.style.background='rgba(16,185,129,.25)';
+    el.style.color='#fff';
+    setTimeout(()=>{el.style.background='';el.style.color='';},900);
+    const btn = el.nextElementSibling;
+    if(btn) { const o=btn.textContent; btn.textContent='Copied!'; setTimeout(()=>btn.textContent=o,1200); }
+  });
+}
+function copyText(t, btn){
+  navigator.clipboard.writeText(t).then(()=>{ const o=btn.textContent; btn.textContent='Copied!'; setTimeout(()=>btn.textContent=o,1200); });
+}
+try{
+  const host=location.host;
+  const proto=location.protocol;
+  if(host.includes('e2b.app')){
+    // host is like 3000-iz5g8bifcw89o3g7qhvml.e2b.app -> extract sandbox id
+    const parts = host.split('-');
+    // sandbox id is after first dash, plus domain
+    const sandbox = host.substring(host.indexOf('-')+1); // iz5...e2b.app
+    const base3000 = proto+'//3000-'+sandbox;
+    const base8080 = proto+'//8080-'+sandbox;
+    const base5173 = proto+'//5173-'+sandbox;
+    const set = (id, val)=>{ const el=document.getElementById(id); if(el) el.textContent=val; };
+    set('webUrl', base3000+'/');
+    set('u1', base3000+'/');
+    set('u2', base3000+'/Vyomaraj-App.apk');
+    set('u3', base3000+'/health');
+    set('u4', base8080+'/');
+    set('u5', base5173+'/Vyomaraj-Agent/');
+    // also patch download hrefs
+    document.querySelectorAll('a[href="/Vyomaraj-App.apk"]').forEach(a=>a.href=base3000+'/Vyomaraj-App.apk');
+    document.querySelectorAll('a[href="/Vyomaraj-Mac.zip"]').forEach(a=>a.href=base3000+'/Vyomaraj-Mac.zip');
+    document.querySelectorAll('a[href="/"]').forEach(a=>{
+      if(a.textContent.includes('Open Web')) a.href=base3000+'/';
+    });
+  }
+}catch(e){}
+
+// ── Landing unified sync HUD — polls /api/sync/status every 4s, auto-sync every 2 mins via backend ──
+async function landingPollSync(){
+  try{
+    const host=location.host; const proto=location.protocol;
+    let base='';
+    if(host.includes('e2b.app')){ const sandbox=host.substring(host.indexOf('-')+1); base=proto+'//3000-'+sandbox; }
+    const url = base ? base+'/api/sync/status' : '/api/sync/status';
+    const r = await fetch(url); const s = await r.json();
+    const txt = document.getElementById('landingSyncText');
+    const prog = document.getElementById('landingSyncProgress');
+    if(txt) txt.textContent = s.isSyncing ? `🌸 Master Sync ACTIVE — ${s.progress}% • 6 sub-agents syncing together` : `✅ All 6 sub-agents synced • Last: ${s.lastSync ? new Date(s.lastSync).toLocaleTimeString() : 'ready'} • Auto-sync every 2 mins`;
+    if(prog) prog.textContent = s.isSyncing ? `Syncing ${s.progress}%` : `Sync #${s.syncCount||0} • 6/6 agents`;
+    if(prog) prog.style.borderColor = s.isSyncing ? 'var(--gold)' : 'rgba(16,185,129,0.35)';
+  }catch(e){}
+}
+async function landingTriggerSync(){
+  try{
+    const host=location.host; const proto=location.protocol;
+    let base='';
+    if(host.includes('e2b.app')){ const sandbox=host.substring(host.indexOf('-')+1); base=proto+'//3000-'+sandbox; }
+    const url = base ? base+'/api/sync/trigger' : '/api/sync/trigger';
+    await fetch(url,{method:'POST'});
+    try{localStorage.setItem('vyomaraj_sync_trigger',Date.now().toString());}catch(e){}
+  }catch(e){}
+  landingPollSync();
+}
+setInterval(landingPollSync, 4000);
+landingPollSync();
+// landing auto-sync heartbeat every 2 mins (mirrors console)
+setInterval(()=>{ landingTriggerSync(); }, 120000);
+
+</script>
+</body>
+</html>
