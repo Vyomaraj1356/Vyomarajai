@@ -16,29 +16,24 @@ jobs:
   replicate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout primary
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Verify secondary configuration
-        env:
-          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
-        run: |
-          test -n "$SECONDARY_REPO"
-
-      - name: Mirror primary to secondary
+      - name: Verify configuration
         env:
           SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
           SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
         run: |
           set -Eeuo pipefail
-          test -n "$SECONDARY_TOKEN"
           test -n "$SECONDARY_REPO"
+          test -n "$SECONDARY_TOKEN"
 
-          git remote add dr "https://x-access-token:${SECONDARY_TOKEN}@github.com/${SECONDARY_REPO}.git"
-          git fetch --all --prune
+      - name: Mirror every Git ref to the DR repository
+        env:
+          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
+          SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
+        run: |
+          set -Eeuo pipefail
+          rm -rf primary-mirror.git
+          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" primary-mirror.git
+          cd primary-mirror.git
 
-          # Mirror refs to the DR repository. The DR repository must be dedicated
-          # to this purpose because refs are force-updated by design.
-          git push dr --mirror
+          git remote set-url --push origin "https://x-access-token:${SECONDARY_TOKEN}@github.com/${SECONDARY_REPO}.git"
+          git push --mirror --force origin
