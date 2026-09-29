@@ -1,0 +1,65 @@
+# How to fix everything — Vyomaraj (2026-09-29)
+
+This package **diagnoses** both repos, then **updates the live site** and
+**replicates to the DR repo**, with checks so it can never ship the wrong bytes
+or overwrite diverged work.
+
+## What is actually wrong (verified against GitHub)
+| Repo | State |
+|---|---|
+| **PRIMARY** `Vyomaraj1356/Vyomarajai` | Public, reachable, **serves the live site**. `index.html` is still the **old 166,871-byte** page; `README.md` was wiped to **1 byte**. |
+| **DR** `deepakGoyal1356/Vyomaraj-Agent` | **PRIVATE** — returns **404** to any identity that isn't you. The Arena integration has no access to it. |
+
+The live-site fix = push the new `index.html` to the **primary**. The DR sync
+needs **your own** GitHub credential (owner of both accounts), not the integration.
+
+---
+
+## STEP 0 — Diagnose (proves which repo your token can reach) — 1 min
+Run **`Vyomaraj-Diagnose.ps1`** first. Right-click → *Run with PowerShell*
+(or `powershell -File Vyomaraj-Diagnose.ps1`). It asks for **two tokens**
+(primary, DR) — if one token reaches both repos, enter it twice. Make a PAT with
+**Contents: read/write** (classic `repo` scope, or fine-grained with Contents
+read+write on both repos).
+
+It creates a **temporary diagnostic branch** (never touches `main`), writes a test
+file, verifies the **remote** commit, then deletes the branch. It prints a report
+and saves `vyomaraj-sync-diagnostic.json`.
+
+**Read the result:**
+- Primary `Read/WriteTest = PASS` and DR `= PASS` → you're clear to sync both.
+- Primary PASS, **DR `Read = FAIL` (HTTP 404)** → the DR token can't reach the
+  private repo. That's the whole DR problem. Fix: use a token that owns/has access
+  to `deepakGoyal1356/Vyomaraj-Agent`, or add the identity as a collaborator.
+- Anything else → the report names the exact HTTP status; don't proceed until both PASS.
+
+---
+
+## STEP 1 — Fix (updates the live site + DR) — 2 min
+1. Install **Git for Windows**: https://git-scm.com/download/win
+2. **Double-click `Vyomaraj-Fix-All.bat`** and sign in to GitHub when prompted.
+3. It prints a **RESULT** and writes `vyomaraj-sync-ledger.json`.
+4. ~1 minute later open https://Vyomaraj1356.github.io/Vyomarajai/ — you should
+   see the **🌟 Vyomaraj Best** and **🏦 Banks & Payouts** tabs.
+
+## What the fix script guarantees
+- **md5 gate** — refuses to push unless `index.html` is exactly the verified page
+  (`a233dcbb…`, 1,916,519 bytes). Wrong bytes → it stops.
+- **No blind overwrite** — clones the current branch head, commits on top, pushes;
+  a branch that moved underneath is rejected, never force-pushed.
+- **Verifies the remote HEAD** after writing; writes a sync ledger.
+- **Explicit failure states**: `AUTH_FAILURE`, `REPOSITORY_ACCESS_FAILURE`,
+  `BRANCH_FAILURE`, `PUSH_FAILURE`, `SYNC_CONFLICT`, `SOURCE_MISMATCH`.
+
+## The APK — your decision
+The primary holds a **different** APK than the one we keep stable and signed:
+- primary: 24,567,022 B (sha `9c95df15…`)
+- ours:    24,525,352 B (sha `cfadbeca…`)
+
+The fix script **does not touch the APK by default**. To also push ours:
+`bash vyomaraj-dual-sync.sh --with-apk` — only if ours is canonical.
+
+## If the DR stays 404
+Expected until your identity can reach the private DR. The fix reports
+`PRIMARY=UPDATED  DR=STALE` — **the live site is still fixed.** Diagnose-only
+(read-only) anytime: `bash vyomaraj-dual-sync.sh --diagnose`.
