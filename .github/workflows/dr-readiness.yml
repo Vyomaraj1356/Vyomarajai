@@ -1,0 +1,24 @@
+name: Vyomaraj DR Readiness
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate DR controller
+        run: |
+          set -Eeuo pipefail
+          test -x ops/dr/failover-controller.sh || chmod +x ops/dr/failover-controller.sh
+          bash -n ops/dr/failover-controller.sh
+          echo "DR controller syntax: PASS"
+          echo "This job is non-destructive and does not switch production traffic."
