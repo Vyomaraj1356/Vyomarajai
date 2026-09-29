@@ -1,0 +1,44 @@
+name: Vyomaraj DR Replication
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vyomaraj-dr-replication
+  cancel-in-progress: false
+
+jobs:
+  replicate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout primary
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify secondary configuration
+        env:
+          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
+        run: |
+          test -n "$SECONDARY_REPO"
+
+      - name: Mirror primary to secondary
+        env:
+          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
+          SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
+        run: |
+          set -Eeuo pipefail
+          test -n "$SECONDARY_TOKEN"
+          test -n "$SECONDARY_REPO"
+
+          git remote add dr "https://x-access-token:${SECONDARY_TOKEN}@github.com/${SECONDARY_REPO}.git"
+          git fetch --all --prune
+
+          # Mirror refs to the DR repository. The DR repository must be dedicated
+          # to this purpose because refs are force-updated by design.
+          git push dr --mirror
