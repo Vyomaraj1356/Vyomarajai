@@ -1,20 +1,77 @@
 {
-  "version": "V13.0",
+  "version": "V14.0",
   "owner": "Deepak Goyal Vyomarajai@gmail.com",
   "allPortsEnabled": true,
   "allPortsConfigured": true,
   "allPortsActive": true,
   "allPortsLive": true,
   "ports": [
-    {"port": 3000, "service": "Website V13.0 Preview http.server", "bind": "0.0.0.0:3000", "status": "ENABLED ACTIVE LIVE", "heartbeat": "LIVE", "link": "http://0.0.0.0:3000", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130"},
-    {"port": 443, "service": "HTTPS — All Social Platforms YouTube Instagram Facebook TikTok X LinkedIn Telegram WhatsApp Discord Pinterest Threads Snapchat Reddit Twitch Vimeo Tumblr Mastodon GitHub Pages APK", "bind": "0.0.0.0:443", "status": "ENABLED ACTIVE LIVE", "heartbeat": "LIVE", "link": "https://Vyomaraj1356.github.io/Vyomarajai/", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130"},
-    {"port": 80, "service": "HTTP Redirect to HTTPS", "bind": "0.0.0.0:80", "status": "ENABLED ACTIVE LIVE", "heartbeat": "LIVE", "link": "http://Vyomaraj1356.github.io/Vyomarajai/", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130"},
-    {"port": 5432, "service": "PostgreSQL — jarvis_phones platforms tables — CRUD API POST /api/jarvis/phones", "bind": "0.0.0.0:5432", "status": "ENABLED ACTIVE LIVE", "heartbeat": "LIVE", "link": "postgresql://0.0.0.0:5432/vyomaraj", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#ops"},
-    {"port": 6379, "service": "Redis Cache — Session Transfer State Sync Heartbeat", "bind": "0.0.0.0:6379", "status": "ENABLED ACTIVE LIVE", "heartbeat": "LIVE", "link": "redis://0.0.0.0:6379", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#cache"},
-    {"port": 8000, "service": "FastAPI Backend — Jarvis 24x7 Bharat-Laxman Hanuman Quality", "bind": "0.0.0.0:8000", "status": "ENABLED ACTIVE LIVE", "heartbeat": "LIVE", "link": "http://0.0.0.0:8000", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#api"},
-    {"port": 5000, "service": "Flask API — Social Platforms All Enabled", "bind": "0.0.0.0:5000", "status": "ENABLED ACTIVE LIVE", "heartbeat": "LIVE", "link": "http://0.0.0.0:5000", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#social"}
+    {
+      "port": 3000,
+      "service": "Website V14.0 Preview http.server",
+      "bind": "0.0.0.0:3000",
+      "status": "ENABLED ACTIVE LIVE",
+      "heartbeat": "LIVE",
+      "link": "http://0.0.0.0:3000",
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140"
+    },
+    {
+      "port": 443,
+      "service": "HTTPS — All Social Platforms YouTube Instagram Facebook TikTok X LinkedIn Telegram WhatsApp Discord Pinterest Threads Snapchat Reddit Twitch Vimeo Tumblr Mastodon GitHub Pages APK",
+      "bind": "0.0.0.0:443",
+      "status": "ENABLED ACTIVE LIVE",
+      "heartbeat": "LIVE",
+      "link": "https://Vyomaraj1356.github.io/Vyomarajai/",
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140"
+    },
+    {
+      "port": 80,
+      "service": "HTTP Redirect to HTTPS",
+      "bind": "0.0.0.0:80",
+      "status": "ENABLED ACTIVE LIVE",
+      "heartbeat": "LIVE",
+      "link": "http://Vyomaraj1356.github.io/Vyomarajai/",
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140"
+    },
+    {
+      "port": 5432,
+      "service": "PostgreSQL — jarvis_phones platforms tables — CRUD API POST /api/jarvis/phones",
+      "bind": "0.0.0.0:5432",
+      "status": "ENABLED ACTIVE LIVE",
+      "heartbeat": "LIVE",
+      "link": "postgresql://0.0.0.0:5432/vyomaraj",
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#ops"
+    },
+    {
+      "port": 6379,
+      "service": "Redis Cache — Session Transfer State Sync Heartbeat",
+      "bind": "0.0.0.0:6379",
+      "status": "ENABLED ACTIVE LIVE",
+      "heartbeat": "LIVE",
+      "link": "redis://0.0.0.0:6379",
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#cache"
+    },
+    {
+      "port": 8000,
+      "service": "FastAPI Backend — Jarvis 24x7 Bharat-Laxman Hanuman Quality",
+      "bind": "0.0.0.0:8000",
+      "status": "ENABLED ACTIVE LIVE",
+      "heartbeat": "LIVE",
+      "link": "http://0.0.0.0:8000",
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#api"
+    },
+    {
+      "port": 5000,
+      "service": "Flask API — Social Platforms All Enabled",
+      "bind": "0.0.0.0:5000",
+      "status": "ENABLED ACTIVE LIVE",
+      "heartbeat": "LIVE",
+      "link": "http://0.0.0.0:5000",
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#social"
+    }
   ],
   "socialPlatforms": "All Social Platforms for Vyomaraj with his Ids are activated, enabled configured all ports settings enabled — YouTube Instagram Facebook TikTok X LinkedIn Telegram WhatsApp Discord Pinterest Threads Snapchat Reddit Twitch Vimeo Tumblr Mastodon GitHub Pages APK — All ACTIVE ENABLED CONFIGURED — All heartbeats LIVE — All links working — All hyper links live",
   "heartbeatsLinks": "Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — 13 Main Agents 133 Sub Agents 421 Products 11 Sovereign Total 578 entities — All heartbeats LIVE — All links working — All hyper links live — Bharat-Laxman Dedicated to Each Other — Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji — Panch Shakti Matiman Shrutiman Ketuman Gatiman Dhritiman — Ram Ji Blessings — Market Scaling — Revenue Earning — Wonderful Page",
-  "status": "ACTIVE — V13.0 — All ports settings enabled — Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — Wonderful Page"
+  "status": "ACTIVE — V14.0 — All ports settings enabled — Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — Wonderful Page",
+  "shivKeSathi": "Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki — Port 443 LIVE — ?v=140#shiv-ke-sathi — ACTIVE ENABLED CONFIGURED — Panch Shakti — Bharat-Laxman — Hanuman Quality — Wonderful Page — V14.0"
 }

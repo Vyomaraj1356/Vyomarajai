@@ -1,5 +1,5 @@
 {
-  "version": "V13.0",
+  "version": "V14.0",
   "owner": "Deepak Goyal Vyomarajai@gmail.com",
   "vyomarajIds": {
     "youtube": "@Vyomaraj — 18.9K members — Channel ID UC... — MRR ₹3.0L — Best Scene Shorts 30 sec fair use 9:16 — YouTube Shorts FB IG max hits earnings — AdSense 21st — API YouTube Studio API v3 OAuth2",
@@ -27,36 +27,249 @@
     "email": "Vyomarajai@gmail.com — SMTP — Email notifications"
   },
   "allPlatforms": [
-    {"platform": "YouTube", "id": "@Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://youtube.com/@Vyomaraj", "api": "YouTube Studio API v3 OAuth2", "revenue": "MRR ₹3.0L AdSense 21st"},
-    {"platform": "Instagram", "id": "@Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://instagram.com/Vyomaraj", "api": "Instagram Graph API", "revenue": "56.2K followers Brand Collab"},
-    {"platform": "Facebook", "id": "@Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://facebook.com/Vyomaraj", "api": "Facebook Graph API", "revenue": "38.4K Bonus ₹1,29,000 +12%"},
-    {"platform": "TikTok", "id": "@Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://tiktok.com/@Vyomaraj", "api": "TikTok API", "revenue": "Short video 15-60 sec trending"},
-    {"platform": "X (Twitter)", "id": "@Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://x.com/Vyomaraj", "api": "X API v2", "revenue": "5.42M views Brand pitch"},
-    {"platform": "LinkedIn", "id": "@Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://linkedin.com/in/Vyomaraj", "api": "LinkedIn API", "revenue": "B2B 12 leads ₹8.4L"},
-    {"platform": "Telegram", "id": "@VyomarajBot", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://t.me/VyomarajBot", "api": "Telegram Bot API", "revenue": "28.5K MRR ₹5.67L"},
-    {"platform": "WhatsApp", "id": "+91 9823648038 / 9175112579", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://wa.me/919823648038", "api": "WhatsApp Business API", "revenue": "2B UPI Razorpay Nurture"},
-    {"platform": "Discord", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://discord.gg/Vyomaraj", "api": "Discord API", "revenue": "Community 94.6K"},
-    {"platform": "Pinterest", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://pinterest.com/Vyomaraj", "api": "Pinterest API", "revenue": "Pins boards affiliate"},
-    {"platform": "Threads", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://threads.net/@Vyomaraj", "api": "Threads API", "revenue": "Text posts 500 chars"},
-    {"platform": "Snapchat", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://snapchat.com/add/Vyomaraj", "api": "Snap Kit API", "revenue": "Spotlight 60 sec"},
-    {"platform": "Reddit", "id": "r/Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://reddit.com/r/Vyomaraj", "api": "Reddit API", "revenue": "Subreddits community"},
-    {"platform": "Twitch", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://twitch.tv/Vyomaraj", "api": "Twitch API", "revenue": "Live streaming 19 screens"},
-    {"platform": "Vimeo", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://vimeo.com/Vyomaraj", "api": "Vimeo API", "revenue": "300M API 4K 60fps hosting"},
-    {"platform": "Tumblr", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://vyomaraj.tumblr.com", "api": "Tumblr API", "revenue": "Blog affiliate"},
-    {"platform": "Mastodon", "id": "Vyomaraj", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://mastodon.social/@Vyomaraj", "api": "Mastodon API", "revenue": "Fediverse"},
-    {"platform": "GitHub Pages", "id": "Vyomaraj1356/Vyomarajai", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130", "api": "GitHub Pages API", "revenue": "12ms Global CDN"},
-    {"platform": "APK", "id": "com.deepakgoyal.vyomarajai", "status": "ACTIVE ENABLED CONFIGURED", "port": 443, "heartbeat": "LIVE", "link": "https://Vyomaraj1356.github.io/Vyomarajai/Vyomaraj-App.apk", "api": "Android APK", "revenue": "24.5MB 24,567,022 B"}
+    {
+      "platform": "YouTube",
+      "id": "@Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://youtube.com/@Vyomaraj",
+      "api": "YouTube Studio API v3 OAuth2",
+      "revenue": "MRR ₹3.0L AdSense 21st"
+    },
+    {
+      "platform": "Instagram",
+      "id": "@Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://instagram.com/Vyomaraj",
+      "api": "Instagram Graph API",
+      "revenue": "56.2K followers Brand Collab"
+    },
+    {
+      "platform": "Facebook",
+      "id": "@Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://facebook.com/Vyomaraj",
+      "api": "Facebook Graph API",
+      "revenue": "38.4K Bonus ₹1,29,000 +12%"
+    },
+    {
+      "platform": "TikTok",
+      "id": "@Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://tiktok.com/@Vyomaraj",
+      "api": "TikTok API",
+      "revenue": "Short video 15-60 sec trending"
+    },
+    {
+      "platform": "X (Twitter)",
+      "id": "@Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://x.com/Vyomaraj",
+      "api": "X API v2",
+      "revenue": "5.42M views Brand pitch"
+    },
+    {
+      "platform": "LinkedIn",
+      "id": "@Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://linkedin.com/in/Vyomaraj",
+      "api": "LinkedIn API",
+      "revenue": "B2B 12 leads ₹8.4L"
+    },
+    {
+      "platform": "Telegram",
+      "id": "@VyomarajBot",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://t.me/VyomarajBot",
+      "api": "Telegram Bot API",
+      "revenue": "28.5K MRR ₹5.67L"
+    },
+    {
+      "platform": "WhatsApp",
+      "id": "+91 9823648038 / 9175112579",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://wa.me/919823648038",
+      "api": "WhatsApp Business API",
+      "revenue": "2B UPI Razorpay Nurture"
+    },
+    {
+      "platform": "Discord",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://discord.gg/Vyomaraj",
+      "api": "Discord API",
+      "revenue": "Community 94.6K"
+    },
+    {
+      "platform": "Pinterest",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://pinterest.com/Vyomaraj",
+      "api": "Pinterest API",
+      "revenue": "Pins boards affiliate"
+    },
+    {
+      "platform": "Threads",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://threads.net/@Vyomaraj",
+      "api": "Threads API",
+      "revenue": "Text posts 500 chars"
+    },
+    {
+      "platform": "Snapchat",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://snapchat.com/add/Vyomaraj",
+      "api": "Snap Kit API",
+      "revenue": "Spotlight 60 sec"
+    },
+    {
+      "platform": "Reddit",
+      "id": "r/Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://reddit.com/r/Vyomaraj",
+      "api": "Reddit API",
+      "revenue": "Subreddits community"
+    },
+    {
+      "platform": "Twitch",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://twitch.tv/Vyomaraj",
+      "api": "Twitch API",
+      "revenue": "Live streaming 19 screens"
+    },
+    {
+      "platform": "Vimeo",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://vimeo.com/Vyomaraj",
+      "api": "Vimeo API",
+      "revenue": "300M API 4K 60fps hosting"
+    },
+    {
+      "platform": "Tumblr",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://vyomaraj.tumblr.com",
+      "api": "Tumblr API",
+      "revenue": "Blog affiliate"
+    },
+    {
+      "platform": "Mastodon",
+      "id": "Vyomaraj",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://mastodon.social/@Vyomaraj",
+      "api": "Mastodon API",
+      "revenue": "Fediverse"
+    },
+    {
+      "platform": "GitHub Pages",
+      "id": "Vyomaraj1356/Vyomarajai",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140",
+      "api": "GitHub Pages API",
+      "revenue": "12ms Global CDN"
+    },
+    {
+      "platform": "APK",
+      "id": "com.deepakgoyal.vyomarajai",
+      "status": "ACTIVE ENABLED CONFIGURED",
+      "port": 443,
+      "heartbeat": "LIVE",
+      "link": "https://Vyomaraj1356.github.io/Vyomarajai/Vyomaraj-App.apk",
+      "api": "Android APK",
+      "revenue": "24.5MB 24,567,022 B"
+    }
   ],
   "portsSettings": {
     "description": "All ports settings enabled — Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live",
     "ports": [
-      {"port": 3000, "service": "Website V13.0 Preview", "status": "ENABLED ACTIVE LIVE", "bind": "0.0.0.0:3000", "heartbeat": "LIVE"},
-      {"port": 443, "service": "HTTPS All Social Platforms", "status": "ENABLED ACTIVE LIVE", "bind": "0.0.0.0:443", "heartbeat": "LIVE"},
-      {"port": 80, "service": "HTTP Redirect", "status": "ENABLED ACTIVE LIVE", "bind": "0.0.0.0:80", "heartbeat": "LIVE"},
-      {"port": 5432, "service": "PostgreSQL jarvis_phones platforms tables", "status": "ENABLED ACTIVE LIVE", "bind": "0.0.0.0:5432", "heartbeat": "LIVE"},
-      {"port": 6379, "service": "Redis Cache", "status": "ENABLED ACTIVE LIVE", "bind": "0.0.0.0:6379", "heartbeat": "LIVE"},
-      {"port": 8000, "service": "FastAPI Backend", "status": "ENABLED ACTIVE LIVE", "bind": "0.0.0.0:8000", "heartbeat": "LIVE"},
-      {"port": 5000, "service": "Flask API", "status": "ENABLED ACTIVE LIVE", "bind": "0.0.0.0:5000", "heartbeat": "LIVE"}
+      {
+        "port": 3000,
+        "service": "Website V14.0 Preview",
+        "status": "ENABLED ACTIVE LIVE",
+        "bind": "0.0.0.0:3000",
+        "heartbeat": "LIVE"
+      },
+      {
+        "port": 443,
+        "service": "HTTPS All Social Platforms",
+        "status": "ENABLED ACTIVE LIVE",
+        "bind": "0.0.0.0:443",
+        "heartbeat": "LIVE"
+      },
+      {
+        "port": 80,
+        "service": "HTTP Redirect",
+        "status": "ENABLED ACTIVE LIVE",
+        "bind": "0.0.0.0:80",
+        "heartbeat": "LIVE"
+      },
+      {
+        "port": 5432,
+        "service": "PostgreSQL jarvis_phones platforms tables",
+        "status": "ENABLED ACTIVE LIVE",
+        "bind": "0.0.0.0:5432",
+        "heartbeat": "LIVE"
+      },
+      {
+        "port": 6379,
+        "service": "Redis Cache",
+        "status": "ENABLED ACTIVE LIVE",
+        "bind": "0.0.0.0:6379",
+        "heartbeat": "LIVE"
+      },
+      {
+        "port": 8000,
+        "service": "FastAPI Backend",
+        "status": "ENABLED ACTIVE LIVE",
+        "bind": "0.0.0.0:8000",
+        "heartbeat": "LIVE"
+      },
+      {
+        "port": 5000,
+        "service": "Flask API",
+        "status": "ENABLED ACTIVE LIVE",
+        "bind": "0.0.0.0:5000",
+        "heartbeat": "LIVE"
+      }
     ],
     "allEnabled": true,
     "allConfigured": true,
@@ -76,11 +289,36 @@
       "allHyperLinksLive": true
     },
     "links": [
-      {"agent": "All 13 Main Agents", "heartbeat": "LIVE", "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#agents", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#agents", "status": "ACTIVE ENABLED CONFIGURED"},
-      {"agent": "All 133 Sub Agents", "heartbeat": "LIVE", "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#sub-agents", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#sub-agents", "status": "ACTIVE ENABLED CONFIGURED"},
-      {"agent": "All 421 Products", "heartbeat": "LIVE", "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#products", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#products", "status": "ACTIVE ENABLED CONFIGURED"},
-      {"agent": "All 11 Sovereign", "heartbeat": "LIVE", "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#sovereign", "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=130#sovereign", "status": "ACTIVE ENABLED CONFIGURED"}
+      {
+        "agent": "All 13 Main Agents",
+        "heartbeat": "LIVE",
+        "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#agents",
+        "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#agents",
+        "status": "ACTIVE ENABLED CONFIGURED"
+      },
+      {
+        "agent": "All 133 Sub Agents",
+        "heartbeat": "LIVE",
+        "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#sub-agents",
+        "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#sub-agents",
+        "status": "ACTIVE ENABLED CONFIGURED"
+      },
+      {
+        "agent": "All 421 Products",
+        "heartbeat": "LIVE",
+        "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#products",
+        "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#products",
+        "status": "ACTIVE ENABLED CONFIGURED"
+      },
+      {
+        "agent": "All 11 Sovereign",
+        "heartbeat": "LIVE",
+        "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#sovereign",
+        "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=140#sovereign",
+        "status": "ACTIVE ENABLED CONFIGURED"
+      }
     ]
   },
-  "status": "ACTIVE — V13.0 — All Social Platforms for Vyomaraj with his Ids are activated, enabled configured all ports settings enabled — Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — Bharat-Laxman Dedicated to Each Other — Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji — Panch Shakti Matiman Shrutiman Ketuman Gatiman Dhritiman — Ram Ji Blessings — Market Scaling — Revenue Earning — Wonderful Page"
+  "status": "ACTIVE — V14.0 — All Social Platforms for Vyomaraj with his Ids are activated, enabled configured all ports settings enabled — Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — Bharat-Laxman Dedicated to Each Other — Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji — Panch Shakti Matiman Shrutiman Ketuman Gatiman Dhritiman — Ram Ji Blessings — Market Scaling — Revenue Earning — Wonderful Page",
+  "shivKeSathi": "Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki Chandra Vibhuti Ganga Bilva — History Value Benefits Specification — Bhakts Stories Values People Locations 12 Jyotirlinga — All Social Platforms Activated Enabled Configured All Ports Enabled Heartbeats Links HyperLinks All Live — V14.0 — Pandit avatar Dhoti Kurta Tilak Mala Pothi Bhakti Shakti Teacher Guru — Bharat-Laxman Dedicated — Hanuman Quality — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Ram Ji Blessings"
 }
