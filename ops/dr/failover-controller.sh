@@ -41,7 +41,7 @@ log() { printf '[%s] %s\n' "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" "$*"; }
 die() { log "ERROR: $*"; exit 1; }
 
 acquire_lock() {
-  if (command -v flock >/dev/null 2>&1; then
+  if command -v flock >/dev/null 2>&1; then
     exec 9>"$LOCK_FILE"
     flock -n 9 || die "Another DR operation is already running."
   fi
