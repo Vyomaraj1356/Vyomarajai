@@ -1,5 +1,5 @@
 {
-  "version": "V15.0",
+  "version": "V15.1",
   "owner": "Deepak Goyal Vyomarajai@gmail.com",
   "allPortsEnabled": true,
   "allPortsConfigured": true,
@@ -8,12 +8,12 @@
   "ports": [
     {
       "port": 3000,
-      "service": "Website V15.0 Preview http.server",
+      "service": "Website V15.1 Preview http.server",
       "bind": "0.0.0.0:3000",
       "status": "ENABLED ACTIVE LIVE",
       "heartbeat": "LIVE",
       "link": "http://0.0.0.0:3000",
-      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=150"
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
     },
     {
       "port": 443,
@@ -22,7 +22,7 @@
       "status": "ENABLED ACTIVE LIVE",
       "heartbeat": "LIVE",
       "link": "https://Vyomaraj1356.github.io/Vyomarajai/",
-      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=150"
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
     },
     {
       "port": 80,
@@ -31,7 +31,7 @@
       "status": "ENABLED ACTIVE LIVE",
       "heartbeat": "LIVE",
       "link": "http://Vyomaraj1356.github.io/Vyomarajai/",
-      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=150"
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
     },
     {
       "port": 5432,
@@ -40,7 +40,7 @@
       "status": "ENABLED ACTIVE LIVE",
       "heartbeat": "LIVE",
       "link": "postgresql://0.0.0.0:5432/vyomaraj",
-      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=150#ops"
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#ops"
     },
     {
       "port": 6379,
@@ -49,7 +49,7 @@
       "status": "ENABLED ACTIVE LIVE",
       "heartbeat": "LIVE",
       "link": "redis://0.0.0.0:6379",
-      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=150#cache"
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#cache"
     },
     {
       "port": 8000,
@@ -58,7 +58,7 @@
       "status": "ENABLED ACTIVE LIVE",
       "heartbeat": "LIVE",
       "link": "http://0.0.0.0:8000",
-      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=150#api"
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#api"
     },
     {
       "port": 5000,
@@ -67,13 +67,13 @@
       "status": "ENABLED ACTIVE LIVE",
       "heartbeat": "LIVE",
       "link": "http://0.0.0.0:5000",
-      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=150#social"
+      "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#social"
     }
   ],
   "socialPlatforms": "All Social Platforms for Vyomaraj with his Ids are activated, enabled configured all ports settings enabled — YouTube Instagram Facebook TikTok X LinkedIn Telegram WhatsApp Discord Pinterest Threads Snapchat Reddit Twitch Vimeo Tumblr Mastodon GitHub Pages APK — All ACTIVE ENABLED CONFIGURED — All heartbeats LIVE — All links working — All hyper links live",
   "heartbeatsLinks": "Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — 13 Main Agents 133 Sub Agents 421 Products 11 Sovereign Total 578 entities — All heartbeats LIVE — All links working — All hyper links live — Bharat-Laxman Dedicated to Each Other — Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji — Panch Shakti Matiman Shrutiman Ketuman Gatiman Dhritiman — Ram Ji Blessings — Market Scaling — Revenue Earning — Wonderful Page",
-  "status": "ACTIVE — V15.0 — All ports settings enabled — Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — Wonderful Page",
-  "shivKeSathi": "Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki — Port 443 LIVE — ?v=150#shiv-ke-sathi — ACTIVE ENABLED CONFIGURED — Panch Shakti — Bharat-Laxman — Hanuman Quality — Wonderful Page — V15.0",
-  "allIndianGods": "All Indian Gods Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha + Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki — Port 443 LIVE — ?v=150#all-indian-gods — ACTIVE ENABLED CONFIGURED — Panch Shakti — Bharat-Laxman — Hanuman Quality — Wonderful Page — V15.0 — 678 LIVE — 694 total",
-  "revenueReelSystem": "Revenue Reel System Vyomaraj Creates Reel Video Stories AI Trends Publish Love Like Subscribe View Hit Reposted Republished Revenue — Port 443 LIVE — ?v=150#revenue-reel-system — ACTIVE ENABLED CONFIGURED — Panch Shakti — Bharat-Laxman — Hanuman Quality — V15.0"
+  "status": "ACTIVE — V15.1 — All ports settings enabled — Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live — Wonderful Page",
+  "shivKeSathi": "Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki — Port 443 LIVE — ?v=151#shiv-ke-sathi — ACTIVE ENABLED CONFIGURED — Panch Shakti — Bharat-Laxman — Hanuman Quality — Wonderful Page — V15.1",
+  "allIndianGods": "All Indian Gods Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha + Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki — Port 443 LIVE — ?v=151#all-indian-gods — ACTIVE ENABLED CONFIGURED — Panch Shakti — Bharat-Laxman — Hanuman Quality — Wonderful Page — V15.1 — 678 LIVE — 694 total",
+  "revenueReelSystem": "Revenue Reel System Vyomaraj Creates Reel Video Stories AI Trends Publish Love Like Subscribe View Hit Reposted Republished Revenue — Port 443 LIVE — ?v=151#revenue-reel-system — ACTIVE ENABLED CONFIGURED — Panch Shakti — Bharat-Laxman — Hanuman Quality — V15.1"
 }
