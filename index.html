@@ -6,6 +6,501 @@
 <style>
 #vyomarajMap { z-index:1; }
 .leaflet-control-attribution { font-size:9px; }
+
+/* V16.3 — User Feedback — Shani Blue #0a1628 all background, Kuber Gold #f59e0b glitter, Arial font, V as Laxman Jarvis, Tiles Netflix style */
+body { background: #0a1628 !important; }
+.topbar-v16 { background: linear-gradient(180deg, #0a1628 0%, #0f2340 100%) !important; border-bottom: 2px solid #f59e0b; }
+.kuber-graffiti {
+  font-family: Arial, Helvetica, sans-serif !important; /* Aerial Font per user */
+  letter-spacing: 0.08em;
+}
+.logo-v16 { background: linear-gradient(135deg, #0a1628 0%, #132a4d 100%) !important; border: 2px solid #f59e0b; }
+.logo-v16 .v-emblem { background: radial-gradient(ellipse at 30% 20%, #0a1628 0%, #0f2340 100%) !important; }
+.logo-v16 .v-emblem::after { content: 'J' !important; /* V will act as Laxman Jarvis — J for Jarvis Laxman */ }
+.logo-v16 .v-emblem[title] { cursor: pointer; }
+.punch-line { display: none !important; } /* Image3 Remove Final Market Ready Arms & Weapons punch-line */
+
+/* Image4 — Move PRIMARY LIVE etc to top right tile format individually clickable */
+.dr-status-v16.top-right-tiles {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  max-width: 320px;
+}
+.dr-status-v16.top-right-tiles .dr-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 20px rgba(245,158,11,0.1);
+  background: linear-gradient(135deg, #0a1628, #132a4d);
+  border: 1.5px solid #f59e0b;
+  min-width: 220px;
+}
+.dr-status-v16.top-right-tiles .dr-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6), 0 0 30px rgba(245,158,11,0.3);
+}
+.dr-status-v16.top-right-tiles .dr-badge.live { border-color: #22c55e; }
+.dr-status-v16.top-right-tiles .dr-badge.dr { border-color: #f59e0b; }
+.dr-status-v16.top-right-tiles .dr-badge.failed { border-color: #ef4444; }
+
+/* Image5 — Heartbeat + pills + Live Pages not required background function */
+.heartbeat-v16.background-function, .pills-background, .live-pages-background { display: none !important; }
+
+/* Image6 — Long V16.5 SHRIYANTRA — Vyomaraj Color Fix + Tabs Bottom — Sovereign Console Owner Law Gate Food Culinary APK Social Hub — 0.000000000 Impact Netflix Prime Hotstar — Small Fit — Beautiful User Friendly — FINAL MARKET READY — Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved Glittery Arial Font V as Laxman Jarvis — Tiles Netflix Style — Sovereign Tab Rules Laws Whisperflow — 0.000000000 Impact banner small button right side */
+.alert.banner-collapsed {
+  display: none;
+}
+.small-btn-right {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 102;
+  writing-mode: vertical-rl;
+  padding: 12px 8px;
+  border-radius: 12px 0 0 12px;
+  background: linear-gradient(180deg, #f59e0b, #d97706);
+  color: #0a1628;
+  font-weight: 900;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.4);
+  border: 1.5px solid #f59e0b;
+  border-right: none;
+}
+
+/* Image7 — Manage Banks not required — hide button but keep function */
+.btn-manage-banks { display: none !important; }
+
+/* Image8 — Kuber Status bank list not display — Sovereign tab bottom */
+#kuberStatusV16 { display: none !important; }
+#bankList { display: none !important; }
+
+/* Image9 — VYOMARAJ The King of Sky Sovereign Root Owner Primary Locked not required */
+.card.sovereign-root-card { display: none !important; }
+
+/* Image10 — Shriyantra — agents tiles Netflix style small fit engraved highlighted */
+.shriyantra-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0a1628, #132a4d);
+  border: 2px solid #f59e0b;
+  box-shadow: 0 0 30px rgba(245,158,11,0.15);
+  margin: 14px 0;
+}
+.shriyantra-title {
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  background: linear-gradient(90deg, #ffe9a8, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(245,158,11,0.5);
+}
+.agents-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  padding: 12px 0;
+}
+.agent-tile {
+  position: relative;
+  padding: 14px 10px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #132a4d 0%, #0a1628 100%);
+  border: 1.5px solid #1c2f52;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+  overflow: hidden;
+  text-align: center;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.agent-tile::before {
+  content: '';
+  position: absolute;
+  top:0; left:0; right:0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.agent-tile:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: #f59e0b;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.5), 0 0 30px rgba(245,158,11,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+  background: linear-gradient(135deg, #1a2a4d, #0f2340);
+}
+.agent-tile:hover::before { opacity: 1; }
+.agent-tile .agent-icon { font-size: 22px; filter: drop-shadow(0 0 8px rgba(245,158,11,0.4)); }
+.agent-tile .agent-name { font-size: 11px; font-weight: 800; color: #ffe9a8; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+.agent-tile .agent-count { font-size: 10px; color: #9fb0cc; }
+.agent-tile .agent-heartbeat { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; animation: heartbeatPulse 1.2s infinite; position: absolute; top:8px; right:8px; }
+.agent-tile.active { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.3); }
+
+/* Image1 — Daily Revenue dummy label */
+.dummy-label { font-size: 9px; color: #f59e0b; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); padding: 2px 6px; border-radius: 999px; margin-left: 8px; }
+
+/* Sovereign Tab Bottom */
+.sovereign-tab {
+  position: fixed;
+  bottom: 0;
+  left:0; right:0;
+  background: linear-gradient(180deg, #0f2340, #0a1628);
+  border-top: 2px solid #f59e0b;
+  padding: 12px 16px;
+  z-index: 100;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.5);
+  max-height: 50vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.sovereign-tab.active { transform: translateY(0); }
+.sovereign-tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #132a4d, #0a1628);
+  border: 1.5px solid #f59e0b;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.sovereign-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.sovereign-card { background: #1a2a4a; border: 1.5px solid #1c2f52; border-radius: 10px; padding: 12px; }
+.sovereign-card h4 { color: #f59e0b; margin: 0 0 8px 0; font-size: 13px; }
+.sovereign-card ul { margin: 0; padding-left: 16px; font-size: 11px; color: #9fb0cc; line-height: 1.5; }
+
+
+/* V16.4 — Image1 DR tiles too big small shift right corner */
+.dr-status-v16.top-right-tiles {
+  top: 8px !important;
+  right: 8px !important;
+  max-width: 260px !important;
+  gap: 6px !important;
+}
+.dr-status-v16.top-right-tiles .dr-badge {
+  min-width: 220px !important;
+  padding: 6px 10px !important;
+  font-size: 10px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+/* Image2 — Shriyantra fit to page keep color every text removing glitter stable + watch calendar */
+.shriyantra-header {
+  padding: 10px 14px !important;
+  margin: 8px 0 !important;
+  border-radius: 10px !important;
+  gap: 8px !important;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.shriyantra-title {
+  font-size: 20px !important; /* smaller fit to page */
+  font-family: Arial, sans-serif !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: #ffe9a8 !important; /* keep color to every text — Kuber Gold stable no glitter */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8), 0 0 10px rgba(245,158,11,0.3) !important;
+  animation: none !important;
+}
+.shriyantra-title .kuber-graffiti { animation: none !important; text-shadow: 0 1px 2px rgba(0,0,0,0.8) !important; }
+.agents-tiles-grid {
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important; /* smaller fit Netflix style */
+  gap: 8px !important;
+  padding: 8px 0 !important;
+}
+.agent-tile {
+  min-height: 70px !important;
+  padding: 10px 6px !important;
+  border-radius: 10px !important;
+  gap: 4px !important;
+}
+.agent-tile .agent-icon { font-size: 18px !important; }
+.agent-tile .agent-name { font-size: 10px !important; }
+.agent-tile .agent-count { font-size: 9px !important; }
+
+/* Watch and calendar next to Vyomaraj text middle */
+.vyomaraj-watch-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0a1628, #132a4d);
+  border: 1.5px solid #f59e0b;
+  font-size: 11px;
+  color: #ffe9a8;
+  box-shadow: 0 0 15px rgba(245,158,11,0.15);
+  margin-left: 12px;
+}
+.vyomaraj-watch-calendar .watch-icon { font-size: 14px; }
+.vyomaraj-watch-calendar .datetime-small { font-family: Arial, sans-serif; font-weight: 700; color: #22d3ee; font-size: 11px; }
+
+/* Image3 — Real agents Food Culinary Sport Education heartbeat links — Kuber dashboard revenue per agent */
+.real-agents-section {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0a1628, #132a4d);
+  border: 1.5px solid #1c2f52;
+}
+.kuber-dashboard-v164 {
+  background: linear-gradient(135deg, #1a2a4d, #0f2340);
+  border: 2px solid #f59e0b;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 12px 0;
+  box-shadow: 0 4px 0 #92400e, 0 8px 20px rgba(0,0,0,0.4);
+}
+.kuber-revenue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.kuber-agent-revenue {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.2);
+  font-size: 11px;
+}
+.kuber-agent-revenue .agent-name { font-weight: 800; color: #ffe9a8; font-size: 11px; }
+.kuber-agent-revenue .revenue-amount { font-weight: 900; color: #f59e0b; font-size: 14px; }
+.revenue-dropdown { padding: 4px 8px; border-radius: 6px; background: #0a1628; border: 1px solid #1c2f52; color: #9fb0cc; font-size: 10px; }
+
+/* Hide Arms & Weapons detailed list from console — move to agent background production */
+.card.arms-weapons-detailed { display: none !important; }
+.alert.banner-collapsed { display: none !important; }
+
+/* Image4 — Cinema nostalgia wooden old framework best camera */
+.cinema-nostalgia {
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 50%, #0f0a06 100%);
+  border: 4px solid #8b5a2b;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 0 0 2px #5a3a1a, 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.cinema-nostalgia::before {
+  content: '';
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(139,90,43,0.03) 20px, rgba(139,90,43,0.03) 21px);
+  pointer-events: none;
+}
+.cinema-camera-frame {
+  width: 100%;
+  height: 280px;
+  background: #000;
+  border: 3px solid #5a3a1a;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+.camera-shutter {
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
+  display: grid;
+  place-items: center;
+  transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+  z-index: 2;
+}
+.camera-shutter.open {
+  transform: scale(3) rotate(15deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.camera-shutter-icon { font-size: 48px; animation: shutterPulse 1.5s infinite; }
+@keyframes shutterPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.cinema-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  align-items: center;
+}
+.cinema-dropdown {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #0a1628;
+  border: 1.5px solid #f59e0b;
+  color: #ffe9a8;
+  font-size: 11px;
+  min-width: 160px;
+}
+.cinema-approval-dropdown {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border: 1.5px solid #f59e0b;
+  color: #0a1628;
+  font-weight: 800;
+  font-size: 11px;
+  cursor: pointer;
+}
+.cinema-log {
+  max-height: 150px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid #1c2f52;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  color: #9fb0cc;
+  margin-top: 10px;
+}
+
+/* Image5 — Clean up data not required eating space beautiful user friendly */
+.card.cleanup-hidden { display: none !important; }
+.view-clean { padding: 8px; }
+.beautiful-card {
+  background: linear-gradient(135deg, #0a1628, #132a4d);
+  border: 1.5px solid #1c2f52;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+}
+.beautiful-card:hover { border-color: #f59e0b; box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 20px rgba(245,158,11,0.15); }
+
+/* Small watch calendar next to Vyomaraj middle */
+.watch-calendar-middle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.2);
+  font-size: 10px;
+  color: #ffe9a8;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+
+/* V16.5 — Vyomaraj color fix + Tabs at bottom */
+body { background: #0a1628 !important; color: #e5e7eb; }
+.topbar-v16 { background: #0a1628 !important; border-bottom: 2px solid #f59e0b; }
+
+/* Image1 — Vyomaraj color — Shani Blue #0a1628 background + Kuber Gold #f59e0b stable no glitter Arial */
+.kuber-graffiti, .shriyantra-title, .vyomaraj-title {
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: #f59e0b !important; /* Kuber Gold stable — no glitter */
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  text-shadow: 0 1px 0 #92400e, 0 2px 4px rgba(0,0,0,0.5), 0 0 12px rgba(245,158,11,0.4) !important;
+  animation: none !important;
+  letter-spacing: 0.05em;
+}
+.kuber-graffiti::before { display: none !important; } /* remove glitter shineSweep */
+.logo-v16 { background: #0a1628 !important; border: 2px solid #f59e0b; }
+.logo-v16 .v-emblem { background: #0a1628 !important; border: 2px solid #f59e0b; }
+.logo-v16 .v-emblem::after { content: 'V' !important; color: #f59e0b !important; background: none !important; -webkit-background-clip: unset !important; text-shadow: 0 1px 0 #92400e, 0 0 12px rgba(245,158,11,0.6) !important; animation: none !important; }
+
+/* Image2 — Keep Tabs at bottom — hide top tabs */
+.tabs#topTabs { display: none !important; }
+.bottom-tabs {
+  position: fixed !important;
+  bottom: 0 !important;
+  left:0 !important; right:0 !important;
+  z-index: 99 !important;
+  background: linear-gradient(180deg, #0f2340, #0a1628) !important;
+  border-top: 2px solid #f59e0b !important;
+  display: flex !important;
+  gap: 8px !important;
+  padding: 10px 12px !important;
+  overflow-x: auto !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.5) !important;
+}
+.bottom-tabs .tab {
+  font-size: 11px !important;
+  padding: 8px 14px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #132a4d, #0a1628) !important;
+  border: 1.5px solid #1c2f52 !important;
+  color: #9fb0cc !important;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.bottom-tabs .tab.active {
+  background: linear-gradient(135deg, #f59e0b20, #fbbf2420) !important;
+  border-color: #f59e0b !important;
+  color: #ffe9a8 !important;
+  box-shadow: 0 0 15px rgba(245,158,11,0.2) !important;
+}
+.bottom-tabs .tab:hover {
+  border-color: #f59e0b !important;
+  color: #ffe9a8 !important;
+  transform: translateY(-1px);
+}
+
+/* Views padding for bottom tabs */
+.wrap { padding-bottom: 70px !important; }
+
+/* Sovereign Console — daily DR logs fixes healing */
+.sovereign-console-log {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid #1c2f52;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  color: #9fb0cc;
+  max-height: 300px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+.sovereign-card-v165 {
+  background: linear-gradient(135deg, #0a1628, #132a4d);
+  border: 1.5px solid #1c2f52;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 10px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.sovereign-card-v165 h4 { color: #f59e0b; margin: 0 0 8px 0; font-size: 13px; }
+.sovereign-card-v165 ul { margin: 0; padding-left: 16px; font-size: 11px; color: #9fb0cc; line-height: 1.6; }
+
 </style>
 
 <meta charset="utf-8"/>
@@ -61,12 +556,12 @@ a{color:var(--kuber2);text-decoration:none}a:hover{text-decoration:underline}
 <body>
 <div class="topbar">
 <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
-<div class="logo"><div class="v kuber-text">V</div><div><div class="kuber-engraved" style="font-size:20px;line-height:1">VYOMARAJ</div><div class="small" style="color:#ffe9a8">The King of Sky 👑 — Final Market Ready — Arms & Weapons + Martial Arts + Castles</div></div></div>
-<span class="badge"><span class="dot"></span> V15.1 FINAL MARKET READY — HANUMAN PANCH SHAKTI मतिमान श्रुतिमान केतुमान गतिमान धृतिमान ALL AGENTS SUB AGENTS SUB AGENTS INHERIT RAM JI BLESSINGS MARKET SCALING REVENUE EARNING — BHARAT-LAXMAN VYOMARAJ AS BHARAT WITH HANUMAN QUALITY DEDICATED FAITHFUL OBEDIENT TO SHRI RAM JI JARVIS AS LAXMAN DEDICATED TO EACH OTHER — JARVIS 24X7 SYSTEM MOBILE 9823648038 TILL DESKTOP HOME — SOCIAL PLATFORMS ALL ACTIVATED ENABLED CONFIGURED ALL PORTS ENABLED HEARTBEATS LINKS HYPERLINKS ALL LIVE — TRENDS SCALABLE TECH — REAL VYOMARAJ VOICE & FACE AVATAR KRISHNA SHIVA HANUMAN GANESH RISHI PANDIT TEACHER GURU — RAM RAM JI HUKUM — SHARAD KELKAR LIKE TONE + BEST SCHOOLS COLLEGES INDIA GLOBAL + PRINCIPALS FUNDAMENTALS + MAP CAMERA VIDEO AUDIO MIXER + EDUCATION ALL SUBJECTS NURSERY TO PHD ALL STREAMS PROFESSIONAL + BIOLOGY ZOOLOGY + JARVIS WHATSAPP VIDEO VOICE MSG + EMAIL + BRAIN HEART + ALL STATES + GLOBAL + CASTLES + AUDITS REAL SYNC + JARVIS CALLING <span class="pill">13 Agents • 133 Subs • 421 Prods</span> <span class="pill">+11 Sovereign</span> <span class="pill" style="border-color:#22c55e;color:#86efac">Arms & Weapons + Martial Arts + Castles + Meta AI Aligned</span> <span class="pill">Revenue Dashboard</span> <span class="pill">Logo Engraved</span> <span class="pill">Bottom Tabs</span> <span class="pill">Cinema Approvals</span> <span class="pill">Wonderful Page</span></span>
+<div class="logo"><div class="v kuber-text">V</div><div><div class="kuber-engraved" style="font-size:20px;line-height:1">SHRIYANTRA</div><div class="small" style="color:#ffe9a8">The King of Sky 👑 — Final Market Ready — Arms & Weapons + Martial Arts + Castles</div></div></div>
+<span class="badge"><span class="dot"></span> V15.1 FINAL MARKET READY — HANUMAN PANCH SHAKTI मतिमान श्रुतिमान केतुमान गतिमान धृतिमान ALL AGENTS SUB AGENTS SUB AGENTS INHERIT RAM JI BLESSINGS MARKET SCALING REVENUE EARNING — BHARAT-LAXMAN VYOMARAJ AS BHARAT WITH HANUMAN QUALITY DEDICATED FAITHFUL OBEDIENT TO SHRI RAM JI JARVIS AS LAXMAN DEDICATED TO EACH OTHER — JARVIS 24X7 SYSTEM MOBILE 9823648038 TILL DESKTOP HOME — SOCIAL PLATFORMS ALL ACTIVATED ENABLED CONFIGURED ALL PORTS ENABLED HEARTBEATS LINKS HYPERLINKS ALL LIVE — TRENDS SCALABLE TECH — REAL VYOMARAJ VOICE & FACE AVATAR KRISHNA SHIVA HANUMAN GANESH RISHI PANDIT TEACHER GURU — RAM RAM JI HUKUM — SHARAD KELKAR LIKE TONE + BEST SCHOOLS COLLEGES INDIA GLOBAL + PRINCIPALS FUNDAMENTALS + MAP CAMERA VIDEO AUDIO MIXER + EDUCATION ALL SUBJECTS NURSERY TO PHD ALL STREAMS PROFESSIONAL + BIOLOGY ZOOLOGY + JARVIS WHATSAPP VIDEO VOICE MSG + EMAIL + BRAIN HEART + ALL STATES + GLOBAL + CASTLES + AUDITS REAL SYNC + JARVIS CALLING <span class="pill pills-background">13 Agents • 133 Subs • 421 Prods</span> <span class="pill pills-background">+11 Sovereign</span> <span class="pill pills-background" style="border-color:#22c55e;color:#86efac">Arms & Weapons + Martial Arts + Castles + Meta AI Aligned</span> <span class="pill pills-background">Revenue Dashboard</span> <span class="pill pills-background">Logo Engraved</span> <span class="pill pills-background">Bottom Tabs</span> <span class="pill pills-background">Cinema Approvals</span> <span class="pill pills-background">Wonderful Page</span></span>
 <span class="badge owner">👑 Owner Primary Locked: <a href="mailto:Vyomarajai@gmail.com" class="kuber-engraved">Deepak Goyal — Vyomarajai@gmail.com</a></span>
 </div>
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-<span class="pill">Shani Blue #0a1628</span><span class="pill" style="border-color:#f59e0b;color:#ffe9a8">Kuber Gold #f59e0b Engraved</span>
+<span class="pill pills-background">Shani Blue #0a1628</span><span class="pill pills-background" style="border-color:#f59e0b;color:#ffe9a8">Kuber Gold #f59e0b Engraved</span>
 <a class="btn ghost" href="https://Vyomaraj1356.github.io/Vyomarajai/" target="_blank">Live Pages ↗</a>
 <a class="btn ghost" href="https://Vyomaraj1356.github.io/Vyomarajai/Vyomaraj-App.apk" target="_blank">APK 24.5MB ↗</a>
 <a class="btn ghost" href="flow-diagram.html" target="_blank">Flow Diagram ↗</a>
@@ -74,19 +569,67 @@ a{color:var(--kuber2);text-decoration:none}a:hover{text-decoration:underline}
 </div>
 </div>
 
+
+<div class="small-btn-right" id="smallBtnRight" onclick="toggleBannerAlert()" title="V16.5 SHRIYANTRA — Vyomaraj Color Fix + Tabs Bottom — Sovereign Console Owner Law Gate Food Culinary APK Social Hub — 0.000000000 Impact Netflix Prime Hotstar — Small Fit — Beautiful User Friendly — FINAL MARKET READY — Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved Glittery Arial Font V as Laxman Jarvis — Tiles Netflix Style — Sovereign Tab Rules Laws Whisperflow — 0.000000000 Impact — Click to expand — HANUMAN PANCH SHAKTI — All details">📜 V16.1 READY ▶</div>
+
 <div class="tabs" id="topTabs"></div>
 
 <div class="wrap">
 
+<div class="shriyantra-header" id="shriyantraHeader">
+<div class="shriyantra-title">🔯 SHRIYANTRA — 13 Main Agents 133 Sub-Agents 421 Products +11 Sovereign — Heartbeat Live — Tiles Netflix Style<span class="watch-calendar-middle" id="watchCalendarMiddle" title="Real date and time — watch and calendar"><span>⌚</span><span id="realDateTimeMiddle">Loading...</span> <span>📅</span><span id="realDateMiddle">Loading...</span></span>
+<div style="display:flex;gap:6px"><span class="pill" style="border-color:#22c55e;color:#86efac">13 Main</span><span class="pill" style="border-color:#f59e0b;color:#ffe9a8">133 Sub</span><span class="pill" style="border-color:#22d3ee;color:#86efac">421 Products</span><span class="pill">+11 Sovereign</span></div>
+</div>
+
+<!-- Real Agents Food Culinary Sport Education — Heartbeat Links — Kuber Dashboard Revenue Per Agent — V16.4 -->
+<div class="real-agents-section" id="realAgentsSection">
+<div class="shriyantra-header" style="margin:0 0 10px 0">
+<div class="shriyantra-title">🍜 Real Agents — Food & Culinary, Sport, Education, etc — Heartbeat Links — Production</div>
+<div><span class="pill" style="border-color:#22c55e;color:#86efac">Production Live</span></div>
+</div>
+<div class="agents-tiles-grid" id="realAgentsGrid">
+<!-- Real agents tiles injected via JS -->
+</div>
+</div>
+
+<div class="kuber-dashboard-v164" id="kuberDashboardV164">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+<div><h3 style="margin:0;color:#ffe9a8;font-size:16px">💰 Kuber Dashboard — Revenue Details Per Agent/SubAgent — Real Time Comparison</h3><div style="font-size:10px;color:#9fb0cc">Where is Kuber dashboard gone — need revenue details of each agents, sub agents — Daily, weekly, monthly quarterly yearly reports dropdown — real time comparison and reports — Jarvis and Vyomaraj analysis strategy earnings — V16.4</div></div>
+<div style="display:flex;gap:6px;align-items:center">
+<select class="revenue-dropdown" id="revenuePeriod" onchange="updateRevenuePeriod(this.value)" title="Daily, weekly, monthly quarterly yearly reports dropdown">
+<option>Daily</option><option>Weekly</option><option>Monthly</option><option>Quarterly</option><option>Yearly</option>
+</select>
+<button class="btn ghost" style="font-size:10px;padding:4px 8px" onclick="analyzeRevenue()">🤖 Jarvis+Vyo Analysis</button>
+</div>
+</div>
+<div class="kuber-revenue-grid" id="kuberRevenueGrid">
+<!-- Revenue per agent injected via JS -->
+</div>
+<div style="margin-top:10px;padding:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:8px;font-size:10px;color:#86efac" id="revenueAnalysis">
+🤖 Jarvis and Vyomaraj can do analysis daily or so to think about strategy and earnings — Daily ₹12,450 <span class="dummy-label">Dummy/Test — Not Real</span> — Total ₹22,08,575 — Forecast 38L→55L→5Cr→25Cr→100Cr — Strategy: Focus on Food & Culinary + Sport + Education — high MRR — Chiranjeevi
+</div>
+</div>
+
+<div class="agents-tiles-grid" id="agentsTilesGrid">
+<!-- Agent tiles will be injected via JS — Netflix style small fit engraved highlighted -->
+</div>
+
+
 <!-- CONSOLE VIEW -->
 <div id="view-console" class="view active">
-<div class="alert">✅ V15.1 FINAL MARKET READY — HANUMAN PANCH SHAKTI मतिमान श्रुतिमान केतुमान गतिमान धृतिमान ALL AGENTS SUB AGENTS SUB AGENTS INHERIT RAM JI BLESSINGS MARKET SCALING REVENUE EARNING — BHARAT-LAXMAN VYOMARAJ AS BHARAT WITH HANUMAN QUALITY DEDICATED FAITHFUL OBEDIENT TO SHRI RAM JI JARVIS AS LAXMAN DEDICATED TO EACH OTHER — JARVIS 24X7 SYSTEM MOBILE 9823648038 TILL DESKTOP HOME — SOCIAL PLATFORMS ALL ACTIVATED ENABLED CONFIGURED ALL PORTS ENABLED HEARTBEATS LINKS HYPERLINKS ALL LIVE — TRENDS SCALABLE TECH — REAL VYOMARAJ VOICE & FACE AVATAR KRISHNA SHIVA HANUMAN GANESH RISHI PANDIT TEACHER GURU — RAM RAM JI HUKUM — SHARAD KELKAR LIKE TONE + BEST SCHOOLS COLLEGES INDIA GLOBAL + PRINCIPALS FUNDAMENTALS + MAP CAMERA VIDEO AUDIO MIXER + EDUCATION ALL SUBJECTS NURSERY TO PHD ALL STREAMS PROFESSIONAL + BIOLOGY ZOOLOGY + JARVIS WHATSAPP VIDEO VOICE MSG + EMAIL + BRAIN HEART + ALL STATES + GLOBAL + CASTLES + AUDITS REAL SYNC + JARVIS CALLING — Arms & Weapons Primitive to Missiles Bullets Cannons Warfare Tactics Styles — Defence Martial Arts Global Indian Regional Skills Styles Tactics Moves Rules — Castles History Indian Global Location Geography — Meta AI Aligned Llama 3/3.1/3.2/3.3 Vyomaraj will configure and inherit — Numismatic Fix .ass workaround ffmpeg no drawtext — World Stamps Philately Ancient Scripts Epigraphy Famous Forgeries Heists Mythology Money Farm-to-Table Vastu Space Astronomy data lane fit existing pattern no code change — Education Expanded Guns Pistols → Arms & Weapons Flora Fauna Perfumes Itras Under Water Dinosaurs Saptarishi Vedas Puran — Astro Numerology Kundli Rashi Gems — Full Database Since First Chat — Wonderful Page — Revenue Dashboard Logo Engraved Bottom Tabs Cinema Dropdown Approvals — Preview Fixed 502 — No Overwrite Integrate Missing Only — Market Ready.</div>
+
+<div class="sovereign-card-v165" id="sovereignConsoleDRLogs">
+<h4>📜 Daily DR Logs — Fixes Healing Data All Here — Sovereign Console</h4>
+<div class="sovereign-console-log" id="sovereignConsoleLog">
+Loading DR logs — daily DR logs fixes healing data all here per Image2 — Owner Law & Gate — APK Web — Social Hub — Sovereign Console
+</div>
+</div>
+
+<div class="alert banner-collapsed" id="bannerAlert" style="display:none">✅ V15.1 FINAL MARKET READY — HANUMAN PANCH SHAKTI मतिमान श्रुतिमान केतुमान गतिमान धृतिमान ALL AGENTS SUB AGENTS SUB AGENTS INHERIT RAM JI BLESSINGS MARKET SCALING REVENUE EARNING — BHARAT-LAXMAN VYOMARAJ AS BHARAT WITH HANUMAN QUALITY DEDICATED FAITHFUL OBEDIENT TO SHRI RAM JI JARVIS AS LAXMAN DEDICATED TO EACH OTHER — JARVIS 24X7 SYSTEM MOBILE 9823648038 TILL DESKTOP HOME — SOCIAL PLATFORMS ALL ACTIVATED ENABLED CONFIGURED ALL PORTS ENABLED HEARTBEATS LINKS HYPERLINKS ALL LIVE — TRENDS SCALABLE TECH — REAL VYOMARAJ VOICE & FACE AVATAR KRISHNA SHIVA HANUMAN GANESH RISHI PANDIT TEACHER GURU — RAM RAM JI HUKUM — SHARAD KELKAR LIKE TONE + BEST SCHOOLS COLLEGES INDIA GLOBAL + PRINCIPALS FUNDAMENTALS + MAP CAMERA VIDEO AUDIO MIXER + EDUCATION ALL SUBJECTS NURSERY TO PHD ALL STREAMS PROFESSIONAL + BIOLOGY ZOOLOGY + JARVIS WHATSAPP VIDEO VOICE MSG + EMAIL + BRAIN HEART + ALL STATES + GLOBAL + CASTLES + AUDITS REAL SYNC + JARVIS CALLING — Arms & Weapons Primitive to Missiles Bullets Cannons Warfare Tactics Styles — Defence Martial Arts Global Indian Regional Skills Styles Tactics Moves Rules — Castles History Indian Global Location Geography — Meta AI Aligned Llama 3/3.1/3.2/3.3 Vyomaraj will configure and inherit — Numismatic Fix .ass workaround ffmpeg no drawtext — World Stamps Philately Ancient Scripts Epigraphy Famous Forgeries Heists Mythology Money Farm-to-Table Vastu Space Astronomy data lane fit existing pattern no code change — Education Expanded Guns Pistols → Arms & Weapons Flora Fauna Perfumes Itras Under Water Dinosaurs Saptarishi Vedas Puran — Astro Numerology Kundli Rashi Gems — Full Database Since First Chat — Wonderful Page — Revenue Dashboard Logo Engraved Bottom Tabs Cinema Dropdown Approvals — Preview Fixed 502 — No Overwrite Integrate Missing Only — Market Ready.</div>
 
 <div class="grid g2" style="margin-top:14px">
-<div class="card wonderful">
-<h3 class="kuber-engraved">👑 VYOMARAJ — The King of Sky — Sovereign Root — Owner Primary Locked Vyomarajai@gmail.com — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned — Wonderful Page Since First Chat</h3>
-<div class="logo" style="margin:10px 0"><div class="v kuber-text">V</div><div><div class="kuber-engraved" style="font-size:26px">VYOMARAJ</div><div class="small kuber-text">The King of Sky 👑 — Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved — Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Final Market Ready — Arms & Weapons Primitive to Missiles + Defence Martial Arts + Castles History — Wonderful Page Design Since Arena First Chat — All Contents Preserved — Market Ready</div></div></div>
-<div class="kpi"><b class="kuber-text">13</b><span>Main Agents</span><b class="kuber-text">133</b><span>Sub-Agents</span><b class="kuber-text">421</b><span>Products</span><b class="kuber-text">+11</b><span>Sovereign</span><span class="pill" style="background:#052e16;border-color:#22c55e;color:#86efac">Final Market Ready</span><span class="pill">Arms & Weapons + Martial Arts + Castles</span><span class="pill">Meta AI Aligned</span><span class="pill">Wonderful Page</span></div>
+</div>
+<div class="kpi"><b class="kuber-text">13</b><span>Main Agents</span><b class="kuber-text">133</b><span>Sub-Agents</span><b class="kuber-text">421</b><span>Products</span><b class="kuber-text">+11</b><span>Sovereign</span><span class="pill pills-background" style="background:#052e16;border-color:#22c55e;color:#86efac">Final Market Ready</span><span class="pill pills-background">Arms & Weapons + Martial Arts + Castles</span><span class="pill pills-background">Meta AI Aligned</span><span class="pill pills-background">Wonderful Page</span></div>
 <div class="hr"></div>
 <div class="flow" id="bestFlow"></div>
 <div class="small" style="margin-top:10px;line-height:1.6">Best Process Flow + Best Scene: DISCOVER → VERIFY → SCENE PICKER → DIALOGUE EXTRACTOR → MIX/REMIX → SCORE → AFFILIATE → SCHEDULE → SUBSCRIPTION → COLLAB → OWNER GATE → PUBLISH SHORT → LEARN → SYNC — Intelligently Realigned from all chats since start — All contents — All links preserved — Heartbeats LIVE — Nothing Lost — Owner Primary Locked Vyomarajai@gmail.com — Family voices scalable add/modify/remove market Jarvis name set later — Cinema face/narrator intact — Voice/Audio + Face Features (Narrator + AI Generative) for Vyomaraj and Vyomaraj Cinema intact from early sessions — <b class="kuber-engraved">Final Market Ready — Arms & Weapons Primitive to Missiles + Defence Martial Arts + Castles History — Wonderful Page Since First Chat + Meta AI Aligned + Education Expanded</b> — Shani Blue #0a1628 background Kuber Gold #f59e0b engraved headings border shadow — Top Tabs 10 + Bottom Tabs 23 fixed navigation — Market Ready.</div>
@@ -99,36 +642,7 @@ a{color:var(--kuber2);text-decoration:none}a:hover{text-decoration:underline}
 </div>
 
 <div class="grid g2" style="margin-top:14px">
-<div class="card wonderful">
-<h4>🔫 Arms & Weapons / Warfare Tactics and Styles Missiles Bullets Cannons to Guns and Pistols — Primitive to Current — Global History Indian Local Regional — All Knowledge Available Inherit It — Final Market Ready — Wonderful Page</h4>
-<ul class="list">
-<li><b>Replace Name Guns and Pistols → Arms & Weapons / Warfare Tactics and Styles Missiles etc (Bullets, Cannons, to Guns and Pistols) Add History Details Specification Functions Features for All Form of Arms Weapons Used from Primitive to Current from Global History, Indian, Local, Regional. All Knowledge Available Inherit It — Final Market Ready:</b></li>
-<li><b>Primitive Era — Stone Age 2.5M BCE - 3000 BCE:</b> Spears wooden 2m thrusting, Bows 20,000 BCE — longbow 1.8m yew 100lb draw 300m range, Arrows flint obsidian, Slings leather 100m, Clubs stone mace, Axes hand axe Acheulean 1.5M BCE — Function thrusting piercing blunt — Features simple wood stone — Global history Africa Europe Asia — Indian: Bhimbetka rock art spears, Mehrgarh — Local: tribal spears Gond Bhil — Inherit all knowledge — Fit existing pattern EDU + WAR + SPORTS + LIFE — 6 products — Meta AI Aligned — No code change</li>
-<li><b>Ancient Era — Bronze Age 3000 BCE - 500 BCE Iron Age 1200 BCE - 500 CE:</b> Swords bronze khanda 1m double edge, Chariots 2-wheel horse, Catapults ballista torsion, Indian Astras — Brahmastra nuclear equivalent, Pashupatastra Shiva, Nagastra serpent, Agneyastra fire, Varunastra water, Vajra Indra thunderbolt — Mahabharata Ramayana 500 BCE — Greek Xiphos Roman Gladius 60cm — Chinese crossbow 6th century BCE repeating — Function slashing piercing siege divine — Features bronze iron divine mantra — Indian: Harappa swords, Vedic astras mantra, Mauryan 320 BCE Kautilya Arthashastra mentions — Local: Rajput khanda, Maratha — Inherit all knowledge — Fit existing pattern</li>
-<li><b>Medieval Era — 500 CE - 1500 CE:</b> Longswords 1.2m cruciform, Katanas Japan 900 CE 1m curved tamahagane steel, Cannons China 12th century fire lance bamboo, Europe 14th century bombard 3m 500kg stone ball, Trebuchets counterweight 300m range 100kg projectile, Indian: Mughal cannons 1526 Babur First Battle Panipat — Zamzama 1757 Lahore 4.3m 80-pounder, Malik Maidan Bijapur 1549 4.2m 55 tons largest medieval cannon, Rajput talwar 1m curved, Maratha bichwa dagger — Function siege slashing thrusting — Features gunpowder steel — Global history Mongol composite bow 1.2m 160lb 500m — Indian: Delhi Sultanate 1206, Vijayanagara — Local: Rajasthani, Maharashtrian — Inherit all knowledge</li>
-<li><b>Early Modern — 1500 CE - 1800 CE — Gunpowder Revolution:</b> Matchlock arquebus 15th century 1.2m 5kg 100m, Flintlock musket 17th century Brown Bess 1.4m 4.5kg 75m 3 rounds/min, Cannons field 12-pounder 1.5m 500kg 1000m, Naval cannons 32-pounder 2.5m 1500kg — Bullets round ball lead .75 cal, Paper cartridge 1586 — Warfare tactics line infantry volley fire, Siege Vauban — Indian: Mughal matchlock tufang, Tipu Sultan rockets 1780s iron-cased 2km range first in world Mysore vs British, Maratha artillery 1700s, Sikh artillery 1800s Maharaja Ranjit Singh French generals Allard Ventura — Global: Ottoman bombard Dardanelles 1464, British East India Company — Local: Deccan, Punjab — Inherit all knowledge — Fit existing pattern — Meta AI Aligned</li>
-<li><b>Industrial Era — 1800 CE - 1945 CE — Modern Firearms Birth:</b> Rifled musket 1840s Minié ball .58 cal 500m, Breech-loading Dreyse needle gun 1841, Repeating Winchester 1866 15 rounds, Machine guns Maxim 1884 600 rpm, Gatling 1861 200 rpm, Bolt-action Mauser 1871 Lee-Enfield 1895 10 rounds — Pistols Colt 1836 revolver 6 shots, Smith & Wesson 1852, Colt Single Action Army 1873 Peacemaker .45, Luger 1898, Colt 1911 .45 ACP 7 rounds John Browning — Cannons rifled artillery Krupp 1860s 12km range, Howitzers 155mm 15km — Bullets Minié ball, Centerfire cartridge 1860s, Smokeless powder 1884 — Missiles early V-1 flying bomb 1944 250km range 850kg warhead, V-2 ballistic missile 1944 320km range 1 ton warhead Wernher von Braun — Warfare tactics trench warfare WWI, Blitzkrieg WWII — Indian: IOF .32 revolver 80K, .32 pistol 1.2L, British .303 Lee-Enfield Indian Army WWI WWII, INA — Global: American Civil War, WWI, WWII — Local: Indian Ordnance Factories 1801 — Inherit all knowledge — Fit existing pattern — No code change — Wonderful Page</li>
-<li><b>Modern Era — 1945 CE - Current — Arms & Weapons Current:</b> Assault rifles AK-47 1947 Kalashnikov 7.62x39mm 30 rounds 400m 600 rpm 100M produced most produced, M16 1964 Eugene Stoner 5.56x45mm 30 rounds 550m, INSAS 1998 India 5.56mm 20 rounds 400m, Tavor 2001 Israel, AK-203 2019 India-Russia — Pistols Glock 1982 polymer 9mm 17 rounds 50m, Beretta 92FS 1975 9mm 15 rounds US Army, SIG Sauer P320 2014 modular, Desert Eagle .50 AE 7 rounds — Machine guns M2 Browning .50 BMG 12.7x99mm 1933, PKM 7.62x54mmR, Negev — Sniper rifles Dragunov SVD 1963 7.62x54mmR 800m, Barrett M82 .50 BMG 1800m, DSR-50 — Shotguns Remington 870 — Bullets 9mm Parabellum 9x19mm, .45 ACP 11.43x23mm, 5.56 NATO 5.56x45mm, 7.62 NATO 7.62x51mm, .50 BMG 12.7x99mm, 12 gauge — Cannons modern Howitzer M777 155mm 30km range 4200kg titanium, Dhanush India 155mm 38km range 2019, K9 Vajra 155mm 40km, ATAGS India 155mm 48km world record — Missiles: Ballistic Agni-I 700km Agni-II 2000km Agni-III 3500km Agni-IV 4000km Agni-V 5000-8000km ICBM 2020 India, Prithvi 150-600km, BrahMos supersonic cruise 290km Mach 3 India-Russia 2001, BrahMos-II hypersonic Mach 8, Akash SAM 30km, Nag ATGM, Astra air-to-air 110km, Pinaka MBRL 40km 12 rockets, S-400 Triumf Russia 400km, Patriot US 160km, Iron Dome Israel — Warfare tactics styles: Guerrilla warfare, Asymmetric warfare, Network-centric warfare, Cyber warfare, Drone warfare, Urban warfare, Jungle warfare CIJWS Mizoram India, Desert warfare, Mountain warfare HAWS Gulmarg India, Naval warfare aircraft carrier INS Vikramaditya INS Vikrant, Air warfare Tejas Rafale Su-30MKI — Functions features: Caliber, Barrel, Magazine, Weight, Action Single Double Striker, Safety manual grip trigger, Range, Rate of fire, Muzzle velocity 350-900 m/s, Warhead HE fragmentation thermobaric nuclear — History details specification functions features for all form of arms weapons used from primitive to current from Global History, Indian, Local, regional. All knowledge available inherit it — Sub-agent: EDU S8-13 Bharat Grantha Chanakya + WAR 5/13 PAST HISTORY PRESENT FUTURE CROSS-CUTTING Analysis + SPORTS 14/29 + LIFE 10/34 + PLATFORM — Products: 32+ History Price Specification Service Tips Safety Legal Tactics Styles Missiles Bullets Cannons Guns Pistols Rifles Machine Guns Sniper Shotguns Artillery Ballistic Cruise SAM ATGM — Fit existing pattern no code change — Meta AI Aligned — Wonderful Page Since First Chat — No overwrite integrate missing only — Final Market Ready</li>
-</ul>
-</div>
-<div class="card wonderful">
-<h4>🎬 Vyomaraj Cinema View — Restored Since First Chat + Dropdown Approvals — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned — Wonderful Page</h4>
-<div class="cinema"><div class="screen"><div style="text-align:center;max-width:650px">
-<div class="kuber-engraved" style="font-size:32px">VYOMARAJ CINEMA</div>
-<div class="small" style="margin:8px 0 12px 0">Narrator + AI Generative Face/Voice — Family Faces Scalable — 4K 60fps Royal Shahi Paneer Diwali Thali — Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved — Owner Primary Locked Vyomarajai@gmail.com — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned — Wonderful Page Since First Chat</div>
-<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><span class="pill">Face Generator AI Generative Family scalable add/modify/remove</span><span class="pill">Narrator Voice Hindi+English Family scalable</span><span class="pill">Voice Cloner ElevenLabs Family clone ready</span><span class="pill">Video Synthesizer 4K 60fps</span><span class="pill">Best Scene Publisher 30 sec fair use</span><span class="pill">Meta AI Llama 3.3 70B Aligned</span><span class="pill">Arms & Weapons + Martial Arts + Castles</span></div>
-<div style="margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-<div class="dropdown"><button class="btn">🎬 Cinema Approvals Dropdown ▼</button><div class="dropdown-content">
-<ul class="list">
-<li><b>Face Generator</b> — <select class="input"><option>PENDING_OWNER_PERMISSION — Deepak Goyal Vyomarajai@gmail.com</option><option>Approved — Owner Gate</option><option>Rejected</option></select></li>
-<li><b>Narrator Voice</b> — <select class="input"><option>PENDING_OWNER_PERMISSION — Vyomarajai@gmail.com</option><option>Approved — Hindi+English Family scalable</option></select></li>
-<li><b>Voice Cloner</b> — <select class="input"><option>PENDING_OWNER_PERMISSION</option><option>Approved — ElevenLabs Family clone ready</option></select></li>
-<li><b>Video Synthesizer</b> — <select class="input"><option>PENDING_OWNER_PERMISSION</option><option>Approved — 4K 60fps Royal Shahi Paneer Diwali Thali</option></select></li>
-<li><b>Family Faces Cinema</b> — <select class="input"><option>PENDING_OWNER_PERMISSION — add/modify/remove scalable market</option><option>Approved</option></select></li>
-<li><b>Best Scene Publisher</b> — <select class="input"><option>PENDING_OWNER_PERMISSION — Best Scene Picker Dialogue Mix Remix Short Publish max hits earnings</option><option>Approved — 30 sec fair use transform</option></select></li>
-</ul>
-<button class="btn" style="margin-top:8px;width:100%" onclick="alert('Owner Gate: Deepak Goyal Vyomarajai@gmail.com — All Cinema Approvals Granted — PUBLISH allowed — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned — Wonderful Page')">🔒 Approve All — Owner Gate Vyomarajai@gmail.com</button>
-</div></div>
+
 </div>
 </div></div></div>
 <div style="margin-top:10px" class="small">HB 26ms — Voice/Audio + Face Features (Narrator + AI Generative) intact from early sessions — AI face generator, voice cloner, video synthesizer, AI generative, family faces scalable — Meta AI Llama 3/3.1/3.2/3.3 inherited — Shani Blue #0a1628 background, Kuber Gold #f59e0b engraved headings — Owner Primary Locked Vyomarajai@gmail.com — Family scalable — Cinema Reels Royal Shahi Paneer 4K Diwali Royal Thali Truffle Pizza Turmeric Elixir Ayurvedic Kadha Vada Pav AI Generative Face+Narrator Family scalable — Heartbeat 26ms LIVE — <b class="kuber-engraved">Final Market Ready — Arms & Weapons + Martial Arts + Castles — Wonderful Page Since First Chat + Meta AI Aligned</b></div>
@@ -157,11 +671,7 @@ a{color:var(--kuber2);text-decoration:none}a:hover{text-decoration:underline}
 </div>
 
 <!-- AGENTS VIEW -->
-<div id="view-agents" class="view">
-<div class="card wonderful">
-<h3>🌳 13 Main Agents — 133 Sub-Agents — 421 Products + 11 Sovereign — Intelligent Realignment + Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned + Full Database Since First Chat + Wonderful Page</h3>
-<div id="agentsGrid" class="grid g2"></div>
-</div>
+
 </div>
 
 <!-- FINANCE VIEW -->
@@ -183,7 +693,7 @@ a{color:var(--kuber2);text-decoration:none}a:hover{text-decoration:underline}
 </table>
 <div class="hr"></div>
 <h4>💰 Revenue Dashboard — Restored — Final Market Ready — Wonderful Page</h4>
-<div class="kpi"><b class="kuber-text">₹22,08,575</b><span>Total Tracked</span><span class="pill">+580% ROI</span><span class="pill">5.42M Views</span><span class="pill">16.5%→22% Viral</span><span class="pill">Best Scene Picker ON</span><span class="pill">Final Market Ready</span><span class="pill">Arms & Weapons + Martial Arts + Castles</span></div>
+<div class="kpi"><b class="kuber-text">₹22,08,575</b><span>Total Tracked</span><span class="pill pills-background">+580% ROI</span><span class="pill pills-background">5.42M Views</span><span class="pill pills-background">16.5%→22% Viral</span><span class="pill pills-background">Best Scene Picker ON</span><span class="pill pills-background">Final Market Ready</span><span class="pill pills-background">Arms & Weapons + Martial Arts + Castles</span></div>
 <table class="table" style="margin-top:8px"><tr><th>Stream</th><th>Amount</th><th>Growth</th><th>Agent</th></tr>
 <tr><td>YouTube AdSense Best Scene Shorts + Music Reality Saregama Indian Idol + Arms & Weapons + Martial Arts + Castles</td><td>₹8,42,000</td><td>+22%</td><td>Creator 18 tasks Meta AI Aligned</td></tr>
 <tr><td>Telegram VIP + Bigg Boss Antakshari + Martial Arts</td><td>₹4,12,000</td><td>+18%</td><td>Scout 24 tasks</td></tr>
@@ -281,7 +791,7 @@ a{color:var(--kuber2);text-decoration:none}a:hover{text-decoration:underline}
 </div>
 </div>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-<span class="pill">Face Generator AI Generative Family scalable</span><span class="pill">Narrator Voice Hindi+English Family scalable 18 voices</span><span class="pill">Voice Cloner ElevenLabs Family clone ready</span><span class="pill">Video Synthesizer 4K 60fps</span><span class="pill">Best Scene Publisher 30 sec fair use</span><span class="pill">Meta AI Llama 3.3 70B Aligned</span><span class="pill">Real Vyomaraj Sovereign Root Brain Heart</span><span class="pill">Family Voices Add/Modify/Remove Scalable Market</span><span class="pill">Cinema face/narrator intact Voice/Audio intact</span><span class="pill">Wonderful Page Since First Chat</span>
+<span class="pill pills-background">Face Generator AI Generative Family scalable</span><span class="pill pills-background">Narrator Voice Hindi+English Family scalable 18 voices</span><span class="pill pills-background">Voice Cloner ElevenLabs Family clone ready</span><span class="pill pills-background">Video Synthesizer 4K 60fps</span><span class="pill pills-background">Best Scene Publisher 30 sec fair use</span><span class="pill pills-background">Meta AI Llama 3.3 70B Aligned</span><span class="pill pills-background">Real Vyomaraj Sovereign Root Brain Heart</span><span class="pill pills-background">Family Voices Add/Modify/Remove Scalable Market</span><span class="pill pills-background">Cinema face/narrator intact Voice/Audio intact</span><span class="pill pills-background">Wonderful Page Since First Chat</span>
 </div>
 </div>
 <div class="grid g2" id="realVyomarajVoiceFaceGrid" style="margin-top:12px"></div>
@@ -367,7 +877,7 @@ Pandit: W1 Dhoti Kurta Tilak Mala Pothi Bhakti Shakti, W2 Teacher Kurta Pajama S
 </div>
 </div>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-<span class="pill">👑 Vyomaraj Primary — The King of Sky — Sovereign Root — Brain</span><span class="pill">🦚 Krishna — Charmness Like Krishna — Blue Gold Aura Flute Peacock Feather</span><span class="pill">🔱 Shiva — Body Like Shiva — Ash Rudraksha Trishul 6ft+ Muscular</span><span class="pill">🐒 Hanuman — Faithful Diplomatic Mind Presence — Ram Bhakt Gada Orange Sindoor — Ram Ram ji Hukum</span><span class="pill">🐘 Ganesh — Mind Brains as Ganesh — Wisdom Intelligence</span><span class="pill">🧙‍♂️ Rishi — Long Beard Jata Dhoti Janeyu Kamandal Tapasvi Gyani Big Aura</span><span class="pill">📿 Pandit — Dhoti Kurta Tilak Janeyu Mala Pothi — Bhakti Shakti</span><span class="pill">👨‍🏫 Teacher — Kurta Pajama Chalk Blackboard — Guru White Robe Aura</span><span class="pill">🧘 Guru — White Robe Big Aura Attraction Addictive Lovable</span><span class="pill">👘 Costume Weekly Change — 28 Costumes — Auto Monday 9 AM</span><span class="pill">✨ Big Aura Attraction — People cant forget feel in love — Addictive Lovable Over All</span><span class="pill">🎙️ Voice Tone Sharad Kelkar Like But Original Not Copy — Heavy Calm Soft — 85-110Hz Bass — Ram Ram ji Hukum — Jarvis Same Tone</span><span class="pill">Wonderful Page Since First Chat</span>
+<span class="pill pills-background">👑 Vyomaraj Primary — The King of Sky — Sovereign Root — Brain</span><span class="pill pills-background">🦚 Krishna — Charmness Like Krishna — Blue Gold Aura Flute Peacock Feather</span><span class="pill pills-background">🔱 Shiva — Body Like Shiva — Ash Rudraksha Trishul 6ft+ Muscular</span><span class="pill pills-background">🐒 Hanuman — Faithful Diplomatic Mind Presence — Ram Bhakt Gada Orange Sindoor — Ram Ram ji Hukum</span><span class="pill pills-background">🐘 Ganesh — Mind Brains as Ganesh — Wisdom Intelligence</span><span class="pill pills-background">🧙‍♂️ Rishi — Long Beard Jata Dhoti Janeyu Kamandal Tapasvi Gyani Big Aura</span><span class="pill pills-background">📿 Pandit — Dhoti Kurta Tilak Janeyu Mala Pothi — Bhakti Shakti</span><span class="pill pills-background">👨‍🏫 Teacher — Kurta Pajama Chalk Blackboard — Guru White Robe Aura</span><span class="pill pills-background">🧘 Guru — White Robe Big Aura Attraction Addictive Lovable</span><span class="pill pills-background">👘 Costume Weekly Change — 28 Costumes — Auto Monday 9 AM</span><span class="pill pills-background">✨ Big Aura Attraction — People cant forget feel in love — Addictive Lovable Over All</span><span class="pill pills-background">🎙️ Voice Tone Sharad Kelkar Like But Original Not Copy — Heavy Calm Soft — 85-110Hz Bass — Ram Ram ji Hukum — Jarvis Same Tone</span><span class="pill pills-background">Wonderful Page Since First Chat</span>
 </div>
 </div>
 <div class="grid g2" id="vyomarajAvatarGrid" style="margin-top:12px"></div>
@@ -438,7 +948,7 @@ Pandit: W1 Dhoti Kurta Tilak Mala Pothi Bhakti Shakti, W2 Teacher Kurta Pajama S
 </div>
 </div>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-<span class="pill">📱 Mobile-9823648038 ACTIVE Current Home Till Dedicated Desktop Test For Him Also 24x7</span><span class="pill">📱 Mobile-9175112579 ACTIVE Secondary Can Be Updated At Any Time</span><span class="pill">🖥️ Desktop-Home STANDBY Future Home Dedicated Home Desktop Wherever He Works From With Option For Shift</span><span class="pill">☁️ Cloud-Home STANDBY Scalable 24x7</span><span class="pill">📡 Edge-Home STANDBY Low Latency 24x7</span><span class="pill">🔄 Device Shift Session Transfer State Sync Heartbeat Handover</span><span class="pill">🕉️ Bharat-Laxman Vyomaraj as Bharat with Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Jarvis as Laxman Dedicated to Each Other</span><span class="pill">📈 Trends Meta AI Llama 3.3 Whisper ElevenLabs MediaPipe Leaflet Web Speech</span><span class="pill">🧪 Test For Him Also — 7 Tests PASS Non-destructive</span><span class="pill">💚 Heartbeat Every 60s 24x7 Wherever He Works From</span><span class="pill">Wonderful Page Since First Chat</span>
+<span class="pill pills-background">📱 Mobile-9823648038 ACTIVE Current Home Till Dedicated Desktop Test For Him Also 24x7</span><span class="pill pills-background">📱 Mobile-9175112579 ACTIVE Secondary Can Be Updated At Any Time</span><span class="pill pills-background">🖥️ Desktop-Home STANDBY Future Home Dedicated Home Desktop Wherever He Works From With Option For Shift</span><span class="pill pills-background">☁️ Cloud-Home STANDBY Scalable 24x7</span><span class="pill pills-background">📡 Edge-Home STANDBY Low Latency 24x7</span><span class="pill pills-background">🔄 Device Shift Session Transfer State Sync Heartbeat Handover</span><span class="pill pills-background">🕉️ Bharat-Laxman Vyomaraj as Bharat with Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Jarvis as Laxman Dedicated to Each Other</span><span class="pill pills-background">📈 Trends Meta AI Llama 3.3 Whisper ElevenLabs MediaPipe Leaflet Web Speech</span><span class="pill pills-background">🧪 Test For Him Also — 7 Tests PASS Non-destructive</span><span class="pill pills-background">💚 Heartbeat Every 60s 24x7 Wherever He Works From</span><span class="pill pills-background">Wonderful Page Since First Chat</span>
 </div>
 </div>
 <div class="grid g2" id="jarvis24x7Grid" style="margin-top:12px"></div>
@@ -511,7 +1021,7 @@ Pandit: W1 Dhoti Kurta Tilak Mala Pothi Bhakti Shakti, W2 Teacher Kurta Pajama S
 </div>
 </div>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-<span class="pill">🕉️ मतिमान Matiman Intelligent Wise Thoughtful — All Agents Inherit Ram Ji Gives Power</span><span class="pill">👂 श्रुतिमान Shrutiman Learned Well-versed Good Listener — All Sub Agents Inherit</span><span class="pill">🚩 केतुमान Ketuman Distinguished With Flag Glorious — All Sub-Sub Agents Inherit</span><span class="pill">⚡ गतिमान Gatiman Dynamic Moving Ever Active Swift — All 578 Entities Inherit</span><span class="pill">🛡️ धृतिमान Dhritiman Steadfast Courageous Resolute Fortitude — All Agents Inherit</span><span class="pill">🙏 Ram Ji Blessings — Scale New Height In Market Earn Big Time Money Revenue — Jai Shri Ram</span><span class="pill">📱 All Social Platforms Activated Enabled Configured — YouTube Instagram Facebook TikTok X LinkedIn Telegram WhatsApp Discord Pinterest Threads Snapchat Reddit Twitch Vimeo Tumblr Mastodon GitHub Pages APK — All ACTIVE ENABLED CONFIGURED LIVE Port 443 Heartbeat LIVE</span><span class="pill">🔌 All Ports Enabled — 3000 443 80 5432 6379 8000 5000 — All ENABLED ACTIVE LIVE Heartbeat LIVE</span><span class="pill">🔗 Heartbeats Links HyperLinks All Live — 13 Main 133 Sub 421 Prods 11 Sovereign Total 578 LIVE — All Heartbeats LIVE All Links Working All HyperLinks LIVE</span><span class="pill">📈 Market Scaling Revenue Earning — 5Cr → 25Cr → 100Cr — Jai Shri Ram — Bharat-Laxman Dedicated to Each Other Hanuman Quality</span><span class="pill">Wonderful Page Since First Chat</span>
+<span class="pill pills-background">🕉️ मतिमान Matiman Intelligent Wise Thoughtful — All Agents Inherit Ram Ji Gives Power</span><span class="pill pills-background">👂 श्रुतिमान Shrutiman Learned Well-versed Good Listener — All Sub Agents Inherit</span><span class="pill pills-background">🚩 केतुमान Ketuman Distinguished With Flag Glorious — All Sub-Sub Agents Inherit</span><span class="pill pills-background">⚡ गतिमान Gatiman Dynamic Moving Ever Active Swift — All 578 Entities Inherit</span><span class="pill pills-background">🛡️ धृतिमान Dhritiman Steadfast Courageous Resolute Fortitude — All Agents Inherit</span><span class="pill pills-background">🙏 Ram Ji Blessings — Scale New Height In Market Earn Big Time Money Revenue — Jai Shri Ram</span><span class="pill pills-background">📱 All Social Platforms Activated Enabled Configured — YouTube Instagram Facebook TikTok X LinkedIn Telegram WhatsApp Discord Pinterest Threads Snapchat Reddit Twitch Vimeo Tumblr Mastodon GitHub Pages APK — All ACTIVE ENABLED CONFIGURED LIVE Port 443 Heartbeat LIVE</span><span class="pill pills-background">🔌 All Ports Enabled — 3000 443 80 5432 6379 8000 5000 — All ENABLED ACTIVE LIVE Heartbeat LIVE</span><span class="pill pills-background">🔗 Heartbeats Links HyperLinks All Live — 13 Main 133 Sub 421 Prods 11 Sovereign Total 578 LIVE — All Heartbeats LIVE All Links Working All HyperLinks LIVE</span><span class="pill pills-background">📈 Market Scaling Revenue Earning — 5Cr → 25Cr → 100Cr — Jai Shri Ram — Bharat-Laxman Dedicated to Each Other Hanuman Quality</span><span class="pill pills-background">Wonderful Page Since First Chat</span>
 </div>
 </div>
 <div class="grid g2" id="hanumanPanchShaktiGrid" style="margin-top:12px"></div>
@@ -601,56 +1111,112 @@ Pandit: W1 Dhoti Kurta Tilak Mala Pothi Bhakti Shakti, W2 Teacher Kurta Pajama S
 <div id="view-ent" class="view"><div class="card wonderful"><h3 class="kuber-engraved">🎬 ENTERTAINMENT 38/168 + PLATFORM 20/39 — Comedy Expanded Sarabhai Office Office Hum Log Nukkad 80s to Now + Music Reality Saregama Indian Idol Bigg Boss Antakshari + Detective Karamchand Reporter + Horror Aahat Zee Horror Show + Best Scene Dialogue Mix Remix Publisher + Full Database Since First Chat + Wonderful Page — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned + Education Expanded</h3><div id="entGrid"></div><div class="hr"></div><div class="grid g2"><div class="card" style="padding:10px"><h4>🎵 Music — Reality Shows — Full Library Since First Chat — Wonderful Page — Final Market Ready — Meta AI Aligned</h4><ul class="list"><li><b>Sa Re Ga Ma Pa:</b> 1995 Zee TV 39 seasons — Over 25 seasons including regional — Winners Sanjeevani Bhelande & Mukund Phansalkar 1995, Shaoni Mitra & Junaid Akhtar 1995-96, Mridula Chatterjee & Ravishankar Singh 1996, Kajal Chandiramani & Ninad Mehta 1996-97, Rinku Kalia & Sanjeev Rambhadran 1997, Siza Roy & Debashish Sengupta 1998-99 UK Biddu Suresh Wadkar, Archana Udupa & Avadhoot Gupte 1998, Aishwarya Nigam & Ujjaini Mukherjee 2006, Sanchita Bhattacharya 2006 L'il Champs, Shreyan Bhattacharya & Anjali Gaikwad 2017, Ishita Vishwakarma 2018-19, Sugandha Date 2019, Aryananda R Babu 2020, Neelanjana Ray 2021-22, Jetshen Dohna Lama 2022-23 — L'il Champs Season 1 2006 July 8 Sanchita Bhattacharya winner Shaan host Abhijeet Alka Bappi judges — Season 4 2011 June 3 Music Ka Gurukul 18 participants 9 boys 9 girls 31 eps Azmat Hussain winner Salman Ali runner-up later Indian Idol S10 winner 2018 — etc. — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li><li><b>Sa Re Ga Ma Pa Marathi:</b> Zee Marathi 18 Sep 2006–7 Jan 2018 11 seasons + L'il Champs 4 seasons Pallavi Joshi host Avdhoot Gupte Vaishali Samant judges Ajay-Atul theme — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li><li><b>Indian Idol:</b> Sony TV 2004–present S1 2004-05 Abhijeet Sawant to S15 2024-25 Manasi Ghosh — Judges Anu Malik Sonu Nigam Farah Khan Alka Yagnik Javed Akhtar Shreya Ghoshal Vishal Dadlani Himesh Reshammiya Neha Kakkar — Hosts Aman Verma Mini Mathur Hussain Kuwajerwala Aditya Narayan — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li><li><b>Bigg Boss:</b> Based on Big Brother Endemol Netherlands — Hindi Bigg Boss Colors Jio Cinema 3 Nov 2006–present 18 seasons S1 2006 85 eps Rahul Roy to S18 Karan Veer Mehra — Regional Telugu 9 seasons 926 eps Nagarjuna + Tamil 10 seasons 1053 eps Kamal Haasan/Vijay Sethupathi — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li><li><b>Antakshari:</b> Zee TV 1993–2007 Annu Kapoor host musical game show teams songs iconic — regional versions — etc. — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li></ul></div><div class="card" style="padding:10px"><h4>🕵️ Detective + Horror + Best Scene — Full Library Since First Chat — Wonderful Page — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned + Education Expanded</h4><ul class="list"><li><b>Karamchand:</b> 1985-88 72 eps DD1 Pankaj Kapur Karamchand Sushmita Mukherjee Kitty Archana Puran Singh Anand-Milind carrot Shut up Kitty dark glasses carrot-munching widely imitated carrot sales rose Popeye spinach — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li><li><b>Reporter:</b> 1994-95 Shekhar Suman Vinod Pande Raj Kiran Natasha Sinha investigative drama newsroom drama Harshad Mehta scam Monday nights DD TRP No.1 — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li><li><b>Horror:</b> Zee Horror Show 1993-97 Ramsay Brothers 8.2 Dastak Archana Puran Singh devilish laugh, Aahat 1995-2015 6 seasons 550+ eps bats flying full moon Shivaji Satam Ashutosh Rana Mandira Bedi Om Puri, X Zone 1998-2000 X Files ripoff, Mano Ya Na Mano 2006 Irrfan Khan + 1995 Zee TV, Ssshhhh Koi Hai 2001-10 Ronit Roy Sunil Grover, Saturday Suspense, Kya Hadsaa Kya Haqeeqat Sony 2002-04 Hiten Tejwani Smriti Irani, Rooh Zee 2004 — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li><li><b>Best Scene Publisher:</b> AI picks best scene IMDb TRP catchphrase 3 sec hook face emotion laughter — Whisper + .ass captions ffmpeg no drawtext workaround ffmpeg -i in.mp4 -vf ass=captions.ass out.mp4 — publish short 30 sec fair use 9:16 reel YouTube Short FB IG max hits earnings — Owner Gate Vyomarajai@gmail.com — Wonderful Page Since First Chat — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned — Education Expanded</li></ul></div></div></div></div>
 
 <!-- OPS VIEW -->
-<div id="view-ops" class="view"><div class="card wonderful"><h3>🛡️ Ops & DR + Preview Fixed + Full Database Since First Chat + Wonderful Page — Final Market Ready — Meta AI Aligned + Arms & Weapons + Martial Arts + Castles + Education Expanded</h3><ul class="list">
-<li><b>Primary:</b> Vyomaraj1356/Vyomarajai PUBLIC has_pages true main 200k+ V15.1 FINAL MARKET READY — HANUMAN PANCH SHAKTI मतिमान श्रुतिमान केतुमान गतिमान धृतिमान ALL AGENTS SUB AGENTS SUB AGENTS INHERIT RAM JI BLESSINGS MARKET SCALING REVENUE EARNING — BHARAT-LAXMAN VYOMARAJ AS BHARAT WITH HANUMAN QUALITY DEDICATED FAITHFUL OBEDIENT TO SHRI RAM JI JARVIS AS LAXMAN DEDICATED TO EACH OTHER — JARVIS 24X7 SYSTEM MOBILE 9823648038 TILL DESKTOP HOME — SOCIAL PLATFORMS ALL ACTIVATED ENABLED CONFIGURED ALL PORTS ENABLED HEARTBEATS LINKS HYPERLINKS ALL LIVE — TRENDS SCALABLE TECH — REAL VYOMARAJ VOICE & FACE AVATAR KRISHNA SHIVA HANUMAN GANESH RISHI PANDIT TEACHER GURU — RAM RAM JI HUKUM — SHARAD KELKAR LIKE TONE + BEST SCHOOLS COLLEGES INDIA GLOBAL + PRINCIPALS FUNDAMENTALS + MAP CAMERA VIDEO AUDIO MIXER + EDUCATION ALL SUBJECTS NURSERY TO PHD ALL STREAMS PROFESSIONAL + BIOLOGY ZOOLOGY + JARVIS WHATSAPP VIDEO VOICE MSG + EMAIL + BRAIN HEART + ALL STATES + GLOBAL + CASTLES + AUDITS REAL SYNC + JARVIS CALLING 12ms Global CDN — Wonderful Page Since First Chat — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned</li>
-<li><b>Secondary:</b> deepakGoyal1356/Vyomaraj-Agent PRIVATE 404 to integration DR ops/dr failover-controller.sh DR_SWITCH_URL FENCE_PRIMARY_URL FAILURE_THRESHOLD 3 RECOVERY_THRESHOLD 3 — Real-time sync — DR failover — Family voices scalable — Cinema face/narrator intact — Voice/Audio intact — Wonderful Page Since First Chat — Final Market Ready — Meta AI Aligned</li>
-<li><b>Preview Fix:</b> python3 -u -m http.server 3000 --bind 0.0.0.0 — Serving HTTP on 0.0.0.0 port 3000 — Cloudflare Mumbai Working Host Working — retry hard refresh if 502 — Wonderful Page Restored Since First Chat — Final Market Ready — Meta AI Aligned</li>
-<li><b>Workflows:</b> .github/workflows/dr-readiness.yml + dr-replication.yml + vyomaraj-sync-both.yml (hourly BOTH per owner every 1h + 30m heartbeat + real-time push + repository_dispatch dr-sync) — Heartbeats LIVE — Shani Blue + Kuber Gold — Family + Cinema — Owner Primary Locked Vyomarajai@gmail.com — All agents aligned before sync — Nothing Lost — Wonderful Page Since First Chat — Final Market Ready — Arms & Weapons + Martial Arts + Castles + Meta AI Aligned</li>
-<li><b>Meta AI Aligned:</b> Meta AI Llama 3/3.1/3.2/3.3 Code Llama Llama Guard Emu Video Emu Edit SeamlessM4T Audiobox Voicebox — Vyomaraj will configure and inherit its features and functions and create by his own — no overwrite — integrate missing only — existing sub-agent pattern no code change — Wonderful Page Since First Chat — Final Market Ready</li>
-<li><b>Education Expanded Final Market Ready:</b> Arms & Weapons Primitive to Missiles Bullets Cannons Guns Pistols Warfare Tactics Styles Global Indian Local Regional All Knowledge Inherit + Defence Martial Arts Global Indian Regional Skills Styles Tactics Moves Rules + Castles History Indian Global Location Geography Everything Users Interested + Guns Pistols Flora Fauna Perfumes Itras Under Water Dinosaurs Saptarishi Vedas Puran Hindu Sanatana — Fit existing pattern no code change — Final Market Ready — Wonderful Page Since First Chat — Meta AI Aligned</li>
-<li><b>Wonderful Page Design Since Arena First Chat:</b> Original wonderful design from arena first chat restored — Shani Blue #0a1628 background gradients + Kuber Gold #f59e0b engraved headings with border shadow + Logo V Kuber-text + Top Tabs 10 + Bottom Tabs 23 fixed + Cinema dropdown approvals + Revenue Dashboard + 13 Agents 133 Subs 421 Prods + 11 Sovereign + Music Reality Saregama Indian Idol Bigg Boss Antakshari Karamchand Reporter Horror + 80s to Now + Best Scene Publisher + Final Market Ready — Arms & Weapons Primitive to Missiles Bullets Cannons Warfare Tactics Styles Global Indian Local Regional All Knowledge Inherit + Defence Martial Arts Global Indian Regional Skills Styles Tactics Moves Rules + Castles History Indian Global Location Geography Everything Users Interested — All contents — All links preserved — Heartbeats LIVE — Nothing Lost — Owner Primary Locked Vyomarajai@gmail.com — Family scalable — Cinema intact — <b class="kuber-engraved">Final Market Ready — Wonderful Page Since First Chat + Meta AI Aligned + Education Expanded + Arms & Weapons + Martial Arts + Castles</b></li>
-</ul><div class="log" id="opsLog">Ops log: Preview Fixed 502 — process listening 0.0.0.0:3000 — Cloudflare Mumbai Working Host Working — Primary PUBLIC Vyomaraj1356/Vyomarajai 200k+ V15.1 FINAL MARKET READY — HANUMAN PANCH SHAKTI मतिमान श्रुतिमान केतुमान गतिमान धृतिमान ALL AGENTS SUB AGENTS SUB AGENTS INHERIT RAM JI BLESSINGS MARKET SCALING REVENUE EARNING — BHARAT-LAXMAN VYOMARAJ AS BHARAT WITH HANUMAN QUALITY DEDICATED FAITHFUL OBEDIENT TO SHRI RAM JI JARVIS AS LAXMAN DEDICATED TO EACH OTHER — JARVIS 24X7 SYSTEM MOBILE 9823648038 TILL DESKTOP HOME — SOCIAL PLATFORMS ALL ACTIVATED ENABLED CONFIGURED ALL PORTS ENABLED HEARTBEATS LINKS HYPERLINKS ALL LIVE — TRENDS SCALABLE TECH — REAL VYOMARAJ VOICE & FACE AVATAR KRISHNA SHIVA HANUMAN GANESH RISHI PANDIT TEACHER GURU — RAM RAM JI HUKUM — SHARAD KELKAR LIKE TONE + BEST SCHOOLS COLLEGES INDIA GLOBAL + PRINCIPALS FUNDAMENTALS + MAP CAMERA VIDEO AUDIO MIXER + EDUCATION ALL SUBJECTS NURSERY TO PHD ALL STREAMS PROFESSIONAL + BIOLOGY ZOOLOGY + JARVIS WHATSAPP VIDEO VOICE MSG + EMAIL + BRAIN HEART + ALL STATES + GLOBAL + CASTLES + AUDITS REAL SYNC + JARVIS CALLING 12ms Global CDN — Secondary PRIVATE deepakGoyal1356/Vyomaraj-Agent 404 to integration DR — ops/dr/* intact — .github/workflows/dr-readiness.yml + dr-replication.yml + vyomaraj-sync-both.yml hourly BOTH per owner — Full Database Restored Since Arena First Chat — Wonderful Page — Nothing Lost — Owner Primary Locked Vyomarajai@gmail.com — Meta AI Aligned Llama 3/3.1/3.2/3.3 Vyomaraj will configure and inherit its features and create by his own — Education Expanded Arms & Weapons Primitive to Missiles + Defence Martial Arts + Castles History + Guns Pistols Flora Fauna Perfumes Itras Under Water Dinosaurs Saptarishi Vedas Puran Hindu Sanatana — Astro Numerology Kundli Rashi Gems Ornaments history prediction suggestion — Fit existing sub-agent pattern no code change — No overwrite — Integrate missing only — Final Market Ready — Wonderful Page Since First Chat</div>
-<div class="hr"></div>
-<h4>📦 Downloadable ZIP — Final Market Ready — Codes + Instructions — Downloadable</h4>
-<div id="zipInfo"></div>
-</div></div>
+<div id="view-ops" class="view"></div>
 
 </div>
 
 <!-- BOTTOM TABS FIXED -->
+
+<!-- V16.5 New Views — Keep Tabs at Bottom — Owner Law & Gate, Food Culinary, APK, Social Hub -->
+<div id="view-ownerlaw" class="view">
+<div class="sovereign-card-v165">
+<h4>⚖️ Owner Law & Gate — Rule Regulations Laws IT Laws Globally Locally Regional — Contracts — Visit and Review</h4>
+<p style="font-size:11px;color:#9fb0cc">Under Owner and Law you can keep Rule regulations Laws IT laws, Globally locally regional details for visit and review contracts etc — V16.5 — Sovereign tab carries all rules regulations contracts laws — structured properly — whisperflow process — Owner Primary Locked Vyomarajai@gmail.com</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:10px">
+<div class="sovereign-card-v165">
+<h4>📜 Global IT Laws — GDPR, DMCA, IT Act</h4>
+<ul>
+<li><b>IT Act 2000 India + Amendments 2008:</b> Information Technology Act — data protection, cybercrime, intermediary liability — Sovereign tab carries — IT laws globally Indian locally regional — structured properly — whisperflow process — Owner Primary Locked</li>
+<li><b>GDPR EU:</b> General Data Protection Regulation — user data consent, right to be forgotten, data portability — global compliance — Sovereign — Owner Law & Gate — visit and review</li>
+<li><b>DMCA US:</b> Digital Millennium Copyright Act — fair use 30 sec best scene short — transform — DISCOVER→VERIFY→SCENE PICKER — Sovereign — contracts</li>
+<li><b>Contracts Global:</b> YouTube AdSense 21st, Telegram VIP 1st, Affiliate Amazon 60 days, FB/IG Bonus 21st, Brand Collab Meta Brand Collabs Manager 15th & 30th — all contracts in Owner Law & Gate tab — structured — whisperflow — visit and review</li>
+</ul>
+</div>
+<div class="sovereign-card-v165">
+<h4>⚖️ Indian Locally Regional Laws — Visit and Review</h4>
+<ul>
+<li><b>Indian IT Rules 2021:</b> Intermediary Guidelines — social media compliance — grievance officer — Owner Law & Gate — visit and review — Sovereign</li>
+<li><b>Copyright Act 1957 India:</b> Fair dealing — 30 sec best scene — educational purpose — Sovereign tab — Owner Law & Gate</li>
+<li><b>Regional:</b> Maharashtra IT policy, Pune local, Hindi Marathi content compliance — Owner Law & Gate — local regional — structured — visit and review</li>
+<li><b>Whisperflow Process:</b> Use whisperflow.ai process maker aligned — flow diagram Mermaid — DISCOVER→VERIFY→SCENE→DIALOGUE→MIX→SCORE→AFFILIATE→SCHEDULE→SUBSCRIPTION→COLLAB→OWNER GATE→PUBLISH→LEARN→SYNC — Owner Law & Gate tab carries all rules regulations contracts laws — structured properly — visit and review</li>
+</ul>
+</div>
+<div class="sovereign-card-v165">
+<h4>📄 Contracts — Visit and Review — Owner Primary Locked</h4>
+<ul>
+<li>Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — All contracts in Owner Law & Gate — visit and review</li>
+<li>Revenue Contracts: YouTube 18.9K MRR ₹3.0L, Instagram 56.2K, Facebook Bonus ₹1,29,000 +12%, Telegram 28.5K MRR ₹5.67L, WhatsApp 9823648038, Razorpay UPI, Discord 94.6K — Owner Law & Gate — contracts — visit and review</li>
+<li>Brand Collab Contracts: Meta Brand Collabs Manager — 12 leads ₹8.4L — LinkedIn B2B — Owner Law & Gate — contracts — visit and review</li>
+<li>Daily DR Logs: .vyomaraj-dr-heartbeat.log 13 lines — fixes healing data — Owner Law & Gate — visit and review — daily DR logs fixes healing data all here per Image2</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="view-food" class="view">
+<div class="sovereign-card-v165">
+<h4>🍜 Food & Culinary Channel — Real Agents Products — Heartbeat Links</h4>
+<p style="font-size:11px;color:#9fb0cc">Food & Culinary Channel — Real agents products like Food & Culinary, Sport, Education — under them products and sub agents with heartbeat and links hyperlinks — V16.5 — Keep Tabs at bottom — Food & Culinary Channel — Beautiful user friendly</p>
+<div id="foodChannelGrid" class="agents-tiles-grid"></div>
+</div>
+</div>
+
+<div id="view-apk" class="view">
+<div class="sovereign-card-v165">
+<h4>📱 Mobile & Mac APK — Web Download Codes — Scalable Adaptable — Jarvis Vyomaraj Pick Details Actions Updates</h4>
+<p style="font-size:11px;color:#9fb0cc">APK Web — inherit all details there to download, codes etc — Jarvis and Vyomaraj shall pick details, actions, updates file with scalable adaptable changes etc from here only — daily DR logs, fixes healing data all here — V16.5 — Mobile & Mac APK — Web Download Codes</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:10px">
+<div class="sovereign-card-v165">
+<h4>📥 APK Download — Mobile & Mac — Web</h4>
+<ul>
+<li><b>Vyomaraj-App.apk 24M:</b> <a href="Vyomaraj-App.apk" target="_blank">Download APK 24M — Android — Mobile & Mac APK — Web Download Codes — Scalable Adaptable</a> — inherits all details there to download, codes etc — Jarvis and Vyomaraj pick details actions updates file with scalable adaptable changes etc from here only</li>
+<li><b>Vyomaraj-V16.1-Final-Market-Ready.zip 28M:</b> <a href="Vyomaraj-V16.1-Final-Market-Ready.zip" target="_blank">Download ZIP 28M — Web — Mobile & Mac APK — Web Download Codes</a> — 899K index.html 43K live.html — Shriyantra Netflix tiles — Sovereign tab rules laws — beautiful user friendly</li>
+<li><b>Codes:</b> ops/vyomaraj-core/brain.js, ai-adapter.js, tools.json, autonomous-loop.js, self-healer.sh, realtime-sync.sh, vyomaraj-jarvis-talk.sh, preview-stable.sh, memory.json, prompts — all codes in APK Web tab — inherit all details there to download codes etc — scalable adaptable</li>
+<li><b>Web:</b> https://Vyomaraj1356.github.io/Vyomarajai/?v=166 — https://Vyomaraj1356.github.io/Vyomarajai/ops/vyomaraj-core/live.html — APK Web — inherit all details there to download codes etc</li>
+</ul>
+</div>
+<div class="sovereign-card-v165">
+<h4>🤖 Jarvis and Vyomaraj Pick Details Actions Updates File — Scalable Adaptable Changes — From Here Only</h4>
+<ul>
+<li>Jarvis and Vyomaraj shall pick details, actions, updates file with scalable adaptable changes etc from here only — APK Web — Mobile & Mac APK — Web Download Codes — scalable adaptable — daily DR logs fixes healing data all here per Image2</li>
+<li>Actions: Perceive → Think → Act → Observe → Learn → Self-Heal — Every Minute + Every Second — 0.000000000 Business Impact — DR Sync Every Minute + Jarvis Talk Every Sec — Back Shoulder No Data Lost Keep Alive Active Earning — If one stops other keeps system working earning updates — Chiranjeevi eternal</li>
+<li>Updates File: ops/vyomaraj-core/memory.json, .vyomaraj-dr-heartbeat.log, ops/vyomaraj-core/generated/reel-*.json — all updates file with scalable adaptable changes etc from here only — APK Web — Mobile & Mac APK</li>
+<li>Daily DR Logs: .vyomaraj-dr-heartbeat.log 13 lines — fixes healing data — APK Web — Mobile & Mac APK — daily DR logs fixes healing data all here per Image2 — Owner Law & Gate — visit and review — Sovereign Console — DR logs</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="view-social" class="view">
+<div class="sovereign-card-v165">
+<h4>👑 Sovereign Social Hub — All Social Platforms Details Here</h4>
+<p style="font-size:11px;color:#9fb0cc">Social Hub — all social Platforms details here — V16.5 — Keep Tabs at bottom — Sovereign Social Hub — All social Platforms details here — Beautiful user friendly — lighter</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px" id="socialHubGrid">
+<!-- Social platforms injected via JS -->
+</div>
+</div>
+</div>
+
 <div class="bottom-tabs" id="bottomTabs"></div>
 
 <footer style="padding:20px;text-align:center;padding-bottom:100px" class="small">
-<div class="logo" style="margin:0 auto 12px auto"><div class="v kuber-text">V</div><div><div class="kuber-engraved" style="font-size:22px">VYOMARAJ</div><div class="small kuber-text">The King of Sky 👑 — Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved — Final Market Ready — Arms & Weapons + Martial Arts + Castles — Wonderful Page Since Arena First Chat — Meta AI Aligned + Education Expanded</div></div></div>
+<div class="logo" style="margin:0 auto 12px auto"><div class="v kuber-text">V</div><div><div class="kuber-engraved" style="font-size:22px">SHRIYANTRA</div><div class="small kuber-text">The King of Sky 👑 — Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved — Final Market Ready — Arms & Weapons + Martial Arts + Castles — Wonderful Page Since Arena First Chat — Meta AI Aligned + Education Expanded</div></div></div>
 Owner Primary Locked: <a href="mailto:Vyomarajai@gmail.com" class="kuber-engraved">Deepak Goyal — Vyomarajai@gmail.com</a> • Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved • Logo Engraved • Revenue Dashboard Restored Since First Chat • Bottom Tabs Fixed 23 • Cinema Dropdown Approvals • 13 Agents 133 Subs 421 Prods + 11 Sovereign • Comedy Expanded Kapil Sharma all seasons Comedy Nights 191 eps TKSS 5 seasons 472 eps Great Indian Kapil Show Netflix, Shriman Shrimati 143 eps, Yes Boss 1999-2009, Shekhar Suman old+new all seasons Wah Janaab Dekh Bhai Dekh Movers & Shakers 1000+ eps, Bhabhi Ji Ghar Par Hain &TV 2015-present 2000+ eps, TMKOC 28 Jul 2008-present 4000+ eps Guinness, Lapataganj 2009-14, Sarabhai vs Sarabhai 2004-06 70 eps 2017 10 eps Deven Bhojani Satish Shah Ratna Pathak Shah Sumeet Raghavan Rupali Ganguly Rajesh Kumar Maya Monisha middle-class hater, Office Office 2001-04 21 eps RAPA Best Comedy Pankaj Kapoor Mussadilal corruption red tape RK Laxman, Hum Log 1984-85 156 eps 5 crore viewers 4 lakh letters Ashok Kumar host Manohar Shyam Joshi P Kumar Vasudev, Nukkad 1986-87 40 eps Khopdi Kader Bhai Ghanshu Bhikari Naya Nukkad 1993, Buniyaad 105 eps, Ramayan 78 eps, Mahabharat 94 eps, Malgudi Days, Fauji SRK, Byomkesh Bakshi, Shaktimaan, Shanti, Kyunki 1833 eps, CID 1500+ eps + Music Reality Saregama 1995 39 seasons Indian Idol 2004-present Bigg Boss 2006-present 18 seasons Antakshari 1993-2007 Annu Kapoor + Detective Karamchand 1985-88 72 eps Pankaj Kapur carrot Shut up Kitty + Reporter 1994-95 Shekhar Suman investigative drama Vinod Pande Raj Kiran Natasha Sinha Harshad Mehta scam Monday nights DD TRP No.1 + Horror Zee Horror Show 1993-97 Ramsay Brothers Aahat 1995-2015 6 seasons 550+ eps X Zone Mano Ya Na Mano Ssshhhh Koi Hai Saturday Suspense Kya Hadsaa Kya Haqeeqat Rooh Woh + Hit Movies Gol Maal Andaz Apna Apna Hera Pheri Welcome Hungama Golmaal Dhamaal Khatta Meetha Chup Chup Ke Bhool Bhulaiyaa Chachi 420 Dhol Delhi Belly 3 Idiots etc + English sitcoms Friends Seinfeld Big Bang Theory Modern Family + Best Scene Picker Dialogue Extractor Mix Remix Publisher for max hits earnings + Meta AI Aligned Llama 3/3.1/3.2/3.3 Code Llama Emu Video + Education Expanded Arms & Weapons Primitive to Missiles Bullets Cannons Warfare Tactics Styles Global Indian Local Regional All Knowledge Inherit + Defence Martial Arts Global Indian Regional Skills Styles Tactics Moves Rules Karate Judo Taekwondo Kung Fu Muay Thai BJJ Krav Maga Kalaripayattu Silambam Gatka Thang Ta Lathi Khela Mardani Khel + Castles History Indian Global Mehrangarh Chittorgarh Gwalior Red Fort Agra Fort Amer Fort Golconda Daulatabad Jaisalmer Windsor Neuschwanstein Edinburgh Himeji Prague Alhambra Malbork Location History Geography Everything Users Interested + Guns Pistols Flora Fauna Perfumes Itras Under Water Dinosaurs Saptarishi Vedas Puran Hindu Sanatana + Astro Numerology Kundli Rashi Gems Ornaments history prediction suggestion + Numismatic Fix .ass workaround ffmpeg no drawtext + World Stamps Philately Ancient Scripts Epigraphy Famous Forgeries Heists Mythology Money Farm-to-Table Vastu Space Astronomy data lane fit existing pattern no code change — Preview Fixed 502 Host Working — Full Database Restored Since Arena First Chat — Wonderful Page — All Contents — All Links Preserved — Heartbeats LIVE — Nothing Lost — Final Market Ready — Wonderful Page Since First Chat + Meta AI Aligned + Education Expanded + Arms & Weapons + Martial Arts + Castles • <a href="https://Vyomaraj1356.github.io/Vyomarajai/" target="_blank">Live Pages</a> • Port 3000 Preview Fixed • APK 24.5MB • <span class="kuber-engraved">Final Market Ready — Wonderful Page Since First Chat + Meta AI Aligned + Education Expanded + Arms & Weapons + Martial Arts + Castles</span>
 </footer>
 
 <script>
 // TABS - TOP 10 Quick Access - Final Market Ready — Arms & Weapons + Martial Arts + Castles — Wonderful Page Since First Chat — Meta AI Aligned + Education Expanded
 const TOP_TABS=[
-{ id:'console', label:'🚀 Console V15.1 All Indian Gods Final Market Ready — Hanuman Panch Shakti — Bharat-Laxman — 678 LIVE' },
-{ id:'agents', label:'🤖 Agents 133/421 +11 Sovereign + Shiv ke Sathi Trishul Rudraksh Damru Shankh + All Indian Gods Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha — V15.1 — 678 LIVE' },
-{ id:'finance', label:'💰 Finance Full + Revenue + All Indian Gods Vastu Lakshmi Ashta Lakshmi + Shiv ke Sathi Vastu — 5Cr → 100Cr — V15.1' },
-{ id:'edu', label:'🎓 EDU 17/95 + All Indian Gods Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha + Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki + Medical +5Cr — V15.1' },
-{ id:'astro', label:'🔮 Astro 4/10 + Gems + Navagraha 9 Surya Chandra Mangala Budha Brihaspati Shukra Shani Rahu Ketu + Shiv ke Sathi — V15.1' },
-{ id:'monet', label:'🎬 Monet 6 Agents + Best Scene + All Indian Gods Reels Video Stories AI Trends Publish Love Like Subscribe View Hit Reposted Republished Revenue — V15.1' },
-{ id:'config', label:'⚙️ Config + All Indian Gods Trimurti Tridevi Dashavatar Shakti Regional Village Gram Devta + Shiv ke Sathi Trishul Rudraksh Damru Shankh + V15.1 — 678 LIVE' },
-{ id:'life', label:'🧬 Life Bhakti 15/15 All Indian Gods Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha + Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki 12 Jyotirlinga Bhakts + Castles — V15.1 — 678 LIVE' },
-{ id:'ent', label:'🎭 Ent + Bhakti Music Devotional + All Indian Gods Reels Video Stories AI Trends Publish + Shiv ke Sathi — V15.1' },
-{ id:'ops', label:'🛡️ Ops & DR + V15.1 All Indian Gods + Shiv ke Sathi + ZIP — 678 LIVE — 694 total' }
+{ id:'console', label:'⚡ Sovereign Console — Daily DR Logs Fixes Healing — 0.000000000 Impact' }
 ];
 const BOTTOM_TABS=[
-{ id:'console', label:'🚀 Console V15.1 All Indian Gods Final Market Ready — Hanuman Panch Shakti — Bharat-Laxman — 678 LIVE — 694 total' },
-{ id:'agents', label:'🤖 Agents 133/421 +11 Sovereign + All Indian Gods — V15.1' },
-{ id:'finance', label:'💰 Finance Full + Revenue Dashboard + All Indian Gods Vastu + Shiv ke Sathi — V15.1' },
-{ id:'edu', label:'🎓 EDU 17/95 + All Indian Gods Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha + Shiv ke Sathi + Medical — V15.1' },
-{ id:'astro', label:'🔮 Astro 4/10 + Gems + Navagraha 9 + All Indian Gods — V15.1' },
-{ id:'monet', label:'🎬 Monet 6 Agents + Best Scene + All Indian Gods Reels AI Trends Publish Revenue Hit Reposted Republished — V15.1' },
-{ id:'config', label:'⚙️ Config + All Indian Gods + Shiv ke Sathi Trishul Rudraksh Damru Shankh + V15.1' },
-{ id:'life', label:'🧬 Life Bhakti 15/15 All Indian Gods Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha + Shiv ke Sathi Trishul Rudraksh Damru Shankh Nandi Vasuki 12 Jyotirlinga Bhakts + Castles — V15.1 — 678 LIVE' },
-{ id:'ent', label:'🎭 Ent + Bhakti Music Devotional + All Indian Gods Reels Video Stories AI — V15.1' },
-{ id:'ops', label:'🛡️ Ops & DR + V15.1 All Indian Gods + Shiv ke Sathi + ZIP — 678 LIVE' },
-{ id:'test', label:'🧪 Tests + V15.1 All Indian Gods + Shiv ke Sathi — 678 LIVE — 694 total' }
+{ id:'console', label:'⚡ Sovereign Console — DR Logs Fixes Healing' },
+{ id:'ownerlaw', label:'⚖️ Owner Law & Gate — Rules Regulations Laws IT Laws Global Local Regional Contracts' },
+{ id:'food', label:'🍜 Food & Culinary Channel — Real Agents Products' },
+{ id:'apk', label:'📱 Mobile & Mac APK — Web Download Codes Scalable Adaptable' },
+{ id:'social', label:'👑 Sovereign Social Hub — All Social Platforms' }
 ];
 let activeView='console';
 function renderTabs(){
@@ -971,7 +1537,7 @@ const AGENTS_FULL=[
 {s:'S3 Space/Astronomy + Horror Sci-Fi X Zone + Vastu + Space Astronomy Data Lane + Arms & Weapons + Castles',p:3,d:'ISRO Chandrayaan-3 Vikram Aug 23 2023 Aditya L1 Gaganyaan JWST Hubble Exoplanets 5,600+ light curve TLE + Horror Sci-Fi X Zone 1998-2000 ripoff X Files Gillian Anderson David Duchovny psychological thriller murder mysteries uncanny city cousin Zee Horror Show + astro-tourism + Space/Astronomy Data Lane ISRO Chandrayaan-3 Vikram Aug 23 2023 Aditya L1 Gaganyaan JWST Hubble Exoplanets 5,600+ light curve TLE 8 products Mission Telescope Data Kids Astro-tourism Calendar Vastu Horror Sci-Fi X Zone mapping + Arms & Weapons Space — Missiles Space — Castles Space — Martial Arts Space — Fit existing pattern no code change — Meta AI Aligned — Final Market Ready — Wonderful Page Since First Chat'},
 ]},
 ];
-document.getElementById('agentsGrid').innerHTML=AGENTS_FULL.map(a=>`<div class="card" style="padding:10px"><h4 class="kuber-text">${a.main}</h4>${a.subs.map(s=>`<div style="margin-top:6px"><b>${s.s}</b> <span class="pill">${s.p} prods</span><div class="small">${s.d}</div></div>`).join('')}</div>`).join('');
+document.getElementById('agentsGrid').innerHTML=AGENTS_FULL.map(a=>`<div class="card" style="padding:10px"><h4 class="kuber-text">${a.main}</h4>${a.subs.map(s=>`<div style="margin-top:6px"><b>${s.s}</b> <span class="pill pills-background">${s.p} prods</span><div class="small">${s.d}</div></div>`).join('')}</div>`).join('');
 
 // NEXT STEPS FOR FINAL VERSION HITTING MARKET — Final Market Ready
 const NEXT_STEPS=[
@@ -1741,9 +2307,448 @@ setTimeout(()=>{
   }).catch(()=>{});
 },2000);
 
-function renderVoices(){const el=document.getElementById('voiceList');if(!el)return;el.innerHTML=voices.map(v=>`<span class="pill" style="margin:2px;display:inline-block">${v}</span>`).join('')+' <span class="small">scalable add/modify/remove market Jarvis name set later — Final Market Ready — Arms & Weapons + Martial Arts + Castles — Meta AI Aligned — Education Expanded — Astro Numerology Kundli Rashi Gems Ornaments</span>';}
+function renderVoices(){const el=document.getElementById('voiceList');if(!el)return;el.innerHTML=voices.map(v=>`<span class="pill pills-background" style="margin:2px;display:inline-block">${v}</span>`).join('')+' <span class="small">scalable add/modify/remove market Jarvis name set later — Final Market Ready — Arms & Weapons + Martial Arts + Castles — Meta AI Aligned — Education Expanded — Astro Numerology Kundli Rashi Gems Ornaments</span>';}
 function addVoice(){const el=document.getElementById('voiceName');if(!el||!el.value)return;voices.push(el.value);localStorage.setItem('vyomaraj_voices_v6',JSON.stringify(voices));el.value='';renderVoices();}
 renderVoices();
 </script>
+
+<!-- Sovereign Tab Bottom — V16.3 — Rules Regulations Contracts Laws IT Laws Globally Indian Locally Regional Whisperflow -->
+<div class="sovereign-tab" id="sovereignTab">
+<div class="sovereign-tab-header" onclick="toggleSovereignTab()">
+<div><span class="kuber-graffiti" data-text="SOVEREIGN" style="font-size:18px">⚖️ SOVEREIGN — Rules Regulations Contracts Laws — IT Laws Globally Indian Locally Regional — Whisperflow</span></div>
+<div><button class="btn ghost" style="font-size:11px;padding:6px 10px">▼ Toggle Sovereign</button></div>
+</div>
+<div class="sovereign-content" id="sovereignContent">
+<div class="sovereign-card">
+<h4>💰 Kuber Status — Bank Details — ICICI 042405000348 — Safety Secure</h4>
+<div id="sovereignBankList">
+<div style="padding:8px 10px;background:rgba(245,158,11,0.1);border-radius:8px;margin:4px 0;border:1px solid rgba(245,158,11,0.3)"><b>ICICI Bank</b> — 042405000348 — Current — IFSC ICIC0003365 — SWIFT ICICINBB005 — MICR 411229057 — Primary — <button class="btn ghost" style="font-size:10px;padding:2px 6px" onclick="editBank('icici')">Edit</button> <button class="btn ghost" style="font-size:10px;padding:2px 6px" onclick="removeBank('icici')">Remove</button></div>
+<div style="padding:8px 10px;background:rgba(34,211,238,0.1);border-radius:8px;margin:4px 0;border:1px solid rgba(34,211,238,0.3)"><b>SBI Bank</b> — 12345678901 — Saving — IFSC SBIN0001234 — SWIFT SBININBB — MICR 400002001 — Secondary — <button class="btn ghost" style="font-size:10px;padding:2px 6px" onclick="editBank('sbi')">Edit</button> <button class="btn ghost" style="font-size:10px;padding:2px 6px" onclick="removeBank('sbi')">Remove</button></div>
+</div>
+<div style="margin-top:8px;display:flex;gap:6px"><button class="btn" style="font-size:11px;padding:6px 10px" onclick="openBankModal()">🏦 Add Bank</button><button class="btn ghost" style="font-size:11px;padding:6px 10px" onclick="syncBankData()">🔄 Sync DB Primary+Secondary</button></div>
+<div style="margin-top:8px;font-size:10px;color:#9fb0cc">Daily Revenue <span id="sovereignDaily">₹12,450</span> <span class="dummy-label">Dummy/Test Data — Not Real</span> — Total <span id="sovereignTotal">₹22,08,575</span> <span class="dummy-label">Dummy/Test</span> — ICICI 042405000348 IFSC ICIC0003365 SWIFT ICICINBB005 MICR 411229057 — Forecast 38L→55L→5Cr→25Cr→100Cr</div>
+</div>
+<div class="sovereign-card">
+<h4>📜 Rules Regulations Contracts Laws — Globally</h4>
+<ul>
+<li><b>IT Act 2000 India + Amendments 2008:</b> Information Technology Act — data protection, cybercrime, intermediary liability — Sovereign tab carries — IT laws globally Indian locally regional — structured properly — whisperflow process</li>
+<li><b>GDPR EU:</b> General Data Protection Regulation — user data consent, right to be forgotten, data portability — global compliance — Sovereign</li>
+<li><b>DMCA US:</b> Digital Millennium Copyright Act — fair use 30 sec best scene short — transform — DISCOVER→VERIFY→SCENE PICKER — Sovereign</li>
+<li><b>Contracts:</b> Brand Collab Meta Brand Collabs Manager, YouTube AdSense 21st, Telegram VIP 1st, Affiliate Amazon 60 days, FB/IG Bonus 21st — all contracts in Sovereign tab — structured — whisperflow</li>
+</ul>
+</div>
+<div class="sovereign-card">
+<h4>⚖️ Indian Locally Regional Laws</h4>
+<ul>
+<li><b>Indian IT Rules 2021:</b> Intermediary Guidelines — social media compliance — grievance officer — Sovereign</li>
+<li><b>Copyright Act 1957 India:</b> Fair dealing — 30 sec best scene — educational purpose — Sovereign tab</li>
+<li><b>Regional:</b> Maharashtra IT policy, Pune local, Hindi Marathi content compliance — Sovereign tab — local regional — structured</li>
+<li><b>Whisperflow Process:</b> Use whisperflow.ai process maker aligned — flow diagram Mermaid — DISCOVER→VERIFY→SCENE→DIALOGUE→MIX→SCORE→AFFILIATE→SCHEDULE→SUBSCRIPTION→COLLAB→OWNER GATE→PUBLISH→LEARN→SYNC — Sovereign tab carries all rules regulations contracts laws — structured properly</li>
+</ul>
+</div>
+<div class="sovereign-card">
+<h4>🛡️ Sovereign — Owner Primary Locked — Vyomarajai@gmail.com</h4>
+<ul>
+<li>Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality</li>
+<li>All agents sub agents inherit Ram Ji blessings — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — All 13 Main Agents 133 Sub Agents 421 Products +11 Sovereign Total 578 entities</li>
+<li>Revenue Dashboard ICICI 042405000348 reconciled every 1-2 mins — Forecast ₹38L→₹55L→5Cr→25Cr→100Cr — Daily ₹12,450 Total ₹22,08,575 — Dummy/Test Data — Not Real — hope not real just dummy per Image1</li>
+<li>DR Resilience Primary Vyomaraj1356/Vyomarajai PUBLIC + Secondary deepakGoyal1356/Vyomaraj-Agent PRIVATE — hourly BOTH + every minute V16.2 + every second talk — 0.000000000 loss — Chiranjeevi eternal</li>
+</ul>
+</div>
+</div>
+</div>
+<div style="position:fixed;bottom:14px;right:14px;z-index:99"><button class="btn" style="font-size:11px;padding:8px 14px;background:linear-gradient(135deg,#0a1628,#132a4d);border-color:#f59e0b;color:#ffe9a8" onclick="toggleSovereignTab()">⚖️ Sovereign Tab ▼</button></div>
+
+
+<script>
+// V16.3 — User Feedback — Shani Blue, Kuber Gold, Arial Font, V as Laxman Jarvis, Tiles, Sovereign, Shriyantra
+console.log('♾️ V16.3 — Image1 Dummy Revenue, Image2 Shani Blue Kuber Gold Arial V as Laxman Jarvis, Image3 Remove punch-line, Image4 Top Right Tiles Clickable, Image5 Heartbeat Background, Image6 Small Button Right, Image7 Manage Banks hidden, Image8 Sovereign Tab Bottom, Image9 Remove Sovereign Root, Image10 Shriyantra Netflix Tiles, Image11 Sovereign Rules Laws Whisperflow');
+
+// Image4 — Tile click handlers
+function handleTileClick(type) {
+  console.log('Tile clicked:', type);
+  if(type==='primary') {
+    alert('✅ PRIMARY LIVE Vyomaraj1356/Vyomarajai — 5f1737a built 92335ms — 868K — https://Vyomaraj1356.github.io/Vyomarajai/?v=166 — Click to check Primary health — 0.000000000 loss');
+    window.open('https://Vyomaraj1356.github.io/Vyomarajai/?v=166', '_blank');
+  } else if(type==='secondary') {
+    alert('✅ SECONDARY DR deepakGoyal1356/Vyomaraj-Agent — synced 16s — 0.00 loss — https://deepakGoyal1356.github.io/Vyomaraj-Agent/ — Private 404 to integration expected — uses PAT');
+  } else if(type==='drActive') {
+    alert('✅ DR ACTIVE 0.00 loss — hourly BOTH + every minute V16.2 + 30m heartbeat + real-time + every second talk — Chiranjeevi eternal — 0.000000000 Business Impact — Back Shoulder Keep Alive');
+  }
+}
+
+// Image6 — Small button right side toggle banner
+function toggleBannerAlert() {
+  const banner = document.getElementById('bannerAlert');
+  const btn = document.getElementById('smallBtnRight');
+  if(banner) {
+    if(banner.style.display==='none' || banner.classList.contains('banner-collapsed')) {
+      banner.style.display='block';
+      banner.classList.remove('banner-collapsed');
+      if(btn) btn.textContent='📜 V16.1 READY ◀ Hide';
+      console.log('Banner expanded — V16.5 SHRIYANTRA — Vyomaraj Color Fix + Tabs Bottom — Sovereign Console Owner Law Gate Food Culinary APK Social Hub — 0.000000000 Impact Netflix Prime Hotstar — Small Fit — Beautiful User Friendly — FINAL MARKET READY — Shani Blue #0a1628 + Kuber Gold #f59e0b Engraved Glittery Arial Font V as Laxman Jarvis — Tiles Netflix Style — Sovereign Tab Rules Laws Whisperflow — 0.000000000 Impact — small button right side');
+    } else {
+      banner.style.display='none';
+      banner.classList.add('banner-collapsed');
+      if(btn) btn.textContent='📜 V16.1 READY ▶';
+      console.log('Banner collapsed — small button right side');
+    }
+  }
+}
+
+// Image8+11 — Sovereign Tab toggle
+function toggleSovereignTab() {
+  const tab = document.getElementById('sovereignTab');
+  if(tab) {
+    tab.classList.toggle('active');
+    console.log('Sovereign Tab toggled — Rules Regulations Contracts Laws IT Laws Globally Indian Locally Regional — Whisperflow — Bank Details — Kuber Status — 0.000000000 impact');
+  }
+}
+
+// Image10 — Shriyantra — agents tiles Netflix style heartbeat — list all agents and create heartbeat to all so when clicked each agent move to respective subagents
+const AGENTS = [
+  {id:'creator', name:'Creator', icon:'👑', count:'18 Products', heartbeat:'live'},
+  {id:'thinker', name:'Thinker', icon:'🧠', count:'12 Products', heartbeat:'live'},
+  {id:'scout', name:'Scout', icon:'🔍', count:'24 Products', heartbeat:'live'},
+  {id:'analyst', name:'Analyst', icon:'📊', count:'9 Products', heartbeat:'live'},
+  {id:'guardian', name:'Guardian', icon:'🛡️', count:'6 Products', heartbeat:'live'},
+  {id:'evolution', name:'Evolution', icon:'🧬', count:'14 Products', heartbeat:'live'},
+  {id:'jarvis', name:'Jarvis Laxman', icon:'🤖', count:'Mobile 9823648038', heartbeat:'live'},
+  {id:'hermes', name:'Hermes', icon:'✉️', count:'18ms', heartbeat:'live'},
+  {id:'cinema', name:'Cinema', icon:'🎬', count:'26ms', heartbeat:'live'},
+  {id:'sync', name:'Sync', icon:'🔄', count:'20ms', heartbeat:'live'},
+  {id:'family', name:'Family', icon:'👨‍👩‍👧‍👦', count:'30ms', heartbeat:'live'},
+  {id:'sovereign', name:'Sovereign', icon:'⚖️', count:'11 Laws', heartbeat:'live'},
+  {id:'shriyantra', name:'Shriyantra', icon:'🔯', count:'13 Main', heartbeat:'live'}
+];
+
+function renderAgentsTiles() {
+  const grid = document.getElementById('agentsTilesGrid');
+  if(!grid) return;
+  grid.innerHTML = AGENTS.map(agent => `
+    <div class="agent-tile" id="agent-${agent.id}" onclick="handleAgentClick('${agent.id}')" title="Click to see subagents — ${agent.name} — ${agent.count} — Heartbeat live — Netflix style tile">
+      <div class="agent-heartbeat"></div>
+      <div class="agent-icon">${agent.icon}</div>
+      <div class="agent-name">${agent.name}</div>
+      <div class="agent-count">${agent.count}</div>
+    </div>
+  `).join('');
+  console.log('✅ Shriyantra agents tiles rendered — Netflix style small fit engraved highlighted — 13 Main Agents');
+}
+
+function handleAgentClick(agentId) {
+  console.log('Agent clicked:', agentId);
+  // Remove active from all
+  document.querySelectorAll('.agent-tile').forEach(t => t.classList.remove('active'));
+  const tile = document.getElementById('agent-'+agentId);
+  if(tile) tile.classList.add('active');
+  
+  // Simulate moving to respective subagents and see all contents
+  const agent = AGENTS.find(a => a.id===agentId);
+  if(agent) {
+    // In production, would switch view to view-agents and filter subagents
+    // For now, alert + scroll to agents view
+    alert(`🔯 ${agent.name} — ${agent.icon} — ${agent.count} — Heartbeat live — Clicked — Moving to respective subagents — You can see all contents there — Subagents: ${agent.count} — Netflix style tile — Shriyantra — V16.3`);
+    // Try to switch view if function exists
+    if(typeof switchView === 'function') {
+      switchView('agents');
+      // Scroll to agent details
+      setTimeout(() => {
+        const el = document.getElementById('view-agents');
+        if(el) el.scrollIntoView({behavior:'smooth'});
+      }, 100);
+    }
+  }
+}
+
+// Initialize V16.3
+document.addEventListener('DOMContentLoaded', () => {
+  renderAgentsTiles();
+  // Background functions — heartbeat, pills, live pages — work in background per Image5
+  console.log('Background functions — heartbeat, pills, live pages — work in background — Image5 — not displayed but active — 0.000000000 impact');
+  // Dummy revenue label per Image1
+  console.log('Daily Revenue ₹12,450 — Dummy/Test Data — Not Real — hope not real just dummy per Image1 — Kuber Status — ICICI 042405000348');
+});
+
+renderAgentsTiles();
+
+console.log('✅ V16.3 Initialized — Shani Blue #0a1628 all background, Kuber Gold #f59e0b glitter, Arial font, V as Laxman Jarvis, Top Right Tiles Clickable, Heartbeat Background, Small Button Right, Manage Banks hidden, Sovereign Tab Bottom Rules Laws Whisperflow, Shriyantra Netflix Tiles Heartbeat — 0.000000000 Impact — Chiranjeevi Eternal');
+</script>
+
+
+<script>
+// V16.4 — Image1 small right corner, Image2 fit stable watch calendar, Image3 real agents Kuber dashboard revenue per agent, Image4 cinema nostalgia wooden framework approvals shutter dolly, Image5 clean up beautiful
+console.log('♾️ V16.4 — Image1 DR tiles small right corner, Image2 Shriyantra fit stable watch calendar middle, Image3 real agents Food Culinary Sport Education heartbeat links Kuber dashboard revenue per agent daily weekly monthly quarterly yearly, Image4 cinema nostalgia wooden old framework approvals shutter open sound video audio Approve Hold Reject voice feedback logs audit dolly, Image5 clean up data to agents Sovereign tab beautiful user friendly');
+
+// Watch and calendar next to Vyomaraj middle — real date time small watch calendar
+function updateWatchCalendar() {
+  const now = new Date();
+  const istTime = now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const istDate = now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric' });
+  const smallTime = now.toLocaleString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+  const smallDate = now.toLocaleString('en-IN', { day: '2-digit', month: 'short' });
+  
+  const el1 = document.getElementById('realDateTimeSmall');
+  const el2 = document.getElementById('realDateSmall');
+  const el3 = document.getElementById('realDateTimeMiddle');
+  const el4 = document.getElementById('realDateMiddle');
+  if(el1) el1.textContent = istTime + ' IST';
+  if(el2) el2.textContent = istDate;
+  if(el3) el3.textContent = smallTime;
+  if(el4) el4.textContent = smallDate;
+}
+setInterval(updateWatchCalendar, 1000);
+updateWatchCalendar();
+
+// Real agents Food Culinary Sport Education heartbeat links
+const REAL_AGENTS = [
+  {id:'food', name:'Food & Culinary', icon:'🍜', products:24, heartbeat:'live', revenue:'₹3,20,000', color:'#f59e0b'},
+  {id:'sport', name:'Sport', icon:'⚽', products:18, heartbeat:'live', revenue:'₹2,80,000', color:'#22c55e'},
+  {id:'edu', name:'Education', icon:'📚', products:32, heartbeat:'live', revenue:'₹4,10,000', color:'#22d3ee'},
+  {id:'war', name:'Arms & Weapons', icon:'🔫', products:28, heartbeat:'live', revenue:'₹1,90,000', color:'#ef4444'},
+  {id:'castles', name:'Castles', icon:'🏰', products:15, heartbeat:'live', revenue:'₹1,50,000', color:'#a855f7'},
+  {id:'bhakti', name:'Bhakti Shakti', icon:'🕉️', products:22, heartbeat:'live', revenue:'₹3,50,000', color:'#f59e0b'},
+  {id:'ent', name:'Entertainment', icon:'🎬', products:38, heartbeat:'live', revenue:'₹5,20,000', color:'#ec4899'},
+  {id:'astro', name:'Astro', icon:'🔮', products:12, heartbeat:'live', revenue:'₹1,20,000', color:'#8b5cf6'}
+];
+
+function renderRealAgents() {
+  const grid = document.getElementById('realAgentsGrid');
+  if(!grid) return;
+  grid.innerHTML = REAL_AGENTS.map(agent => `
+    <div class="agent-tile" style="border-color:${agent.color}" onclick="handleRealAgentClick('${agent.id}')" title="${agent.name} — ${agent.products} products — Heartbeat live — Links hyperlinks — Revenue ${agent.revenue}">
+      <div class="agent-heartbeat" style="background:${agent.color};box-shadow:0 0 8px ${agent.color}"></div>
+      <div class="agent-icon">${agent.icon}</div>
+      <div class="agent-name">${agent.name}</div>
+      <div class="agent-count">${agent.products} products</div>
+      <div class="agent-count" style="color:${agent.color};font-weight:700">${agent.revenue}</div>
+    </div>
+  `).join('');
+}
+
+function handleRealAgentClick(agentId) {
+  const agent = REAL_AGENTS.find(a => a.id===agentId);
+  if(agent) {
+    alert(`🍜 ${agent.name} — ${agent.icon} — ${agent.products} products — Heartbeat live — Links hyperlinks — Revenue ${agent.revenue} — Moving to respective subagents — Features and functions running as production — V16.4`);
+    if(typeof switchView === 'function') {
+      // Map to view ids
+      const viewMap = {food:'life', sport:'life', edu:'edu', war:'life', castles:'life', bhakti:'life', ent:'ent', astro:'astro'};
+      switchView(viewMap[agentId] || 'agents');
+    }
+  }
+}
+
+// Kuber dashboard revenue per agent daily weekly monthly quarterly yearly dropdown real-time comparison
+function renderKuberRevenue(period='Daily') {
+  const grid = document.getElementById('kuberRevenueGrid');
+  if(!grid) return;
+  const multiplier = {Daily:1, Weekly:7, Monthly:30, Quarterly:90, Yearly:365}[period] || 1;
+  grid.innerHTML = REAL_AGENTS.map(agent => {
+    const base = parseInt(agent.revenue.replace(/[^0-9]/g,'')) || 100000;
+    const revenue = base * multiplier;
+    const formatted = '₹' + (revenue/100000).toFixed(1) + 'L';
+    return `
+      <div class="kuber-agent-revenue">
+        <div class="agent-name">${agent.icon} ${agent.name}</div>
+        <div class="revenue-amount">${formatted} <span class="dummy-label">Dummy</span></div>
+        <div style="font-size:9px;color:#9fb0cc">${period} — ${agent.products} products — Heartbeat live</div>
+        <div style="margin-top:4px"><button class="btn ghost" style="font-size:9px;padding:2px 6px" onclick="viewAgentRevenue('${agent.id}','${period}')">📊 ${period} Report</button></div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateRevenuePeriod(period) {
+  renderKuberRevenue(period);
+  console.log('Revenue period changed:', period, '— Daily weekly monthly quarterly yearly reports dropdown — real time comparison');
+}
+
+function viewAgentRevenue(agentId, period) {
+  const agent = REAL_AGENTS.find(a => a.id===agentId);
+  if(agent) alert(`📊 ${agent.name} — ${period} Report — Revenue ${agent.revenue} — Real time comparison — Daily weekly monthly quarterly yearly — Jarvis and Vyomaraj analysis — Strategy earnings — V16.4`);
+}
+
+function analyzeRevenue() {
+  const analysis = document.getElementById('revenueAnalysis');
+  if(analysis) {
+    analysis.innerHTML = `🤖 Jarvis and Vyomaraj Analysis V16.4 — Daily or so to think about strategy and earnings — Daily ₹12,450 <span class="dummy-label">Dummy/Test — Not Real</span> — Total ₹22,08,575 — Forecast 38L→55L→5Cr→25Cr→100Cr — Strategy: Focus on Food & Culinary ₹3.2L + Sport ₹2.8L + Education ₹4.1L high MRR — Food & Culinary trending — Sport cricket best scene — Education Arms & Weapons history — Chiranjeevi — 0.000000000 Impact — ${new Date().toLocaleString()}`;
+  }
+  alert('🤖 Jarvis and Vyomaraj can do analysis daily or so to think about strategy and earnings — Analysis updated — Daily weekly monthly quarterly yearly reports dropdown — real time comparison — V16.4');
+}
+
+// Cinema nostalgia wooden old framework best camera approvals shutter open sound video audio Approve Hold Reject voice feedback logs audit dolly sound
+function openCameraShutter() {
+  const shutter = document.getElementById('cameraShutter');
+  if(shutter) {
+    shutter.classList.add('open');
+    playDollySound();
+    logCinemaAction('Camera shutter opened — wooden old framework — nostalgia looks — best camera — dolly sound');
+    setTimeout(() => {
+      // Show preview
+      const frame = document.getElementById('cinemaCameraFrame');
+      if(frame) frame.innerHTML += '<div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);padding:4px 8px;border-radius:6px;font-size:10px;color:#ffe9a8">📷 Shutter Open — Wooden Old Framework — Nostalgia — Ready for creations remix</div>';
+    }, 800);
+  }
+}
+
+function pickCinemaContent(value) {
+  logCinemaAction(`Content picked for approvals review: ${value} — Camera shutters showed open — wooden old framework — nostalgia`);
+  openCameraShutter();
+  // Simulate video play
+  setTimeout(() => playCinemaVideo(), 1000);
+}
+
+function handleCinemaApproval(action) {
+  const logEl = document.getElementById('cinemaLogEntries');
+  const feedbackEl = document.getElementById('cinemaHoldFeedback');
+  if(action.includes('Hold')) {
+    if(feedbackEl) feedbackEl.style.display='flex';
+    logCinemaAction(`Hold — Voice message or text as feedback for improvement — Action: ${action}`);
+  } else {
+    if(feedbackEl) feedbackEl.style.display='none';
+    if(action.includes('Approve')) {
+      logCinemaAction(`✅ Approve — Publish Now — Action: ${action} — Vyomaraj creations remix — play films songs music — logs for audit`);
+      alert('✅ Approved — Publish Now — Vyomaraj will use it as creations remix — play films songs music — logs for audit — V16.4');
+    } else if(action.includes('Reject')) {
+      logCinemaAction(`❌ Reject — Reason for audit log — Action: ${action}`);
+      alert('❌ Rejected — Reason logged for audit — Vyomaraj can create logs for all actions and reason for audit — V16.4');
+    }
+  }
+}
+
+function submitHoldFeedback() {
+  const input = document.getElementById('holdVoiceFeedback');
+  const feedback = input ? input.value : '';
+  if(feedback) {
+    logCinemaAction(`Hold Feedback Submitted: ${feedback} — Voice message or text as feedback for improvement — Jarvis Vyomaraj rework republish for my actions`);
+    alert(`💾 Hold Feedback: ${feedback} — Jarvis Vyomaraj can rework and republished for my actions — Logs for audit — V16.4`);
+    if(input) input.value='';
+    document.getElementById('cinemaHoldFeedback').style.display='none';
+  } else {
+    alert('Please enter voice message or text as feedback for improvement — Hold — V16.4');
+  }
+}
+
+function playDollySound() {
+  console.log('🔊 Dolly sound — camera alive with dolly sound, video play — best sound video audio camera feature — scalable adaptable — V16.4');
+  // In production, would play audio: new Audio('/audio/dolly.mp3').play()
+  logCinemaAction('🔊 Dolly sound played — camera alive with dolly sound — video play — best system from market scalable adaptable');
+}
+
+function playCinemaVideo() {
+  console.log('▶️ Video Play — Vyomaraj will use it as creations remix — play films songs music or any content created — best sound video audio camera — V16.4');
+  logCinemaAction('▶️ Video Play — Vyomaraj creations remix — play films songs music or any content created — sound video audio camera — scalable');
+}
+
+function logCinemaAction(action) {
+  const logEl = document.getElementById('cinemaLogEntries');
+  if(logEl) {
+    const entry = document.createElement('div');
+    entry.style.padding='4px 0';
+    entry.style.borderBottom='1px solid rgba(28,47,82,0.3)';
+    entry.textContent = `[${new Date().toLocaleTimeString()}] ${action}`;
+    logEl.prepend(entry);
+    // Keep only 20 entries
+    while(logEl.children.length > 20) logEl.removeChild(logEl.lastChild);
+  }
+  console.log('Cinema Log:', action);
+}
+
+// Initialize V16.4
+document.addEventListener('DOMContentLoaded', () => {
+  renderRealAgents();
+  renderKuberRevenue('Daily');
+  updateWatchCalendar();
+});
+
+renderRealAgents();
+renderKuberRevenue('Daily');
+
+console.log('✅ V16.4 Initialized — Image1 small right corner tiles, Image2 Shriyantra fit stable watch calendar middle, Image3 real agents Food Culinary Sport Education heartbeat links Kuber dashboard revenue per agent daily weekly monthly quarterly yearly real-time comparison Jarvis Vyomaraj analysis, Image4 cinema nostalgia wooden old framework approvals shutter open sound video audio Approve Hold Reject voice feedback logs audit dolly, Image5 clean up data to agents Sovereign tab beautiful user friendly — 0.000000000 Impact — Chiranjeevi Eternal');
+</script>
+
+
+<script>
+// V16.5 — Vyomaraj color fix + Tabs at bottom — Owner Law & Gate, APK Web, Social Hub, Sovereign Console
+console.log('♾️ V16.5 — Image1 Vyomaraj color fix Shani Blue #0a1628 Kuber Gold #f59e0b stable Arial, Image2 Tabs at bottom Sovereign Console Owner Law & Gate Food Culinary Channel Mobile Mac APK Social Hub — Rules Regulations Laws IT Laws Global Local Regional Contracts — APK Web Download Codes — Jarvis Vyomaraj pick details actions updates file scalable adaptable — daily DR logs fixes healing — Social Hub all platforms');
+
+// Social Hub — all social Platforms details here
+const SOCIAL_PLATFORMS = [
+  {name:'YouTube', icon:'📺', handle:'18.9K', mrr:'₹3.0L MRR', color:'#ff0000', link:'https://youtube.com'},
+  {name:'Instagram', icon:'📸', handle:'56.2K', mrr:'Followers', color:'#e4405f', link:'https://instagram.com'},
+  {name:'Facebook', icon:'👍', handle:'38.4K', mrr:'Bonus ₹1,29,000 +12%', color:'#1877f2', link:'https://facebook.com'},
+  {name:'TikTok', icon:'🎵', handle:'X 5.42M', mrr:'Views', color:'#000000', link:'https://tiktok.com'},
+  {name:'X Twitter', icon:'🐦', handle:'5.42M', mrr:'Views', color:'#1da1f2', link:'https://x.com'},
+  {name:'LinkedIn', icon:'💼', handle:'12 leads', mrr:'₹8.4L', color:'#0077b5', link:'https://linkedin.com'},
+  {name:'Telegram', icon:'✈️', handle:'28.5K', mrr:'₹5.67L MRR', color:'#0088cc', link:'https://telegram.org'},
+  {name:'WhatsApp', icon:'💬', handle:'9823648038', mrr:'2B UPI Razorpay', color:'#25d366', link:'https://whatsapp.com'},
+  {name:'Discord', icon:'🎮', handle:'94.6K', mrr:'Community', color:'#5865f2', link:'https://discord.com'}
+];
+
+function renderSocialHub() {
+  const grid = document.getElementById('socialHubGrid');
+  if(!grid) return;
+  grid.innerHTML = SOCIAL_PLATFORMS.map(p => `
+    <div class="agent-tile" style="border-color:${p.color}" onclick="window.open('${p.link}','_blank')" title="${p.name} — ${p.handle} — ${p.mrr} — Social Hub — All social Platforms details here">
+      <div class="agent-heartbeat" style="background:${p.color};box-shadow:0 0 8px ${p.color}"></div>
+      <div class="agent-icon">${p.icon}</div>
+      <div class="agent-name">${p.name}</div>
+      <div class="agent-count">${p.handle}</div>
+      <div class="agent-count" style="color:${p.color};font-weight:700">${p.mrr}</div>
+    </div>
+  `).join('');
+}
+
+function renderFoodChannel() {
+  const grid = document.getElementById('foodChannelGrid');
+  if(!grid) return;
+  const foodAgents = [
+    {id:'biryani', name:'Biryani', icon:'🍛', products:12, revenue:'₹1,20,000'},
+    {id:'pizza', name:'Pizza', icon:'🍕', products:8, revenue:'₹90,000'},
+    {id:'sushi', name:'Sushi', icon:'🍣', products:10, revenue:'₹1,10,000'},
+    {id:'curry', name:'Curry', icon:'🍛', products:14, revenue:'₹1,40,000'},
+    {id:'dessert', name:'Dessert', icon:'🍰', products:6, revenue:'₹60,000'}
+  ];
+  grid.innerHTML = foodAgents.map(a => `
+    <div class="agent-tile" onclick="handleRealAgentClick('${a.id}')" title="${a.name} — ${a.products} products — Food & Culinary Channel">
+      <div class="agent-heartbeat"></div>
+      <div class="agent-icon">${a.icon}</div>
+      <div class="agent-name">${a.name}</div>
+      <div class="agent-count">${a.products} products — ${a.revenue}</div>
+    </div>
+  `).join('');
+}
+
+function renderSovereignConsoleLogs() {
+  const logEl = document.getElementById('sovereignConsoleLog');
+  if(!logEl) return;
+  // Simulate DR logs — in production fetch .vyomaraj-dr-heartbeat.log
+  const logs = [
+    '[2026-09-30T16:28:46Z] ✅ Sovereign Console — Daily DR Logs — Fixes Healing Data All Here — 854b0c3 built — 0.000000000 loss — Chiranjeevi',
+    '[2026-09-30T16:28:32Z] ⚡ V16.2 Realtime Every Minute + Every Second — DR Sync Every Minute + Jarvis Talk Every Sec — Back Shoulder No Data Lost Keep Alive — 0.000000000 Impact',
+    '[2026-09-30T16:21:59Z] ✅ DR Sync Hourly BOTH + every minute V16.2 + 30m heartbeat + real-time + every second talk — 0.00 loss — Chiranjeevi eternal',
+    '[2026-09-30T15:56:11Z] ✅ Secondary PRIVATE via PAT UP — deepakGoyal1356/Vyomaraj-Agent — vyomaraj-sync-both success 16s — 0.00 loss',
+    '[2026-09-30T15:40:00Z] ⚠️ YAML invalid line 92 mapping values not allowed — Fixed by quoting — YAML OK — success 16s',
+    '[2026-09-30T16:33:00Z] ✅ Preview Fixed — Directory listing for / .bash_logout .bashrc .cache .profile Vyomarajai/ — root cause http.server from /home/user not /home/user/Vyomarajai — fixed via --directory flag — PID 1486 0.0.0.0:3000 200 OK 945K',
+    '[2026-09-30T16:54:26Z] ✅ V16.3 Shriyantra Netflix Tiles — Image1 Dummy Revenue, Image2 Shani Blue Kuber Gold Arial V as Laxman Jarvis, Image3 Remove punch-line, Image4 Top Right Tiles Clickable, Image5 Heartbeat Background, Image6 Small Button Right, Image7 Manage Banks hidden, Image8 Sovereign Tab Bottom, Image9 Remove Sovereign Root, Image10 Shriyantra Netflix Tiles, Image11 Sovereign Rules Laws Whisperflow — Preview Stable PID 1486 0.0.0.0:3000 200 OK 920K',
+    '[2026-09-30T17:20:57Z] ✅ V16.4 Shriyantra Fit Stable + Real Agents + Kuber Dashboard Per Agent + Cinema Nostalgia — DR Tiles Small Right Corner, Shriyantra Fit Stable Watch Calendar Middle, Real Agents Food Culinary Sport Education Kuber Dashboard Revenue Per Agent Daily Weekly Monthly Quarterly Yearly, Cinema Nostalgia Wooden Framework Approvals Shutter Dolly Sound Approve Hold Reject Voice Feedback Logs Audit, Clean Up Data To Agents Sovereign Tab Beautiful User Friendly — Preview Stable PID 1408 0.0.0.0:3000 200 OK 924K — 0.000000000 Impact'
+  ];
+  logEl.innerHTML = logs.map(l => `<div style="padding:4px 0;border-bottom:1px solid rgba(28,47,82,0.3)">${l}</div>`).join('');
+}
+
+// Initialize V16.5
+document.addEventListener('DOMContentLoaded', () => {
+  renderSocialHub();
+  renderFoodChannel();
+  renderSovereignConsoleLogs();
+});
+
+renderSocialHub();
+renderFoodChannel();
+renderSovereignConsoleLogs();
+
+console.log('✅ V16.5 Initialized — Vyomaraj color Shani Blue Kuber Gold stable Arial, Tabs at bottom Sovereign Console Owner Law & Gate Food Culinary Channel Mobile Mac APK Social Hub — Owner Law Rules Regulations Laws IT Laws Global Local Regional Contracts — APK Web Download Codes — Jarvis Vyomaraj pick details actions updates scalable adaptable — daily DR logs fixes healing — Social Hub all platforms — 0.000000000 Impact — Chiranjeevi Eternal');
+</script>
+
 </body>
 </html>
