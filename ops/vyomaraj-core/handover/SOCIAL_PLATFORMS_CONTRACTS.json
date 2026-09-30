@@ -1,0 +1,17 @@
+{
+  "version": "V16.5.3",
+  "social_hub_tab": "👑 Sovereign Social Hub — All Social Platforms Details Here",
+  "platforms": [
+    {"name": "YouTube", "handle": "18.9K subs", "mrr": "₹3.0L MRR", "contract_signed": "2024-01-15", "payout": "21st", "terms": "YouTube Partner Program + AdSense 55/45", "color": "#ff0000", "link": "https://youtube.com", "heartbeat": "live", "owner": "Vyomarajai@gmail.com"},
+    {"name": "Instagram", "handle": "56.2K", "mrr": "Followers", "contract_signed": "2024-02-01", "terms": "Meta Creator Terms Bonus", "color": "#e4405f", "link": "https://instagram.com", "heartbeat": "live"},
+    {"name": "Facebook", "handle": "38.4K", "mrr": "Bonus ₹1,29,000 +12%", "contract_signed": "2024-02-01", "payout": "21st", "terms": "FB Bonus Terms", "color": "#1877f2", "link": "https://facebook.com", "heartbeat": "live"},
+    {"name": "TikTok", "handle": "X 5.42M", "mrr": "Views", "contract_signed": "2024-03-10", "terms": "TikTok Terms", "color": "#000000", "link": "https://tiktok.com", "heartbeat": "live"},
+    {"name": "X Twitter", "handle": "5.42M", "mrr": "Views", "contract_signed": "2024-03-10", "terms": "X Creator Terms", "color": "#1da1f2", "link": "https://x.com", "heartbeat": "live"},
+    {"name": "LinkedIn", "handle": "12 leads", "mrr": "₹8.4L", "contract_signed": "2024-03-20", "terms": "LinkedIn Lead Gen Terms", "color": "#0077b5", "link": "https://linkedin.com", "heartbeat": "live"},
+    {"name": "Telegram", "handle": "28.5K", "mrr": "₹5.67L MRR", "contract_signed": "2024-01-01", "payout": "1st", "terms": "Telegram VIP", "color": "#0088cc", "link": "https://telegram.org", "heartbeat": "live"},
+    {"name": "WhatsApp", "handle": "9823648038 / 9175112579", "mrr": "2B UPI Razorpay", "contract_signed": "2024-01-10", "terms": "WhatsApp Business", "color": "#25d366", "link": "https://whatsapp.com", "heartbeat": "live"},
+    {"name": "Discord", "handle": "94.6K", "mrr": "Community", "contract_signed": "2024-02-15", "terms": "Discord Community Terms", "color": "#5865f2", "link": "https://discord.com", "heartbeat": "live"}
+  ],
+  "total_mrr": "YouTube ₹3.0L + Telegram ₹5.67L + FB Bonus ₹1.29L + LinkedIn ₹8.4L leads = ~₹18.36L MRR + 5.42M views + 56.2K Insta + 38.4K FB + 94.6K Discord + 28.5K Telegram",
+  "owner_primary_locked": "Vyomarajai@gmail.com"
+}

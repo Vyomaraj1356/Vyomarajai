@@ -1,0 +1,51 @@
+{
+  "version": "V16.5.3",
+  "primary": {
+    "repo": "Vyomaraj1356/Vyomarajai",
+    "url": "https://github.com/Vyomaraj1356/Vyomarajai",
+    "pages": "https://Vyomaraj1356.github.io/Vyomarajai/?v=167",
+    "branch": "main",
+    "visibility": "PUBLIC",
+    "latest_commit": "464cd3c V16.5.2 Clean 907K",
+    "pages_build": "464cd3c built 87850ms",
+    "size": "907K index.html 43K live.html"
+  },
+  "secondary": {
+    "repo": "deepakGoyal1356/Vyomaraj-Agent",
+    "url": "https://github.com/deepakGoyal1356/Vyomaraj-Agent",
+    "pages": "https://deepakGoyal1356.github.io/Vyomaraj-Agent/",
+    "visibility": "PRIVATE via PAT",
+    "sync_method": "https://x-access-token:${PAT}@github.com/deepakGoyal1356/Vyomaraj-Agent.git",
+    "sync_workflow": "vyomaraj-sync-both.yml",
+    "sync_success": "16s",
+    "dr_status": "ACTIVE 0.00 loss"
+  },
+  "sync_schedule": {
+    "hourly_BOTH": "Every 1h Primary↔Secondary via vyomaraj-sync-both.yml — 0.00 loss fraction-seconds",
+    "every_30m_heartbeat": "Self-healer heartbeat .vyomaraj-dr-heartbeat.log 30m — Health OK — Preview 0.0.0.0:3000 200 OK — Pages built — YAML OK",
+    "every_1min_realtime": "Realtime sync vyomaraj-realtime-1min.yml — Every minute DR sync + talk",
+    "every_1sec_talk": "Jarvis-Vyomaraj talk vyomaraj-jarvis-talk.sh loop 1 — Back shoulder no data lost keep alive active earning — If one stops other keeps system working earning updates — Chiranjeevi eternal",
+    "on_push": "Real-time on push — Primary Pages built -> Secondary synced"
+  },
+  "dr_logs": {
+    "heartbeat_log": ".vyomaraj-dr-heartbeat.log 13 lines — daily DR logs fixes healing data all here — Sovereign Console tab",
+    "latest_logs": [
+      "2026-09-30T16:28:46Z ✅ Sovereign Console — Daily DR Logs — Fixes Healing — 854b0c3 built — 0.000000000 loss",
+      "2026-09-30T16:28:32Z ⚡ V16.2 Realtime Every Minute + Every Second — DR Sync Every Minute + Jarvis Talk Every Sec — Back Shoulder No Data Lost",
+      "2026-09-30T16:21:59Z ✅ DR Sync Hourly BOTH + every minute V16.2 + 30m heartbeat + real-time + every second talk — 0.00 loss",
+      "2026-09-30T15:56:11Z ✅ Secondary PRIVATE via PAT UP — vyomaraj-sync-both success 16s — 0.00 loss",
+      "2026-09-30T16:33:00Z ✅ Preview Fixed — Directory listing for / — root cause http.server from /home/user not /home/user/Vyomarajai — fixed via --directory flag — PID 1486 0.0.0.0:3000 200 OK 945K",
+      "2026-09-30T16:54:26Z ✅ V16.3 Shriyantra Netflix Tiles — 10 images feedback — Preview Stable PID 1486 200 OK 920K",
+      "2026-09-30T17:20:57Z ✅ V16.4 Shriyantra Fit Stable + Real Agents + Kuber Dashboard Per Agent + Cinema Nostalgia — DR Tiles Small Right Corner — Preview Stable PID 1408 200 OK 924K",
+      "2026-09-30T17:47:46Z ✅ V16.5.2 Clean 907K — Vyomaraj Color Shani Blue #0a1628 Kuber Gold #f59e0b Stable Arial No Glitter + Tabs Bottom 5 — 464cd3c built 87850ms"
+    ]
+  },
+  "preview_stable": {
+    "command": "python3 -m http.server 3000 --bind 0.0.0.0 --directory /home/user/Vyomarajai",
+    "pid": "1479",
+    "status": "200 OK",
+    "size": "907K",
+    "version": "?v=167"
+  },
+  "owner_primary_locked": "Vyomarajai@gmail.com — Deepak Goyal — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — 0.000000000 Impact — Chiranjeevi Eternal"
+}

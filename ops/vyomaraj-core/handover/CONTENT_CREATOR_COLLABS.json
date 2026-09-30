@@ -1,0 +1,13 @@
+{
+  "version": "V16.5.3",
+  "collab_tab": "🤝 Content Creator & AI Platform Collaborations — Statutory Compliance — Owner Law & Gate",
+  "creator_collabs": [
+    {"type": "Creator Collab Template 2024", "payout": "15th & 30th", "share": "70/30 Creator/Vyomaraj", "contract": ["Creator Agreement", "IP Assignment Deed", "NDA"], "statutory": ["Copyright Act 1957 Sec17-19", "Contract Act 1872", "IT Act 2000"], "process": "DISCOVER→VERIFY→SCENE→DIALOGUE→MIX→SCORE→AFFILIATE→SCHEDULE→SUBSCRIPTION→COLLAB→OWNER GATE→PUBLISH→LEARN→SYNC", "jarvis_ref": "Creator IP dispute -> check assignment deed -> Owner Gate -> Legal notice Sec55 Copyright Act -> Arbitration Mumbai"},
+    {"type": "AI Platform Collabs", "platforms": ["OpenAI", "Anthropic", "Google AI", "Meta AI"], "signed": "2024-04-01", "contract": ["OpenAI Terms", "Anthropic Terms", "Google AI Terms", "Meta AI Terms"], "statutory": ["IT Act 2000 Sec43A", "DPDP Act 2023", "GDPR"], "data": "memory.json prompts no PII", "fallback": "ai-adapter.js Multi-AI 0.00 loss — if one AI bans, switch to fallback", "jarvis_ref": "AI ban -> check Terms violation -> switch fallback -> Owner Gate"},
+    {"type": "Affiliate Amazon 60 days", "signed": "2024-01-20", "cookie": "60 days", "contract": "Amazon Associates", "statutory": ["Consumer Protection Act 2019", "IT Act 2000"], "jarvis_ref": "Commission not tracked -> Amazon support + 60 days check -> Owner Gate"},
+    {"type": "Brand Collab Razorpay UPI", "signed": "2024-02-10", "upi": "2B", "contract": "Razorpay Terms", "statutory": ["PSS Act 2007", "RBI guidelines", "PCI-DSS"], "jarvis_ref": "Settlement failure -> Razorpay dashboard + RBI Ombudsman -> Owner Gate"},
+    {"type": "Meta Brand Collabs Manager", "payout": "15th & 30th", "leads": "12 leads ₹8.4L", "contract": "Meta Brand Collabs Terms", "statutory": ["Contract Act 1872", "IT Act 2000"], "jarvis_ref": "Brand collab dispute -> Meta support + Contract Act Sec73 -> Owner Gate"}
+  ],
+  "whisperflow_process": "Use whisperflow.ai process maker aligned — flow diagram Mermaid — DISCOVER→VERIFY→SCENE→DIALOGUE→MIX→SCORE→AFFILIATE→SCHEDULE→SUBSCRIPTION→COLLAB→OWNER GATE→PUBLISH→LEARN→SYNC — Owner Law & Gate tab carries all rules regulations contracts laws — structured properly — visit and review",
+  "owner_primary_locked": "Vyomarajai@gmail.com — Deepak Goyal — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — 0.000000000 Impact — Chiranjeevi Eternal"
+}

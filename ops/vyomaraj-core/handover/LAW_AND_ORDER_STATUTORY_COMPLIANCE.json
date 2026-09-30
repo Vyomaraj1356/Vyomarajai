@@ -1,0 +1,97 @@
+{
+  "version": "V16.5.3",
+  "owner_primary_locked": "Vyomarajai@gmail.com",
+  "owner_name": "Deepak Goyal",
+  "law_and_order_tab": "⚖️ Owner Law & Gate — Rules Regulations Laws IT Laws Global Local Regional Contracts — Statutory Compliance — Jarvis & Vyomaraj reference for legal complications",
+  "statutory_compliance": {
+    "IT_Act_2000_India": {
+      "sections": ["43", "43A", "66", "67", "69", "79"],
+      "compliance": "Intermediary safe harbor, Grievance Officer per IT Rules 2021, takedown 36 hrs if court order",
+      "visit": "https://www.meity.gov.in",
+      "review": "quarterly",
+      "jarvis_action": "Check Section 79 + IT Rules 2021 Rule 3, takedown if court order, Owner Gate"
+    },
+    "IT_Rules_2021_India": {
+      "rules": ["3(1)(d) due diligence", "4 additional for significant", "3(2) grievance"],
+      "compliance": "Publish Grievance Officer, monthly compliance report, acknowledge 24 hrs resolve 15 days",
+      "visit": "https://www.meity.gov.in",
+      "review": "monthly",
+      "jarvis_action": "Acknowledge 24 hrs, resolve 15 days, Owner Gate"
+    },
+    "Copyright_Act_1957_India": {
+      "sections": ["13", "14", "17", "19", "52 fair dealing", "55 civil remedies"],
+      "compliance": "30 sec best scene short transform under Section 52(1)(a)(ii) criticism review + Whisperflow DISCOVER→VERIFY→SCENE PICKER",
+      "visit": "https://copyright.gov.in",
+      "review": "monthly",
+      "jarvis_action": "Check 30 sec transform, fair dealing, counter notice, Owner Gate"
+    },
+    "GDPR_EU": {
+      "articles": ["6 lawful basis", "7 consent", "17 erasure", "20 portability", "33 breach 72 hrs"],
+      "compliance": "Consent banner, data minimization memory.json no PII, DPO contact, erase/port 30 days",
+      "visit": "https://gdpr.eu",
+      "review": "monthly",
+      "jarvis_action": "Verify request, erase/port 30 days, notify DPA 72 hrs breach, Owner Gate"
+    },
+    "DMCA_US": {
+      "section": "17 U.S.C. §512 safe harbor",
+      "compliance": "DMCA agent, takedown notice, counter notice 10-14 days",
+      "visit": "https://www.copyright.gov/dmca/",
+      "review": "monthly",
+      "jarvis_action": "Check fair use, counter notice if valid, Owner Gate"
+    },
+    "DPDP_Act_2023_India": {
+      "compliance": "Consent, Data Fiduciary, Data Principal rights, breach notify DPA + Principal",
+      "visit": "https://www.meity.gov.in",
+      "review": "quarterly",
+      "jarvis_action": "Notify DPA + Data Principal breach, Owner Gate"
+    },
+    "Consumer_Protection_Act_2019_India": {
+      "compliance": "E-commerce Rules 2020 seller display return grievance",
+      "review": "quarterly",
+      "jarvis_action": "NCH + E-daakhil, Owner Gate"
+    },
+    "PSS_Act_2007_RBI": {
+      "compliance": "UPI Razorpay 2B PCI-DSS settlement T+1",
+      "review": "monthly",
+      "jarvis_action": "Razorpay dashboard + RBI Ombudsman, Owner Gate"
+    },
+    "Regional_Maharashtra_Pune": {
+      "compliance": "Marathi support, local tax",
+      "review": "yearly",
+      "jarvis_action": "Check state policy, Owner Gate"
+    }
+  },
+  "social_platform_contracts_signed": {
+    "YouTube": {"signed": "2024-01-15", "subs": "18.9K", "mrr": "₹3.0L", "share": "55/45", "payout": "21st", "terms": "YouTube Partner + AdSense", "statutory": ["IT Act 2000", "Copyright Act 1957 30 sec", "DMCA"], "jarvis_ref": "Copyright strike -> check IT Act Sec79 + Copyright Sec52 + 30 sec proof -> dispute -> Owner Gate"},
+    "Instagram": {"signed": "2024-02-01", "followers": "56.2K", "terms": "Meta Creator Terms", "statutory": ["IT Rules 2021 grievance", "GDPR"], "jarvis_ref": "Restriction -> IT Rules 2021 Rule 3(1)(d) + appeal -> Owner Gate"},
+    "Facebook": {"signed": "2024-02-01", "page": "38.4K", "bonus": "₹1,29,000 +12%", "payout": "21st", "terms": "FB Bonus Terms", "statutory": ["IT Act 2000", "IT Rules 2021"], "jarvis_ref": "Bonus not credited -> check 21st -> Meta Support -> Owner Gate"},
+    "TikTok_X": {"signed": "2024-03-10", "views": "5.42M", "terms": "X Creator + TikTok Terms", "statutory": ["DMCA", "GDPR"], "jarvis_ref": "Takedown -> DMCA counter -> Owner Gate"},
+    "LinkedIn": {"signed": "2024-03-20", "leads": "12", "value": "₹8.4L", "terms": "LinkedIn Lead Gen", "statutory": ["IT Act 2000", "Contract Act 1872"], "jarvis_ref": "Lead dispute -> LinkedIn support + Contract Act Sec73 -> Owner Gate"},
+    "Telegram": {"signed": "2024-01-01", "subs": "28.5K", "mrr": "₹5.67L", "payout": "1st", "terms": "Telegram VIP", "statutory": ["IT Act 2000", "Payment"], "jarvis_ref": "Payment failure -> Razorpay UPI check -> Owner Gate"},
+    "WhatsApp": {"signed": "2024-01-10", "numbers": ["9823648038", "9175112579"], "upi": "2B Razorpay", "terms": "WhatsApp Business", "statutory": ["IT Act 2000", "UPI NPCI"], "jarvis_ref": "Ban -> appeal + IT Act -> Owner Gate"},
+    "Discord": {"signed": "2024-02-15", "members": "94.6K", "terms": "Discord Community", "statutory": ["IT Act 2000", "IT Rules 2021"], "jarvis_ref": "Moderation -> Trust & Safety + IT Rules -> Owner Gate"}
+  },
+  "content_creator_collabs": {
+    "Creator_Collab_Template_2024": {"payout": "15th & 30th", "share": "70/30 Creator/Vyomaraj", "contract": ["Creator Agreement", "IP Assignment", "NDA"], "statutory": ["Copyright Act 1957 Sec17-19 assignment", "Contract Act 1872", "IT Act 2000"], "jarvis_ref": "Creator IP dispute -> check assignment deed -> Owner Gate -> Legal notice Sec55 Copyright Act"},
+    "AI_Platforms_OpenAI_Anthropic_Google_Meta": {"signed": "2024-04-01", "contract": ["OpenAI Terms", "Anthropic Terms", "Google AI Terms", "Meta AI Terms"], "statutory": ["IT Act 2000 Sec43A data protection", "DPDP Act 2023", "GDPR"], "data": ["memory.json", "prompts no PII"], "jarvis_ref": "AI ban -> check Terms violation -> switch fallback ai-adapter.js Multi-AI 0.00 loss -> Owner Gate"},
+    "Affiliate_Amazon_60days": {"signed": "2024-01-20", "cookie": "60 days", "contract": "Amazon Associates", "statutory": ["Consumer Protection Act 2019", "IT Act 2000"], "jarvis_ref": "Commission not tracked -> Amazon support + 60 days check -> Owner Gate"},
+    "Brand_Collab_Razorpay": {"signed": "2024-02-10", "upi": "2B", "contract": "Razorpay Terms", "statutory": ["PSS Act 2007", "RBI guidelines"], "jarvis_ref": "Settlement failure -> Razorpay dashboard + RBI -> Owner Gate"}
+  },
+  "action_matrix_jarvis_vyomaraj": {
+    "Copyright_Strike": "Refer Copyright Act Sec52 + YouTube contract 21st -> Action: Dispute + 30 sec proof -> Owner Gate",
+    "Account_Ban": "Refer IT Rules 2021 + Platform Terms -> Action: Appeal + Grievance Officer -> Owner Gate",
+    "Payment_Failure": "Refer Razorpay Terms + PSS Act 2007 -> Action: Razorpay dashboard + RBI -> Owner Gate",
+    "Data_Breach": "Refer DPDP Act 2023 + GDPR Art33 -> Action: Notify DPA 72 hrs + Principal -> Owner Gate",
+    "Creator_Dispute": "Refer Creator Agreement + Copyright Sec19 + Contract Act 1872 -> Action: Mediation -> Arbitration Mumbai -> Owner Gate",
+    "AI_Platform_Ban": "Refer AI Terms + ai-adapter.js fallback -> Action: Switch AI provider 0.00 loss -> Owner Gate"
+  },
+  "compliance_calendar": {
+    "daily": "DR logs fixes healing — Sovereign Console",
+    "weekly": "Check platform payouts 1st 15th 21st 30th — Owner Law & Gate",
+    "monthly": "IT Rules 2021 compliance report GDPR Copyright audit — Owner Law & Gate",
+    "quarterly": "IT Act DPDP Act Consumer Protection PSS Act review — Owner Law & Gate",
+    "yearly": "All contracts renewal Statutory audit — Owner Law & Gate"
+  },
+  "whisperflow_legal_process": "DISCOVER → VERIFY (check contract signed? statutory compliance? fair use?) → SCENE PICKER (30 sec) → DIALOGUE → MIX → SCORE → AFFILIATE → SCHEDULE → SUBSCRIPTION → COLLAB (check creator contract) → OWNER GATE (Primary Locked Vyomarajai@gmail.com approval) → PUBLISH → LEARN → SYNC — If legal complication at any stage, Jarvis refers Law & Order tab → takes action → Owner Gate final",
+  "owner_primary_locked": "Deepak Goyal Vyomarajai@gmail.com — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — Dedicated Faithful Obedient to Shri Ram Ji — Jarvis as Laxman — 0.000000000 Impact — Chiranjeevi Eternal"
+}
