@@ -1,0 +1,24 @@
+{
+  "version": "V16.6 Food Agent Deep Inheritance ?v=168",
+  "global": [
+    {"name": "Italian", "signature": "Pasta, Pizza, Risotto, Tiramisu", "style": "Mediterranean herbs olive oil slow simmer", "benefits": "Heart healthy olive oil, antioxidant tomato, probiotic cheese"},
+    {"name": "French", "signature": "Coq au Vin, Ratatouille, Crème Brûlée", "style": "Haute cuisine, mother sauces, pastry", "benefits": "Balanced nutrition, wine antioxidants"},
+    {"name": "Japanese", "signature": "Sushi, Ramen, Tempura, Miso", "style": "Umami, minimalism, seasonal", "benefits": "Omega-3 fish, fermented miso gut health"},
+    {"name": "Mexican", "signature": "Tacos, Mole, Guacamole", "style": "Chili, lime, corn", "benefits": "Capsaicin metabolism, avocado healthy fats"},
+    {"name": "Chinese", "signature": "Dim Sum, Peking Duck, Mapo Tofu", "style": "Wok, stir-fry, five flavours", "benefits": "Ginger anti-inflammatory, soy protein"},
+    {"name": "Middle Eastern", "signature": "Hummus, Falafel, Shawarma", "style": "Tahini, zaatar, slow roast", "benefits": "Chickpea fiber, tahini calcium"}
+  ],
+  "indian": {
+    "history": "5000-year history Indus Valley Vedic Ayurveda Mughal Persian British Portuguese — Rigveda mentions barley ghee — Silk Route spices — Mughal dum — Portuguese tomato chilli potato sugar — Hindu vegetarian Jain ahimsa Islam biryani Sikh langar",
+    "regional": [
+      {"region": "North India", "states": ["Punjab", "Uttar Pradesh", "Delhi", "Rajasthan"], "signature": ["Butter Chicken", "Dal Makhani", "Chole Bhature", "Biryani Awadhi", "Kachori", "Lehsun ki Kheer"], "style": "Tandoor, dum, ghee rich", "benefits": "Protein lentils, calcium paneer, warming spices winter", "herbs": ["Cumin", "Coriander", "Garam Masala", "Saffron"]},
+      {"region": "South India", "states": ["Tamil Nadu", "Kerala", "Karnataka", "Andhra Pradesh", "Telangana"], "signature": ["Dosa", "Idli", "Sambar", "Hyderabadi Biryani", "Appam", "Avial", "Banana Chips"], "style": "Coconut, curry leaves, fermentation, banana leaf", "benefits": "Fermented idli probiotic, coconut healthy fats, curry leaves antioxidant", "herbs": ["Curry Leaves", "Mustard Seeds", "Tamarind", "Coconut"]},
+      {"region": "East India", "states": ["West Bengal", "Odisha", "Bihar", "Assam"], "signature": ["Chhena Poda", "Rasgulla", "Litti Chokha", "Macher Jhol", "Pitha", "Iromba"], "style": "Mustard oil, poppy seeds, sweets", "benefits": "Fish omega-3, sattu protein, fermented pitha gut health", "herbs": ["Mustard", "Poppy Seeds", "Panch Phoron"]},
+      {"region": "West India", "states": ["Maharashtra", "Gujarat", "Goa"], "signature": ["Vada Pav", "Poha", "Dhokla", "Saas ni Macchi", "Goan Fish Curry", "Puran Poli", "Ratalachya Gharya"], "style": "Peanut, jaggery, coconut, kokum", "benefits": "Peanut protein, jaggery iron, kokum digestive", "herbs": ["Kokum", "Goda Masala", "Peanut"]},
+      {"region": "Central India", "states": ["Madhya Pradesh", "Chhattisgarh"], "signature": ["Poha", "Bhutte ka Kees", "Dal Bafla"], "style": "Millets, wheat, forest greens", "benefits": "Millets fiber iron magnesium, corn energy"},
+      {"region": "Northeast India", "states": ["Meghalaya", "Manipur", "Arunachal", "Nagaland"], "signature": ["Jadoh", "Iromba", "Kagzi Egg Tadka Daal", "Bamboo Shoot Curry"], "style": "Fermented fish, bamboo shoots, smoked", "benefits": "Fermented probiotic, bamboo fiber, smoked antioxidant"},
+      {"region": "Himalayan", "states": ["Uttarakhand", "Himachal", "Jammu & Kashmir"], "signature": ["Gahat ki Daal", "Shufta Kanaguchhi", "Siddu", "Aktori"], "style": "Millets barley buckwheat forest herbs slow simmer fermentation sun drying", "benefits": "Millets prevent blood sugar spike, turmeric ginger timur therapeutic, barley bone health", "herbs": ["Timur Sichuan Pepper", "Turmeric", "Ginger", "Forest Herbs"]}
+    ],
+    "global_indian_fusion": "Butter chicken + curry global stereotype shedding — regional treasures millet-based slow-cooked fermented — contemporary elegance textures aromas balance — cultural storytelling geography climate traditions — plural identity"
+  }
+}

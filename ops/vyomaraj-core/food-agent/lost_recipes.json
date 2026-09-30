@@ -1,0 +1,147 @@
+{
+  "version": "V16.6 Lost Recipes Why Remember — Need to Bring Back",
+  "why_remember": "Recipes of past tell important stories gastronomic practices cultural groups different regions — lengthy cooking time elaborate styles faded — makeovers remain — need to bring back — cultural storytelling geography climate traditions — plural identity",
+  "lost_recipes_detailed": [
+    {
+      "name": "Parinde mein Parinda",
+      "translation": "Bird inside bird",
+      "region": "Uttar Pradesh Mughlai medieval royal chefs kings nobles",
+      "story": "Quirky North Indian head-turner medieval days royal chefs kings nobles — largest bird duck outer stuffed whole chicken inner stuffed quail inner stuffed eggs — each bird prepared marinated separately differently flavour retained culinary nirvana — extravagant weights down table — traditionally camel stuffed smaller animals belly possible",
+      "ingredients": ["Duck largest outer", "Chicken whole", "Quail", "Eggs boiled"],
+      "process": "Each bird prepared marinated separately differently, stuffing larger with smaller, cavities filled boiled egg, cook slow",
+      "benefits": "Protein layered royal",
+      "status": "Lost — need to bring back",
+      "ai_cartoon_prompt": "Create mouthwatering cartoon-style Parinde mein Parinda — duck stuffed chicken stuffed quail with eggs — royal Mughal platter — vibrant colors exaggerated features — children's menu playful branding — Vheer AI Food Generator cartoon style"
+    },
+    {
+      "name": "Murgh Zamin Dos",
+      "translation": "Inside earth",
+      "region": "Mughal Akbar favourite Ain-i-Akbari chronicle",
+      "story": "Arguably favourite dish Akbar — three main ingredients murgh chicken rumali roti mud — chicken marinated yoghurt saffron cardamom almonds spices, wrapped rumali roti, covered mud, baked tandoori-like — authentic rarely followed today",
+      "ingredients": ["Murgh chicken", "Yoghurt", "Saffron", "Cardamom", "Almonds", "Spices", "Rumali roti", "Mud"],
+      "process": "Marinate chicken yoghurt saffron cardamom almonds spices, wrap rumali roti, cover mud, bake similar tandoori",
+      "status": "Lost — largely forgotten today",
+      "ai_cartoon_prompt": "Delicious Murgh Zamin Dos floating in air cinematic food professional photography studio lighting dark background advertising intricate hyper-detailed ultra-realistic — chicken wrapped rumali roti mud baked — Mughal royal"
+    },
+    {
+      "name": "Benami Kheer / Lehsun ki Kheer",
+      "region": "Mewar Rajasthan royal house medieval",
+      "story": "Legendary dessert royal house Mewar medieval — royal cooks purposefully called benami without name because did not wish reveal secret ingredient garlic — trickiest part get rid pungency garlic retain only flavour boiling garlic vinegar draining water multiple times until odour gone — exotic sweet goodness khoya milk dryfruits garlic — sumptuous thick served cold desi ghee — craze",
+      "ingredients": ["Garlic", "Khoya", "Milk", "Dry fruits", "Desi ghee", "Vinegar"],
+      "process": "Boil garlic vinegar drain water multiple times until odour gone retain flavour, cook khoya milk dryfruits ghee thick cold",
+      "benefits": "Garlic immunity heart, milk calcium, dry fruits energy",
+      "status": "Lost — exotic",
+      "ai_cartoon_prompt": "Creamy Benami Kheer cartoon — garlic secret ingredient — khoya milk dryfruits — royal Mewar palace — watercolor style — storybook recipe card"
+    },
+    {
+      "name": "Shufta Kanaguchhi",
+      "region": "Jammu & Kashmir Srinagar wedding",
+      "story": "Exclusive precious morel mushrooms ingredient — thick concoction cottage cheese dry fruits saffron milk desi ghee morel mushrooms — few sweet dishes Srinagar — paradise in a bowl — Timur invasion 15th century legacy Kashmiri cuisine — soaked dry fruits fried cottage cheese cooked sugar syrup spices",
+      "ingredients": ["Morel mushrooms precious", "Cottage cheese", "Dry fruits", "Saffron", "Milk", "Desi ghee", "Sugar syrup spices"],
+      "status": "Lost — paradise bowl",
+      "ai_cartoon_prompt": "Shufta Kanaguchhi paradise bowl cartoon — morel mushrooms dry fruits saffron cottage cheese — Kashmiri wedding — fantasy art style"
+    },
+    {
+      "name": "Chhena Poda",
+      "region": "Odisha Nayagarh first half 20th century",
+      "translation": "Burned cheese",
+      "story": "Creamy rich ricotta cheese sugar brown sugar crunch roasted cashew nuts raisins sometimes jaggery — cooked hot served cold fresh slightly moist — well kneaded homemade fresh cheese chhena sugar baked several hours until browns",
+      "ingredients": ["Ricotta chhena", "Sugar brown sugar jaggery", "Cashew raisins"],
+      "benefits": "Protein cheese",
+      "status": "Exists but forgotten outside Odisha",
+      "ai_cartoon_prompt": "Chhena Poda burned cheese cartoon — ricotta sugar baked brown — Odisha — oil painting style"
+    },
+    {
+      "name": "Saas ni Macchi",
+      "region": "Gujarat Parsi wedding celebration",
+      "story": "Conglomeration Gujarati Parsi flavors — white egg rice flour based sauce white fish pomfret — local seasonal vegetables hard to come by now — popular home-cooked Khichri Basmati rice",
+      "ingredients": ["Pomfret white fish", "Egg rice flour white sauce", "White vinegar", "Sugar few spices", "Seasonal vegetables"],
+      "status": "Lost — hard vegetables",
+      "ai_cartoon_prompt": "Saas ni Macchi white sauce pomfret cartoon — Parsi wedding — illustration style"
+    },
+    {
+      "name": "Jadoh",
+      "region": "Meghalaya Khasi North-East",
+      "story": "Khasi delicacy rice basic ingredient pork rice herbs richly garnished cilantro — verge loss",
+      "ingredients": ["Rice", "Pork", "Herbs", "Cilantro"],
+      "status": "Lost — verge",
+      "ai_cartoon_prompt": "Jadoh Khasi rice pork herbs cilantro cartoon — Meghalaya hills — pixel art style"
+    },
+    {
+      "name": "Gahat ki Daal",
+      "region": "Uttarakhand",
+      "story": "Lesser known bean popularly consumed sprouts health benefits keep body warm simple basic flavors herbs spices",
+      "ingredients": ["Gahat bean sprouts", "Herbs spices"],
+      "benefits": "Keep body warm protein",
+      "status": "Lesser known",
+      "ai_cartoon_prompt": "Gahat ki Daal sprouts cartoon — Uttarakhand mountains — Chinese ink style"
+    },
+    {
+      "name": "Iromba Eromba",
+      "region": "Manipur Meitei",
+      "story": "Pungent taste unique ingredients fermented fish bamboo shoots boiled vegetables cooked chilli paste — healthy ethnic cuisine Meitei community",
+      "ingredients": ["Fermented fish", "Bamboo shoots", "Boiled vegetables", "Chilli paste"],
+      "benefits": "Fermented probiotic bamboo fiber",
+      "status": "Ethnic — need global",
+      "ai_cartoon_prompt": "Iromba pungent fermented fish bamboo shoots cartoon — Manipur — pop art style"
+    },
+    {
+      "name": "Ratalachya Gharya",
+      "region": "Maharashtra traditional legacy",
+      "story": "Looks like stuffed paratha sweet potato stuffing highlight served spicy mirchi cha thecha",
+      "ingredients": ["Sweet potato stuffing", "Mirchi cha thecha spicy"],
+      "status": "Traditional — need revival",
+      "ai_cartoon_prompt": "Ratalachya Gharya sweet potato stuffed paratha cartoon — Maharashtrian — watercolor"
+    },
+    {
+      "name": "Phulkari Pulao",
+      "region": "Punjab",
+      "story": "Seen flower work Punjabi dupattas — made like that several types rice paneer dry fruits saffron khas khas melange whole dry spices — once made looks like bunch flowers",
+      "ingredients": ["Several rice types", "Paneer", "Dry fruits", "Saffron", "Khas khas", "Whole dry spices"],
+      "status": "Lost — flower",
+      "ai_cartoon_prompt": "Phulkari Pulao flower bunch rice paneer dry fruits saffron cartoon — Punjab Phulkari dupatta — fantasy"
+    },
+    {
+      "name": "Sannata Raita",
+      "region": "Uttar Pradesh",
+      "translation": "Silence",
+      "story": "So sour evoked silence mind minute — tempered cumin carom asafoetida coriander mint black rock salt — silences stomach issues digestive ingredients",
+      "ingredients": ["Curd", "Cumin", "Carom", "Asafoetida", "Coriander", "Mint", "Black rock salt"],
+      "benefits": "Digestive silences stomach issues probiotic",
+      "status": "Lost — silence",
+      "ai_cartoon_prompt": "Sannata Raita silence cartoon — sour raita cumin — talking food educational hook — broccoli style"
+    },
+    {
+      "name": "Tootak",
+      "region": "Hyderabad Kayasthas",
+      "story": "Famous Hyderabadi snack originated Hindu Kayasthas — semolina condensed milk shaping starter stuffed potato dry fruits cottage cheese spices lemon juice",
+      "ingredients": ["Semolina", "Condensed milk", "Potato", "Dry fruits", "Cottage cheese", "Spices", "Lemon juice"],
+      "status": "Starter — need revival",
+      "ai_cartoon_prompt": "Tootak Hyderabadi snack semolina cartoon — stuffed potato — illustration"
+    },
+    {
+      "name": "Khichdi Dawud Khani",
+      "region": "Mughal lost",
+      "story": "Mughal Persian Turkish Central Asian — meat moong dal pureed spinach egg cinnamon cloves cardamom saffron onion ginger coriander garlic oil salt — half meat yakhni broth rest minced cooked separately",
+      "ingredients": ["Meat", "Moong dal", "Spinach pureed", "Egg", "Cinnamon", "Cloves", "Cardamom", "Saffron", "Onion", "Ginger", "Coriander", "Garlic"],
+      "status": "Lost Mughal",
+      "ai_cartoon_prompt": "Khichdi Dawud Khani Mughal cartoon — meat moong dal spinach — royal"
+    },
+    {
+      "name": "Kabishambardhana Barfi / Phool Gobi Barfi",
+      "region": "Bengal Jorasanko North Kolkata Rabindranath Tagore 50th birthday gift",
+      "story": "Primary ingredient cauliflower phool gobi flavoured saffron cardamom milk — first made Jorasanko birthplace Tagore — not found sweet shop recipe unknown outside Bengal — special gift great poet 50th birthday",
+      "ingredients": ["Cauliflower phool gobi", "Saffron", "Cardamom", "Milk"],
+      "status": "Lost — Bengal secret",
+      "ai_cartoon_prompt": "Cauliflower barfi cartoon — Tagore birthday gift — Bengal — watercolor storybook"
+    },
+    {
+      "name": "Puducherry Pork Jaggery",
+      "region": "Puducherry French Vietnamese blending",
+      "story": "Blending French Vietnamese — pork reduced jaggery topped green chillies — known to one old lady town — name untraced — community almost forgotten — name couldn't be traced",
+      "ingredients": ["Pork", "Jaggery reduced", "Green chillies"],
+      "status": "Lost — name untraced — one old lady knows",
+      "ai_cartoon_prompt": "Puducherry pork jaggery green chillies cartoon — French Vietnamese fusion — fantasy"
+    }
+  ]
+}

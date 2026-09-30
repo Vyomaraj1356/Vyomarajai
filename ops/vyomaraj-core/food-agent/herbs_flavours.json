@@ -1,0 +1,21 @@
+{
+  "version": "V16.6 Herbs Flavours How To Use Benefits",
+  "herbs": [
+    {"name": "Turmeric", "benefits": "Anti-inflammatory curcumin, immunity, therapeutic Himalayan medicine", "how_to_use": "Use in curries, golden milk, with black pepper for absorption, temper in ghee", "style": "Himalayan valued taste therapeutic", "region": "Global Indian"},
+    {"name": "Ginger", "benefits": "Digestive, anti-inflammatory, warming", "how_to_use": "Fresh grated in chai, stir-fry, marinades, dried powder in sweets", "region": "Indian Global"},
+    {"name": "Garlic", "benefits": "Immunity, heart health, pungency removed via vinegar boil for Benami Kheer", "how_to_use": "Boil vinegar drain multiple times for kheer, temper in oil, paste in curries", "region": "Mewar Benami Kheer secret"},
+    {"name": "Timur Sichuan Pepper", "benefits": "Therapeutic, digestive, tingling", "how_to_use": "Himalayan communities forest herbs — use in chutneys, temper", "region": "Himalayan"},
+    {"name": "Curry Leaves", "benefits": "Antioxidant, iron, flavor bridge desperation creativity — gongura sorrel leaves tartness iron", "how_to_use": "Temper mustard seeds curry leaves, chutney with wild amaranth tamarind leaves mango seed kernels ground tempered", "region": "South Indian Hyper-local"},
+    {"name": "Saffron", "benefits": "Mood, antioxidant, precious", "how_to_use": "Soak warm milk, use in Shufta Kanaguchhi, Biryani, Phulkari Pulao", "region": "Kashmir"},
+    {"name": "Cumin Carom Asafoetida Coriander Mint Black Rock Salt", "benefits": "Digestive silences stomach issues Sannata Raita", "how_to_use": "Temper cumin carom asafoetida in raita", "region": "Uttar Pradesh Sannata Raita"},
+    {"name": "Gongura Sorrel Leaves", "benefits": "Tartness iron content", "how_to_use": "Search dry fields forest edges — chutney bridge desperation creativity", "region": "Himalayan Hyper-local"},
+    {"name": "Wild Amaranth", "benefits": "Tender nutrients", "how_to_use": "Foraged local greens clay pots stone grinders preserve authenticity nutritional value", "region": "Himalayan"},
+    {"name": "Tamarind Leaves", "benefits": "Tangy fibrous", "how_to_use": "Chutney", "region": "Himalayan"},
+    {"name": "Mango Seed Kernels", "benefits": "Fiber", "how_to_use": "Ground tempered into chutneys", "region": "Himalayan desperation creativity"},
+    {"name": "Mustard Seeds", "benefits": "Antioxidant", "how_to_use": "Temper", "region": "South Indian"},
+    {"name": "Coconut", "benefits": "Healthy fats", "how_to_use": "South Indian curries chutneys banana chips fried coconut oil", "region": "Kerala"},
+    {"name": "Kokum", "benefits": "Digestive", "how_to_use": "West India Goan fish curry", "region": "Maharashtra Goa"},
+    {"name": "Peanut Jaggery", "benefits": "Protein iron", "how_to_use": "West India Poha Vada Pav Puran Poli", "region": "Maharashtra Gujarat"}
+  ],
+  "flavours_science": "Limonene orange sweet uplifting aroma, citral lime crisp refreshing, yuzu layered floral grapefruit-like — aroma compounds influence food experience — orange limonene, lime citral, yuzu floral — citrus appeal science"
+}

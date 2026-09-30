@@ -1,0 +1,106 @@
+{
+  "version": "V16.6 Best AI Platforms Prompts Food Hit",
+  "ai_platforms": [
+    {
+      "name": "Vheer AI Food Generator",
+      "url": "https://vheer.com/food-generator",
+      "features": "Text to food images 11 styles: Oil Painting, Cartoon, Illustration, Pixel Art, Fantasy, Pop Art, Watercolor, Chinese Ink, Dark Food Photography, Pencil Sketch — beginner-friendly — designers food creators content marketers",
+      "best_for": "Cartoon food art children's menus playful branding social media — bold silhouettes vibrant colors exaggerated features personality — storybook recipe cards watercolor fantasy-themed food blog pop art posters",
+      "prompt_example": "Create mouthwatering cartoon-style Parinde mein Parinda — duck stuffed chicken stuffed quail with eggs — royal Mughal platter — vibrant colors exaggerated features",
+      "rating": "⭐⭐⭐⭐⭐"
+    },
+    {
+      "name": "TopMediai AI Video Generator",
+      "url": "https://www.topmediai.com/video-tips/ai-food-video-generator/",
+      "features": "Text-to-video Image-to-video Template-supported 30+ effects Explosion Squish Melt ALL-IN-ONE AI image AI music TTS Google Veo 3 professional rendering",
+      "best_for": "Creators marketers versatile AI food to animal video TikTok Reels viral — cupcake turning into cat pizza slice into dog",
+      "prompt_example": "A cupcake turning into a cat — viral TikTok — 5 sec",
+      "rating": "⭐⭐⭐⭐⭐"
+    },
+    {
+      "name": "Dreamina CapCut AI Food Generator",
+      "url": "https://dreamina.capcut.com/resource/ai-food-generator",
+      "features": "Text-to-image image-to-image realistic food pictures menus social media recipe ideas simple text prompt uploaded reference perfectly plated gourmet rustic home-cooked versatile style branding",
+      "best_for": "Most versatile — juicy cheeseburger melted cheese lettuce tomato sesame bun wooden plate — Inpaint Remove tools",
+      "prompt_example": "Create an image of a juicy cheeseburger with melted cheese, fresh lettuce, tomato slices, and a sesame seed bun on a wooden plate",
+      "rating": "⭐⭐⭐⭐⭐"
+    },
+    {
+      "name": "Recraft",
+      "features": "Realistic creative images text prompt style aspect ratio number pictures per request — food industry go-to",
+      "best_for": "Realistic food industry",
+      "rating": "⭐⭐⭐⭐"
+    },
+    {
+      "name": "MagicShot",
+      "features": "Near-to-real images chefs bloggers marketers showcase dishes creatively text description aspect ratio art styles",
+      "best_for": "Chefs bloggers marketers",
+      "rating": "⭐⭐⭐⭐"
+    },
+    {
+      "name": "ChatGPT-4o + DALL·E + Runway + Kling",
+      "url": "https://www.aididthat.com/p/steal-these-ai-food-prompts-they-re-juicy-6436",
+      "features": "Ridiculously realistic food photos animations seconds melting cheese floating tacos glossy bacon porn stop scrolling mid-bite — hyper-realistic ad-style food shots",
+      "base_prompt": "Delicious [FOOD], floating in the air, cinematic, food professional photography, studio lighting, studio dark background, advertising photography, intricate details, hyper-detailed, ultra-realistic.",
+      "examples": [
+        "Delicious Sushi, floating in the air, cinematic, food professional photography, studio lighting, studio dark background, advertising photography, intricate details, hyper-detailed, ultra-realistic.",
+        "A fully assembled breakfast sandwich — with crispy bacon, a sunny-side-up egg, fresh lettuce, and golden toasted bread — is already falling from mid-air at the beginning of the shot, captured in dramatic slow motion. The sandwich stays intact as it drops straight down onto a dark black surface, creating a soft but juicy impact. The yolk slightly bursts and begins to ooze, bacon jiggles from the motion, lettuce gently bounces, and tiny crumbs scatter. Glossy fat droplets shimmer on the bacon and bread, and subtle steam rises from the sandwich. The camera is fixed, no movement. The lighting is sharp and cinematic, emphasizing rich textures and contrast. 5 seconds. No sound. Realistic high-end food commercial style.",
+        "A row of tacos filled with beef, lettuce, onions, tomatoes, cheese, and cilantro floats in mid-air against a black background. The tacos are the central focus and slowly rotate to the right in unison. Individual ingredients like onions, cilantro, and spice particles float and rotate slowly around the tacos, as if suspended in zero gravity. Visible fire effects glow softly around the tacos — with red-orange embers and heat waves rising from them, giving a clear sense of spiciness and heat. Light steam curls upward. The camera does not move at all — no zoom, no pan. Background stays static. Duration: 5 seconds. No sound. Ultra-realistic food commercial style, high contrast and vivid color."
+      ],
+      "best_for": "Restaurants eye-popping visuals without shoot, food bloggers stand out, chefs signature dishes, creators pitching UGC brands",
+      "rating": "⭐⭐⭐⭐⭐"
+    },
+    {
+      "name": "FlexClip",
+      "features": "Browser-based editor templates stock footage AI-powered features streamlined content production mixing photos clips text music polished outputs ready-made designs food storytelling recipe demonstrations restaurant showcases auto subtitles script voice tools stock media",
+      "best_for": "Beginners small teams",
+      "rating": "⭐⭐⭐⭐"
+    },
+    {
+      "name": "Renderforest",
+      "features": "Customizable templates food videos ads explainers design tools logos animations intros cloud-based text voice-over background music branding kit",
+      "best_for": "Businesses consistent brand needs",
+      "rating": "⭐⭐⭐⭐"
+    },
+    {
+      "name": "BigMotion",
+      "features": "Promotional food videos restaurants cafes structured templates menu presentations dish highlights restaurant advertisements edit text insert dish images audio tracks",
+      "best_for": "Restaurants food content creators",
+      "rating": "⭐⭐⭐⭐"
+    },
+    {
+      "name": "Leonardo.ai + Kling AI + ImagineArt + Flow AI + CapCut",
+      "features": "Photorealistic talking food fruit video viral — cartoon eyes mouth — personality motion story — friendly helpful health foods sneaky villain junk — educational hooks health nutrition tips kitchen hacks safety self-eating gags maximum weird factor",
+      "prompts": [
+        "Photorealistic broccoli floret with big cartoon eyes and smiling mouth, excited blinking expression, on white background, studio lighting, 9:16 vertical. Says: 'One cup of me gives your full daily fiber. Skip me and good luck staying regular tomorrow!'",
+        "Creamy avocado half with wise narrowed eyes and knowing smile, pit visible, soft lighting, 9:16 vertical. Says: 'My healthy fats keep you full twice as long as bread. Swap me into lunch or stay hangry.'",
+        "Vibrant spinach leaf with serious focused eyes and firm mouth, water droplets, natural light, 9:16. Says: 'My iron beats red meat for women. Squeeze lemon on me to unlock maximum absorption power.'",
+        "Lemon half with wise squinted eyes and instructive mouth, pulp visible, cutting board setting, 9:16. Says: 'Roll me before cutting for 2x juice. Never squeeze cut-side down or spray your eyes!'",
+        "Strawberry eating smaller strawberry with guilty wide eyes and berry juice mouth, green leaves, 9:16 white background. Says: 'Survival of fittest... sorry little buddy... crunch worth it!'",
+        "Create a 5-second clip of [food] with cartoon eyes and mouth. Friendly and helpful for health foods, sneaky villain for junk."
+      ],
+      "best_for": "Viral talking food fruit video TikTok Reels — health nutrition kitchen hacks self-eating gags",
+      "rating": "⭐⭐⭐⭐⭐"
+    }
+  ],
+  "best_prompts_food_hit": {
+    "base_photo": "Delicious [FOOD], floating in the air, cinematic, food professional photography, studio lighting, studio dark background, advertising photography, intricate details, hyper-detailed, ultra-realistic.",
+    "cartoon": "Create mouthwatering cartoon-style [DISH] — [INGREDIENTS] — [REGION] platter — vibrant colors exaggerated features — children's menu playful branding — Vheer AI Food Generator cartoon style — bold silhouettes personality",
+    "talking_food_viral": "Photorealistic [FOOD] with big cartoon eyes and smiling mouth, [EXPRESSION] expression, on white background, studio lighting, 9:16 vertical. Says: '[15 words max health tip or funny line]' — educational hook health nutrition",
+    "video_slow_motion": "A fully assembled [DISH] — with [INGREDIENTS] — is already falling from mid-air at the beginning of the shot, captured in dramatic slow motion. The [DISH] stays intact as it drops straight down onto a dark black surface, creating a soft but juicy impact. The [INGREDIENT] slightly bursts and begins to ooze, [INGREDIENT] jiggles, lettuce bounces, crumbs scatter. Glossy droplets shimmer, subtle steam rises. Camera fixed no movement. Lighting sharp cinematic rich textures contrast. 5 seconds. No sound. Realistic high-end food commercial style.",
+    "video_rotation": "A row of [DISH] filled with [INGREDIENTS] floats in mid-air against black background. The [DISH] central focus slowly rotate right unison. Individual ingredients like onions cilantro spice particles float rotate slowly around [DISH] suspended zero gravity. Visible fire effects glow softly red-orange embers heat waves rising sense spiciness heat. Light steam curls upward. Camera does not move no zoom no pan. Background static. Duration 5 seconds. No sound. Ultra-realistic food commercial high contrast vivid color."
+  },
+  "food_is_science_art_books": [
+    {"title": "On Food and Cooking: The Science and Lore of the Kitchen", "author": "Harold McGee", "year": 1984, "description": "Serious food science bible every professional chef dog-eared copy recite word word favorite ingredient cooking technique science behind why works intense discussion molecular level chemistry primer"},
+    {"title": "The Science of Good Cooking", "author": "Cook's Illustrated America's Test Kitchen", "description": "Scientific method foolproof recipes 50 experiments 400+ recipes changed baked potatoes easy-to-read"},
+    {"title": "The Food Lab: Better Home Cooking Through Science", "author": "J Kenji Lopez-Alt", "description": "Bible new generation home cook accessible tone funny anecdotes step-by-step photos delicious recipes exhaustive scientific method"},
+    {"title": "Neurogastronomy: How the Brain Creates Flavor and Why It Matters", "author": "Gordon M Shepherd", "description": "Why stuffing tastes so good super nerdy analysis mechanics smell brain processes flavor emotion preferences cravings memory"},
+    {"title": "Cognitive Cooking with Chef Watson", "author": "IBM Institute of Culinary Education", "description": "21st century cooking not limited humans cognitive cooking technology Chef Watson discover new ingredient combinations recipes humans never think Hoof-and-Honey Ale how they did it"},
+    {"title": "Liquid Intelligence: The Art and Science of the Perfect Cocktail", "author": "Dave Arnold", "description": "Art science perfect cocktail"},
+    {"title": "The History of Food: From Ancient Times to Modern Day", "author": "Independently Published", "year": 2024, "pages": 174, "isbn": "9798328611152", "description": "Trip what people ate how shaped lives food reflects culture technology society early human diets hunter-gatherers fire Agricultural Revolution villages cities ancient civilizations Mesopotamia Egypt Greece Rome China India Middle Ages feudalism peasants nobles spices trade routes Islamic Golden Age farming cooking Renaissance Early Modern professional chefs feasts dining customs Industrial Revolution machines farming processed foods cities Modern health nutrition organic health foods mixing global foods fusion Technology GMOs sustainable farming future lab-grown meat plant-based alternatives global food security glossary timeline readings index"},
+    {"title": "Food: A Culinary History from Antiquity to the Present", "author": "Jean-Louis Flandrin Massimo Montanari", "publisher": "Columbia University Press", "year": 1999, "pages": 624, "isbn": "0231111541", "description": "When first serve meals regular hours why individual plates utensils cuisine concept judge food method preparation manner consumption gastronomic merit culinary evolution eating habits prehistoric present surprising insights social agricultural practices religious beliefs unreflected habits dispels myths Marco Polo pasta China chocolate chili sugar dietary rules ancient Hebrews Arabic cookery European cuisine table etiquette Middle Ages beverage styles early America McDonaldization foreign foods today — 40 essays historians various countries primarily Europe medieval before — entertaining informative"},
+    {"title": "Cuisine and Empire: cooking in world history", "author": "Rachel Laudan", "year": 2013, "description": "Cooking world history"},
+    {"title": "The World on a Plate: 40 cuisines 100 recipes stories behind them", "author": "Mina Holland", "year": 2015, "description": "40 cuisines 100 recipes stories"}
+  ],
+  "how_to_make_hit": "Use ChatGPT-4o image tab base prompt Delicious [FOOD] floating air cinematic professional photography studio lighting dark background advertising intricate hyper-detailed ultra-realistic — generate hyper-realistic ad-style food shots seconds — animate with Kling Runway ML stunning short-form ads — use Vheer cartoon for children's menus playful branding — use TopMediai text-to-video image-to-video 30+ effects Explosion Squish Melt Google Veo 3 — use talking food prompts Leonardo.ai Kling ImagineArt Flow AI CapCut 9:16 vertical 15 words max health tip funny — viral TikTok Reels — restaurants eye-popping visuals without shoot food bloggers stand out chefs signature dishes creators pitching UGC brands — pick lost recipes Parinde mein Parinda Murgh Zamin Dos Benami Kheer Shufta Kanaguchhi etc — AI cartoon creations food science art — Global Indian Local regional History Past Present future books recipes all knowledge inherited — feed Vyomaraj and his agents — Food agent real agents products heartbeat links — Kuber Dashboard revenue per agent daily weekly monthly quarterly yearly dropdown real-time comparison Jarvis Vyomaraj analysis strategy earnings — beautiful user friendly lighter Netflix style"
+}

@@ -1,0 +1,30 @@
+{
+  "version": "V16.6 Food Bloggers Content Creators",
+  "bloggers": [
+    {"name": "Sanjeev Kapoor", "style": "Indian Khana Khazana", "channel": "YouTube 7M+ Sanjeev Kapoor Khazana", "specialty": "Indian regional lost recipes revival", "restaurant": "Yellow Chilli chain", "benefits": "Makes Indian accessible"},
+    {"name": "Ranveer Brar", "style": "Historical storytelling", "channel": "YouTube 7M+ Ranveer Brar", "specialty": "Lost recipes Mughal Awadhi", "books": "Come Into My Kitchen", "benefits": "History past present future books recipes"},
+    {"name": "Vikas Khanna", "style": "Michelin star Indian global", "channel": "Instagram YouTube Vikas Khanna", "specialty": "Indian global fusion", "restaurant": "Junoon NYC Michelin", "benefits": "Global Indian local regional"},
+    {"name": "Madhur Jaffrey", "style": "Indian cooking bible", "channel": "Books TV", "specialty": "Indian regional authentic", "books": "An Invitation to Indian Cooking", "benefits": "Authentic storytelling"},
+    {"name": "Tarla Dalal", "style": "Vegetarian Gujarati", "channel": "YouTube Tarla Dalal 1M+", "specialty": "Vegetarian", "books": "100+ cookbooks", "benefits": "Vegetarian science art"},
+    {"name": "Hebbars Kitchen", "style": "South Indian quick", "channel": "YouTube 10M+ Hebbars Kitchen", "specialty": "South Indian", "benefits": "Quick accessible"},
+    {"name": "Kabita Singh", "style": "Kabita's Kitchen", "channel": "YouTube 13M+ Kabita's Kitchen", "specialty": "Home style North Indian", "benefits": "Home cooking"},
+    {"name": "Nisha Madhulika", "style": "Vegetarian North Indian", "channel": "YouTube 14M+ Nisha Madhulika", "specialty": "Vegetarian sweets", "benefits": "Sweets science"},
+    {"name": "Gordon Ramsay", "style": "Foul-mouthed Michelin 17 stars 58 restaurants taskmaster mentor", "channel": "YouTube 8M+ Gordon Ramsay, TV Next Level Chef Food Stars", "specialty": "British French", "restaurant": "Restaurant Gordon Ramsay Chelsea 3 stars 20 years", "books": "Multiple", "benefits": "Mentor new generation", "net_worth": "£200M+"},
+    {"name": "Jamie Oliver", "style": "Gastro pub parents Essex 8 years old", "channel": "YouTube 6M+ Jamie Oliver", "specialty": "British Italian quick", "restaurant": "Jamie's Italian", "books": "30 books", "net_worth": "US$200-300M"},
+    {"name": "Nobu Matsuhisa", "style": "Japanese Peruvian luxury inventive clean", "channel": "Instagram Nobu", "specialty": "Black cod miso yellowtail jalapeno", "restaurant": "50 restaurants 27 hotels luxury", "benefits": "Quality consistency"},
+    {"name": "Wolfgang Puck", "style": "Austrian creative risk-taking innovation", "channel": "TV", "specialty": "Gourmet pizza smoked salmon caviar", "restaurant": "Spago flagship 20+ restaurants", "books": "Cookware canned soup", "net_worth": "US$120M"},
+    {"name": "Alice Waters", "style": "California cuisine slow eating farm-to-table revolutionary legend", "channel": "Chez Panisse", "specialty": "Organic local farmers 1971", "restaurant": "Chez Panisse Berkeley 1971 Slow Food Movement sustainability", "benefits": "Farm-to-table pioneer"},
+    {"name": "Yotam Ottolenghi", "style": "Middle Eastern unorthodox lentils pulses", "channel": "Books Plenty Jerusalem", "specialty": "Middle Eastern global stage", "restaurant": "5 restaurants", "benefits": "Middle Eastern ingredients global"},
+    {"name": "Alton Brown", "style": "Food Network Good Eats classroom silly sketches science", "channel": "Food Network Good Eats", "specialty": "Science behind cooking", "benefits": "Think science"},
+    {"name": "Anthony Bourdain", "style": "World traveler storyteller", "channel": "TV Parts Unknown", "specialty": "Local restaurants home cooking not ordering fish Mondays", "benefits": "Travel storytelling"},
+    {"name": "José Andrés", "style": "Modern Mediterranean Greek Lebanese Turkish", "channel": "Zaytinya Ritz-Carlton South Beach", "specialty": "Mediterranean mezze seafood", "restaurant": "Zaytinya NYC DC South Beach", "benefits": "Humanitarian"},
+    {"name": "Jean Imbert", "style": "French Riviera splashy", "channel": "Riviera by Jean Imbert The Lana Dubai", "specialty": "Grilled seafood tuna tartare goat cheese ravioli zucchini blossoms", "restaurant": "The Lana Dubai Dorchester", "benefits": "Riviera best"},
+    {"name": "Sergio Herman", "style": "Dutch Michelin East-meets-West Japanese ingredients seafood", "channel": "Le Pristine Hotel Toranomon Hills Tokyo", "specialty": "Japanese seafood prix-fixe minimal tiled bar", "restaurant": "Le Pristine Tokyo", "benefits": "East-meets-West"}
+  ],
+  "food_bloggers_indian": [
+    {"name": "Archana Doshi", "channel": "Archana's Kitchen", "style": "South Indian"},
+    {"name": "Dassana Amit", "channel": "Veg Recipes of India", "style": "Vegetarian Indian"},
+    {"name": "Sailu", "channel": "Sailu's Kitchen", "style": "Andhra"},
+    {"name": "Chitra Agrawal", "channel": "Brooklyn Delhi", "style": "Indian American"}
+  ]
+}

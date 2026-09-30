@@ -1,0 +1,42 @@
+{
+  "version": "V16.6 Chefs Data Style Channels Hotels Restaurants Worldwide",
+  "michelin_top": [
+    {"name": "Joël Robuchon", "stars": 32, "style": "French", "restaurants": "Multiple worldwide", "legacy": "Most Michelin stars history"},
+    {"name": "Alain Ducasse", "stars": 21, "style": "French classic artsy quality expansion 20 restaurants 3 hotels app", "restaurants": "20 restaurants 3 hotels", "books": "App"},
+    {"name": "Gordon Ramsay", "stars": 17, "style": "British French foul-mouthed taskmaster mentor 58 restaurants", "restaurant": "Restaurant Gordon Ramsay Chelsea 3 stars 20 years", "channels": ["YouTube 8M", "Next Level Chef", "Food Stars"], "hotels": ["Dubai", "Tokyo", "Las Vegas", "London"], "net_worth": "58 restaurants"},
+    {"name": "Yannick Alléno", "stars": 16, "style": "French historic Pavillon Ledoyen Paris", "restaurants": "17 restaurants", "flagship": "Pavillon Ledoyen 3 stars Paris"},
+    {"name": "Pierre Gagnaire", "stars": 14, "style": "French avant-garde"},
+    {"name": "Martin Berasategui", "stars": 12, "style": "Spanish best Spanish chef 10 restaurants 2 triple starred", "restaurant": "Restaurante Martin Berasategui triple Michelin"},
+    {"name": "Enrico Bartolini", "stars": 12, "style": "Italian fresh MUDEC Milan 2010 Locanda del Sant'Uffizio Asti Poggio Rosso Chianti Green Star sustainable", "restaurant": "Ristorante Enrico Bartolini MUDEC Milan"},
+    {"name": "Anne-Sophie Pic", "stars": 10, "style": "French female chef"},
+    {"name": "Andreas Caminada", "stars": 9, "style": "Familiar ingredients surprising same ingredient different methods pike-perch red buttermilk onions radishes", "restaurant": "Schloss Schauenstein 3 stars World's 50 Best since 2012"},
+    {"name": "Thomas Keller", "stars": 7, "style": "American French Laundry best world twice first American 3 concurrent Michelin twice different restaurants", "restaurant": "The French Laundry best world twice"},
+    {"name": "Heston Blumenthal", "stars": 6, "style": "British innovative triple cooked chips", "restaurant": "The Fat Duck"},
+    {"name": "Heinz Beck", "stars": 5, "style": "Mediterranean tradition La Pergola Rome 3 stars", "restaurant": "La Pergola Rome"}
+  ],
+  "influential_26": [
+    {"rank": 21, "name": "Jean-Georges Vongerichten", "career": "50 restaurants 50-year career expelled high school 1970s apprenticeship Auberge de l'Ill Michelin Alsace", "flagship": "Jean-Georges Manhattan", "asia": "Tokyo Shanghai Hong Kong", "vegetarian": "abcV James Beard Award versatile"},
+    {"rank": 18, "name": "Marco Pierre White", "style": "First rock star chef rebellion classic technique Harveys South East London 1987 iron fist", "legacy": "Gordon Ramsay mentor"},
+    {"rank": 17, "name": "Alice Waters", "style": "Revolutionary legend 27 Chez Panisse Berkeley 1971 Slow Food Movement sustainability not pressing issue then", "restaurant": "Chez Panisse 1971"},
+    {"rank": 13, "name": "Giada De Laurentiis", "style": "Food Network Everyday Italian 2003 unpretentious classic Italian accessible health-conscious Emmy", "channel": "Food Network Everyday Italian still production spinoffs"},
+    {"rank": 9, "name": "Emeril Lagasse", "style": "Cajun Creole New New Orleans Emeril Live decade 19 cookbooks product lines", "restaurant": "Emeril's Restaurant New Orleans 1990 20+ restaurant empire", "net_worth": "US$70M", "awards": "James Beard Wine Spectator Grand Awards"},
+    {"rank": 7, "name": "Alain Ducasse", "style": "Classic artsy French quality 20 restaurants 3 hotels app well-worn legacy not stuck", "restaurants": "20 restaurants 3 hotels app"},
+    {"rank": 5, "name": "James Beard", "style": "20+ cookbooks encyclopedia American food mysterious beast then Four Seasons NYC 1959-2019 Manhattan landmark New American cuisine inadvertently invented", "restaurant": "Four Seasons NYC consultant"},
+    {"rank": 2, "name": "Gordon Ramsay", "style": "58 restaurants TV Next Level Chef Food Stars taskmaster mentor new generation chefs entrepreneurs", "restaurants": "58 restaurants"}
+  ],
+  "indian_chefs_global": [
+    {"name": "Vikas Khanna", "style": "Michelin star Indian global Junoon NYC", "channel": "Instagram YouTube", "restaurant": "Junoon NYC Michelin", "hotels": "NYC"},
+    {"name": "Gaggan Anand", "style": "Progressive Indian Bangkok", "restaurant": "Gaggan Bangkok World's 50 Best", "channels": "Gaggan Bangkok"},
+    {"name": "Atul Kochhar", "style": "Indian British Michelin", "restaurant": "Benares London Michelin", "channels": "TV"},
+    {"name": "Vineet Bhatia", "style": "Indian British Michelin", "restaurant": "Vineet Bhatia London Michelin"},
+    {"name": "Manish Mehrotra", "style": "Indian Accent Delhi London", "restaurant": "Indian Accent Delhi World's 50 Best", "channels": "Indian Accent"}
+  ],
+  "hotel_restaurants_world": [
+    {"hotel": "Hotel Toranomon Hills Tokyo", "restaurant": "Le Pristine", "chef": "Sergio Herman Dutch Michelin", "style": "East-meets-West Japanese ingredients seafood prix-fixe minimal tiled bar"},
+    {"hotel": "The Pinch Charleston SC", "restaurant": "Lowland", "chef": "Jason Stanhope James Beard", "style": "Nouveau Southern King Street boutique"},
+    {"hotel": "The Lana Dubai", "restaurant": "Riviera by Jean Imbert", "chef": "Jean Imbert French", "style": "French Riviera grilled seafood tuna tartare goat cheese ravioli zucchini blossoms splashy Dorchester Collection Middle East debut"},
+    {"hotel": "Ritz-Carlton South Beach Florida", "restaurant": "Zaytinya", "chef": "José Andrés James Beard", "style": "Modern Mediterranean Greek Lebanese Turkish mezze seafood Collins Avenue NYC DC"},
+    {"hotel": "Silver Sands Motel & Bungalows Greenport NY", "restaurant": "Nookies", "style": "Midcentury roadside diner 1950s North Fork motel 22 seat nostalgia"},
+    {"hotel": "Bulgari Hotel Roma Italy", "restaurant": "Il Ristorante - Niko Romito", "chef": "Niko Romito superstar Italian", "style": "Rome elegant dining Mausoleum Augustus sweeping views"}
+  ]
+}
