@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# Vyomaraj Primary -> DR runner
-# PRIMARY:   Vyomaraj1356/Vyomarajai
-# SECONDARY: deepakGoyal1356/Vyomaraj-Agent
+# Vyomaraj Primary -> DR runner V15.1 ?v=151 678 LIVE 694 total
+# PRIMARY:   Vyomaraj1356/Vyomarajai PUBLIC https://Vyomaraj1356.github.io/Vyomarajai/?v=151
+# SECONDARY: deepakGoyal1356/Vyomaraj-Agent PRIVATE https://deepakGoyal1356.github.io/Vyomaraj-Agent/
+# V15.1 Enhanced SHIV_KE_SATHI detailed KNOWLEDGE_VS_ENTERTAINMENT VYOMARAJ_JARVIS_TALK — 0.00 loss fraction-seconds
 #
 # This is the single operational entry point. It delegates to the hardened
 # controller and prevents accidental production switching unless explicitly

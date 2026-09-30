@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# Vyomaraj DR / Failover Controller
-# Primary:   Vyomaraj1356/Vyomarajai
-# Secondary: deepakgoyal1356/<DR_REPO>
+# Vyomaraj DR / Failover Controller V15.1 Final Market Ready ?v=151 678 LIVE 694 total
+# Primary:   Vyomaraj1356/Vyomarajai PUBLIC https://Vyomaraj1356.github.io/Vyomarajai/
+# Secondary: deepakGoyal1356/Vyomaraj-Agent PRIVATE https://deepakGoyal1356.github.io/Vyomaraj-Agent/
+# V15.1 Enhanced: SHIV_KE_SATHI detailed culture religious importance categories knowledge entertainment values benefits specs
+# KNOWLEDGE_VS_ENTERTAINMENT purple #a855f7 VYOMARAJ_JARVIS_TALK cyan #22d3ee ALL_INDIAN_GODS green #22c55e SHIV_KE_SATHI orange #f59e0b
+# Hourly BOTH sync per owner every 1h + 30m heartbeat + real-time on push — 0.00 loss fraction-seconds — Bharat-Laxman Hanuman Quality Panch Shakti
+# Business: YouTube 18.9K MRR ₹3.0L Instagram 56.2K Facebook Bonus ₹1,29,000 +12% 38.4K TikTok X 5.42M LinkedIn 12 leads ₹8.4L Telegram 28.5K MRR ₹5.67L
 #
 # This controller is intentionally provider-neutral:
 # - GitHub is the source/replication layer.

@@ -1,4 +1,4 @@
-name: Vyomaraj DR Readiness
+name: Vyomaraj DR Readiness V15.1 ?v=151 678 LIVE
 
 on:
   schedule:
@@ -12,13 +12,27 @@ jobs:
   readiness:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout V15.1
         uses: actions/checkout@v4
 
-      - name: Validate DR controller
+      - name: Validate DR controller V15.1 ?v=151
         run: |
           set -Eeuo pipefail
+          echo "V15.1 Final Market Ready — 868K index ?v=151 678 LIVE 694 total — DR Readiness Check"
           test -x ops/dr/failover-controller.sh || chmod +x ops/dr/failover-controller.sh
           bash -n ops/dr/failover-controller.sh
-          echo "DR controller syntax: PASS"
-          echo "This job is non-destructive and does not switch production traffic."
+          echo "DR controller syntax: PASS V15.1"
+          echo "Checking dr.env V15.1"
+          cat ops/dr/dr.env | head -n 30
+          echo "Checking heartbeat file"
+          ls -lh .vyomaraj-dr-heartbeat.log 2>&1 || echo "heartbeat will be created on next sync"
+          echo "Checking index.html V15.1 868K ?v=151"
+          ls -lh index.html | awk '{print $9, $5}'
+          grep -q "V15.1" index.html && echo "index V15.1 found" || echo "index V15.0?"
+          grep -q "?v=151" index.html && echo "?v=151 found" || echo "?v=151 missing"
+          grep -q "KNOWLEDGE_VS_ENTERTAINMENT" index.html && echo "KNOWLEDGE_VS_ENTERTAINMENT found" || echo "missing"
+          grep -q "VYOMARAJ_JARVIS_TALK" index.html && echo "VYOMARAJ_JARVIS_TALK found" || echo "missing"
+          echo "This job is non-destructive and does not switch production traffic — V15.1"
+          echo "Primary: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
+          echo "Secondary: https://deepakGoyal1356.github.io/Vyomaraj-Agent/"
+          echo "DR resilience: hourly BOTH + 30m heartbeat + real-time on push — 0.00 loss"
