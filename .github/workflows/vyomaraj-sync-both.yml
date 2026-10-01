@@ -84,7 +84,7 @@ jobs:
           echo "❌ No configured credential can access the private DR repository."
           echo "DR_PENDING=true" >> "$GITHUB_ENV"
           exit 1
-      - name: Verify PRIMARY and push scoped branch to SECONDARY
+      - name: Verify PRIMARY and replicate scoped branch to SECONDARY via GitHub API
         if: env.DR_PENDING == 'false'
         env:
           DR_AUTH_TOKEN: ${{ env.DR_AUTH_TOKEN }}
@@ -95,36 +95,109 @@ jobs:
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
           CUR_BRANCH="${GITHUB_REF#refs/heads/}"
           EXPECTED_SHA="$(git rev-parse HEAD)"
-          echo "Scoped sync: $CUR_BRANCH only."
+          API_VERSION="2022-11-28"
+          echo "Scoped API replication: $CUR_BRANCH only."
           PRIMARY_SHA="$(git ls-remote origin "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}' || true)"
           if [ "$PRIMARY_SHA" != "$EXPECTED_SHA" ]; then
             echo "❌ PRIMARY ref mismatch: expected $EXPECTED_SHA, got ${PRIMARY_SHA:-missing}"
             exit 1
           fi
           echo "✅ PRIMARY verified at $PRIMARY_SHA"
+
+          api() {
+            curl -sS --fail-with-body               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $DR_AUTH_TOKEN"               -H "X-GitHub-Api-Version: $API_VERSION"               "$@"
+          }
+
           echo "::add-mask::$DR_AUTH_TOKEN"
-          # Use Git's HTTP Authorization header directly. The API credential test above
-          # proves the token can see the private DR repo; this avoids credential-helper
-          # differences between runner Git versions.
-          BASIC_AUTH="$(printf 'deepakGoyal1356:%s' "$DR_AUTH_TOKEN" | base64 -w0)"
-          AUTH_HEADER="AUTHORIZATION: Basic $BASIC_AUTH"
-          git remote remove dr 2>/dev/null || true
-          git remote add dr "https://github.com/${DR_REPO}.git"
-          echo "Testing Git transport access to SECONDARY before push."
-          if ! git -c http.extraheader="$AUTH_HEADER" ls-remote dr HEAD >/dev/null; then
-            echo "❌ Git transport authentication to SECONDARY failed even though GitHub API access succeeded."
+          echo "🔄 Git transport is unavailable for this fine-grained credential; using authenticated GitHub Git API replication."
+
+          # Read the exact source tree for the checked-out commit.
+          TREE_SHA="$(api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$EXPECTED_SHA?recursive=1" | python -c 'import json,sys; d=json.load(sys.stdin); print(d["tree"][0]["sha"] if False else d.get("sha",""))')"
+          if [ -z "$TREE_SHA" ]; then
+            echo "❌ Could not resolve PRIMARY tree."
             exit 1
           fi
-          echo "✅ Git transport access to SECONDARY confirmed."
-          echo "Pushing only $CUR_BRANCH to SECONDARY $DR_REPO (non-forced)."
-          git -c http.extraheader="$AUTH_HEADER" push dr "HEAD:refs/heads/${CUR_BRANCH}"
-          SECONDARY_SHA="$(git -c http.extraheader="$AUTH_HEADER" ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}' || true)"
-          if [ "$SECONDARY_SHA" != "$EXPECTED_SHA" ]; then
-            echo "❌ SECONDARY verification failed: expected $EXPECTED_SHA, got ${SECONDARY_SHA:-missing}"
-            exit 1
-          fi
-          echo "✅ Current branch $CUR_BRANCH verified at $EXPECTED_SHA on PRIMARY and SECONDARY."
-          echo "No force-push was used."
+
+          # Build target tree entries. Blobs are uploaded only for file entries.
+          api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$TREE_SHA?recursive=1" > /tmp/source-tree.json
+          python - "$DR_REPO" "$DR_AUTH_TOKEN" "$API_VERSION" "$EXPECTED_SHA" "$CUR_BRANCH" "$PRIMARY_REPO" <<'PY'
+          import base64, json, os, sys, urllib.request, urllib.error
+          from urllib.parse import quote
+
+          dr_repo, token, api_version, source_sha, branch, primary_repo = sys.argv[1:]
+          headers = {
+              "Accept": "application/vnd.github+json",
+              "Authorization": f"Bearer {token}",
+              "X-GitHub-Api-Version": api_version,
+              "User-Agent": "Vyomaraj-DR-API-Replicator",
+          }
+
+          def request(method, url, body=None):
+              data = None if body is None else json.dumps(body).encode()
+              req = urllib.request.Request(url, data=data, headers=headers, method=method)
+              with urllib.request.urlopen(req) as r:
+                  return json.load(r)
+
+          source = json.load(open("/tmp/source-tree.json", encoding="utf-8"))
+          entries = [e for e in source.get("tree", []) if e.get("type") in ("blob", "tree")]
+          if source.get("truncated"):
+              raise SystemExit("❌ PRIMARY tree is truncated; refusing partial DR replication.")
+
+          blobs = []
+          for i, e in enumerate(entries, 1):
+              path = e["path"]
+              if e["type"] == "tree":
+                  blobs.append({"path": path, "mode": e.get("mode","040000"), "type": "tree", "sha": e["sha"]})
+                  continue
+              url = f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}"
+              blob = request("GET", url)
+              raw = base64.b64decode(blob["content"])
+              created = request("POST", f"https://api.github.com/repos/{dr_repo}/git/blobs", {
+                  "encoding": "base64",
+                  "content": base64.b64encode(raw).decode(),
+              })
+              blobs.append({"path": path, "mode": e.get("mode","100644"), "type": "blob", "sha": created["sha"]})
+              if i % 50 == 0:
+                  print(f"Uploaded {i}/{len(entries)} tree entries")
+
+          # Use the uploaded file blobs to create a complete target tree.
+          tree_entries = [e for e in blobs if e["type"] == "blob"]
+          tree = request("POST", f"https://api.github.com/repos/{dr_repo}/git/trees", {"tree": tree_entries})
+          target_tree = tree["sha"]
+
+          # Parent the new DR commit to the current DR branch when it exists.
+          ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
+          try:
+              ref = request("GET", ref_url)
+              parent = ref["object"]["sha"]
+          except urllib.error.HTTPError as ex:
+              if ex.code != 404:
+                  raise
+              parent = None
+
+          message = f"chore(dr): mirror {primary_repo}:{branch} at {source_sha}"
+          payload = {"message": message, "tree": target_tree}
+          if parent:
+              payload["parents"] = [parent]
+          commit = request("POST", f"https://api.github.com/repos/{dr_repo}/git/commits", payload)
+          new_sha = commit["sha"]
+
+          if parent:
+              request("PATCH", ref_url, {"sha": new_sha, "force": False})
+          else:
+              ref = request("POST", f"https://api.github.com/repos/{dr_repo}/git/refs", {
+                  "ref": f"refs/heads/{branch}",
+                  "sha": new_sha,
+              })
+
+          print(f"DR_REPLICATED_SHA={new_sha}")
+          print(f"SOURCE_SHA={source_sha}")
+          print(f"BRANCH={branch}")
+          PY
+
+          echo "✅ PRIMARY branch $CUR_BRANCH has been replicated to SECONDARY through the GitHub API."
+          echo "Source commit: $EXPECTED_SHA"
+          echo "No force ref update was used."
       - name: Pull from DR if Primary is behind Bidirectional DR to Primary failover V15.1
         # Never switch or write main while syncing a session branch.
         if: env.DR_PENDING == 'false' && github.ref == 'refs/heads/main'
