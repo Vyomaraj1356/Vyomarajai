@@ -1,5 +1,5 @@
 name: "Vyomaraj Scoped PRIMARY + SECONDARY Branch Sync"
-# DR transport authentication fix active
+# DR transport authentication fix active — owner-auth mode
 
 on:
   push:
@@ -106,7 +106,7 @@ jobs:
           # Use Git's HTTP Authorization header directly. The API credential test above
           # proves the token can see the private DR repo; this avoids credential-helper
           # differences between runner Git versions.
-          BASIC_AUTH="$(printf 'x-access-token:%s' "$DR_AUTH_TOKEN" | base64 -w0)"
+          BASIC_AUTH="$(printf 'deepakGoyal1356:%s' "$DR_AUTH_TOKEN" | base64 -w0)"
           AUTH_HEADER="AUTHORIZATION: Basic $BASIC_AUTH"
           git remote remove dr 2>/dev/null || true
           git remote add dr "https://github.com/${DR_REPO}.git"
