@@ -139,16 +139,13 @@ jobs:
                   return json.load(r)
 
           source = json.load(open("/tmp/source-tree.json", encoding="utf-8"))
-          entries = [e for e in source.get("tree", []) if e.get("type") in ("blob", "tree")]
+          entries = [e for e in source.get("tree", []) if e.get("type") == "blob"]
           if source.get("truncated"):
               raise SystemExit("❌ PRIMARY tree is truncated; refusing partial DR replication.")
 
           blobs = []
           for i, e in enumerate(entries, 1):
               path = e["path"]
-              if e["type"] == "tree":
-                  blobs.append({"path": path, "mode": e.get("mode","040000"), "type": "tree", "sha": e["sha"]})
-                  continue
               url = f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}"
               blob = request("GET", url)
               raw = base64.b64decode(blob["content"])
@@ -161,7 +158,7 @@ jobs:
                   print(f"Uploaded {i}/{len(entries)} tree entries")
 
           # Use the uploaded file blobs to create a complete target tree.
-          tree_entries = [e for e in blobs if e["type"] == "blob"]
+          tree_entries = blobs
           tree = request("POST", f"https://api.github.com/repos/{dr_repo}/git/trees", {"tree": tree_entries})
           target_tree = tree["sha"]
 
