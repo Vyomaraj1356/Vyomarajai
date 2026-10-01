@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a1628">
-<meta name="description" content="Vyomaraj V16.7.23 release page and complete handover archive catalogue, v167 through v193.">
-<title>Vyomaraj V16.7.23 — Handover Archive Index — v193</title>
+<meta name="description" content="Vyomaraj V16.7.24 release page, owner-supplied 13-category hierarchy, legal research note, and handover catalogue v167 through v193.">
+<title>Vyomaraj V16.7.24 — Agent Hierarchy & Handover — v194</title>
 <style>
 :root{
   color-scheme:dark;
@@ -45,6 +45,16 @@ main{width:min(960px,100% - 28px);margin:0 auto 36px}
 .info-panel{padding:12px;border:1px solid rgba(245,158,11,.2);border-radius:10px;background:rgba(0,0,0,.18)}
 .info-panel p{margin:4px 0;color:var(--pale-gold)}
 .subtle,.info-panel .subtle{color:var(--muted);font-size:11px}
+
+.table-wrap{overflow-x:auto;margin:12px 0}
+.agent-table{width:100%;min-width:620px;border-collapse:collapse;font-size:12px}
+.agent-table th,.agent-table td{padding:8px 9px;border-bottom:1px solid rgba(245,158,11,.18);text-align:left;vertical-align:top}
+.agent-table thead th,.agent-table tfoot th{color:var(--gold)}
+.agent-table td:nth-child(2),.agent-table td:nth-child(3),.agent-table tfoot th:nth-child(2),.agent-table tfoot th:nth-child(3){text-align:center;white-space:nowrap}
+.roster{margin:9px 0;padding:10px 12px;border:1px solid rgba(245,158,11,.18);border-radius:9px;background:rgba(0,0,0,.16)}
+.roster summary{color:var(--gold);font-size:12px;font-weight:800;cursor:pointer}
+.roster p,.roster li{font-size:12px}
+.status-note{padding:10px 12px;border-left:3px solid var(--gold);background:rgba(0,0,0,.16)}
 .cinema{border-left:3px solid var(--gold)}
 .download-current{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 14px;padding:10px 14px;border:1px solid var(--gold);border-radius:10px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#0a1628;font-size:13px;font-weight:900;text-decoration:none}
 .download-current:hover{background:#ffe9a8;color:#0a1628}
@@ -75,11 +85,11 @@ footer{padding:12px 16px 24px;color:var(--muted);text-align:center;font-size:11p
 </head>
 <body>
 <header class="release-banner">
-  <p>V16.7.23 · Archive catalogue refreshed · Current handover v193</p>
+  <p>V16.7.24 · Owner hierarchy restored · Current handover v194</p>
   <button class="release-button" id="releaseButton" type="button" aria-controls="releaseNote" aria-expanded="false">📜 Release note</button>
 </header>
 <div class="release-note" id="releaseNote" hidden>
-  Continued from V16.7.22 (v192): the current page links to the v193 handover, lists the 25 available earlier handovers with the supplied size labels, and links the 34-entry one-month chat archive. No external site or secondary repository sync is claimed here.
+  V16.7.24 restores the owner-supplied 13-category roster and count table, adds an initial official-source legal research note and proposed moderation policy, and records this session separately. The V15.0–V16.7.22 34-chat archive remains independent and unchanged; no external deployment or secondary sync is claimed by this page.
 </div>
 
 <main id="main">
@@ -87,34 +97,33 @@ footer{padding:12px 16px 24px;color:var(--muted);text-align:center;font-size:11p
     <div class="brand-mark" aria-label="VYOMARAJ mark">V<span aria-hidden="true">J</span></div>
     <div>
       <h1 id="brand-title">VYOMARAJ</h1>
-      <p>The King of Sky · Final Market Ready · Arms &amp; Weapons · Martial Arts · Castles · V emblem, J represents Jarvis</p>
-      <p>Resides inside SHRIYANTRA House · Owner Dhanalakshmi · Protective device concept: anti-trojan, anti-hijack, anti-intrusion</p>
+      <p>The King of Sky · Owner-configured 13-category hierarchy · V emblem, J represents Jarvis</p>
+      <p>Resides inside SHRIYANTRA House · Owner primary: Deepak Goyal · Protective-device items remain design concepts until implementation is verified</p>
     </div>
   </section>
 
   <div class="pills" aria-label="Product highlights">
     <span class="pill">Shani Blue · #0a1628</span>
     <span class="pill">Kuber Gold · #f59e0b</span>
-    <span class="pill">13 Agents · 133 Subs · 421 Prods + 11 Sovereign</span>
-    <span class="pill">Revenue Dashboard</span>
+    <span class="pill">13 Categories · 133 Sub-agents · 421 Products</span>
+    <span class="pill">Revenue Dashboard · No live feed verified</span>
     <span class="pill">Cinema</span>
-    <span class="pill">Owner Locked · Vyomarajai@gmail.com</span>
+    <span class="pill">Owner Locked · Deepak Goyal</span>
   </div>
 
   <section class="card" aria-labelledby="dashboard-title">
     <h2 id="dashboard-title">💰 Kuber Dashboard</h2>
-    <p class="card-intro">Revenue and banking details retained from the current handover. The amounts below are stored snapshot text, not a live payment or banking feed.</p>
+    <p class="card-intro">No live payment feed or revenue data source is verified in this checkout. Account identifiers and unverified financial totals are not repeated on this public release page.</p>
     <div class="dashboard-grid">
-      <div class="info-panel" id="bankDetails">
-        <h3>Bank details</h3>
-        <p>ICICI Bank · Account 042405000348</p>
-        <p class="subtle">IFSC ICIC0003365 · SWIFT ICICINBB005 · MICR 411229057</p>
-        <p class="subtle">Owner: Deepak Goyal · Primary locked</p>
+      <div class="info-panel">
+        <h3>Financial-data handling</h3>
+        <p>Route payout changes through the owner's secure, verified channel.</p>
+        <p class="subtle">No bank credentials or account identifiers are embedded in this release page.</p>
       </div>
       <div class="info-panel">
-        <h3>Revenue snapshot</h3>
-        <p>Total ₹22,08,575 · Forecast ₹38L → ₹55L → 5Cr → 25Cr → 100Cr</p>
-        <p class="subtle">Historical figures carried forward from the handover content; verify before relying on them.</p>
+        <h3>Integration state</h3>
+        <p>Live payment, bank reconciliation, and revenue API connections are not verified.</p>
+        <p class="subtle">Historical handovers remain available separately; this is not a transaction record.</p>
       </div>
     </div>
   </section>
@@ -124,12 +133,81 @@ footer{padding:12px 16px 24px;color:var(--muted);text-align:center;font-size:11p
     <p>4K / 60fps concept · Face generator · Narrator voice · Video synthesizer · Scalable family faces · Approvals, feedback and audit workflow.</p>
   </section>
 
+  <section class="card" id="agent-directory" aria-labelledby="agent-directory-title">
+    <h2 id="agent-directory-title">🌳 Agent hierarchy &amp; content roster</h2>
+    <p class="card-intro">Canonical counts transcribed from the owner's supplied hierarchy. The 13 category counts sum to 133 sub-agents and 421 products. Missing child names are explicitly left unspecified.</p>
+    <div class="table-wrap">
+      <table class="agent-table">
+        <thead><tr><th scope="col">Category</th><th scope="col">Sub-agents</th><th scope="col">Products</th><th scope="col">Hierarchy label</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">FOOD</th><td>3</td><td>6</td><td>Food &amp; Social Connect</td></tr>
+          <tr><th scope="row">EDU</th><td>15</td><td>68</td><td>Education &amp; World Wisdom</td></tr>
+          <tr><th scope="row">ASTRO</th><td>3</td><td>9</td><td>Astro-Celestial &amp; Universal</td></tr>
+          <tr><th scope="row">FINANCE</th><td>8</td><td>15</td><td>Finance &amp; Wealth</td></tr>
+          <tr><th scope="row">LIFE</th><td>10</td><td>34</td><td>Life Coach &amp; Wellness</td></tr>
+          <tr><th scope="row">BHAKTI</th><td>2</td><td>8</td><td>Bhakti Mandir — Ritual, Festival &amp; Grantha</td></tr>
+          <tr><th scope="row">SPORTS</th><td>14</td><td>29</td><td>Sports &amp; Legends</td></tr>
+          <tr><th scope="row">AGRI</th><td>6</td><td>14</td><td>Agriculture &amp; Environment</td></tr>
+          <tr><th scope="row">ENTERTAINMENT</th><td>38</td><td>168</td><td>Entertainment — Comedy, Movies, Hollywood, Bollywood</td></tr>
+          <tr><th scope="row">PLATFORM</th><td>20</td><td>39</td><td>Platform &amp; Social Hub + Earn — All Platforms + Monetization</td></tr>
+          <tr><th scope="row">TOUR</th><td>4</td><td>9</td><td>Tour and Travel</td></tr>
+          <tr><th scope="row">WAR</th><td>5</td><td>13</td><td>War Room — Warriors</td></tr>
+          <tr><th scope="row">PODCAST</th><td>5</td><td>9</td><td>Podcast &amp; Entertainment Studio</td></tr>
+        </tbody>
+        <tfoot><tr><th scope="row">TOTAL · 13 categories</th><th>133</th><th>421</th><th>Owner-supplied category totals</th></tr></tfoot>
+      </table>
+    </div>
+    <details class="roster">
+      <summary>EDU · named slots and unmapped S8–S13 details</summary>
+      <p>S1 Veda Rishi; S2 Upanishad Guru; S3 Gita Acharya; S4 Mythology &amp; Mystery Rishi; S5 Vyomaraj Picker; S6 Lectures Hub; S7 Short Notes.</p>
+      <p>S8–S13: “Bharat Grantha, Chanakya and the Granthas” — exact six-slot mapping not supplied. S14 Care &amp; Bikes — Bicycles &amp; Two-Wheelers (16 chapters). S15 Social Thinkers, Visionaries &amp; Legends (14 chapters).</p>
+    </details>
+    <details class="roster">
+      <summary>ENTERTAINMENT · grouped roster supplied by owner</summary>
+      <p>S1–S8: Comedy hub, INDICOM, Cartoon, Music, Movie, Wit, Shayari, Criticism gate. Additional IDs: ENT-AI-S1/S2; ENT-CARTOON-S1–S3; ENT-COM-S1–S8; ENT-MOVIE-S1–S6; ENT-MUS-S1–S6; ENT-SHAYARI-S1; ENT-WIT-S1; ENT-HASYA-S1 (12); ENT-LIQUOR-S1 (12); ENT-BAR-S1 (10).</p>
+      <p>All 38 slots are preserved in the manifest. The parenthetical numbers are reproduced as supplied; whether they denote chapters or products is not inferred.</p>
+    </details>
+    <details class="roster">
+      <summary>PLATFORM · 19 named lanes for 20 slots; one remains unmapped</summary>
+      <p>YouTube, Instagram, Facebook, TikTok, X, LinkedIn, Telegram, WhatsApp, Discord, Pinterest, Threads, Snapchat, Reddit, Twitch, Vimeo, Tumblr, Mastodon, EARN and AI. One of S1–S20 remains UNMAPPED pending owner confirmation.</p>
+    </details>
+    <details class="roster">
+      <summary>PODCAST and WAR · supplied workflow names</summary>
+      <p>PODCAST: RESEARCH, SCRIPT, PRODUCE, ANALYSIS, PUBLISH. WAR: PAST, HISTORY, PRESENT, FUTURE, CROSS-CUTTING.</p>
+    </details>
+    <p class="status-note"><strong>Separate content-status figures:</strong> 394 products reported; 12 placeholder videos shared; 52 products marked PENDING and 5 PLANNED need chapters. Their overlap with the 421-product category count is unresolved; no reconciliation is guessed. Other categories have counts only; child names and all 421 product names remain unspecified where not supplied.</p>
+    <p><a href="ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json">Download canonical roster JSON</a></p>
+  </section>
+
+  <section class="card" id="law-safety" aria-labelledby="law-safety-title">
+    <h2 id="law-safety-title">⚖️ Law &amp; content-safety review</h2>
+    <p>Initial, source-linked research for Indian and international markets: entertainment, social platforms, publishing, monetization, IT/cyber law, child safety, privacy, copyright, and religious/sensitive content. The note flags Maharashtra/Pune and other local rules for counsel verification.</p>
+    <p class="status-note"><strong>Not a compliance claim:</strong> this is an issue map and proposed human-review policy, not legal advice, a complete jurisdictional review, or a deployed moderation filter. Child exploitation material, illegal sexual content, doxxing, threats, and other high-risk material must be blocked/escalated under the proposed gate; religious, political, news, finance, health and synthetic-media cases require context-sensitive human review.</p>
+    <p><a href="ops/vyomaraj-core/handover/LAW_RESEARCH_AND_CONTENT_SAFETY_V16_7_24.md">Read official-source legal research and outstanding checks</a></p>
+    <p><a href="ops/vyomaraj-core/handover/CONTENT_SAFETY_POLICY_V16_7_24.json">Download proposed content-safety policy JSON</a></p>
+  </section>
+
+  <section class="card" id="integration-status" aria-labelledby="integration-title">
+    <h2 id="integration-title">🔌 Integration status — verified blockers</h2>
+    <p>WhatsApp template setup is blocked by missing owner-configured WhatsApp credentials and an absent setup script. Public URL provisioning is blocked by missing hosting credentials; the alternate tunnel script is also absent. No AI provider key has been selected/configured. Secret values are not stored in this repository.</p>
+    <p>The secondary DR ref is still unverified. A prior workflow run (36828380727) failed during scoped primary/secondary verification/push. This release does not claim a completed secondary sync.</p>
+    <p class="subtle">See the current-session handover for exact missing script paths, secret names, branch/commit availability, and next verification steps.</p>
+  </section>
+
+  <section class="card" id="session-supplement" aria-labelledby="session-title">
+    <h2 id="session-title">📝 Current-session handover supplement</h2>
+    <p>This 1 October 2026 session is documented separately from the historical 34-chat archive; no numbered history entry, Image 1 label, commit reference, or archive member has been changed.</p>
+    <a class="download-current" href="ops/vyomaraj-core/handover/CURRENT_SESSION_HANDOVER_2026_10_01.md">Read current-session handover</a>
+    <p><a href="ops/vyomaraj-core/handover/INTEGRATION_STATUS_V16_7_24.json">Download integration-status JSON</a> · <a href="ops/vyomaraj-core/handover/HANDOVER_ARCHIVE_INDEX_V16_7_24.json">Download archive index</a> · <a href="ops/vyomaraj-core/handover/README_HANDOVER_V16_7_24.md">Read release README</a></p>
+    <p class="subtle">The exact 34-chat ZIP remains a separate download below. Its V15.0–V16.7.22 scope, 3 members, commits and Image 1 labels are unchanged.</p>
+  </section>
+
   <section class="card" aria-labelledby="handover-title">
     <h2 id="handover-title">📦 Handover downloads</h2>
-    <p>Current release plus every available archive from v167 through v192. Size labels use the values supplied for this handover history.</p>
-    <a class="download-current" href="Vyomaraj-Handover-V16.7.23-v193.zip" download>⬇ Download current handover · V16.7.23 · v193 · 392K</a>
+    <p>Current supplement plus the 26 available historical archives from v167 through v193. The existing v168 · 462K handover and all prior ZIPs remain unchanged; v175 is absent from the repository history.</p>
+    <a class="download-current" href="Vyomaraj-Handover-V16.7.24-v194.zip" download>⬇ Download current handover · V16.7.24 · v194 · 31K</a>
 
-    <h3 class="archive-heading">Previous handovers · 25 archives</h3>
+    <h3 class="archive-heading">Previous handovers · 26 archives</h3>
     <ul class="archive-list" aria-label="Previous handover archives">
       <li><a class="archive-item" href="Vyomaraj-Handover-V16.5.3-v167.zip" download><span class="archive-version">V16.5.3</span><span class="archive-id">v167</span><span class="archive-size">399K</span></a></li>
       <li><a class="archive-item" href="Vyomaraj-Handover-V16.6-v168.zip" download><span class="archive-version">V16.6</span><span class="archive-id">v168</span><span class="archive-size">462K</span></a></li>
@@ -156,13 +234,14 @@ footer{padding:12px 16px 24px;color:var(--muted);text-align:center;font-size:11p
       <li><a class="archive-item" href="Vyomaraj-Handover-V16.7.20-v190.zip" download><span class="archive-version">V16.7.20</span><span class="archive-id">v190</span><span class="archive-size">566K</span></a></li>
       <li><a class="archive-item" href="Vyomaraj-Handover-V16.7.21-v191.zip" download><span class="archive-version">V16.7.21</span><span class="archive-id">v191</span><span class="archive-size">566K</span></a></li>
       <li><a class="archive-item" href="Vyomaraj-Handover-V16.7.22-v192.zip" download><span class="archive-version">V16.7.22</span><span class="archive-id">v192</span><span class="archive-size">305K</span></a></li>
+      <li><a class="archive-item" href="Vyomaraj-Handover-V16.7.23-v193.zip" download><span class="archive-version">V16.7.23</span><span class="archive-id">v193</span><span class="archive-size">392K</span></a></li>
     </ul>
     <p class="subtle">There is no v175 archive in the repository; the numbering resumes at v176.</p>
   </section>
 
   <section class="card" aria-labelledby="chat-archive-title">
     <h2 id="chat-archive-title">🗂 One-month Arena chat archive</h2>
-    <p>34 chats · 34 numbered summaries · V15.0 through V16.7.22 · session list from Image 1 included.</p>
+    <p>34 chats · 34 numbered summaries · V15.0 through V16.7.22 · Image 1 session labels preserved. The current 2026-10-01 session is documented as a separate supplement and is not appended to the 34-entry archive.</p>
     <a class="download-current" href="Vyomaraj-All-Chats-From-Arena-Database-Till-V16.7.22.zip" download>⬇ Download chat archive · 5.3K</a>
     <a class="download-current" href="Vyomaraj-All-Chats-Database-One-Month.md" download>Read database · 17K</a>
     <a class="download-current" href="All-Chats-Array-From-Index.txt" download>View Image 1 session index</a>
@@ -198,7 +277,7 @@ footer{padding:12px 16px 24px;color:var(--muted);text-align:center;font-size:11p
 
   <p class="owner">👑 Owner Primary Locked: <a href="mailto:Vyomarajai@gmail.com">Deepak Goyal · Vyomarajai@gmail.com</a><br>Shani Blue · Kuber Gold · VYOMARAJ resides inside SHRIYANTRA House · 0.000000000 Impact · Chiranjeevi Eternal</p>
 </main>
-<footer>V16.7.23 · Archive index and links are part of this repository snapshot.</footer>
+<footer>V16.7.24 · Owner-supplied hierarchy and current-session supplement. Historical archives retain their original scope.</footer>
 <script>
 const releaseButton = document.getElementById('releaseButton');
 const releaseNote = document.getElementById('releaseNote');

@@ -1,0 +1,53 @@
+{
+  "release": "V16.7.24",
+  "build": 194,
+  "snapshot_date": "2026-10-01",
+  "status_basis": "current repository inspection plus prior documented GitHub Actions outcome; no secret values copied",
+  "primary_repository": "Vyomaraj1356/Vyomarajai",
+  "session_branch": "arena/01a0f634-vyomarajai",
+  "requested_branch_unavailable": "arena/01a0e21c-vyomaraj-agent",
+  "unavailable_commits": [
+    "0ad7f5c",
+    "649f8e2",
+    "d014f16",
+    "9d824ab"
+  ],
+  "integrations": {
+    "whatsapp_template": {
+      "status": "blocked_not_run",
+      "required_secret_names": [
+        "WHATSAPP_TOKEN",
+        "WHATSAPP_PHONE_ID"
+      ],
+      "expected_script": "scripts/vyomaraj-create-whatsapp-template.mjs",
+      "script_present": false
+    },
+    "public_url": {
+      "status": "blocked_not_run",
+      "required_secret_names": [
+        "RENDER_API_KEY",
+        "RENDER_SERVICE_ID"
+      ],
+      "alternate_script": "scripts/vyomaraj-tunnel.sh",
+      "alternate_script_present": false
+    },
+    "ai_provider": {
+      "status": "blocked_no_provider_key_or_selection",
+      "suggested_provider_from_owner_notes": "Sea-Lion (SEA_LION_API_KEY)",
+      "key_present": false
+    },
+    "secondary_replication": {
+      "status": "unverified_failed_previous_run",
+      "last_known_failed_workflow_run": "36828380727",
+      "secondary_ref_verified": false,
+      "next_step": "After a push to the fixed session branch, inspect the corresponding Actions run and verify the secondary branch/ref independently."
+    }
+  },
+  "credential_handling": "No credentials or token values are included in this file. Configure secrets only in authorized secret storage.",
+  "workflow_message_review": {
+    "file": ".github/workflows/dr-replication.yml",
+    "status": "failure_and_pending_messages_corrected_to_avoid_claiming_secondary_success_without_ref_verification",
+    "replication_behavior_changed": false,
+    "workflow_run_performed_by_this_edit": false
+  }
+}

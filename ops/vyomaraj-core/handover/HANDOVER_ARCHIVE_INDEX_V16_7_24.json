@@ -1,0 +1,254 @@
+{
+  "release": "V16.7.24",
+  "build": 194,
+  "date": "2026-10-01",
+  "current_archive": "Vyomaraj-Handover-V16.7.24-v194.zip",
+  "history_archive_count": 26,
+  "history_range": "v167-v193",
+  "size_label_convention": "KiB, rounded up (ceil(file_bytes / 1024))",
+  "missing_builds": [
+    175
+  ],
+  "history": [
+    {
+      "release": "V16.5.3",
+      "build": 167,
+      "file": "Vyomaraj-Handover-V16.5.3-v167.zip",
+      "file_bytes": 407729,
+      "size_label": "399K"
+    },
+    {
+      "release": "V16.6",
+      "build": 168,
+      "file": "Vyomaraj-Handover-V16.6-v168.zip",
+      "file_bytes": 472710,
+      "size_label": "462K"
+    },
+    {
+      "release": "V16.7",
+      "build": 169,
+      "file": "Vyomaraj-Handover-V16.7-v169.zip",
+      "file_bytes": 546712,
+      "size_label": "534K"
+    },
+    {
+      "release": "V16.7.1",
+      "build": 170,
+      "file": "Vyomaraj-Handover-V16.7.1-v170.zip",
+      "file_bytes": 546712,
+      "size_label": "534K"
+    },
+    {
+      "release": "V16.7.2",
+      "build": 171,
+      "file": "Vyomaraj-Handover-V16.7.2-v171.zip",
+      "file_bytes": 546712,
+      "size_label": "534K"
+    },
+    {
+      "release": "V16.7.3",
+      "build": 172,
+      "file": "Vyomaraj-Handover-V16.7.3-v172.zip",
+      "file_bytes": 552522,
+      "size_label": "540K"
+    },
+    {
+      "release": "V16.7.4",
+      "build": 173,
+      "file": "Vyomaraj-Handover-V16.7.4-v173.zip",
+      "file_bytes": 552522,
+      "size_label": "540K"
+    },
+    {
+      "release": "V16.7.5",
+      "build": 174,
+      "file": "Vyomaraj-Handover-V16.7.5-v174.zip",
+      "file_bytes": 552580,
+      "size_label": "540K"
+    },
+    {
+      "release": "V16.7.6",
+      "build": 176,
+      "file": "Vyomaraj-Handover-V16.7.6-v176.zip",
+      "file_bytes": 559194,
+      "size_label": "547K"
+    },
+    {
+      "release": "V16.7.7",
+      "build": 177,
+      "file": "Vyomaraj-Handover-V16.7.7-v177.zip",
+      "file_bytes": 559421,
+      "size_label": "547K"
+    },
+    {
+      "release": "V16.7.8",
+      "build": 178,
+      "file": "Vyomaraj-Handover-V16.7.8-v178.zip",
+      "file_bytes": 575383,
+      "size_label": "562K"
+    },
+    {
+      "release": "V16.7.9",
+      "build": 179,
+      "file": "Vyomaraj-Handover-V16.7.9-v179.zip",
+      "file_bytes": 577794,
+      "size_label": "565K"
+    },
+    {
+      "release": "V16.7.10",
+      "build": 180,
+      "file": "Vyomaraj-Handover-V16.7.10-v180.zip",
+      "file_bytes": 577569,
+      "size_label": "565K"
+    },
+    {
+      "release": "V16.7.11",
+      "build": 181,
+      "file": "Vyomaraj-Handover-V16.7.11-v181.zip",
+      "file_bytes": 578874,
+      "size_label": "566K"
+    },
+    {
+      "release": "V16.7.12",
+      "build": 182,
+      "file": "Vyomaraj-Handover-V16.7.12-v182.zip",
+      "file_bytes": 577007,
+      "size_label": "564K"
+    },
+    {
+      "release": "V16.7.13",
+      "build": 183,
+      "file": "Vyomaraj-Handover-V16.7.13-v183.zip",
+      "file_bytes": 577727,
+      "size_label": "565K"
+    },
+    {
+      "release": "V16.7.14",
+      "build": 184,
+      "file": "Vyomaraj-Handover-V16.7.14-v184.zip",
+      "file_bytes": 577754,
+      "size_label": "565K"
+    },
+    {
+      "release": "V16.7.15",
+      "build": 185,
+      "file": "Vyomaraj-Handover-V16.7.15-v185.zip",
+      "file_bytes": 436645,
+      "size_label": "427K"
+    },
+    {
+      "release": "V16.7.16",
+      "build": 186,
+      "file": "Vyomaraj-Handover-V16.7.16-v186.zip",
+      "file_bytes": 578890,
+      "size_label": "566K"
+    },
+    {
+      "release": "V16.7.17",
+      "build": 187,
+      "file": "Vyomaraj-Handover-V16.7.17-v187.zip",
+      "file_bytes": 579032,
+      "size_label": "566K"
+    },
+    {
+      "release": "V16.7.18",
+      "build": 188,
+      "file": "Vyomaraj-Handover-V16.7.18-v188.zip",
+      "file_bytes": 579125,
+      "size_label": "566K"
+    },
+    {
+      "release": "V16.7.19",
+      "build": 189,
+      "file": "Vyomaraj-Handover-V16.7.19-v189.zip",
+      "file_bytes": 579109,
+      "size_label": "566K"
+    },
+    {
+      "release": "V16.7.20",
+      "build": 190,
+      "file": "Vyomaraj-Handover-V16.7.20-v190.zip",
+      "file_bytes": 579411,
+      "size_label": "566K"
+    },
+    {
+      "release": "V16.7.21",
+      "build": 191,
+      "file": "Vyomaraj-Handover-V16.7.21-v191.zip",
+      "file_bytes": 579333,
+      "size_label": "566K"
+    },
+    {
+      "release": "V16.7.22",
+      "build": 192,
+      "file": "Vyomaraj-Handover-V16.7.22-v192.zip",
+      "file_bytes": 311660,
+      "size_label": "305K"
+    },
+    {
+      "release": "V16.7.23",
+      "build": 193,
+      "file": "Vyomaraj-Handover-V16.7.23-v193.zip",
+      "file_bytes": 401011,
+      "size_label": "392K",
+      "sha256": "54349bf4f5059e7b8dba5f8b835e3fec1ed5b29f487c34c668a3a11992c7addf"
+    }
+  ],
+  "current_archive_type": "hierarchy, legal research, content-safety and current-session supplement; historical archives referenced, not overwritten",
+  "historical_preservation": {
+    "v168": {
+      "file": "Vyomaraj-Handover-V16.6-v168.zip",
+      "file_bytes": 472710,
+      "size_label": "462K",
+      "sha256": "9de7362323078c7d87e28fe4fd33b73e6f43dcf53812bc7a202c0ba4d838ff25",
+      "integrity_test": "passed"
+    },
+    "v193": {
+      "file": "Vyomaraj-Handover-V16.7.23-v193.zip",
+      "file_bytes": 401011,
+      "size_label": "392K",
+      "sha256": "54349bf4f5059e7b8dba5f8b835e3fec1ed5b29f487c34c668a3a11992c7addf",
+      "integrity_test": "passed"
+    }
+  },
+  "chat_archive": {
+    "filename": "Vyomaraj-All-Chats-From-Arena-Database-Till-V16.7.22.zip",
+    "file_bytes": 5430,
+    "size_label": "5.3K",
+    "sha256": "9d6e2033a43bb4906af63dd77098097c8ecbc576693d6af774a116ed3dd1b432",
+    "integrity_test": "passed",
+    "chat_range": "V15.0–V16.7.22",
+    "numbered_summaries": 34,
+    "duplicate_count": 0,
+    "expected_members": [
+      "Vyomaraj-All-Chats-Database-One-Month.md",
+      "Git-Commits-One-Month.txt",
+      "All-Chats-Array-From-Index.txt"
+    ],
+    "member_count": 3,
+    "git_commit_references": [
+      "e3bbe2b",
+      "3a59454"
+    ],
+    "image1_session_labels_file": "All-Chats-Array-From-Index.txt",
+    "image1_session_labels_sha256": "c94b86364aa33757bd4d9394f02ae7d11fc36c3cb55f74083e6e9ca279969d01",
+    "current_session_handled_as": "separate supplement; not appended to or nested as another copy in the 34-chat archive"
+  },
+  "current_session_separate_supplement": "CURRENT_SESSION_HANDOVER_2026_10_01.md",
+  "current_archive_checksum_note": "The ZIP does not embed its own checksum; compute SHA-256 on the emitted archive after packaging to avoid a self-referential checksum.",
+  "current_archive_member_count": 9,
+  "current_archive_members": [
+    "index.html",
+    ".github/workflows/dr-replication.yml",
+    "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+    "ops/vyomaraj-core/handover/CONTENT_SAFETY_POLICY_V16_7_24.json",
+    "ops/vyomaraj-core/handover/CURRENT_SESSION_HANDOVER_2026_10_01.md",
+    "ops/vyomaraj-core/handover/INTEGRATION_STATUS_V16_7_24.json",
+    "ops/vyomaraj-core/handover/LAW_RESEARCH_AND_CONTENT_SAFETY_V16_7_24.md",
+    "ops/vyomaraj-core/handover/README_HANDOVER_V16_7_24.md",
+    "ops/vyomaraj-core/handover/HANDOVER_ARCHIVE_INDEX_V16_7_24.json"
+  ],
+  "contains_historical_34_chat_zip": false,
+  "historical_34_chat_zip_location": "separate repository-root download; unchanged",
+  "current_archive_size_label": "31K"
+}

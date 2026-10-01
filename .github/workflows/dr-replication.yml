@@ -25,7 +25,7 @@ jobs:
           set -Eeuo pipefail
           echo "V15.1 Final Market Ready — Enhanced All Contents — ?v=151 678 LIVE 694 total — DR Replication"
           # Fallback logic for resilience — use VYOMARAJ_GH_PAT if DR_SECONDARY_TOKEN not set
-          # This ensures workspace re-clone does not fail on private 404 and secondary still syncs
+          # This handles private-404 resilience; it does not establish that the secondary ref has been synced
           if [ -z "$SECONDARY_REPO" ]; then
             echo "ℹ️ DR_SECONDARY_REPO not set — using fallback deepakGoyal1356/Vyomaraj-Agent"
             echo "SECONDARY_REPO_FALLBACK=deepakGoyal1356/Vyomaraj-Agent" >> $GITHUB_ENV
@@ -44,7 +44,7 @@ jobs:
             echo "⚠️ No DR token — DR_SECONDARY_TOKEN and VYOMARAJ_GH_PAT both missing"
             echo "Owner action: Settings → Secrets → Actions → DR_SECONDARY_REPO=deepakGoyal1356/Vyomaraj-Agent and DR_SECONDARY_TOKEN=PAT classic repo scope OR VYOMARAJ_GH_PAT"
             echo "Primary is still live at https://Vyomaraj1356.github.io/Vyomarajai/?v=151 — DR will sync once secrets set"
-            echo "But vyomaraj-sync-both.yml already syncs secondary via VYOMARAJ_GH_PAT — so secondary is still synced"
+            echo "Secondary remains unverified until a token-backed workflow push and ref check succeeds"
             echo "DR_PENDING=true" >> $GITHUB_ENV
             exit 0
           fi
@@ -74,8 +74,8 @@ jobs:
           rm -rf primary-mirror.git
           git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" primary-mirror.git
           if [ $? -ne 0 ]; then
-            echo "⚠️ Clone failed — but vyomaraj-sync-both already synced secondary via PAT success 14s — no data loss"
-            echo "✅ DR resilience maintained via vyomaraj-sync-both — 0.00 loss"
+            echo "⚠️ Clone failed — this run did not replicate to the secondary; inspect the scoped sync workflow and verify the secondary ref"
+            echo "ℹ️ No secondary sync is claimed by this run"
             exit 0
           fi
           cd primary-mirror.git
@@ -84,21 +84,21 @@ jobs:
           git push --mirror --force origin 2>&1 | tail -n 30
           PUSH_EXIT=${PIPESTATUS[0]:-0}
           if [ "$PUSH_EXIT" -eq 0 ]; then
-            echo "✅ DR Mirror Complete — Primary and Secondary in sync — V15.1 ?v=151 678 LIVE 694 total"
+            echo "✅ Mirror push command completed; independently verify the expected secondary refs before claiming sync"
           else
-            echo "⚠️ DR Mirror push exit $PUSH_EXIT — but vyomaraj-sync-both.yml V15.1 already synced secondary via PAT success 14s — no data loss"
+            echo "⚠️ DR mirror push failed with exit $PUSH_EXIT — this run did not verify a secondary sync"
             echo "ℹ️ Owner action if needed: check PAT repo scope — or allow force push in secondary"
-            echo "✅ DR resilience maintained via vyomaraj-sync-both — 0.00 loss — job will not fail"
+            echo "ℹ️ Secondary status remains unverified; do not treat this workflow as a successful replication"
           fi
-          echo "Web URL + App parity DR fallback — Bharat-Laxman Hanuman Quality Panch Shakti — 0.00 loss — V15.1"
+          echo "DR replication attempt finished. Confirm primary/secondary ref equality and Pages deployments before making availability or data-loss claims."
           exit 0
 
       - name: DR Pending Notice (V15.1)
         if: env.DR_PENDING == 'true'
         run: |
-          echo "ℹ️ DR replication skipped — secrets not set — Primary live, Secondary will sync via vyomaraj-sync-both.yml once VYOMARAJ_GH_PAT set"
+          echo "ℹ️ DR replication skipped — required secrets are not set; secondary status is unverified"
           echo "Web: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
           echo "Secondary: https://deepakGoyal1356.github.io/Vyomaraj-Agent/"
           echo "DR activation report: ops/dr/DR_ACTIVATION_REPORT_V15_1.md"
           echo "V15.1 868K index 678 LIVE 694 total KNOWLEDGE_VS_ENTERTAINMENT VYOMARAJ_JARVIS_TALK SHIV_KE_SATHI detailed"
-          echo "vyomaraj-sync-both.yml V15.1 success ensures secondary sync even if this workflow pending"
+          echo "A separate scoped-sync run must independently verify the secondary ref; this run does not establish sync"
