@@ -40,7 +40,7 @@ jobs:
         env:
           VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT || secrets.DR_SECONDARY_TOKEN }}
           PRIMARY_REPO: Vyomaraj1356/Vyomarajai
-          DR_REPO_PRIMARY: deepakGoyal1356/Vyomaraj-Agent-6d64e
+          DR_REPO_PRIMARY: deepakGoyal1356/Vyomaraj-Agent-6d64e-6d64e-6d64e
           DR_REPO_FALLBACK: Vyomaraj1356/Vyomarajai
         run: |
           set -e
@@ -48,7 +48,7 @@ jobs:
           echo "Event: ${{ github.event_name }} Ref: ${{ github.ref_name }} SHA: ${{ github.sha }}"
           git remote -v
           echo "--- Primary DR detection V15.1 ---"
-          DR_REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"
+          DR_REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e-6d64e-6d64e"
           DR_URL="https://github.com/${DR_REPO}.git"
           PRIMARY_TRY="Vyomaraj1356/Vyomarajai"
           echo "Trying PRIMARY (owner primary): $PRIMARY_TRY"
@@ -91,7 +91,7 @@ jobs:
         run: |
           set -e
           source "$GITHUB_ENV" || true
-          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
+          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e-6d64e-6d64e}"
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
           CUR_BRANCH="${GITHUB_REF#refs/heads/}"
           EXPECTED_SHA=$(git rev-parse HEAD)
@@ -137,7 +137,7 @@ jobs:
         run: |
           set -e
           source $GITHUB_ENV || true
-          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
+          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e-6d64e-6d64e}"
           echo "🔄 Checking if DR is ahead of Primary bidirectional sync for failover V15.1"
           git fetch dr main:refs/remotes/dr/main 2>&1 | head -n 10 || echo "No dr/main to fetch"
           if git rev-parse --verify refs/remotes/dr/main >/dev/null 2>&1; then
@@ -171,7 +171,7 @@ jobs:
           set -e
           source $GITHUB_ENV || true
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
-          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
+          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e-6d64e-6d64e}"
           echo "💓 PRIMARY SECONDARY Heartbeat + Health Check V15.1 ?v=151 $(date -u) hourly sync both as requested"
           if git ls-remote "https://github.com/${PRIMARY_REPO}.git" HEAD >/dev/null 2>&1; then
             echo "✅ PRIMARY Public is UP — https://github.com/${PRIMARY_REPO}"
@@ -239,7 +239,7 @@ jobs:
           echo "Branch: ${GITHUB_REF_NAME}"
           echo "Commit: $(git rev-parse HEAD)"
           echo "Primary target: Vyomaraj1356/Vyomarajai:${GITHUB_REF_NAME}"
-          echo "Secondary target: deepakGoyal1356/Vyomaraj-Agent-6d64e:${GITHUB_REF_NAME}"
+          echo "Secondary target: deepakGoyal1356/Vyomaraj-Agent-6d64e-6d64e-6d64e:${GITHUB_REF_NAME}"
           echo "This run does not publish GitHub Pages or alter main/sibling branches."
           ls -lh index.html
 
