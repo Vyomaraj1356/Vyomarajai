@@ -27,8 +27,8 @@ jobs:
           # Fallback logic for resilience — use VYOMARAJ_PAT if DR_SECONDARY_TOKEN not set
           # This handles private-404 resilience; it does not establish that the secondary ref has been synced
           if [ -z "$SECONDARY_REPO" ]; then
-            echo "ℹ️ DR_SECONDARY_REPO not set — using fallback deepakGoyal1356/Vyomaraj-Agent"
-            echo "SECONDARY_REPO_FALLBACK=deepakGoyal1356/Vyomaraj-Agent" >> $GITHUB_ENV
+            echo "ℹ️ DR_SECONDARY_REPO not set — using fallback deepakGoyal1356/Vyomaraj-Agent-6d64e"
+            echo "SECONDARY_REPO_FALLBACK=deepakGoyal1356/Vyomaraj-Agent-6d64e" >> $GITHUB_ENV
           else
             echo "SECONDARY_REPO_FALLBACK=$SECONDARY_REPO" >> $GITHUB_ENV
           fi
@@ -42,7 +42,7 @@ jobs:
             echo "DR_PENDING=false" >> $GITHUB_ENV
           else
             echo "⚠️ No DR token — DR_SECONDARY_TOKEN and VYOMARAJ_PAT both missing"
-            echo "Owner action: Settings → Secrets → Actions → DR_SECONDARY_REPO=deepakGoyal1356/Vyomaraj-Agent and DR_SECONDARY_TOKEN=PAT classic repo scope OR VYOMARAJ_PAT"
+            echo "Owner action: Settings → Secrets → Actions → DR_SECONDARY_REPO=deepakGoyal1356/Vyomaraj-Agent-6d64e and DR_SECONDARY_TOKEN=PAT classic repo scope OR VYOMARAJ_PAT"
             echo "Primary is still live at https://Vyomaraj1356.github.io/Vyomarajai/?v=151 — DR will sync once secrets set"
             echo "Secondary remains unverified until a token-backed workflow push and ref check succeeds"
             echo "DR_PENDING=true" >> $GITHUB_ENV
@@ -66,7 +66,7 @@ jobs:
           # Use env vars set via GITHUB_ENV from previous step plus secrets fallback
           REPO="${SECONDARY_REPO_FALLBACK:-}"
           if [ -z "$REPO" ]; then REPO="${SECONDARY_REPO:-}"; fi
-          if [ -z "$REPO" ]; then REPO="deepakGoyal1356/Vyomaraj-Agent"; fi
+          if [ -z "$REPO" ]; then REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"; fi
           TOKEN="${TOKEN_TO_USE:-}"
           if [ -z "$TOKEN" ]; then TOKEN="${SECONDARY_TOKEN:-}"; fi
           if [ -z "$TOKEN" ]; then TOKEN="${VYOMARAJ_PAT:-}"; fi
