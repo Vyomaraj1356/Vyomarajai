@@ -5,6 +5,10 @@
 **APK:** https://Vyomaraj1356.github.io/Vyomarajai/Vyomaraj-App.apk  
 **Landing:** https://Vyomaraj1356.github.io/Vyomarajai/landing.html
 
+> **Current handover — 1 October 2026:** V16.7.24 / build 194. The owner-supplied 13-category hierarchy and separate session supplement are in `Vyomaraj-Handover-V16.7.24-v194.zip`. This README's V5 feature descriptions below are historical text, not verification that those features, integrations, security controls, or legal compliance are live.
+>
+> Current release review branch: `arena/01a0f634-vyomarajai`. The 34-chat archive remains separately scoped to V15.0–V16.7.22. Do not deploy the current branch by pushing directly to `main`; use an approved pull request.
+
 Vyomaraj V5 — Shani Dev Blue #0a1628 background (Shani justice, depth, calm) + Kuber Golden #f59e0b engraved headings (Kuber wealth, prosperity, highlighted) — Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Full Agents/Sub-Agents/Sub-Sub-Agents Hierarchy Aligned Before Primary/Secondary Real-Time Sync — Voice/Audio + Face Features (Narrator + AI Generative) for Vyomaraj and Vyomaraj Cinema intact from early sessions — Family Voices Scalable Add/Modify/Remove for market deployment — Jarvis voice name set later — All Contents — All Links Preserved — Heartbeats LIVE — Nothing Lost.
 
 ## 👑 Owner Configuration
@@ -101,16 +105,16 @@ Vyomaraj V5 — Shani Dev Blue #0a1628 background (Shani justice, depth, calm) +
 | Links & Hyperlinks | All missing links from previous sessions preserved — nothing lost — hyperlinks available — Global: https://Vyomaraj1356.github.io/Vyomarajai/, /Vyomaraj-App.apk, /landing.html, /health, /api/governance, /api/food, /api/agents, /api/sync/status, /api/sync/trigger, /api/chat, /api/language, /api/hermes/secure, /api/vyomaraj/best, /api/banks, /api/finance, Web Speech API, WebCrypto E2E, Face API, Narrator, AI Generative, Local: https://3000-*.e2b.app, https://8080-*.e2b.app, https://5173-*.e2b.app/Vyomaraj-Agent/, dynamic host detection, Social: facebook.com/Vyomarajai, instagram.com/vyomarajai, t.me/vyomarajai, YouTube Sovereign, Food Channel — All preserved — Shani Blue + Kuber Gold engraved — Owner Primary Locked Vyomarajai@gmail.com — Family scalable — Cinema intact |
 | Best Preview | Best preview — this page — V5 — Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Shani Dev Blue #0a1628 background + Kuber Golden #f59e0b Engraved — Full Agents Hierarchy — Config & Specs — Family Voices Scalable — Cinema Face/Narrator — Primary/Secondary Sync — All Contents — Heartbeats LIVE — Nothing Lost — 121,623 bytes — LIVE PREVIEW port 3000 — Live site https://Vyomaraj1356.github.io/Vyomarajai/ |
 
-## 🚀 Deploy
+## 🚀 Review and deployment
 
-GitHub Pages serves from `main` branch root. Push `index.html` — Pages rebuilds in ~1 min.
+The current V16.7.24 release is on `arena/01a0f634-vyomarajai` for review. GitHub Pages is configured from `main`; this Arena session must not push directly to `main`. To review the current release from a clean clone:
 
 ```bash
-git clone https://github.com/Vyomaraj1356/Vyomarajai.git
-git add index.html README.md
-git commit -m "Deploy Vyomaraj V5 — Owner Primary Locked Vyomarajai@gmail.com — Full Hierarchy + Config & Specs"
-git push origin main
+git clone --branch arena/01a0f634-vyomarajai --single-branch https://github.com/Vyomaraj1356/Vyomarajai.git
+cd Vyomarajai
 ```
+
+Publish to GitHub Pages only after an authorized reviewer approves and merges a pull request from `arena/01a0f634-vyomarajai` to `main`. The current branch push does not itself deploy Pages. WhatsApp, public-URL, AI-provider, and secondary-replication integrations remain unverified; see `ops/vyomaraj-core/handover/CURRENT_SESSION_HANDOVER_2026_10_01.md` before making launch or compliance claims.
 
 ## 📦 APK
 
