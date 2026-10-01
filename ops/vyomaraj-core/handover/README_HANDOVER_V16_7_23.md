@@ -21,5 +21,5 @@ The v193 ZIP contains the current `index.html`, `README.md`, `.github/`, and `op
 - Confirm every historical path in the manifest exists and its byte count and rounded label match.
 - Confirm all 25 historical ZIPs pass `ZipFile.testzip()`.
 - Confirm the v193 archive opens and includes the current page and handover manifest.
-- On an Arena-ref run, the sync workflow pushes only that exact branch to PRIMARY and SECONDARY, verifies each remote SHA, refuses force updates, and skips DR-to-main failover logic.
+- On an Arena-ref run, this session pushes only the fixed branch to PRIMARY; the workflow verifies that ref, non-force pushes the same branch to SECONDARY, verifies its SHA, and skips DR-to-main failover logic.
 - This release does not publish GitHub Pages or alter `main`; the Arena preview is the review target.

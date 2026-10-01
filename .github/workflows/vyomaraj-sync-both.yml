@@ -1,4 +1,4 @@
-name: "Vyomaraj Sync V15.1 PRIMARY (Vyomaraj1356/Vyomarajai) to SECONDARY (deepakGoyal1356/Vyomaraj-Agent) Hourly BOTH ?v=151 678 LIVE"
+name: "Vyomaraj Scoped PRIMARY + SECONDARY Branch Sync"
 
 on:
   push:
@@ -38,7 +38,7 @@ jobs:
 
       - name: Detect Primary DR and Real-time Sync V15.1
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT || secrets.DR_SECONDARY_TOKEN }}
           PRIMARY_REPO: Vyomaraj1356/Vyomarajai
           DR_REPO_PRIMARY: deepakGoyal1356/Vyomaraj-Agent
           DR_REPO_FALLBACK: Vyomaraj1356/Vyomarajai
@@ -84,52 +84,44 @@ jobs:
           fi
           echo "Primary: $PRIMARY_TRY (origin) — V15.1 868K ?v=151"
 
-      - name: "Push to PRIMARY plus SECONDARY Hourly Sync BOTH V15.1"
+      - name: "Verify PRIMARY and push scoped branch to SECONDARY"
         if: env.DR_PENDING == 'false'
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT || secrets.DR_SECONDARY_TOKEN }}
         run: |
           set -e
-          source $GITHUB_ENV || true
+          source "$GITHUB_ENV" || true
           DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent}"
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
-          echo "📌 Pushing to BOTH as owner requested every 1h sync both V15.1 ?v=151"
-          echo "   PRIMARY Public: $PRIMARY_REPO"
-          echo "   SECONDARY Private: $DR_REPO"
-          if ! git remote get-url primary >/dev/null 2>&1; then
-            git remote add primary "https://x-access-token:${VYOMARAJ_PAT}@github.com/${PRIMARY_REPO}.git"
+          CUR_BRANCH="${GITHUB_REF#refs/heads/}"
+          EXPECTED_SHA=$(git rev-parse HEAD)
+          echo "Scoped sync: $CUR_BRANCH only — main and sibling branches are untouched."
+          echo "PRIMARY $PRIMARY_REPO receives this commit through the explicit Arena branch push. Verifying origin ref."
+          PRIMARY_SHA=$(git ls-remote origin "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}') || PRIMARY_SHA=""
+          PRIMARY_PUSH_OK=false
+          if [ "$PRIMARY_SHA" = "$EXPECTED_SHA" ]; then
+            PRIMARY_PUSH_OK=true
+            echo "✅ PRIMARY verified at $PRIMARY_SHA"
           else
-            git remote set-url primary "https://x-access-token:${VYOMARAJ_PAT}@github.com/${PRIMARY_REPO}.git"
+            echo "❌ PRIMARY ref mismatch: expected $EXPECTED_SHA, got ${PRIMARY_SHA:-missing}"
           fi
           if ! git remote get-url dr >/dev/null 2>&1; then
             git remote add dr "https://x-access-token:${VYOMARAJ_PAT}@github.com/${DR_REPO}.git"
           else
             git remote set-url dr "https://x-access-token:${VYOMARAJ_PAT}@github.com/${DR_REPO}.git"
           fi
-          CUR_BRANCH="${GITHUB_REF#refs/heads/}"
-          echo "Scoped sync: current branch only — $CUR_BRANCH to PRIMARY and SECONDARY. No main or sibling branch writes."
-          EXPECTED_SHA=$(git rev-parse HEAD)
-          echo "→ Pushing to PRIMARY $PRIMARY_REPO branch $CUR_BRANCH"
-          PRIMARY_PUSH_OK=true
-          if ! git push primary "HEAD:refs/heads/${CUR_BRANCH}"; then
-            PRIMARY_PUSH_OK=false
-            echo "❌ PRIMARY push failed; refusing to force-update a divergent branch."
-          fi
-          echo "→ Pushing to SECONDARY $DR_REPO branch $CUR_BRANCH"
+          echo "Pushing only $CUR_BRANCH to SECONDARY $DR_REPO (non-forced)."
           SECONDARY_PUSH_OK=true
           if ! git push dr "HEAD:refs/heads/${CUR_BRANCH}"; then
             SECONDARY_PUSH_OK=false
             echo "❌ SECONDARY push failed; refusing to force-update a divergent branch."
           fi
-          PRIMARY_SHA=$(git ls-remote primary "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}') || PRIMARY_SHA=""
           SECONDARY_SHA=$(git ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}') || SECONDARY_SHA=""
-          if [ "$PRIMARY_SHA" != "$EXPECTED_SHA" ]; then
-            PRIMARY_PUSH_OK=false
-            echo "❌ PRIMARY ref verification failed: expected $EXPECTED_SHA, got ${PRIMARY_SHA:-missing}"
-          fi
           if [ "$SECONDARY_SHA" != "$EXPECTED_SHA" ]; then
             SECONDARY_PUSH_OK=false
             echo "❌ SECONDARY ref verification failed: expected $EXPECTED_SHA, got ${SECONDARY_SHA:-missing}"
+          else
+            echo "✅ SECONDARY verified at $SECONDARY_SHA"
           fi
           if [ "$PRIMARY_PUSH_OK" != "true" ] || [ "$SECONDARY_PUSH_OK" != "true" ]; then
             echo "❌ Scoped branch sync incomplete; see push and ref-verification results above."
@@ -141,7 +133,7 @@ jobs:
         # Never switch or write main while syncing a session branch.
         if: env.DR_PENDING == 'false' && github.ref == 'refs/heads/main'
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT || secrets.DR_SECONDARY_TOKEN }}
         run: |
           set -e
           source $GITHUB_ENV || true
