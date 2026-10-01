@@ -102,12 +102,22 @@ jobs:
           fi
           echo "✅ PRIMARY verified at $PRIMARY_SHA"
           echo "::add-mask::$DR_AUTH_TOKEN"
-          git config --local credential.helper '!f() { test "$1" = get && echo username=x-access-token && echo password="$DR_AUTH_TOKEN"; }; f'
+          # Use Git's HTTP Authorization header directly. The API credential test above
+          # proves the token can see the private DR repo; this avoids credential-helper
+          # differences between runner Git versions.
+          BASIC_AUTH="$(printf 'x-access-token:%s' "$DR_AUTH_TOKEN" | base64 -w0)"
+          AUTH_HEADER="AUTHORIZATION: Basic $BASIC_AUTH"
           git remote remove dr 2>/dev/null || true
           git remote add dr "https://github.com/${DR_REPO}.git"
+          echo "Testing Git transport access to SECONDARY before push."
+          if ! git -c http.extraheader="$AUTH_HEADER" ls-remote dr HEAD >/dev/null; then
+            echo "❌ Git transport authentication to SECONDARY failed even though GitHub API access succeeded."
+            exit 1
+          fi
+          echo "✅ Git transport access to SECONDARY confirmed."
           echo "Pushing only $CUR_BRANCH to SECONDARY $DR_REPO (non-forced)."
-          git push dr "HEAD:refs/heads/${CUR_BRANCH}"
-          SECONDARY_SHA="$(git ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}' || true)"
+          git -c http.extraheader="$AUTH_HEADER" push dr "HEAD:refs/heads/${CUR_BRANCH}"
+          SECONDARY_SHA="$(git -c http.extraheader="$AUTH_HEADER" ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}' || true)"
           if [ "$SECONDARY_SHA" != "$EXPECTED_SHA" ]; then
             echo "❌ SECONDARY verification failed: expected $EXPECTED_SHA, got ${SECONDARY_SHA:-missing}"
             exit 1
