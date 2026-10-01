@@ -1,4 +1,5 @@
 name: "Vyomaraj Scoped PRIMARY + SECONDARY Branch Sync"
+# DR transport authentication fix active
 
 on:
   push:
