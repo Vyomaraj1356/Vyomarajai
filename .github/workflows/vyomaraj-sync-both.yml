@@ -107,29 +107,39 @@ jobs:
             git remote set-url dr "https://x-access-token:${VYOMARAJ_PAT}@github.com/${DR_REPO}.git"
           fi
           CUR_BRANCH="${GITHUB_REF#refs/heads/}"
-          echo "Pushing $CUR_BRANCH to primary/$CUR_BRANCH AND dr/$CUR_BRANCH V15.1 force-with-lease"
-          git fetch primary "$CUR_BRANCH" 2>&1 | head -n 20 || echo "PRIMARY branch $CUR_BRANCH not yet exists — will create"
-          git fetch dr "$CUR_BRANCH" 2>&1 | head -n 20 || echo "SECONDARY branch $CUR_BRANCH not yet exists — will create"
-          echo "→ Pushing to PRIMARY $PRIMARY_REPO V15.1"
-          git push primary "HEAD:refs/heads/${CUR_BRANCH}" --force-with-lease 2>&1 | tail -n 20 || git push primary "HEAD:refs/heads/${CUR_BRANCH}" 2>&1 | tail -n 20 || echo "⚠️ PRIMARY push failed — check PAT repo scope"
-          echo "→ Pushing to SECONDARY $DR_REPO V15.1"
-          git push dr "HEAD:refs/heads/${CUR_BRANCH}" --force-with-lease 2>&1 | tail -n 20 || git push dr "HEAD:refs/heads/${CUR_BRANCH}" 2>&1 | tail -n 20 || echo "⚠️ SECONDARY push failed — check PAT repo scope"
-          if [ "$CUR_BRANCH" != "main" ]; then
-            echo "Also syncing main to BOTH for failover hourly V15.1"
-            git fetch origin main:refs/heads/main 2>&1 | head -n 5 || git fetch origin main 2>&1 | head -n 5 || true
-            git push primary refs/heads/main:refs/heads/main --force-with-lease 2>&1 | tail -n 5 || git push primary refs/heads/main:refs/heads/main 2>&1 | tail -n 5 || echo "main sync to PRIMARY failed — retry next hour"
-            git push dr refs/heads/main:refs/heads/main --force-with-lease 2>&1 | tail -n 5 || git push dr refs/heads/main:refs/heads/main 2>&1 | tail -n 5 || echo "main sync to SECONDARY failed — retry next hour"
+          echo "Scoped sync: current branch only — $CUR_BRANCH to PRIMARY and SECONDARY. No main or sibling branch writes."
+          EXPECTED_SHA=$(git rev-parse HEAD)
+          echo "→ Pushing to PRIMARY $PRIMARY_REPO branch $CUR_BRANCH"
+          PRIMARY_PUSH_OK=true
+          if ! git push primary "HEAD:refs/heads/${CUR_BRANCH}"; then
+            PRIMARY_PUSH_OK=false
+            echo "❌ PRIMARY push failed; refusing to force-update a divergent branch."
           fi
-          echo "Syncing all arena branches to BOTH for full parity hourly V15.1"
-          for br in $(git for-each-ref --format='%(refname:short)' refs/heads/arena/* 2>/dev/null | head -n 20); do
-            echo "Pushing $br to primary/$br + dr/$br V15.1"
-            git push primary "refs/heads/$br:refs/heads/$br" --force-with-lease 2>&1 | tail -n 5 || git push primary "refs/heads/$br:refs/heads/$br" 2>&1 | tail -n 5 || true
-            git push dr "refs/heads/$br:refs/heads/$br" --force-with-lease 2>&1 | tail -n 5 || git push dr "refs/heads/$br:refs/heads/$br" 2>&1 | tail -n 5 || true
-          done
-          echo "✅ BOTH repos synced V15.1 PRIMARY + SECONDARY hourly as requested no data loss"
+          echo "→ Pushing to SECONDARY $DR_REPO branch $CUR_BRANCH"
+          SECONDARY_PUSH_OK=true
+          if ! git push dr "HEAD:refs/heads/${CUR_BRANCH}"; then
+            SECONDARY_PUSH_OK=false
+            echo "❌ SECONDARY push failed; refusing to force-update a divergent branch."
+          fi
+          PRIMARY_SHA=$(git ls-remote primary "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}') || PRIMARY_SHA=""
+          SECONDARY_SHA=$(git ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}') || SECONDARY_SHA=""
+          if [ "$PRIMARY_SHA" != "$EXPECTED_SHA" ]; then
+            PRIMARY_PUSH_OK=false
+            echo "❌ PRIMARY ref verification failed: expected $EXPECTED_SHA, got ${PRIMARY_SHA:-missing}"
+          fi
+          if [ "$SECONDARY_SHA" != "$EXPECTED_SHA" ]; then
+            SECONDARY_PUSH_OK=false
+            echo "❌ SECONDARY ref verification failed: expected $EXPECTED_SHA, got ${SECONDARY_SHA:-missing}"
+          fi
+          if [ "$PRIMARY_PUSH_OK" != "true" ] || [ "$SECONDARY_PUSH_OK" != "true" ]; then
+            echo "❌ Scoped branch sync incomplete; see push and ref-verification results above."
+            exit 1
+          fi
+          echo "✅ Current branch $CUR_BRANCH verified at $EXPECTED_SHA on PRIMARY and SECONDARY. No main or sibling branch was changed."
 
       - name: Pull from DR if Primary is behind Bidirectional DR to Primary failover V15.1
-        if: env.DR_PENDING == 'false'
+        # Never switch or write main while syncing a session branch.
+        if: env.DR_PENDING == 'false' && github.ref == 'refs/heads/main'
         env:
           VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
         run: |
@@ -232,25 +242,26 @@ jobs:
             ls -lh .vyomaraj-dr-heartbeat.log
           fi
 
-      - name: Update DR Web URL plus App Parity Marker V15.1
+      - name: Report scoped branch targets
         run: |
-          echo "🌐 Web URL + App DR parity V15.1 $(date -u) $(git rev-parse --short HEAD) ?v=151"
-          echo "Primary URL: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
-          echo "Secondary URL: https://deepakGoyal1356.github.io/Vyomaraj-Agent/?v=151"
-          echo "Custom: https://vyomaraj.network if DNS set primary DR is Pages fallback"
-          echo "V15.1 868K index 678 LIVE 694 total KNOWLEDGE_VS_ENTERTAINMENT VYOMARAJ_JARVIS_TALK SHIV_KE_SATHI detailed"
-          ls -lh index.html 2>&1 | head -n 5
-          grep -c "V15.1" index.html || true
-          grep -c "?v=151" index.html || true
+          echo "Branch: ${GITHUB_REF_NAME}"
+          echo "Commit: $(git rev-parse HEAD)"
+          echo "Primary target: Vyomaraj1356/Vyomarajai:${GITHUB_REF_NAME}"
+          echo "Secondary target: deepakGoyal1356/Vyomaraj-Agent:${GITHUB_REF_NAME}"
+          echo "This run does not publish GitHub Pages or alter main/sibling branches."
+          ls -lh index.html
 
-      - name: Summary PRIMARY plus SECONDARY Synced Hourly V15.1
+      - name: Report PRIMARY + SECONDARY branch sync status
         run: |
-          echo "### Vyomaraj Sync V15.1 ✅ PRIMARY + SECONDARY — Hourly BOTH — No Data Loss ?v=151" >> $GITHUB_STEP_SUMMARY
-          echo "- PRIMARY: Vyomaraj1356/Vyomarajai Public PRIMARY as per owner 2026-09-27 — https://github.com/Vyomaraj1356/Vyomarajai — always UP — https://Vyomaraj1356.github.io/Vyomarajai/?v=151" >> $GITHUB_STEP_SUMMARY
-          echo "- SECONDARY: deepakGoyal1356/Vyomaraj-Agent Private SECONDARY DR — https://github.com/deepakGoyal1356/Vyomaraj-Agent — always synced — https://deepakGoyal1356.github.io/Vyomaraj-Agent/" >> $GITHUB_STEP_SUMMARY
-          echo "- Sync: Hourly BOTH as requested — every 1h + 30m heartbeat + real-time on push — Primary to Secondary bidirectional, no data loss — V15.1 ?v=151 678 LIVE" >> $GITHUB_STEP_SUMMARY
-          echo "- Web URL: PRIMARY https://vyomaraj1356.github.io/Vyomarajai/?v=151 + SECONDARY https://deepakgoyal1356.github.io/Vyomaraj-Agent/ + vyomaraj.network — client fails over in 3s if primary down" >> $GITHUB_STEP_SUMMARY
-          echo "- App: Android MainActivity tries primary URL then secondary URL 3s timeout — immediate activation, no business loss — V15.1" >> $GITHUB_STEP_SUMMARY
-          echo "- Data: Git history + DB + localStorage — replicated to BOTH, no loss — V15.1 SHIV_KE_SATHI detailed culture religious importance" >> $GITHUB_STEP_SUMMARY
-          echo "- DR resilience: 0.00 loss fraction-seconds sync — fencing traffic switch idempotent — web URL app parity DR fallback — workspace re-clone 404 resilience" >> $GITHUB_STEP_SUMMARY
-          echo "- V15.1 Features: KNOWLEDGE_VS_ENTERTAINMENT purple #a855f7 VYOMARAJ_JARVIS_TALK cyan #22d3ee ALL_INDIAN_GODS green #22c55e SHIV_KE_SATHI orange #f59e0b detailed" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "### Vyomaraj scoped branch sync"
+            echo "- Ref: \`${GITHUB_REF_NAME}\`"
+            echo "- Commit: \`$(git rev-parse HEAD)\`"
+            if [ "${DR_PENDING:-true}" = "false" ]; then
+              echo "- Status: push and remote-ref verification completed for both targets."
+            else
+              echo "- Status: pending — VYOMARAJ_GH_PAT secret is not available to this run."
+            fi
+            echo "- Scope: this branch only; main and sibling branches are not modified."
+            echo "- Preview: use the Arena preview for this branch; GitHub Pages is not changed by this run."
+          } >> "$GITHUB_STEP_SUMMARY"
