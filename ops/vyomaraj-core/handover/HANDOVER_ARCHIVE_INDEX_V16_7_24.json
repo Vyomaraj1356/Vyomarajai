@@ -250,5 +250,15 @@
   ],
   "contains_historical_34_chat_zip": false,
   "historical_34_chat_zip_location": "separate repository-root download; unchanged",
-  "current_archive_size_label": "31K"
+  "current_archive_size_label": "32K",
+  "replication_snapshot": {
+    "primary_branch": "arena/01a0f634-vyomarajai",
+    "primary_commit": "23bcbaedbd8146a8048c6951fb5b4030dd1b4ae2",
+    "primary_ref_verified": true,
+    "secondary_workflow_run": "36830666341",
+    "secondary_workflow_conclusion": "failure",
+    "secondary_ref_verified": false,
+    "earlier_failed_run": "36828380727",
+    "note": "Actions logs could not be retrieved due to an EOF response; no exact push failure reason is inferred."
+  }
 }

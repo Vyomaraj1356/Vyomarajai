@@ -37,10 +37,15 @@
       "key_present": false
     },
     "secondary_replication": {
-      "status": "unverified_failed_previous_run",
-      "last_known_failed_workflow_run": "36828380727",
+      "status": "push_step_failed_secondary_unverified",
+      "last_known_failed_workflow_run": "36830666341",
       "secondary_ref_verified": false,
-      "next_step": "After a push to the fixed session branch, inspect the corresponding Actions run and verify the secondary branch/ref independently."
+      "next_step": "Owner must ensure a valid authorized secret/access to the secondary and the correct branch mapping; then rerun and verify the secondary branch ref equals the pushed SHA. Do not infer success from a workflow job alone.",
+      "last_known_failed_workflow_run_url": "https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36830666341",
+      "failed_step": "Verify PRIMARY and push scoped branch to SECONDARY",
+      "previous_failed_workflow_run": "36828380727",
+      "direct_api_check": "GitHub API for deepakGoyal1356/Vyomaraj-Agent returned 404 to the current Arena connection; private/unavailable, not independently verified.",
+      "log_retrieval": "GitHub Actions results endpoint returned EOF while retrieving logs; the exact secondary push error is unknown."
     }
   },
   "credential_handling": "No credentials or token values are included in this file. Configure secrets only in authorized secret storage.",
@@ -49,5 +54,12 @@
     "status": "failure_and_pending_messages_corrected_to_avoid_claiming_secondary_success_without_ref_verification",
     "replication_behavior_changed": false,
     "workflow_run_performed_by_this_edit": false
+  },
+  "primary_branch_update": {
+    "branch": "arena/01a0f634-vyomarajai",
+    "commit": "23bcbaedbd8146a8048c6951fb5b4030dd1b4ae2",
+    "push": "succeeded",
+    "origin_ref_matches_head": true,
+    "verified_by": "git ls-remote origin refs/heads/arena/01a0f634-vyomarajai"
   }
 }
