@@ -16,41 +16,32 @@ jobs:
   replicate:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify configuration (DR Activation Check V15.1 ?v=151 678 LIVE)
+      - name: Verify configuration and select working DR credential
         env:
-          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
-          SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
           VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT }}
+          DR_SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
         run: |
           set -Eeuo pipefail
-          echo "V15.1 Final Market Ready — Enhanced All Contents — ?v=151 678 LIVE 694 total — DR Replication"
-          # Fallback logic for resilience — use VYOMARAJ_PAT if DR_SECONDARY_TOKEN not set
-          # This handles private-404 resilience; it does not establish that the secondary ref has been synced
-          if [ -z "$SECONDARY_REPO" ]; then
-            echo "ℹ️ DR_SECONDARY_REPO not set — using fallback deepakGoyal1356/Vyomaraj-Agent-6d64e"
-            echo "SECONDARY_REPO_FALLBACK=deepakGoyal1356/Vyomaraj-Agent-6d64e" >> $GITHUB_ENV
-          else
-            echo "SECONDARY_REPO_FALLBACK=$SECONDARY_REPO" >> $GITHUB_ENV
-          fi
-          if [ -n "$SECONDARY_TOKEN" ]; then
-            echo "✅ DR_SECONDARY_TOKEN present — will use for mirror"
-            echo "TOKEN_TO_USE=$SECONDARY_TOKEN" >> $GITHUB_ENV
-            echo "DR_PENDING=false" >> $GITHUB_ENV
-          elif [ -n "$VYOMARAJ_PAT" ]; then
-            echo "✅ VYOMARAJ_PAT present — using as fallback for DR replication (resilience)"
-            echo "TOKEN_TO_USE=$VYOMARAJ_PAT" >> $GITHUB_ENV
-            echo "DR_PENDING=false" >> $GITHUB_ENV
-          else
-            echo "⚠️ No DR token — DR_SECONDARY_TOKEN and VYOMARAJ_PAT both missing"
-            echo "Owner action: Settings → Secrets → Actions → DR_SECONDARY_REPO=deepakGoyal1356/Vyomaraj-Agent-6d64e and DR_SECONDARY_TOKEN=PAT classic repo scope OR VYOMARAJ_PAT"
-            echo "Primary is still live at https://Vyomaraj1356.github.io/Vyomarajai/?v=151 — DR will sync once secrets set"
-            echo "Secondary remains unverified until a token-backed workflow push and ref check succeeds"
-            echo "DR_PENDING=true" >> $GITHUB_ENV
-            exit 0
-          fi
-          echo "✅ DR secrets present — will mirror — V15.1 ?v=151"
-          ls -lh index.html || true
-
+          REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"
+          test_token() {
+            local label="$1" token="$2"
+            [ -n "$token" ] || { echo "ℹ️ $label is not configured."; return 2; }
+            echo "::add-mask::$token"
+            code="$(curl -sS -o /tmp/dr-auth.json -w "%{http_code}" -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $token" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/$REPO")"
+            case "$code" in
+              200) echo "✅ $label can access $REPO."; printf "TOKEN_TO_USE=%s\n" "$token" >> "$GITHUB_ENV"; echo "SECONDARY_REPO_FALLBACK=$REPO" >> "$GITHUB_ENV"; echo "DR_PENDING=false" >> "$GITHUB_ENV"; return 0 ;;
+              401) echo "❌ $label rejected (HTTP 401: invalid/revoked token)." ;;
+              403) echo "❌ $label forbidden (HTTP 403: permission/policy issue)." ;;
+              404) echo "❌ $label cannot access $REPO (HTTP 404: repository access/authorization issue)." ;;
+              *) echo "❌ $label returned HTTP $code." ;;
+            esac
+            return 1
+          }
+          if test_token "VYOMARAJ_PAT" "$VYOMARAJ_PAT"; then exit 0; fi
+          if test_token "DR_SECONDARY_TOKEN" "$DR_SECONDARY_TOKEN"; then exit 0; fi
+          echo "❌ No configured credential can access the private DR repository."
+          echo "DR_PENDING=true" >> "$GITHUB_ENV"
+          exit 1
       - name: Mirror every Git ref to the DR repository (V15.1 Primary to Secondary Sync ?v=151)
         if: env.DR_PENDING != 'true'
         env:
@@ -62,7 +53,7 @@ jobs:
           set +u
           echo "🔁 Mirroring PRIMARY Vyomaraj1356/Vyomarajai → SECONDARY — V15.1 ?v=151 678 LIVE — resilience mode never fails"
           echo "Primary health: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
-          echo "Secondary health: https://deepakGoyal1356.github.io/Vyomaraj-Agent/"
+          echo "Secondary health: https://deepakGoyal1356.github.io/Vyomaraj-Agent-6d64e/"
           # Use env vars set via GITHUB_ENV from previous step plus secrets fallback
           REPO="${SECONDARY_REPO_FALLBACK:-}"
           if [ -z "$REPO" ]; then REPO="${SECONDARY_REPO:-}"; fi
@@ -81,7 +72,7 @@ jobs:
           cd primary-mirror.git
           git remote set-url --push origin "https://x-access-token:${TOKEN}@github.com/${REPO}.git"
           echo "Pushing mirror to $REPO — V15.1 ?v=151"
-          git push --mirror --force origin 2>&1 | tail -n 30
+          git push --mirror origin 2>&1 | tail -n 30
           PUSH_EXIT=${PIPESTATUS[0]:-0}
           if [ "$PUSH_EXIT" -eq 0 ]; then
             echo "✅ Mirror push command completed; independently verify the expected secondary refs before claiming sync"
