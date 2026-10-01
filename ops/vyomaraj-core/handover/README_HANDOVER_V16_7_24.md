@@ -6,7 +6,7 @@
 
 ## Contents
 
-- `index.html` — current owner hierarchy, count table, partial named rosters, separate readiness figures, legal/safety section, integration status, and download links.
+- `index.html` — current owner hierarchy, count table, partial named rosters, separate readiness figures, legal/safety section, integration status, and download links, including PR #1 review status.
 - `.github/workflows/dr-replication.yml` — status messages corrected to avoid asserting secondary success after a skipped/failed/unverified run; replication behavior was not executed.
 - `ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json` — canonical owner-supplied category counts and partial child roster.
 - `ops/vyomaraj-core/handover/LAW_RESEARCH_AND_CONTENT_SAFETY_V16_7_24.md` — initial official-source jurisdiction map and legal-review checklist.
@@ -22,6 +22,10 @@
 - The 34-chat ZIP remains a separate, byte-for-byte historical archive with exactly its three existing members, no duplicates, V15.0–V16.7.22 scope, commit references `e3bbe2b` and `3a59454`, and Image 1 session labels. The current 2026-10-01 session is a separate supplement and is not inserted into that archive.
 - Unspecified sub-agent/product names and the unidentified PLATFORM slot remain unspecified. The 394/12/52/5 readiness figures are not reconciled to 421 by guess.
 - The current public `index.html` does not republish bank account identifiers or unverified financial totals. Historical files were not rewritten as part of the 34-chat archive.
+
+## Deployment status
+
+GitHub Pages is configured from `main` at `/`. Pull request [#1](https://github.com/Vyomaraj1356/Vyomarajai/pull/1) is open from the fixed Arena branch and is not merged. The package is not yet live on GitHub Pages.
 
 ## Not certified by this package
 

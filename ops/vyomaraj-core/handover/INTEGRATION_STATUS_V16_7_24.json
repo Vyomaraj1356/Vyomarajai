@@ -60,6 +60,32 @@
     "commit": "23bcbaedbd8146a8048c6951fb5b4030dd1b4ae2",
     "push": "succeeded",
     "origin_ref_matches_head": true,
-    "verified_by": "git ls-remote origin refs/heads/arena/01a0f634-vyomarajai"
+    "verified_by": "git ls-remote origin refs/heads/arena/01a0f634-vyomarajai",
+    "current_branch_tip_before_final_handover_update": "6a760e396ff76eb4eabd2425a58144b02dcbe91e"
+  },
+  "pull_request": {
+    "number": 1,
+    "url": "https://github.com/Vyomaraj1356/Vyomarajai/pull/1",
+    "base": "main",
+    "head": "arena/01a0f634-vyomarajai",
+    "state": "open",
+    "mergeability_at_last_check": "mergeable; clean",
+    "merged": false,
+    "checks": "no checks reported at last check"
+  },
+  "github_pages": {
+    "configured": true,
+    "source_branch": "main",
+    "source_path": "/",
+    "url": "https://vyomaraj1356.github.io/Vyomarajai/",
+    "v194_deployed": false,
+    "deployment_gate": "PR #1 must be reviewed and merged"
+  },
+  "actions_secret_metadata_access": {
+    "status": "unavailable_to_current_integration",
+    "attempt": "gh secret list --repo Vyomaraj1356/Vyomarajai",
+    "result": "HTTP 403 Resource not accessible by integration",
+    "secret_values_read": false,
+    "next_step": "Reconnect/reauthorize GitHub in Arena with repository Actions permission, or have the owner configure secrets in repository settings. Do not share tokens in chat."
   }
 }

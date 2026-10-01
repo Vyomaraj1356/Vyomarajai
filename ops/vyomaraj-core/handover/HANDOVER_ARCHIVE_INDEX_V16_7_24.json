@@ -250,7 +250,7 @@
   ],
   "contains_historical_34_chat_zip": false,
   "historical_34_chat_zip_location": "separate repository-root download; unchanged",
-  "current_archive_size_label": "32K",
+  "current_archive_size_label": "33K",
   "replication_snapshot": {
     "primary_branch": "arena/01a0f634-vyomarajai",
     "primary_commit": "23bcbaedbd8146a8048c6951fb5b4030dd1b4ae2",
@@ -260,5 +260,14 @@
     "secondary_ref_verified": false,
     "earlier_failed_run": "36828380727",
     "note": "Actions logs could not be retrieved due to an EOF response; no exact push failure reason is inferred."
-  }
+  },
+  "deployment_snapshot": {
+    "github_pages_url": "https://vyomaraj1356.github.io/Vyomarajai/",
+    "configured_source_branch": "main",
+    "configured_source_path": "/",
+    "pull_request": 1,
+    "pull_request_state": "open",
+    "v194_deployed": false
+  },
+  "latest_review_branch_tip_before_this_archive_update": "6a760e396ff76eb4eabd2425a58144b02dcbe91e"
 }
