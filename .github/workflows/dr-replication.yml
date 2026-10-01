@@ -20,11 +20,11 @@ jobs:
         env:
           SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
           SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT }}
         run: |
           set -Eeuo pipefail
           echo "V15.1 Final Market Ready — Enhanced All Contents — ?v=151 678 LIVE 694 total — DR Replication"
-          # Fallback logic for resilience — use VYOMARAJ_GH_PAT if DR_SECONDARY_TOKEN not set
+          # Fallback logic for resilience — use VYOMARAJ_PAT if DR_SECONDARY_TOKEN not set
           # This handles private-404 resilience; it does not establish that the secondary ref has been synced
           if [ -z "$SECONDARY_REPO" ]; then
             echo "ℹ️ DR_SECONDARY_REPO not set — using fallback deepakGoyal1356/Vyomaraj-Agent"
@@ -37,12 +37,12 @@ jobs:
             echo "TOKEN_TO_USE=$SECONDARY_TOKEN" >> $GITHUB_ENV
             echo "DR_PENDING=false" >> $GITHUB_ENV
           elif [ -n "$VYOMARAJ_PAT" ]; then
-            echo "✅ VYOMARAJ_GH_PAT present — using as fallback for DR replication (resilience)"
+            echo "✅ VYOMARAJ_PAT present — using as fallback for DR replication (resilience)"
             echo "TOKEN_TO_USE=$VYOMARAJ_PAT" >> $GITHUB_ENV
             echo "DR_PENDING=false" >> $GITHUB_ENV
           else
-            echo "⚠️ No DR token — DR_SECONDARY_TOKEN and VYOMARAJ_GH_PAT both missing"
-            echo "Owner action: Settings → Secrets → Actions → DR_SECONDARY_REPO=deepakGoyal1356/Vyomaraj-Agent and DR_SECONDARY_TOKEN=PAT classic repo scope OR VYOMARAJ_GH_PAT"
+            echo "⚠️ No DR token — DR_SECONDARY_TOKEN and VYOMARAJ_PAT both missing"
+            echo "Owner action: Settings → Secrets → Actions → DR_SECONDARY_REPO=deepakGoyal1356/Vyomaraj-Agent and DR_SECONDARY_TOKEN=PAT classic repo scope OR VYOMARAJ_PAT"
             echo "Primary is still live at https://Vyomaraj1356.github.io/Vyomarajai/?v=151 — DR will sync once secrets set"
             echo "Secondary remains unverified until a token-backed workflow push and ref check succeeds"
             echo "DR_PENDING=true" >> $GITHUB_ENV
@@ -56,7 +56,7 @@ jobs:
         env:
           SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
           SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT }}
         run: |
           set +e
           set +u
