@@ -38,9 +38,9 @@ jobs:
 
       - name: Detect Primary DR and Real-time Sync V15.1
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT || secrets.DR_SECONDARY_TOKEN }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT || secrets.DR_SECONDARY_TOKEN }}
           PRIMARY_REPO: Vyomaraj1356/Vyomarajai
-          DR_REPO_PRIMARY: deepakGoyal1356/Vyomaraj-Agent
+          DR_REPO_PRIMARY: deepakGoyal1356/Vyomaraj-Agent-6d64e
           DR_REPO_FALLBACK: Vyomaraj1356/Vyomarajai
         run: |
           set -e
@@ -48,7 +48,7 @@ jobs:
           echo "Event: ${{ github.event_name }} Ref: ${{ github.ref_name }} SHA: ${{ github.sha }}"
           git remote -v
           echo "--- Primary DR detection V15.1 ---"
-          DR_REPO="deepakGoyal1356/Vyomaraj-Agent"
+          DR_REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"
           DR_URL="https://github.com/${DR_REPO}.git"
           PRIMARY_TRY="Vyomaraj1356/Vyomarajai"
           echo "Trying PRIMARY (owner primary): $PRIMARY_TRY"
@@ -67,7 +67,7 @@ jobs:
               echo "⚠️ SECONDARY $DR_REPO not reachable via PAT — will try push anyway"
             fi
           else
-            echo "ℹ️ VYOMARAJ_GH_PAT not set — SECONDARY private will return 404 to unauth check — expected — workspace re-clone resilience: skip unauth check"
+            echo "ℹ️ VYOMARAJ_PAT not set — SECONDARY private will return 404 to unauth check — expected — workspace re-clone resilience: skip unauth check"
             echo "ℹ️ Will rely on PAT push step — if PAT missing, DR_PENDING will queue"
           fi
           echo "DR_REPO=$DR_REPO" >> $GITHUB_ENV
@@ -75,8 +75,8 @@ jobs:
           echo "PRIMARY_REPO=$PRIMARY_TRY" >> $GITHUB_ENV
           echo "PRIMARY_URL=https://github.com/${PRIMARY_TRY}.git" >> $GITHUB_ENV
           if [ -z "$VYOMARAJ_PAT" ]; then
-            echo "⚠️ VYOMARAJ_GH_PAT not set — DR sync will be queued, not pushed yet"
-            echo "👉 Owner action: Create PAT classic repo scope for Vyomaraj1356 + deepakGoyal1356 → Settings → Secrets → Actions → VYOMARAJ_GH_PAT"
+            echo "⚠️ VYOMARAJ_PAT not set — DR sync will be queued, not pushed yet"
+            echo "👉 Owner action: Create PAT classic repo scope for Vyomaraj1356 + deepakGoyal1356 → Settings → Secrets → Actions → VYOMARAJ_PAT"
             echo "DR_PENDING=true" >> $GITHUB_ENV
           else
             echo "✅ PAT present — will push real-time V15.1 ?v=151"
@@ -87,11 +87,11 @@ jobs:
       - name: "Verify PRIMARY and push scoped branch to SECONDARY"
         if: env.DR_PENDING == 'false'
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT || secrets.DR_SECONDARY_TOKEN }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT || secrets.DR_SECONDARY_TOKEN }}
         run: |
           set -e
           source "$GITHUB_ENV" || true
-          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent}"
+          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
           CUR_BRANCH="${GITHUB_REF#refs/heads/}"
           EXPECTED_SHA=$(git rev-parse HEAD)
@@ -133,11 +133,11 @@ jobs:
         # Never switch or write main while syncing a session branch.
         if: env.DR_PENDING == 'false' && github.ref == 'refs/heads/main'
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT || secrets.DR_SECONDARY_TOKEN }}
+          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT || secrets.DR_SECONDARY_TOKEN }}
         run: |
           set -e
           source $GITHUB_ENV || true
-          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent}"
+          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
           echo "🔄 Checking if DR is ahead of Primary bidirectional sync for failover V15.1"
           git fetch dr main:refs/remotes/dr/main 2>&1 | head -n 10 || echo "No dr/main to fetch"
           if git rev-parse --verify refs/remotes/dr/main >/dev/null 2>&1; then
@@ -171,7 +171,7 @@ jobs:
           set -e
           source $GITHUB_ENV || true
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
-          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent}"
+          DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
           echo "💓 PRIMARY SECONDARY Heartbeat + Health Check V15.1 ?v=151 $(date -u) hourly sync both as requested"
           if git ls-remote "https://github.com/${PRIMARY_REPO}.git" HEAD >/dev/null 2>&1; then
             echo "✅ PRIMARY Public is UP — https://github.com/${PRIMARY_REPO}"
@@ -239,7 +239,7 @@ jobs:
           echo "Branch: ${GITHUB_REF_NAME}"
           echo "Commit: $(git rev-parse HEAD)"
           echo "Primary target: Vyomaraj1356/Vyomarajai:${GITHUB_REF_NAME}"
-          echo "Secondary target: deepakGoyal1356/Vyomaraj-Agent:${GITHUB_REF_NAME}"
+          echo "Secondary target: deepakGoyal1356/Vyomaraj-Agent-6d64e:${GITHUB_REF_NAME}"
           echo "This run does not publish GitHub Pages or alter main/sibling branches."
           ls -lh index.html
 
@@ -252,7 +252,7 @@ jobs:
             if [ "${DR_PENDING:-true}" = "false" ]; then
               echo "- Status: push and remote-ref verification completed for both targets."
             else
-              echo "- Status: pending — VYOMARAJ_GH_PAT secret is not available to this run."
+              echo "- Status: pending — VYOMARAJ_PAT secret is not available to this run."
             fi
             echo "- Scope: this branch only; main and sibling branches are not modified."
             echo "- Preview: use the Arena preview for this branch; GitHub Pages is not changed by this run."
