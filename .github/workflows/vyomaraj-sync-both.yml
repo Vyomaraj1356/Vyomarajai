@@ -88,6 +88,7 @@ jobs:
         if: env.DR_PENDING == 'false'
         env:
           DR_AUTH_TOKEN: ${{ env.DR_AUTH_TOKEN }}
+          PRIMARY_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -Eeuo pipefail
           source "$GITHUB_ENV" || true
@@ -105,7 +106,19 @@ jobs:
           echo "✅ PRIMARY verified at $PRIMARY_SHA"
 
           api() {
-            curl -sS --fail-with-body               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $DR_AUTH_TOKEN"               -H "X-GitHub-Api-Version: $API_VERSION"               "$@"
+            curl -sS --fail-with-body \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $DR_AUTH_TOKEN" \
+              -H "X-GitHub-Api-Version: $API_VERSION" \
+              "$@"
+          }
+
+          primary_api() {
+            curl -sS --fail-with-body \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $PRIMARY_API_TOKEN" \
+              -H "X-GitHub-Api-Version: $API_VERSION" \
+              "$@"
           }
 
           echo "::add-mask::$DR_AUTH_TOKEN"
@@ -119,7 +132,7 @@ jobs:
           fi
 
           # Build target tree entries. Blobs are uploaded only for file entries.
-          api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$TREE_SHA?recursive=1" > /tmp/source-tree.json
+          primary_api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$TREE_SHA?recursive=1" > /tmp/source-tree.json
           python - "$DR_REPO" "$DR_AUTH_TOKEN" "$API_VERSION" "$EXPECTED_SHA" "$CUR_BRANCH" "$PRIMARY_REPO" <<'PY'
           import base64, json, os, sys, urllib.request, urllib.error
           from urllib.parse import quote
@@ -200,8 +213,17 @@ jobs:
                   "sha": new_sha,
               })
 
+          verified = request("GET", ref_url)
+          verified_sha = verified["object"]["sha"]
+          if verified_sha != new_sha:
+              raise SystemExit(f"❌ SECONDARY ref verification mismatch: expected {new_sha}, got {verified_sha}")
+          if branch == "main" and verified_sha != source_sha:
+              raise SystemExit(f"❌ SECONDARY main SHA does not equal PRIMARY source SHA: source={source_sha}, dr={verified_sha}")
+
           print(f"DR_REPLICATED_SHA={new_sha}")
+          print(f"DR_VERIFIED_SHA={verified_sha}")
           print(f"SOURCE_SHA={source_sha}")
+          print(f"SHA_MATCH={verified_sha == source_sha}")
           print(f"BRANCH={branch}")
           PY
 
