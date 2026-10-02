@@ -125,7 +125,7 @@ jobs:
           echo "🔄 Git transport is unavailable for this fine-grained credential; using authenticated GitHub Git API replication."
 
           # Read the exact source tree for the checked-out commit.
-          TREE_SHA="$(api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$EXPECTED_SHA?recursive=1" | python -c 'import json,sys; d=json.load(sys.stdin); print(d["tree"][0]["sha"] if False else d.get("sha",""))')"
+          TREE_SHA="$(primary_api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$EXPECTED_SHA?recursive=1" | python -c 'import json,sys; d=json.load(sys.stdin); print(d["tree"][0]["sha"] if False else d.get("sha",""))')"
           if [ -z "$TREE_SHA" ]; then
             echo "❌ Could not resolve PRIMARY tree."
             exit 1
