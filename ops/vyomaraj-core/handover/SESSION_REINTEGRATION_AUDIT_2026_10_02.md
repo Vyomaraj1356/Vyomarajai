@@ -30,6 +30,6 @@
 
 - PRIMARY `main` runs #342, #343 and scheduled #344 failed in the API replication step. Actions log retrieval returned EOF, so the exact HTTP/assertion error is not claimed. No SECONDARY `main` SHA equality was established.
 - Arena run #352 is green for the later API-written ref at `94b8fbe`, but that implementation does not require exact source-SHA equality on Arena refs. Its Actions log could not be retrieved; no target SHA is asserted here.
-- The code-integration commit and documentation follow-up used `[skip ci]` to avoid invoking the guarded archive/lease recovery without approval. An attempted manual dispatch of `arena-recovery.yml` was denied with HTTP 403 (`Resource not accessible by integration`); local importer tests passed, but no new GitHub push run exists for either `f4b18c0` or the documentation head `033ccdf`.
+- The code-integration commit and subsequent documentation-only follow-ups used `[skip ci]` to avoid invoking the guarded archive/lease recovery without approval. An attempted manual dispatch of `arena-recovery.yml` was denied with HTTP 403 (`Resource not accessible by integration`); local importer tests passed, but no new GitHub push run exists for the code-integration merge or its documentation-only follow-ups.
 - GitHub Pages still serves `main` at `/`. The Arena branch is not production-deployed; PR #1 has not been merged. The latest primary/secondary `main` sync remains unverified.
 - No credential values were read, requested, or recorded.
