@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 15
     env:
       VYOMARAJ_ARENA: arena/01a0f634-vyomarajai
-      ARENA_EXPORT_DIRS: PLACEHOLDER_ARENA_EXPORT_DIR
+      ARENA_EXPORT_DIRS: ${{ inputs.arena_export_dir || '' }}
     steps:
       - name: Checkout Arena branch
         uses: actions/checkout@v4
