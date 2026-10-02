@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111b">
+  <meta name="description" content="Plan-only Vyomaraj and Jarvis experience routing across the supplied agent registry and configurable creative-tool adapters.">
+  <title>Experience Engine · Vyomaraj</title>
+  <link rel="stylesheet" href="ops/vyomaraj-core/experience/studio.css">
+  <script defer src="ops/vyomaraj-core/experience/studio.js"></script>
+</head>
+<body>
+  <header class="topbar" id="top">
+    <a class="brand" href="index.html" aria-label="Vyomaraj home">
+      <span class="brand-mark">V</span>
+      <span><strong>VYOMARAJ</strong><small>EXPERIENCE ENGINE</small></span>
+    </a>
+    <div class="topbar-right">
+      <span class="live-state"><i></i> LOCAL PLAN MODE</span>
+      <a class="text-link" href="index.html">Back to command center <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> CREATIVE ROUTING · MODULAR BY DESIGN</p>
+        <h1>From a brief to a<br><em>world you can enter.</em></h1>
+        <p class="hero-lede">Vyomaraj frames the experience. Jarvis preserves the handoff. Canonical agent categories and swappable tool adapters shape the route — without pretending an unconfigured provider is already running.</p>
+        <div class="mode-pills" aria-label="Supported experience planning modes">
+          <span>3D <small>SPATIAL</small></span>
+          <span>4D <small>TIME</small></span>
+          <span>5D <small>INTERACTIVE*</small></span>
+          <span>AR <small>OVERLAY</small></span>
+        </div>
+        <p class="definition-note">*5D is a project working definition, not a universal technical standard.</p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit orbit-three"></div>
+        <div class="orbit-core"><span>VY</span><i></i></div>
+        <span class="orbit-label label-top">INTENT</span>
+        <span class="orbit-label label-right">ROUTE</span>
+        <span class="orbit-label label-bottom">REVIEW</span>
+        <span class="orbit-label label-left">TOOLS</span>
+      </div>
+      <div class="hero-status">
+        <div><span class="status-dot"></span><strong id="system-status">Loading system map…</strong></div>
+        <span id="stat-line">Registry and adapters</span>
+      </div>
+    </section>
+
+    <nav class="section-nav" aria-label="Experience Engine sections">
+      <a href="#studio">01 <span>Plan a job</span></a>
+      <a href="#agents">02 <span>Agent map</span></a>
+      <a href="#contents">03 <span>Content sources</span></a>
+      <a href="#adapters">04 <span>Tool adapters</span></a>
+      <a href="#configurations">05 <span>Existing configs</span></a>
+      <a href="#gates">06 <span>Release gates</span></a>
+    </nav>
+
+    <section class="studio-section" id="studio">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / ROUTE PLANNER</p>
+          <h2>Shape the experience.</h2>
+        </div>
+        <div class="plan-only-chip"><span>◇</span> Plan only · nothing is rendered or published</div>
+      </div>
+      <div class="studio-grid">
+        <form id="job-form" class="panel form-panel">
+          <div class="panel-heading">
+            <div><span class="step-number">A</span><h3>Creative brief</h3></div>
+            <span class="required-note">Required fields marked *</span>
+          </div>
+          <div class="field-grid two-col">
+            <label class="field full-span">Project title *
+              <input id="job-title" name="title" maxlength="120" required placeholder="e.g. Monsoon tasting room">
+            </label>
+            <label class="field">Experience domain *
+              <select id="job-domain" name="domain_id" required></select>
+            </label>
+            <label class="field">Experience mode *
+              <select id="experience-mode" name="experience_mode" required></select>
+            </label>
+            <label class="field full-span">Brief *
+              <textarea id="job-brief" name="brief" maxlength="4000" required rows="4" placeholder="What should people see, feel, learn, or configure? Keep claims and source assets reviewable."></textarea>
+            </label>
+            <label class="field full-span">Audience / context
+              <input id="job-audience" name="audience" maxlength="240" placeholder="Who is this for, and where will it be experienced?">
+            </label>
+          </div>
+
+          <div class="form-divider"></div>
+          <div class="panel-heading compact-heading">
+            <div><span class="step-number">B</span><h3>Trend signal <small>optional</small></h3></div>
+            <span class="quiet-badge">MANUAL · UNVERIFIED</span>
+          </div>
+          <div class="field-grid two-col">
+            <label class="field full-span">Reference URL
+              <input id="trend-source" name="trend_source" type="url" maxlength="500" placeholder="https://… (recorded only; never fetched)">
+            </label>
+            <label class="field">Observed date
+              <input id="trend-date" name="trend_observed_at" type="date">
+            </label>
+            <p class="field-hint">No trend crawler is connected. A supplied reference stays unverified; adapt ideas into original work and review rights.</p>
+          </div>
+
+          <div class="form-divider"></div>
+          <div class="panel-heading compact-heading">
+            <div><span class="step-number">C</span><h3>Output lanes</h3></div>
+            <span class="quiet-badge">ADAPTERS NOT CONFIGURED</span>
+          </div>
+          <div id="output-options" class="option-grid" aria-label="Requested outputs"></div>
+
+          <div class="form-divider"></div>
+          <div class="panel-heading compact-heading">
+            <div><span class="step-number">D</span><h3>Content packs <small>metadata only</small></h3></div>
+          </div>
+          <p class="muted-copy">Choose repository source packs to reference. The planner lists filenames only; it does not load or send source content to an LLM or tool.</p>
+          <div id="content-pack-options" class="content-pack-options"></div>
+
+          <div class="form-divider"></div>
+          <div class="field-grid two-col">
+            <label class="field full-span">Publishing target <span class="optional-label">optional request</span>
+              <input id="publish-target" name="publish_target" maxlength="160" placeholder="e.g. campaign channel — publishing remains blocked">
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Build route plan <span aria-hidden="true">↗</span></button>
+            <p id="form-message" class="form-message" role="status" aria-live="polite">Your brief stays in this browser unless you explicitly export it.</p>
+          </div>
+        </form>
+
+        <aside class="panel plan-panel" id="plan-panel" aria-labelledby="plan-heading">
+          <div class="panel-heading plan-heading">
+            <div><span class="step-number">↳</span><h3 id="plan-heading">Orchestration plan</h3></div>
+            <span class="plan-state" id="plan-state">AWAITING BRIEF</span>
+          </div>
+          <div id="plan-empty" class="plan-empty">
+            <div class="empty-glyph"><span></span><span></span><span></span></div>
+            <p class="eyebrow">NO JOB DISPATCHED</p>
+            <h4>Make the route<br>visible first.</h4>
+            <p>Build a reviewable manifest with category links, output adapters, content references, and gates.</p>
+            <div class="empty-flow"><span>INTENT</span><b>→</b><span>PLAN</span><b>→</b><span>HUMAN</span></div>
+          </div>
+          <div id="plan-result" class="plan-result" hidden>
+            <div class="plan-summary" id="plan-summary"></div>
+            <ul id="plan-warnings" class="plan-warning-list" aria-label="Plan warnings"></ul>
+            <div class="route-block">
+              <p class="micro-label">AGENT ROUTE</p>
+              <div id="route-chain" class="route-chain"></div>
+            </div>
+            <div class="route-block">
+              <p class="micro-label">REQUIRED TOOL ADAPTERS</p>
+              <div id="plan-tools" class="plan-tool-list"></div>
+            </div>
+            <div class="route-block gate-block">
+              <p class="micro-label">HUMAN GATE</p>
+              <p id="plan-gate"></p>
+            </div>
+            <details class="json-details">
+              <summary>View complete JSON manifest</summary>
+              <pre id="plan-json"></pre>
+            </details>
+            <button id="download-plan" class="secondary-button" type="button">Download plan JSON <span aria-hidden="true">↓</span></button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="studio-section directory-section" id="agents">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / CANONICAL AGENT MAP</p>
+          <h2>Connect what is named.<br><em>Leave the rest honest.</em></h2>
+        </div>
+        <p class="section-intro">The hierarchy below is read from the supplied registry. Counts, partial rosters, and unmapped slots remain exactly as supplied — no missing sub-agent or sub-subagent names are invented.</p>
+      </div>
+      <div id="agent-summary" class="summary-tiles"></div>
+      <div id="agent-grid" class="agent-grid"></div>
+      <p class="source-footnote">Source: <code>AGENT_CONTENT_REGISTRY_V16_7_24.json</code>. The browser does not use Jarvis device or environment files.</p>
+    </section>
+
+    <section class="studio-section contents-section" id="contents">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / REPOSITORY CONTENT MAP</p>
+          <h2>Source packs, not a<br><em>fictional full catalog.</em></h2>
+        </div>
+        <p class="section-intro">The registry reports 421 products, but does not supply every product title. These are the JSON module filenames found in relevant repository folders — not an assertion that all 421 products are enumerated.</p>
+      </div>
+      <div class="content-warning"><span>!</span><div><strong>Metadata-only inventory</strong><p>Source JSON bodies are not loaded by this planner. Review privacy, cultural context, factual claims, and rights before using any module with an external provider.</p></div></div>
+      <div id="content-grid" class="content-grid"></div>
+      <div id="readiness-note" class="readiness-note"></div>
+    </section>
+
+    <section class="studio-section adapter-section" id="adapters">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">04 / PLUG-IN TOOL LAYER</p>
+          <h2>Choose the right tool.<br><em>Configure before dispatch.</em></h2>
+        </div>
+        <p class="section-intro">A data-driven adapter registry keeps image, video, 3D, animation, rendering, AR, trend, and publishing integrations replaceable as providers and formats change.</p>
+      </div>
+      <div class="integration-banner"><span class="integration-icon">⌘</span><div><strong>Adapter contract ready · providers not connected</strong><p>No endpoint, credentials, render service, trend feed, or publishing authorization has been verified. The planner cannot invoke them.</p></div><span class="banner-lock">LOCKED</span></div>
+      <div id="adapter-grid" class="adapter-grid"></div>
+      <div class="llm-card">
+        <div class="llm-symbol">✳</div>
+        <div><p class="micro-label">OPTIONAL TEXT-DRAFT LAYER</p><h3>Jarvis LLM harness</h3><p>The existing provider-neutral, no-tools harness is available at <code>ops/jarvis/llm_harness.py</code>. Its provider remains unconfigured. The browser never sends a brief to it; an explicit local CLI flag is required for an LLM draft.</p></div>
+        <span class="status-pill muted-pill">PROVIDER UNCONFIGURED</span>
+      </div>
+    </section>
+
+    <section class="studio-section config-section" id="configurations">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">05 / EXISTING CONFIGURATION AUDIT</p>
+          <h2>Preserve the setup.<br><em>Don't pretend it's live.</em></h2>
+        </div>
+        <p class="section-intro">Read-only file metadata from the repository. Bootstrap scripts stay separate; controllers, devices, remote sync, and heartbeat workflows are not invoked by this planner.</p>
+      </div>
+      <div id="configuration-grid" class="configuration-grid"></div>
+      <div class="privacy-banner"><span>◈</span><p><strong>Sensitive values are intentionally excluded.</strong> The tracked Jarvis environment file has populated assignments and needs owner review before publication. Values and device records are not loaded into this page or the route manifest.</p></div>
+    </section>
+
+    <section class="studio-section gates-section" id="gates">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">05 / RELEASE GATES</p>
+          <h2>Human review is<br><em>part of the route.</em></h2>
+        </div>
+      </div>
+      <div class="gate-grid">
+        <article class="gate-card"><span class="gate-index">G1</span><h3>Safety policy</h3><p id="policy-status">Loading policy status…</p><span class="gate-state">PROPOSAL · NOT A DEPLOYED FILTER</span></article>
+        <article class="gate-card"><span class="gate-index">G2</span><h3>Freshness & rights</h3><p>Trend sources are user-supplied and unverified. Adapt rather than copy; clear rights, factual claims, and platform-specific requirements before release.</p><span class="gate-state">HUMAN CHECK REQUIRED</span></article>
+        <article class="gate-card"><span class="gate-index">G3</span><h3>War / arms scope</h3><p>Only non-operational historical or fictional visualization is routable. Functional weapon design, optimization, targeting, and use guidance are out of scope.</p><span class="gate-state">RESTRICTED ROUTE</span></article>
+        <article class="gate-card"><span class="gate-index">G4</span><h3>Publishing</h3><p>No publisher adapter or channel authorization is configured. Any publish request stays blocked until the owner enables and approves a real integration.</p><span class="gate-state">DISABLED</span></article>
+      </div>
+      <p class="closing-note">A route plan is not a generated asset, a deployed safety filter, a verified trend report, or a publishing action.</p>
+    </section>
+  </main>
+  <footer class="footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">V</span><span><strong>VYOMARAJ</strong><small>EXPERIENCE ENGINE</small></span></a><span>Modular by design · reviewable by default</span><a href="#top" class="back-top">Back to top ↑</a></footer>
+  <noscript><div class="noscript-note">This planner needs JavaScript to load the repository registry. No external provider is called.</div></noscript>
+</body>
+</html>

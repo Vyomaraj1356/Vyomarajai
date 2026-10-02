@@ -4,7 +4,7 @@
 
 The pushed Arena tree contained no runtime LLM provider client or tool-calling harness. The existing Jarvis shell controller maintains a local state file and performs a basic Pages reachability check; model/provider names in its status text are not evidence of an LLM integration. The repository also has no LLM runtime dependency manifest.
 
-A minimal, provider-neutral harness is now available at [`llm_harness.py`](llm_harness.py). It exposes two user-owned role profiles (`vyomaraj` and `jarvis`) over an OpenAI-compatible `/chat/completions` endpoint. It is a standalone CLI; it does not silently change the existing 24x7 controller.
+A minimal, provider-neutral harness is available at [`llm_harness.py`](llm_harness.py). It exposes two user-owned role profiles (`vyomaraj` and `jarvis`) over an OpenAI-compatible `/chat/completions` endpoint. It remains a standalone CLI and is also an optional, explicit text-draft stage in the plan-only experience orchestrator; it does not silently change the existing 24x7 controller.
 
 ## Safety and scope
 
@@ -36,7 +36,25 @@ The repository already tracks `ops/jarvis/jarvis.env` with populated assignments
 
 Do not paste API keys into chat or commit them. If a provider requires a non-OpenAI-compatible API, add a separately reviewed adapter rather than changing the generic client silently.
 
-## Offline tests
+## Experience-engine integration
+
+The plan-only router and browser workspace live under [`ops/vyomaraj-core/experience/`](../vyomaraj-core/experience/), with the linked page at [`experience-studio.html`](../../experience-studio.html). They read the canonical agent registry, proposed safety-policy status, and a metadata-only content-pack catalog. The browser does not call this LLM harness or send briefs to a provider. For a local preview, use `python3 ops/vyomaraj-core/experience/preview_server.py --host 0.0.0.0 --port 4174`; its strict file allowlist does not serve the Jarvis environment, device manifest, or controller.
+
+A local route plan can be built without any network access:
+
+```sh
+printf '%s\n' '{"title":"Sample menu","domain_id":"food_menu","experience_mode":"3d","brief":"Create an original concept for review."}' | python3 ops/vyomaraj-core/experience/orchestrator.py --output /tmp/experience-plan.json
+```
+
+For an optional LLM text draft, explicitly add `--llm-draft` (and optionally `--llm-role jarvis`). That action sends the job brief and minimal route context to the locally configured provider through the no-tools harness; repository content bodies are not included. It does not invoke image/video/3D tools, publish, or make the draft release-ready. Review provider privacy and terms before sending any brief; generated text is marked unreviewed. No provider is configured by this repository.
+
+Offline router tests:
+
+```sh
+python3 ops/vyomaraj-core/experience/test_experience_orchestrator.py
+```
+
+## Offline LLM harness tests
 
 ```sh
 python3 ops/jarvis/test_llm_harness.py
