@@ -30,4 +30,6 @@ The Actions log download returned `EOF` through the CLI, so the specific archive
 
 ## Follow-up verification
 
-This record captures run #311. Any later commit to the Arena branch requires a fresh successful workflow run for its new SHA. The next handover should record that run's SHA separately; it must not assume this SHA remains the branch tip.
+The initial addendum commit `1d8858413cfa724fc3c6835ad548f9685a9e4511` was also independently checked by workflow run #312 ([36978103779](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36978103779)); its exact read-after-write check passed for that commit SHA. This is a documentation-only follow-up to the code fix, not a change to the replication logic.
+
+Any later commit to the Arena branch requires a fresh successful workflow run for its new SHA. Use the branch's latest Actions run and ref as the authority; do not assume an earlier verified SHA remains the current tip.
