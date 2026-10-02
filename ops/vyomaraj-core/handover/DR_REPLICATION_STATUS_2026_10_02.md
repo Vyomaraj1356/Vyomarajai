@@ -22,11 +22,12 @@ The successful run completed **“Verify PRIMARY and push exact commit to SECOND
 
 The Actions log download returned `EOF` through the CLI, so the specific archive ref is not independently recorded in this addendum. The run's success proves the equality check; check the run page's job summary or inspect SECONDARY refs if the precise archive ref must be audited.
 
-## Remaining scope — PRIMARY `main` is not resolved
+## Post-conflict integration — Arena verified; PRIMARY `main` still open
 
-- PRIMARY `main` is currently at `39cda8f38a4f0076f39eac322f4ab070ff3c3dc5`. Runs #308, #309 and latest run #314 ([36978931155](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36978931155)) failed on `main`; #314 failed during the API workflow's SECONDARY ref-read path before it could establish equality. No SECONDARY `main` SHA equality was verified.
-- The merge conflicts were resolved by integrating fetched `main` history through `39cda8f` **into the fixed Arena branch only**. The new main-side API writer was not selected: Arena's tested exact-Git-ref writer is retained. PR #1 remains open and unmerged; no push or merge to `main` was made. A fresh Arena workflow run must verify the final merge-head SHA after publication.
-- Therefore the **Arena ref** can be described as synchronized only at a SHA for which the scoped read-after-write check succeeded. Do not describe PRIMARY/SECONDARY `main` or overall production DR as fully synchronized. Only an authorized maintainer may merge [PR #1](https://github.com/Vyomaraj1356/Vyomarajai/pull/1); after that, require a separate exact read-after-write check on `main` before closing main-to-main scope.
+- PRIMARY `main` is currently at `39cda8f38a4f0076f39eac322f4ab070ff3c3dc5`. Runs #308, #309 and latest run #314 ([36978931155](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36978931155)) failed on `main`; #314 failed in the API workflow's SECONDARY ref-read path before it established equality. No SECONDARY `main` SHA equality was verified.
+- Main history through `39cda8f` was merged **into the fixed Arena branch only**. The failed main-side API writer was not selected; Arena's tested exact-Git-ref writer remains. No push or merge to PRIMARY `main` was made.
+- The resolved Arena head `d59dbaae5a9d2aee5f2ed227511a944a506348d5` passed the exact read-after-write check in workflow run #315 ([36979617503](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36979617503)). PR #1 is open, `CLEAN`/`MERGEABLE`, and unmerged. This branch update was a fast-forward from the previously verified Arena SHA; no guarded force recovery was needed.
+- Therefore the **Arena ref** is verified only at a SHA with a successful scoped check. Do not describe PRIMARY/SECONDARY `main` or overall production DR as fully synchronized. GitHub Pages still serves `main` at `/`; only an authorized maintainer may merge [PR #1](https://github.com/Vyomaraj1356/Vyomarajai/pull/1), after which `main` needs its own exact read-after-write verification.
 
 ## Follow-up verification
 
