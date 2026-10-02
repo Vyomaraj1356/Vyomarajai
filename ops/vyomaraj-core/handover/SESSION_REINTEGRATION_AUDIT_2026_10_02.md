@@ -21,7 +21,7 @@
 
 - Local HTML/link audit: zero missing local links or broken anchors in `index.html`, `Index.html`, `landing.html`, and `flow-diagram.html`; all 26 linked historical handover files exist. Root README has no missing local links.
 - Parsed all 45 tracked JSON files. The canonical roster still has 13 categories, 133 sub-agents, and 421 products; the separate 394/12/52/5 readiness figures remain unreconciled rather than guessed.
-- Python compilation and importer checks passed: release-version-only marker output, safe ZIP extraction, and ZIP path-traversal rejection.
+- Python compilation and importer checks passed: release-version-only marker output, safe ZIP extraction, and ZIP path-traversal rejection. `node --check` passes for `preview-stable-fix.js`; two other tracked `.js` files (`multi-ai-coordination.js` and `shriyantra-protection.js`) contain only a Git fatal diagnostic, so they are not valid JavaScript. Those identical blobs already exist on PRIMARY `main`, were introduced without source in their parent commit, and have no tracked HTML/Markdown references. They were left untouched rather than inventing replacement code.
 - The 34-chat archive remains exactly 3 expected members, 34 numbered entries, no duplicate entry numbers, V15.0–V16.7.22 scope, and unchanged commit references/Image 1 labels. SHA-256 remains `9d6e2033a43bb4906af63dd77098097c8ecbc576693d6af774a116ed3dd1b432`.
 - The v194 archive remains 9 members and SHA-256 `79b17bcc6128014fe6fc13c72ff632fdf759b1ee5387b9ceec4f25dd520dc92a`. v168 and v193 archive hashes remain as listed in the archive index. No archive was rebuilt or replaced.
 - The legal/safety text remains first-pass research and a proposed policy; it makes no compliance claim.
@@ -30,6 +30,6 @@
 
 - PRIMARY `main` runs #342, #343 and scheduled #344 failed in the API replication step. Actions log retrieval returned EOF, so the exact HTTP/assertion error is not claimed. No SECONDARY `main` SHA equality was established.
 - Arena run #352 is green for the later API-written ref at `94b8fbe`, but that implementation does not require exact source-SHA equality on Arena refs. Its Actions log could not be retrieved; no target SHA is asserted here.
-- The current integration commit's push workflows were intentionally skipped to avoid invoking the guarded archive/lease recovery without approval. An attempted manual dispatch of `arena-recovery.yml` was denied with HTTP 403 (`Resource not accessible by integration`); local importer tests passed, but no new GitHub run exists for `f4b18c0`.
+- The code-integration commit and documentation follow-up used `[skip ci]` to avoid invoking the guarded archive/lease recovery without approval. An attempted manual dispatch of `arena-recovery.yml` was denied with HTTP 403 (`Resource not accessible by integration`); local importer tests passed, but no new GitHub push run exists for either `f4b18c0` or the documentation head `033ccdf`.
 - GitHub Pages still serves `main` at `/`. The Arena branch is not production-deployed; PR #1 has not been merged. The latest primary/secondary `main` sync remains unverified.
 - No credential values were read, requested, or recorded.
