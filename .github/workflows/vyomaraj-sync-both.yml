@@ -248,7 +248,7 @@ jobs:
           source "$GITHUB_ENV" || true
           DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
           echo "🔎 Controlled DR→PRIMARY audit — no blind overwrite and no force push."
-          DR_MAIN_SHA="$(curl -sS --fail-with-body             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $DR_AUTH_TOKEN"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$DR_REPO/git/ref/heads/main" | python -c 'import json,sys; print(json.load(sys.stdin)["object"]["sha"])')"
+          DR_MAIN_SHA="$(curl -sS --fail-with-body             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $DR_AUTH_TOKEN"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$DR_REPO/git/refs/heads/main" | python -c 'import json,sys; print(json.load(sys.stdin)["object"]["sha"])')"
           PRIMARY_MAIN_SHA="$(git rev-parse HEAD)"
           echo "PRIMARY_MAIN_SHA=$PRIMARY_MAIN_SHA"
           echo "DR_MAIN_SHA=$DR_MAIN_SHA"
