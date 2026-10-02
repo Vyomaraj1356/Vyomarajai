@@ -177,7 +177,7 @@ jobs:
               if i % 50 == 0:
                   print(f"Uploaded {i}/{len(entries)} tree entries")
 
-          ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
+          ref_url = f"https://api.github.com/repos/{dr_repo}/git/refs/heads/{quote(branch, safe='')}"
           parent = None
           target_tree_sha = None
           try:
