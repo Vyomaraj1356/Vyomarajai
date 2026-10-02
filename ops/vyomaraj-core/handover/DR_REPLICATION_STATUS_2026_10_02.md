@@ -24,12 +24,12 @@ The Actions log download returned `EOF` through the CLI, so the specific archive
 
 ## Remaining scope — PRIMARY `main` is not resolved
 
-- PRIMARY `main` remains at `15aa2fd8a12b8c95e3b3b1f2ae99052ef5c4a23c` as last checked. Workflow runs #308 and #309 on `main` failed. No SECONDARY `main` SHA equality was verified in this work.
-- No change was pushed or merged to `main`. The workflow fix is on `arena/01a0f634-vyomarajai` and is present in [PR #1](https://github.com/Vyomaraj1356/Vyomarajai/pull/1), which is open and currently reports merge conflicts. It was not merged.
-- Therefore the **Arena branch replication is verified**, but do not describe PRIMARY/SECONDARY `main` or overall production DR as fully synchronized. After a maintainer reviews and resolves the PR conflict through the normal process, run the workflow on `main` and require its own exact read-after-write SHA check before closing that scope.
+- PRIMARY `main` was last checked at `15aa2fd8a12b8c95e3b3b1f2ae99052ef5c4a23c`. Workflow runs #308 and #309 on `main` failed. No SECONDARY `main` SHA equality was verified in this work.
+- The merge conflict was resolved by integrating that fetched `main` history **into the fixed Arena branch only**. PR #1 remains open and unmerged; no push or merge to `main` was made. A fresh Arena workflow run must verify the merge-head SHA after publication.
+- Therefore the **Arena ref** can be described as synchronized only at a SHA for which the scoped read-after-write check succeeded. Do not describe PRIMARY/SECONDARY `main` or overall production DR as fully synchronized. Only an authorized maintainer may merge [PR #1](https://github.com/Vyomaraj1356/Vyomarajai/pull/1); after that, require a separate exact read-after-write check on `main` before closing main-to-main scope.
 
 ## Follow-up verification
 
-The initial addendum commit `1d8858413cfa724fc3c6835ad548f9685a9e4511` was also independently checked by workflow run #312 ([36978103779](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36978103779)); its exact read-after-write check passed for that commit SHA. This is a documentation-only follow-up to the code fix, not a change to the replication logic.
+The initial addendum commit `1d8858413cfa724fc3c6835ad548f9685a9e4511` was checked by workflow run #312 ([36978103779](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36978103779)). The pre-merge Arena tip `0b5d82a36ebf648cbbb151a97c16d7e5c275e7db` then passed the same exact read-after-write check in run #313 ([36978208191](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36978208191)). These were documentation-only follow-ups to the code fix, not changes to the replication logic.
 
 Any later commit to the Arena branch requires a fresh successful workflow run for its new SHA. Use the branch's latest Actions run and ref as the authority; do not assume an earlier verified SHA remains the current tip.

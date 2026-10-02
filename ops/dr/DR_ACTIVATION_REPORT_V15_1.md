@@ -48,6 +48,6 @@ Version: V15.1 Final Market Ready — 868K index 888502 bytes ?v=151 — Enhance
 6. **Pages**: Primary https://Vyomaraj1356.github.io/Vyomarajai/?v=151 — Secondary https://deepakGoyal1356.github.io/Vyomaraj-Agent/ — Both live — DR fallback 3s
 
 ## Business Continuity V15.1
-- Revenue Dashboard reconciled every 1-2 mins ICICI 042405000348 IFSC ICIC0003365 SWIFT ICICINBB005 MICR 411229057 ₹22,08,575 Forecast ₹38L→₹55L→5Cr→25Cr→100Cr
-- Social: YouTube 18.9K MRR ₹3.0L Instagram 56.2K Facebook Bonus ₹1,29,000 +12% 38.4K TikTok X 5.42M views LinkedIn 12 leads ₹8.4L Telegram 28.5K MRR ₹5.67L WhatsApp 9823648038/9175112579 2B UPI Razorpay Discord 94.6K
+- Revenue Dashboard reconciled every 1-2 mins ICICI [REDACTED_ACCOUNT] IFSC [REDACTED_IFSC] SWIFT [REDACTED_SWIFT] MICR [REDACTED_MICR] ₹22,08,575 Forecast ₹38L→₹55L→5Cr→25Cr→100Cr
+- Social: YouTube 18.9K MRR ₹3.0L Instagram 56.2K Facebook Bonus ₹1,29,000 +12% 38.4K TikTok X 5.42M views LinkedIn 12 leads ₹8.4L Telegram 28.5K MRR ₹5.67L WhatsApp [REDACTED_CONTACTS] 2B UPI Razorpay Discord 94.6K
 - DR ensures no business loss — 0.00 loss fraction-seconds — hourly BOTH + 30m heartbeat + real-time on push — fencing traffic switch idempotent — web URL app parity DR fallback

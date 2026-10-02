@@ -13,3 +13,6 @@ Thu Oct  1 01:42:01 UTC 2026 DR heartbeat V15.1 ?v=151 678 LIVE — 3173 seconds
 Thu Oct  1 06:09:12 UTC 2026 DR heartbeat V15.1 ?v=151 678 LIVE — 3169 seconds since last push — 3a59454 — Primary to DR sync
 Thu Oct  1 06:48:27 UTC 2026 DR heartbeat V15.1 ?v=151 678 LIVE — 2355 seconds since last push — ab41354 — Primary to DR sync
 2026-10-02T06:45:00Z DR VERIFICATION TRIGGER — base64 normalization fix 98f9d54 — execute DR API replication verification
+2026-10-02T07:06:38.265Z DR FINAL RUN: fix-test-run-close requested; forcing verification run.
+2026-10-02T12:40:00+05:30 DR verification trigger: target-ref read-after-write + SHA equality enforcement
+2026-10-02T07:22:40Z DR Arena ref exact SHA verified by workflow run 36978208191 at 0b5d82a36ebf648cbbb151a97c16d7e5c275e7db

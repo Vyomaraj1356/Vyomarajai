@@ -1,95 +1,50 @@
-name: Vyomaraj DR Replication V15.1 ?v=151 678 LIVE
+name: Vyomaraj DR Replication Verification
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: vyomaraj-dr-replication-v15-1
+  group: vyomaraj-dr-replication-verification
   cancel-in-progress: false
 
 jobs:
-  replicate:
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify configuration and select working DR credential
+      - name: Checkout primary
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify DR credential and repository
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT }}
-          DR_SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
+          DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
         run: |
           set -Eeuo pipefail
-          REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"
-          test_token() {
-            local label="$1" token="$2"
-            [ -n "$token" ] || { echo "ℹ️ $label is not configured."; return 2; }
-            echo "::add-mask::$token"
-            code="$(curl -sS -o /tmp/dr-auth.json -w "%{http_code}" -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $token" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/$REPO")"
-            case "$code" in
-              200) echo "✅ $label can access $REPO."; printf "TOKEN_TO_USE=%s\n" "$token" >> "$GITHUB_ENV"; echo "SECONDARY_REPO_FALLBACK=$REPO" >> "$GITHUB_ENV"; echo "DR_PENDING=false" >> "$GITHUB_ENV"; return 0 ;;
-              401) echo "❌ $label rejected (HTTP 401: invalid/revoked token)." ;;
-              403) echo "❌ $label forbidden (HTTP 403: permission/policy issue)." ;;
-              404) echo "❌ $label cannot access $REPO (HTTP 404: repository access/authorization issue)." ;;
-              *) echo "❌ $label returned HTTP $code." ;;
-            esac
-            return 1
-          }
-          if test_token "VYOMARAJ_PAT" "$VYOMARAJ_PAT"; then exit 0; fi
-          if test_token "DR_SECONDARY_TOKEN" "$DR_SECONDARY_TOKEN"; then exit 0; fi
-          echo "❌ No configured credential can access the private DR repository."
-          echo "DR_PENDING=true" >> "$GITHUB_ENV"
-          exit 1
-      - name: Mirror every Git ref to the DR repository (V15.1 Primary to Secondary Sync ?v=151)
-        if: env.DR_PENDING != 'true'
-        env:
-          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
-          SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT }}
-        run: |
-          set +e
-          set +u
-          echo "🔁 Mirroring PRIMARY Vyomaraj1356/Vyomarajai → SECONDARY — V15.1 ?v=151 678 LIVE — resilience mode never fails"
-          echo "Primary health: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
-          echo "Secondary health: https://deepakGoyal1356.github.io/Vyomaraj-Agent-6d64e/"
-          # Use env vars set via GITHUB_ENV from previous step plus secrets fallback
-          REPO="${SECONDARY_REPO_FALLBACK:-}"
-          if [ -z "$REPO" ]; then REPO="${SECONDARY_REPO:-}"; fi
-          if [ -z "$REPO" ]; then REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"; fi
-          TOKEN="${TOKEN_TO_USE:-}"
-          if [ -z "$TOKEN" ]; then TOKEN="${SECONDARY_TOKEN:-}"; fi
-          if [ -z "$TOKEN" ]; then TOKEN="${VYOMARAJ_PAT:-}"; fi
-          echo "REPO: $REPO — TOKEN present: $(if [ -n \"$TOKEN\" ]; then echo yes; else echo no; fi)"
-          rm -rf primary-mirror.git
-          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" primary-mirror.git
-          if [ $? -ne 0 ]; then
-            echo "⚠️ Clone failed — this run did not replicate to the secondary; inspect the scoped sync workflow and verify the secondary ref"
-            echo "ℹ️ No secondary sync is claimed by this run"
-            exit 0
-          fi
-          cd primary-mirror.git
-          git remote set-url --push origin "https://x-access-token:${TOKEN}@github.com/${REPO}.git"
-          echo "Pushing mirror to $REPO — V15.1 ?v=151"
-          git push --mirror origin 2>&1 | tail -n 30
-          PUSH_EXIT=${PIPESTATUS[0]:-0}
-          if [ "$PUSH_EXIT" -eq 0 ]; then
-            echo "✅ Mirror push command completed; independently verify the expected secondary refs before claiming sync"
-          else
-            echo "⚠️ DR mirror push failed with exit $PUSH_EXIT — this run did not verify a secondary sync"
-            echo "ℹ️ Owner action if needed: check PAT repo scope — or allow force push in secondary"
-            echo "ℹ️ Secondary status remains unverified; do not treat this workflow as a successful replication"
-          fi
-          echo "DR replication attempt finished. Confirm primary/secondary ref equality and Pages deployments before making availability or data-loss claims."
-          exit 0
+          test -n "$DR_TOKEN"
+          echo "::add-mask::$DR_TOKEN"
+          DR_REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"
+          CODE="$(curl -sS -o /tmp/dr.json -w "%{http_code}"             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $DR_TOKEN"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$DR_REPO")"
+          test "$CODE" = "200"
+          echo "DR repository access: PASS"
+          echo "DR repository: $DR_REPO"
 
-      - name: DR Pending Notice (V15.1)
-        if: env.DR_PENDING == 'true'
+      - name: Verify primary source state
         run: |
-          echo "ℹ️ DR replication skipped — required secrets are not set; secondary status is unverified"
-          echo "Web: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
-          echo "Secondary: https://deepakGoyal1356.github.io/Vyomaraj-Agent/"
-          echo "DR activation report: ops/dr/DR_ACTIVATION_REPORT_V15_1.md"
-          echo "V15.1 868K index 678 LIVE 694 total KNOWLEDGE_VS_ENTERTAINMENT VYOMARAJ_JARVIS_TALK SHIV_KE_SATHI detailed"
-          echo "A separate scoped-sync run must independently verify the secondary ref; this run does not establish sync"
+          set -Eeuo pipefail
+          SHA="$(git rev-parse HEAD)"
+          REMOTE="$(git ls-remote origin "refs/heads/main" | awk 'NR==1 {print $1}')"
+          test "$SHA" = "$REMOTE"
+          echo "PRIMARY_SHA=$SHA"
+          echo "PRIMARY ref verification: PASS"
+
+      - name: Report
+        run: |
+          echo "This workflow is verification-only."
+          echo "Authenticated API replication is owned by vyomaraj-sync-both.yml."
+          echo "No mirror --force, no blind overwrite, and no false-success fallback is used."
