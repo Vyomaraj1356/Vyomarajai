@@ -122,12 +122,14 @@ jobs:
           echo "::add-mask::$DR_AUTH_TOKEN"
           echo "🔄 Git transport is unavailable for this fine-grained credential; using authenticated GitHub Git API replication."
 
-          # Read the exact source tree for the checked-out commit.
-          TREE_SHA="$(primary_api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$EXPECTED_SHA?recursive=1" | python -c 'import json,sys; d=json.load(sys.stdin); print(d["tree"][0]["sha"] if False else d.get("sha",""))')"
+          # Resolve the actual Git tree SHA from the checked-out commit.
+          COMMIT_JSON="$(primary_api "https://api.github.com/repos/$PRIMARY_REPO/git/commits/$EXPECTED_SHA")"
+          TREE_SHA="$(printf '%s' "$COMMIT_JSON" | python -c 'import json,sys; print(json.load(sys.stdin)["tree"]["sha"])')"
           if [ -z "$TREE_SHA" ]; then
-            echo "❌ Could not resolve PRIMARY tree."
+            echo "❌ Could not resolve PRIMARY tree from commit."
             exit 1
           fi
+          echo "✅ PRIMARY tree resolved: $TREE_SHA"
 
           # Build target tree entries. Blobs are uploaded only for file entries.
           primary_api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$TREE_SHA?recursive=1" > /tmp/source-tree.json
