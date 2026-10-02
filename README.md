@@ -16,6 +16,7 @@ The public surface is intentionally limited to approved creations and published 
 
 - [Current V16.7.24 release page](index.html)
 - [Current DR replication status and session addendum](ops/vyomaraj-core/handover/DR_REPLICATION_STATUS_2026_10_02.md)
+- [Read-only session-recovery importer and limitations](ops/integration/README.md)
 - [V16.7.24 / v194 handover archive](Vyomaraj-Handover-V16.7.24-v194.zip)
 - [34-chat archive ZIP (V15.0–V16.7.22)](Vyomaraj-All-Chats-From-Arena-Database-Till-V16.7.22.zip)
 - [34-chat database](Vyomaraj-All-Chats-Database-One-Month.md) · [Image 1 session-label index](All-Chats-Array-From-Index.txt) · [Git commit references](Git-Commits-One-Month.txt)

@@ -1,0 +1,48 @@
+name: Arena Session Recovery + Preview Evidence
+on:
+  workflow_dispatch:
+    inputs:
+      arena_export_dir:
+        description: Optional runner-mounted Arena export directory
+        required: false
+        type: string
+  push:
+    paths:
+      - ops/integration/**
+      - .github/workflows/arena-recovery.yml
+permissions:
+  contents: read
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VYOMARAJ_ARENA: arena/01a0f634-vyomarajai
+      ARENA_EXPORT_DIRS: ${{ inputs.arena_export_dir || '' }}
+    steps:
+      - name: Checkout Arena branch
+        uses: actions/checkout@v4
+        with:
+          ref: arena/01a0f634-vyomarajai
+          fetch-depth: 1
+      - name: Recover session evidence
+        run: python3 ops/integration/vyomaraj-jarvis-arena-recovery.py
+      - name: Validate recovery manifest
+        run: |
+          test -s .arena-recovery/reports/RECOVERY_MANIFEST.json
+          test -s .arena-recovery/reports/VYOMARAJ_JARVIS_ARENA_HANDOFF.md
+          python3 - <<'PY'
+          import json
+          p=".arena-recovery/reports/RECOVERY_MANIFEST.json"
+          d=json.load(open(p,encoding="utf-8"))
+          assert d["integration"]=="VYOMARAJ + JARVIS + ARENA"
+          print("RECOVERY_MANIFEST_VALID")
+          print(d["counts"])
+          PY
+      - name: Upload recovery evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: vyomaraj-arena-recovery-evidence
+          path: .arena-recovery/reports/
+          if-no-files-found: error
+          retention-days: 14

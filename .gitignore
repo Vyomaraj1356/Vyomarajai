@@ -1,0 +1,4 @@
+# Local recovery scans may contain private exports and large extracted archives.
+.arena-recovery/
+__pycache__/
+*.py[cod]
