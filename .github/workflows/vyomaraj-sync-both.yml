@@ -219,13 +219,20 @@ jobs:
           verified_sha = verified["object"]["sha"]
           if verified_sha != new_sha:
               raise SystemExit(f"❌ SECONDARY ref verification mismatch: expected {new_sha}, got {verified_sha}")
-          if branch == "main" and verified_sha != source_sha:
-              raise SystemExit(f"❌ SECONDARY main SHA does not equal PRIMARY source SHA: source={source_sha}, dr={verified_sha}")
 
-          print(f"DR_REPLICATED_SHA={new_sha}")
-          print(f"DR_VERIFIED_SHA={verified_sha}")
-          print(f"SOURCE_SHA={source_sha}")
-          print(f"SHA_MATCH={verified_sha == source_sha}")
+          # A mirror commit has a different commit SHA because its parent/message/metadata differ.
+          # Therefore data equivalence is verified by the Git TREE SHA plus read-after-write.
+          verified_commit = request("GET", f"https://api.github.com/repos/{dr_repo}/git/commits/{quote(verified_sha, safe='')}", dr_token)
+          verified_tree_sha = verified_commit["tree"]["sha"]
+          if verified_tree_sha != source_tree_sha:
+              raise SystemExit(f"❌ SECONDARY data tree mismatch: source_tree={source_tree_sha}, dr_tree={verified_tree_sha}")
+
+          print(f"PRIMARY_COMMIT_SHA={source_sha}")
+          print(f"DR_MIRROR_COMMIT_SHA={new_sha}")
+          print(f"PRIMARY_TREE_SHA={source_tree_sha}")
+          print(f"DR_VERIFIED_TREE_SHA={verified_tree_sha}")
+          print(f"DATA_MATCH={verified_tree_sha == source_tree_sha}")
+          print(f"READ_AFTER_WRITE_SHA={verified_sha == new_sha}")
           print(f"BRANCH={branch}")
           PY
 
