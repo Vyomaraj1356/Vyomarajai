@@ -157,8 +157,23 @@ jobs:
               if i % 50 == 0:
                   print(f"Uploaded {i}/{len(entries)} tree entries")
 
+          # Resolve the current DR branch before creating its tree.
+          # This gives us both the commit parent and, when present, the current base tree.
+          ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
+          parent = None
+          target_tree_sha = None
+          try:
+              ref = request("GET", ref_url)
+              parent = ref["object"]["sha"]
+              current_commit = request("GET", f"https://api.github.com/repos/{dr_repo}/git/commits/{quote(parent, safe='')}")
+              target_tree_sha = current_commit["tree"]["sha"]
+          except urllib.error.HTTPError as ex:
+              if ex.code != 404:
+                  raise
+              print(f"ℹ️ SECONDARY branch {branch} does not exist yet; creating a new root commit.")
+
           # Use the uploaded file blobs to create a complete target tree.
-          # If the DR branch already exists, use its current tree as the API base tree.
+          # GitHub recommends base_tree when updating an existing branch.
           tree_entries = blobs
           tree_payload = {"tree": tree_entries}
           if target_tree_sha:
@@ -169,16 +184,6 @@ jobs:
               body = ex.read().decode("utf-8", errors="replace")
               raise SystemExit(f"❌ SECONDARY tree POST failed: HTTP {ex.code}: {body[:1200]}")
           target_tree = tree["sha"]
-
-          # Parent the new DR commit to the current DR branch when it exists.
-          ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
-          try:
-              ref = request("GET", ref_url)
-              parent = ref["object"]["sha"]
-          except urllib.error.HTTPError as ex:
-              if ex.code != 404:
-                  raise
-              parent = None
 
           message = f"chore(dr): mirror {primary_repo}:{branch} at {source_sha}"
           payload = {"message": message, "tree": target_tree}
