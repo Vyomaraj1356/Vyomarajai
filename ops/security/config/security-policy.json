@@ -1,0 +1,14 @@
+{
+  "system": "VYOMARAJ-AI-STUDIO",
+  "mode": "defensive-security",
+  "automatic_delete": false,
+  "automatic_force_push": false,
+  "automatic_dr_promotion": false,
+  "replicate_when_integrity_unknown": false,
+  "record_secret_values": false,
+  "quarantine_requires_review": true,
+  "trusted_hash_algorithm": "SHA256",
+  "primary_repo": "Vyomaraj1356/Vyomarajai",
+  "dr_repo": "deepakGoyal1356/Vyomaraj-Agent-6d64",
+  "dr_policy": "Primary-to-DR only after integrity verification; DR-to-Primary requires controlled recovery and explicit verification."
+}
