@@ -24,8 +24,8 @@ The Actions log download returned `EOF` through the CLI, so the specific archive
 
 ## Remaining scope — PRIMARY `main` is not resolved
 
-- PRIMARY `main` was last checked at `15aa2fd8a12b8c95e3b3b1f2ae99052ef5c4a23c`. Workflow runs #308 and #309 on `main` failed. No SECONDARY `main` SHA equality was verified in this work.
-- The merge conflict was resolved by integrating that fetched `main` history **into the fixed Arena branch only**. PR #1 remains open and unmerged; no push or merge to `main` was made. A fresh Arena workflow run must verify the merge-head SHA after publication.
+- PRIMARY `main` is currently at `39cda8f38a4f0076f39eac322f4ab070ff3c3dc5`. Runs #308, #309 and latest run #314 ([36978931155](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36978931155)) failed on `main`; #314 failed during the API workflow's SECONDARY ref-read path before it could establish equality. No SECONDARY `main` SHA equality was verified.
+- The merge conflicts were resolved by integrating fetched `main` history through `39cda8f` **into the fixed Arena branch only**. The new main-side API writer was not selected: Arena's tested exact-Git-ref writer is retained. PR #1 remains open and unmerged; no push or merge to `main` was made. A fresh Arena workflow run must verify the final merge-head SHA after publication.
 - Therefore the **Arena ref** can be described as synchronized only at a SHA for which the scoped read-after-write check succeeded. Do not describe PRIMARY/SECONDARY `main` or overall production DR as fully synchronized. Only an authorized maintainer may merge [PR #1](https://github.com/Vyomaraj1356/Vyomarajai/pull/1); after that, require a separate exact read-after-write check on `main` before closing main-to-main scope.
 
 ## Follow-up verification
