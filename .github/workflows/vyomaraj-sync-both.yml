@@ -185,7 +185,7 @@ jobs:
               except urllib.error.HTTPError as ex:
                   raise SystemExit(f"❌ Source blob GET failed: HTTP {ex.code} path={path} sha={e['sha']}")
 
-              raw_b64 = blob.get("content", "").replace("\\n", "")
+              raw_b64 = "".join(blob.get("content", "").split())
               if not raw_b64:
                   raise SystemExit(f"❌ Source blob returned no content: path={path} sha={e['sha']}")
               try:
