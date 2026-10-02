@@ -195,41 +195,25 @@ jobs:
           echo "✅ PRIMARY branch $CUR_BRANCH has been replicated to SECONDARY through the GitHub API."
           echo "Source commit: $EXPECTED_SHA"
           echo "No force ref update was used."
-      - name: Pull from DR if Primary is behind Bidirectional DR to Primary failover V15.1
-        # Never switch or write main while syncing a session branch.
+      - name: DR to PRIMARY controlled failover audit
         if: env.DR_PENDING == 'false' && github.ref == 'refs/heads/main'
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT || secrets.DR_SECONDARY_TOKEN }}
+          DR_AUTH_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
         run: |
-          set -e
-          source $GITHUB_ENV || true
+          set -Eeuo pipefail
+          source "$GITHUB_ENV" || true
           DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
-          echo "🔄 Checking if DR is ahead of Primary bidirectional sync for failover V15.1"
-          git fetch dr main:refs/remotes/dr/main 2>&1 | head -n 10 || echo "No dr/main to fetch"
-          if git rev-parse --verify refs/remotes/dr/main >/dev/null 2>&1; then
-            LOCAL_MAIN=$(git rev-parse refs/heads/main)
-            DR_MAIN=$(git rev-parse refs/remotes/dr/main)
-            if [ "$LOCAL_MAIN" != "$DR_MAIN" ]; then
-              BEHIND=$(git rev-list --count refs/heads/main..refs/remotes/dr/main 2>/dev/null || echo 0)
-              AHEAD=$(git rev-list --count refs/remotes/dr/main..refs/heads/main 2>/dev/null || echo 0)
-              echo "Primary main $LOCAL_MAIN, DR main $DR_MAIN — DR ahead $BEHIND, Primary ahead $AHEAD"
-              if [ "$BEHIND" -gt 0 ] && [ "$AHEAD" -eq 0 ]; then
-                echo "⚠️ DR is ahead — Primary was down, DR took over — fast-forwarding Primary to DR no data loss"
-                git checkout main
-                git merge --ff-only refs/remotes/dr/main || git reset --hard refs/remotes/dr/main
-                git push origin main --force-with-lease 2>&1 | tail -n 10 || git push origin main 2>&1 | tail -n 10 || echo "Primary fast-forward push failed"
-                echo "✅ Primary restored from DR — no business data loss V15.1"
-              elif [ "$BEHIND" -gt 0 ] && [ "$AHEAD" -gt 0 ]; then
-                echo "⚠️ Both diverged — will keep Primary, but log DR commits for manual merge"
-                git log --oneline refs/heads/main..refs/remotes/dr/main --max-count=10 2>&1 | head -n 20 || true
-              else
-                echo "Primary is ahead or equal — no pull needed V15.1"
-              fi
-            else
-              echo "✅ Primary and DR main are identical — in sync V15.1 ?v=151"
-            fi
+          echo "🔎 Controlled DR→PRIMARY audit — no blind overwrite and no force push."
+          DR_MAIN_SHA="$(curl -sS --fail-with-body             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $DR_AUTH_TOKEN"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$DR_REPO/git/ref/heads/main" | python -c 'import json,sys; print(json.load(sys.stdin)["object"]["sha"])')"
+          PRIMARY_MAIN_SHA="$(git rev-parse HEAD)"
+          echo "PRIMARY_MAIN_SHA=$PRIMARY_MAIN_SHA"
+          echo "DR_MAIN_SHA=$DR_MAIN_SHA"
+          if [ "$PRIMARY_MAIN_SHA" = "$DR_MAIN_SHA" ]; then
+            echo "✅ PRIMARY and DR main point to the same SHA."
           else
-            echo "No DR main to compare — first sync will create it V15.1"
+            echo "⚠️ PRIMARY and DR main differ."
+            echo "DR→PRIMARY automatic promotion is intentionally blocked here because the DR commit object is in a separate repository."
+            echo "Use the controlled failover/recovery procedure to materialize DR state into PRIMARY; no force push is permitted."
           fi
 
       - name: Heartbeat plus PRIMARY SECONDARY Health Check every 30m hourly sync both V15.1
@@ -279,9 +263,7 @@ jobs:
               git add .vyomaraj-dr-heartbeat.log || true
               git commit -m "chore(dr): heartbeat V15.1 30m $(date -u +%Y-%m-%dT%H:%M:%SZ) ?v=151 [skip ci]" || echo "nothing to commit"
               git push origin HEAD 2>&1 | tail -n 10 || echo "heartbeat push to origin failed"
-              if [ -n "${VYOMARAJ_PAT:-}" ]; then
-                git push dr HEAD 2>&1 | tail -n 10 || echo "heartbeat push to DR failed"
-              fi
+              echo "Heartbeat commit pushed to PRIMARY; DR replication is handled by the authenticated API step above."
             else
               echo "No heartbeat needed <30m V15.1"
             fi
@@ -316,7 +298,7 @@ jobs:
             echo "- Ref: \`${GITHUB_REF_NAME}\`"
             echo "- Commit: \`$(git rev-parse HEAD)\`"
             if [ "${DR_PENDING:-true}" = "false" ]; then
-              echo "- Status: push and remote-ref verification completed for both targets."
+              echo "- Status: authenticated DR API replication completed for this run; source/target SHAs are printed in the replication step."
             else
               echo "- Status: pending — VYOMARAJ_PAT secret is not available to this run."
             fi
