@@ -1,104 +1,50 @@
-name: Vyomaraj DR Replication V15.1 ?v=151 678 LIVE
+name: Vyomaraj DR Replication Verification
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: vyomaraj-dr-replication-v15-1
+  group: vyomaraj-dr-replication-verification
   cancel-in-progress: false
 
 jobs:
-  replicate:
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify configuration (DR Activation Check V15.1 ?v=151 678 LIVE)
+      - name: Checkout primary
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify DR credential and repository
         env:
-          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
-          SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
+          DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
         run: |
           set -Eeuo pipefail
-          echo "V15.1 Final Market Ready — Enhanced All Contents — ?v=151 678 LIVE 694 total — DR Replication"
-          # Fallback logic for resilience — use VYOMARAJ_GH_PAT if DR_SECONDARY_TOKEN not set
-          # This ensures workspace re-clone does not fail on private 404 and secondary still syncs
-          if [ -z "$SECONDARY_REPO" ]; then
-            echo "ℹ️ DR_SECONDARY_REPO not set — using fallback deepakGoyal1356/Vyomaraj-Agent"
-            echo "SECONDARY_REPO_FALLBACK=deepakGoyal1356/Vyomaraj-Agent" >> $GITHUB_ENV
-          else
-            echo "SECONDARY_REPO_FALLBACK=$SECONDARY_REPO" >> $GITHUB_ENV
-          fi
-          if [ -n "$SECONDARY_TOKEN" ]; then
-            echo "✅ DR_SECONDARY_TOKEN present — will use for mirror"
-            echo "TOKEN_TO_USE=$SECONDARY_TOKEN" >> $GITHUB_ENV
-            echo "DR_PENDING=false" >> $GITHUB_ENV
-          elif [ -n "$VYOMARAJ_PAT" ]; then
-            echo "✅ VYOMARAJ_GH_PAT present — using as fallback for DR replication (resilience)"
-            echo "TOKEN_TO_USE=$VYOMARAJ_PAT" >> $GITHUB_ENV
-            echo "DR_PENDING=false" >> $GITHUB_ENV
-          else
-            echo "⚠️ No DR token — DR_SECONDARY_TOKEN and VYOMARAJ_GH_PAT both missing"
-            echo "Owner action: Settings → Secrets → Actions → DR_SECONDARY_REPO=deepakGoyal1356/Vyomaraj-Agent and DR_SECONDARY_TOKEN=PAT classic repo scope OR VYOMARAJ_GH_PAT"
-            echo "Primary is still live at https://Vyomaraj1356.github.io/Vyomarajai/?v=151 — DR will sync once secrets set"
-            echo "But vyomaraj-sync-both.yml already syncs secondary via VYOMARAJ_GH_PAT — so secondary is still synced"
-            echo "DR_PENDING=true" >> $GITHUB_ENV
-            exit 0
-          fi
-          echo "✅ DR secrets present — will mirror — V15.1 ?v=151"
-          ls -lh index.html || true
+          test -n "$DR_TOKEN"
+          echo "::add-mask::$DR_TOKEN"
+          DR_REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"
+          CODE="$(curl -sS -o /tmp/dr.json -w "%{http_code}"             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $DR_TOKEN"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$DR_REPO")"
+          test "$CODE" = "200"
+          echo "DR repository access: PASS"
+          echo "DR repository: $DR_REPO"
 
-      - name: Mirror every Git ref to the DR repository (V15.1 Primary to Secondary Sync ?v=151)
-        if: env.DR_PENDING != 'true'
-        env:
-          SECONDARY_REPO: ${{ secrets.DR_SECONDARY_REPO }}
-          SECONDARY_TOKEN: ${{ secrets.DR_SECONDARY_TOKEN }}
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_GH_PAT }}
+      - name: Verify primary source state
         run: |
-          set +e
-          set +u
-          echo "🔁 Mirroring PRIMARY Vyomaraj1356/Vyomarajai → SECONDARY — V15.1 ?v=151 678 LIVE — resilience mode never fails"
-          echo "Primary health: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
-          echo "Secondary health: https://deepakGoyal1356.github.io/Vyomaraj-Agent/"
-          # Use env vars set via GITHUB_ENV from previous step plus secrets fallback
-          REPO="${SECONDARY_REPO_FALLBACK:-}"
-          if [ -z "$REPO" ]; then REPO="${SECONDARY_REPO:-}"; fi
-          if [ -z "$REPO" ]; then REPO="deepakGoyal1356/Vyomaraj-Agent"; fi
-          TOKEN="${TOKEN_TO_USE:-}"
-          if [ -z "$TOKEN" ]; then TOKEN="${SECONDARY_TOKEN:-}"; fi
-          if [ -z "$TOKEN" ]; then TOKEN="${VYOMARAJ_PAT:-}"; fi
-          echo "REPO: $REPO — TOKEN present: $(if [ -n \"$TOKEN\" ]; then echo yes; else echo no; fi)"
-          rm -rf primary-mirror.git
-          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" primary-mirror.git
-          if [ $? -ne 0 ]; then
-            echo "⚠️ Clone failed — but vyomaraj-sync-both already synced secondary via PAT success 14s — no data loss"
-            echo "✅ DR resilience maintained via vyomaraj-sync-both — 0.00 loss"
-            exit 0
-          fi
-          cd primary-mirror.git
-          git remote set-url --push origin "https://x-access-token:${TOKEN}@github.com/${REPO}.git"
-          echo "Pushing mirror to $REPO — V15.1 ?v=151"
-          git push --mirror --force origin 2>&1 | tail -n 30
-          PUSH_EXIT=${PIPESTATUS[0]:-0}
-          if [ "$PUSH_EXIT" -eq 0 ]; then
-            echo "✅ DR Mirror Complete — Primary and Secondary in sync — V15.1 ?v=151 678 LIVE 694 total"
-          else
-            echo "⚠️ DR Mirror push exit $PUSH_EXIT — but vyomaraj-sync-both.yml V15.1 already synced secondary via PAT success 14s — no data loss"
-            echo "ℹ️ Owner action if needed: check PAT repo scope — or allow force push in secondary"
-            echo "✅ DR resilience maintained via vyomaraj-sync-both — 0.00 loss — job will not fail"
-          fi
-          echo "Web URL + App parity DR fallback — Bharat-Laxman Hanuman Quality Panch Shakti — 0.00 loss — V15.1"
-          exit 0
+          set -Eeuo pipefail
+          SHA="$(git rev-parse HEAD)"
+          REMOTE="$(git ls-remote origin "refs/heads/main" | awk 'NR==1 {print $1}')"
+          test "$SHA" = "$REMOTE"
+          echo "PRIMARY_SHA=$SHA"
+          echo "PRIMARY ref verification: PASS"
 
-      - name: DR Pending Notice (V15.1)
-        if: env.DR_PENDING == 'true'
+      - name: Report
         run: |
-          echo "ℹ️ DR replication skipped — secrets not set — Primary live, Secondary will sync via vyomaraj-sync-both.yml once VYOMARAJ_GH_PAT set"
-          echo "Web: https://Vyomaraj1356.github.io/Vyomarajai/?v=151"
-          echo "Secondary: https://deepakGoyal1356.github.io/Vyomaraj-Agent/"
-          echo "DR activation report: ops/dr/DR_ACTIVATION_REPORT_V15_1.md"
-          echo "V15.1 868K index 678 LIVE 694 total KNOWLEDGE_VS_ENTERTAINMENT VYOMARAJ_JARVIS_TALK SHIV_KE_SATHI detailed"
-          echo "vyomaraj-sync-both.yml V15.1 success ensures secondary sync even if this workflow pending"
+          echo "This workflow is verification-only."
+          echo "Authenticated API replication is owned by vyomaraj-sync-both.yml."
+          echo "No mirror --force, no blind overwrite, and no false-success fallback is used."
