@@ -1,7 +1,9 @@
-name: "Vyomaraj PRIMARY to DR Sync"
+name: "Vyomaraj Scoped PRIMARY + SECONDARY Branch Sync"
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -19,15 +21,26 @@ env:
   DR_BRANCH: "main"
 
 jobs:
-  primary-to-dr:
+  dr-sync-bidirectional:
     runs-on: ubuntu-latest
     steps:
+      - name: PR safety gate — Arena branch is not a replication target
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "$PRIMARY_REPO"
+          echo "PR validation only: $GITHUB_HEAD_REF"
+          echo "PRIMARY remains $PRIMARY_REPO:$PRIMARY_BRANCH"
+          echo "DR remains $DR_REPO:$DR_BRANCH"
+          echo "No PR/feature branch is replicated to DR."
+
       - name: Checkout PRIMARY
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Verify PRIMARY identity
+        if: github.event_name != 'pull_request'
         run: |
           set -euo pipefail
           test "$GITHUB_REPOSITORY" = "$PRIMARY_REPO"
@@ -39,6 +52,7 @@ jobs:
           echo "PRIMARY_SHA=$EXPECTED_SHA"
 
       - name: Verify DR credential
+        if: github.event_name != 'pull_request'
         env:
           DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
         run: |
@@ -50,6 +64,7 @@ jobs:
           echo "DR=$DR_REPO:$DR_BRANCH authenticated"
 
       - name: Replicate PRIMARY main to DR main
+        if: github.event_name != 'pull_request'
         env:
           DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
           PRIMARY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
