@@ -171,20 +171,107 @@ jobs:
             SECONDARY_BRANCH_EXISTS=false
           fi
           echo "SECONDARY_BRANCH_EXISTS=$SECONDARY_BRANCH_EXISTS"
-          echo "Pushing only $CUR_BRANCH to SECONDARY $DR_REPO without force."
-          PUSH_LOG="$(mktemp)"
-          if ! git push --porcelain --no-force dr "HEAD:refs/heads/${CUR_BRANCH}" >"$PUSH_LOG" 2>&1; then
-            tail -n 12 "$PUSH_LOG"
-            if grep -Eqi 'non-fast-forward|fetch first|stale info' "$PUSH_LOG"; then
-              echo "::error title=SECONDARY history diverged::The target branch exists=$SECONDARY_BRANCH_EXISTS and source SHA is $EXPECTED_SHA. Non-fast-forward refused; no force update was attempted."
-            elif grep -Eqi '403|write access|permission|protected branch|GH006|GH013' "$PUSH_LOG"; then
-              echo "::error title=SECONDARY write denied::The target branch exists=$SECONDARY_BRANCH_EXISTS; the selected credential or branch rules do not permit this write. No force update was attempted."
-            else
-              echo "::error title=SECONDARY push failed::The target branch exists=$SECONDARY_BRANCH_EXISTS; inspect the step output. No force update was attempted."
+
+          TARGET_LOCAL_REF="refs/remotes/dr-sync-target"
+          SAFE_LEGACY_MIRROR=false
+          if [ "$SECONDARY_BRANCH_EXISTS" = "true" ]; then
+            if ! git fetch --no-tags dr "+refs/heads/${CUR_BRANCH}:${TARGET_LOCAL_REF}"; then
+              echo "::error title=SECONDARY fetch failed::Could not fetch the existing target branch for a safe ancestry check."
+              exit 1
             fi
-            exit 1
+            FETCHED_TARGET_SHA="$(git rev-parse "$TARGET_LOCAL_REF")"
+            if [ "$FETCHED_TARGET_SHA" != "$SECONDARY_BEFORE_SHA" ]; then
+              echo "::error title=SECONDARY ref changed::The target moved during preflight; refusing to update it. Retry after the concurrent write finishes."
+              exit 1
+            fi
+
+            if ! git merge-base --is-ancestor "$FETCHED_TARGET_SHA" "$EXPECTED_SHA"; then
+              # Older REST mirroring created a synthetic commit. Reconcile it only
+              # when its recorded PRIMARY ancestor exists locally and its entire Git
+              # tree is byte-for-byte identical. Never auto-rewrite SECONDARY main.
+              if [ "$CUR_BRANCH" = "main" ] || [[ "$CUR_BRANCH" != arena/* ]]; then
+                echo "::error title=SECONDARY ref diverged::Automatic history reconciliation is limited to the fixed Arena ref and is disabled for main and all other branches. No update was attempted."
+                exit 1
+              fi
+              TARGET_SUBJECT="$(git show -s --format=%s "$TARGET_LOCAL_REF")"
+              MIRRORED_SOURCE_SHA=""
+              case "$TARGET_SUBJECT" in
+                "chore(dr): mirror ${PRIMARY_REPO}:${CUR_BRANCH} at "*)
+                  MIRRORED_SOURCE_SHA="${TARGET_SUBJECT##* at }"
+                  ;;
+              esac
+              if [[ "$MIRRORED_SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]] && git cat-file -e "${MIRRORED_SOURCE_SHA}^{commit}" 2>/dev/null; then
+                if git merge-base --is-ancestor "$MIRRORED_SOURCE_SHA" "$EXPECTED_SHA"; then
+                  PRIMARY_MIRROR_TREE="$(git rev-parse "${MIRRORED_SOURCE_SHA}^{tree}")"
+                  SECONDARY_TREE="$(git rev-parse "${TARGET_LOCAL_REF}^{tree}")"
+                  if [ "$PRIMARY_MIRROR_TREE" = "$SECONDARY_TREE" ]; then
+                    SAFE_LEGACY_MIRROR=true
+                  fi
+                fi
+              fi
+              if [ "$SAFE_LEGACY_MIRROR" != "true" ]; then
+                echo "::error title=SECONDARY history diverged::The private target is not a verified, unchanged API mirror of a PRIMARY ancestor. No overwrite was attempted."
+                exit 1
+              fi
+
+              # Preserve the old target commit on SECONDARY before converging the
+              # Arena branch. This is idempotent and uses a lease against races.
+              BACKUP_BRANCH="dr-archive/${CUR_BRANCH}/pre-exact-sync-${GITHUB_RUN_ID}"
+              if ! git check-ref-format "refs/heads/${BACKUP_BRANCH}" >/dev/null; then
+                echo "::error title=Invalid DR archive ref::Could not construct a safe backup ref name."
+                exit 1
+              fi
+              if ! EXISTING_BACKUP_SHA="$(git ls-remote dr "refs/heads/${BACKUP_BRANCH}" | awk 'NR == 1 {print $1}')"; then
+                echo "::error title=DR archive lookup failed::Could not check the backup ref before reconciliation."
+                exit 1
+              fi
+              if [ -z "$EXISTING_BACKUP_SHA" ]; then
+                if ! git push --porcelain --no-force dr "${TARGET_LOCAL_REF}:refs/heads/${BACKUP_BRANCH}"; then
+                  echo "::error title=DR archive creation failed::The old SECONDARY commit could not be preserved; the target ref was not changed."
+                  exit 1
+                fi
+              elif [ "$EXISTING_BACKUP_SHA" != "$FETCHED_TARGET_SHA" ]; then
+                echo "::error title=DR archive collision::An archive ref already exists with different content; no target update was attempted."
+                exit 1
+              fi
+              if ! VERIFIED_BACKUP_SHA="$(git ls-remote dr "refs/heads/${BACKUP_BRANCH}" | awk 'NR == 1 {print $1}')"; then
+                echo "::error title=DR archive verification failed::The SECONDARY backup ref could not be read back."
+                exit 1
+              fi
+              if [ "$VERIFIED_BACKUP_SHA" != "$FETCHED_TARGET_SHA" ]; then
+                echo "::error title=DR archive verification failed::The backup ref does not point to the original target commit; no target update was attempted."
+                exit 1
+              fi
+              printf 'DR_ARCHIVE_REF=%s:%s\n' "$DR_REPO" "$BACKUP_BRANCH" >> "$GITHUB_ENV"
+              echo "Preserved the previous synthetic mirror on SECONDARY ref $BACKUP_BRANCH."
+
+              PUSH_LOG="$(mktemp)"
+              if ! git push --porcelain --force-with-lease="refs/heads/${CUR_BRANCH}:${SECONDARY_BEFORE_SHA}" dr "HEAD:refs/heads/${CUR_BRANCH}" >"$PUSH_LOG" 2>&1; then
+                tail -n 12 "$PUSH_LOG"
+                echo "::error title=SECONDARY convergence failed::The original ref is still archived at $BACKUP_BRANCH; lease-protected update was rejected."
+                exit 1
+              fi
+              rm -f "$PUSH_LOG"
+              echo "Reconciled the verified legacy mirror with a lease; the old target remains in the private archive ref."
+            fi
           fi
-          rm -f "$PUSH_LOG"
+
+          if [ "$SAFE_LEGACY_MIRROR" != "true" ]; then
+            echo "Pushing only $CUR_BRANCH to SECONDARY $DR_REPO without force."
+            PUSH_LOG="$(mktemp)"
+            if ! git push --porcelain --no-force dr "HEAD:refs/heads/${CUR_BRANCH}" >"$PUSH_LOG" 2>&1; then
+              tail -n 12 "$PUSH_LOG"
+              if grep -Eqi 'non-fast-forward|fetch first|stale info' "$PUSH_LOG"; then
+                echo "::error title=SECONDARY history diverged::A non-fast-forward update was refused; no force update was attempted."
+              elif grep -Eqi '403|write access|permission|protected branch|GH006|GH013' "$PUSH_LOG"; then
+                echo "::error title=SECONDARY write denied::The selected credential or branch rules do not permit this write. No force update was attempted."
+              else
+                echo "::error title=SECONDARY push failed::Inspect the step output. No force update was attempted."
+              fi
+              exit 1
+            fi
+            rm -f "$PUSH_LOG"
+          fi
 
           if ! SECONDARY_SHA="$(git ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR == 1 {print $1}')"; then
             echo "::error title=SECONDARY ref lookup failed::The push returned success, but the SECONDARY ref could not be read back."
@@ -225,72 +312,52 @@ jobs:
             echo "No automatic DR→PRIMARY promotion was attempted; use a reviewed recovery procedure."
           fi
 
-      - name: Heartbeat plus PRIMARY SECONDARY Health Check every 30m hourly sync both V15.1
+      - name: Heartbeat plus PRIMARY SECONDARY read-only health check
         run: |
-          set -e
-          source $GITHUB_ENV || true
+          set -Eeuo pipefail
+          source "$GITHUB_ENV" || true
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
           DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
-          echo "💓 PRIMARY SECONDARY Heartbeat + Health Check V15.1 ?v=151 $(date -u) hourly sync both as requested"
+          echo "Read-only PRIMARY/SECONDARY health check at $(date -u)."
+
           if git ls-remote "https://github.com/${PRIMARY_REPO}.git" HEAD >/dev/null 2>&1; then
-            echo "✅ PRIMARY Public is UP — https://github.com/${PRIMARY_REPO}"
+            echo "✅ PRIMARY is reachable: $PRIMARY_REPO"
           else
-            echo "🚨 PRIMARY DOWN — SECONDARY should be active — https://github.com/${DR_REPO} is serving"
+            echo "::error title=PRIMARY unavailable::Could not read the PRIMARY repository ref."
+            exit 1
           fi
-          # SECONDARY private check — use PAT if available to avoid 404 false down
-          if [ -n "${VYOMARAJ_PAT:-}" ]; then
-            if git ls-remote "https://x-access-token:${VYOMARAJ_PAT}@github.com/${DR_REPO}.git" HEAD >/dev/null 2>&1; then
-              echo "✅ SECONDARY Private via PAT is UP — $DR_REPO"
+
+          if [ -n "${DR_AUTH_TOKEN:-}" ]; then
+            DR_HTTP_CODE="$(curl -sS -o /dev/null -w '%{http_code}' \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $DR_AUTH_TOKEN" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/$DR_REPO")"
+            if [ "$DR_HTTP_CODE" = "200" ]; then
+              echo "✅ SECONDARY is reachable through the selected credential: $DR_REPO"
             else
-              echo "⚠️ SECONDARY not reachable via PAT — check PAT"
+              echo "::error title=SECONDARY unavailable::Authenticated repository check returned HTTP $DR_HTTP_CODE."
+              exit 1
             fi
           else
-            echo "ℹ️ SECONDARY private check skipped unauth — would return 404 — expected — workspace re-clone resilience OK"
+            echo "::error title=SECONDARY credential missing::No selected credential is available for the private repository check."
+            exit 1
           fi
-          if git ls-remote origin HEAD >/dev/null 2>&1; then
-            echo "✅ origin is UP"
-          else
-            echo "🚨 origin DOWN"
-          fi
-          if [ -n "${VYOMARAJ_PAT:-}" ]; then
-            if git ls-remote primary HEAD >/dev/null 2>&1; then
-              echo "✅ PRIMARY via PAT is UP — $PRIMARY_REPO"
-            fi
-            if git ls-remote dr HEAD >/dev/null 2>&1; then
-              echo "✅ SECONDARY via PAT is UP — $DR_REPO"
-            fi
-          fi
-          # Heartbeat commit if 30m stale and scheduled
+
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            LAST=$(git log -1 --format=%ct || echo 0)
-            NOW=$(date +%s)
+            LAST="$(git log -1 --format=%ct)"
+            NOW="$(date +%s)"
             AGE=$(( NOW - LAST ))
-            echo "Last commit age: ${AGE}s threshold 1800s for 30m"
-            if [ "$AGE" -gt 1800 ]; then
-              echo "Heartbeat: 30m stale → keepalive V15.1"
-              echo "$(date -u) DR heartbeat V15.1 ?v=151 678 LIVE — $AGE seconds since last push — $(git rev-parse --short HEAD) — Primary to DR sync" >> .vyomaraj-dr-heartbeat.log
-              git add .vyomaraj-dr-heartbeat.log || true
-              git commit -m "chore(dr): heartbeat V15.1 30m $(date -u +%Y-%m-%dT%H:%M:%SZ) ?v=151 [skip ci]" || echo "nothing to commit"
-              git push origin HEAD 2>&1 | tail -n 10 || echo "heartbeat push to origin failed"
-              if [ -n "${VYOMARAJ_PAT:-}" ]; then
-                git push dr HEAD 2>&1 | tail -n 10 || echo "heartbeat push to DR failed"
-              fi
-            else
-              echo "No heartbeat needed <30m V15.1"
-            fi
+            echo "Scheduled heartbeat age: ${AGE}s; no heartbeat commit or repository ref update is performed."
+            {
+              echo "### Read-only DR heartbeat"
+              echo "- Checked at (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              echo "- PRIMARY ref SHA: $(git rev-parse HEAD)"
+              echo "- Verified SECONDARY SHA from this run: ${DR_SYNCED_SHA:-unverified}"
+              echo "- This health-check step did not commit or push to either repository."
+            } >> "$GITHUB_STEP_SUMMARY"
           else
-            # Always ensure heartbeat file exists for V15.1 even on push events
-            if [ ! -f .vyomaraj-dr-heartbeat.log ]; then
-              echo "$(date -u) DR heartbeat V15.1 initial ?v=151 678 LIVE — $(git rev-parse --short HEAD) — Primary to DR sync" > .vyomaraj-dr-heartbeat.log
-              echo "Created initial heartbeat file V15.1"
-            else
-              echo "Heartbeat file exists V15.1"
-              tail -n 5 .vyomaraj-dr-heartbeat.log || true
-            fi
-          fi
-          # Also ensure heartbeat file is committed if new
-          if [ -f .vyomaraj-dr-heartbeat.log ]; then
-            ls -lh .vyomaraj-dr-heartbeat.log
+            echo "Heartbeat check complete; no repository refs were changed by this step."
           fi
 
       - name: Report scoped branch targets
@@ -316,4 +383,7 @@ jobs:
               echo "- Status: no successful read-after-write SHA verification is recorded for this run."
             fi
             echo "- Scope: the triggering ref only; no sibling ref is written."
+            if [ -n "${DR_ARCHIVE_REF:-}" ]; then
+              echo "- Preserved previous SECONDARY history at: \`${DR_ARCHIVE_REF}\`"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
