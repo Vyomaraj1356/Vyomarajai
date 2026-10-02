@@ -28,8 +28,16 @@
 
 ## DR, GitHub Pages, and remaining limits
 
-- PRIMARY `main` runs #342, #343 and scheduled #344 failed in the API replication step. Actions log retrieval returned EOF, so the exact HTTP/assertion error is not claimed. No SECONDARY `main` SHA equality was established.
+- PRIMARY `main` runs #342–#345 failed in the API replication step. Job metadata for #344 and #345 identifies the failed step as “Verify PRIMARY and replicate scoped branch to SECONDARY via GitHub API.” `gh run view` for #345 returned EOF, so the underlying API/assertion error is not claimed. No SECONDARY `main` SHA equality was established.
+- A read-only GitHub API request for private SECONDARY `deepakGoyal1356/Vyomaraj-Agent-6d64e` returned HTTP 404. This may mean the integration cannot see the private repository; it does not establish nonexistence. No SECONDARY refs or SHA were read and no write was attempted. The secret-scanning alerts API returned HTTP 403.
 - Arena run #352 is green for the later API-written ref at `94b8fbe`, but that implementation does not require exact source-SHA equality on Arena refs. Its Actions log could not be retrieved; no target SHA is asserted here.
-- The code-integration commit and subsequent documentation-only follow-ups used `[skip ci]` to avoid invoking the guarded archive/lease recovery without approval. An attempted manual dispatch of `arena-recovery.yml` was denied with HTTP 403 (`Resource not accessible by integration`); local importer tests passed, but no new GitHub push run exists for the code-integration merge or its documentation-only follow-ups.
-- GitHub Pages still serves `main` at `/`. The Arena branch is not production-deployed; PR #1 has not been merged. The latest primary/secondary `main` sync remains unverified.
-- No credential values were read, requested, or recorded.
+- The code-integration commit and subsequent follow-ups used `[skip ci]` to avoid invoking the guarded archive/lease recovery without approval. The manual `arena-recovery.yml` dispatch was denied with HTTP 403; no exact-SHA check exists for the current Arena tip. The local branch was fast-forwarded from `ab41354` to the pushed Arena tip `6d04c8c` without merge conflicts. PR #1 remains open and `CLEAN`/`MERGEABLE`.
+- GitHub Pages still serves `main` at `/`. The Arena branch is not production-deployed; PR #1 has not been merged. PRIMARY/SECONDARY `main` synchronization remains unverified. No push or merge to PRIMARY `main`, no SECONDARY write, and no force update were performed.
+- A count-only inspection found the tracked `ops/jarvis/jarvis.env` contains 24 non-empty assignments; values were not printed or copied into this report. The legacy example/controller also contain personal-contact text (not reproduced or altered here). This does not establish that the values are safe. The repo's secret-scanning API access returned HTTP 403, so an owner must review these files for credentials or personal data and rotate any real credentials.
+
+## LLM and harness audit
+
+- The pushed tree had no runtime LLM provider client or tool-calling harness. The existing Jarvis controller maintains local state and checks a Pages URL; model/provider names in its status text are not evidence of an LLM connection.
+- Added `ops/jarvis/llm_harness.py`, a standalone OpenAI-compatible harness with separate `vyomaraj` and `jarvis` role profiles. It exposes no tools, shell, Git, or automatic action execution. It does not connect automatically to the existing 24x7 controller and does not load the legacy `jarvis.env`.
+- The harness remains disabled until an owner configures a trusted endpoint, approved model, and local API key (or loopback local model). No provider or model was chosen and no key was requested or embedded. Its eight offline unit tests use mocked HTTP and make no network call.
+- See [`ops/jarvis/LLM_HARNESS.md`](../../jarvis/LLM_HARNESS.md) for configuration and safety boundaries.

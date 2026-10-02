@@ -2,3 +2,4 @@
 .arena-recovery/
 __pycache__/
 *.py[cod]
+ops/jarvis/llm-harness.env

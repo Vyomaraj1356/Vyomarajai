@@ -11,3 +11,7 @@ Uploaded reports use repository-relative names or opaque `ARENA_EXPORT/item-NNNN
 GitHub repository access does not equal access to Arena's private session database. If Arena does not export a session, it is marked UNRECOVERED — SOURCE NOT AVAILABLE. A workflow run without `ARENA_EXPORT_DIRS` can only scan repository evidence; it is not proof that private Arena sessions were recovered.
 
 This is intentionally separate from PR #1. Review the updated PR and reconcile any actually recovered Arena work against current PRIMARY main before an authorized merge.
+
+## Separate LLM harness
+
+The standalone Vyomaraj/Jarvis LLM harness is documented in [`ops/jarvis/LLM_HARNESS.md`](../jarvis/LLM_HARNESS.md). It is not connected to this recovery importer, has no tools or automatic repository actions, and remains disabled until an owner chooses a trusted provider/model and configures local environment variables.
