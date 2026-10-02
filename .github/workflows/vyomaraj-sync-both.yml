@@ -87,7 +87,6 @@ jobs:
       - name: Verify PRIMARY and replicate scoped branch to SECONDARY via GitHub API
         if: env.DR_PENDING == 'false'
         env:
-          DR_AUTH_TOKEN: ${{ env.DR_AUTH_TOKEN }}
           PRIMARY_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -Eeuo pipefail
@@ -133,11 +132,11 @@ jobs:
 
           # Build target tree entries. Blobs are uploaded only for file entries.
           primary_api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$TREE_SHA?recursive=1" > /tmp/source-tree.json
-          python - "$DR_REPO" "$DR_AUTH_TOKEN" "$PRIMARY_API_TOKEN" "$API_VERSION" "$EXPECTED_SHA" "$CUR_BRANCH" "$PRIMARY_REPO" <<'PY'
+          python - "$DR_REPO" "$DR_AUTH_TOKEN" "$PRIMARY_API_TOKEN" "$API_VERSION" "$EXPECTED_SHA" "$CUR_BRANCH" "$PRIMARY_REPO" "$TREE_SHA" <<'PY'
           import base64, json, sys, urllib.request, urllib.error
           from urllib.parse import quote
 
-          dr_repo, dr_token, primary_token, api_version, source_sha, branch, primary_repo = sys.argv[1:]
+          dr_repo, dr_token, primary_token, api_version, source_sha, branch, primary_repo, source_tree_sha = sys.argv[1:]
 
           def request(method, url, token, body=None):
               data = None if body is None else json.dumps(body).encode()
