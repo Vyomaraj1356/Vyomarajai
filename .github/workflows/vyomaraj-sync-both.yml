@@ -143,19 +143,70 @@ jobs:
           if source.get("truncated"):
               raise SystemExit("❌ PRIMARY tree is truncated; refusing partial DR replication.")
 
+          # Reuse existing SECONDARY blobs whenever the path/content is already identical.
+          # This avoids re-uploading the entire 136-file tree on every Arena branch run.
+          ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
+          target_parent = None
+          target_tree_sha = None
+          try:
+              ref = request("GET", ref_url)
+              target_parent = ref["object"]["sha"]
+              target_commit = request("GET", f"https://api.github.com/repos/{dr_repo}/git/commits/{target_parent}")
+              target_tree_sha = target_commit["tree"]["sha"]
+          except urllib.error.HTTPError as ex:
+              if ex.code != 404:
+                  raise
+
+          target_by_path = {}
+          if target_tree_sha:
+              target_tree = request("GET", f"https://api.github.com/repos/{dr_repo}/git/trees/{quote(target_tree_sha, safe='')}?recursive=1")
+              if target_tree.get("truncated"):
+                  raise SystemExit("❌ SECONDARY tree is truncated; refusing partial DR replication.")
+              target_by_path = {e["path"]: e for e in target_tree.get("tree", []) if e.get("type") == "blob"}
+              print(f"SECONDARY existing blobs: {len(target_by_path)}")
+
           blobs = []
+          reused = 0
+          uploaded = 0
           for i, e in enumerate(entries, 1):
               path = e["path"]
-              url = f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}"
-              blob = request("GET", url)
-              raw = base64.b64decode(blob["content"])
-              created = request("POST", f"https://api.github.com/repos/{dr_repo}/git/blobs", {
-                  "encoding": "base64",
-                  "content": base64.b64encode(raw).decode(),
-              })
-              blobs.append({"path": path, "mode": e.get("mode","100644"), "type": "blob", "sha": created["sha"]})
-              if i % 50 == 0:
-                  print(f"Uploaded {i}/{len(entries)} tree entries")
+              mode = e.get("mode", "100644")
+              existing = target_by_path.get(path)
+
+              # Same Git blob SHA means byte-identical content already exists in SECONDARY.
+              if existing and existing.get("sha") == e.get("sha") and existing.get("mode", mode) == mode:
+                  blobs.append({"path": path, "mode": mode, "type": "blob", "sha": existing["sha"]})
+                  reused += 1
+                  continue
+
+              source_url = f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}"
+              try:
+                  blob = request("GET", source_url)
+              except urllib.error.HTTPError as ex:
+                  raise SystemExit(f"❌ Source blob GET failed: HTTP {ex.code} path={path} sha={e['sha']}")
+
+              raw_b64 = blob.get("content", "").replace("\\n", "")
+              if not raw_b64:
+                  raise SystemExit(f"❌ Source blob returned no content: path={path} sha={e['sha']}")
+              try:
+                  base64.b64decode(raw_b64, validate=True)
+              except Exception as ex:
+                  raise SystemExit(f"❌ Source blob base64 invalid: path={path} sha={e['sha']}: {ex}")
+
+              try:
+                  created = request("POST", f"https://api.github.com/repos/{dr_repo}/git/blobs", {
+                      "encoding": "base64",
+                      "content": raw_b64,
+                  })
+              except urllib.error.HTTPError as ex:
+                  raise SystemExit(f"❌ SECONDARY blob POST failed: HTTP {ex.code} path={path} sha={e['sha']}")
+
+              blobs.append({"path": path, "mode": mode, "type": "blob", "sha": created["sha"]})
+              uploaded += 1
+              if i % 25 == 0:
+                  print(f"Processed {i}/{len(entries)} tree entries; reused={reused} uploaded={uploaded}")
+
+          print(f"SECONDARY blob plan complete: reused={reused}, uploaded={uploaded}, total={len(blobs)}")
 
           # Use the uploaded file blobs to create a complete target tree.
           tree_entries = blobs
