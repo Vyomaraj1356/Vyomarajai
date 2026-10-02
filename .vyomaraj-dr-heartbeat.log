@@ -16,3 +16,9 @@ Thu Oct  1 06:48:27 UTC 2026 DR heartbeat V15.1 ?v=151 678 LIVE — 2355 seconds
 2026-10-02T07:06:38.265Z DR FINAL RUN: fix-test-run-close requested; forcing verification run.
 2026-10-02T12:40:00+05:30 DR verification trigger: target-ref read-after-write + SHA equality enforcement
 2026-10-02T07:22:40Z DR Arena ref exact SHA verified by workflow run 36978208191 at 0b5d82a36ebf648cbbb151a97c16d7e5c275e7db
+2026-10-02T07:38:35Z DR Arena ref exact SHA verified by workflow run #315 at d59dbaae5a9d2aee5f2ed227511a944a506348d5
+2026-10-02T07:40:45Z DR Arena ref exact SHA verified by workflow run #316 at 18fde50638e641308cb0a903ffa8307532049f2f
+2026-10-02T16:04:45Z PRIMARY main API replication failed in workflow run #342 at 3d521942a43f262eb593bd27eec130694f40b697; SECONDARY main SHA unverified
+2026-10-02T16:05:00Z DR ref endpoint fix verification trigger
+2026-10-02T16:07:38Z PRIMARY main API replication failed in workflow run #343 at 1347f7939157c4fe3a0d18d9141fb8d9bba0bed0; SECONDARY main SHA unverified
+2026-10-02T16:10:52Z PRIMARY main scheduled API replication failed in workflow run #344 at 1347f7939157c4fe3a0d18d9141fb8d9bba0bed0; SECONDARY main SHA unverified
