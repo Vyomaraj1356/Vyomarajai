@@ -1,0 +1,91 @@
+{
+  "release": "V16.7.24",
+  "build": 194,
+  "snapshot_date": "2026-10-01",
+  "status_basis": "current repository inspection plus prior documented GitHub Actions outcome; no secret values copied",
+  "primary_repository": "Vyomaraj1356/Vyomarajai",
+  "session_branch": "arena/01a0f634-vyomarajai",
+  "requested_branch_unavailable": "arena/01a0e21c-vyomaraj-agent",
+  "unavailable_commits": [
+    "0ad7f5c",
+    "649f8e2",
+    "d014f16",
+    "9d824ab"
+  ],
+  "integrations": {
+    "whatsapp_template": {
+      "status": "blocked_not_run",
+      "required_secret_names": [
+        "WHATSAPP_TOKEN",
+        "WHATSAPP_PHONE_ID"
+      ],
+      "expected_script": "scripts/vyomaraj-create-whatsapp-template.mjs",
+      "script_present": false
+    },
+    "public_url": {
+      "status": "blocked_not_run",
+      "required_secret_names": [
+        "RENDER_API_KEY",
+        "RENDER_SERVICE_ID"
+      ],
+      "alternate_script": "scripts/vyomaraj-tunnel.sh",
+      "alternate_script_present": false
+    },
+    "ai_provider": {
+      "status": "blocked_no_provider_key_or_selection",
+      "suggested_provider_from_owner_notes": "Sea-Lion (SEA_LION_API_KEY)",
+      "key_present": false
+    },
+    "secondary_replication": {
+      "status": "push_step_failed_secondary_unverified",
+      "last_known_failed_workflow_run": "36830666341",
+      "secondary_ref_verified": false,
+      "next_step": "Owner must ensure a valid authorized secret/access to the secondary and the correct branch mapping; then rerun and verify the secondary branch ref equals the pushed SHA. Do not infer success from a workflow job alone.",
+      "last_known_failed_workflow_run_url": "https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/36830666341",
+      "failed_step": "Verify PRIMARY and push scoped branch to SECONDARY",
+      "previous_failed_workflow_run": "36828380727",
+      "direct_api_check": "GitHub API for deepakGoyal1356/Vyomaraj-Agent returned 404 to the current Arena connection; private/unavailable, not independently verified.",
+      "log_retrieval": "GitHub Actions results endpoint returned EOF while retrieving logs; the exact secondary push error is unknown."
+    }
+  },
+  "credential_handling": "No credentials or token values are included in this file. Configure secrets only in authorized secret storage.",
+  "workflow_message_review": {
+    "file": ".github/workflows/dr-replication.yml",
+    "status": "failure_and_pending_messages_corrected_to_avoid_claiming_secondary_success_without_ref_verification",
+    "replication_behavior_changed": false,
+    "workflow_run_performed_by_this_edit": false
+  },
+  "primary_branch_update": {
+    "branch": "arena/01a0f634-vyomarajai",
+    "commit": "23bcbaedbd8146a8048c6951fb5b4030dd1b4ae2",
+    "push": "succeeded",
+    "origin_ref_matches_head": true,
+    "verified_by": "git ls-remote origin refs/heads/arena/01a0f634-vyomarajai",
+    "current_branch_tip_before_final_handover_update": "6a760e396ff76eb4eabd2425a58144b02dcbe91e"
+  },
+  "pull_request": {
+    "number": 1,
+    "url": "https://github.com/Vyomaraj1356/Vyomarajai/pull/1",
+    "base": "main",
+    "head": "arena/01a0f634-vyomarajai",
+    "state": "open",
+    "mergeability_at_last_check": "mergeable; clean",
+    "merged": false,
+    "checks": "no checks reported at last check"
+  },
+  "github_pages": {
+    "configured": true,
+    "source_branch": "main",
+    "source_path": "/",
+    "url": "https://vyomaraj1356.github.io/Vyomarajai/",
+    "v194_deployed": false,
+    "deployment_gate": "PR #1 must be reviewed and merged"
+  },
+  "actions_secret_metadata_access": {
+    "status": "unavailable_to_current_integration",
+    "attempt": "gh secret list --repo Vyomaraj1356/Vyomarajai",
+    "result": "HTTP 403 Resource not accessible by integration",
+    "secret_values_read": false,
+    "next_step": "Reconnect/reauthorize GitHub in Arena with repository Actions permission, or have the owner configure secrets in repository settings. Do not share tokens in chat."
+  }
+}
