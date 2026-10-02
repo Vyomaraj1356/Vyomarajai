@@ -1,5 +1,5 @@
 name: "Vyomaraj Scoped PRIMARY + SECONDARY Branch Sync"
-# DR transport authentication fix active — owner-auth mode
+# Non-forced Git ref replication with exact SHA read-after-write verification.
 
 on:
   push:
@@ -84,7 +84,7 @@ jobs:
           echo "❌ No configured credential can access the private DR repository."
           echo "DR_PENDING=true" >> "$GITHUB_ENV"
           exit 1
-      - name: Verify PRIMARY and replicate scoped branch to SECONDARY via GitHub API
+      - name: Verify PRIMARY and push exact commit to SECONDARY
         if: env.DR_PENDING == 'false'
         env:
           DR_AUTH_TOKEN: ${{ env.DR_AUTH_TOKEN }}
@@ -95,192 +95,134 @@ jobs:
           PRIMARY_REPO="${PRIMARY_REPO:-Vyomaraj1356/Vyomarajai}"
           CUR_BRANCH="${GITHUB_REF#refs/heads/}"
           EXPECTED_SHA="$(git rev-parse HEAD)"
-          API_VERSION="2022-11-28"
-          echo "Scoped API replication: $CUR_BRANCH only."
-          PRIMARY_SHA="$(git ls-remote origin "refs/heads/${CUR_BRANCH}" | awk 'NR==1 {print $1}' || true)"
+
+          if [ -z "${DR_AUTH_TOKEN:-}" ]; then
+            echo "::error title=DR credential missing::The credential-selection step did not provide a token."
+            exit 1
+          fi
+
+          echo "Scoped replication: $CUR_BRANCH only; using a non-forced Git push."
+          if ! PRIMARY_SHA="$(git ls-remote origin "refs/heads/${CUR_BRANCH}" | awk 'NR == 1 {print $1}')"; then
+            echo "::error title=PRIMARY ref lookup failed::Could not read the PRIMARY branch ref."
+            exit 1
+          fi
           if [ "$PRIMARY_SHA" != "$EXPECTED_SHA" ]; then
-            echo "❌ PRIMARY ref mismatch: expected $EXPECTED_SHA, got ${PRIMARY_SHA:-missing}"
+            echo "::error title=PRIMARY SHA mismatch::Expected $EXPECTED_SHA, got ${PRIMARY_SHA:-missing}."
             exit 1
           fi
-          echo "✅ PRIMARY verified at $PRIMARY_SHA"
+          echo "PRIMARY_REF=$PRIMARY_REPO:$CUR_BRANCH"
+          echo "PRIMARY_SHA=$PRIMARY_SHA"
 
-          api() {
-            curl -sS --fail-with-body               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $DR_AUTH_TOKEN"               -H "X-GitHub-Api-Version: $API_VERSION"               "$@"
-          }
-
+          # Keep credentials out of the remote URL and replace checkout's generic
+          # GITHUB_TOKEN header only for this step; restore it on every exit path.
           echo "::add-mask::$DR_AUTH_TOKEN"
-          echo "🔄 Git transport is unavailable for this fine-grained credential; using authenticated GitHub Git API replication."
+          DR_URL="https://github.com/${DR_REPO}.git"
+          git remote remove dr >/dev/null 2>&1 || true
+          git remote add dr "$DR_URL"
 
-          # Read the exact source tree for the checked-out commit.
-          TREE_SHA="$(api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$EXPECTED_SHA?recursive=1" | python -c 'import json,sys; d=json.load(sys.stdin); print(d["tree"][0]["sha"] if False else d.get("sha",""))')"
-          if [ -z "$TREE_SHA" ]; then
-            echo "❌ Could not resolve PRIMARY tree."
+          CHECKOUT_AUTH_HEADERS="$(git config --local --get-all http.https://github.com/.extraheader || true)"
+          restore_checkout_auth() {
+            git config --local --unset-all http.https://github.com/.extraheader >/dev/null 2>&1 || true
+            if [ -n "$CHECKOUT_AUTH_HEADERS" ]; then
+              while IFS= read -r header; do
+                git config --local --add http.https://github.com/.extraheader "$header"
+              done <<< "$CHECKOUT_AUTH_HEADERS"
+            fi
+          }
+          trap restore_checkout_auth EXIT
+          git config --local --unset-all http.https://github.com/.extraheader >/dev/null 2>&1 || true
+          export GIT_TERMINAL_PROMPT=0
+
+          # PAT-backed Git HTTPS can use different accepted username conventions.
+          # Try the DR owner first, the PRIMARY owner second, then GitHub's app-style
+          # x-access-token name; credentials are never printed or embedded in a URL.
+          DR_REPO_OWNER="${DR_REPO%%/*}"
+          PRIMARY_REPO_OWNER="${PRIMARY_REPO%%/*}"
+          AUTH_CANDIDATES=("$DR_REPO_OWNER")
+          if [ "$PRIMARY_REPO_OWNER" != "$DR_REPO_OWNER" ]; then
+            AUTH_CANDIDATES+=("$PRIMARY_REPO_OWNER")
+          fi
+          AUTH_CANDIDATES+=("x-access-token")
+          GIT_AUTH_OK=false
+          for DR_GIT_USERNAME in "${AUTH_CANDIDATES[@]}"; do
+            BASIC_AUTH="$(printf '%s:%s' "$DR_GIT_USERNAME" "$DR_AUTH_TOKEN" | base64 -w0)"
+            echo "::add-mask::$BASIC_AUTH"
+            AUTH_HEADER="AUTHORIZATION: Basic $BASIC_AUTH"
+            git config --local --unset-all http.https://github.com/.extraheader >/dev/null 2>&1 || true
+            git config --local --add http.https://github.com/.extraheader "$AUTH_HEADER"
+            if git ls-remote dr HEAD >/dev/null 2>&1; then
+              GIT_AUTH_OK=true
+              echo "✅ SECONDARY Git read access verified using username mode: $DR_GIT_USERNAME"
+              break
+            fi
+          done
+          if [ "$GIT_AUTH_OK" != "true" ]; then
+            echo "::error title=SECONDARY Git authentication failed::The selected token passed the repository API check but could not read SECONDARY over Git HTTPS. Check token owner and repository access."
             exit 1
           fi
 
-          # Build target tree entries. Blobs are uploaded only for file entries.
-          api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$TREE_SHA?recursive=1" > /tmp/source-tree.json
-          python - "$DR_REPO" "$DR_AUTH_TOKEN" "$API_VERSION" "$EXPECTED_SHA" "$CUR_BRANCH" "$PRIMARY_REPO" <<'PY'
-          import base64, json, os, sys, urllib.request, urllib.error
-          from urllib.parse import quote
+          if ! SECONDARY_BEFORE_SHA="$(git ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR == 1 {print $1}')"; then
+            echo "::error title=SECONDARY ref lookup failed::Could not read the target branch before pushing."
+            exit 1
+          fi
+          if [ -n "$SECONDARY_BEFORE_SHA" ]; then
+            SECONDARY_BRANCH_EXISTS=true
+          else
+            SECONDARY_BRANCH_EXISTS=false
+          fi
+          echo "SECONDARY_BRANCH_EXISTS=$SECONDARY_BRANCH_EXISTS"
+          echo "Pushing only $CUR_BRANCH to SECONDARY $DR_REPO without force."
+          PUSH_LOG="$(mktemp)"
+          if ! git push --porcelain --no-force dr "HEAD:refs/heads/${CUR_BRANCH}" >"$PUSH_LOG" 2>&1; then
+            tail -n 12 "$PUSH_LOG"
+            if grep -Eqi 'non-fast-forward|fetch first|stale info' "$PUSH_LOG"; then
+              echo "::error title=SECONDARY history diverged::The target branch exists=$SECONDARY_BRANCH_EXISTS and source SHA is $EXPECTED_SHA. Non-fast-forward refused; no force update was attempted."
+            elif grep -Eqi '403|write access|permission|protected branch|GH006|GH013' "$PUSH_LOG"; then
+              echo "::error title=SECONDARY write denied::The target branch exists=$SECONDARY_BRANCH_EXISTS; the selected credential or branch rules do not permit this write. No force update was attempted."
+            else
+              echo "::error title=SECONDARY push failed::The target branch exists=$SECONDARY_BRANCH_EXISTS; inspect the step output. No force update was attempted."
+            fi
+            exit 1
+          fi
+          rm -f "$PUSH_LOG"
 
-          dr_repo, token, api_version, source_sha, branch, primary_repo = sys.argv[1:]
-          headers = {
-              "Accept": "application/vnd.github+json",
-              "Authorization": f"Bearer {token}",
-              "X-GitHub-Api-Version": api_version,
-              "User-Agent": "Vyomaraj-DR-API-Replicator",
-          }
+          if ! SECONDARY_SHA="$(git ls-remote dr "refs/heads/${CUR_BRANCH}" | awk 'NR == 1 {print $1}')"; then
+            echo "::error title=SECONDARY ref lookup failed::The push returned success, but the SECONDARY ref could not be read back."
+            exit 1
+          fi
+          if [ "$SECONDARY_SHA" != "$EXPECTED_SHA" ]; then
+            echo "::error title=SECONDARY SHA mismatch::Expected $EXPECTED_SHA, got ${SECONDARY_SHA:-missing}."
+            exit 1
+          fi
 
-          def request(method, url, body=None):
-              data = None if body is None else json.dumps(body).encode()
-              req = urllib.request.Request(url, data=data, headers=headers, method=method)
-              with urllib.request.urlopen(req) as r:
-                  return json.load(r)
-
-          source = json.load(open("/tmp/source-tree.json", encoding="utf-8"))
-          entries = [e for e in source.get("tree", []) if e.get("type") == "blob"]
-          if source.get("truncated"):
-              raise SystemExit("❌ PRIMARY tree is truncated; refusing partial DR replication.")
-
-          # Reuse existing SECONDARY blobs whenever the path/content is already identical.
-          # This avoids re-uploading the entire 136-file tree on every Arena branch run.
-          ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
-          target_parent = None
-          target_tree_sha = None
-          try:
-              ref = request("GET", ref_url)
-              target_parent = ref["object"]["sha"]
-              target_commit = request("GET", f"https://api.github.com/repos/{dr_repo}/git/commits/{target_parent}")
-              target_tree_sha = target_commit["tree"]["sha"]
-          except urllib.error.HTTPError as ex:
-              if ex.code != 404:
-                  raise
-
-          target_by_path = {}
-          if target_tree_sha:
-              target_tree = request("GET", f"https://api.github.com/repos/{dr_repo}/git/trees/{quote(target_tree_sha, safe='')}?recursive=1")
-              if target_tree.get("truncated"):
-                  raise SystemExit("❌ SECONDARY tree is truncated; refusing partial DR replication.")
-              target_by_path = {e["path"]: e for e in target_tree.get("tree", []) if e.get("type") == "blob"}
-              print(f"SECONDARY existing blobs: {len(target_by_path)}")
-
-          blobs = []
-          reused = 0
-          uploaded = 0
-          for i, e in enumerate(entries, 1):
-              path = e["path"]
-              mode = e.get("mode", "100644")
-              existing = target_by_path.get(path)
-
-              # Same Git blob SHA means byte-identical content already exists in SECONDARY.
-              if existing and existing.get("sha") == e.get("sha") and existing.get("mode", mode) == mode:
-                  blobs.append({"path": path, "mode": mode, "type": "blob", "sha": existing["sha"]})
-                  reused += 1
-                  continue
-
-              source_url = f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}"
-              try:
-                  blob = request("GET", source_url)
-              except urllib.error.HTTPError as ex:
-                  raise SystemExit(f"❌ Source blob GET failed: HTTP {ex.code} path={path} sha={e['sha']}")
-
-              raw_b64 = "".join(blob.get("content", "").split())
-              if not raw_b64:
-                  raise SystemExit(f"❌ Source blob returned no content: path={path} sha={e['sha']}")
-              try:
-                  base64.b64decode(raw_b64, validate=True)
-              except Exception as ex:
-                  raise SystemExit(f"❌ Source blob base64 invalid: path={path} sha={e['sha']}: {ex}")
-
-              try:
-                  created = request("POST", f"https://api.github.com/repos/{dr_repo}/git/blobs", {
-                      "encoding": "base64",
-                      "content": raw_b64,
-                  })
-              except urllib.error.HTTPError as ex:
-                  raise SystemExit(f"❌ SECONDARY blob POST failed: HTTP {ex.code} path={path} sha={e['sha']}")
-
-              blobs.append({"path": path, "mode": mode, "type": "blob", "sha": created["sha"]})
-              uploaded += 1
-              if i % 25 == 0:
-                  print(f"Processed {i}/{len(entries)} tree entries; reused={reused} uploaded={uploaded}")
-
-          print(f"SECONDARY blob plan complete: reused={reused}, uploaded={uploaded}, total={len(blobs)}")
-
-          # Use the uploaded file blobs to create a complete target tree.
-          tree_entries = blobs
-          tree = request("POST", f"https://api.github.com/repos/{dr_repo}/git/trees", {"tree": tree_entries})
-          target_tree = tree["sha"]
-
-          # Parent the new DR commit to the current DR branch when it exists.
-          ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
-          try:
-              ref = request("GET", ref_url)
-              parent = ref["object"]["sha"]
-          except urllib.error.HTTPError as ex:
-              if ex.code != 404:
-                  raise
-              parent = None
-
-          message = f"chore(dr): mirror {primary_repo}:{branch} at {source_sha}"
-          payload = {"message": message, "tree": target_tree}
-          if parent:
-              payload["parents"] = [parent]
-          commit = request("POST", f"https://api.github.com/repos/{dr_repo}/git/commits", payload)
-          new_sha = commit["sha"]
-
-          if parent:
-              request("PATCH", ref_url, {"sha": new_sha, "force": False})
-          else:
-              ref = request("POST", f"https://api.github.com/repos/{dr_repo}/git/refs", {
-                  "ref": f"refs/heads/{branch}",
-                  "sha": new_sha,
-              })
-
-          print(f"DR_REPLICATED_SHA={new_sha}")
-          print(f"SOURCE_SHA={source_sha}")
-          print(f"BRANCH={branch}")
-          PY
-
-          echo "✅ PRIMARY branch $CUR_BRANCH has been replicated to SECONDARY through the GitHub API."
-          echo "Source commit: $EXPECTED_SHA"
-          echo "No force ref update was used."
-      - name: Pull from DR if Primary is behind Bidirectional DR to Primary failover V15.1
-        # Never switch or write main while syncing a session branch.
+          echo "SECONDARY_REF=$DR_REPO:$CUR_BRANCH"
+          echo "SECONDARY_SHA=$SECONDARY_SHA"
+          echo "✅ Exact PRIMARY/SECONDARY SHA equality verified for $CUR_BRANCH at $EXPECTED_SHA."
+          printf 'DR_SYNCED_SHA=%s\n' "$EXPECTED_SHA" >> "$GITHUB_ENV"
+          printf 'DR_SECONDARY_SHA=%s\n' "$SECONDARY_SHA" >> "$GITHUB_ENV"
+      - name: DR to PRIMARY controlled failover audit (read-only)
         if: env.DR_PENDING == 'false' && github.ref == 'refs/heads/main'
         env:
-          VYOMARAJ_PAT: ${{ secrets.VYOMARAJ_PAT || secrets.DR_SECONDARY_TOKEN }}
+          DR_AUTH_TOKEN: ${{ secrets.VYOMARAJ_PAT || secrets.DR_SECONDARY_TOKEN }}
         run: |
-          set -e
-          source $GITHUB_ENV || true
+          set -Eeuo pipefail
+          source "$GITHUB_ENV" || true
           DR_REPO="${DR_REPO:-deepakGoyal1356/Vyomaraj-Agent-6d64e}"
-          echo "🔄 Checking if DR is ahead of Primary bidirectional sync for failover V15.1"
-          git fetch dr main:refs/remotes/dr/main 2>&1 | head -n 10 || echo "No dr/main to fetch"
-          if git rev-parse --verify refs/remotes/dr/main >/dev/null 2>&1; then
-            LOCAL_MAIN=$(git rev-parse refs/heads/main)
-            DR_MAIN=$(git rev-parse refs/remotes/dr/main)
-            if [ "$LOCAL_MAIN" != "$DR_MAIN" ]; then
-              BEHIND=$(git rev-list --count refs/heads/main..refs/remotes/dr/main 2>/dev/null || echo 0)
-              AHEAD=$(git rev-list --count refs/remotes/dr/main..refs/heads/main 2>/dev/null || echo 0)
-              echo "Primary main $LOCAL_MAIN, DR main $DR_MAIN — DR ahead $BEHIND, Primary ahead $AHEAD"
-              if [ "$BEHIND" -gt 0 ] && [ "$AHEAD" -eq 0 ]; then
-                echo "⚠️ DR is ahead — Primary was down, DR took over — fast-forwarding Primary to DR no data loss"
-                git checkout main
-                git merge --ff-only refs/remotes/dr/main || git reset --hard refs/remotes/dr/main
-                git push origin main --force-with-lease 2>&1 | tail -n 10 || git push origin main 2>&1 | tail -n 10 || echo "Primary fast-forward push failed"
-                echo "✅ Primary restored from DR — no business data loss V15.1"
-              elif [ "$BEHIND" -gt 0 ] && [ "$AHEAD" -gt 0 ]; then
-                echo "⚠️ Both diverged — will keep Primary, but log DR commits for manual merge"
-                git log --oneline refs/heads/main..refs/remotes/dr/main --max-count=10 2>&1 | head -n 20 || true
-              else
-                echo "Primary is ahead or equal — no pull needed V15.1"
-              fi
-            else
-              echo "✅ Primary and DR main are identical — in sync V15.1 ?v=151"
-            fi
+          echo "Read-only DR→PRIMARY audit; automatic promotion and force updates are disabled."
+          DR_MAIN_SHA="$(curl -sS --fail-with-body \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $DR_AUTH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$DR_REPO/git/ref/heads/main" \
+            | python -c 'import json,sys; print(json.load(sys.stdin)["object"]["sha"])')"
+          PRIMARY_MAIN_SHA="$(git rev-parse HEAD)"
+          echo "PRIMARY_MAIN_SHA=$PRIMARY_MAIN_SHA"
+          echo "SECONDARY_MAIN_SHA=$DR_MAIN_SHA"
+          if [ "$PRIMARY_MAIN_SHA" = "$DR_MAIN_SHA" ]; then
+            echo "✅ PRIMARY and SECONDARY main point to the same SHA."
           else
-            echo "No DR main to compare — first sync will create it V15.1"
+            echo "⚠️ PRIMARY and SECONDARY main differ."
+            echo "No automatic DR→PRIMARY promotion was attempted; use a reviewed recovery procedure."
           fi
 
       - name: Heartbeat plus PRIMARY SECONDARY Health Check every 30m hourly sync both V15.1
@@ -357,7 +299,7 @@ jobs:
           echo "Commit: $(git rev-parse HEAD)"
           echo "Primary target: Vyomaraj1356/Vyomarajai:${GITHUB_REF_NAME}"
           echo "Secondary target: deepakGoyal1356/Vyomaraj-Agent-6d64e:${GITHUB_REF_NAME}"
-          echo "This run does not publish GitHub Pages or alter main/sibling branches."
+          echo "Only this ref is written on SECONDARY; PRIMARY and sibling refs are not modified."
           ls -lh index.html
 
       - name: Report PRIMARY + SECONDARY branch sync status
@@ -366,11 +308,12 @@ jobs:
             echo "### Vyomaraj scoped branch sync"
             echo "- Ref: \`${GITHUB_REF_NAME}\`"
             echo "- Commit: \`$(git rev-parse HEAD)\`"
-            if [ "${DR_PENDING:-true}" = "false" ]; then
-              echo "- Status: push and remote-ref verification completed for both targets."
+            if [ -n "${DR_SYNCED_SHA:-}" ] && [ "${DR_SYNCED_SHA}" = "${DR_SECONDARY_SHA:-}" ]; then
+              echo "- Status: success — exact SHA equality was verified after a non-forced push."
+              echo "- PRIMARY SHA: \`${DR_SYNCED_SHA}\`"
+              echo "- SECONDARY SHA: \`${DR_SECONDARY_SHA}\`"
             else
-              echo "- Status: pending — VYOMARAJ_PAT secret is not available to this run."
+              echo "- Status: no successful read-after-write SHA verification is recorded for this run."
             fi
-            echo "- Scope: this branch only; main and sibling branches are not modified."
-            echo "- Preview: use the Arena preview for this branch; GitHub Pages is not changed by this run."
+            echo "- Scope: the triggering ref only; no sibling ref is written."
           } >> "$GITHUB_STEP_SUMMARY"
