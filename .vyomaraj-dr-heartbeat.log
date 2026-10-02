@@ -2,3 +2,5 @@
 2026-10-02T07:06:38.265Z DR FINAL RUN: fix-test-run-close requested; forcing verification run.
 
 2026-10-02T16:05:00Z DR ref endpoint fix verification trigger
+
+2026-10-02T16:12:00Z DR verification trigger after primary-auth source-tree fix
