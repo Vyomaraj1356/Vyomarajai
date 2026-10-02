@@ -1,1 +1,1 @@
-2026-10-02T00:00:00Z manual DR sync verification trigger — execute current authenticated Primary→DR API replication and record source/target SHA
+2026-10-02T00:05:00Z DR sync verification trigger after API tree hardening — execute authenticated Primary→DR replication and record source/target SHA
