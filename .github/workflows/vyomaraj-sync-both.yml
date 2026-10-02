@@ -133,23 +133,27 @@ jobs:
 
           # Build target tree entries. Blobs are uploaded only for file entries.
           primary_api "https://api.github.com/repos/$PRIMARY_REPO/git/trees/$TREE_SHA?recursive=1" > /tmp/source-tree.json
-          python - "$DR_REPO" "$DR_AUTH_TOKEN" "$API_VERSION" "$EXPECTED_SHA" "$CUR_BRANCH" "$PRIMARY_REPO" <<'PY'
-          import base64, json, os, sys, urllib.request, urllib.error
+          python - "$DR_REPO" "$DR_AUTH_TOKEN" "$PRIMARY_API_TOKEN" "$API_VERSION" "$EXPECTED_SHA" "$CUR_BRANCH" "$PRIMARY_REPO" <<'PY'
+          import base64, json, sys, urllib.request, urllib.error
           from urllib.parse import quote
 
-          dr_repo, token, api_version, source_sha, branch, primary_repo = sys.argv[1:]
-          headers = {
-              "Accept": "application/vnd.github+json",
-              "Authorization": f"Bearer {token}",
-              "X-GitHub-Api-Version": api_version,
-              "User-Agent": "Vyomaraj-DR-API-Replicator",
-          }
+          dr_repo, dr_token, primary_token, api_version, source_sha, branch, primary_repo = sys.argv[1:]
 
-          def request(method, url, body=None):
+          def request(method, url, token, body=None):
               data = None if body is None else json.dumps(body).encode()
+              headers = {
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {token}",
+                  "X-GitHub-Api-Version": api_version,
+                  "User-Agent": "Vyomaraj-DR-API-Replicator",
+              }
               req = urllib.request.Request(url, data=data, headers=headers, method=method)
-              with urllib.request.urlopen(req) as r:
-                  return json.load(r)
+              try:
+                  with urllib.request.urlopen(req) as r:
+                      return json.load(r)
+              except urllib.error.HTTPError as ex:
+                  body_text = ex.read().decode("utf-8", errors="replace")
+                  raise RuntimeError(f"HTTP {ex.code} for {method} {url}: {body_text[:1000]}") from ex
 
           source = json.load(open("/tmp/source-tree.json", encoding="utf-8"))
           entries = [e for e in source.get("tree", []) if e.get("type") == "blob"]
@@ -159,61 +163,59 @@ jobs:
           blobs = []
           for i, e in enumerate(entries, 1):
               path = e["path"]
-              url = f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}"
-              blob = request("GET", url)
-              raw = base64.b64decode(blob["content"])
-              created = request("POST", f"https://api.github.com/repos/{dr_repo}/git/blobs", {
-                  "encoding": "base64",
-                  "content": base64.b64encode(raw).decode(),
-              })
+              source_url = f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}"
+              try:
+                  blob = request("GET", source_url, primary_token)
+                  raw = base64.b64decode("".join(blob["content"].split()))
+                  created = request("POST", f"https://api.github.com/repos/{dr_repo}/git/blobs", dr_token, {
+                      "encoding": "base64",
+                      "content": base64.b64encode(raw).decode(),
+                  })
+              except Exception as ex:
+                  raise SystemExit(f"❌ Blob replication failed at entry {i}/{len(entries)} path={path} source_sha={e['sha']}: {ex}")
               blobs.append({"path": path, "mode": e.get("mode","100644"), "type": "blob", "sha": created["sha"]})
               if i % 50 == 0:
                   print(f"Uploaded {i}/{len(entries)} tree entries")
 
-          # Resolve the current DR branch before creating its tree.
-          # This gives us both the commit parent and, when present, the current base tree.
           ref_url = f"https://api.github.com/repos/{dr_repo}/git/ref/heads/{quote(branch, safe='')}"
           parent = None
           target_tree_sha = None
           try:
-              ref = request("GET", ref_url)
+              ref = request("GET", ref_url, dr_token)
               parent = ref["object"]["sha"]
-              current_commit = request("GET", f"https://api.github.com/repos/{dr_repo}/git/commits/{quote(parent, safe='')}")
+              current_commit = request("GET", f"https://api.github.com/repos/{dr_repo}/git/commits/{quote(parent, safe='')}", dr_token)
               target_tree_sha = current_commit["tree"]["sha"]
-          except urllib.error.HTTPError as ex:
-              if ex.code != 404:
+          except RuntimeError as ex:
+              if "HTTP 404" not in str(ex):
                   raise
               print(f"ℹ️ SECONDARY branch {branch} does not exist yet; creating a new root commit.")
 
-          # Use the uploaded file blobs to create a complete target tree.
-          # GitHub recommends base_tree when updating an existing branch.
           tree_entries = blobs
           tree_payload = {"tree": tree_entries}
           if target_tree_sha:
               tree_payload["base_tree"] = target_tree_sha
           try:
-              tree = request("POST", f"https://api.github.com/repos/{dr_repo}/git/trees", tree_payload)
-          except urllib.error.HTTPError as ex:
-              body = ex.read().decode("utf-8", errors="replace")
-              raise SystemExit(f"❌ SECONDARY tree POST failed: HTTP {ex.code}: {body[:1200]}")
+              tree = request("POST", f"https://api.github.com/repos/{dr_repo}/git/trees", dr_token, tree_payload)
+          except Exception as ex:
+              raise SystemExit(f"❌ SECONDARY tree POST failed: {ex}")
           target_tree = tree["sha"]
 
           message = f"chore(dr): mirror {primary_repo}:{branch} at {source_sha}"
           payload = {"message": message, "tree": target_tree}
           if parent:
               payload["parents"] = [parent]
-          commit = request("POST", f"https://api.github.com/repos/{dr_repo}/git/commits", payload)
+          commit = request("POST", f"https://api.github.com/repos/{dr_repo}/git/commits", dr_token, payload)
           new_sha = commit["sha"]
 
           if parent:
-              request("PATCH", ref_url, {"sha": new_sha, "force": False})
+              request("PATCH", ref_url, dr_token, {"sha": new_sha, "force": False})
           else:
-              ref = request("POST", f"https://api.github.com/repos/{dr_repo}/git/refs", {
+              request("POST", f"https://api.github.com/repos/{dr_repo}/git/refs", dr_token, {
                   "ref": f"refs/heads/{branch}",
                   "sha": new_sha,
               })
 
-          verified = request("GET", ref_url)
+          verified = request("GET", ref_url, dr_token)
           verified_sha = verified["object"]["sha"]
           if verified_sha != new_sha:
               raise SystemExit(f"❌ SECONDARY ref verification mismatch: expected {new_sha}, got {verified_sha}")
