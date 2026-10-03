@@ -1,0 +1,61 @@
+name: Vyomaraj Metadata Discovery
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: 'Metadata research only; no media download or publishing'
+        type: choice
+        options: [all, classic-music, recent-music, classic-films, recent-films, marathi-theatre, hindi-theatre]
+        default: all
+  schedule:
+    - cron: '15 3 * * *' # 08:45 Asia/Kolkata, daily; GitHub delivery can be delayed.
+permissions:
+  contents: read
+concurrency:
+  group: vyomaraj-metadata-discovery
+  cancel-in-progress: false
+jobs:
+  discover:
+    if: >-
+      github.repository == 'Vyomaraj1356/Vyomarajai' &&
+      github.ref == 'refs/heads/main' &&
+      vars.VYOMARAJ_RESEARCH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline discovery safety tests
+        run: python -m unittest discover -s ops/vyomaraj-core/research -p 'test_*.py' -v
+      - name: Restore best-effort queue and response cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ops/vyomaraj-core/research/.state
+          key: discovery-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: discovery-v1-
+      - name: Gather bounded, unverified metadata
+        env:
+          PROFILE: ${{ inputs.profile || 'all' }}
+        run: python ops/vyomaraj-core/research/discovery.py run --profile "$PROFILE" --output research-run.json
+      - name: Export candidates even if sources are blocked
+        if: always()
+        run: python ops/vyomaraj-core/research/discovery.py export --output research-candidates.json
+      - name: Save best-effort queue and response cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ops/vyomaraj-core/research/.state
+          key: discovery-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Keep evidence for human review, never publish to site
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: discovery-review-${{ github.run_id }}
+          path: |
+            research-run.json
+            research-candidates.json
+          retention-days: 30

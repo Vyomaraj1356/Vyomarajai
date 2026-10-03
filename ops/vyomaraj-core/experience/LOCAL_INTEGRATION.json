@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "status": "local_preview_planning_only",
+  "roles": {
+    "vyomaraj": "Validate experience/topic/preferences and assemble the local content route.",
+    "jarvis": "Prepare a deterministic handoff with source references, unresolved mappings and review gates."
+  },
+  "endpoint": "/api/plan",
+  "experiences": [
+    "bhakti",
+    "liquor-bar",
+    "music",
+    "film",
+    "aghor"
+  ],
+  "modes": [
+    "3d",
+    "4d",
+    "5d"
+  ],
+  "provider": null,
+  "automatic_ai_calls": false,
+  "automatic_publishing": false,
+  "legacy_jarvis_env_loaded": false,
+  "production_deployed": false,
+  "dr_sync_verified": false,
+  "music_modes": [
+    "radio",
+    "audio",
+    "video"
+  ],
+  "music_agent_assignment_status": "proposed_bindings_to_existing_six_slots",
+  "film_formats": [
+    "feature",
+    "short",
+    "clip",
+    "long-play",
+    "one-act",
+    "advert",
+    "mix"
+  ],
+  "film_agent_assignment_status": "proposed_bindings_to_existing_six_movie_slots",
+  "research": {
+    "viewer": "/research/",
+    "report": "/reports/research",
+    "queue": "local_sqlite_metadata_only",
+    "public_adapters": [
+      "musicbrainz",
+      "loc",
+      "openlibrary"
+    ],
+    "public_runtime_check": "network_unavailable",
+    "optional_services": {
+      "searxng": "not_configured",
+      "ollama": "not_configured"
+    },
+    "schedule": "opt_in_daily_workflow_not_active",
+    "automatic_media_download": false,
+    "canonical_writes": false
+  },
+  "active_registry": {
+    "path": "/agents/AGENT_REGISTRY_CURRENT.json",
+    "viewer": "/agents/",
+    "education_viewer": "/education/",
+    "report": "/reports/agents",
+    "main_categories": 13,
+    "counted_sub_agents": 128,
+    "uncounted_headings": 6,
+    "historical_snapshot_unchanged": true,
+    "product_total": "UNRECONCILED"
+  },
+  "aghor": {
+    "agent_id": "BHAKTI-AGHOR-S1",
+    "chapter_titles": "proposals",
+    "clinical_service": false,
+    "source_aware": true,
+    "content_mode": "entertainment_view_only",
+    "plan_generation_enabled": false
+  },
+  "governance": {
+    "sovereign": "/sovereign/",
+    "contracts": "/contracts/",
+    "policy": "/policy.json",
+    "contracts_executed": false,
+    "payments_connected": false
+  },
+  "plannable_experiences": [
+    "bhakti",
+    "liquor-bar",
+    "music",
+    "film"
+  ]
+}

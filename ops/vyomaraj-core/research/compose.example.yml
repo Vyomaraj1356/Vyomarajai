@@ -1,0 +1,22 @@
+# OPTIONAL TEMPLATE ONLY: not deployed/tested here. Approve and pin image digests
+# before production. No model is selected, pulled or licensed by this file.
+services:
+  searxng:
+    image: docker.io/searxng/searxng:latest
+    ports:
+      - '127.0.0.1:8080:8080'
+    environment:
+      SEARXNG_SECRET: '${SEARXNG_SECRET:?Generate an operator-owned secret locally; do not put it in Git or chat}'
+    volumes:
+      - ./searxng-settings.example.yml:/etc/searxng/settings.yml:ro
+    restart: unless-stopped
+  ollama:
+    profiles: [ai]
+    image: docker.io/ollama/ollama:latest
+    ports:
+      - '127.0.0.1:11434:11434'
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: unless-stopped
+volumes:
+  ollama-models:

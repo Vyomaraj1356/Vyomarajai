@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-03",
+  "title": "Bhakti-Shakti · Sacred Stories & Living Traditions",
+  "status": "researched_editorial_proposal_and_local_prototype",
+  "ownership": {
+    "category_id": "BHAKTI",
+    "canonical_subagent_slot": null,
+    "slot_status": "UNMAPPED",
+    "cross_category_context": [
+      "ENTERTAINMENT",
+      "FOOD"
+    ],
+    "canonical_counts_unchanged": true
+  },
+  "scope": {
+    "full_story": "12 proposed reading chapters, not all texts or a single historical biography",
+    "peethas": "9 source-attributed starter profiles, not a complete 51/52/108 list",
+    "avatars": "10-entry selected Dashavatara overview; variant lists are preserved as a research distinction",
+    "complete_peetha_list_verified": false
+  },
+  "stories": [
+    {
+      "id": "shiv-shakti",
+      "title": "Shiv–Shakti: relationship and meaning",
+      "category": "Shiv–Shakti",
+      "evidence_type": "Interpretation",
+      "summary": "Explore the relationship of Shiva and Shakti through devotional interpretations. Different traditions give different philosophical emphasis.",
+      "source_ids": [
+        "ardha",
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "ardhanarishvara",
+      "title": "Ardhanarishvara: a shared form",
+      "category": "Shiv–Shakti",
+      "evidence_type": "Iconography",
+      "summary": "The composite form joins Shiva and Parvati. Study its symbolism and artistic variations without treating one interpretation as universal.",
+      "source_ids": [
+        "ardha"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "shiva-origins",
+      "title": "Names, texts and early worship",
+      "category": "Shiva story",
+      "evidence_type": "Historical study",
+      "summary": "Separate textual traditions and the development of worship from an invented birth date or a single chronological life story.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "sati-daksha",
+      "title": "Sati, Daksha and sacred geography",
+      "category": "Shiva story",
+      "evidence_type": "Traditional narrative",
+      "summary": "A cycle of stories about Sati and Daksha is linked in devotional traditions to the Shakti Peethas. Retell with care, without graphic detail.",
+      "source_ids": [
+        "shiva",
+        "kamakhya"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "parvati",
+      "title": "Parvati, devotion and union",
+      "category": "Shiva story",
+      "evidence_type": "Traditional narrative",
+      "summary": "Explore Parvati’s devotion and her union with Shiva as told across narrative traditions, rather than as one fixed historical sequence.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "family",
+      "title": "Ganesha, Skanda and family stories",
+      "category": "Shiva story",
+      "evidence_type": "Traditional narrative",
+      "summary": "Meet the household stories associated with Shiva and Parvati. Versions of origin stories differ, and retellings should name their source.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "neelakantha",
+      "title": "Neelakantha and the ocean-churning story",
+      "category": "Shiva story",
+      "evidence_type": "Traditional narrative",
+      "summary": "The blue-throated form is associated with Shiva containing poison during the ocean-churning narrative. It is religious storytelling, not a real-world safety practice.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "ganga",
+      "title": "Gangadhara and the descent of Ganga",
+      "category": "Shiva story",
+      "evidence_type": "Traditional narrative",
+      "summary": "Follow narratives of the Ganges descending through Shiva’s locks, and distinguish devotional meaning from geographical explanation.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "moon",
+      "title": "The crescent moon and sacred symbols",
+      "category": "Shiva story",
+      "evidence_type": "Iconography",
+      "summary": "Read the crescent moon and other attributes as iconographic themes. Connect to the existing Nandi, Vasuki, Trishul and Damru content modules for further review.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "nataraja",
+      "title": "Nataraja: dance, change and renewal",
+      "category": "Shiva story",
+      "evidence_type": "Iconography",
+      "summary": "Explore Shiva’s dancing form through art and religious interpretation. Do not promise that a visual model reproduces a consecrated image or ritual.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "forms",
+      "title": "Bhairava, Tripurari and the lingam",
+      "category": "Shiva story",
+      "evidence_type": "Traditional narrative",
+      "summary": "Introduce distinct forms and stories as separate study paths; avoid merging regional versions or calling symbolic accounts scientific events.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    },
+    {
+      "id": "living-traditions",
+      "title": "Temples, festivals and living traditions",
+      "category": "Living heritage",
+      "evidence_type": "Research pathway",
+      "summary": "Connect narratives with temple-specific histories, devotional communities and festival practices. Current timings and ritual rules need local verification.",
+      "source_ids": [
+        "shiva"
+      ],
+      "chapter_status": "proposed_editorial_mapping",
+      "chronology": "reading_order_not_a_historical_timeline"
+    }
+  ],
+  "avatars": [
+    {
+      "id": "avatar-01",
+      "name": "Matsya",
+      "form": "Fish",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-02",
+      "name": "Kurma",
+      "form": "Tortoise",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-03",
+      "name": "Varaha",
+      "form": "Boar",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-04",
+      "name": "Narasimha",
+      "form": "Man-lion",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-05",
+      "name": "Vamana",
+      "form": "Dwarf form",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-06",
+      "name": "Parashurama",
+      "form": "Rama with an axe",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-07",
+      "name": "Rama",
+      "form": "Rama",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-08",
+      "name": "Krishna",
+      "form": "Krishna",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    },
+    {
+      "id": "avatar-09",
+      "name": "Buddha",
+      "form": "Buddha in this selected list",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "Selected Dashavatara sequence, not every manifestation of Vishnu. Lists vary by tradition; the existing repository combines Buddha/Balarama in one record, which is not silently overwritten."
+    },
+    {
+      "id": "avatar-10",
+      "name": "Kalki",
+      "form": "Future incarnation in the tradition",
+      "category": "Narayan / Vishnu avatars",
+      "evidence_type": "Traditional narrative",
+      "source_ids": [
+        "avatars"
+      ],
+      "note": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary."
+    }
+  ],
+  "peethas": [
+    {
+      "id": "kamakhya",
+      "name": "Kamakhya",
+      "location": "Guwahati, Assam",
+      "region": "East / Northeast",
+      "list_tradition": "51-site framing in the cited source",
+      "category": "Shakti Peetha",
+      "history_overview": "Kamakhya is identified as a Shakti Peetha on Nilachal Hills in the official tourism account.",
+      "origin_note": "The source presents the Sati association as a religious legend, not an archaeological finding.",
+      "source_ids": [
+        "kamakhya"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "kalighat",
+      "name": "Kalighat",
+      "location": "Kolkata, West Bengal",
+      "region": "East / Northeast",
+      "list_tradition": "52-site framing in the cited source",
+      "category": "Shakti Peetha",
+      "history_overview": "West Bengal Tourism describes the Kali shrine at Kalighat and its religious setting by the Adi Ganga.",
+      "origin_note": "The source uses a 52-Peetha framing. Retain that distinction instead of forcing it into a universal list.",
+      "source_ids": [
+        "kalighat"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "tripura",
+      "name": "Tripura Sundari / Matabari",
+      "location": "Udaipur, Tripura",
+      "region": "East / Northeast",
+      "list_tradition": "51-site framing in the cited source",
+      "category": "Shakti Peetha",
+      "history_overview": "Tripura Tourism attributes construction of the Matabari temple to Maharaja Dhanya Manikya in 1501.",
+      "origin_note": "The construction date is a source-attributed historical statement; the sacred-origin narrative is a separate layer. This is not the similarly named temple at Banswara.",
+      "source_ids": [
+        "tripura"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "ambaji",
+      "name": "Ambaji",
+      "location": "Banaskantha, Gujarat",
+      "region": "West",
+      "list_tradition": "51-site framing in the cited source",
+      "category": "Shakti Peetha",
+      "history_overview": "Gujarat Tourism identifies Ambaji with Arasuri Amba and the surrounding Arasur/Gabbar landscape.",
+      "origin_note": "Sacred-origin claims are attributed to local tradition. Exact antiquity and archaeological chronology need separate scrutiny.",
+      "source_ids": [
+        "ambaji"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "jwala",
+      "name": "Jwalamukhi / Jawala Mata",
+      "location": "Kangra, Himachal Pradesh",
+      "region": "North",
+      "list_tradition": "51-site framing in the cited source",
+      "category": "Shakti Peetha",
+      "history_overview": "The temple administration describes worship associated with flames at the shrine.",
+      "origin_note": "Its account links the shrine to Sati lore. Specific body-part wording varies even within the cited page; no definitive body-part assignment is stored.",
+      "source_ids": [
+        "jwala"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "kolhapur",
+      "name": "Mahalakshmi / Ambabai",
+      "location": "Kolhapur, Maharashtra",
+      "region": "Maharashtra",
+      "list_tradition": "Maharashtra three-and-a-half tradition",
+      "category": "Regional Shakti centre",
+      "history_overview": "The official tourism overview includes Mahalakshmi in the regional three-and-a-half Shakti Peetha tradition.",
+      "origin_note": "Temple history, local Kolhasur lore and architectural periods require separate attribution; no miracle or prosperity guarantee is offered.",
+      "source_ids": [
+        "kolhapur"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "tulja",
+      "name": "Tulja Bhavani",
+      "location": "Tuljapur, Maharashtra",
+      "region": "Maharashtra",
+      "list_tradition": "Maharashtra three-and-a-half tradition",
+      "category": "Regional Shakti centre",
+      "history_overview": "Maharashtra Tourism identifies the Tuljapur temple as part of the regional three-and-a-half grouping.",
+      "origin_note": "Regional devotional identity is preserved; it is not automatically assigned a slot in every pan-Indian list.",
+      "source_ids": [
+        "tulja"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "renuka",
+      "name": "Renuka Devi",
+      "location": "Mahur, Maharashtra",
+      "region": "Maharashtra",
+      "list_tradition": "Maharashtra regional Shakti tradition",
+      "category": "Regional Shakti centre",
+      "history_overview": "Nanded district describes Renuka Devi’s shrine at Mahur as an important Shaktipith of Maharashtra.",
+      "origin_note": "The source uses qualified wording for its construction history. No exact founding year is invented here.",
+      "source_ids": [
+        "renuka"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    },
+    {
+      "id": "saptashrungi",
+      "name": "Saptashrungi",
+      "location": "Vani / Nashik, Maharashtra",
+      "region": "Maharashtra",
+      "list_tradition": "Ardha Peetha in Maharashtra regional tradition",
+      "category": "Regional Shakti centre",
+      "history_overview": "Nashik district explicitly describes Saptashrungi as an Ardha Shaktipeeth and connects its name with seven peaks.",
+      "origin_note": "The half-Peetha classification belongs to the regional grouping; it is not a fractional product or agent count.",
+      "source_ids": [
+        "saptashrungi"
+      ],
+      "record_status": "source_attributed_starter_profile",
+      "body_part": null,
+      "bhairava": null,
+      "live_timings": null,
+      "ritual_requirements": "verify_with_temple",
+      "coordinates": null
+    }
+  ],
+  "recipes": [
+    {
+      "id": "fruit",
+      "name": "Seasonal fruit plate",
+      "diet": "plant-based",
+      "allergens": [],
+      "ingredients": [
+        "banana",
+        "apple",
+        "washed seedless grapes"
+      ],
+      "procedure": [
+        "Wash hands, utensils and the fruit.",
+        "Peel or cut using clean equipment; adjust cuts for choking risks and individual needs.",
+        "Arrange a small portion on a clean plate.",
+        "Serve promptly and refrigerate cut-fruit leftovers promptly."
+      ],
+      "note": "A food-design concept; check the specific temple or household tradition before treating it as an offering.",
+      "color": "#cfaa62",
+      "nutrition_values": null,
+      "origin_status": "editorial_prasad_style_food_concept_not_ritual_instruction"
+    },
+    {
+      "id": "coconut",
+      "name": "Coconut & roasted chana plate",
+      "diet": "plant-based",
+      "allergens": [],
+      "ingredients": [
+        "fresh coconut",
+        "plain roasted chana"
+      ],
+      "procedure": [
+        "Check ingredient labels and individual allergies, including coconut and chickpea sensitivity.",
+        "Use a clean surface and safely prepared coconut pieces.",
+        "Arrange with a modest portion of roasted chana; adapt texture for children or swallowing difficulties.",
+        "Serve hygienically; keep perishables chilled when not serving."
+      ],
+      "note": "Not universally prescribed for worship or fasting; this is an editorial food concept.",
+      "color": "#d8c7a3",
+      "nutrition_values": null,
+      "origin_status": "editorial_prasad_style_food_concept_not_ritual_instruction"
+    },
+    {
+      "id": "yogurt",
+      "name": "Plain yogurt & fruit bowl",
+      "diet": "vegetarian",
+      "allergens": [
+        "milk"
+      ],
+      "ingredients": [
+        "plain pasteurised yogurt",
+        "washed banana or apple"
+      ],
+      "procedure": [
+        "Keep the pasteurised yogurt refrigerated.",
+        "Wash and prepare fruit with clean utensils.",
+        "Combine a small portion shortly before serving.",
+        "Check dairy allergy and individual suitability; return leftovers promptly to refrigeration."
+      ],
+      "note": "Contains milk. No medical diet, fasting certification or universal ritual suitability is claimed.",
+      "color": "#e9dabc",
+      "nutrition_values": null,
+      "origin_status": "editorial_prasad_style_food_concept_not_ritual_instruction"
+    }
+  ],
+  "categories": [
+    "Shiv–Shakti",
+    "Shiva story",
+    "Narayan / Vishnu avatars",
+    "Shakti Peetha",
+    "Regional Shakti centre",
+    "Living heritage",
+    "Screen adaptation",
+    "Prasad-style food"
+  ],
+  "television": {
+    "title": "Devon Ke Dev… Mahadev",
+    "interpretation_status": "assumed_from_user_Mahadev_TV_soap",
+    "category": "Screen adaptation",
+    "source_ids": [
+      "mahadev"
+    ],
+    "summary": "A separate television-context lane for the likely intended Mahadev serial. Compare adaptations with named narrative traditions rather than treating episodes as scripture or historical proof.",
+    "availability": "Catalogue reference only; platform/region/subscription availability must be checked with the provider.",
+    "episode_count": null,
+    "copied_footage": false,
+    "actor_voice_cloning": false,
+    "rights_status": "No licence for clips, music, images or actor likeness supplied.",
+    "proposed_features": [
+      "Original short commentary",
+      "Source-versus-adaptation comparison",
+      "Character and theme index after review",
+      "Provider catalogue link only"
+    ]
+  },
+  "research_backlog": [
+    "Select a named textual/list tradition before claiming a complete Peetha atlas.",
+    "Reconcile alternative names, border locations, duplicate sites and 51/52/108 enumerations.",
+    "Verify Bhairava and body-part associations per selected source rather than merging tables.",
+    "Expand temple-specific origin stories with dated history, archaeology and community attribution.",
+    "Add other Narayan manifestations only with named textual/traditional sources.",
+    "Review Sanskrit/Hindi/Marathi transliterations and translations with appropriate readers."
+  ],
+  "existing_modules": [
+    "ops/bhakti-shakti/dashavatar.json",
+    "ops/bhakti-shakti/shakti-forms.json",
+    "ops/bhakti-shakti/shiv-ke-sathi.json",
+    "ops/bhakti-shakti/trimurti-tridevi.json",
+    "ops/bhakti-shakti/jyotirlinga-12.json"
+  ],
+  "experience_modes": {
+    "3d": "CSS-perspective rotatable food illustration; not a mesh or AI render",
+    "4d": "User-stepped preparation sequence; project convention for time",
+    "5d": "Topic, region, diet and allergen preferences; project convention for context"
+  },
+  "runtime": {
+    "vyomaraj": "local_request_planning",
+    "jarvis": "local_handoff_and_review_tracking",
+    "ai_provider": null,
+    "ai_execution_enabled": false,
+    "publishing_enabled": false,
+    "production_deployed": false,
+    "dr_synced": false
+  },
+  "sources": [
+    {
+      "id": "shiva",
+      "title": "Britannica — Shiva",
+      "url": "https://www.britannica.com/topic/Shiva",
+      "citation": "[1](https://www.britannica.com/topic/Shiva)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpts and fetched article opening/table of contents; not the full 14-chunk article."
+    },
+    {
+      "id": "ardha",
+      "title": "Britannica — Ardhanarishvara",
+      "url": "https://www.britannica.com/topic/Ardhanarishvara",
+      "citation": "[2](https://www.britannica.com/topic/Ardhanarishvara)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "avatars",
+      "title": "Britannica — Dashavatara",
+      "url": "https://www.britannica.com/topic/dashavatara",
+      "citation": "[5](https://www.britannica.com/topic/dashavatara)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "kamakhya",
+      "title": "Incredible India — Kamakhya",
+      "url": "https://www.incredibleindia.gov.in/en/assam/guwahati/kamakhya-temple",
+      "citation": "[1](https://www.incredibleindia.gov.in/en/assam/guwahati/kamakhya-temple)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "kalighat",
+      "title": "West Bengal Tourism — Kalighat",
+      "url": "https://www.wbtourism.gov.in/Heritage%20Tourism/details?template_id=1&id=63d800a0e4bbd858c20633ab",
+      "citation": "[1](https://www.wbtourism.gov.in/Heritage%20Tourism/details?template_id=1&id=63d800a0e4bbd858c20633ab)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "tripura",
+      "title": "Tripura Tourism — Tripura Sundari",
+      "url": "https://tripuratourism.gov.in/single-tour.php?id=2",
+      "citation": "[1](https://tripuratourism.gov.in/single-tour.php?id=2)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "ambaji",
+      "title": "Gujarat Tourism — Ambaji",
+      "url": "https://gujarattourism.com/north-zone/banaskantha/ambaji-temple.html",
+      "citation": "[1](https://gujarattourism.com/north-zone/banaskantha/ambaji-temple.html)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "jwala",
+      "title": "Kangra temple administration — Jawala Mata",
+      "url": "http://kangratemples.hp.gov.in/gallery/",
+      "citation": "[1](http://kangratemples.hp.gov.in/gallery/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt only. Direct page fetch failed; live page availability not verified."
+    },
+    {
+      "id": "saptashrungi",
+      "title": "Nashik district — Saptashrungi",
+      "url": "https://nashik.gov.in/en/tourist-place/shree-saptshrungi-gad-vani/",
+      "citation": "[1](https://nashik.gov.in/en/tourist-place/shree-saptshrungi-gad-vani/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "kolhapur",
+      "title": "Incredible India — Kolhapur",
+      "url": "https://www.incredibleindia.gov.in/en/maharashtra/kolhapur",
+      "citation": "[1](https://www.incredibleindia.gov.in/en/maharashtra/kolhapur)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "renuka",
+      "title": "Nanded district — Mahur",
+      "url": "https://nanded.gov.in/en/tourist-place/mahur-gadh/",
+      "citation": "[2](https://nanded.gov.in/en/tourist-place/mahur-gadh/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "tulja",
+      "title": "Maharashtra Tourism — Dharashiv",
+      "url": "https://maharashtratourism.gov.in/districts/dharashiv/",
+      "citation": "[3](https://maharashtratourism.gov.in/districts/dharashiv/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search-result excerpt; not a full-text or independent historical verification."
+    },
+    {
+      "id": "mahadev",
+      "title": "Airtel Xstream — Devon Ke Dev… Mahadev catalogue",
+      "url": "https://www.airtelxstream.in/tv-shows/devon-ke-dev-mahadev/HOTSTAR_DTH_TVSHOW_4",
+      "citation": "[1](https://www.airtelxstream.in/tv-shows/devon-ke-dev-mahadev/HOTSTAR_DTH_TVSHOW_4)",
+      "checked": "2026-10-03",
+      "review_basis": "Catalogue page opening fetched. Conflicting season/episode/release metadata is not reproduced; streaming entitlement remains unverified."
+    }
+  ],
+  "editorial_rules": [
+    "Attribute devotional narratives as traditions, not independently proven historical events.",
+    "Represent Shaiva, Shakta and Vaishnava differences respectfully; do not rank faiths or promise miracles.",
+    "Do not equate Shakti Peethas, Jyotirlingas, avatars and canonical agents.",
+    "New chapter and product mappings remain proposals; no changes to 13/133/421 totals.",
+    "No copyrighted TV footage, dialogue transcripts, music, voices or actor images are embedded.",
+    "Food is an illustrative concept, not a temple prescription, health remedy or allergy guarantee.",
+    "Sources establish limited claims only; tourism prose is not archaeological proof.",
+    "No external AI call, automatic publishing, temple booking or production operation is enabled."
+  ]
+}

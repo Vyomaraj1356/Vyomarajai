@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "release": "V16.7.24",
+  "build": 194,
+  "snapshot_date": "2026-10-01",
+  "source_note": "Category counts and partial sub-agent rosters transcribed from the owner's current-session message. Counts are preserved as supplied; absent names are marked incomplete rather than invented.",
+  "totals": {
+    "main_agents": 13,
+    "sub_agents": 133,
+    "products": 421,
+    "category_sub_agent_sum": 133,
+    "category_product_sum": 421,
+    "arithmetic_validated": true
+  },
+  "categories": [
+    {
+      "id": "FOOD",
+      "sub_agents": 3,
+      "products": 6,
+      "description": "Food & Social Connect",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "EDU",
+      "sub_agents": 15,
+      "products": 68,
+      "description": "Education & World Wisdom",
+      "named_roster_status": "partial; see rosters.EDU"
+    },
+    {
+      "id": "ASTRO",
+      "sub_agents": 3,
+      "products": 9,
+      "description": "Astro-Celestial & Universal",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "FINANCE",
+      "sub_agents": 8,
+      "products": 15,
+      "description": "Finance & Wealth",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "LIFE",
+      "sub_agents": 10,
+      "products": 34,
+      "description": "Life Coach & Wellness",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "BHAKTI",
+      "sub_agents": 2,
+      "products": 8,
+      "description": "Bhakti Mandir — Ritual, Festival & Grantha",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "SPORTS",
+      "sub_agents": 14,
+      "products": 29,
+      "description": "Sports & Legends",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "AGRI",
+      "sub_agents": 6,
+      "products": 14,
+      "description": "Agriculture & Environment",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "ENTERTAINMENT",
+      "sub_agents": 38,
+      "products": 168,
+      "description": "Entertainment — Comedy, Movies, Hollywood, Bollywood",
+      "named_roster_status": "grouped roster supplied; see rosters.ENTERTAINMENT"
+    },
+    {
+      "id": "PLATFORM",
+      "sub_agents": 20,
+      "products": 39,
+      "description": "Platform & Social Hub + Earn — All Platforms + Monetization",
+      "named_roster_status": "lanes supplied; one of twenty slots is not individually mapped"
+    },
+    {
+      "id": "TOUR",
+      "sub_agents": 4,
+      "products": 9,
+      "description": "Tour and Travel",
+      "named_roster_status": "counts supplied; individual names not supplied"
+    },
+    {
+      "id": "WAR",
+      "sub_agents": 5,
+      "products": 13,
+      "description": "War Room — Warriors",
+      "named_roster_status": "roster supplied; see rosters.WAR"
+    },
+    {
+      "id": "PODCAST",
+      "sub_agents": 5,
+      "products": 9,
+      "description": "Podcast & Entertainment Studio",
+      "named_roster_status": "roster supplied; see rosters.PODCAST"
+    }
+  ],
+  "rosters": {
+    "EDU": {
+      "claimed_sub_agent_count": 15,
+      "entries": [
+        {
+          "slot": "S1",
+          "name": "Veda Rishi"
+        },
+        {
+          "slot": "S2",
+          "name": "Upanishad Guru"
+        },
+        {
+          "slot": "S3",
+          "name": "Gita Acharya"
+        },
+        {
+          "slot": "S4",
+          "name": "Mythology & Mystery Rishi"
+        },
+        {
+          "slot": "S5",
+          "name": "Vyomaraj Picker"
+        },
+        {
+          "slot": "S6",
+          "name": "Lectures Hub"
+        },
+        {
+          "slot": "S7",
+          "name": "Short Notes"
+        },
+        {
+          "slot": "S8-S13",
+          "name": "Bharat Grantha, Chanakya and the Granthas",
+          "mapping_status": "group range supplied; individual six-slot names/mapping not specified"
+        },
+        {
+          "slot": "S14",
+          "name": "Care & Bikes — Bicycles & Two-Wheelers",
+          "chapters": 16
+        },
+        {
+          "slot": "S15",
+          "name": "Social Thinkers, Visionaries & Legends",
+          "chapters": 14
+        }
+      ],
+      "note": "The supplied S8-S13 parenthetical names fewer than six distinct mappings; no extra names have been inferred."
+    },
+    "ENTERTAINMENT": {
+      "claimed_sub_agent_count": 38,
+      "groups": [
+        {
+          "ids": "S1-S8",
+          "count": 8,
+          "names": [
+            "Comedy hub",
+            "INDICOM",
+            "Cartoon",
+            "Music",
+            "Movie",
+            "Wit",
+            "Shayari",
+            "Criticism gate"
+          ]
+        },
+        {
+          "ids": "ENT-AI-S1/S2",
+          "count": 2
+        },
+        {
+          "ids": "ENT-CARTOON-S1-S3",
+          "count": 3
+        },
+        {
+          "ids": "ENT-COM-S1-S8",
+          "count": 8
+        },
+        {
+          "ids": "ENT-MOVIE-S1-S6",
+          "count": 6
+        },
+        {
+          "ids": "ENT-MUS-S1-S6",
+          "count": 6
+        },
+        {
+          "ids": "ENT-SHAYARI-S1",
+          "count": 1
+        },
+        {
+          "ids": "ENT-WIT-S1",
+          "count": 1
+        },
+        {
+          "ids": "ENT-HASYA-S1",
+          "count": 1,
+          "chapter_count": 12
+        },
+        {
+          "ids": "ENT-LIQUOR-S1",
+          "count": 1,
+          "chapter_count": 12
+        },
+        {
+          "ids": "ENT-BAR-S1",
+          "count": 1,
+          "chapter_count": 10
+        }
+      ],
+      "count_check": "8+2+3+8+6+6+1+1+1+1+1 = 38"
+    },
+    "PLATFORM": {
+      "claimed_sub_agent_count": 20,
+      "lanes": [
+        "YouTube",
+        "Instagram",
+        "Facebook",
+        "TikTok",
+        "X",
+        "LinkedIn",
+        "Telegram",
+        "WhatsApp",
+        "Discord",
+        "Pinterest",
+        "Threads",
+        "Snapchat",
+        "Reddit",
+        "Twitch",
+        "Vimeo",
+        "Tumblr",
+        "Mastodon",
+        "EARN",
+        "AI"
+      ],
+      "unmapped_slot_count": 1,
+      "note": "The source names 19 lanes for the S1-S20 range; one slot is unmapped, but the source does not identify which slot. Leave the slot UNMAPPED pending owner confirmation. No extra platform has been guessed.",
+      "unmapped_slot_id": null
+    },
+    "PODCAST": [
+      "RESEARCH",
+      "SCRIPT",
+      "PRODUCE",
+      "ANALYSIS",
+      "PUBLISH"
+    ],
+    "WAR": [
+      "PAST",
+      "HISTORY",
+      "PRESENT",
+      "FUTURE",
+      "CROSS-CUTTING"
+    ]
+  },
+  "content_readiness": {
+    "active_content_products_reported": 394,
+    "placeholder_videos_shared": 12,
+    "pending_products_requiring_chapters": 52,
+    "planned_products_requiring_chapters": 5,
+    "reconciliation_status": "not reconciled to the 421 category product total; preserve as a separate owner-reported status until overlap/status rules are confirmed"
+  },
+  "integration_blockers": [
+    {
+      "id": "WHATSAPP",
+      "required_secret_names": [
+        "WHATSAPP_TOKEN",
+        "WHATSAPP_PHONE_ID"
+      ],
+      "next_step": "After owner supplies/configures secrets in Meta/GitHub, run node scripts/vyomaraj-create-whatsapp-template.mjs",
+      "checkout_status": "script path is absent from this checkout"
+    },
+    {
+      "id": "PUBLIC_URL",
+      "required_secret_names": [
+        "RENDER_API_KEY",
+        "RENDER_SERVICE_ID"
+      ],
+      "alternative": "scripts/vyomaraj-tunnel.sh on a networked host",
+      "checkout_status": "script path is absent from this checkout"
+    },
+    {
+      "id": "AI_PROVIDER",
+      "required_secret_names": [
+        "one provider key from the owner's 20-provider shortlist"
+      ],
+      "suggested_option": "SEA_LION_API_KEY (owner notes a free trial via Google sign-in)",
+      "checkout_status": "no selected provider/key is available in this checkout"
+    }
+  ],
+  "source_scope": {
+    "historical_chat_archive": "Preserve the existing 34 numbered summaries, V15.0–V16.7.22 range, exact three-member chat ZIP and Image 1 session labels unchanged.",
+    "current_session": "Document separately in CURRENT_SESSION_HANDOVER_2026_10_01.md; do not append it as a duplicate or silently change the historical 34-chat range."
+  }
+}

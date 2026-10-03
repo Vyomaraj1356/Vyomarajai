@@ -2,311 +2,158 @@ name: Vyomaraj PRIMARY to DR Sync
 
 on:
   push:
+    branches: [main, arena/01a10140-vyomarajai]
+  pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'verify is read-only; sync requires approved target and primary main'
+        type: choice
+        options: [verify, sync]
+        default: verify
+      allow_target_only_removal:
+        description: 'SYNC ONLY: after reviewing/backing up secondary-only files, approve removal from its current snapshot (history retained)'
+        type: boolean
+        default: false
+      diagnostic_target:
+        description: 'Optional owner/repo for READ-ONLY diagnosis; never used for sync'
+        type: string
+        default: ''
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: '*/30 * * * *'
 
 permissions:
   contents: read
 
 concurrency:
-  group: vyomaraj-primary-to-dr-main
+  group: vyomaraj-dr-${{ github.ref }}
   cancel-in-progress: false
 
-env:
-  PRIMARY_REPO: Vyomaraj1356/Vyomarajai
-  PRIMARY_BRANCH: main
-  DR_REPO: deepakGoyal1356/Vyomaraj-Agent-6d64e
-  DR_BRANCH: main
-
 jobs:
-  dr-sync:
+  offline-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
-      - name: Checkout PRIMARY
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-
-      - name: Verify PRIMARY
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline safety and integrity tests (no credentials)
         run: |
-          set -euo pipefail
-          test "$GITHUB_REPOSITORY" = "$PRIMARY_REPO"
-          test "$GITHUB_REF_NAME" = "$PRIMARY_BRANCH"
-          PRIMARY_COMMIT="$(git rev-parse HEAD)"
-          REMOTE_COMMIT="$(git ls-remote origin "refs/heads/$PRIMARY_BRANCH" | awk 'NR==1 {print $1}')"
-          test "$PRIMARY_COMMIT" = "$REMOTE_COMMIT"
-          echo "PRIMARY_REPO=$PRIMARY_REPO"
-          echo "PRIMARY_BRANCH=$PRIMARY_BRANCH"
-          echo "PRIMARY_COMMIT=$PRIMARY_COMMIT"
+          python -m unittest discover -s ops/dr -p 'test_*.py' -v
+          python ops/vyomaraj-core/handover/rebuild_handover.py --check
+          python -m unittest discover -s ops/vyomaraj-core/handover -p 'test_*.py' -v
+          node --test ops/vyomaraj-core/test_safe_metadata.cjs
+          python -m unittest discover -s ops/vyomaraj-core/liquor-bar -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/liquor-bar/app.js
+          python -m unittest discover -s ops/vyomaraj-core/experience -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/bhakti-experience/app.js
+          node --check ops/vyomaraj-core/music-experience/app.js
+          node --check ops/vyomaraj-core/film-experience/app.js
+          python -m unittest discover -s ops/vyomaraj-core/research -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/research/app.js
+          python ops/vyomaraj-core/agents/rebuild_registry.py --check
+          python -m unittest discover -s ops/vyomaraj-core/agents -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/agents/app.js
+          node --check ops/vyomaraj-core/aghor-experience/app.js
+          python -m unittest discover -s ops/availability -p 'test_*.py' -v
+          bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh
 
-      - name: Authenticate DR
+  diagnose-existing-pat:
+    needs: offline-tests
+    # Trusted same-repository push only; never execute a fork/PR credential probe.
+    if: >-
+      github.repository == 'Vyomaraj1356/Vyomarajai' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/arena/01a10140-vyomarajai'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read-only repository, ref and tree diagnostic (never replicate)
         env:
+          PRIMARY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
+        run: python ops/dr/actions_read_probe.py
+      - name: Upload sanitized read evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dr-read-only-diagnostic
+          path: dr-read-probe.json
+          if-no-files-found: ignore
+          retention-days: 7
+
+  verify-or-sync:
+    needs: offline-tests
+    if: >-
+      github.repository == 'Vyomaraj1356/Vyomarajai' &&
+      github.event_name != 'pull_request' &&
+      (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify or replicate exact main snapshot
+        env:
+          PRIMARY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
+          DR_REPO: ${{ vars.VYOMARAJ_DR_REPO }}
+          DR_SYNC_APPROVED: ${{ vars.VYOMARAJ_DR_SYNC_ENABLED }}
+          DR_ALLOW_TARGET_ONLY_REMOVAL: ${{ inputs.allow_target_only_removal }}
+          REQUEST_MODE: ${{ inputs.mode }}
+          DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
         run: |
           set -euo pipefail
-          test -n "$DR_TOKEN"
-          echo "::add-mask::$DR_TOKEN"
-
-          # Root-cause diagnostic: identify the token owner before testing the DR repo.
-          ID_CODE="$(curl -sS -o /tmp/dr-user.json -w "%{http_code}" -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $DR_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/user")"
-
-          ID_LOGIN="$(python - <<'PY'
-          import json
-          try:
-              d=json.load(open("/tmp/dr-user.json", encoding="utf-8"))
-              print(str(d.get("login",""))[:100])
-          except Exception:
-              print("")
-          PY
-          )"
-
-          echo "DR_TOKEN_IDENTITY_HTTP=$ID_CODE"
-          echo "DR_TOKEN_IDENTITY_LOGIN=$ID_LOGIN"
-
-          case "$ID_CODE" in
-            200) ;;
-            401)
-              echo "DR_AUTH=FAIL_INVALID_OR_REVOKED_TOKEN"
-              exit 1
-              ;;
-            *)
-              echo "DR_AUTH=FAIL_TOKEN_IDENTITY_HTTP_$ID_CODE"
-              exit 1
-              ;;
-          esac
-
-          CODE="$(curl -sS -o /tmp/dr.json -w "%{http_code}" -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $DR_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/$DR_REPO")"
-
-          MESSAGE="$(python - <<'PY'
-          import json
-          try:
-              d=json.load(open("/tmp/dr.json", encoding="utf-8"))
-              print(str(d.get("message","")).replace("\\n"," ")[:200])
-          except Exception:
-              print("non-json response")
-          PY
-          )"
-
-          PERMS="$(python - <<'PY'
-          import json
-          try:
-              d=json.load(open("/tmp/dr.json", encoding="utf-8"))
-              p=d.get("permissions") or {}
-              print("admin=%s,maintain=%s,push=%s,pull=%s" % (p.get("admin"),p.get("maintain"),p.get("push"),p.get("pull")))
-          except Exception:
-              print("unavailable")
-          PY
-          )"
-
-          echo "DR_AUTH_HTTP=$CODE"
-          echo "DR_AUTH_MESSAGE=$MESSAGE"
-          echo "DR_TOKEN_REPO_PERMISSIONS=$PERMS"
-          echo "DR_EXPECTED_TOKEN_OWNER=deepakGoyal1356"
-
-          if [ "$ID_LOGIN" != "deepakGoyal1356" ]; then
-            echo "DR_AUTH=FAIL_WRONG_TOKEN_OWNER"
+          # Reviewed in-repository defaults remove the need to WRITE Actions variables
+          # through Arena's restricted token. Explicit repository variables still override.
+          if [ -z "$DR_REPO" ]; then
+            export DR_REPO="$(python -c 'import json; print(json.load(open("ops/dr/DR_POLICY.json"))["secondary"])')"
+          fi
+          if [ -z "$DR_SYNC_APPROVED" ]; then
+            export DR_SYNC_APPROVED="$(python -c 'import json; print(str(json.load(open("ops/dr/DR_POLICY.json"))["sync_approved_on_main"]).lower())')"
+          fi
+          # No environment-file sourcing, token-owner guesses or response-body logging.
+          if [ -z "$DR_TOKEN" ]; then
+            echo '::error::VYOMARAJ_PAT is unavailable. Configure it in Actions secrets; never paste it in chat.'
             exit 1
           fi
-
-          case "$CODE" in
-            200)
-              echo "DR_AUTH=PASS"
-              ;;
-            401)
-              echo "DR_AUTH=FAIL_INVALID_OR_REVOKED_TOKEN"
-              exit 1
-              ;;
-            403)
-              echo "DR_AUTH=FAIL_FORBIDDEN_OR_PERMISSION"
-              exit 1
-              ;;
-            404)
-              echo "DR_AUTH=FAIL_REPO_PATH_OR_PAT_REPOSITORY_SELECTION"
-              exit 1
-              ;;
-            *)
-              echo "DR_AUTH=FAIL_UNEXPECTED_HTTP_$CODE"
-              exit 1
-              ;;
-          esac
-
-          echo "DR_REPO=$DR_REPO"
-          echo "DR_BRANCH=$DR_BRANCH"
-
-      - name: Replicate PRIMARY main to DR main
-        env:
-          DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
-          PRIMARY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          API="https://api.github.com"
-          VERSION="2022-11-28"
-          PRIMARY_COMMIT="$(git rev-parse HEAD)"
-
-          api_primary() {
-            curl -sS --fail-with-body               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $PRIMARY_TOKEN"               -H "X-GitHub-Api-Version: $VERSION" "$@"
-          }
-
-          api_dr() {
-            curl -sS --fail-with-body               -H "Accept: application/vnd.github+json"               -H "Authorization: Bearer $DR_TOKEN"               -H "X-GitHub-Api-Version: $VERSION" "$@"
-          }
-
-          echo "::add-mask::$DR_TOKEN"
-
-          COMMIT_JSON="$(api_primary "$API/repos/$PRIMARY_REPO/git/commits/$PRIMARY_COMMIT")"
-          PRIMARY_TREE="$(python -c 'import json,sys; print(json.load(sys.stdin)["tree"]["sha"])' <<< "$COMMIT_JSON")"
-          test -n "$PRIMARY_TREE"
-
-          api_primary "$API/repos/$PRIMARY_REPO/git/trees/$PRIMARY_TREE?recursive=1" > /tmp/primary-tree.json
-          python - <<'PY'
-          import json
-          d=json.load(open("/tmp/primary-tree.json", encoding="utf-8"))
-          if d.get("truncated"):
-              raise SystemExit("PRIMARY tree is truncated; refusing partial replication.")
-          print("PRIMARY_TREE_ENTRIES="+str(len(d.get("tree", []))))
-          PY
-
-          python - "$DR_REPO" "$DR_TOKEN" "$PRIMARY_TOKEN" "$VERSION" "$PRIMARY_REPO" "$PRIMARY_COMMIT" "$PRIMARY_TREE" <<'PY'
-          import base64, json, sys, urllib.error, urllib.request
-          from urllib.parse import quote
-
-          dr_repo, dr_token, primary_token, version, primary_repo, primary_commit, primary_tree = sys.argv[1:]
-
-          def request(method, url, token, body=None):
-              data = None if body is None else json.dumps(body).encode()
-              req = urllib.request.Request(
-                  url,
-                  data=data,
-                  method=method,
-                  headers={
-                      "Accept": "application/vnd.github+json",
-                      "Authorization": f"Bearer {token}",
-                      "X-GitHub-Api-Version": version,
-                      "User-Agent": "Vyomaraj-DR-Sync",
-                  },
-              )
-              try:
-                  with urllib.request.urlopen(req) as r:
-                      return json.load(r)
-              except urllib.error.HTTPError as e:
-                  detail=e.read().decode("utf-8", errors="replace")
-                  raise RuntimeError(f"HTTP {e.code} {method} {url}: {detail[:800]}")
-
-          source=json.load(open("/tmp/primary-tree.json", encoding="utf-8"))
-          entries=[e for e in source.get("tree", []) if e.get("type")=="blob"]
-
-          ref_url=f"https://api.github.com/repos/{dr_repo}/git/refs/heads/main"
-          parent=None
-          base_tree=None
-          try:
-              ref=request("GET", ref_url, dr_token)
-              parent=ref["object"]["sha"]
-              old_commit=request("GET", f"https://api.github.com/repos/{dr_repo}/git/commits/{parent}", dr_token)
-              base_tree=old_commit["tree"]["sha"]
-          except RuntimeError as e:
-              if "HTTP 404" not in str(e):
-                  raise
-              print("DR main does not exist; creating initial DR commit.")
-
-          target_entries=[]
-          for i,e in enumerate(entries,1):
-              blob=request(
-                  "GET",
-                  f"https://api.github.com/repos/{primary_repo}/git/blobs/{quote(e['sha'], safe='')}",
-                  primary_token,
-              )
-              raw=base64.b64decode("".join(blob["content"].split()))
-              created=request(
-                  "POST",
-                  f"https://api.github.com/repos/{dr_repo}/git/blobs",
-                  dr_token,
-                  {"encoding":"base64","content":base64.b64encode(raw).decode()},
-              )
-              target_entries.append({
-                  "path":e["path"],
-                  "mode":e.get("mode","100644"),
-                  "type":"blob",
-                  "sha":created["sha"],
-              })
-              if i % 50 == 0:
-                  print(f"REPLICATED_BLOBS={i}/{len(entries)}")
-
-          tree_payload={"tree":target_entries}
-          if base_tree:
-              tree_payload["base_tree"]=base_tree
-
-          new_tree=request(
-              "POST",
-              f"https://api.github.com/repos/{dr_repo}/git/trees",
-              dr_token,
-              tree_payload,
-          )["sha"]
-
-          commit_payload={
-              "message":f"chore(dr): mirror {primary_repo}:main at {primary_commit}",
-              "tree":new_tree,
-          }
-          if parent:
-              commit_payload["parents"]=[parent]
-
-          new_commit=request(
-              "POST",
-              f"https://api.github.com/repos/{dr_repo}/git/commits",
-              dr_token,
-              commit_payload,
-          )["sha"]
-
-          if parent:
-              request("PATCH", ref_url, dr_token, {"sha":new_commit,"force":False})
-          else:
-              request(
-                  "POST",
-                  "https://api.github.com/repos/"+dr_repo+"/git/refs",
-                  dr_token,
-                  {"ref":"refs/heads/main","sha":new_commit},
-              )
-
-          verified_ref=request("GET", ref_url, dr_token)["object"]["sha"]
-          if verified_ref != new_commit:
-              raise SystemExit(f"READ_AFTER_WRITE_REF_FAIL expected={new_commit} actual={verified_ref}")
-
-          verified_commit=request(
-              "GET",
-              f"https://api.github.com/repos/{dr_repo}/git/commits/{verified_ref}",
-              dr_token,
-          )
-          verified_tree=verified_commit["tree"]["sha"]
-
-          print(f"PRIMARY_COMMIT_SHA={primary_commit}")
-          print(f"PRIMARY_TREE_SHA={primary_tree}")
-          print(f"DR_COMMIT_SHA={verified_ref}")
-          print(f"DR_TREE_SHA={verified_tree}")
-          print(f"DATA_MATCH={verified_tree == primary_tree}")
-          print("READ_AFTER_WRITE=True")
-
-          if verified_tree != primary_tree:
-              raise SystemExit(
-                  f"DATA_MATCH_FAIL primary_tree={primary_tree} dr_tree={verified_tree}"
-              )
-          print("PRIMARY_TO_DR=PASS")
-          PY
-
-      - name: DR health and integrity report
-        env:
-          DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
-        run: |
-          set -euo pipefail
-          API="https://api.github.com"
-          VERSION="2022-11-28"
-          DR_COMMIT="$(curl -sS --fail-with-body             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $DR_TOKEN"             -H "X-GitHub-Api-Version: $VERSION"             "$API/repos/$DR_REPO/git/refs/heads/$DR_BRANCH" |
-            python -c 'import json,sys; print(json.load(sys.stdin)["object"]["sha"])')"
-          echo "DR_ACTIVE_TARGET=$DR_REPO:$DR_BRANCH"
-          echo "DR_REACHABLE=PASS"
-          echo "DR_MAIN_COMMIT=$DR_COMMIT"
-          echo "DR_SYNC_STATE=ACTIVE_WARM_MIRROR"
-          echo "FAILOVER_POLICY=CONTROLLED_ONLY"
-          echo "FORCE_PUSH=DISABLED"
-          echo "SPLIT_BRAIN_AUTO_PROMOTION=DISABLED"
-          echo "DR_TO_PRIMARY_AUTO_OVERWRITE=DISABLED"
+          MODE="${REQUEST_MODE:-verify}"
+          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ] && [ "$DR_SYNC_APPROVED" = true ]; then
+            MODE=sync
+          fi
+          if [ "$MODE" = sync ]; then
+            test "$GITHUB_REF" = refs/heads/main
+            test "$DR_SYNC_APPROVED" = true
+            test -n "$DR_REPO"
+            test -z "${DIAGNOSTIC_TARGET:-}"
+            python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json
+            python ops/dr/dr_sync.py --sync --output dr-evidence.json
+          else
+            if [ -n "${DIAGNOSTIC_TARGET:-}" ]; then export DR_REPO="$DIAGNOSTIC_TARGET"; fi
+            python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json
+            python ops/dr/dr_sync.py --output dr-evidence.json
+          fi
+      - name: Upload sanitized verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dr-verification-evidence
+          path: |
+            dr-evidence.json
+            dr-diagnostic-evidence.json
+          if-no-files-found: ignore
+          retention-days: 14

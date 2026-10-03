@@ -1,0 +1,103 @@
+{
+  "checked_at_utc": "2026-10-03T12:56:05.488247+00:00",
+  "credential_context": "Arena gh connection, distinct from Actions PAT",
+  "confirmed_main_target": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+  "mode": "GET_only",
+  "writes_attempted": false,
+  "replication_verified": false,
+  "production_failover_verified": false,
+  "zero_rpo_or_rto_claimed": false,
+  "checks": {
+    "primary": {
+      "http": 200,
+      "status": "readable",
+      "reported_repository_permissions": {
+        "admin": true,
+        "maintain": true,
+        "push": true,
+        "triage": true,
+        "pull": true
+      }
+    },
+    "primary_main": {
+      "http": 200,
+      "status": "readable",
+      "sha": "9be6d3950cb65dcdd5dba36e548f48c599361d57"
+    },
+    "secondary": {
+      "http": 404,
+      "status": "blocked"
+    },
+    "variables": {
+      "http": 403,
+      "status": "blocked"
+    },
+    "secret_names_only": {
+      "http": 403,
+      "status": "blocked"
+    },
+    "workflow_permissions": {
+      "http": 403,
+      "status": "blocked"
+    }
+  },
+  "main_workflow_observation": {
+    "http": 200,
+    "status": "completed",
+    "id": 37123060948,
+    "head_sha": "9be6d3950cb65dcdd5dba36e548f48c599361d57",
+    "conclusion": "failure",
+    "html_url": "https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37123060948",
+    "jobs": [
+      {
+        "name": "dr-sync",
+        "status": "completed",
+        "conclusion": "failure",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "status": "completed"
+          },
+          {
+            "name": "Checkout PRIMARY",
+            "conclusion": "success",
+            "status": "completed"
+          },
+          {
+            "name": "Verify PRIMARY",
+            "conclusion": "success",
+            "status": "completed"
+          },
+          {
+            "name": "Authenticate DR",
+            "conclusion": "success",
+            "status": "completed"
+          },
+          {
+            "name": "Replicate PRIMARY main to DR main",
+            "conclusion": "failure",
+            "status": "completed"
+          },
+          {
+            "name": "DR health and integrity report",
+            "conclusion": "skipped",
+            "status": "completed"
+          },
+          {
+            "name": "Post Checkout PRIMARY",
+            "conclusion": "success",
+            "status": "completed"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "authentication_step_passed": true
+  },
+  "interpretation": "A private 404 through Arena does not invalidate a successful Actions-PAT read. Repository admin metadata does not grant missing token endpoint scopes. No failed-log cause is inferred from unavailable logs."
+}

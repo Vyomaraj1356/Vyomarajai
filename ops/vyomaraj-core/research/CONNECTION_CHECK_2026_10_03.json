@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-03",
+  "basis": "actual_local_CLI_run_not_mocked",
+  "total_existing_editorial_leads": 12,
+  "fresh_internet_leads": 0,
+  "runs": [
+    {
+      "id": "131b5584616147ddb24405192e98d6e9",
+      "profile": "classic-music",
+      "state": "partial",
+      "sources": {
+        "catalog": {
+          "status": "ok",
+          "records": 1,
+          "cached": false,
+          "origin": "existing_editorial_pack"
+        },
+        "ollama": {
+          "status": "not_configured"
+        },
+        "musicbrainz": {
+          "status": "blocked",
+          "reason": "network_unavailable"
+        },
+        "loc": {
+          "status": "blocked",
+          "reason": "network_unavailable"
+        },
+        "searxng": {
+          "status": "not_configured",
+          "reason": "not_configured"
+        }
+      },
+      "new_records": 1,
+      "media_downloaded": false,
+      "published": false
+    },
+    {
+      "id": "deae1ad81f1a4963844d290316633206",
+      "profile": "recent-music",
+      "state": "blocked",
+      "sources": {
+        "musicbrainz": {
+          "status": "blocked",
+          "reason": "network_unavailable"
+        },
+        "searxng": {
+          "status": "not_configured",
+          "reason": "not_configured"
+        }
+      },
+      "new_records": 0,
+      "media_downloaded": false,
+      "published": false
+    },
+    {
+      "id": "71ea6f571903440f8820d2c610765e42",
+      "profile": "classic-films",
+      "state": "partial",
+      "sources": {
+        "catalog": {
+          "status": "ok",
+          "records": 5,
+          "cached": false,
+          "origin": "existing_editorial_pack"
+        },
+        "ollama": {
+          "status": "not_configured"
+        },
+        "loc": {
+          "status": "blocked",
+          "reason": "network_unavailable"
+        },
+        "searxng": {
+          "status": "not_configured",
+          "reason": "not_configured"
+        }
+      },
+      "new_records": 5,
+      "media_downloaded": false,
+      "published": false
+    },
+    {
+      "id": "f686cb7440794cf69450e2cb1496abda",
+      "profile": "recent-films",
+      "state": "blocked",
+      "sources": {
+        "searxng": {
+          "status": "not_configured",
+          "reason": "not_configured"
+        }
+      },
+      "new_records": 0,
+      "media_downloaded": false,
+      "published": false
+    },
+    {
+      "id": "e0e3968532d8441885c6c35d8bc31fe1",
+      "profile": "marathi-theatre",
+      "state": "partial",
+      "sources": {
+        "catalog": {
+          "status": "ok",
+          "records": 3,
+          "cached": false,
+          "origin": "existing_editorial_pack"
+        },
+        "ollama": {
+          "status": "not_configured"
+        },
+        "openlibrary": {
+          "status": "blocked",
+          "reason": "network_unavailable"
+        },
+        "searxng": {
+          "status": "not_configured",
+          "reason": "not_configured"
+        }
+      },
+      "new_records": 3,
+      "media_downloaded": false,
+      "published": false
+    },
+    {
+      "id": "a34b1b78ca7f453498d9a234a3121755",
+      "profile": "hindi-theatre",
+      "state": "partial",
+      "sources": {
+        "catalog": {
+          "status": "ok",
+          "records": 3,
+          "cached": false,
+          "origin": "existing_editorial_pack"
+        },
+        "ollama": {
+          "status": "not_configured"
+        },
+        "openlibrary": {
+          "status": "blocked",
+          "reason": "network_unavailable"
+        },
+        "searxng": {
+          "status": "not_configured",
+          "reason": "not_configured"
+        }
+      },
+      "new_records": 3,
+      "media_downloaded": false,
+      "published": false
+    }
+  ],
+  "production_deployed": false,
+  "schedule_active": false,
+  "real_model_tested": false
+}

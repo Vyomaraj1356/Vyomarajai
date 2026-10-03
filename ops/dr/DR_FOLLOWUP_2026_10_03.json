@@ -1,0 +1,38 @@
+{
+  "checked_at_utc": "2026-10-03T11:49:54.523002+00:00",
+  "mode": "GET_only",
+  "primary_credential_source": "local_gh_fallback",
+  "secondary_credential_source": "local_gh_fallback",
+  "writes_attempted": false,
+  "write_authorization_verified": false,
+  "pat_identity_proves_repo_access": false,
+  "dr_sync_verified": false,
+  "identity": {
+    "status": "READABLE"
+  },
+  "primary_repository": {
+    "status": "READABLE"
+  },
+  "primary_main": {
+    "status": "READABLE"
+  },
+  "secondary_repository": {
+    "status": "BLOCKED",
+    "http_status": 404,
+    "reason": "missing_or_hidden_by_permissions"
+  },
+  "secondary_main": {
+    "status": "NOT_ATTEMPTED"
+  },
+  "status": "BLOCKED",
+  "note": "Identity endpoint may be unavailable for an installation token. Repository/ref GETs are authoritative for read access only; neither they nor /user verify writes or tree equality.",
+  "diagnostic_target_basis": "old_main_workflow_candidate_only_not_confirmed_for_sync",
+  "actions_variables_http_status": 403,
+  "observed_primary_main": "e69af4d6155aca87eb87f3da5c4c90e1b8b681a1",
+  "inspected_workflow": {
+    "id": 37120524834,
+    "head": "bb6c1ddc5beb571c029fc22dbb96e2d97fad321c",
+    "offline_tests": "success",
+    "verify_or_sync": "skipped"
+  }
+}

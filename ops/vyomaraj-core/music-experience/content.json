@@ -1,0 +1,1104 @@
+{
+  "schema_version": 1,
+  "title": "Memory & Melody",
+  "updated": "2026-10-03",
+  "status": "researched_starter_catalogue_and_local_functions",
+  "ownership": {
+    "category_id": "ENTERTAINMENT",
+    "existing_named_parent": "Music",
+    "existing_group": "ENT-MUS-S1-S6",
+    "additional_agents_created": 0,
+    "canonical_names": "UNKNOWN",
+    "assignments": "proposed_functional_bindings_not_recovered_names"
+  },
+  "agents": [
+    {
+      "slot": "ENT-MUS-S1",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Radio memory & archives",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "radio"
+      ],
+      "function": "Research programme histories, build original nostalgia-led rundowns; no presenter imitation."
+    },
+    {
+      "slot": "ENT-MUS-S2",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Artists, albums & recordings",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "recording"
+      ],
+      "function": "Discover singers and recordings; distinguish albums, soundtracks, singles, compilations and reissues."
+    },
+    {
+      "slot": "ENT-MUS-S3",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Folk, regional & world discovery",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "tradition"
+      ],
+      "function": "Credit communities, performers and languages; connect local and global listening routes."
+    },
+    {
+      "slot": "ENT-MUS-S4",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Charts & dated top lists",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "chart"
+      ],
+      "function": "Keep publisher, geography, period and methodology together; never present an old snapshot as live."
+    },
+    {
+      "slot": "ENT-MUS-S5",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Audio programming & playlists",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "audio"
+      ],
+      "function": "Build timed editorial plans and review audio/recording rights."
+    },
+    {
+      "slot": "ENT-MUS-S6",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Music video & visual programmes",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "video"
+      ],
+      "function": "Plan music-video discovery and source/rights checks; support local user-owned video preview."
+    }
+  ],
+  "items": [
+    {
+      "id": "binaca",
+      "title": "Binaca Geetmala",
+      "kind": "radio",
+      "era": "heritage",
+      "region": "South Asia",
+      "language": "Hindi / Hindustani",
+      "summary": "Ameen Sayani’s countdown is the likely match for “Bianaca”. The cited account places its Radio Ceylon run in 1952–1988 and its move to Vividh Bharati in 1989–1994. This is a history card, not a recovered broadcast.",
+      "source_ids": [
+        "geetmala"
+      ],
+      "artists": [
+        "Ameen Sayani"
+      ],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "bhoole",
+      "title": "Bhoole Bisre Geet",
+      "kind": "radio",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi",
+      "summary": "A programme reference for an old-song discovery route. The proposed route is editorial, not an imported episode or current schedule.",
+      "source_ids": [
+        "vividh"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "chhaya",
+      "title": "Chhayageet",
+      "kind": "radio",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi",
+      "summary": "A programme reference for a themed, reflective listening route. The proposed route is editorial, not an imported episode or current schedule.",
+      "source_ids": [
+        "vividh"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "sarita",
+      "title": "Sangeet Sarita",
+      "kind": "radio",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi",
+      "summary": "A reference for a music-learning and classical-listening route. The proposed route is editorial, not an imported episode or current schedule.",
+      "source_ids": [
+        "vividh"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "jaimala",
+      "title": "Jaimala",
+      "kind": "radio",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi",
+      "summary": "A programme in the broadcaster’s published Vividh Bharati list. The proposed route is editorial, not an imported episode or current schedule.",
+      "source_ids": [
+        "vividh"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "hawamahal",
+      "title": "Hawamahal",
+      "kind": "radio",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi",
+      "summary": "A spoken-audio programme reference; not classified as an album or a song chart. The proposed route is editorial, not an imported episode or current schedule.",
+      "source_ids": [
+        "vividh"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "uk-radio",
+      "title": "The UK Top 40 / BBC Radio 1 context",
+      "kind": "radio",
+      "era": "cross-era",
+      "region": "Europe",
+      "language": "English",
+      "summary": "Official Charts describes its weekly chart unveiling with BBC Radio 1. Compare chart-led radio with nostalgic hosted music; do not treat the formats as identical.",
+      "source_ids": [
+        "official"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "lata",
+      "title": "Lata Mangeshkar · classic catalogue",
+      "kind": "recording",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi / multilingual",
+      "summary": "Artist discovery through Saregama’s vinyl catalogue. This is an anthology/catalogue route, not an invented original studio album or a complete discography.",
+      "source_ids": [
+        "vinyl"
+      ],
+      "artists": [
+        "Lata Mangeshkar"
+      ],
+      "year": null,
+      "record_type": "artist catalogue / compilations",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "asha",
+      "title": "Asha Bhosle · classic catalogue",
+      "kind": "recording",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi / multilingual",
+      "summary": "Artist discovery through Saregama’s vinyl catalogue. This is an anthology/catalogue route, not an invented original studio album or a complete discography.",
+      "source_ids": [
+        "vinyl"
+      ],
+      "artists": [
+        "Asha Bhosle"
+      ],
+      "year": null,
+      "record_type": "artist catalogue / compilations",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "rafi",
+      "title": "Mohammed Rafi · classic catalogue",
+      "kind": "recording",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi / multilingual",
+      "summary": "Artist discovery through Saregama’s vinyl catalogue. This is an anthology/catalogue route, not an invented original studio album or a complete discography.",
+      "source_ids": [
+        "vinyl"
+      ],
+      "artists": [
+        "Mohammed Rafi"
+      ],
+      "year": null,
+      "record_type": "artist catalogue / compilations",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "kishore",
+      "title": "Kishore Kumar · classic catalogue",
+      "kind": "recording",
+      "era": "heritage",
+      "region": "India",
+      "language": "Hindi / multilingual",
+      "summary": "Artist discovery through Saregama’s vinyl catalogue. This is an anthology/catalogue route, not an invented original studio album or a complete discography.",
+      "source_ids": [
+        "vinyl"
+      ],
+      "artists": [
+        "Kishore Kumar"
+      ],
+      "year": null,
+      "record_type": "artist catalogue / compilations",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "jagjit",
+      "title": "The Unforgettables",
+      "kind": "recording",
+      "era": "heritage",
+      "region": "India",
+      "language": "Urdu / Hindi",
+      "summary": "Jagjit and Chitra Singh’s named recording is listed by Saregama. Original issue year and the current vinyl edition are kept separate; no guessed release date.",
+      "source_ids": [
+        "unforgettables"
+      ],
+      "artists": [
+        "Jagjit Singh",
+        "Chitra Singh"
+      ],
+      "year": null,
+      "record_type": "album / catalogue edition",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "rahman",
+      "title": "Vande Mataram",
+      "kind": "recording",
+      "era": "heritage",
+      "region": "India",
+      "language": "Multilingual",
+      "summary": "A.R. Rahman’s non-film album; the cited edition is dated 1997. Credits should remain distinct from performer discovery.",
+      "source_ids": [
+        "vande"
+      ],
+      "artists": [
+        "A.R. Rahman"
+      ],
+      "year": 1997,
+      "record_type": "album",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "aashiqui2",
+      "title": "Aashiqui 2",
+      "kind": "recording",
+      "era": "modern",
+      "region": "India",
+      "language": "Hindi",
+      "summary": "A soundtrack, not an Arijit Singh solo album. The catalogue credits Mithoon, Ankit Tiwari and Jeet Gannguli at album level; individual vocal credits require track-level verification.",
+      "source_ids": [
+        "aashiqui"
+      ],
+      "artists": [
+        "Mithoon",
+        "Ankit Tiwari",
+        "Jeet Gannguli"
+      ],
+      "year": 2013,
+      "record_type": "soundtrack",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "coldmess",
+      "title": "cold/mess",
+      "kind": "recording",
+      "era": "modern",
+      "region": "India",
+      "language": "English",
+      "summary": "The cited 2020 re-release differs from the 2018 EP described by the catalogue. Keep edition dates separate.",
+      "source_ids": [
+        "cold"
+      ],
+      "artists": [
+        "Prateek Kuhad"
+      ],
+      "year": 2020,
+      "record_type": "re-release",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "goat",
+      "title": "G.O.A.T.",
+      "kind": "recording",
+      "era": "modern",
+      "region": "India",
+      "language": "Punjabi",
+      "summary": "A 2020 Diljit Dosanjh album in the cited catalogue; a regional-to-global discovery entry, not a present-day rank.",
+      "source_ids": [
+        "goat"
+      ],
+      "artists": [
+        "Diljit Dosanjh"
+      ],
+      "year": 2020,
+      "record_type": "album",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "katchisera",
+      "title": "Katchi Sera (From Think Indie)",
+      "kind": "recording",
+      "era": "modern",
+      "region": "India",
+      "language": "Tamil",
+      "summary": "A Sai Abhyankkar single from 2024. Keep singles separate from full albums.",
+      "source_ids": [
+        "katchi"
+      ],
+      "artists": [
+        "Sai Abhyankkar"
+      ],
+      "year": 2024,
+      "record_type": "single",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "radical",
+      "title": "Radical Optimism",
+      "kind": "recording",
+      "era": "modern",
+      "region": "Europe",
+      "language": "English",
+      "summary": "Dua Lipa’s 2024 album; a modern listening reference, not a claim that this is her latest release.",
+      "source_ids": [
+        "dua"
+      ],
+      "artists": [
+        "Dua Lipa"
+      ],
+      "year": 2024,
+      "record_type": "album",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "golden",
+      "title": "GOLDEN",
+      "kind": "recording",
+      "era": "modern",
+      "region": "East Asia",
+      "language": "English",
+      "summary": "Jung Kook’s 2023 album; artist market and sung language are separate fields. Do not confuse it with the HUNTR/X song Golden.",
+      "source_ids": [
+        "golden"
+      ],
+      "artists": [
+        "Jung Kook"
+      ],
+      "year": 2023,
+      "record_type": "album",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "burna",
+      "title": "I Told Them...",
+      "kind": "recording",
+      "era": "modern",
+      "region": "Africa",
+      "language": "Multilingual",
+      "summary": "Burna Boy’s 2023 Afro-fusion album. Regional editions and clean/explicit versions need individual checks.",
+      "source_ids": [
+        "burna"
+      ],
+      "artists": [
+        "Burna Boy"
+      ],
+      "year": 2023,
+      "record_type": "album",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "marathi",
+      "title": "Marathi songs · Arnold Bake Collection",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "India",
+      "language": "Marathi",
+      "summary": "The catalogue credits Madhumalati and Sneha Dhopeshwarkar and includes Palna, Mangalagaur Arati and Hadga. Historical recording/catalogue dates must not imply an open licence.",
+      "source_ids": [
+        "marathi"
+      ],
+      "artists": [
+        "Madhumalati Dhopeshwarkar",
+        "Sneha Dhopeshwarkar"
+      ],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "goa",
+      "title": "Music of Goa",
+      "kind": "tradition",
+      "era": "cross-era",
+      "region": "India",
+      "language": "Konkani",
+      "summary": "The source describes Zagor, Ranmale, Dhallo, Fugdi and Gudulyo Gayan in distinct community and performance contexts. Avoid flattening these into a single generic folk style.",
+      "source_ids": [
+        "goa"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "bengal",
+      "title": "Bengal · folk and classical connections",
+      "kind": "tradition",
+      "era": "cross-era",
+      "region": "South Asia",
+      "language": "Bengali",
+      "summary": "A source-backed route through Baul, bhatiyali and the relationship between folk and classical traditions. Recording permissions and community context remain essential.",
+      "source_ids": [
+        "bengal"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "indian-folk",
+      "title": "Folk Music of India · regional archive",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "India",
+      "language": "Multiple languages",
+      "summary": "A historical collection spanning several Indian regions, not a complete or neutral representation of every community. Preserve named performer credits when available.",
+      "source_ids": [
+        "india-folk"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "world",
+      "title": "World traditions · open discovery map",
+      "kind": "tradition",
+      "era": "cross-era",
+      "region": "Global",
+      "language": "Multiple languages",
+      "summary": "The Folkways world catalogue offers routes into Caribbean, Celtic, Central Asian, African American, Indigenous and other traditions. These are discovery categories, not one universal genre or a complete world atlas.",
+      "source_ids": [
+        "world"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "hot100",
+      "title": "Billboard Hot 100",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "North America",
+      "language": "Multiple languages",
+      "summary": "US songs chart; separate from global songs and album charts. No current positions cached.",
+      "source_ids": [
+        "billboard"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://www.billboard.com/charts/hot-100/"
+    },
+    {
+      "id": "bb200",
+      "title": "Billboard 200",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "North America",
+      "language": "Multiple languages",
+      "summary": "US albums chart; album rankings are not song rankings. No current positions cached.",
+      "source_ids": [
+        "billboard"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://www.billboard.com/charts/billboard-200/"
+    },
+    {
+      "id": "global200",
+      "title": "Billboard Global 200",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "Global",
+      "language": "Multiple languages",
+      "summary": "Songs ranked using streams and sales from over 200 territories, including the US; not simply a global radio-airplay chart.",
+      "source_ids": [
+        "global200"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://www.billboard.com/charts/billboard-global-200/"
+    },
+    {
+      "id": "india-chart",
+      "title": "Billboard India Songs",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "India",
+      "language": "Multiple languages",
+      "summary": "India Songs appears in Billboard’s territory-chart directory. Open the publisher for its available issue and methodology; no current entries imported.",
+      "source_ids": [
+        "billboard"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://www.billboard.com/charts/india-songs-hotw/"
+    },
+    {
+      "id": "uk-charts",
+      "title": "Official UK singles & albums",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "Europe",
+      "language": "Multiple languages",
+      "summary": "Separate singles and albums rankings with publisher-specific sales/streaming rules. Check the chart period; no fixed weighting formula is hard-coded here.",
+      "source_ids": [
+        "official"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://www.officialcharts.com/charts/"
+    },
+    {
+      "id": "spotify",
+      "title": "Spotify charts & Local Pulse",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "Global",
+      "language": "Multiple languages",
+      "summary": "Platform-specific streaming charts; city popularity and Local Pulse are distinct. Not every stream is chart-eligible, and daily/weekly periods differ.",
+      "source_ids": [
+        "spotify"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://charts.spotify.com/"
+    },
+    {
+      "id": "youtube",
+      "title": "YouTube songs, videos & Shorts",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "Global",
+      "language": "Multiple languages",
+      "summary": "Songs aggregate eligible song views across formats; video charts rank official music videos. Shorts are a separate metric. Paid advertising views are excluded.",
+      "source_ids": [
+        "youtube"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://charts.youtube.com/"
+    },
+    {
+      "id": "ifpi2025",
+      "title": "IFPI Global Single Chart · 2025",
+      "kind": "chart",
+      "era": "cross-era",
+      "region": "Global",
+      "language": "Multiple languages",
+      "summary": "A dated annual snapshot, published 19 February 2026. Not a live chart or this week’s top songs.",
+      "source_ids": [
+        "ifpi"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed",
+      "publisher_url": "https://www.ifpi.org/rose-and-bruno-mars-apt-crowned-ifpis-biggest-selling-global-single-of-the-year-2025/"
+    },
+    {
+      "id": "audio",
+      "title": "Audio · radio, interviews & listening notes",
+      "kind": "audio",
+      "era": "cross-era",
+      "region": "Global",
+      "language": "Any / review required",
+      "summary": "Original spoken introductions, oral-history interviews with consent, instrumental/classical sessions, podcasts and playlists are proposed production formats. A timed rundown is not a rendered or broadcast episode.",
+      "source_ids": [],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "video",
+      "title": "Video · performance, visualiser & documentary",
+      "kind": "video",
+      "era": "cross-era",
+      "region": "Global",
+      "language": "Any / review required",
+      "summary": "Music-video discovery, live-session commentary, original visualisers, interviews and captioned documentary plans. Lyrics, concert footage, artwork, sync and master-use permissions must be reviewed separately.",
+      "source_ids": [],
+      "artists": [],
+      "year": null,
+      "record_type": null,
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "hateyou-video",
+      "title": "Hate You · music video",
+      "kind": "video",
+      "era": "modern",
+      "region": "East Asia",
+      "language": "English",
+      "summary": "A separately catalogued music video, not the album audio recording. Provider access, region and use rights must be checked.",
+      "source_ids": [
+        "hateyou-video"
+      ],
+      "artists": [
+        "Jung Kook"
+      ],
+      "year": 2023,
+      "record_type": "music video",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "big7-video",
+      "title": "Big 7 · music video",
+      "kind": "video",
+      "era": "modern",
+      "region": "Africa",
+      "language": "Multilingual",
+      "summary": "A music-video catalogue reference. The storefront link is not a licence to embed, download or rebroadcast the footage.",
+      "source_ids": [
+        "big7-video"
+      ],
+      "artists": [
+        "Burna Boy"
+      ],
+      "year": 2023,
+      "record_type": "music video",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "katchi-video",
+      "title": "Katchi Sera · music video",
+      "kind": "video",
+      "era": "modern",
+      "region": "India",
+      "language": "Tamil",
+      "summary": "The video catalogue credits these names; verify vocal, lyric, performance and production roles separately. This is distinct from the audio single.",
+      "source_ids": [
+        "katchi-video"
+      ],
+      "artists": [
+        "Sai Abhyankkar",
+        "Adesh Krishna"
+      ],
+      "year": 2024,
+      "record_type": "music video",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "tumhiho",
+      "title": "Tum Hi Ho · soundtrack recording",
+      "kind": "recording",
+      "era": "modern",
+      "region": "India",
+      "language": "Hindi",
+      "summary": "A track-level catalogue reference linking Arijit Singh and Mithoon to the Aashiqui 2 recording. A soundtrack track is not a solo studio album.",
+      "source_ids": [
+        "tumhiho"
+      ],
+      "artists": [
+        "Mithoon",
+        "Arijit Singh"
+      ],
+      "year": 2013,
+      "record_type": "soundtrack track",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    }
+  ],
+  "sources": [
+    {
+      "id": "geetmala",
+      "title": "Indian Express — Radio Ceylon and Binaca Geetmala",
+      "url": "https://indianexpress.com/article/explained/explained-culture/100-years-of-radio-ceylon-history-significance-10435302/",
+      "citation": "[3](https://indianexpress.com/article/explained/explained-culture/100-years-of-radio-ceylon-history-significance-10435302/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "vividh",
+      "title": "Prasar Bharati — Vividh Bharati",
+      "url": "https://prasarbharati.gov.in/en/vividh-bharati/",
+      "citation": "[1](https://prasarbharati.gov.in/en/vividh-bharati/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "vinyl",
+      "title": "Saregama — classic artist vinyl catalogue",
+      "url": "https://www.saregama.com/vinyl/buy-now",
+      "citation": "[1](https://www.saregama.com/vinyl/buy-now)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "unforgettables",
+      "title": "Saregama — The Unforgettables (catalogue listing)",
+      "url": "https://www.saregama.com/vinyl/buy-now",
+      "citation": "[1](https://www.saregama.com/vinyl/buy-now)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "vande",
+      "title": "Apple Music — Vande Mataram",
+      "url": "https://music.apple.com/us/album/vande-mataram/274118901",
+      "citation": "[1](https://music.apple.com/us/album/vande-mataram/274118901)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "aashiqui",
+      "title": "Apple Music — Aashiqui 2 soundtrack",
+      "url": "https://music.apple.com/us/album/aashiqui-2-original-motion-picture-soundtrack/1073359412",
+      "citation": "[1](https://music.apple.com/us/album/aashiqui-2-original-motion-picture-soundtrack/1073359412)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "cold",
+      "title": "Apple Music — cold/mess, 2020 re-release",
+      "url": "https://music.apple.com/us/album/cold-mess/1534546275",
+      "citation": "[1](https://music.apple.com/us/album/cold-mess/1534546275)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "goat",
+      "title": "Apple Music — G.O.A.T.",
+      "url": "https://music.apple.com/us/album/g-o-a-t/1523520901",
+      "citation": "[1](https://music.apple.com/us/album/g-o-a-t/1523520901)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "katchi",
+      "title": "Apple Music — Katchi Sera single",
+      "url": "https://music.apple.com/us/album/katchi-sera-from-think-indie-single/1725350674",
+      "citation": "[2](https://music.apple.com/us/album/katchi-sera-from-think-indie-single/1725350674)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "dua",
+      "title": "Apple Music — Radical Optimism",
+      "url": "https://music.apple.com/us/album/radical-optimism/1734980417",
+      "citation": "[3](https://music.apple.com/us/album/radical-optimism/1734980417)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "golden",
+      "title": "Apple Music — GOLDEN",
+      "url": "https://music.apple.com/us/album/golden/1709554767",
+      "citation": "[1](https://music.apple.com/us/album/golden/1709554767)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "burna",
+      "title": "Apple Music — I Told Them...",
+      "url": "https://music.apple.com/us/album/i-told-them/1699611123",
+      "citation": "[1](https://music.apple.com/us/album/i-told-them/1699611123)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "marathi",
+      "title": "Smithsonian Folkways — Marathi songs from the Arnold Bake Collection",
+      "url": "https://folkways.si.edu/madhumalati-and-sneha-dhopeshwarkar/marathi-songs-from-the-arnold-bake-collection/india-world/music/album/smithsonian",
+      "citation": "[1](https://folkways.si.edu/madhumalati-and-sneha-dhopeshwarkar/marathi-songs-from-the-arnold-bake-collection/india-world/music/album/smithsonian)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "goa",
+      "title": "Smithsonian Folkways — Music of Goa",
+      "url": "https://folkways.si.edu/music-of-goa/india-world/music/album/smithsonian",
+      "citation": "[4](https://folkways.si.edu/music-of-goa/india-world/music/album/smithsonian)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "bengal",
+      "title": "Smithsonian Folkways — Classical and Folk Traditions in Indian Music",
+      "url": "https://folkways.si.edu/news-and-press/unesco-collection-week-56-classical-and-folk-traditions-in-indian-music",
+      "citation": "[3](https://folkways.si.edu/news-and-press/unesco-collection-week-56-classical-and-folk-traditions-in-indian-music)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "india-folk",
+      "title": "Smithsonian Folkways — Folk Music of India",
+      "url": "https://folkways.si.edu/folk-music-of-india/world/album/smithsonian",
+      "citation": "[1](https://folkways.si.edu/folk-music-of-india/world/album/smithsonian)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "world",
+      "title": "Smithsonian Folkways — World catalogue",
+      "url": "https://folkways.si.edu/world/",
+      "citation": "[5](https://folkways.si.edu/world/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "global200",
+      "title": "Billboard Global 200",
+      "url": "https://www.billboard.com/charts/billboard-global-200/",
+      "citation": "[1](https://www.billboard.com/charts/billboard-global-200/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "billboard",
+      "title": "Billboard — chart directory and Hot 100",
+      "url": "https://www.billboard.com/charts/hot-100/",
+      "citation": "[1](https://www.billboard.com/charts/hot-100/)",
+      "checked": "2026-10-03",
+      "review_basis": "Fetched opening/chart directory only; no current rankings imported."
+    },
+    {
+      "id": "official",
+      "title": "Official Charts — chart compilation",
+      "url": "https://www.officialcharts.com/about/",
+      "citation": "[1](https://www.officialcharts.com/about/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "youtube",
+      "title": "YouTube Music — Charts & Insights",
+      "url": "https://support.google.com/youtubemusic/answer/9014376?hl=en",
+      "citation": "[1](https://support.google.com/youtubemusic/answer/9014376?hl=en)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata only, not a full-text review."
+    },
+    {
+      "id": "spotify",
+      "title": "Spotify — Understanding Spotify charts",
+      "url": "https://support.spotify.com/us/artists/article/understanding-spotify-charts/",
+      "citation": "[1](https://support.spotify.com/us/artists/article/understanding-spotify-charts/)",
+      "checked": "2026-10-03",
+      "review_basis": "Fetched relevant help-page section; no chart feed connected."
+    },
+    {
+      "id": "ifpi",
+      "title": "IFPI — Global Single Chart 2025, published 19 February 2026",
+      "url": "https://www.ifpi.org/rose-and-bruno-mars-apt-crowned-ifpis-biggest-selling-global-single-of-the-year-2025/",
+      "citation": "[2](https://www.ifpi.org/rose-and-bruno-mars-apt-crowned-ifpis-biggest-selling-global-single-of-the-year-2025/)",
+      "checked": "2026-10-03",
+      "review_basis": "Full publisher release fetched; dated annual top-five excerpt retained, not a current weekly chart."
+    },
+    {
+      "id": "hateyou-video",
+      "title": "Apple Music — Hate You · music video",
+      "url": "https://music.apple.com/us/music-video/hate-you/1721063715",
+      "citation": "[1](https://music.apple.com/us/music-video/hate-you/1721063715)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata and link only. Playback availability not verified."
+    },
+    {
+      "id": "big7-video",
+      "title": "Apple Music — Big 7 · music video",
+      "url": "https://music.apple.com/cg/music-video/big-7/1699528776",
+      "citation": "[1](https://music.apple.com/cg/music-video/big-7/1699528776)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata and link only. Playback availability not verified."
+    },
+    {
+      "id": "katchi-video",
+      "title": "Apple Music — Katchi Sera · music video",
+      "url": "https://music.apple.com/pl/music-video/katchi-sera-from-think-indie/1780563491",
+      "citation": "[1](https://music.apple.com/pl/music-video/katchi-sera-from-think-indie/1780563491)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata and link only. Playback availability not verified."
+    },
+    {
+      "id": "tumhiho",
+      "title": "Apple Music — Tum Hi Ho · soundtrack recording",
+      "url": "https://music.apple.com/in/song/tum-hi-ho/1073359419",
+      "citation": "[3](https://music.apple.com/in/song/tum-hi-ho/1073359419)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; catalogue metadata and link only. Playback availability not verified."
+    }
+  ],
+  "chart_snapshot": {
+    "id": "ifpi-2025-top5",
+    "title": "IFPI Global Single Chart 2025 · top-five excerpt",
+    "publisher": "IFPI",
+    "territory": "Global",
+    "period": "2025",
+    "published": "2026-02-19",
+    "checked": "2026-10-03",
+    "status": "dated_annual_snapshot_not_live",
+    "source_ids": [
+      "ifpi"
+    ],
+    "entries": [
+      {
+        "rank": 1,
+        "artist": "ROSÉ & Bruno Mars",
+        "title": "APT."
+      },
+      {
+        "rank": 2,
+        "artist": "HUNTR/X",
+        "title": "Golden"
+      },
+      {
+        "rank": 3,
+        "artist": "Alex Warren",
+        "title": "Ordinary"
+      },
+      {
+        "rank": 4,
+        "artist": "Lady Gaga, Bruno Mars",
+        "title": "Die With A Smile"
+      },
+      {
+        "rank": 5,
+        "artist": "Benson Boone",
+        "title": "Beautiful Things"
+      }
+    ]
+  },
+  "scope": {
+    "complete_global_catalogue": false,
+    "live_charts_connected": false,
+    "streaming_provider_connected": false,
+    "external_ai_connected": false,
+    "commercial_media_hosted": false
+  },
+  "backlog": [
+    "Expand every singer/album only through edition-aware, track-credit-aware metadata; current sample is not all discographies.",
+    "Broaden Marathi, Bengali, Tamil, Telugu, Kannada, Malayalam, Assamese, Punjabi and other regional coverage with native-language reviewers.",
+    "Add sourced American Top 40 / Casey Kasem, Pick of the Pops and other international radio-history dossiers; not yet researched to the same standard here.",
+    "Expand Hindustani/Carnatic, ghazal, qawwali, bhajan, kirtan, instrumental, jazz, blues, rock, hip-hop, electronic, children’s and spoken-audio lanes; devotional items cross-reference BHAKTI, not new duplicate agents.",
+    "Expand Africa, Latin America, the Caribbean, the Middle East, Central Asia, Europe, East Asia, Oceania and Indigenous traditions with community/performer attribution.",
+    "For any live chart adapter, obtain permitted access, store publisher/period/territory and retrieval time, validate ranks, and expose stale/unavailable states.",
+    "Confirm recording, composition, lyrics, artwork, video, synchronization, broadcast and performance rights for the intended territory and use.",
+    "Review clean/explicit versions, translations, captions/transcripts and accessibility; unreviewed items are not certified child-safe.",
+    "No archive rebroadcasts, AI singer/host impersonation, lyric reproduction or public publishing is implemented."
+  ]
+}

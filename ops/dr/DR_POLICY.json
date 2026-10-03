@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "primary": "Vyomaraj1356/Vyomarajai",
+  "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+  "target_basis": "Primary main commits 82d3c647a64717e20adec6524efc0dce22737d20 and 9be6d3950cb65dcdd5dba36e548f48c599361d57 explicitly corrected this target; main Actions run 37123060948 passed Authenticate DR.",
+  "writer": "primary_main_only",
+  "sync_approved_on_main": true,
+  "approval_basis": "Owner requested implementation/deployment of backups on 3 October 2026; main already runs automatic primary-to-secondary replication. This policy only becomes operational after reviewed merge to main.",
+  "reverse_restore": "read_only_recovery_plan_then_separate_human_review",
+  "automatic_reverse_overwrite": false,
+  "zero_rpo_verified": false,
+  "zero_rto_verified": false,
+  "scope": "Git main snapshot only; not runtime databases, secret stores, live media sessions or production traffic",
+  "automatic_target_only_file_removal": false,
+  "target_only_file_removal": "Explicit manual workflow-dispatch approval after reviewing current diff and preserving a backup; false by default. Retain old secondary commit history.",
+  "one_snapshot_removal_approval": {
+    "approved": true,
+    "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+    "expected_commit": "7107980ce0bb1fc788da9e1f7a87f3d6cd9bf1d3",
+    "expected_tree": "bd628db084433e9cc885fdc6e4c99c6ab2fe44d7",
+    "expires_at_utc": "2026-10-04T00:00:00+00:00",
+    "authorization_basis": "Owner explicitly requested resolving PR #5 and producing a perfect file match on both repositories on 3 October 2026, after being informed that exact matching removes secondary-only files.",
+    "preflight_run": 37125967048,
+    "reviewed_candidate_secondary_only_paths": 150,
+    "rollback": "Previous secondary commit is retained as parent of the exact snapshot; no force push or history deletion. This is Git rollback history, not an independent-site backup."
+  }
+}

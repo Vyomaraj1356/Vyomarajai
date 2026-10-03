@@ -1,0 +1,875 @@
+{
+  "schema_version": 1,
+  "title": "Frame & Stage",
+  "updated": "2026-10-03",
+  "ownership": {
+    "category_id": "ENTERTAINMENT",
+    "existing_group": "ENT-MOVIE-S1-S6",
+    "additional_agents_created": 0,
+    "canonical_names": "UNKNOWN",
+    "assignments": "proposals_not_recovered_historical_names"
+  },
+  "agents": [
+    {
+      "slot": "ENT-MOVIE-S1",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Feature-film discovery & development",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "feature",
+        "version-check"
+      ]
+    },
+    {
+      "slot": "ENT-MOVIE-S2",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Short films & animation",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "short"
+      ]
+    },
+    {
+      "slot": "ENT-MOVIE-S3",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Clips, archives & edit planning",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "clip",
+        "archive"
+      ]
+    },
+    {
+      "slot": "ENT-MOVIE-S4",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Marathi theatre & adaptations",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "theatre-marathi",
+        "one-act-marathi"
+      ]
+    },
+    {
+      "slot": "ENT-MOVIE-S5",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Hindi / multilingual theatre",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "theatre-hindi",
+        "one-act-hindi"
+      ]
+    },
+    {
+      "slot": "ENT-MOVIE-S6",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Advertising films & original campaigns",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "advert"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "shyam",
+      "title": "Shyamchi Aai · 1953 version",
+      "kind": "feature",
+      "language": "Marathi",
+      "era": "heritage",
+      "summary": "A restored-film reference named in IFFI 2023 reporting. Keep the 1953 film separate from newer adaptations; no age-based public-domain assumption.",
+      "source_ids": [
+        "shyam"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "jaane",
+      "title": "Jaane Bhi Do Yaaro",
+      "kind": "feature",
+      "language": "Hindi",
+      "era": "heritage",
+      "summary": "A classic feature in NFDC’s production catalogue. A source/discovery record, not a copied full movie or guaranteed stream.",
+      "source_ids": [
+        "nfdc"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "salaam",
+      "title": "Salaam Bombay!",
+      "kind": "feature",
+      "language": "Hindi",
+      "era": "heritage",
+      "summary": "A feature named in NFDC’s catalogue. Use edition-specific credits and licensed viewing sources; no footage is bundled.",
+      "source_ids": [
+        "nfdc"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "sairat",
+      "title": "Sairat",
+      "kind": "feature",
+      "language": "Marathi",
+      "era": "modern",
+      "summary": "Prime Video lists the 2016 film directed by Nagraj Manjule. The provider page is a viewing lead, not proof of access in the user’s region.",
+      "source_ids": [
+        "sairat"
+      ],
+      "credits": "Nagraj Manjule — director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "disciple",
+      "title": "The Disciple",
+      "kind": "feature",
+      "language": "Marathi",
+      "era": "modern",
+      "summary": "Netflix’s 2021 acquisition announcement identifies Chaitanya Tamhane’s Marathi film. An announcement is not a current availability guarantee.",
+      "source_ids": [
+        "disciple"
+      ],
+      "credits": "Chaitanya Tamhane — writer/director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "laapataa",
+      "title": "Laapataa Ladies",
+      "kind": "feature",
+      "language": "Hindi",
+      "era": "modern",
+      "summary": "The Netflix listing identifies the 2024 Hindi film. The search result explicitly reported region unavailability; do not promise playback.",
+      "source_ids": [
+        "laapataa"
+      ],
+      "credits": "Kiran Rao — director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "natsamrat-check",
+      "title": "Natsamrat · edition check required",
+      "kind": "version-check",
+      "language": "Marathi",
+      "era": "cross-era",
+      "summary": "ZEE5 lists a 2019 catalogue version with Mohan Joshi, Rohini Hattangadi and Hrushikesh Joshi. Do not silently merge this with the 2016 Nana Patekar film or assert whether this is a recorded stage edition without further confirmation.",
+      "source_ids": [
+        "natsamrat"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "chaitra",
+      "title": "Chaitra",
+      "kind": "short",
+      "language": "Marathi",
+      "era": "heritage",
+      "summary": "A 2002 report describes Kranti Kanade’s diploma film adapted from G. A. Kulkarni. Article date is not used as a verified release date.",
+      "source_ids": [
+        "chaitra"
+      ],
+      "credits": "Kranti Kanade — director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "aaba",
+      "title": "Aaba Aiktaay Naa?",
+      "kind": "short",
+      "language": "Marathi",
+      "era": "modern",
+      "summary": "A Marathi short discussed for its use of sound and an older protagonist. Runtime/release-edition fields remain unverified.",
+      "source_ids": [
+        "aaba"
+      ],
+      "credits": "Aditya Suhas Jambhale — director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "juice",
+      "title": "Juice",
+      "kind": "short",
+      "language": "Hindi",
+      "era": "modern",
+      "summary": "A 2017 Hindi short listed as directed by Neeraj Ghaywan and featuring Shefali Shah. This secondary-source entry needs distributor confirmation before publication.",
+      "source_ids": [
+        "juice"
+      ],
+      "credits": "Neeraj Ghaywan — director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "sintel",
+      "title": "Sintel · open animated short",
+      "kind": "short",
+      "language": "English",
+      "era": "modern",
+      "summary": "An open-movie learning reference. The project specifies CC BY 3.0: retain the entire credits when showing the movie; derivatives require attribution and applicable licence compliance. Logos/trademarks are excluded.",
+      "source_ids": [
+        "sintel",
+        "sintel-about"
+      ],
+      "credits": "Blender Foundation / Durian team",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "official_project_reference_no_embedded_stream",
+      "rights": "CC_BY_3.0_with_attribution_and_project_exclusions",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "ekzunj",
+      "title": "Ek Zunj Varyashi",
+      "kind": "theatre",
+      "language": "Marathi",
+      "era": "cross-era",
+      "summary": "NSD’s archive lists a 150-minute production of P. L. Deshpande’s adaptation of Vladen Dozortsev’s The Last Appointment. Duration applies to that production, not every staging.",
+      "source_ids": [
+        "ekzunj"
+      ],
+      "credits": "P. L. Deshpande — adaptation; Shriniwas Narwekar — production director",
+      "production_minutes": 150,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "ghashiram",
+      "title": "Ghashiram Kotwal",
+      "kind": "theatre",
+      "language": "Marathi",
+      "era": "heritage",
+      "summary": "The library record credits Vijay Tendulkar and identifies an English translation of the Marathi text. A book record is not permission to perform, translate, film or distribute the play.",
+      "source_ids": [
+        "ghashiram"
+      ],
+      "credits": "Vijay Tendulkar — playwright",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "devbabhali",
+      "title": "Sangeet Devbabhali",
+      "kind": "theatre",
+      "language": "Marathi",
+      "era": "modern",
+      "summary": "A musical-theatre discovery reference from a past May 2025 listing. Prajakt Deshmukh is credited as writer/director. Conflicting cast text is not copied; tickets are not live.",
+      "source_ids": [
+        "devbabhali"
+      ],
+      "credits": "Prajakt Deshmukh — writer/director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "andhayug",
+      "title": "Andha Yug · festival production",
+      "kind": "theatre",
+      "language": "Hindi",
+      "era": "cross-era",
+      "summary": "NSD lists a 70-minute Hindi production. Distinguish Dharamvir Bharati’s text from Joy Maisnam’s staging; no script or performance recording is imported.",
+      "source_ids": [
+        "andhayug"
+      ],
+      "credits": "Dharamvir Bharati — playwright; Joy Maisnam — director",
+      "production_minutes": 70,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "adhe",
+      "title": "Adhe Adhure · 2026 programme record",
+      "kind": "theatre",
+      "language": "Hindi",
+      "era": "cross-era",
+      "summary": "A past 13 February 2026 Mumbai programme references Mohan Rakesh’s play and Tripurari Sharma’s production. This is not a new play written in 2026 or a forthcoming event.",
+      "source_ids": [
+        "adhe"
+      ],
+      "credits": "Mohan Rakesh — playwright; Tripurari Sharma — production director",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "dhumrapaan",
+      "title": "Dhumrapaan · 2019 programme record",
+      "kind": "theatre",
+      "language": "Hindi / English",
+      "era": "modern",
+      "summary": "NSD’s archive lists an 80-minute production by D for DRAMA, Mumbai. Programme duration does not determine one-act versus multi-act structure.",
+      "source_ids": [
+        "dhumrapaan"
+      ],
+      "credits": "Adhir Bhat — playwright; Akarsh Khurana — director",
+      "production_minutes": 80,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "lalitaji",
+      "title": "Surf / Lalitaji · advertising memory",
+      "kind": "advert",
+      "language": "Hindi",
+      "era": "heritage",
+      "summary": "HUL’s brand history identifies Lalitaji and Alyque Padamsee. Study character-led communication without copying the campaign dialogue, soundtrack or endorsement.",
+      "source_ids": [
+        "surf"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "liril",
+      "title": "Liril · advertising memory",
+      "kind": "advert",
+      "language": "Hindi / musical",
+      "era": "heritage",
+      "summary": "Frontline discusses the Liril campaign in an Alyque Padamsee retrospective. This is a research reference; imagery, jingle and likeness rights are not granted.",
+      "source_ids": [
+        "liril"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "cadbury-old",
+      "title": "Cadbury cricket · original-era case study",
+      "kind": "advert",
+      "language": "Hindi",
+      "era": "heritage",
+      "summary": "The selected trade sources disagree between 1993 and 1994 for the original campaign. Keep the year unresolved instead of silently choosing one. No original footage or jingle is included.",
+      "source_ids": [
+        "cadbury",
+        "cadbury-year"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "cadbury-new",
+      "title": "Cadbury cricket · 2021 reimagining",
+      "kind": "advert",
+      "language": "Hindi",
+      "era": "modern",
+      "summary": "The 2021 trade report describes an Ogilvy campaign that reverses the earlier cricket scenario’s gender roles. A brand-approved remake is not blanket permission for third-party remixing.",
+      "source_ids": [
+        "cadbury"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "ariel",
+      "title": "Ariel ShareTheLoad · 2024 campaign",
+      "kind": "advert",
+      "language": "Hindi / review",
+      "era": "modern",
+      "summary": "The 2024 launch report supplies a contemporary campaign reference. Reported campaign impact and product claims are not treated as independently verified evidence.",
+      "source_ids": [
+        "ariel"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "loc",
+      "title": "National Screening Room · archive discovery",
+      "kind": "archive",
+      "language": "Multiple",
+      "era": "heritage",
+      "summary": "The Library of Congress asks users to assess each item’s rights, including possible restrictions outside the US. Do not treat the entire collection as globally public domain.",
+      "source_ids": [
+        "loc"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "citizendj",
+      "title": "Citizen DJ · selected reuse collection",
+      "kind": "archive",
+      "language": "Multiple",
+      "era": "heritage",
+      "summary": "The Library identifies this selected government-film subset as public domain. This does not establish the status of unrelated films, performers’ likenesses or other territories.",
+      "source_ids": [
+        "citizendj",
+        "loc"
+      ],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "clip",
+      "title": "Clips, trailers & critical excerpts",
+      "kind": "clip",
+      "language": "Multiple",
+      "era": "cross-era",
+      "summary": "Proposed planning lane for user-owned, licensed or otherwise lawfully usable footage. There is no universal safe number of seconds; purpose, rights and jurisdiction matter. The local editor does not certify legality.",
+      "source_ids": [],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "mr-oneact",
+      "title": "Original Marathi one-act workshop",
+      "kind": "one-act",
+      "language": "Marathi",
+      "era": "proposal",
+      "summary": "An original seed about two neighbours sharing a library shelf. A short-play planning format, not a copied published ekankika.",
+      "source_ids": [],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    },
+    {
+      "id": "hi-oneact",
+      "title": "Original Hindi one-act workshop",
+      "kind": "one-act",
+      "language": "Hindi",
+      "era": "proposal",
+      "summary": "The same original premise can be developed into a Hindi rehearsal outline. Native-language review and rehearsal are still needed.",
+      "source_ids": [],
+      "credits": "",
+      "production_minutes": null,
+      "media_url": null,
+      "availability": "reference_only_not_verified_playback",
+      "rights": "not_cleared_for_rehosting_or_remix",
+      "review_status": "source_attributed_starter_record"
+    }
+  ],
+  "sources": [
+    {
+      "id": "nfdc",
+      "title": "NFDC — Film Production",
+      "url": "https://www.nfdcindia.com/film-production/en",
+      "citation": "[1](https://www.nfdcindia.com/film-production/en)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "shyam",
+      "title": "Indian Express — restored films at IFFI 2023",
+      "url": "https://indianexpress.com/article/entertainment/entertainment-others/catching-dust-to-open-iffi-2023-the-featherweight-to-close-gala-9015957/",
+      "citation": "[1](https://indianexpress.com/article/entertainment/entertainment-others/catching-dust-to-open-iffi-2023-the-featherweight-to-close-gala-9015957/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "sairat",
+      "title": "Prime Video — Sairat",
+      "url": "https://www.primevideo.com/detail/Sairat/0JGHQU7P13RTP0N6KPZS2IY6I6",
+      "citation": "[1](https://www.primevideo.com/detail/Sairat/0JGHQU7P13RTP0N6KPZS2IY6I6)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "disciple",
+      "title": "Netflix — The Disciple acquisition announcement",
+      "url": "http://about.netflix.com/en/news/netflix-acquires-chaitanya-tamhanes-marathi-film-the-disciple",
+      "citation": "[2](http://about.netflix.com/en/news/netflix-acquires-chaitanya-tamhanes-marathi-film-the-disciple)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "laapataa",
+      "title": "Netflix — Laapataa Ladies",
+      "url": "https://www.netflix.com/title/81760391",
+      "citation": "[1](https://www.netflix.com/title/81760391)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; source reports unavailable in the searching region. User-region playback is not verified."
+    },
+    {
+      "id": "natsamrat",
+      "title": "ZEE5 — Natsamrat catalogue version",
+      "url": "https://www.zee5.com/global/movies/details/natsamrat/0-0-101198",
+      "citation": "[1](https://www.zee5.com/global/movies/details/natsamrat/0-0-101198)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "chaitra",
+      "title": "Times of India — Chaitra diploma film",
+      "url": "https://timesofindia.indiatimes.com/pune-times/Krantis-Chaitra-floors-Mumbai-film-fest/articleshow/816250.cms",
+      "citation": "[3](https://timesofindia.indiatimes.com/pune-times/Krantis-Chaitra-floors-Mumbai-film-fest/articleshow/816250.cms)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "aaba",
+      "title": "Film Companion — Aaba Aiktaay Naa?",
+      "url": "https://www.filmcompanion.in/reviews/aaba-aiktaay-naa-short-film-review-an-award-winning-marathi-short-that-reveals-the-emotions-of-sound",
+      "citation": "[2](https://www.filmcompanion.in/reviews/aaba-aiktaay-naa-short-film-review-an-award-winning-marathi-short-that-reveals-the-emotions-of-sound)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "juice",
+      "title": "Wikipedia — Juice (2017 film)",
+      "url": "https://en.wikipedia.org/wiki/Juice_(2017_film)",
+      "citation": "[1](https://en.wikipedia.org/wiki/Juice_(2017_film))",
+      "checked": "2026-10-03",
+      "review_basis": "Secondary encyclopaedia search excerpt; credits need distributor confirmation before publication."
+    },
+    {
+      "id": "sintel",
+      "title": "Blender Foundation — Sintel sharing licence",
+      "url": "https://durian.blender.org/sharing/",
+      "citation": "[2](https://durian.blender.org/sharing/)",
+      "checked": "2026-10-03",
+      "review_basis": "Full licensing page fetched; credits and logo/trademark exclusions recorded."
+    },
+    {
+      "id": "sintel-about",
+      "title": "Blender Foundation — Sintel project",
+      "url": "https://durian.blender.org/about/",
+      "citation": "[1](https://durian.blender.org/about/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "ekzunj",
+      "title": "NSD BRM archive — Ek Zunj Varyashi",
+      "url": "https://www.21brm.nsd.gov.in/category/all-plays/page/2/",
+      "citation": "[1](https://www.21brm.nsd.gov.in/category/all-plays/page/2/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; direct page fetch failed. Production duration is source-specific, not a universal play duration."
+    },
+    {
+      "id": "ghashiram",
+      "title": "LBSNAA library — Ghashiram Kotwal translation record",
+      "url": "https://gsl.lbsnaa.gov.in/cgi-bin/koha/opac-detail.pl?biblionumber=48669",
+      "citation": "[1](https://gsl.lbsnaa.gov.in/cgi-bin/koha/opac-detail.pl?biblionumber=48669)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "devbabhali",
+      "title": "Myrangabhoomi — Sangeet Devbabhali, past 11 May 2025 show",
+      "url": "https://myrangabhoomi.com/show/sangeet-devbabhali-2025-05-11-4p/",
+      "citation": "[2](https://myrangabhoomi.com/show/sangeet-devbabhali-2025-05-11-4p/)",
+      "checked": "2026-10-03",
+      "review_basis": "Past-show listing; cast differs within the page, so no cast is copied. No live ticket availability asserted."
+    },
+    {
+      "id": "andhayug",
+      "title": "NSD — Andha Yug production",
+      "url": "https://20brm.nsd.gov.in/andha-yug/",
+      "citation": "[2](https://20brm.nsd.gov.in/andha-yug/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "adhe",
+      "title": "NSD — Adhe Adhure, 13 February 2026 Mumbai listing",
+      "url": "https://www.brm.nsd.gov.in/event/adhe-adhure/",
+      "citation": "[2](https://www.brm.nsd.gov.in/event/adhe-adhure/)",
+      "checked": "2026-10-03",
+      "review_basis": "Relevant programme passage fetched. Past performance, not an upcoming show; work author and production director kept distinct."
+    },
+    {
+      "id": "dhumrapaan",
+      "title": "NSD — 2019 programme archive",
+      "url": "https://20brm.nsd.gov.in/",
+      "citation": "[3](https://20brm.nsd.gov.in/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "surf",
+      "title": "HUL — Surf/Lalitaji brand history",
+      "url": "https://hul-performance-highlights.hul.co.in/performance-highlights-fy-2022-2023/consumers.html",
+      "citation": "[1](https://hul-performance-highlights.hul.co.in/performance-highlights-fy-2022-2023/consumers.html)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "liril",
+      "title": "Frontline — Alyque Padamsee and Liril",
+      "url": "https://frontline.thehindu.com/other/obituary/article25661896.ece",
+      "citation": "[4](https://frontline.thehindu.com/other/obituary/article25661896.ece)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "cadbury",
+      "title": "ET BrandEquity — Cadbury cricket reimagining, 2021",
+      "url": "https://brandequity.economictimes.indiatimes.com/news/advertising/cadburys-iconic-cricket-ad-gets-a-2021-twist/86284165",
+      "citation": "[2](https://brandequity.economictimes.indiatimes.com/news/advertising/cadburys-iconic-cricket-ad-gets-a-2021-twist/86284165)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "cadbury-year",
+      "title": "Exchange4media — Cadbury cricket retrospective",
+      "url": "https://www.exchange4media.com/advertising-news/hall-of-ads-asli-swad-zindagi-ka-the-ad-that-changed-how-india-celebrated-forever-147392.html",
+      "citation": "[3](https://www.exchange4media.com/advertising-news/hall-of-ads-asli-swad-zindagi-ka-the-ad-that-changed-how-india-celebrated-forever-147392.html)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "ariel",
+      "title": "ANI/LatestLY — 2024 ShareTheLoad campaign",
+      "url": "https://www.latestly.com/agency-news/business-news-anil-kapoor-and-sonam-kapoor-unveiled-the-seventh-edition-of-ariel-sharetheload-film-5887030.html",
+      "citation": "[2](https://www.latestly.com/agency-news/business-news-anil-kapoor-and-sonam-kapoor-unveiled-the-seventh-edition-of-ariel-sharetheload-film-5887030.html)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "asci",
+      "title": "ASCI — advertising guidelines",
+      "url": "https://www.ascionline.in/the-asci-code-guidelines/",
+      "citation": "[1](https://www.ascionline.in/the-asci-code-guidelines/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpts for claims/disclosures; opening page fetched, not all 13 chunks. Review current applicable rules before release."
+    },
+    {
+      "id": "loc",
+      "title": "Library of Congress — National Screening Room rights",
+      "url": "https://www.loc.gov/collections/national-screening-room/about-this-collection/rights-and-access/",
+      "citation": "[1](https://www.loc.gov/collections/national-screening-room/about-this-collection/rights-and-access/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    },
+    {
+      "id": "citizendj",
+      "title": "Library of Congress — Citizen DJ selected government-film subset",
+      "url": "https://citizen-dj.labs.loc.gov/loc-national-screening-room/use/",
+      "citation": "[3](https://citizen-dj.labs.loc.gov/loc-national-screening-room/use/)",
+      "checked": "2026-10-03",
+      "review_basis": "Search excerpt; not a complete source-text or availability verification."
+    }
+  ],
+  "formats": [
+    {
+      "id": "feature",
+      "title": "Feature film",
+      "default_seconds": 5400,
+      "beats": [
+        "Opening world",
+        "Inciting choice",
+        "Complication",
+        "Midpoint reversal",
+        "Consequence",
+        "Resolution"
+      ]
+    },
+    {
+      "id": "short",
+      "title": "Short film",
+      "default_seconds": 300,
+      "beats": [
+        "Setup",
+        "Small conflict",
+        "Reversal",
+        "Resolution"
+      ]
+    },
+    {
+      "id": "clip",
+      "title": "Clip / trailer outline",
+      "default_seconds": 30,
+      "beats": [
+        "Hook",
+        "Context",
+        "Reveal",
+        "End card"
+      ]
+    },
+    {
+      "id": "long-play",
+      "title": "Long play outline",
+      "default_seconds": 3600,
+      "beats": [
+        "Act I: shared space",
+        "Act I: disagreement",
+        "Act II: consequence",
+        "Act II: new agreement"
+      ]
+    },
+    {
+      "id": "one-act",
+      "title": "Short / one-act play",
+      "default_seconds": 600,
+      "beats": [
+        "Entrance",
+        "Conflict",
+        "Discovery",
+        "Exit"
+      ]
+    },
+    {
+      "id": "advert",
+      "title": "Original advert",
+      "default_seconds": 30,
+      "beats": [
+        "Everyday need",
+        "Original demonstration",
+        "Evidence / limitation",
+        "Invitation / disclosure"
+      ]
+    },
+    {
+      "id": "mix",
+      "title": "Mixed-format editorial sequence",
+      "default_seconds": 120,
+      "beats": [
+        "Original introduction",
+        "Cleared excerpt A",
+        "Original bridge",
+        "Cleared excerpt B",
+        "Context and credits"
+      ]
+    }
+  ],
+  "original_seeds": {
+    "shelf": {
+      "title": "The Shared Shelf",
+      "premise": "Two neighbours argue over the last empty shelf in a small reading room, then discover that sharing time matters more than owning space.",
+      "dialogue": {
+        "English": [
+          "A: I saved this space for a book.",
+          "B: I came looking for someone to read with.",
+          "A: Then let us leave room for both."
+        ],
+        "Marathi": [
+          "अ: मी ही जागा एका पुस्तकासाठी ठेवली होती.",
+          "ब: मला तर सोबत वाचणारे कुणीतरी हवे होते.",
+          "अ: मग आपण दोघांसाठी जागा ठेवूया."
+        ],
+        "Hindi": [
+          "अ: मैंने यह जगह एक किताब के लिए रखी थी।",
+          "ब: मैं तो साथ पढ़ने वाला कोई ढूँढ़ रहा था।",
+          "अ: तो फिर हम दोनों के लिए जगह रख लेते हैं।"
+        ]
+      }
+    },
+    "repair": {
+      "title": "The Repair Table",
+      "premise": "A neighbour offers to teach a simple repair. A visitor learns to ask what can be fixed before buying something new. No product efficacy or environmental savings claim is made.",
+      "dialogue": {
+        "English": [
+          "A: Is it time to replace this?",
+          "B: Let us first see what needs fixing.",
+          "A: May I learn how?"
+        ],
+        "Marathi": [
+          "अ: आता हे बदलावे लागेल का?",
+          "ब: आधी काय दुरुस्त करता येईल ते पाहूया.",
+          "अ: मलाही शिकवाल का?"
+        ],
+        "Hindi": [
+          "अ: क्या अब इसे बदलना पड़ेगा?",
+          "ब: पहले देखें कि क्या ठीक हो सकता है।",
+          "अ: क्या मैं भी सीख सकता हूँ?"
+        ]
+      }
+    }
+  },
+  "scope": {
+    "full_commercial_media_hosted": false,
+    "provider_connected": false,
+    "ai_renderer_connected": false,
+    "automatic_publishing": false,
+    "complete_catalogue": false
+  },
+  "backlog": [
+    "Expand Marathi/Hindi features, shorts, documentary, animation and regional/world cinema with edition-aware credits.",
+    "Add more sourced short plays, ekankika, दीर्घांक and full-length Marathi/Hindi plays; runtime alone does not prove act structure.",
+    "Verify Natsamrat edition/format, Cadbury original campaign year and conflicting Devbabhali cast before merging records.",
+    "Check performance/adaptation/translation rights separately from filming, distribution, music, artwork and footage rights.",
+    "Check each archive item, territory and licence; old, online, short or educational does not automatically mean unrestricted.",
+    "Add native-language script review, captions/subtitles, audio description and content/advisory review.",
+    "Review advertising claim evidence, material-connection disclosures, brand permissions and current applicable ASCI/legal rules.",
+    "Rendered exports, audio mixing, transitions, production-scale editing, caption burn-in, OTT playback and external AI require separately configured implementations."
+  ]
+}

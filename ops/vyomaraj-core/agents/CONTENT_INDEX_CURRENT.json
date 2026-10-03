@@ -1,0 +1,2264 @@
+{
+  "schema_version": 1,
+  "scope": "Current indexed references, not the complete historical 421 products or an exhaustive archive-content audit.",
+  "records": [
+    {
+      "id": "EDU-TOPIC-government-schemes",
+      "title": "Government Schemes",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "flow-diagram.html",
+          "locator": "Finance S1 Govt Schemes"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-vedas",
+      "title": "Vedas",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S1"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-upanishads",
+      "title": "Upanishads",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S2"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-gita",
+      "title": "Gita",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S3"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-mythology-mystery",
+      "title": "Mythology and mystery",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S4"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-picker",
+      "title": "Vyomaraj Picker",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S5"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-lectures",
+      "title": "Lectures",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S6"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-notes",
+      "title": "Short notes",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S7"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-granthas",
+      "title": "Bharat Grantha, Chanakya and the Granthas",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S8-S13"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-bicycles",
+      "title": "Bicycles and two-wheelers",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S14"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-thinkers",
+      "title": "Social thinkers, visionaries and legends",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+          "locator": "rosters.EDU.entries.S15"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-flora-fauna",
+      "title": "Flora and fauna",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "flow-diagram.html",
+          "locator": "Education — Flora and Fauna"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-perfumes",
+      "title": "Perfumes and itras",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "flow-diagram.html",
+          "locator": "Education — Perfumes and Itras"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-oceans",
+      "title": "Oceans and underwater life",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "flow-diagram.html",
+          "locator": "Education — Under Water Ocean and Sea Life"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-dinosaurs",
+      "title": "Dinosaurs and prehistoric life",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "flow-diagram.html",
+          "locator": "Education — Historic Dinosaurs Kids"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-sanatana-texts",
+      "title": "Saptarishi, Smriti, Puranas and Sanatana literature",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "flow-diagram.html",
+          "locator": "Education — Saptarishi Vedas Puran Hindu Sanatana"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-arms-history",
+      "title": "Arms history, law and safety literacy",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "flow-diagram.html",
+          "locator": "Education — Guns and Pistols"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-philately",
+      "title": "World stamps and philately",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+          "locator": "Historical audit section 4.1 Education"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-scripts",
+      "title": "Ancient scripts and epigraphy",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+          "locator": "Historical audit section 4.1 Education"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-architecture",
+      "title": "Architecture",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+          "locator": "Historical audit section 4.1 Education"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "EDU-TOPIC-space",
+      "title": "Space and astronomy",
+      "owner_category": "EDU",
+      "kind": "education_topic_reference",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+          "locator": "Historical audit section 4.1 Education"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:meaning",
+      "title": "Aghor, Aghori and Aughar: words and meanings",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.meaning"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:origins",
+      "title": "Sacred origins are not a dated beginning of the universe",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.origins"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:history",
+      "title": "History, hagiography and the limits of the record",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.history"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:kinaram",
+      "title": "Kina Ram / Kinaram / Keenaram and Krim Kund",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.kinaram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:bhagwan-reform",
+      "title": "Bhagwan Ram and twentieth-century service",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.bhagwan-reform"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:living",
+      "title": "Contemporary communities and diaspora",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.living"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:types",
+      "title": "Ways of describing practice—not fixed universal types",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.types"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:sadhana",
+      "title": "Sadhana: ordinary discipline and personal boundaries",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.sadhana"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:seva",
+      "title": "Seva: service without stigma",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.seva"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:ritual-context",
+      "title": "Cremation-ground imagery and antinomian traditions",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.ritual-context"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:medicine",
+      "title": "Ethnography is not a clinical treatment trial",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.medicine"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:leprosy",
+      "title": "Hansen disease: treatment and dignity",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.leprosy"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:upayas",
+      "title": "Upayas as optional support, not promised cures",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.upayas"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:research-ethics",
+      "title": "Study respectfully and verify claims",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.research-ethics"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:shiva",
+      "title": "Shiva / Aghora aspect",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.shiva"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:dattatreya",
+      "title": "Dattatreya",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.dattatreya"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:kaluram",
+      "title": "Baba Kaluram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.kaluram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:kina-ram",
+      "title": "Baba Kina Ram / Kinaram / Keenaram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.kina-ram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:bhagwan-ram",
+      "title": "Aghoreshwar Bhagwan Ram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.bhagwan-ram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:harihar-ram",
+      "title": "Baba Harihar Ram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.harihar-ram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:siddharth",
+      "title": "Baba Siddharth Gautam Ram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.siddharth"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:reflection",
+      "title": "Reflection in public accounts",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.reflection"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:prayer",
+      "title": "Prayer and japa: cultural context",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.prayer"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:service",
+      "title": "Seva: community-service context",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.service"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:study",
+      "title": "Reading different kinds of evidence",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.study"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:visit",
+      "title": "Community visits: context only",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.visit"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:historical-rites",
+      "title": "Historical ritual practices: context only",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.historical-rites"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-skin",
+      "title": "Skin patches, numbness or suspected leprosy",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-skin"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-claims",
+      "title": "Pain, infertility and other cure claims",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-claims"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-products",
+      "title": "Ashes, unknown herbs and mineral preparations",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-products"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-fear",
+      "title": "Fear of curses or supernatural harm",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-fear"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-emergency",
+      "title": "Serious symptoms or immediate danger",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-emergency"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-upaya",
+      "title": "A non-medical upaya checklist",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-upaya"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:shyam",
+      "title": "Shyamchi Aai · 1953 version",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.shyam"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:jaane",
+      "title": "Jaane Bhi Do Yaaro",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.jaane"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:salaam",
+      "title": "Salaam Bombay!",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.salaam"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:sairat",
+      "title": "Sairat",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.sairat"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:disciple",
+      "title": "The Disciple",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.disciple"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:laapataa",
+      "title": "Laapataa Ladies",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.laapataa"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:natsamrat-check",
+      "title": "Natsamrat · edition check required",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.natsamrat-check"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:chaitra",
+      "title": "Chaitra",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.chaitra"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:aaba",
+      "title": "Aaba Aiktaay Naa?",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.aaba"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:juice",
+      "title": "Juice",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.juice"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:sintel",
+      "title": "Sintel · open animated short",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.sintel"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:ekzunj",
+      "title": "Ek Zunj Varyashi",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.ekzunj"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:ghashiram",
+      "title": "Ghashiram Kotwal",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.ghashiram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:devbabhali",
+      "title": "Sangeet Devbabhali",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.devbabhali"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:andhayug",
+      "title": "Andha Yug · festival production",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.andhayug"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:adhe",
+      "title": "Adhe Adhure · 2026 programme record",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.adhe"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:dhumrapaan",
+      "title": "Dhumrapaan · 2019 programme record",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.dhumrapaan"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:lalitaji",
+      "title": "Surf / Lalitaji · advertising memory",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.lalitaji"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:liril",
+      "title": "Liril · advertising memory",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.liril"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:cadbury-old",
+      "title": "Cadbury cricket · original-era case study",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.cadbury-old"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:cadbury-new",
+      "title": "Cadbury cricket · 2021 reimagining",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.cadbury-new"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:ariel",
+      "title": "Ariel ShareTheLoad · 2024 campaign",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.ariel"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:loc",
+      "title": "National Screening Room · archive discovery",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.loc"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:citizendj",
+      "title": "Citizen DJ · selected reuse collection",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.citizendj"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:clip",
+      "title": "Clips, trailers & critical excerpts",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.clip"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:mr-oneact",
+      "title": "Original Marathi one-act workshop",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.mr-oneact"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "film:items:hi-oneact",
+      "title": "Original Hindi one-act workshop",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/film-experience/content.json",
+          "locator": "items.hi-oneact"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:binaca",
+      "title": "Binaca Geetmala",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.binaca"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:bhoole",
+      "title": "Bhoole Bisre Geet",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.bhoole"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:chhaya",
+      "title": "Chhayageet",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.chhaya"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:sarita",
+      "title": "Sangeet Sarita",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.sarita"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:jaimala",
+      "title": "Jaimala",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.jaimala"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:hawamahal",
+      "title": "Hawamahal",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.hawamahal"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:uk-radio",
+      "title": "The UK Top 40 / BBC Radio 1 context",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.uk-radio"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:lata",
+      "title": "Lata Mangeshkar · classic catalogue",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.lata"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:asha",
+      "title": "Asha Bhosle · classic catalogue",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.asha"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:rafi",
+      "title": "Mohammed Rafi · classic catalogue",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.rafi"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:kishore",
+      "title": "Kishore Kumar · classic catalogue",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.kishore"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:jagjit",
+      "title": "The Unforgettables",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.jagjit"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:rahman",
+      "title": "Vande Mataram",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.rahman"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:aashiqui2",
+      "title": "Aashiqui 2",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.aashiqui2"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:coldmess",
+      "title": "cold/mess",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.coldmess"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:goat",
+      "title": "G.O.A.T.",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.goat"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:katchisera",
+      "title": "Katchi Sera (From Think Indie)",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.katchisera"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:radical",
+      "title": "Radical Optimism",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.radical"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:golden",
+      "title": "GOLDEN",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.golden"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:burna",
+      "title": "I Told Them...",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.burna"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:marathi",
+      "title": "Marathi songs · Arnold Bake Collection",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.marathi"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:goa",
+      "title": "Music of Goa",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.goa"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:bengal",
+      "title": "Bengal · folk and classical connections",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.bengal"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:indian-folk",
+      "title": "Folk Music of India · regional archive",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.indian-folk"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:world",
+      "title": "World traditions · open discovery map",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.world"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:hot100",
+      "title": "Billboard Hot 100",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.hot100"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:bb200",
+      "title": "Billboard 200",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.bb200"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:global200",
+      "title": "Billboard Global 200",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.global200"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:india-chart",
+      "title": "Billboard India Songs",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.india-chart"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:uk-charts",
+      "title": "Official UK singles & albums",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.uk-charts"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:spotify",
+      "title": "Spotify charts & Local Pulse",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.spotify"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:youtube",
+      "title": "YouTube songs, videos & Shorts",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.youtube"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:ifpi2025",
+      "title": "IFPI Global Single Chart · 2025",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.ifpi2025"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:audio",
+      "title": "Audio · radio, interviews & listening notes",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.audio"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:video",
+      "title": "Video · performance, visualiser & documentary",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.video"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:hateyou-video",
+      "title": "Hate You · music video",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.hateyou-video"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:big7-video",
+      "title": "Big 7 · music video",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.big7-video"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:katchi-video",
+      "title": "Katchi Sera · music video",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.katchi-video"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:tumhiho",
+      "title": "Tum Hi Ho · soundtrack recording",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.tumhiho"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:shiv-shakti",
+      "title": "Shiv–Shakti: relationship and meaning",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.shiv-shakti"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:ardhanarishvara",
+      "title": "Ardhanarishvara: a shared form",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.ardhanarishvara"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:shiva-origins",
+      "title": "Names, texts and early worship",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.shiva-origins"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:sati-daksha",
+      "title": "Sati, Daksha and sacred geography",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.sati-daksha"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:parvati",
+      "title": "Parvati, devotion and union",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.parvati"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:family",
+      "title": "Ganesha, Skanda and family stories",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.family"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:neelakantha",
+      "title": "Neelakantha and the ocean-churning story",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.neelakantha"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:ganga",
+      "title": "Gangadhara and the descent of Ganga",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.ganga"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:moon",
+      "title": "The crescent moon and sacred symbols",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.moon"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:nataraja",
+      "title": "Nataraja: dance, change and renewal",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.nataraja"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:forms",
+      "title": "Bhairava, Tripurari and the lingam",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.forms"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:stories:living-traditions",
+      "title": "Temples, festivals and living traditions",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_stories",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "stories.living-traditions"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-01",
+      "title": "Matsya",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-01"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-02",
+      "title": "Kurma",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-02"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-03",
+      "title": "Varaha",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-03"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-04",
+      "title": "Narasimha",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-04"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-05",
+      "title": "Vamana",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-05"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-06",
+      "title": "Parashurama",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-06"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-07",
+      "title": "Rama",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-07"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-08",
+      "title": "Krishna",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-08"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-09",
+      "title": "Buddha",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-09"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:avatars:avatar-10",
+      "title": "Kalki",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_avatars",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "avatars.avatar-10"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:kamakhya",
+      "title": "Kamakhya",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.kamakhya"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:kalighat",
+      "title": "Kalighat",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.kalighat"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:tripura",
+      "title": "Tripura Sundari / Matabari",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.tripura"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:ambaji",
+      "title": "Ambaji",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.ambaji"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:jwala",
+      "title": "Jwalamukhi / Jawala Mata",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.jwala"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:kolhapur",
+      "title": "Mahalakshmi / Ambabai",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.kolhapur"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:tulja",
+      "title": "Tulja Bhavani",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.tulja"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:renuka",
+      "title": "Renuka Devi",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.renuka"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:peethas:saptashrungi",
+      "title": "Saptashrungi",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_peethas",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "peethas.saptashrungi"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:recipes:fruit",
+      "title": "Seasonal fruit plate",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_recipes",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "recipes.fruit"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:recipes:coconut",
+      "title": "Coconut & roasted chana plate",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_recipes",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "recipes.coconut"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "bhakti:recipes:yogurt",
+      "title": "Plain yogurt & fruit bowl",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_recipes",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+          "locator": "recipes.yogurt"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:tadi-local",
+      "title": "Local tadi / toddy",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.tadi-local"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:kallu",
+      "title": "Kallu / Kerala toddy",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.kallu"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:goa",
+      "title": "Feni & urak heritage",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.goa"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:apong",
+      "title": "Apong",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.apong"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:chhang",
+      "title": "Chhang",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.chhang"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:sake",
+      "title": "Sake-making traditions",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.sake"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:agave",
+      "title": "Agave & Tequila heritage",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.agave"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:traditions:bavaria",
+      "title": "Bavarian festival culture",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_traditions",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "traditions.bavaria"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:chana",
+      "title": "Lemon & cumin chana",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.chana"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:peanuts",
+      "title": "Roasted peanut koshimbir",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.peanuts"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:moong",
+      "title": "Cooked moong chaat",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.moong"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:sundal",
+      "title": "Chickpea sundal bowl",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.sundal"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:tofu",
+      "title": "Pepper & lime tofu bites",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.tofu"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:paneer",
+      "title": "Herbed paneer & peppers",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.paneer"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:fish",
+      "title": "Banana-leaf fish plate",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.fish"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:snacks:veg",
+      "title": "Roasted vegetable crunch",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_snacks",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "snacks.veg"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:events:spirit-goa",
+      "title": "Spirit of Goa",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_events",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "events.spirit-goa"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:events:oktoberfest",
+      "title": "Oktoberfest",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_events",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "events.oktoberfest"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "pairings:events:local-calendar",
+      "title": "Local tadi, harvest and community heritage events",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_events",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/liquor-bar/content.json",
+          "locator": "events.local-calendar"
+        }
+      ],
+      "full_content_imported": false
+    }
+  ],
+  "indexed_reference_count": 173,
+  "education_topic_count": 21,
+  "deduplication_basis": "Exact identity + equal source record only. Conflicts stop rebuild; similar titles, different editions or source contexts are not silently merged.",
+  "duplicates_removed": [],
+  "historical_catalog_files": 32,
+  "historical_catalog_unique_paths": 32,
+  "education_owner": "EDU",
+  "government_schemes_owner": "EDU",
+  "education_in_current_entertainment_packs": "No education pack/ownership was found to undo. Explicit topic ownership is now EDU; previous historical references are preserved."
+}

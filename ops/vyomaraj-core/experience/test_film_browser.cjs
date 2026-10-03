@@ -1,0 +1,45 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+const path=require('node:path');
+const base=(process.env.VYOMARAJ_PREVIEW_URL||'http://127.0.0.1:4176').replace(/\/$/,'');
+const shots=process.env.FILM_SCREENSHOT_DIR;
+(async()=>{
+ const browser=await chromium.launch({executablePath:process.env.TEST_CHROMIUM_EXECUTABLE||undefined,headless:true});
+ try{
+  const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});const errors=[],posts=[];
+  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.method()==='POST')posts.push(r.postData());});
+  await page.goto(base+'/film/');await page.waitForFunction(()=>!document.getElementById('plan').disabled);
+  assert.equal(await page.locator('.card').count(),27);assert.equal(await page.locator('.agent').count(),6);
+  assert.equal(await page.evaluate(async()=>{const f=await document.fonts.load('400 14px "Vyomaraj Devanagari"','रंगभूमी');return f.length;}),1);
+  if(shots)await page.screenshot({path:path.join(shots,'film-desktop.png')});
+  await page.selectOption('#kind','theatre');await page.selectOption('#language-filter','Marathi');assert.equal(await page.locator('.card').count(),3);
+  await page.locator('#add-devbabhali').click();await page.selectOption('#language-filter','Hindi');assert.equal(await page.locator('.card').count(),3);
+  await page.locator('#reset').click();await page.locator('#search').fill('Cadbury');assert.equal(await page.locator('.card').count(),2);
+  await page.locator('#add-cadbury-new').click();await page.selectOption('#format','one-act');
+  assert.equal(await page.locator('#duration').inputValue(),'600');await page.locator('#plan').click();await page.waitForFunction(()=>!document.getElementById('download-plan').hidden);
+  const dlPromise=page.waitForEvent('download');await page.locator('#download-plan').click();const dl=await dlPromise;const stream=await dl.createReadStream(),chunks=[];for await(const c of stream)chunks.push(c);const plan=JSON.parse(Buffer.concat(chunks));
+  assert.equal(plan.sample_dialogue_language,'Marathi');assert.ok(plan.canonical_agent_ids.includes('ENT-MOVIE-S4'));assert.equal(plan.media_rendered,false);
+  assert.equal(plan.beats.reduce((n,b)=>n+b.budget_seconds,0),600);
+  await page.selectOption('#dialogue-language','Hindi');assert.equal(await page.locator('#download-plan').isVisible(),false);
+  await page.selectOption('#format','advert');assert.equal(await page.locator('#duration').inputValue(),'30');
+  await page.locator('#plan').click();await page.waitForFunction(()=>!document.getElementById('download-plan').hidden);assert.ok((await page.locator('#outline').textContent()).includes('मैंने'));
+  assert.equal(await page.locator('#files').isDisabled(),true);await page.locator('#permission').check();
+  const video=await page.evaluate(()=>new Promise(resolve=>{const c=document.createElement('canvas');c.width=64;c.height=64;const ctx=c.getContext('2d');ctx.fillStyle='#80535a';ctx.fillRect(0,0,64,64);const s=c.captureStream(10),chunks=[],rec=new MediaRecorder(s,{mimeType:'video/webm;codecs=vp8'});rec.ondataavailable=e=>chunks.push(e.data);rec.onstop=async()=>resolve(Array.from(new Uint8Array(await new Blob(chunks).arrayBuffer())));let f=0;rec.start();const timer=setInterval(()=>{ctx.fillStyle=f++%2?'#80535a':'#c4a17a';ctx.fillRect(0,0,64,64);},100);setTimeout(()=>{clearInterval(timer);rec.stop();s.getTracks().forEach(t=>t.stop());},1500);}));
+  const before=posts.length;await page.locator('#files').setInputFiles([{name:'first-original.webm',mimeType:'video/webm',buffer:Buffer.from(video)},{name:'second-original.webm',mimeType:'video/webm',buffer:Buffer.from(video)}]);
+  await page.waitForFunction(()=>document.querySelectorAll('.cut').length===2);
+  assert.equal(await page.locator('#preview').isVisible(),false);
+  await page.getByLabel('Out (seconds) clip 1',{exact:true}).fill('0.3');await page.getByLabel('Out (seconds) clip 2',{exact:true}).fill('0.4');
+  await page.getByLabel('In (seconds) clip 1',{exact:true}).fill('-1');assert.equal(await page.locator('#export-edl').isDisabled(),true);
+  await page.getByLabel('In (seconds) clip 1',{exact:true}).fill('0');await page.getByLabel('Move clip 2 up',{exact:true}).click();
+  assert.ok((await page.locator('.cut').first().textContent()).includes('second-original.webm'));
+  await page.locator('#play-mix').click();await page.waitForFunction(()=>document.getElementById('media-status').textContent.includes('Sequence preview complete'));
+  const edlPromise=page.waitForEvent('download');await page.locator('#export-edl').click();const edlDl=await edlPromise;const edlStream=await edlDl.createReadStream(),edlChunks=[];for await(const c of edlStream)edlChunks.push(c);const edl=JSON.parse(Buffer.concat(edlChunks));
+  assert.equal(edl.clips[0].filename,'second-original.webm');assert.ok(Math.abs(edl.total_seconds-0.7)<0.001);assert.equal(edl.encoded_export,false);assert.equal(edl.media_uploaded,false);assert.equal(posts.length,before);
+  await page.locator('#permission').uncheck();assert.equal(await page.locator('.cut').count(),0);assert.equal(await page.locator('#preview').getAttribute('src'),null);
+  await page.goto(base+'/reports/contents');assert.ok((await page.locator('body').textContent()).includes('Bhakti'));assert.ok((await page.locator('body').textContent()).includes('Frame & Stage'));
+  await page.goto(base+'/reports/film');assert.ok((await page.locator('body').textContent()).includes('ENT-MOVIE-S6'));
+  await page.setViewportSize({width:390,height:844});await page.goto(base+'/film/');await page.waitForFunction(()=>document.querySelectorAll('.card').length===27);
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));if(shots)await page.screenshot({path:path.join(shots,'film-mobile.png')});
+  assert.deepEqual(errors,[]);console.log('PASS film desktop/mobile: discovery, Marathi/Hindi routing, original outline/download, invalidation, two-file trim/reorder/actual sequence playback, EDL export, no upload/autoplay, rights revoke/cleanup, consolidated reports, no overflow or JS errors.');
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exit(1);});

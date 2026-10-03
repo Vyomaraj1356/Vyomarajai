@@ -1,0 +1,737 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-03",
+  "title": "Roots & Pairings — Liquor + Bar",
+  "status": "editorial_proposal_with_browser_prototype",
+  "ownership": {
+    "main_category": "ENTERTAINMENT",
+    "liquor_agent_id": "ENT-LIQUOR-S1",
+    "bar_agent_id": "ENT-BAR-S1",
+    "canonical_relationship": "siblings",
+    "experience_navigation": "Liquor → Bar pairings",
+    "hierarchy_change": false,
+    "canonical_counts_unchanged": true
+  },
+  "chapter_mapping": {
+    "status": "proposed_not_recovered_original_titles",
+    "liquor": [
+      {
+        "proposal_id": "LQ-01",
+        "title": "Local tadi / toddy: names, palms and community stories"
+      },
+      {
+        "proposal_id": "LQ-02",
+        "title": "Maharashtra and neighbouring regional traditions"
+      },
+      {
+        "proposal_id": "LQ-03",
+        "title": "Kerala kallu and toddy-shop food culture"
+      },
+      {
+        "proposal_id": "LQ-04",
+        "title": "Goa: feni, urak and local heritage"
+      },
+      {
+        "proposal_id": "LQ-05",
+        "title": "Rice, grain and flower traditions across India"
+      },
+      {
+        "proposal_id": "LQ-06",
+        "title": "Global local traditions: a comparative atlas"
+      },
+      {
+        "proposal_id": "LQ-07",
+        "title": "History, oral histories and cultural context"
+      },
+      {
+        "proposal_id": "LQ-08",
+        "title": "Ingredients, specifications and style vocabulary"
+      },
+      {
+        "proposal_id": "LQ-09",
+        "title": "Production stages and licensed-producer practice"
+      },
+      {
+        "proposal_id": "LQ-10",
+        "title": "Regional and global events: past versus confirmed dates"
+      },
+      {
+        "proposal_id": "LQ-11",
+        "title": "Quality, traceability, local law and responsible presentation"
+      },
+      {
+        "proposal_id": "LQ-12",
+        "title": "Interactive heritage journeys and Bar pairing handoff"
+      }
+    ],
+    "bar": [
+      {
+        "proposal_id": "BAR-01",
+        "title": "Regional chakhna atlas"
+      },
+      {
+        "proposal_id": "BAR-02",
+        "title": "Pulse-based snack plates"
+      },
+      {
+        "proposal_id": "BAR-03",
+        "title": "Vegetables, seasonal produce and texture"
+      },
+      {
+        "proposal_id": "BAR-04",
+        "title": "Nuts and seeds: portions and allergy-aware alternatives"
+      },
+      {
+        "proposal_id": "BAR-05",
+        "title": "Paneer, tofu, eggs and fish: dietary choices"
+      },
+      {
+        "proposal_id": "BAR-06",
+        "title": "Preparation, hygiene and service procedures"
+      },
+      {
+        "proposal_id": "BAR-07",
+        "title": "Pairing by aroma, acidity and texture—not intoxication"
+      },
+      {
+        "proposal_id": "BAR-08",
+        "title": "Balanced plate building and non-alcoholic pairings"
+      },
+      {
+        "proposal_id": "BAR-09",
+        "title": "3D view, 4D sequence and 5D personalization"
+      },
+      {
+        "proposal_id": "BAR-10",
+        "title": "Accessibility, allergens, rights and human review"
+      }
+    ]
+  },
+  "specification_fields": [
+    "local_name",
+    "language",
+    "community",
+    "region",
+    "ingredient_base",
+    "fermented_or_distilled",
+    "verified_abv",
+    "style",
+    "aroma",
+    "texture",
+    "licensed_producer",
+    "provenance",
+    "allergens",
+    "label_and_batch",
+    "storage_and_service",
+    "local_law",
+    "source_date"
+  ],
+  "traditions": [
+    {
+      "id": "tadi-local",
+      "name": "Local tadi / toddy",
+      "region": "Maharashtra & neighbouring regions",
+      "scope": "Local",
+      "base": "Palm source and local terminology: confirm with each community",
+      "style": "Local naming and product differences need field review",
+      "history": "Requested local chapter: document producer/community accounts without inventing origin dates. Fresh sap and fermented products must not be treated as interchangeable.",
+      "process_overview": [
+        "Document the local plant and terminology",
+        "Describe collection and fermentation at a conceptual level",
+        "Verify licensed provenance, hygiene and labelling"
+      ],
+      "source_ids": [],
+      "research_status": "research_candidate",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    },
+    {
+      "id": "kallu",
+      "name": "Kallu / Kerala toddy",
+      "region": "Kerala, India",
+      "scope": "Regional",
+      "base": "Coconut-palm sap",
+      "style": "Fresh sap is described as sweet; fermentation changes its character",
+      "history": "Kerala Tourism describes Kumarakom toddy-shop culture, palm-sap collection, clay pots and regional food.",
+      "process_overview": [
+        "Palm-sap collection by skilled practitioners",
+        "Fermentation changes the sap",
+        "Licensed handling and service; no home-production parameters"
+      ],
+      "source_ids": [
+        "kerala"
+      ],
+      "research_status": "source_backed_overview",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    },
+    {
+      "id": "goa",
+      "name": "Feni & urak heritage",
+      "region": "Goa, India",
+      "scope": "Regional",
+      "base": "Cashew and coconut traditions; verify the specific product",
+      "style": "Distinct local names—not interchangeable specifications",
+      "history": "The historical Spirit of Goa listing features feni, urak, local beverages, cuisine and heritage demonstrations.",
+      "process_overview": [
+        "Ingredient and harvest story",
+        "Fermentation as a concept",
+        "Licensed distillation as a concept",
+        "Product-specific quality and provenance review"
+      ],
+      "source_ids": [
+        "goa"
+      ],
+      "research_status": "source_backed_overview",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    },
+    {
+      "id": "apong",
+      "name": "Apong",
+      "region": "Arunachal Pradesh, India",
+      "scope": "Regional",
+      "base": "Rice",
+      "style": "Traditional fermented rice beverage; community variations",
+      "history": "Incredible India describes Apong within the socio-cultural life of indigenous communities in Arunachal Pradesh.",
+      "process_overview": [
+        "Grain and community knowledge",
+        "Fermentation overview",
+        "Respectful cultural documentation and licensed handling"
+      ],
+      "source_ids": [
+        "apong"
+      ],
+      "research_status": "source_backed_overview",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    },
+    {
+      "id": "chhang",
+      "name": "Chhang",
+      "region": "Ladakh, India",
+      "scope": "Regional",
+      "base": "Barley in the cited Ladakhi example",
+      "style": "Regional fermented beverage",
+      "history": "Incredible India describes Chhang as a Ladakhi barley-based beverage associated with festivals and celebrations.",
+      "process_overview": [
+        "Regional grain tradition",
+        "Fermentation overview",
+        "Celebration and serving context"
+      ],
+      "source_ids": [
+        "chhang"
+      ],
+      "research_status": "source_backed_overview",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    },
+    {
+      "id": "sake",
+      "name": "Sake-making traditions",
+      "region": "Japan",
+      "scope": "Global",
+      "base": "Grains, water and koji",
+      "style": "Craft knowledge; not one universal product specification",
+      "history": "UNESCO documents koji-based sake-making knowledge and its role in festivals, weddings and other social occasions.",
+      "process_overview": [
+        "Koji converts ingredient starch into sugar",
+        "Craftspeople oversee fermentation conditions",
+        "Heritage transmission and product-specific review"
+      ],
+      "source_ids": [
+        "sake"
+      ],
+      "research_status": "source_backed_overview",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    },
+    {
+      "id": "agave",
+      "name": "Agave & Tequila heritage",
+      "region": "Jalisco, Mexico",
+      "scope": "Global",
+      "base": "Agave",
+      "style": "Landscape, agriculture and craft heritage",
+      "history": "UNESCO describes the agave landscape and Tequila facilities as a cultural landscape connecting cultivation and production history.",
+      "process_overview": [
+        "Agave landscape and cultivation",
+        "Fermentation and distillation as historical concepts",
+        "Licensed production, origin and product-label verification"
+      ],
+      "source_ids": [
+        "agave"
+      ],
+      "research_status": "source_backed_overview",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    },
+    {
+      "id": "bavaria",
+      "name": "Bavarian festival culture",
+      "region": "Munich, Germany",
+      "scope": "Global",
+      "base": "Beer traditions; product ingredients to verify",
+      "style": "Festival history rather than a tasting recommendation",
+      "history": "The official Oktoberfest history traces its origin to royal-wedding celebrations and a horse race in 1810.",
+      "process_overview": [
+        "Grain-to-beverage story at overview level",
+        "Festival culture, food and visitor etiquette",
+        "Check current organiser notices and local rules"
+      ],
+      "source_ids": [
+        "oktoberfest_history"
+      ],
+      "research_status": "source_backed_overview",
+      "abv_percent": null,
+      "producer": null,
+      "geographic_indication_status": "verify_per_product",
+      "local_legal_age": null,
+      "local_license_requirements": "unverified",
+      "specification_note": "Strength, ingredients, allergens, provenance and legality must be verified for the actual licensed product; never inferred from a regional name."
+    }
+  ],
+  "research_backlog": [
+    {
+      "name": "Mahua traditions",
+      "region": "Central India",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    },
+    {
+      "name": "Further palm-sap traditions",
+      "region": "Sri Lanka and South / Southeast Asia",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    },
+    {
+      "name": "Palm-wine traditions",
+      "region": "West and Central Africa",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    },
+    {
+      "name": "Makgeolli traditions",
+      "region": "Korea",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    },
+    {
+      "name": "Chicha traditions",
+      "region": "Andean regions",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    },
+    {
+      "name": "Pulque traditions",
+      "region": "Mexico",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    },
+    {
+      "name": "Cider and perry traditions",
+      "region": "European regional communities",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    },
+    {
+      "name": "Scotch and other regional whisky traditions",
+      "region": "Scotland and other producer regions",
+      "status": "research_candidate",
+      "source_ids": [],
+      "note": "Topic proposal only. Verify local names, community accounts, ingredients, law and event records before publishing."
+    }
+  ],
+  "snacks": [
+    {
+      "id": "chana",
+      "name": "Lemon & cumin chana",
+      "region": "Maharashtra-inspired",
+      "diet": "plant-based",
+      "allergens": [],
+      "ingredients": [
+        "chickpeas",
+        "cucumber",
+        "tomato",
+        "lemon",
+        "cumin"
+      ],
+      "procedure": [
+        "Cook chickpeas until tender, or rinse ready-cooked chickpeas.",
+        "Wash and chop the vegetables using clean equipment.",
+        "Combine with lemon and cumin; keep added salt modest.",
+        "Serve promptly; chill leftovers promptly."
+      ],
+      "nutrition_note": "A pulse-and-vegetable alternative to a deep-fried snack.",
+      "pairing_style": "Crisp cucumber, soft chickpeas, citrus finish.",
+      "non_alcoholic_pairing": "Unsweetened lime water",
+      "color": "#c5a052",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    },
+    {
+      "id": "peanuts",
+      "name": "Roasted peanut koshimbir",
+      "region": "Maharashtra-inspired",
+      "diet": "plant-based",
+      "allergens": [
+        "peanut"
+      ],
+      "ingredients": [
+        "unsalted roasted peanuts",
+        "cucumber",
+        "coriander",
+        "lemon"
+      ],
+      "procedure": [
+        "Wash and chop cucumber and coriander.",
+        "Add a small portion of unsalted roasted peanuts.",
+        "Dress with lemon; do not add sweet bottled dressing by default.",
+        "Check nut allergies and cross-contact before serving."
+      ],
+      "nutrition_note": "Nuts are energy-dense: offer a small portion, not an unlimited bowl.",
+      "pairing_style": "Crunch with a fresh citrus contrast.",
+      "non_alcoholic_pairing": "Plain sparkling water",
+      "color": "#bd7440",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    },
+    {
+      "id": "moong",
+      "name": "Cooked moong chaat",
+      "region": "India-inspired",
+      "diet": "plant-based",
+      "allergens": [],
+      "ingredients": [
+        "cooked moong beans",
+        "tomato",
+        "onion",
+        "coriander",
+        "lemon"
+      ],
+      "procedure": [
+        "Cook moong beans thoroughly rather than serving raw sprouts.",
+        "Wash and chop vegetables separately from raw animal foods.",
+        "Mix with herbs and lemon; add chilli to preference.",
+        "Serve fresh and refrigerate leftovers promptly."
+      ],
+      "nutrition_note": "A pulse-based option; no detox or hangover-prevention claim.",
+      "pairing_style": "Soft beans with bright herbs and acidity.",
+      "non_alcoholic_pairing": "Mint water",
+      "color": "#7f9b5b",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    },
+    {
+      "id": "sundal",
+      "name": "Chickpea sundal bowl",
+      "region": "South India-inspired",
+      "diet": "plant-based",
+      "allergens": [],
+      "ingredients": [
+        "cooked chickpeas",
+        "grated coconut",
+        "curry leaves",
+        "cumin"
+      ],
+      "procedure": [
+        "Use fully cooked chickpeas.",
+        "Warm curry leaves and cumin in a small amount of oil.",
+        "Toss with chickpeas and a little coconut.",
+        "Check every ingredient and keep cooked food at safe serving temperatures."
+      ],
+      "nutrition_note": "Use modest oil and coconut; nutrition depends on the recipe and portion.",
+      "pairing_style": "Warm spice, gentle sweetness, tender pulses.",
+      "non_alcoholic_pairing": "Plain water",
+      "color": "#d2b572",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    },
+    {
+      "id": "tofu",
+      "name": "Pepper & lime tofu bites",
+      "region": "Global-inspired",
+      "diet": "plant-based",
+      "allergens": [
+        "soy"
+      ],
+      "ingredients": [
+        "firm tofu",
+        "bell pepper",
+        "lime",
+        "black pepper"
+      ],
+      "procedure": [
+        "Check the tofu label and soy allergy suitability.",
+        "Cut tofu and washed peppers into bite-sized pieces.",
+        "Bake or pan-cook with a little oil until thoroughly heated.",
+        "Finish with lime and pepper; serve with vegetables."
+      ],
+      "nutrition_note": "A plant-protein option; avoid salty bottled marinades by default.",
+      "pairing_style": "Peppery, citrus-led, soft with browned edges.",
+      "non_alcoholic_pairing": "Unsweetened iced tea",
+      "color": "#e5c991",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    },
+    {
+      "id": "paneer",
+      "name": "Herbed paneer & peppers",
+      "region": "India-inspired",
+      "diet": "vegetarian",
+      "allergens": [
+        "milk"
+      ],
+      "ingredients": [
+        "paneer",
+        "bell pepper",
+        "cumin",
+        "coriander",
+        "lemon"
+      ],
+      "procedure": [
+        "Check milk allergy suitability and refrigeration.",
+        "Cut paneer and washed peppers.",
+        "Cook with a little oil and the spices until thoroughly heated.",
+        "Finish with fresh herbs; include vegetables rather than only cheese."
+      ],
+      "nutrition_note": "Portion matters; not a low-fat or low-calorie claim.",
+      "pairing_style": "Creamy texture with herbs and citrus.",
+      "non_alcoholic_pairing": "Cucumber water",
+      "color": "#e5d7aa",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    },
+    {
+      "id": "fish",
+      "name": "Banana-leaf fish plate",
+      "region": "Kerala-inspired",
+      "diet": "pescatarian",
+      "allergens": [
+        "fish"
+      ],
+      "ingredients": [
+        "fish fillet",
+        "banana leaf",
+        "ginger",
+        "lime",
+        "cooked vegetables"
+      ],
+      "procedure": [
+        "Use safely sourced fish and keep it chilled before cooking.",
+        "Prepare separately from ready-to-eat vegetables.",
+        "Wrap with ginger and cook until fish reaches a verified safe internal temperature using local food-safety guidance.",
+        "Check bones and serve with cooked vegetables."
+      ],
+      "nutrition_note": "An alternative to deep-frying, not a promise of a healthier alcoholic meal.",
+      "pairing_style": "Gentle aromatics, flaky texture, lime finish.",
+      "non_alcoholic_pairing": "Plain water",
+      "color": "#acba91",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    },
+    {
+      "id": "veg",
+      "name": "Roasted vegetable crunch",
+      "region": "Global-inspired",
+      "diet": "plant-based",
+      "allergens": [],
+      "ingredients": [
+        "carrot",
+        "cauliflower",
+        "bell pepper",
+        "cumin",
+        "lemon"
+      ],
+      "procedure": [
+        "Wash the vegetables and use clean utensils.",
+        "Cut into even pieces and coat lightly with oil and cumin.",
+        "Roast until cooked; adjust texture for the diner.",
+        "Finish with lemon and serve without a heavy salty sauce."
+      ],
+      "nutrition_note": "A vegetable-forward plate; combine with pulses or another suitable protein if desired.",
+      "pairing_style": "Roasted sweetness, crisp edges, gentle spice.",
+      "non_alcoholic_pairing": "Unsweetened lemon water",
+      "color": "#c87840",
+      "origin_status": "original_editorial_concept_not_authenticity_certified",
+      "nutrient_values": null,
+      "allergen_note": "Listed allergens reflect this proposed recipe, not a guarantee. Check ingredient labels, individual allergies and kitchen cross-contact."
+    }
+  ],
+  "events": [
+    {
+      "id": "spirit-goa",
+      "name": "Spirit of Goa",
+      "region": "Goa, India",
+      "date_status": "historical_edition_only",
+      "start": "2024-05-17",
+      "end": "2024-05-19",
+      "source_ids": [
+        "goa"
+      ],
+      "note": "The cited listing describes the 2024 edition. Do not advertise it as an upcoming event; later dates require organiser confirmation."
+    },
+    {
+      "id": "oktoberfest",
+      "name": "Oktoberfest",
+      "region": "Munich, Germany",
+      "date_status": "organiser_published_dates_checked_2026_10_03",
+      "start": "2026-09-19",
+      "end": "2026-10-04",
+      "source_ids": [
+        "oktoberfest_dates"
+      ],
+      "note": "Published dates from the organiser FAQ, checked 3 October 2026. Recheck changes, access and visitor rules before travel; no live availability feed."
+    },
+    {
+      "id": "local-calendar",
+      "name": "Local tadi, harvest and community heritage events",
+      "region": "Local / regional",
+      "date_status": "research_candidate",
+      "start": null,
+      "end": null,
+      "source_ids": [],
+      "note": "No event, date or venue invented. Add community-authorised and organiser-verified listings."
+    }
+  ],
+  "experience_modes": {
+    "3d": {
+      "label": "3D-style turntable",
+      "implementation": "CSS perspective stylised plate; not a photorealistic AI or mesh render"
+    },
+    "4d": {
+      "label": "4D preparation story",
+      "implementation": "User-stepped time sequence with captions; project convention"
+    },
+    "5d": {
+      "label": "5D personalised pairing",
+      "implementation": "Diet, allergen and preference-aware content controls; project convention, not five physical dimensions"
+    }
+  },
+  "ai": {
+    "provider": null,
+    "execution_enabled": false,
+    "status": "not_connected",
+    "approval_required": true,
+    "prompt_template": "Create an original adult-oriented cultural food illustration of {snack} in {region}. Show listed ingredients accurately, no brands, no health claims for alcohol, no intoxication or minors. Respect community consent and mark synthetic imagery. Human review is required."
+  },
+  "safety": {
+    "audience": "Food mode is available without alcohol content. Cultural alcohol content is for adults of the applicable local legal drinking age; the prototype acknowledgement is not legal age verification.",
+    "health": "Alcohol carries health risks; food does not make drinking safe. These snack ideas are not a medical diet, detox, hangover remedy or endorsement of drinking.",
+    "health_source_ids": [
+      "who"
+    ],
+    "non_alcoholic_options_default": true,
+    "production_scope": "Educational overview only; no DIY distillation, equipment setup, time/temperature recipes or purification-safety promises.",
+    "serving": "Do not serve alcohol to minors or intoxicated people; verify local law. Do not drink and drive.",
+    "claims": "No universal healthy/best-snack ranking, calorie figures, verified ABV, historic origin dates or upcoming events are invented.",
+    "rights": "Community knowledge, photos, oral histories, brands, venues and voices need consent/rights review before publication."
+  },
+  "sources": [
+    {
+      "id": "kerala",
+      "title": "Kerala Tourism — Kumarakom toddy culture",
+      "url": "https://www.keralatourism.org/kumarakom/toddy-shops-kumarakom.php",
+      "citation": "[1](https://www.keralatourism.org/kumarakom/toddy-shops-kumarakom.php)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "goa",
+      "title": "Ministry of Tourism — Spirit of Goa (historical 2024 edition)",
+      "url": "https://utsav.gov.in/view-event/spirit-of-goa-festival",
+      "citation": "[1](https://utsav.gov.in/view-event/spirit-of-goa-festival)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "apong",
+      "title": "Incredible India — Arunachal food culture",
+      "url": "https://www.incredibleindia.gov.in/en/arunachal-pradesh/itanagar/a-culinary-journey-through-itanagar-and-arunachal-pradesh",
+      "citation": "[1](https://www.incredibleindia.gov.in/en/arunachal-pradesh/itanagar/a-culinary-journey-through-itanagar-and-arunachal-pradesh)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "chhang",
+      "title": "Incredible India — Kargil food guide",
+      "url": "https://www.incredibleindia.gov.in/en/ladakh/kargil/kargil-travel-and-food-guide",
+      "citation": "[2](https://www.incredibleindia.gov.in/en/ladakh/kargil/kargil-travel-and-food-guide)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "sake",
+      "title": "UNESCO — sake-making knowledge and koji",
+      "url": "https://ich.unesco.org/en/decisions/19.COM/7.B.44",
+      "citation": "[1](https://ich.unesco.org/en/decisions/19.COM/7.B.44)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "agave",
+      "title": "UNESCO — agave landscape and Tequila heritage",
+      "url": "https://whc.unesco.org/en/decisions/1015/",
+      "citation": "[1](https://whc.unesco.org/en/decisions/1015/)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "oktoberfest_history",
+      "title": "Official Oktoberfest — history",
+      "url": "https://www.oktoberfest.de/en/magazine/tradition/the-history-of-oktoberfest",
+      "citation": "[1](https://www.oktoberfest.de/en/magazine/tradition/the-history-of-oktoberfest)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "oktoberfest_dates",
+      "title": "Official Oktoberfest — visitor FAQ",
+      "url": "https://www.oktoberfest.de/en/information/service-for-visitors/faqs-for-wiesn-visitors",
+      "citation": "[2](https://www.oktoberfest.de/en/information/service-for-visitors/faqs-for-wiesn-visitors)",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "who",
+      "title": "WHO — alcohol and health risk",
+      "url": "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health",
+      "citation": "[1](https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health)",
+      "checked": "2026-10-03"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-03",
+  "scope": "New editorial proposals, separate from the preserved 2026-10-02 32-file CONTENT_CATALOG snapshot. Not additional canonical agents or reconciled product counts.",
+  "extensions": [
+    {
+      "id": "liquor-bar-roots-pairings",
+      "path": "ops/vyomaraj-core/liquor-bar/content.json",
+      "category_id": "ENTERTAINMENT",
+      "agent_ids": [
+        "ENT-LIQUOR-S1",
+        "ENT-BAR-S1"
+      ],
+      "canonical_relationship": "siblings",
+      "experience_navigation": "Liquor \u2192 Bar pairings",
+      "status": "editorial_proposal_with_browser_prototype",
+      "historical_chapter_titles_recovered": false,
+      "proposed_liquor_chapters": 12,
+      "proposed_bar_chapters": 10,
+      "review_before_external_publication": true,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "registry_totals_changed": false
+    },
+    {
+      "id": "bhakti-sacred-stories",
+      "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+      "category_id": "BHAKTI",
+      "agent_ids": [],
+      "canonical_slot_status": "UNMAPPED",
+      "status": "editorial_proposal_with_local_planning",
+      "proposed_story_chapters": 12,
+      "peetha_starter_profiles": 9,
+      "complete_peetha_list_verified": false,
+      "registry_totals_changed": false,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "review_before_external_publication": true
+    },
+    {
+      "id": "music-memory-melody",
+      "path": "ops/vyomaraj-core/music-experience/content.json",
+      "category_id": "ENTERTAINMENT",
+      "agent_ids": [
+        "ENT-MUS-S1",
+        "ENT-MUS-S2",
+        "ENT-MUS-S3",
+        "ENT-MUS-S4",
+        "ENT-MUS-S5",
+        "ENT-MUS-S6"
+      ],
+      "assignment_status": "proposed_functional_bindings",
+      "canonical_names": "UNKNOWN",
+      "additional_agents_created": 0,
+      "registry_totals_changed": false,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "review_before_external_publication": true
+    },
+    {
+      "id": "film-frame-stage",
+      "path": "ops/vyomaraj-core/film-experience/content.json",
+      "category_id": "ENTERTAINMENT",
+      "agent_ids": [
+        "ENT-MOVIE-S1",
+        "ENT-MOVIE-S2",
+        "ENT-MOVIE-S3",
+        "ENT-MOVIE-S4",
+        "ENT-MOVIE-S5",
+        "ENT-MOVIE-S6"
+      ],
+      "assignment_status": "proposed_functional_bindings",
+      "canonical_names": "UNKNOWN",
+      "additional_agents_created": 0,
+      "registry_totals_changed": false,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "review_before_external_publication": true
+    },
+    {
+      "id": "aghor-study-service",
+      "path": "ops/vyomaraj-core/aghor-experience/content.json",
+      "category_id": "BHAKTI",
+      "agent_ids": [
+        "BHAKTI-AGHOR-S1"
+      ],
+      "assignment_status": "user_requested_new_sub_agent",
+      "additional_agents_created": 1,
+      "registry_totals_changed": true,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "medical_treatment": false,
+      "content_mode": "entertainment_view_only",
+      "plan_generation_enabled": false,
+      "policy": "/sovereign/"
+    }
+  ]
+}

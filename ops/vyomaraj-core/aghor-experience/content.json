@@ -1,0 +1,613 @@
+{
+  "schema_version": 1,
+  "title": "Aghor & Aghori",
+  "updated": "2026-10-03",
+  "ownership": {
+    "category_id": "BHAKTI",
+    "experience": "Bhakti-Shakti",
+    "agent_id": "BHAKTI-AGHOR-S1",
+    "name": "Aghor & Aghori",
+    "status": "user_requested_new_sub_agent",
+    "existing_unnamed_slots_replaced": false,
+    "runtime": "local_editorial_planning_not_autonomous_AI"
+  },
+  "scope": "Source-aware introductory guide; not a complete lineage census, universal classification, initiation manual, medical service or list of supernatural rankings.",
+  "chapters": [
+    {
+      "id": "meaning",
+      "title": "Aghor, Aghori and Aughar: words and meanings",
+      "classification": "Living tradition",
+      "summary": "Modern lineage accounts explain Aghor as a non-frightening, non-discriminatory state of awareness; Aghori or Aughar can name a practitioner. Usage varies. The words are not a standardized certification system.",
+      "source_ids": [
+        "foundation",
+        "lineage",
+        "syracuse"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "origins",
+      "title": "Sacred origins are not a dated beginning of the universe",
+      "classification": "Religious tradition",
+      "summary": "Some lineages trace the teaching to Shiva and associate it with Dattatreya. These are theological origin narratives. They do not establish an archaeological founding date or a date when India, humanity or the universe began.",
+      "source_ids": [
+        "lineage",
+        "chapter"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "history",
+      "title": "History, hagiography and the limits of the record",
+      "classification": "Historical research",
+      "summary": "Barrett distinguishes informants’ hagiography from independently established history and notes a shortage of primary evidence for a reliable pre-1950 lineage history. Similarities to older ascetic traditions do not prove a single uninterrupted institution.",
+      "source_ids": [
+        "chapter",
+        "barrett"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "kinaram",
+      "title": "Kina Ram / Kinaram / Keenaram and Krim Kund",
+      "classification": "Religious tradition",
+      "summary": "Kina Ram is central to the Varanasi lineage and its Krim Kund seat. The consulted lineage pages place him in the sixteenth century; dates, exceptional lifespans and miracles circulated elsewhere are not treated here as verified biography. Precise chronology remains unresolved.",
+      "source_ids": [
+        "foundation",
+        "lineage",
+        "chapter"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "bhagwan-reform",
+      "title": "Bhagwan Ram and twentieth-century service",
+      "classification": "Institutional history",
+      "summary": "Institutional biographies place Bhagwan Ram in 1937–1992 and the founding of Sri Sarveshwari Samooh on 21 September 1961. Service to marginalized people is a prominent strand; the affiliation sources do not establish clinical efficacy of every treatment.",
+      "source_ids": [
+        "foundation",
+        "bhagwan",
+        "syracuse"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "living",
+      "title": "Contemporary communities and diaspora",
+      "classification": "Living tradition",
+      "summary": "Sonoma Ashram and Aghor Foundation describe a service-and-practice lineage through Harihar Ram, with institutions founded in 1991 and 2001 respectively. This is one documented institutional strand, not a complete census of Aghor worldwide.",
+      "source_ids": [
+        "foundation",
+        "harihar"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "types",
+      "title": "Ways of describing practice—not fixed universal types",
+      "classification": "Classification caution",
+      "summary": "This guide distinguishes ascetic/ritual history, householder practice, community service and study/teaching as editorial lenses. They overlap and are not four officially recognized castes, sects, grades or powers. Aughar, Aghori and Aghoreshwar are not interchangeable rank certificates.",
+      "source_ids": [
+        "syracuse",
+        "lineage",
+        "barrett"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "sadhana",
+      "title": "Sadhana: ordinary discipline and personal boundaries",
+      "classification": "Living tradition",
+      "summary": "Contemporary teachers emphasize attention, self-discipline and guidance. Optional quiet reflection or public prayer may be a personal practice, but this portal gives no initiation, secret mantra, supernatural certification or guaranteed spiritual result.",
+      "source_ids": [
+        "lineage",
+        "foundation"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "seva",
+      "title": "Seva: service without stigma",
+      "classification": "Living tradition",
+      "summary": "Service can include education, community support and respectful care for excluded people. A volunteer must stay within training and consent boundaries; an ashram’s social contribution and medical efficacy are different questions.",
+      "source_ids": [
+        "foundation",
+        "syracuse",
+        "who"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "ritual-context",
+      "title": "Cremation-ground imagery and antinomian traditions",
+      "classification": "Historical research",
+      "summary": "Ethnography discusses death, ritual pollution and boundary-crossing practices. This descriptive context is not a tutorial or a claim that all Aghor practitioners follow the same rites. Human remains, bodily fluids, coercion and dangerous substances are not suitable do-it-yourself material.",
+      "source_ids": [
+        "barrett",
+        "chapter"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "medicine",
+      "title": "Ethnography is not a clinical treatment trial",
+      "classification": "Health boundary",
+      "summary": "Accounts of sacred bathing, ashes or blessings record belief and lived experience. The consulted sources do not establish these as cures for infection, infertility, cancer or psychiatric conditions. Do not replace diagnosis or prescribed treatment with ritual.",
+      "source_ids": [
+        "chapter",
+        "barrett",
+        "who",
+        "nccih"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "leprosy",
+      "title": "Hansen disease: treatment and dignity",
+      "classification": "Public health",
+      "summary": "WHO describes leprosy as a bacterial illness, not moral impurity. It is curable with clinician-guided multidrug therapy; prompt diagnosis helps prevent disability. Ordinary casual contact is not how it spreads. This page does not diagnose, select antibiotics or give doses.",
+      "source_ids": [
+        "who"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "upayas",
+      "title": "Upayas as optional support, not promised cures",
+      "classification": "Safety guidance",
+      "summary": "Prayer, reflection, respectful community support and service may be chosen for personal meaning. They are not guaranteed treatments or methods of controlling another person. No curse diagnosis, coercive remedy, substance prescription or payment-linked cure promise is provided.",
+      "source_ids": [
+        "lineage",
+        "foundation",
+        "who",
+        "nccih"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    },
+    {
+      "id": "research-ethics",
+      "title": "Study respectfully and verify claims",
+      "classification": "Research method",
+      "summary": "Compare lineage testimony, academic analysis and clinical evidence. Protect consent and privacy; do not rank living teachers by alleged powers or turn bereavement and poverty into spectacle. Current access, appointments and institutional services need direct confirmation.",
+      "source_ids": [
+        "barrett",
+        "chapter",
+        "lineage"
+      ],
+      "chapter_status": "proposed_editorial_chapter",
+      "clinical_claim": false
+    }
+  ],
+  "people": [
+    {
+      "id": "shiva",
+      "name": "Shiva / Aghora aspect",
+      "era": "Sacred origin",
+      "evidence_status": "Religious tradition; not a datable human biography",
+      "summary": "Lineage traditions identify Shiva as a source of Aghor. “From the beginning of the universe” belongs to sacred cosmology, not an independently verified historical date.",
+      "source_ids": [
+        "lineage",
+        "foundation"
+      ],
+      "ranking": null
+    },
+    {
+      "id": "dattatreya",
+      "name": "Dattatreya",
+      "era": "Sacred origin",
+      "evidence_status": "Religious tradition; chronology not established",
+      "summary": "Associated with Aghor teachings in the consulted lineage account. No birth date, biological lifespan or historical founding date is asserted.",
+      "source_ids": [
+        "lineage"
+      ],
+      "ranking": null
+    },
+    {
+      "id": "kaluram",
+      "name": "Baba Kaluram",
+      "era": "Lineage memory",
+      "evidence_status": "Traditional association; dating not verified",
+      "summary": "Named in the lineage’s remembered teachers. Detailed chronology and a full independent biography were not verified in the consulted material.",
+      "source_ids": [
+        "lineage"
+      ],
+      "ranking": null
+    },
+    {
+      "id": "kina-ram",
+      "name": "Baba Kina Ram / Kinaram / Keenaram",
+      "era": "Early lineage",
+      "evidence_status": "Foundational lineage figure; chronology unresolved",
+      "summary": "Associated with Kinaram Sthal / Krim Kund in Varanasi. Miracles, reincarnation statements and exceptional lifespans are hagiographic claims, not verified facts.",
+      "source_ids": [
+        "chapter",
+        "lineage",
+        "foundation"
+      ],
+      "ranking": null
+    },
+    {
+      "id": "bhagwan-ram",
+      "name": "Aghoreshwar Bhagwan Ram",
+      "era": "Twentieth century",
+      "evidence_status": "Institutional biography; 1937–1992",
+      "summary": "Associated with the social-service organization established in 1961 and service-oriented reform. Institutionally reported spiritual status is not a medical credential.",
+      "source_ids": [
+        "bhagwan",
+        "foundation",
+        "syracuse"
+      ],
+      "ranking": null
+    },
+    {
+      "id": "harihar-ram",
+      "name": "Baba Harihar Ram",
+      "era": "Contemporary institutions",
+      "evidence_status": "Institutional self-description",
+      "summary": "Sonoma Ashram describes him as a disciple of Bhagwan Ram and founder of Sonoma Ashram (1991) and Aghor Foundation in India (2001). This is not an endorsement or a verified schedule of present services.",
+      "source_ids": [
+        "harihar",
+        "foundation"
+      ],
+      "ranking": null
+    },
+    {
+      "id": "siddharth",
+      "name": "Baba Siddharth Gautam Ram",
+      "era": "Contemporary institutions",
+      "evidence_status": "Earlier institutional account; present appointment unverified",
+      "summary": "A temple-related 2023 account names him as head of Baba Keenaram Sthal since 1978. Current status was not independently confirmed; claims of reincarnation are not adopted as historical proof.",
+      "source_ids": [
+        "abbot"
+      ],
+      "ranking": null
+    }
+  ],
+  "practices": [
+    {
+      "id": "reflection",
+      "title": "Reflection in public accounts",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Some public accounts discuss attention and self-reflection. This is contextual description, not a guided exercise or promised outcome.",
+      "steps": [],
+      "source_ids": [
+        "lineage",
+        "foundation"
+      ],
+      "sequence_status": "new_low_risk_editorial_suggestion_not_initiation",
+      "medical_treatment": false
+    },
+    {
+      "id": "prayer",
+      "title": "Prayer and japa: cultural context",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Prayer and japa appear in devotional accounts. Viewing this description requires no belief or participation; no initiation or practice instructions are supplied.",
+      "steps": [],
+      "source_ids": [
+        "lineage"
+      ],
+      "sequence_status": "new_low_risk_editorial_suggestion_not_initiation",
+      "medical_treatment": false
+    },
+    {
+      "id": "service",
+      "title": "Seva: community-service context",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Institutional accounts emphasize service and dignity. This is background about those accounts, not an instruction or authorization to provide treatment.",
+      "steps": [],
+      "source_ids": [
+        "foundation",
+        "syracuse",
+        "who"
+      ],
+      "sequence_status": "new_low_risk_editorial_suggestion_not_initiation",
+      "medical_treatment": false
+    },
+    {
+      "id": "study",
+      "title": "Reading different kinds of evidence",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Academic history, lineage narratives and clinical sources have different evidentiary roles. This card describes the distinction without assigning a practice plan.",
+      "steps": [],
+      "source_ids": [
+        "chapter",
+        "barrett",
+        "lineage",
+        "who"
+      ],
+      "sequence_status": "new_low_risk_editorial_suggestion_not_initiation",
+      "medical_treatment": false
+    },
+    {
+      "id": "visit",
+      "title": "Community visits: context only",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Visits in institutional narratives do not establish an invitation, opening hours or current appointment. No visit or participation is required.",
+      "steps": [],
+      "source_ids": [
+        "lineage",
+        "foundation",
+        "nccih"
+      ],
+      "sequence_status": "new_low_risk_editorial_suggestion_not_initiation",
+      "medical_treatment": false
+    },
+    {
+      "id": "historical-rites",
+      "title": "Historical ritual practices: context only",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Historical rites are described as religious context only. No procedure supplied; no hazardous instructions, imitation request or cure claim.",
+      "steps": [],
+      "source_ids": [
+        "barrett",
+        "chapter"
+      ],
+      "sequence_status": "new_low_risk_editorial_suggestion_not_initiation",
+      "medical_treatment": false
+    }
+  ],
+  "care": [
+    {
+      "id": "care-skin",
+      "title": "Skin patches, numbness or suspected leprosy",
+      "summary": "Religious purity language is not a medical diagnosis. WHO supports clinical assessment and multidrug treatment for Hansen disease.",
+      "safe_next_steps": [
+        "Seek a qualified clinician rather than self-diagnosing from this page.",
+        "Do not stop prescribed care or substitute ashes, baths or blessings.",
+        "Avoid stigma; casual social contact does not transmit leprosy."
+      ],
+      "source_ids": [
+        "who"
+      ],
+      "diagnosis_or_prescription": false
+    },
+    {
+      "id": "care-claims",
+      "title": "Pain, infertility and other cure claims",
+      "summary": "Healing stories are not evidence that a ritual cures a medical condition.",
+      "safe_next_steps": [
+        "Obtain diagnosis and discuss treatment with a qualified clinician.",
+        "Spiritual support may be optional alongside care, never a replacement.",
+        "Do not accept guaranteed results, pressure to pay, or advice to abandon medical treatment."
+      ],
+      "source_ids": [
+        "barrett",
+        "chapter",
+        "who"
+      ],
+      "diagnosis_or_prescription": false
+    },
+    {
+      "id": "care-products",
+      "title": "Ashes, unknown herbs and mineral preparations",
+      "summary": "Some preparations can contain toxic metals; this guide supplies no formulation or dose.",
+      "safe_next_steps": [
+        "Do not ingest unknown ash, fluids, powders or substances.",
+        "Discuss any supplement with a clinician/pharmacist, especially with pregnancy, childhood or existing medicines.",
+        "Keep product information for a clinician if an exposure causes concern."
+      ],
+      "source_ids": [
+        "nccih"
+      ],
+      "diagnosis_or_prescription": false
+    },
+    {
+      "id": "care-fear",
+      "title": "Fear of curses or supernatural harm",
+      "summary": "A frightening experience deserves respectful support, but it does not establish a supernatural cause or justify harming someone.",
+      "safe_next_steps": [
+        "Seek a trusted, non-coercive support person.",
+        "Consider a qualified mental-health professional if distress persists or daily life is affected.",
+        "Do not use restraint, beating, deprivation, intoxicants or coercive exorcism."
+      ],
+      "source_ids": [
+        "lineage",
+        "foundation"
+      ],
+      "diagnosis_or_prescription": false
+    },
+    {
+      "id": "care-emergency",
+      "title": "Serious symptoms or immediate danger",
+      "summary": "Ritual is not emergency care. India’s ERSS 112 includes medical emergency response.",
+      "safe_next_steps": [
+        "For immediate danger, severe breathing difficulty, collapse, poisoning concern or risk of harm, obtain urgent professional help.",
+        "In India call 112 for an emergency; elsewhere use the local emergency number.",
+        "Keep the person safe without coercive ritual or giving unknown substances."
+      ],
+      "source_ids": [
+        "emergency"
+      ],
+      "diagnosis_or_prescription": false
+    },
+    {
+      "id": "care-upaya",
+      "title": "A non-medical upaya checklist",
+      "summary": "Optional reflection, prayer, gratitude or consent-led service can have personal meaning; no cure, protection guarantee or control over others is promised.",
+      "safe_next_steps": [
+        "Choose an ordinary, low-risk activity voluntarily.",
+        "Keep food, sleep, hydration and prescribed treatment intact.",
+        "Stop if it causes distress or pressure; seek appropriate professional support when needed."
+      ],
+      "source_ids": [
+        "foundation",
+        "lineage",
+        "who"
+      ],
+      "diagnosis_or_prescription": false
+    }
+  ],
+  "sources": [
+    {
+      "id": "barrett",
+      "title": "Ron Barrett — Aghor Medicine (UC Press, 2008)",
+      "url": "https://www.ucpress.edu/books/aghor-medicine/paper",
+      "citation": "[1](https://www.ucpress.edu/books/aghor-medicine/paper)",
+      "source_type": "academic_publisher",
+      "review_basis": "Publisher description searched; not the complete book.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "chapter",
+      "title": "Aghor Medicine — chapter-one excerpt",
+      "url": "https://content.ucpress.edu/pages/10890/10890.ch01.pdf",
+      "citation": "[4](https://content.ucpress.edu/pages/10890/10890.ch01.pdf)",
+      "source_type": "academic_excerpt",
+      "review_basis": "Opening extract fetched (chunk 0 of 9); explicit caution about reliable pre-1950 history. Not a full-book review.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "foundation",
+      "title": "Aghor Foundation — About us",
+      "url": "https://aghorfoundation.org/about-us/",
+      "citation": "[1](https://aghorfoundation.org/about-us/)",
+      "source_type": "lineage_self_description",
+      "review_basis": "Full page fetched; spiritual and institutional self-description, not independent proof of miracles.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "lineage",
+      "title": "Sonoma Ashram — Lineage and teachings",
+      "url": "https://sonomaashram.org/lineage-teachings/",
+      "citation": "[4](https://sonomaashram.org/lineage-teachings/)",
+      "source_type": "lineage_self_description",
+      "review_basis": "Main text fetched (chunk 0 of 2). Healing assertions are religious claims, not clinical evidence.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "bhagwan",
+      "title": "Sonoma Ashram — Aghoreshwar Bhagwan Ram",
+      "url": "https://sonomaashram.org/guru/aghoreshwar-bhagwan-ram/",
+      "citation": "[1](https://sonomaashram.org/guru/aghoreshwar-bhagwan-ram/)",
+      "source_type": "institutional_biography",
+      "review_basis": "Search extract: life dates and 21 September 1961 organization founding; miraculous biography claims not adopted.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "harihar",
+      "title": "Sonoma Ashram — Baba Harihar Ram",
+      "url": "https://sonomaashram.org/guru/baba-harihar-ram/",
+      "citation": "[5](https://sonomaashram.org/guru/baba-harihar-ram/)",
+      "source_type": "institutional_biography",
+      "review_basis": "Search extract; 1991 Sonoma and 2001 India foundation reported.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "syracuse",
+      "title": "Aghoreshwar Bhagawan Ram and the Aghor Tradition — Syracuse repository",
+      "url": "https://surface.syr.edu/cgi/viewcontent.cgi?article=1094&context=ant_etd",
+      "citation": "[2](https://surface.syr.edu/cgi/viewcontent.cgi?article=1094&context=ant_etd)",
+      "source_type": "academic_dissertation",
+      "review_basis": "Search extract only: social-service organization in 1961 and limits of treating practitioner categories as rigid.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "abbot",
+      "title": "Mata Hinglaj — Baba Keenaram profile",
+      "url": "https://www.matahinglaj.in/baba-keenaram",
+      "citation": "[2](https://www.matahinglaj.in/baba-keenaram)",
+      "source_type": "temple_related_account",
+      "review_basis": "2023 search extract names Siddharth Gautam Ram as abbot since 1978. Not independent verification of current 2026 appointment.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "who",
+      "title": "WHO — Leprosy fact sheet, 23 January 2026",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/leprosy",
+      "citation": "[1](https://www.who.int/news-room/fact-sheets/detail/leprosy)",
+      "source_type": "public_health",
+      "review_basis": "Clinical/transmission/treatment sections fetched; summary is general information, not individualized prescribing.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "nccih",
+      "title": "NCCIH — Ayurvedic medicine safety",
+      "url": "https://www.nccih.nih.gov/health/ayurvedic-medicine-in-depth",
+      "citation": "[1](https://www.nccih.nih.gov/health/ayurvedic-medicine-in-depth)",
+      "source_type": "public_health",
+      "review_basis": "Official search extract on potentially toxic lead, mercury and arsenic in some preparations; not a claim about every practitioner.",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "emergency",
+      "title": "India ERSS — 112 services",
+      "url": "https://112.gov.in/features",
+      "citation": "[1](https://112.gov.in/features)",
+      "source_type": "public_service",
+      "review_basis": "Official search extract confirms medical, fire and police emergency service.",
+      "checked": "2026-10-03"
+    }
+  ],
+  "timeline": [
+    {
+      "period": "Sacred, undated origins",
+      "summary": "Shiva and Dattatreya are lineage/theological associations, not a scientific date for the beginning of the universe.",
+      "source_ids": [
+        "lineage"
+      ]
+    },
+    {
+      "period": "Early lineage chronology — unresolved",
+      "summary": "Kina Ram traditions supply hagiographic timelines; reliable pre-1950 documentary history is limited in the consulted academic account.",
+      "source_ids": [
+        "chapter",
+        "lineage"
+      ]
+    },
+    {
+      "period": "1937–1992 / 1961",
+      "summary": "Bhagwan Ram’s institutionally reported life dates; Sri Sarveshwari Samooh founding reported on 21 September 1961.",
+      "source_ids": [
+        "bhagwan",
+        "syracuse"
+      ]
+    },
+    {
+      "period": "1991",
+      "summary": "Sonoma Ashram established according to its institutional biography.",
+      "source_ids": [
+        "harihar"
+      ]
+    },
+    {
+      "period": "2001",
+      "summary": "Aghor Foundation established in India according to its institutional history.",
+      "source_ids": [
+        "foundation"
+      ]
+    },
+    {
+      "period": "2008",
+      "summary": "UC Press publishes Ron Barrett’s ethnographic study Aghor Medicine; this is scholarship, not a clinical trial validating ritual cures.",
+      "source_ids": [
+        "barrett"
+      ]
+    }
+  ],
+  "editorial_rules": [
+    "Entertainment and view-only cultural context. Participation is voluntary; no practice plans, hazardous rituals, cure claims or harm to humans, animals or communities.",
+    "New chapter mappings are proposals, not recovered historical chapter titles.",
+    "Selected figures are not ranked by powers, fame or medical outcomes.",
+    "Aghor traditions are diverse; sensational practices are not attributed to every practitioner.",
+    "No medical diagnosis, prescription, supernatural cure claim or dangerous ritual instructions.",
+    "No corpse handling, bodily-fluid ingestion, self-injury, harmful fire rites, coercion, intoxicant instructions or animal/human harm.",
+    "Householder steps are optional editorial suggestions, not authorized lineage initiation.",
+    "Respect patient dignity, privacy, consent and lawful institutional access.",
+    "Historical and theological dating are separate; no founding date of India or the universe is fabricated."
+  ],
+  "content_mode": "entertainment_view_only",
+  "plan_generation_enabled": false
+}
