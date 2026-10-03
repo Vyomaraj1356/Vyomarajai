@@ -27,7 +27,7 @@ class ProbeTests(unittest.TestCase):
         result=probe(primary,secondary,TARGET)
         self.assertTrue(all(m=='GET' for c in [primary,secondary] for m,p,b in c.calls))
         self.assertFalse(result['dr_sync_verified']);self.assertFalse(result['write_authorization_verified'])
-        self.assertNotIn('a'*40,str(result));self.assertNotIn('b'*40,str(result))
+        self.assertNotIn('a'*40,str(result));self.assertEqual(result['secondary_snapshot']['commit'],'b'*40)
         return result
     def test_matching_read_never_claims_sync(self):
         result=self.compare('source-tree');self.assertEqual(result['tree_comparison'],'MATCH')

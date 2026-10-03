@@ -2,6 +2,7 @@
 """GET-only Actions credential probe; no blobs, filenames, secret values or writes."""
 import json
 import os
+import re
 from pathlib import Path
 import sys
 from dr_sync import GitHub, PRIMARY, CheckError, APIError, snapshot, assert_unchanged, validate_target, source_entries
@@ -17,7 +18,7 @@ class ReadOnlyClient:
             raise CheckError('Read-only diagnostic refuses all writes')
         return self.client.request(method, path)
 
-def probe(primary, secondary, target):
+def probe(primary, secondary, target, candidate_commit=None):
     validate_target(target)
     primary, secondary = ReadOnlyClient(primary), ReadOnlyClient(secondary)
     result = diagnose(primary, secondary, target)
@@ -37,6 +38,14 @@ def probe(primary, secondary, target):
                     'secondary_only': len(b.keys() - a.keys()),
                     'changed_content_or_mode': sum(any(a[k][f] != b[k][f] for f in ('sha','mode','type')) for k in a.keys() & b.keys()),
                 }
+            result['secondary_snapshot'] = s
+            if candidate_commit is not None:
+                if not re.fullmatch(r'[0-9a-f]{40}', candidate_commit): raise CheckError('Invalid candidate commit')
+                candidate_tree = primary.request('GET', f'repos/{PRIMARY}/git/commits/{candidate_commit}')['tree']['sha']
+                a = {x['path']: x for x in source_entries(primary.request('GET', f'repos/{PRIMARY}/git/trees/{candidate_tree}?recursive=1'))}
+                b = {x['path']: x for x in source_entries(secondary.request('GET', f'repos/{target}/git/trees/{s["tree"]}?recursive=1'), allow_empty=True)}
+                result['candidate_counts'] = {'files':len(a), 'secondary_only':len(b.keys()-a.keys()),
+                    'missing':len(a.keys()-b.keys()),'changed':sum(any(a[k][f]!=b[k][f] for f in ('sha','mode','type')) for k in a.keys() & b.keys())}
             assert_unchanged(primary, PRIMARY, p)
             assert_unchanged(secondary, target, s)
             result['tree_comparison'] = 'MATCH' if p['tree'] == s['tree'] else 'MISMATCH'
@@ -66,6 +75,12 @@ def annotation(result):
     for key in ('primary_files', 'secondary_files', 'missing_on_secondary', 'secondary_only', 'changed_content_or_mode'):
         count = result.get('difference_counts', {}).get(key)
         if type(count) is int and 0 <= count <= 10000000: parts.append(f'{key}={count}')
+    for key in ('commit','tree'):
+        value = result.get('secondary_snapshot',{}).get(key)
+        if isinstance(value,str) and re.fullmatch(r'[0-9a-f]{40}',value): parts.append(f'secondary_{key}={value}')
+    for key in ('files','secondary_only','missing','changed'):
+        value = result.get('candidate_counts',{}).get(key)
+        if type(value) is int and 0 <= value <= 10000000: parts.append(f'candidate_{key}={value}')
     return '; '.join(parts)
 
 def main():
@@ -76,7 +91,7 @@ def main():
                   'writes_attempted':False,'replication_executed':False,'write_authorization_verified':False,'dr_sync_verified':False}
     else:
         target = json.loads(Path(__file__).with_name('DR_POLICY.json').read_text())['secondary']
-        result = probe(GitHub(os.environ['PRIMARY_TOKEN']), GitHub(os.environ['DR_TOKEN']), target)
+        result = probe(GitHub(os.environ['PRIMARY_TOKEN']), GitHub(os.environ['DR_TOKEN']), target, os.environ.get('GITHUB_SHA'))
     Path('dr-read-probe.json').write_text(json.dumps(result, indent=2) + '\n')
     print('::notice title=DR READ-ONLY DIAGNOSTIC::' + annotation(result))
     if os.environ.get('GITHUB_STEP_SUMMARY'):
