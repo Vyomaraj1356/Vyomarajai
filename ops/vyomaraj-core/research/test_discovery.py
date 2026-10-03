@@ -50,6 +50,10 @@ class Tests(unittest.TestCase):
     def test_catalog_reuses_attributed_packs(self):
         rows=d.catalog('marathi-theatre');self.assertGreater(len(rows),0)
         self.assertTrue(all(r['provider']=='catalog' for r in rows));self.assertLessEqual(len(rows),5)
+    def test_inactive_registry_slot_refused(self):
+        profile={**d.PROFILES['classic-films'],'slot':'ENT-HUB-MOVIE'}
+        with patch.dict(d.PROFILES,{'classic-films':profile}):
+            with self.assertRaisesRegex(d.DiscoveryError,'inactive_agent_mapping'):self.store.enqueue('classic-films')
     def test_unknown_profile_refused(self):
         with self.assertRaises(d.DiscoveryError):self.store.enqueue('https://evil.org')
     def test_enqueue_dedup(self):

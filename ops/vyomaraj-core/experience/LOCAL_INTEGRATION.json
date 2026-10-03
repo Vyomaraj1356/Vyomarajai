@@ -56,5 +56,16 @@
     "schedule": "opt_in_daily_workflow_not_active",
     "automatic_media_download": false,
     "canonical_writes": false
+  },
+  "active_registry": {
+    "path": "/agents/AGENT_REGISTRY_CURRENT.json",
+    "viewer": "/agents/",
+    "education_viewer": "/education/",
+    "report": "/reports/agents",
+    "main_categories": 13,
+    "counted_sub_agents": 127,
+    "uncounted_headings": 6,
+    "historical_snapshot_unchanged": true,
+    "product_total": "UNRECONCILED"
   }
 }

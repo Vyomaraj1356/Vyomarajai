@@ -205,6 +205,8 @@ class Store:
         finally:c.close()
     def enqueue(self,profile):
         if profile not in PROFILES:raise DiscoveryError('unknown_profile')
+        active=json.loads((CORE/'agents/AGENT_REGISTRY_CURRENT.json').read_text())
+        if PROFILES[profile]['slot'] not in {a['id'] for a in active['agents']}:raise DiscoveryError('inactive_agent_mapping')
         now=time.time()
         with self.db() as c:
             c.execute('BEGIN IMMEDIATE')
@@ -276,7 +278,7 @@ class Store:
             'jobs':jobs,'total_records':total,'review_events_retained':reviews,
             'optional_tools':{'searxng_configured':bool(os.environ.get('VYOMARAJ_SEARXNG_URL')),
                 'ollama_configured':bool(os.environ.get('VYOMARAJ_OLLAMA_URL') and os.environ.get('VYOMARAJ_OLLAMA_MODEL'))},
-            'automatic_publishing':False,'dr_sync_verified':False,'canonical_registry_modified':False,
+            'automatic_publishing':False,'dr_sync_verified':False,'canonical_registry_modified':False,'active_registry':'/agents/AGENT_REGISTRY_CURRENT.json',
             'limits':{'per_source_records':LIMIT,'response_bytes':MAX_RESPONSE,'cache_hours':24,'record_capacity':5000,'concurrent_jobs':1}}
 
 

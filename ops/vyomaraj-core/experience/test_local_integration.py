@@ -77,16 +77,17 @@ class PlannerTests(unittest.TestCase):
             self.assertFalse(plan[key])
         self.assertIsNone(plan['provider'])
 
-    def test_reads_only_selected_reviewed_pack(self):
+    def test_reads_only_selected_reviewed_pack_and_active_registry_metadata(self):
         original = Path.read_text
         seen = []
         def read(path, *args, **kwargs):
-            self.assertEqual(path, planner.PACKS['bhakti'])
+            self.assertIn(path, {planner.PACKS['bhakti'], planner.CORE / 'agents/AGENT_REGISTRY_CURRENT.json'})
             seen.append(path)
             return original(path, *args, **kwargs)
         with patch.object(Path, 'read_text', read):
             planner.build_plan({'experience': 'bhakti'})
-        self.assertEqual(len(seen), 1)
+        self.assertEqual(set(seen), {planner.PACKS['bhakti'], planner.CORE / 'agents/AGENT_REGISTRY_CURRENT.json'})
+        self.assertEqual(len(seen), 2)
 
     def test_pairing_pack_routes_to_existing_ids(self):
         plan = planner.build_plan({'experience': 'liquor-bar', 'recipe_id': 'chana'})

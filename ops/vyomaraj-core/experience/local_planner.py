@@ -14,7 +14,7 @@ class InvalidPlan(ValueError):
     pass
 
 
-def build_plan(request):
+def _build_plan(request):
     if not isinstance(request, dict):
         raise InvalidPlan('Request must be a JSON object.')
     if request.get('experience') == 'film':
@@ -104,3 +104,15 @@ def build_plan(request):
         'legacy_device_config_loaded': False, 'production_deployed': False, 'dr_sync_verified': False,
         'chapter_mapping_status': 'proposed_not_recovered_original_titles'
     }
+
+
+def build_plan(request):
+    plan = _build_plan(request)
+    registry = json.loads((CORE / 'agents/AGENT_REGISTRY_CURRENT.json').read_text())
+    agents = {a['id']: a for a in registry['agents']}
+    if plan['category_id'] not in {c['id'] for c in registry['categories']}:
+        raise InvalidPlan('Category is absent from the current registry.')
+    for identity in plan['canonical_agent_ids']:
+        if identity not in agents or agents[identity]['category_id'] != plan['category_id']:
+            raise InvalidPlan('Agent mapping is absent from the current registry.')
+    return plan

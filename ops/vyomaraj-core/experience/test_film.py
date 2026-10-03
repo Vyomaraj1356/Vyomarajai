@@ -110,10 +110,10 @@ class FilmPlanTests(unittest.TestCase):
             with self.subTest(kw=kw), self.assertRaises(planner.InvalidPlan):
                 self.plan(**kw)
 
-    def test_reads_only_selected_pack(self):
+    def test_reads_only_selected_pack_and_active_registry_metadata(self):
         original = Path.read_text
         def read(path, *args, **kw):
-            self.assertEqual(path, planner.PACKS['film'])
+            self.assertIn(path, {planner.PACKS['film'], planner.CORE / 'agents/AGENT_REGISTRY_CURRENT.json'})
             return original(path, *args, **kw)
         with patch.object(Path, 'read_text', read):
             self.plan()

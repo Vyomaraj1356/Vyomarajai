@@ -45,7 +45,7 @@ async function init(){
  $('search').oninput=renderCollection;for(const id of ['kind','era','region'])$(id).onchange=renderCollection;
  $('reset').onclick=()=>{$('search').value='';for(const id of ['kind','era','region'])$(id).value='all';renderCollection();};
  $('nostalgia').onclick=()=>{$('reset').click();$('kind').value='radio';renderCollection();$('discover').scrollIntoView();};
- for(const a of state.data.agents){const c=el('article',undefined,'agent');c.append(el('span',a.slot+' · PROPOSAL','slot'),el('h3',a.proposed_label),el('p',a.function),el('p','Canonical name: UNKNOWN · existing slot, not a new agent','small'));$('agents-list').append(c);}
+ for(const a of state.data.agents){const c=el('article',undefined,'agent');c.dataset.agentId=a.slot;c.append(el('span','EXISTING POSITION','slot'),el('h3',a.slot.split('-S').pop()),el('p','Proposed function: '+a.proposed_label),el('p',a.function));$('agents-list').append(c);}
  for(const row of state.data.chart_snapshot.entries){const li=el('li');const box=el('div');box.append(el('strong',row.title),el('small',row.artist));li.append(box);$('top-list').append(li);}
  $('chart-caption').textContent='This example uses the IFPI 2025 annual global singles chart. It is not a 2026 weekly ranking.';sourceLinks(state.data.chart_snapshot.source_ids,$('chart-source'));$('chart-add').onclick=()=>toggle('ifpi2025');
  state.data.sources.forEach(s=>{const li=el('li');li.append(link(s.citation.match(/^\[\d+\]/)[0]+' '+s.title,s.url),el('p',s.review_basis,'small'));$('sources').append(li);});state.data.backlog.forEach(t=>$('backlog').append(el('li',t)));

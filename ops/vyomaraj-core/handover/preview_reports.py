@@ -9,6 +9,8 @@ from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
 REPORTS = {
+    '/reports/agents': 'AGENT_RECONCILIATION_2026_10_03.md',
+    '/reports/history': 'HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md',
     '/': 'FULL_SYSTEM_INVENTORY_2026_10_03.md',
     '/dr-status': 'DR_RESOLUTION_2026_10_03.md',
     '/reports/research': 'RESEARCH_INTEGRATION_2026_10_03.md',
@@ -88,10 +90,12 @@ class Handler(BaseHTTPRequestHandler):
         else:
             text = path.read_text(encoding='utf-8')
             body = markdown(text) if path.suffix == '.md' else '<pre>' + html.escape(text) + '</pre>'
+            if route == '/reports/history':
+                body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT CURRENT.</strong> Current total: 127 counted slots and six uncounted headings. See the current inventory and agent reconciliation.</p>' + body
             content = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                        '<meta name="viewport" content="width=device-width,initial-scale=1">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
-                       '<nav><a href="/">System inventory</a><a href="/dr-status">DR resolution</a>'
+                       '<nav><a href="/">Current inventory</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
                        '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. DR access is currently blocked.</p>'

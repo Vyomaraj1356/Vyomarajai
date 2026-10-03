@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-03",
+  "scope": "Current single-owner topic routing. Not a complete 421-product inventory or new chapter list.",
+  "education_topics": [
+    {
+      "id": "EDU-TOPIC-government-schemes",
+      "title": "Government Schemes",
+      "owner_category": "EDU",
+      "summary": "all schemes; not just education schemes",
+      "ownership_basis": "owner_approved_transfer_from_FINANCE",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Finance S1 Govt Schemes"
+      },
+      "slot_id": "EDU-GOV-S1",
+      "slot_mapping": "owner_approved_transfer",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-vedas",
+      "title": "Vedas",
+      "owner_category": "EDU",
+      "summary": "Study and reference material",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S1"
+      },
+      "slot_id": "EDU-S1",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-upanishads",
+      "title": "Upanishads",
+      "owner_category": "EDU",
+      "summary": "Study and reference material",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S2"
+      },
+      "slot_id": "EDU-S2",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-gita",
+      "title": "Gita",
+      "owner_category": "EDU",
+      "summary": "Study and reference material",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S3"
+      },
+      "slot_id": "EDU-S3",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-mythology-mystery",
+      "title": "Mythology and mystery",
+      "owner_category": "EDU",
+      "summary": "Separate tradition, interpretation and documented history",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S4"
+      },
+      "slot_id": "EDU-S4",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-picker",
+      "title": "Vyomaraj Picker",
+      "owner_category": "EDU",
+      "summary": "Existing education reference-selection role; no autonomous service claimed",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S5"
+      },
+      "slot_id": "EDU-S5",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-lectures",
+      "title": "Lectures",
+      "owner_category": "EDU",
+      "summary": "Reference index, not recovered lecture recordings",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S6"
+      },
+      "slot_id": "EDU-S6",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-notes",
+      "title": "Short notes",
+      "owner_category": "EDU",
+      "summary": "Reference index, not recovered full study notes",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S7"
+      },
+      "slot_id": "EDU-S7",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-granthas",
+      "title": "Bharat Grantha, Chanakya and the Granthas",
+      "owner_category": "EDU",
+      "summary": "Shared six-slot source label; individual assignments remain unmapped",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S8-S13"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-bicycles",
+      "title": "Bicycles and two-wheelers",
+      "owner_category": "EDU",
+      "summary": "Source spelling “Care & Bikes” preserved in the roster; 16 source-reported chapters, titles not recovered",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S14"
+      },
+      "slot_id": "EDU-S14",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-thinkers",
+      "title": "Social thinkers, visionaries and legends",
+      "owner_category": "EDU",
+      "summary": "14 source-reported chapters; complete chapter titles not recovered",
+      "ownership_basis": "retained_EDU",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+        "locator": "rosters.EDU.entries.S15"
+      },
+      "slot_id": "EDU-S15",
+      "slot_mapping": "supplied_single_slot_reference",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-flora-fauna",
+      "title": "Flora and fauna",
+      "owner_category": "EDU",
+      "summary": "Natural-history learning references",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Education — Flora and Fauna"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-perfumes",
+      "title": "Perfumes and itras",
+      "owner_category": "EDU",
+      "summary": "Cultural history and fragrance literacy; no health claims imported",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Education — Perfumes and Itras"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-oceans",
+      "title": "Oceans and underwater life",
+      "owner_category": "EDU",
+      "summary": "Marine-life learning references",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Education — Under Water Ocean and Sea Life"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-dinosaurs",
+      "title": "Dinosaurs and prehistoric life",
+      "owner_category": "EDU",
+      "summary": "Palaeontology and age-appropriate educational references",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Education — Historic Dinosaurs Kids"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-sanatana-texts",
+      "title": "Saptarishi, Smriti, Puranas and Sanatana literature",
+      "owner_category": "EDU",
+      "summary": "Textual learning; devotional Bhakti content stays under BHAKTI",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Education — Saptarishi Vedas Puran Hindu Sanatana"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-arms-history",
+      "title": "Arms history, law and safety literacy",
+      "owner_category": "EDU",
+      "summary": "Topic metadata only; no operating, servicing, manufacturing or acquisition instructions imported",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Education — Guns and Pistols"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-philately",
+      "title": "World stamps and philately",
+      "owner_category": "EDU",
+      "summary": "Historical education-topic index; no product count inferred",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+        "locator": "Historical audit section 4.1 Education"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-scripts",
+      "title": "Ancient scripts and epigraphy",
+      "owner_category": "EDU",
+      "summary": "Historical education-topic index",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+        "locator": "Historical audit section 4.1 Education"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-architecture",
+      "title": "Architecture",
+      "owner_category": "EDU",
+      "summary": "Historical education-topic index",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+        "locator": "Historical audit section 4.1 Education"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-space",
+      "title": "Space and astronomy",
+      "owner_category": "EDU",
+      "summary": "Education owns this learning-topic entry; ASTRO remains a distinct category, not a duplicate agent",
+      "ownership_basis": "education_ownership_confirmed",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+        "locator": "Historical audit section 4.1 Education"
+      },
+      "slot_id": null,
+      "slot_mapping": "UNMAPPED_not_inferred_from_topic",
+      "content_scope": "metadata_reference_not_recovered_full_text",
+      "new_agent": false
+    }
+  ],
+  "editorial_pack_owners": {
+    "film": "ENTERTAINMENT",
+    "music": "ENTERTAINMENT",
+    "bhakti": "BHAKTI",
+    "pairings": "ENTERTAINMENT"
+  },
+  "education_in_entertainment": "not_found_in_current_editorial_packs; education-topic ownership now explicitly EDU",
+  "public_scheme_details": "No scheme benefits, eligibility, application links or current validity researched in this structural task.",
+  "historical_catalog_file_count": 32,
+  "complete_product_title_count": null
+}

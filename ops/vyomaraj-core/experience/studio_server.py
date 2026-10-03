@@ -37,7 +37,13 @@ ASSETS['/research/'] = ASSETS['/research/index.html']
 ASSETS['/assets/pairings.css'] = (CORE / 'liquor-bar/styles.css', 'text/css')
 ASSETS['/assets/fonts.css'] = (CORE / 'experience/assets/fonts.css', 'text/css')
 ASSETS['/assets/devanagari.woff2'] = (CORE / 'experience/assets/devanagari.woff2', 'font/woff2')
+for name, mime in [('index.html','text/html'),('app.js','application/javascript'),('styles.css','text/css'),('AGENT_REGISTRY_CURRENT.json','application/json'),('CONTENT_INDEX_CURRENT.json','application/json'),('CONTENT_OWNERSHIP_CURRENT.json','application/json')]:
+    ASSETS['/agents/' + name] = (CORE / 'agents' / name, mime)
+ASSETS['/agents/'] = ASSETS['/agents/index.html']
+ASSETS['/education/'] = ASSETS['/agents/index.html']
 REPORTS = {
+    '/reports/agents': 'AGENT_RECONCILIATION_2026_10_03.md',
+    '/reports/history': 'HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md',
     '/reports/research': 'RESEARCH_INTEGRATION_2026_10_03.md',
     '/reports/': 'FULL_SYSTEM_INVENTORY_2026_10_03.md',
     '/reports/bhakti': 'BHAKTI_FEATURE_UPDATE_2026_10_03.md',
@@ -95,10 +101,12 @@ class Handler(BaseHTTPRequestHandler):
             if not path.is_file():
                 self.send_error(404); return
             body = reports.markdown(path.read_text())
+            if route == '/reports/history':
+                body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: 127 counted slots, six uncounted headings; Education 16, Finance 7, Entertainment 32. See the current inventory or reconciliation above.</p>' + body
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                     '<meta name="viewport" content="width=device-width,initial-scale=1">'
                     '<title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
-                    '<nav><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
+                    '<nav><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
                     '<a href="/reports/dr">DR status</a></nav>'
                     '<p class="notice">Local preview and planning are implemented. External AI, production deployment '
@@ -153,7 +161,7 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=4176)
-    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'research'), default='bhakti')
+    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'research', 'agents', 'education'), default='bhakti')
     args = parser.parse_args()
     Handler.home_route = '/' + args.home + '/'
     threading.Thread(target=discovery.worker_loop, args=(research_store(), threading.Event()), daemon=True).start()

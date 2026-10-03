@@ -102,10 +102,10 @@ class MusicPlannerTests(unittest.TestCase):
         self.assertEqual({s['id'] for s in p['source_references']}, {'marathi', 'dua', 'geetmala'})
         self.assertIsNone(p['chart_snapshot'])
 
-    def test_only_reviewed_pack_read(self):
+    def test_only_reviewed_pack_read_and_active_registry_metadata(self):
         original = Path.read_text
         def read(path, *args, **kwargs):
-            self.assertEqual(path, planner.PACKS['music'])
+            self.assertIn(path, {planner.PACKS['music'], planner.CORE / 'agents/AGENT_REGISTRY_CURRENT.json'})
             return original(path, *args, **kwargs)
         with patch.object(Path, 'read_text', read):
             self.plan()

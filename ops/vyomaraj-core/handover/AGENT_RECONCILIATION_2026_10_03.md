@@ -1,25 +1,4 @@
-# Vyomaraj / Jarvis — Current System Inventory
-
-**Current structure: 13 categories · 127 counted sub-agent slots · 6 uncounted parent headings.**
-
-This is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.
-
-## Integrated viewers
-
-| Area | Viewer / report |
-|---|---|
-| Current hierarchy | /agents/ · /reports/agents |
-| Education and all Government Schemes | /education/ |
-| All experience content | /reports/contents |
-| Research Desk | /research/ · /reports/research |
-| Film, stage and ads | /film/ · /reports/film |
-| Music | /music/ · /reports/music |
-| Bhakti-Shakti | /bhakti/ · /reports/bhakti |
-| Roots & Pairings | /pairings/ |
-| DR (still blocked) | /reports/dr |
-| Historical source audit | /reports/history |
-
-# Current Agent Reconciliation
+# Vyomaraj — Current Agent Reconciliation
 
 **3 October 2026 · owner-approved structure · not a deployment claim**
 

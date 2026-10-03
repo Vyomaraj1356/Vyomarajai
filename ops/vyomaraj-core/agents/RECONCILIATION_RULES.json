@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "approved_on": "2026-10-03",
+  "basis": "Explicit user confirmation: all government schemes under Education; six Entertainment hubs become parent headings.",
+  "education_name": "Education",
+  "government_schemes": {
+    "id": "EDU-GOV-S1",
+    "name": "Government Schemes",
+    "from_category": "FINANCE",
+    "to_category": "EDU",
+    "count_transferred": 1,
+    "source_basis": "Historical flow-diagram Finance S1 Govt Schemes; user approved the current ownership transfer.",
+    "source_slot_identity": "Historical diagram label; canonical Finance individual mapping had been unspecified."
+  },
+  "entertainment_parent_headings": [
+    {
+      "name": "Comedy hub",
+      "id": "ENT-HUB-COM",
+      "child_group": "ENT-COM-S1-S8"
+    },
+    {
+      "name": "Cartoon",
+      "id": "ENT-HUB-CARTOON",
+      "child_group": "ENT-CARTOON-S1-S3"
+    },
+    {
+      "name": "Music",
+      "id": "ENT-HUB-MUS",
+      "child_group": "ENT-MUS-S1-S6"
+    },
+    {
+      "name": "Movie",
+      "id": "ENT-HUB-MOVIE",
+      "child_group": "ENT-MOVIE-S1-S6"
+    },
+    {
+      "name": "Wit",
+      "id": "ENT-HUB-WIT",
+      "child_group": "ENT-WIT-S1"
+    },
+    {
+      "name": "Shayari",
+      "id": "ENT-HUB-SHAYARI",
+      "child_group": "ENT-SHAYARI-S1"
+    }
+  ],
+  "preserve_distinct_named_entries": [
+    "INDICOM",
+    "Criticism gate"
+  ],
+  "unnamed_display": "serial_number_only",
+  "archives": "preserve_historical_snapshots",
+  "product_reallocation": "UNRECONCILED_no_complete_item_level_list",
+  "unverified_sub_sub_agents": "do_not_invent"
+}

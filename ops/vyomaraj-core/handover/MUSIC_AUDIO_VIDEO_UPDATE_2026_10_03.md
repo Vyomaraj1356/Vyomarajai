@@ -1,5 +1,7 @@
 # Vyomaraj — Music, Radio, Audio & Video update
 
+> **Later owner-approved reconciliation:** Current directory `/agents/`; Education and all Government Schemes `/education/`; report `/reports/agents`. Current counts are 13 categories / 127 counted slots / 6 uncounted headings (Education 16, Finance 7, Entertainment 32). Earlier 133/38/15/8 figures below describe the historical snapshot, not current counts. Existing feature slot IDs and earlier validation evidence are preserved.
+
 **3 October 2026 · Memory & Melody · Local integrated prototype**
 
 ## Direct answer: where was Music?
