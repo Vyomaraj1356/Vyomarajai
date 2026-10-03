@@ -53,6 +53,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 class GitHub:
     def __init__(self, token=None):
         self.token = token
+        self.next_write_at = 0.0
         self.opener = urllib.request.build_opener(NoRedirect())
 
     def request(self, method, path, body=None):
@@ -76,6 +77,11 @@ class GitHub:
                    'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'Vyomaraj-DR-Check'}
         data = None if body is None else json.dumps(body).encode()
         req = urllib.request.Request(API + '/' + path, data=data, headers=headers, method=method)
+        # Pace serial mutations; never automatically replay an ambiguous write.
+        if method != 'GET':
+            delay = self.next_write_at - time.monotonic()
+            if delay > 0: time.sleep(delay)
+            self.next_write_at = time.monotonic() + 1.1
         for attempt in range(3):
             try:
                 with self.opener.open(req, timeout=60) as response:
@@ -200,6 +206,26 @@ def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_o
     return observed
 
 
+def pinned_removal_approval(target, dst, env, policy=None, now=None):
+    """One-snapshot owner approval, never a standing permission to remove files."""
+    if (env.get('GITHUB_ACTIONS') != 'true' or env.get('GITHUB_REPOSITORY') != PRIMARY
+            or env.get('GITHUB_REF') != 'refs/heads/main'):
+        return False
+    try:
+        policy = policy if policy is not None else json.loads(Path(__file__).with_name('DR_POLICY.json').read_text())
+        approval = policy.get('one_snapshot_removal_approval', {})
+        expires = datetime.fromisoformat(approval.get('expires_at_utc', ''))
+        now = now or datetime.now(timezone.utc)
+        return (approval.get('approved') is True and policy.get('primary') == PRIMARY
+                and policy.get('secondary') == target and approval.get('secondary') == target
+                and approval.get('expected_commit') == dst['commit']
+                and approval.get('expected_tree') == dst['tree']
+                and all(re.fullmatch(r'[0-9a-f]{40}', dst[k]) for k in ('commit','tree'))
+                and expires.tzinfo is not None and now < expires)
+    except (OSError, ValueError, KeyError, TypeError):
+        return False
+
+
 def execute(target, sync=False, primary=None, secondary=None, environ=None):
     env = os.environ if environ is None else environ
     target = validate_target(target)
@@ -220,16 +246,17 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
             raise CheckError('Repository is archived/disabled')
     src, dst = snapshot(primary, PRIMARY), snapshot(secondary, target)
     # Never fabricate an initial target on a 404: permission failure is ambiguous.
+    previous_secondary = dict(dst)
     changed = False
     transfer = {'uploaded_blobs': 0, 'reused_blobs': 0, 'target_only_files_removed_from_snapshot': 0}
     if src['tree'] != dst['tree'] and sync:
-        dst = replicate(primary, secondary, target, src, dst, transfer, env.get('DR_ALLOW_TARGET_ONLY_REMOVAL') == 'true')
+        dst = replicate(primary, secondary, target, src, dst, transfer, env.get('DR_ALLOW_TARGET_ONLY_REMOVAL') == 'true' or pinned_removal_approval(target, dst, env))
         changed = True
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
     return {'primary_repository': PRIMARY, 'secondary_repository': target, 'branch': BRANCH,
             'primary': src, 'secondary': dst, 'data_match': src['tree'] == dst['tree'],
-            'replication_performed': changed, 'traffic_switched': False, 'transfer': transfer,
+            'replication_performed': changed, 'rollback_commit': previous_secondary['commit'] if changed else None, 'traffic_switched': False, 'transfer': transfer,
             'status': 'MATCH' if src['tree'] == dst['tree'] else 'MISMATCH'}
 
 
@@ -244,7 +271,11 @@ def actions_result_annotation(result):
     http = str(http) if type(http) is int and 100 <= http <= 599 else 'UNAVAILABLE'
     count = result.get('target_only_files_awaiting_review')
     gate = f'; target_only_files_awaiting_review={count}' if type(count) is int and count > 0 else ''
-    return f'status={status}; failed_api_operation={operation}; http={http}; traffic_switched=NONE' + gate
+    evidence = ''
+    for label, value in [('primary_tree', result.get('primary', {}).get('tree')), ('secondary_tree', result.get('secondary', {}).get('tree')), ('rollback_commit', result.get('rollback_commit'))]:
+        if isinstance(value, str) and re.fullmatch(r'[0-9a-f]{40}', value): evidence += f'; {label}={value}'
+    if result.get('data_match') is True: evidence += '; data_match=true'
+    return f'status={status}; failed_api_operation={operation}; http={http}; traffic_switched=NONE' + gate + evidence
 
 
 def main():

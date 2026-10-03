@@ -98,3 +98,11 @@ Arena's separate GitHub connection still returns secondary 404 and Actions setti
 7. Failback is deliberate single-writer recovery, not simultaneous bidirectional overwrites. This tool does not implement automated failback or production traffic switching.
 
 The same-host application rehearsal lives in `../availability/`. It demonstrates process availability only; it is not the private Git mirror or an independent disaster-recovery deployment.
+
+## Owner-authorized deployment, 3 October 2026
+
+The owner explicitly requested merging the correction and obtaining a perfect file match. A real Actions preflight (`37125967048`) pinned secondary commit `7107980ce0bb1fc788da9e1f7a87f3d6cd9bf1d3`, tree `bd628db084433e9cc885fdc6e4c99c6ab2fe44d7`. The then-proposed release had 150 secondary-only paths (including the retired verification workflow), 119 missing paths and 6 changed shared paths. These counts may change as release files are added; the destination approval remains pinned.
+
+`one_snapshot_removal_approval` in DR_POLICY records the owner's confirmation, exact destination and expiry. It only applies inside primary-main Actions, with both destination commit and tree unchanged and before its UTC expiry. Any destination advance invalidates it. It is not a standing approval for future destructive mirroring; the ordinary manual-checkbox gate remains available. The previous secondary commit is retained as parent for rollback—no force push or history deletion. This is not an independent backup or runtime/data DR certification.
+
+Mutating API requests are serialized with a minimum 1.1-second interval to reduce content-generation rate-limit pressure. They are still never automatically replayed. Public annotations include validated tree hashes and rollback commit identifiers, not credentials or file contents.
