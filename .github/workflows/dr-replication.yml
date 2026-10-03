@@ -48,7 +48,7 @@ jobs:
           DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
         run: |
           set -Eeuo pipefail
-          DR_REPO="deepakGoyal1356/Vyomraj-Agent-6d64"
+          DR_REPO="deepakGoyal1356/Vyomaraj-Agent-6d64e"
           PRIMARY_REPO="Vyomaraj1356/Vyomarajai"
           API="https://api.github.com"
           PRIMARY_SHA="$(git rev-parse HEAD)"
