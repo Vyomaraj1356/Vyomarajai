@@ -6,6 +6,8 @@
 
 **Liquor/Bar expansion:** `ops/vyomaraj-core/liquor-bar/README.md` and `content.json` now add the requested local tadi, regional/global heritage, events and chakhna experience under `ENT-LIQUOR-S1` / `ENT-BAR-S1`. The 12 Liquor and 10 Bar titles are new proposals, not recovered originals. Eight snack concepts and an illustrative browser prototype are recorded in `CONTENT_EXTENSIONS.json`; the historical 32-file snapshot and 133/421 totals below are unchanged. No AI renderer or publishing adapter has been connected.
 
+**Bhakti-Shakti extension and local integration:** See `BHAKTI_FEATURE_UPDATE_2026_10_03.md` for the new Shiv–Shakti/Shiva guide, ten-avatar overview, nine Peetha/regional starter profiles, separate Mahadev TV context and three prasad-style food concepts. New chapter mappings remain proposals and BHAKTI child-slot assignment remains UNMAPPED. A shared local preview now implements deterministic Vyomaraj planning and Jarvis source/review handoffs for both editorial packs. This is not the remote-only LLM engine described in the historical audit below, and does not connect external AI, deploy production or verify DR.
+
 ## 1. Scope and evidence rules
 
 This is a source-backed inventory of the current checkout and selected files inspected at reconciled commit `7b7dd403c79266d3250e6b334a7598a5432adc17`. It is not proof of live devices, connected accounts, paid subscriptions, running agents, production deployments, all private chats, or all 421 product titles. Historical archives have not been exhaustively audited for every embedded content item.

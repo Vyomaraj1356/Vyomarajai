@@ -7,7 +7,10 @@
       "id": "liquor-bar-roots-pairings",
       "path": "ops/vyomaraj-core/liquor-bar/content.json",
       "category_id": "ENTERTAINMENT",
-      "agent_ids": ["ENT-LIQUOR-S1", "ENT-BAR-S1"],
+      "agent_ids": [
+        "ENT-LIQUOR-S1",
+        "ENT-BAR-S1"
+      ],
       "canonical_relationship": "siblings",
       "experience_navigation": "Liquor → Bar pairings",
       "status": "editorial_proposal_with_browser_prototype",
@@ -18,6 +21,21 @@
       "automatic_provider_calls": false,
       "automatic_publishing": false,
       "registry_totals_changed": false
+    },
+    {
+      "id": "bhakti-sacred-stories",
+      "path": "ops/vyomaraj-core/bhakti-experience/content.json",
+      "category_id": "BHAKTI",
+      "agent_ids": [],
+      "canonical_slot_status": "UNMAPPED",
+      "status": "editorial_proposal_with_local_planning",
+      "proposed_story_chapters": 12,
+      "peetha_starter_profiles": 9,
+      "complete_peetha_list_verified": false,
+      "registry_totals_changed": false,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "review_before_external_publication": true
     }
   ]
 }

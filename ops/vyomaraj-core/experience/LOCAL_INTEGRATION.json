@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "local_preview_planning_only",
+  "roles": {
+    "vyomaraj": "Validate experience/topic/preferences and assemble the local content route.",
+    "jarvis": "Prepare a deterministic handoff with source references, unresolved mappings and review gates."
+  },
+  "endpoint": "/api/plan",
+  "experiences": ["bhakti", "liquor-bar"],
+  "modes": ["3d", "4d", "5d"],
+  "provider": null,
+  "automatic_ai_calls": false,
+  "automatic_publishing": false,
+  "legacy_jarvis_env_loaded": false,
+  "production_deployed": false,
+  "dr_sync_verified": false
+}

@@ -94,6 +94,22 @@ async function init() {
     state.data.sources.forEach(s=>{const li=el('li');sourceLinks([s.id],li);$('sources').append(li);});
     $('health-text').textContent=state.data.safety.health;sourceLinks(state.data.safety.health_source_ids,$('health-source'));
     renderList();renderTraditions();renderEvents();
+    try {
+      const status=await fetch('/api/status');const config=await status.json();
+      if(status.ok&&config.status==='local_preview_planning_only'){
+        $('local-integration').hidden=false;
+        $('pairing-plan').onclick=async()=>{
+          if(!$('adult').checked){$('pairing-plan-status').textContent='For an alcohol-related culture plan, first acknowledge the applicable local legal-age statement above. Food recipes remain available without this.';return;}
+          $('pairing-plan').disabled=true;
+          try {
+            const response=await fetch('/api/plan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({experience:'liquor-bar',topic_id:'overview',recipe_id:state.selected,mode:state.mode,diet:$('diet').value,exclude_allergens:[...document.querySelectorAll('input[name=exclude]:checked')].map(x=>x.value)})});
+            const plan=await response.json();if(!response.ok)throw new Error(plan.error||'Plan unavailable.');
+            const url=URL.createObjectURL(new Blob([JSON.stringify(plan,null,2)],{type:'application/json'}));const a=el('a');a.href=url;a.download='vyomaraj-jarvis-pairings-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+            $('pairing-plan-status').textContent='Local plan downloaded. No AI call, publishing or DR action occurred.';
+          }catch(e){$('pairing-plan-status').textContent=e.message;}finally{$('pairing-plan').disabled=false;}
+        };
+      }
+    }catch(e){/* Standalone food preview remains usable without the integrated API. */}
   }catch(e){$('error').hidden=false;}
 }
 init();

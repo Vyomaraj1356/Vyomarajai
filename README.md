@@ -51,6 +51,12 @@ For the expanded agent roster, historical candidates, content-label index, platf
 
 The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records the current 404/403 access blockers, local fixes and GitHub PR/CI evidence. For readable tables, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174` and use the Arena live preview. Only the three sanitized reports are served; do not replace this with unrestricted repository-root file serving.
 
+## Bhakti-Shakti and the integrated local studio
+
+The [Bhakti-Shakti feature report](ops/vyomaraj-core/handover/BHAKTI_FEATURE_UPDATE_2026_10_03.md) covers Shiv–Shakti, a 12-chapter proposed Shiva story guide, a Dashavatara overview, nine Shakti Peetha/regional starter profiles and Mahadev television context. The [content guide](ops/vyomaraj-core/bhakti-experience/README.md) explains sources and limitations.
+
+Run `python ops/vyomaraj-core/experience/studio_server.py --port 4176` for a unified preview of Bhakti, Liquor/Bar and updated reports. Its local `/api/plan` implements deterministic Vyomaraj topic routing and Jarvis review handoffs. Prasad-style food rotation, preparation sequences and preference controls are illustrative. External AI, production publishing and DR synchronization remain disabled/unverified. No canonical agent totals or old content files were overwritten.
+
 ## Liquor + Bar: Roots & Pairings
 
 The [Liquor/Bar content expansion](ops/vyomaraj-core/liquor-bar/README.md) adds local tadi/toddy, regional/global cultural research, event-source records, and eight chakhna/snack concepts with preparation, allergen preferences and non-alcoholic pairings. Run `python ops/vyomaraj-core/liquor-bar/server.py --port 4175` for the interactive browser prototype. Its 3D-style plate, 4D sequence and 5D preference controls are illustrative; no AI renderer or alcohol service is connected. Proposed chapters live in a separate extension catalog without changing the original 133/421 counts or 32-file snapshot.

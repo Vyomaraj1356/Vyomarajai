@@ -44,6 +44,8 @@ jobs:
           node --test ops/vyomaraj-core/test_safe_metadata.cjs
           python -m unittest discover -s ops/vyomaraj-core/liquor-bar -p 'test_*.py' -v
           node --check ops/vyomaraj-core/liquor-bar/app.js
+          python -m unittest discover -s ops/vyomaraj-core/experience -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/bhakti-experience/app.js
           bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh
 
   verify-or-sync:
