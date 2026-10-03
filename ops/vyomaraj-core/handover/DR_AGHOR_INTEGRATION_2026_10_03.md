@@ -16,7 +16,7 @@ Actions run **37125323786**, job **111209399552**, successfully read primary and
 
 **All 125 primary files match, but the entire trees differ because secondary contains 149 extra files.** This is a confirmed explanation of the current integrity mismatch, not speculation that the repository is missing or its credential is invalid. Counts describe primary main `9be6d39` at the audit; they must be recalculated after the proposed changes reach main.
 
-Evidence: `ops/dr/ACTIONS_PROBE_EVIDENCE_2026_10_03.json`. GitHub run: https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37125323786 . The earlier probe `37125232441` independently confirmed read access and tree mismatch. The evidence was retrieved from check-run annotations, so it did not depend on the broken log-download path. No file bodies, private filenames or credentials were emitted; neither probe wrote data or refs.
+Evidence: `ops/dr/ACTIONS_PROBE_EVIDENCE_2026_10_03.json`. GitHub run: `https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37125323786` . The earlier probe `37125232441` independently confirmed read access and tree mismatch. The evidence was retrieved from check-run annotations, so it did not depend on the broken log-download path. No file bodies, private filenames or credentials were emitted; neither probe wrote data or refs.
 
 ## Actual script defect and correction
 
@@ -41,7 +41,7 @@ The old main replication run `37123060948` and separate verifier `37123060897` a
 
 ## Deployment and approval gates
 
-The corrected code is on `arena/01a10140-vyomarajai`, in **open PR #5**, not on main. Thus main still runs the old script. PR: https://github.com/Vyomaraj1356/Vyomarajai/pull/5 . No merge to main, secondary ref update or production traffic switch was performed in this investigation.
+The corrected code is on `arena/01a10140-vyomarajai`, in **open PR #5**, not on main. Thus main still runs the old script. PR: `https://github.com/Vyomaraj1356/Vyomarajai/pull/5` . No merge to main, secondary ref update or production traffic switch was performed in this investigation.
 
 1. Review/merge the correction through the authorized GitHub process. Automatic main sync will still refuse any unapproved target-only removals.
 2. Run **verify** against the then-current primary main and secondary. Do not assume today's 149-file count still applies after the merge.
@@ -88,7 +88,7 @@ The reports distinguish **Git snapshot replication**, **application process avai
 
 Primary main advanced to `9be6d3950cb65dcdd5dba36e548f48c599361d57`. Its corrected secondary differs from the older failing target. The main workflow's Actions PAT can authenticate while Arena's separate connection cannot read the private secondary. A local 404 is therefore not proof that the repository is absent or that the Actions PAT is invalid. Primary metadata reports repository admin/push capabilities, but Actions endpoint access still returns 403; role metadata and token endpoint permissions are different.
 
-Evidence: `ops/dr/LIVE_AUDIT_2026_10_03.json`. Main run: https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37123060948 . The observation is a timestamped audit, not a live success indicator.
+Evidence: `ops/dr/LIVE_AUDIT_2026_10_03.json`. Main run: `https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37123060948` . The observation is a timestamped audit, not a live success indicator.
 
 ### Review-branch implementation
 
@@ -110,7 +110,7 @@ The live recovery-review CLI was attempted against the corrected target and exit
 4. Run read-only verification first, then approved primary-main sync. Require complete-tree `MATCH`, `data_match=true` and final read-after-write evidence, not just a green authentication step.
 5. Maintain independent versioned backups: a mirror propagates deletions/corruption too. Test recovery of runtime databases, secrets, uploads and other non-Git state separately.
 
-Detailed operator steps: `ops/dr/README.md`. GitHub review: https://github.com/Vyomaraj1356/Vyomarajai/pull/5 . No merge to main or production DR completion is asserted here.
+Detailed operator steps: `ops/dr/README.md`. GitHub review: `https://github.com/Vyomaraj1356/Vyomarajai/pull/5` . No merge to main or production DR completion is asserted here.
 
 ## 2. Real local Vyomaraj / Jarvis failover rehearsal
 
