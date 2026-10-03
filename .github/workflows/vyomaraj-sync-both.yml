@@ -48,9 +48,44 @@ jobs:
           set -euo pipefail
           test -n "$DR_TOKEN"
           echo "::add-mask::$DR_TOKEN"
+
           CODE="$(curl -sS -o /tmp/dr.json -w "%{http_code}"             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer $DR_TOKEN"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/$DR_REPO")"
-          test "$CODE" = "200"
-          echo "DR_AUTH=PASS"
+
+          MESSAGE="$(python - <<'PY'
+          import json
+          try:
+              d=json.load(open("/tmp/dr.json", encoding="utf-8"))
+              print(str(d.get("message","")).replace("\n"," ")[:200])
+          except Exception:
+              print("non-json response")
+          PY
+          )"
+
+          echo "DR_AUTH_HTTP=$CODE"
+          echo "DR_AUTH_MESSAGE=$MESSAGE"
+
+          case "$CODE" in
+            200)
+              echo "DR_AUTH=PASS"
+              ;;
+            401)
+              echo "DR_AUTH=FAIL_INVALID_OR_REVOKED_TOKEN"
+              exit 1
+              ;;
+            403)
+              echo "DR_AUTH=FAIL_FORBIDDEN_OR_PERMISSION"
+              exit 1
+              ;;
+            404)
+              echo "DR_AUTH=FAIL_REPOSITORY_NOT_VISIBLE_TO_TOKEN"
+              exit 1
+              ;;
+            *)
+              echo "DR_AUTH=FAIL_UNEXPECTED_HTTP_$CODE"
+              exit 1
+              ;;
+          esac
+
           echo "DR_REPO=$DR_REPO"
           echo "DR_BRANCH=$DR_BRANCH"
 
@@ -74,7 +109,6 @@ jobs:
 
           echo "::add-mask::$DR_TOKEN"
 
-          # CORRECT OBJECT CHAIN: commit -> tree -> recursive tree.
           COMMIT_JSON="$(api_primary "$API/repos/$PRIMARY_REPO/git/commits/$PRIMARY_COMMIT")"
           PRIMARY_TREE="$(python -c 'import json,sys; print(json.load(sys.stdin)["tree"]["sha"])' <<< "$COMMIT_JSON")"
           test -n "$PRIMARY_TREE"
@@ -117,7 +151,6 @@ jobs:
           source=json.load(open("/tmp/primary-tree.json", encoding="utf-8"))
           entries=[e for e in source.get("tree", []) if e.get("type")=="blob"]
 
-          # Read existing DR main. Never force-push.
           ref_url=f"https://api.github.com/repos/{dr_repo}/git/refs/heads/main"
           parent=None
           base_tree=None
@@ -205,7 +238,7 @@ jobs:
           print(f"DR_COMMIT_SHA={verified_ref}")
           print(f"DR_TREE_SHA={verified_tree}")
           print(f"DATA_MATCH={verified_tree == primary_tree}")
-          print(f"READ_AFTER_WRITE=True")
+          print("READ_AFTER_WRITE=True")
 
           if verified_tree != primary_tree:
               raise SystemExit(
