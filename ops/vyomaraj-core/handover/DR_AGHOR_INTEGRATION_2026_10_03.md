@@ -1,3 +1,52 @@
+# Primary / Secondary — Exact File Match Verified
+
+**3 October 2026 · deployed on main · real sync and repeat verification succeeded.**
+
+## Verified result
+
+PR #5 was merged through GitHub at primary commit `37930203be6de10efb9587cf1434d860f9a6c294`. The main sync run **37126108656** completed successfully. A separate scheduled run **37126121716** then confirmed the same match.
+
+| Checkpoint measurement | Verified result |
+|---|---|
+| Primary | Vyomaraj1356/Vyomarajai — main |
+| Secondary | deepakGoyal1356/Vyomaraj-Agent-6d64e — main |
+| Tracked files at this checkpoint | **244 on each matching tree** |
+| Primary tree | `e69e5c90f2ddec237a307b45830cff712649ed92` |
+| Secondary tree | `e69e5c90f2ddec237a307b45830cff712649ed92` |
+| GitHub result | **status=MATCH; data_match=true** |
+| Previous secondary commit preserved | `7107980ce0bb1fc788da9e1f7a87f3d6cd9bf1d3` |
+| Production traffic switching | None |
+
+Matching Git tree hashes cover the tracked paths, file bytes and file modes of these main snapshots. Commit hashes/history can differ because the secondary keeps its own previous commit as parent for rollback. No force push or Git-history deletion was used.
+
+Evidence: `ops/dr/DEPLOYED_MATCH_2026_10_03.json`.
+
+Sync: `https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37126108656`
+
+Repeat check: `https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37126121716`
+
+## Authorized correction and retained rollback
+
+The owner explicitly requested completing the exact match after the extra-file issue was explained. A new preflight compared the release—not just the old primary main—to secondary: 150 secondary-only paths, 120 missing paths and 6 changed shared paths. Approval was bound to the exact preflight secondary commit/tree and a UTC expiry; any target advance would invalidate it.
+
+The correction built the exact new tree without `base_tree`, validated it before publication, preserved the old secondary commit as parent, updated the ref without force, and performed read-after-write and stable-source checks. The owner-approved snapshot-only removal gate was consumed successfully and is now disabled. Future target-only removals still need explicit approval; no permanent blanket deletion permission was added.
+
+The old secondary's files remain recoverable through its retained parent commit. That is a Git rollback checkpoint, not an independent-site backup. Restoration still needs review and fencing; no automatic reverse overwrite is enabled.
+
+## What this does not claim
+
+This is a **verified Git main snapshot match**, not proof of identical unrelated branches, repository settings, secrets, ignored runtime files, databases, browser-local media, or production traffic. Independent-site/runtime recovery and zero RPO/RTO are not verified. Spiritual content remains entertainment/view-only, with Sovereign policy and draft Contracts unchanged.
+
+This report records a specific verified checkpoint **before this evidence/report update**. Publishing the update changes the source tree and adds an evidence file; its rollout requires another sync and will produce a newer tree hash/file count. The dated hashes above are not presented as a permanent live-HEAD guarantee. Current workflow results remain the authority for each later snapshot.
+
+## Validation
+
+**227 automated checks passed in release CI**, including 53 DR tests, and the real main sync and scheduled repeat both passed. No secret values or file bodies were placed into public diagnostic annotations. Local-planner flags describe actions performed by each plan; they do not independently verify GitHub. `/api/status` carries this explicitly scoped external Git snapshot observation.
+
+## Earlier investigation and integration history
+
+The previous mismatch reports below are preserved as dated history. Their statements that PR #5 is open or production Git sync is unexecuted are superseded by this verified result. Runtime/site DR limitations remain in effect.
+
 # DR Script Investigation — Confirmed Tree Mismatch
 
 **3 October 2026 · real GitHub Actions credential probes executed, not just local tests.**

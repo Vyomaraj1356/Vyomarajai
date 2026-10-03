@@ -1,5 +1,7 @@
 # Vyomaraj — View-only Policy & Preview Update
 
+**Resolved Git snapshot mismatch:** PR #5 is merged. Main sync `37126108656` and scheduled repeat `37126121716` both reported MATCH/data_match=true at a 244-file checkpoint. Previous secondary history is retained. See `/reports/resilience` for hashes, evidence and the distinction from unverified runtime/site DR. Earlier pending-merge/mismatch statements below are historical.
+
 **New GitHub-side evidence:** real Actions reads confirm all 125 primary-main files match on secondary, with 149 additional secondary-only files. The old base-tree construction retains extras while requiring whole-tree equality. The correction and explicit removal-review gate are in PR #5, not yet deployed on main. See `/reports/resilience` for the findings and actual run evidence; this is more specific than the earlier Arena 404/403 observations below.
 
 **Owner-directed update · 3 October 2026**

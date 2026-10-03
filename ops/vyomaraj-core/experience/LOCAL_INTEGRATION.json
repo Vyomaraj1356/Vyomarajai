@@ -23,7 +23,7 @@
   "automatic_publishing": false,
   "legacy_jarvis_env_loaded": false,
   "production_deployed": false,
-  "dr_sync_verified": false,
+  "dr_sync_verified": true,
   "music_modes": [
     "radio",
     "audio",
@@ -89,5 +89,14 @@
     "liquor-bar",
     "music",
     "film"
-  ]
+  ],
+  "dr_sync_verification": {
+    "scope": "Git main snapshot at recorded checkpoint only; not a live guarantee or runtime/site DR",
+    "primary_commit": "37930203be6de10efb9587cf1434d860f9a6c294",
+    "matched_tree": "e69e5c90f2ddec237a307b45830cff712649ed92",
+    "verified_run": 37126108656,
+    "repeat_verification_run": 37126121716,
+    "tracked_files_at_checkpoint": 244,
+    "runtime_or_site_dr_verified": false
+  }
 }

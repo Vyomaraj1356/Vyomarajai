@@ -1,0 +1,40 @@
+{
+  "recorded_at_utc": "2026-10-03T13:30:15.271913+00:00",
+  "scope": "Git main tracked-file snapshot, not all branches/history or runtime/site DR",
+  "primary": "Vyomaraj1356/Vyomarajai",
+  "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+  "verified_primary_commit": "37930203be6de10efb9587cf1434d860f9a6c294",
+  "matched_tree": "e69e5c90f2ddec237a307b45830cff712649ed92",
+  "tracked_files_at_checkpoint": 244,
+  "rollback_commit_retained_as_parent": "7107980ce0bb1fc788da9e1f7a87f3d6cd9bf1d3",
+  "observations": [
+    {
+      "run_id": 37126108656,
+      "job_id": 111211646265,
+      "event": "push",
+      "conclusion": "success",
+      "head_sha": "37930203be6de10efb9587cf1434d860f9a6c294",
+      "updated_at": "2026-10-03T13:28:20Z",
+      "url": "https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37126108656",
+      "annotations": [
+        "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=e69e5c90f2ddec237a307b45830cff712649ed92; secondary_tree=e69e5c90f2ddec237a307b45830cff712649ed92; rollback_commit=7107980ce0bb1fc788da9e1f7a87f3d6cd9bf1d3; data_match=true"
+      ]
+    },
+    {
+      "run_id": 37126121716,
+      "job_id": 111212165320,
+      "event": "schedule",
+      "conclusion": "success",
+      "head_sha": "37930203be6de10efb9587cf1434d860f9a6c294",
+      "updated_at": "2026-10-03T13:28:53Z",
+      "url": "https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37126121716",
+      "annotations": [
+        "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=e69e5c90f2ddec237a307b45830cff712649ed92; secondary_tree=e69e5c90f2ddec237a307b45830cff712649ed92; data_match=true"
+      ]
+    }
+  ],
+  "data_match": true,
+  "runtime_or_site_dr_verified": false,
+  "zero_rpo_or_rto_claimed": false,
+  "note": "Dated checkpoint before adding this evidence file. Later main commits require their own workflow verification."
+}

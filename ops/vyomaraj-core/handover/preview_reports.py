@@ -103,7 +103,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
                        '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
-                       'are not presented as working integrations. GitHub replication is not verified; see the latest DR & integration report.</p>'
+                       'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()
             kind = 'text/html; charset=utf-8'
         self.send_response(200)
