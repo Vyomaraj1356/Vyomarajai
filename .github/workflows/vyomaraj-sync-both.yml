@@ -48,6 +48,8 @@ jobs:
           node --check ops/vyomaraj-core/bhakti-experience/app.js
           node --check ops/vyomaraj-core/music-experience/app.js
           node --check ops/vyomaraj-core/film-experience/app.js
+          python -m unittest discover -s ops/vyomaraj-core/research -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/research/app.js
           bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh
 
   verify-or-sync:
@@ -88,9 +90,11 @@ jobs:
             test "$DR_SYNC_APPROVED" = true
             test -n "$DR_REPO"
             test -z "${DIAGNOSTIC_TARGET:-}"
+            python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json
             python ops/dr/dr_sync.py --sync --output dr-evidence.json
           else
             if [ -n "${DIAGNOSTIC_TARGET:-}" ]; then export DR_REPO="$DIAGNOSTIC_TARGET"; fi
+            python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json
             python ops/dr/dr_sync.py --output dr-evidence.json
           fi
       - name: Upload sanitized verification evidence
@@ -98,6 +102,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dr-verification-evidence
-          path: dr-evidence.json
+          path: |
+            dr-evidence.json
+            dr-diagnostic-evidence.json
           if-no-files-found: ignore
           retention-days: 14

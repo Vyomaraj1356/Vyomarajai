@@ -50,3 +50,9 @@ PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s ops/dr -p 'test_*.py' -
 ```
 
 No external requests, tokens or production writes are used by these tests.
+
+## PAT identity diagnostic follow-up (3 October 2026)
+
+`python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json` performs GET-only identity/repository/main-ref checks using the same explicit process-token or local read-only `gh` client. `DR_REPO` must be a confirmed owner/repository for normal use; no target is guessed. Missing/malformed target returns a redacted blocked result. GET `/user` is narrowly allowed; user writes and arbitrary external URLs are not. No identity response body, login, token or scopes are logged.
+
+Identity access is not repository access; repository read access is not verified write permission or exact-tree DR equality. A local gh diagnostic does not test the Actions PAT. Workflow preflight runs before compare/sync and preserves redacted evidence on a failed check. Current evidence remains blocked (secondary 404; Actions-variable access 403); see `DR_FOLLOWUP_2026_10_03.json` and the integrated `/reports/research` report. The linked e69af4d curl formatting change cannot itself repair permissions.

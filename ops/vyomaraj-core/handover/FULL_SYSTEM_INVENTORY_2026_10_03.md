@@ -1,5 +1,7 @@
 # Vyomaraj / Jarvis — agents, content, configuration and open-work inventory
 
+> **Research integration follow-up (3 October):** open `/research/` for the bounded metadata queue and `/reports/research` for all integrated updates, provider check results and redacted DR evidence. Twelve existing editorial leads were re-indexed; no new internet results, live AI service, activated schedule, production release or DR success is claimed. Canonical counts/names below are unchanged.
+
 **Audit date:** 3 October 2026. **Working branch:** `arena/01a10140-vyomarajai`.
 
 **Follow-up repair notice:** This inventory records the pre-repair audit. Subsequent branch changes replace the two corrupted JavaScript files with honest metadata-only compatibility modules, consolidate DR checks, block unsafe/ambiguous replication and add a readable report viewer. These changes do not implement live AI adapters or resolve the missing roster. Current GitHub access remains blocked. See `DR_RESOLUTION_2026_10_03.md` in this directory and `ops/dr/README.md` for the current repair status; historical findings below are retained as evidence, not silently rewritten.

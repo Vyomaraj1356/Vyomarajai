@@ -48,7 +48,7 @@ class GitHub:
         self.opener = urllib.request.build_opener(NoRedirect())
 
     def request(self, method, path, body=None):
-        if not path.startswith('repos/') or '..' in path or '://' in path:
+        if (not path.startswith('repos/') and not (method == 'GET' and path == 'user')) or '..' in path or '://' in path:
             raise CheckError('Invalid GitHub API path')
         if not self.token:
             if method != 'GET':

@@ -4,8 +4,9 @@ import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
 import json
+import threading
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 
 from local_planner import build_plan, InvalidPlan
 
@@ -13,16 +14,31 @@ CORE = Path(__file__).resolve().parent.parent
 spec = importlib.util.spec_from_file_location('report_renderer', CORE / 'handover/preview_reports.py')
 reports = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(reports)
+research_spec = importlib.util.spec_from_file_location('vyomaraj_discovery', CORE / 'research/discovery.py')
+discovery = importlib.util.module_from_spec(research_spec)
+research_spec.loader.exec_module(discovery)
+RESEARCH_STORE = None
+
+def research_store():
+    global RESEARCH_STORE
+    if RESEARCH_STORE is None:
+        RESEARCH_STORE = discovery.Store()
+    return RESEARCH_STORE
+
 ASSETS = {}
 for prefix, directory in [('/bhakti/', 'bhakti-experience'), ('/pairings/', 'liquor-bar'), ('/music/', 'music-experience'), ('/film/', 'film-experience')]:
     for name, mime in [('index.html', 'text/html'), ('app.js', 'application/javascript'),
                        ('styles.css', 'text/css'), ('content.json', 'application/json')]:
         ASSETS[prefix + name] = (CORE / directory / name, mime)
     ASSETS[prefix] = ASSETS[prefix + 'index.html']
+for name, mime in [('index.html','text/html'),('app.js','application/javascript'),('styles.css','text/css')]:
+    ASSETS['/research/' + name] = (CORE / 'research' / name, mime)
+ASSETS['/research/'] = ASSETS['/research/index.html']
 ASSETS['/assets/pairings.css'] = (CORE / 'liquor-bar/styles.css', 'text/css')
 ASSETS['/assets/fonts.css'] = (CORE / 'experience/assets/fonts.css', 'text/css')
 ASSETS['/assets/devanagari.woff2'] = (CORE / 'experience/assets/devanagari.woff2', 'font/woff2')
 REPORTS = {
+    '/reports/research': 'RESEARCH_INTEGRATION_2026_10_03.md',
     '/reports/': 'FULL_SYSTEM_INVENTORY_2026_10_03.md',
     '/reports/bhakti': 'BHAKTI_FEATURE_UPDATE_2026_10_03.md',
     '/reports/film': 'FILM_THEATRE_ADS_UPDATE_2026_10_03.md',
@@ -58,6 +74,18 @@ class Handler(BaseHTTPRequestHandler):
         elif route in ASSETS:
             path, mime = ASSETS[route]
             self.send_bytes(path.read_bytes(), mime)
+        elif route == '/api/research/status':
+            self.json_response(research_store().status())
+        elif route == '/api/research/records':
+            try:
+                query = parse_qs(urlsplit(self.path).query)
+                offset = int(query.get('offset', ['0'])[0])
+                if not 0 <= offset <= 5000: raise ValueError()
+            except ValueError:
+                self.json_response({'error': 'invalid_offset'}, 400); return
+            self.json_response({'records': research_store().records(offset)})
+        elif route == '/api/research/export':
+            self.json_response({'scope': 'unverified_metadata_not_media_or_licences', 'records': research_store().records(limit=5000)})
         elif route == '/api/status':
             self.json_response(json.loads((CORE / 'experience/LOCAL_INTEGRATION.json').read_text()))
         elif route == '/reports/download/bhakti.md':
@@ -70,7 +98,7 @@ class Handler(BaseHTTPRequestHandler):
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                     '<meta name="viewport" content="width=device-width,initial-scale=1">'
                     '<title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
-                    '<nav><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
+                    '<nav><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
                     '<a href="/reports/dr">DR status</a></nav>'
                     '<p class="notice">Local preview and planning are implemented. External AI, production deployment '
@@ -80,8 +108,13 @@ class Handler(BaseHTTPRequestHandler):
             self.send_error(404, 'Only approved preview assets and reports are served')
 
     def do_POST(self):
-        if urlsplit(self.path).path != '/api/plan':
+        route = urlsplit(self.path).path
+        if route not in ('/api/plan', '/api/research/run', '/api/research/review'):
             self.send_error(404); return
+        if route.startswith('/api/research/'):
+            origin = self.headers.get('Origin')
+            if self.headers.get('Sec-Fetch-Site') == 'cross-site' or (origin and (urlsplit(origin).scheme not in ('http', 'https') or urlsplit(origin).netloc != self.headers.get('Host'))):
+                self.json_response({'error': 'cross_origin_refused'}, 403); return
         if self.headers.get_content_type() != 'application/json':
             self.json_response({'error': 'Use application/json.'}, 415); return
         try:
@@ -93,7 +126,18 @@ class Handler(BaseHTTPRequestHandler):
         self.connection.settimeout(10)
         try:
             data = json.loads(self.rfile.read(length))
-            plan = build_plan(data)
+            if route == '/api/plan':
+                plan = build_plan(data)
+            elif route == '/api/research/run':
+                if not isinstance(data, dict) or set(data) != {'profile'} or not isinstance(data['profile'], str):
+                    raise discovery.DiscoveryError('profile_only_request_required')
+                self.json_response(research_store().enqueue(data['profile']), 202); return
+            else:
+                if not isinstance(data, dict) or set(data) != {'record_id', 'decision', 'acknowledge_metadata_only'} or data['acknowledge_metadata_only'] is not True or not isinstance(data['record_id'], str) or not isinstance(data['decision'], str):
+                    raise discovery.DiscoveryError('metadata_only_acknowledgement_required')
+                plan = research_store().review(data['record_id'], data['decision'])
+        except discovery.DiscoveryError as exc:
+            self.json_response({'error': str(exc)}, 400); return
         except InvalidPlan as exc:
             self.json_response({'error': str(exc)}, 400); return
         except (ValueError, UnicodeError, RecursionError):
@@ -109,8 +153,9 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=4176)
-    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film'), default='bhakti')
+    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'research'), default='bhakti')
     args = parser.parse_args()
     Handler.home_route = '/' + args.home + '/'
+    threading.Thread(target=discovery.worker_loop, args=(research_store(), threading.Event()), daemon=True).start()
     print(f'Vyomaraj Experience Studio on 0.0.0.0:{args.port}', flush=True)
     ThreadingHTTPServer(('0.0.0.0', args.port), Handler).serve_forever()

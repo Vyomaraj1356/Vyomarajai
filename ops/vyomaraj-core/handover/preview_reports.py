@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render only three sanitized handover reports; never serve repository paths."""
+"""Render only explicitly allowlisted sanitized handover reports; never serve repository paths."""
 import argparse
 import html
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -11,6 +11,11 @@ HERE = Path(__file__).resolve().parent
 REPORTS = {
     '/': 'FULL_SYSTEM_INVENTORY_2026_10_03.md',
     '/dr-status': 'DR_RESOLUTION_2026_10_03.md',
+    '/reports/research': 'RESEARCH_INTEGRATION_2026_10_03.md',
+    '/reports/contents': 'EXPERIENCE_CONTENTS_2026_10_03.md',
+    '/reports/film': 'FILM_THEATRE_ADS_UPDATE_2026_10_03.md',
+    '/reports/music': 'MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md',
+    '/reports/bhakti': 'BHAKTI_FEATURE_UPDATE_2026_10_03.md',
     '/handover': 'HANDOVER_ALL_UPDATES_2026_10_03.txt',
 }
 DOWNLOADS = {'/download/inventory.md': REPORTS['/'],
@@ -87,7 +92,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="viewport" content="width=device-width,initial-scale=1">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav><a href="/">System inventory</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/handover">Handover</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. DR access is currently blocked.</p>'
                        + body + '</main></html>').encode()

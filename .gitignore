@@ -7,3 +7,13 @@ dr-evidence.json
 # New private/local configuration (legacy tracked files need separate review)
 ops/jarvis/llm-harness.env
 ops/dr/dr.local.env
+
+# Discovery queue, transient results and operator-owned local configuration
+ops/vyomaraj-core/research/.state/
+ops/vyomaraj-core/research/.env
+research-run.json
+dr-diagnostic-evidence.json
+research-candidates.json
+
+# Transient local validation evidence/screenshots
+.cache/

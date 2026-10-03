@@ -38,5 +38,23 @@
     "advert",
     "mix"
   ],
-  "film_agent_assignment_status": "proposed_bindings_to_existing_six_movie_slots"
+  "film_agent_assignment_status": "proposed_bindings_to_existing_six_movie_slots",
+  "research": {
+    "viewer": "/research/",
+    "report": "/reports/research",
+    "queue": "local_sqlite_metadata_only",
+    "public_adapters": [
+      "musicbrainz",
+      "loc",
+      "openlibrary"
+    ],
+    "public_runtime_check": "network_unavailable",
+    "optional_services": {
+      "searxng": "not_configured",
+      "ollama": "not_configured"
+    },
+    "schedule": "opt_in_daily_workflow_not_active",
+    "automatic_media_download": false,
+    "canonical_writes": false
+  }
 }

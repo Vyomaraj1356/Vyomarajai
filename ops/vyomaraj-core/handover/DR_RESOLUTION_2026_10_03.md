@@ -1,5 +1,11 @@
 # GitHub, report-link and DR resolution — 3 October 2026
 
+## Latest follow-up — discovery integration pass
+
+Read-only preflight: local `gh` identity, primary repository and primary main are readable. The old workflow secondary candidate still returns 404 (missing or hidden); Actions-variable listing still returns 403. This tests the local GitHub connection, **not the Actions PAT secret**. Primary main remains `e69af4d6155aca87eb87f3da5c4c90e1b8b681a1`. Run [37120524834](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37120524834) is successful only for `offline-tests`; `verify-or-sync` was **skipped**. PR #5 remains open. No secondary write or merge was attempted.
+
+The linked `e69af4d` commit only repairs multiline curl syntax. The review branch uses tested Python diagnostics now: `ops/dr/dr_diagnostics.py` performs GET-only identity, exact repository-name and main-ref checks, reports redacted status codes, refuses guessed/malformed targets and never logs credentials or identity response bodies. `/user` success is not repository authorization; read access is not write permission or verified replication. The workflow saves diagnostic evidence even when preflight blocks. See `/reports/research` for the integrated update and `ops/dr/DR_FOLLOWUP_2026_10_03.json` for the sanitized local result.
+
 ## Current result
 
 **Report access fixed locally. Repair code tested. Live Primary → Secondary sync remains BLOCKED by unverified private-repository access. No DR success or traffic failover is claimed.**
