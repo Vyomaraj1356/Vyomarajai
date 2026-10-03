@@ -5,7 +5,8 @@ from pathlib import Path
 
 CORE = Path(__file__).resolve().parent.parent
 PACKS = {'bhakti': CORE / 'bhakti-experience/content.json',
-         'liquor-bar': CORE / 'liquor-bar/content.json'}
+         'liquor-bar': CORE / 'liquor-bar/content.json',
+         'music': CORE / 'music-experience/content.json'}
 
 
 class InvalidPlan(ValueError):
@@ -15,6 +16,12 @@ class InvalidPlan(ValueError):
 def build_plan(request):
     if not isinstance(request, dict):
         raise InvalidPlan('Request must be a JSON object.')
+    if request.get('experience') == 'music':
+        from music_planner import build_music_plan, InvalidMusicPlan
+        try:
+            return build_music_plan(request, PACKS['music'])
+        except InvalidMusicPlan as exc:
+            raise InvalidPlan(str(exc)) from exc
     allowed = {'experience', 'topic_id', 'recipe_id', 'mode', 'diet', 'exclude_allergens'}
     if set(request) - allowed:
         raise InvalidPlan('Unknown request fields; only allowlisted preferences are accepted.')

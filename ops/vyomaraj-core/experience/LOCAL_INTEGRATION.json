@@ -6,12 +6,26 @@
     "jarvis": "Prepare a deterministic handoff with source references, unresolved mappings and review gates."
   },
   "endpoint": "/api/plan",
-  "experiences": ["bhakti", "liquor-bar"],
-  "modes": ["3d", "4d", "5d"],
+  "experiences": [
+    "bhakti",
+    "liquor-bar",
+    "music"
+  ],
+  "modes": [
+    "3d",
+    "4d",
+    "5d"
+  ],
   "provider": null,
   "automatic_ai_calls": false,
   "automatic_publishing": false,
   "legacy_jarvis_env_loaded": false,
   "production_deployed": false,
-  "dr_sync_verified": false
+  "dr_sync_verified": false,
+  "music_modes": [
+    "radio",
+    "audio",
+    "video"
+  ],
+  "music_agent_assignment_status": "proposed_bindings_to_existing_six_slots"
 }

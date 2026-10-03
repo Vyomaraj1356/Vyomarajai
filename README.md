@@ -51,6 +51,10 @@ For the expanded agent roster, historical candidates, content-label index, platf
 
 The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records the current 404/403 access blockers, local fixes and GitHub PR/CI evidence. For readable tables, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174` and use the Arena live preview. Only the three sanitized reports are served; do not replace this with unrestricted repository-root file serving.
 
+## Music, radio, audio and video
+
+[Memory & Melody](ops/vyomaraj-core/music-experience/README.md) fills the dedicated music experience gap without duplicating the six existing ENT-MUS slots. It adds researched nostalgia/album/folk/world/chart/video discovery, a browser-local authorized-file player, and source-linked Vyomaraj/Jarvis programme plans. Run the shared studio on port 4176 and open `/music/`. [Updated audit and feature report](ops/vyomaraj-core/handover/MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md). Slot functions are proposals; streaming, live charts and external AI are not connected.
+
 ## Bhakti-Shakti and the integrated local studio
 
 The [Bhakti-Shakti feature report](ops/vyomaraj-core/handover/BHAKTI_FEATURE_UPDATE_2026_10_03.md) covers Shiv–Shakti, a 12-chapter proposed Shiva story guide, a Dashavatara overview, nine Shakti Peetha/regional starter profiles and Mahadev television context. The [content guide](ops/vyomaraj-core/bhakti-experience/README.md) explains sources and limitations.

@@ -8,6 +8,8 @@
 
 **Bhakti-Shakti extension and local integration:** See `BHAKTI_FEATURE_UPDATE_2026_10_03.md` for the new Shiv–Shakti/Shiva guide, ten-avatar overview, nine Peetha/regional starter profiles, separate Mahadev TV context and three prasad-style food concepts. New chapter mappings remain proposals and BHAKTI child-slot assignment remains UNMAPPED. A shared local preview now implements deterministic Vyomaraj planning and Jarvis source/review handoffs for both editorial packs. This is not the remote-only LLM engine described in the historical audit below, and does not connect external AI, deploy production or verify DR.
 
+**Music/audio/video extension:** Music and ENT-MUS-S1–S6 already exist. `MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md` records six proposed functional bindings (canonical names still UNKNOWN), 39 discovery cards, a dated IFPI top-five example, browser-local media preview and deterministic programme planning. No extra agents, live chart feed, licensed streaming, production release or DR verification is claimed.
+
 ## 1. Scope and evidence rules
 
 This is a source-backed inventory of the current checkout and selected files inspected at reconciled commit `7b7dd403c79266d3250e6b334a7598a5432adc17`. It is not proof of live devices, connected accounts, paid subscriptions, running agents, production deployments, all private chats, or all 421 product titles. Historical archives have not been exhaustively audited for every embedded content item.

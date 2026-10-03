@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');
  const browser=await chromium.launch({executablePath:process.env.TEST_CHROMIUM_EXECUTABLE||undefined,headless:true});
  try{
   const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(base+'/');await page.waitForFunction(()=>!document.getElementById('plan').disabled);
+  await page.goto(base+'/bhakti/');await page.waitForFunction(()=>!document.getElementById('plan').disabled);
   assert.equal(await page.locator('.story').count(),12);assert.equal(await page.locator('.peetha').count(),9);
   await page.selectOption('#story-filter','Shiv–Shakti');assert.equal(await page.locator('.story').count(),2);
   await page.selectOption('#region','Maharashtra');assert.equal(await page.locator('.peetha').count(),4);
