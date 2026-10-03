@@ -88,3 +88,28 @@ Checked UTC: 2026-10-03T10:39:04.298093+00:00
 - Roster gaps, full product catalog, connected external model services, and all unrelated Vyomaraj feature work.
 
 No destructive cleanup, force update, reverse replication or production traffic switch was performed.
+
+## Post-reconnection check
+
+The user reported reconnecting GitHub through Arena. An immediate fresh check still returned only the primary from `/user/repos`; the installation listing and primary Actions variables were denied with 403; all four historically referenced secondary names returned 404. Reconnection was reported by the user, but expanded permissions are **not yet effective in this session**.
+
+Primary main remained `e69af4d6155aca87eb87f3da5c4c90e1b8b681a1`. Repair-branch push/PR CI runs `37117140429` and `37117142866` succeeded; these are offline checks, not secondary health or sync verification. PR #5 remained OPEN/MERGEABLE and unmerged.
+
+Issue #6 was successfully created. Attempts to add follow-up comments, including a REST comment request after reconnection, were rejected with 403. Those follow-up comments were **not posted**; the evidence is preserved in this committed audit instead.
+
+### Administrator action, without sharing secrets
+
+- The secondary's owner should sign into the account that owns the intended DR repository and check the GitHub app/integration used by Arena under GitHub Settings → Applications / Installed GitHub Apps (https://github.com/settings/installations). Authorize the exact intended repository if that integration supports it. The primary and secondary are under different owners; primary-only authorization does not prove secondary access.
+- In Arena, ensure the relevant secondary connection/installation is selected or refreshed. If both installations already have the right permissions but this session still lists only the primary, the Arena connection/session credential scope needs attention. No credential values should be pasted in chat or committed.
+- The primary owner should separately authorize Actions dispatch/configuration access and securely review the existing Actions secret. Do not change its value in an issue or chat.
+- If session access cannot be extended immediately, an authorized owner can run the prepared **read-only** workflow using their own authorized GitHub CLI. Replace `OWNER/EXACT-DR-REPO` with the confirmed existing repository, not a guessed suffix:
+
+```sh
+gh workflow run vyomaraj-sync-both.yml \
+  --repo Vyomaraj1356/Vyomarajai \
+  --ref arena/01a10140-vyomarajai \
+  -f mode=verify \
+  -f diagnostic_target=OWNER/EXACT-DR-REPO
+```
+
+This request does not enable synchronization or merge the PR. It tests repository identity and tree equality via the workflow's configured credentials. A run URL and its sanitized evidence can be inspected afterward; never share the token. No such owner-executed run is claimed here.
