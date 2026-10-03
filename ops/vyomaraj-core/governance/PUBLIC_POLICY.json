@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-03",
+  "basis": "Owner's explicit entertainment/view-only, voluntary participation and non-harm direction",
+  "purpose": "Entertainment, cultural viewing and lawful creator earning opportunities",
+  "spiritual_content_mode": "view_only_not_practice_instruction",
+  "participation": "voluntary_no_pressure_no_required_belief_or_practice",
+  "respect": ["human dignity", "animal welfare", "religious and cultural sentiments", "religion", "caste", "creed", "community", "belief and non-belief"],
+  "prohibited": ["hazardous ritual instructions", "claims that rituals cure illness", "coercion or exploitation", "harm or cruelty to humans or animals", "identity-based humiliation or discrimination", "unlicensed monetization", "guaranteed-income claims"],
+  "earning": {
+    "opportunities_only": true,
+    "guaranteed_income": false,
+    "payment_or_payout_service_connected": false,
+    "requirements": ["rights and permissions", "participant consent", "platform rules", "applicable law and tax obligations", "clear commercial disclosures"]
+  },
+  "aghor": {"viewer": "/aghor/", "plan_generation_enabled": false, "ritual_steps_enabled": false, "clinical_service": false},
+  "legal": {"contract_status": "draft_for_review_not_executed", "acceptance_collected": false, "legal_compliance_certified": false},
+  "limits": "A statement of policy is not a guarantee that no one will ever be offended or harmed, and does not excuse unsafe or unlawful conduct."
+}

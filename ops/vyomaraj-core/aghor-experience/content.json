@@ -279,15 +279,10 @@
   "practices": [
     {
       "id": "reflection",
-      "title": "A gentle reflection sequence",
-      "kind": "Optional personal practice",
-      "summary": "A brief, ordinary practice for attention and self-reflection; no promised medical or spiritual outcome.",
-      "steps": [
-        "Choose a comfortable, safe seat; eyes may remain open.",
-        "For a few minutes notice ordinary breathing without holding, forcing or speeding it. Stop if uncomfortable.",
-        "Notice one habitual judgement without acting on it.",
-        "Choose one respectful, practical action for the day."
-      ],
+      "title": "Reflection in public accounts",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Some public accounts discuss attention and self-reflection. This is contextual description, not a guided exercise or promised outcome.",
+      "steps": [],
       "source_ids": [
         "lineage",
         "foundation"
@@ -297,15 +292,10 @@
     },
     {
       "id": "prayer",
-      "title": "Optional prayer or japa",
-      "kind": "Optional personal practice",
-      "summary": "Use only a familiar, freely chosen public prayer; lineage-specific initiation requires qualified, consent-respecting guidance.",
-      "steps": [
-        "Choose silence or a prayer already meaningful to you.",
-        "Repeat at an easy pace without breath restrictions or strain.",
-        "End when you wish; no minimum count or fear-based obligation is imposed.",
-        "Treat the practice as personal meaning, not proof of cure or supernatural power."
-      ],
+      "title": "Prayer and japa: cultural context",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Prayer and japa appear in devotional accounts. Viewing this description requires no belief or participation; no initiation or practice instructions are supplied.",
+      "steps": [],
       "source_ids": [
         "lineage"
       ],
@@ -314,15 +304,10 @@
     },
     {
       "id": "service",
-      "title": "A consent-led seva plan",
-      "kind": "Community service",
-      "summary": "A practical service checklist, not permission to provide clinical treatment.",
-      "steps": [
-        "Ask a reputable local organization what help is wanted.",
-        "Agree on a role within your skills, time and consent boundaries.",
-        "Offer respectful assistance without stigma or filming people without consent.",
-        "Refer clinical decisions to qualified staff and review whether the help was useful."
-      ],
+      "title": "Seva: community-service context",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Institutional accounts emphasize service and dignity. This is background about those accounts, not an instruction or authorization to provide treatment.",
+      "steps": [],
       "source_ids": [
         "foundation",
         "syracuse",
@@ -333,15 +318,10 @@
     },
     {
       "id": "study",
-      "title": "A source-checking study session",
-      "kind": "Learning",
-      "summary": "A reading workflow that keeps different forms of evidence separate.",
-      "steps": [
-        "Read one attributed tradition account.",
-        "Compare it with the academic discussion and note uncertainties.",
-        "Put health claims in a separate list requiring clinical evidence.",
-        "Keep a source/date note; do not copy private stories or publish personal claims without consent."
-      ],
+      "title": "Reading different kinds of evidence",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Academic history, lineage narratives and clinical sources have different evidentiary roles. This card describes the distinction without assigning a practice plan.",
+      "steps": [],
       "source_ids": [
         "chapter",
         "barrett",
@@ -353,15 +333,10 @@
     },
     {
       "id": "visit",
-      "title": "Visiting a community respectfully",
-      "kind": "Visitor safeguards",
-      "summary": "No live opening hours, invitation or teacher appointment is verified.",
-      "steps": [
-        "Confirm public visiting rules directly with the institution.",
-        "Arrange ordinary safe travel and respect privacy and consent.",
-        "Decline pressure to ingest unknown substances, handle remains, accept unwanted contact or buy a guaranteed cure.",
-        "Leave if unsafe; retain access to your medicines and healthcare."
-      ],
+      "title": "Community visits: context only",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Visits in institutional narratives do not establish an invitation, opening hours or current appointment. No visit or participation is required.",
+      "steps": [],
       "source_ids": [
         "lineage",
         "foundation",
@@ -373,8 +348,8 @@
     {
       "id": "historical-rites",
       "title": "Historical ritual practices: context only",
-      "kind": "Not a how-to",
-      "summary": "Accounts of cremation-ground or boundary-crossing rites belong to contextual religious study, not an operational practice plan.",
+      "kind": "ENTERTAINMENT · VIEW ONLY",
+      "summary": "Historical rites are described as religious context only. No procedure supplied; no hazardous instructions, imitation request or cure claim.",
       "steps": [],
       "source_ids": [
         "barrett",
@@ -623,6 +598,7 @@
     }
   ],
   "editorial_rules": [
+    "Entertainment and view-only cultural context. Participation is voluntary; no practice plans, hazardous rituals, cure claims or harm to humans, animals or communities.",
     "New chapter mappings are proposals, not recovered historical chapter titles.",
     "Selected figures are not ranked by powers, fame or medical outcomes.",
     "Aghor traditions are diverse; sensational practices are not attributed to every practitioner.",
@@ -631,5 +607,7 @@
     "Householder steps are optional editorial suggestions, not authorized lineage initiation.",
     "Respect patient dignity, privacy, consent and lawful institutional access.",
     "Historical and theological dating are separate; no founding date of India or the universe is fabricated."
-  ]
+  ],
+  "content_mode": "entertainment_view_only",
+  "plan_generation_enabled": false
 }

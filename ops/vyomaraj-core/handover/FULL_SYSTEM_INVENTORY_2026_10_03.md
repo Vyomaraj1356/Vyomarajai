@@ -8,6 +8,7 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 
 | Area | Viewer / report |
 |---|---|
+| Sovereign policy / draft contracts | /sovereign/ · /contracts/ · /reports/policy |
 | Current hierarchy | /agents/ · /reports/agents |
 | Aghor & Aghori | /aghor/ · /reports/aghor |
 | Latest DR / Aghor update | /reports/resilience |

@@ -1,5 +1,7 @@
 # Aghor & Aghori — Bhakti-Shakti Research Update
 
+**Latest owner correction:** Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Aghor practice-plan UI/API and all practice steps have been removed. Previous planner descriptions below are historical. See `/reports/policy`, `/sovereign/` and `/contracts/` for the current non-harm policy and draft earning terms.
+
 **3 October 2026 · source-aware editorial guide · no initiation or medical service**
 
 ## New requested sub-agent

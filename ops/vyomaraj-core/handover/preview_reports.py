@@ -9,6 +9,9 @@ from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
 REPORTS = {
+    '/sovereign/': 'SOVEREIGN_POLICY_2026_10_03.md',
+    '/contracts/': 'ENTERTAINMENT_CONTRACTS_2026_10_03.md',
+    '/reports/policy': 'VIEW_ONLY_UPDATE_2026_10_03.md',
     '/reports/aghor': 'AGHOR_RESEARCH_2026_10_03.md',
     '/reports/resilience': 'DR_AGHOR_INTEGRATION_2026_10_03.md',
     '/reports/agents': 'AGENT_RECONCILIATION_2026_10_03.md',
@@ -97,7 +100,7 @@ class Handler(BaseHTTPRequestHandler):
             content = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                        '<meta name="viewport" content="width=device-width,initial-scale=1">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
-                       '<nav><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
+                       '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
                        '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. GitHub replication is not verified; see the latest DR & integration report.</p>'

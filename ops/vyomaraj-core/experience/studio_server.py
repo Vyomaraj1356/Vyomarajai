@@ -25,7 +25,7 @@ def research_store():
         RESEARCH_STORE = discovery.Store()
     return RESEARCH_STORE
 
-ASSETS = {}
+ASSETS = {'/policy.json': (CORE / 'governance/PUBLIC_POLICY.json', 'application/json')}
 for prefix, directory in [('/aghor/', 'aghor-experience'), ('/bhakti/', 'bhakti-experience'), ('/pairings/', 'liquor-bar'), ('/music/', 'music-experience'), ('/film/', 'film-experience')]:
     for name, mime in [('index.html', 'text/html'), ('app.js', 'application/javascript'),
                        ('styles.css', 'text/css'), ('content.json', 'application/json')]:
@@ -42,6 +42,9 @@ for name, mime in [('index.html','text/html'),('app.js','application/javascript'
 ASSETS['/agents/'] = ASSETS['/agents/index.html']
 ASSETS['/education/'] = ASSETS['/agents/index.html']
 REPORTS = {
+    '/sovereign/': 'SOVEREIGN_POLICY_2026_10_03.md',
+    '/contracts/': 'ENTERTAINMENT_CONTRACTS_2026_10_03.md',
+    '/reports/policy': 'VIEW_ONLY_UPDATE_2026_10_03.md',
     '/reports/aghor': 'AGHOR_RESEARCH_2026_10_03.md',
     '/reports/resilience': 'DR_AGHOR_INTEGRATION_2026_10_03.md',
     '/reports/agents': 'AGENT_RECONCILIATION_2026_10_03.md',
@@ -115,10 +118,10 @@ class Handler(BaseHTTPRequestHandler):
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                     '<meta name="viewport" content="width=device-width,initial-scale=1">'
                     '<title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
-                    '<nav><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
+                    '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
                     '<a href="/reports/dr">DR status</a></nav>'
-                    '<p class="notice">Local preview and planning are implemented. External AI, production deployment '
+                    '<p class="notice">Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Respect for humans, animals, religions, castes and creeds. Earning is not guaranteed. Local preview and creative planning are implemented. External AI, production deployment '
                     'and DR synchronization are not verified.</p>' + body + '</main></html>')
             self.send_bytes(page.encode(), 'text/html')
         else:
@@ -170,7 +173,7 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=4176)
-    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'research', 'agents', 'education', 'aghor'), default='bhakti')
+    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'research', 'agents', 'education', 'aghor', 'reports'), default='bhakti')
     args = parser.parse_args()
     Handler.home_route = '/' + args.home + '/'
     threading.Thread(target=discovery.worker_loop, args=(research_store(), threading.Event()), daemon=True).start()

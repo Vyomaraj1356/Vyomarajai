@@ -1,5 +1,7 @@
 # Vyomaraj + Jarvis — Bhakti-Shakti feature update
 
+**Latest owner correction:** Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Aghor practice-plan UI/API and all practice steps have been removed. Previous planner descriptions below are historical. See `/reports/policy`, `/sovereign/` and `/contracts/` for the current non-harm policy and draft earning terms.
+
 > **Later requested addition:** `BHAKTI-AGHOR-S1` / Aghor & Aghori is now added without replacing either earlier unnamed Bhakti slot. BHAKTI has 3; active total 128. Open `/aghor/`, `/reports/aghor` and `/reports/resilience`. Earlier two-slot/mapping descriptions below remain historical for the original pack.
 
 > **Later owner-approved reconciliation:** Current directory `/agents/`; Education and all Government Schemes `/education/`; report `/reports/agents`. Current counts are 13 categories / 127 counted slots / 6 uncounted headings (Education 16, Finance 7, Entertainment 32). Earlier 133/38/15/8 figures below describe the historical snapshot, not current counts. Existing feature slot IDs and earlier validation evidence are preserved.

@@ -12,7 +12,7 @@
         "ENT-BAR-S1"
       ],
       "canonical_relationship": "siblings",
-      "experience_navigation": "Liquor → Bar pairings",
+      "experience_navigation": "Liquor \u2192 Bar pairings",
       "status": "editorial_proposal_with_browser_prototype",
       "historical_chapter_titles_recovered": false,
       "proposed_liquor_chapters": 12,
@@ -89,7 +89,10 @@
       "registry_totals_changed": true,
       "automatic_provider_calls": false,
       "automatic_publishing": false,
-      "medical_treatment": false
+      "medical_treatment": false,
+      "content_mode": "entertainment_view_only",
+      "plan_generation_enabled": false,
+      "policy": "/sovereign/"
     }
   ]
 }

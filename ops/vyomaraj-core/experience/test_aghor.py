@@ -25,21 +25,21 @@ class AghorTests(unittest.TestCase):
     def test_unsafe_rites_have_no_steps(self):
         self.assertEqual(next(x for x in self.data['practices'] if x['id']=='historical-rites')['steps'],[])
         self.assertTrue(all(not x['diagnosis_or_prescription'] for x in self.data['care']))
-    def test_plan_modes(self):
+    def test_plan_modes_disabled(self):
         for mode in ('study','reflection','service'):
-            r=p.build_plan({'experience':'aghor','topic_id':'medicine','mode':mode})
-            self.assertEqual(r['canonical_agent_ids'],['BHAKTI-AGHOR-S1']);self.assertEqual(r['category_id'],'BHAKTI')
-            self.assertTrue(r['steps']);self.assertFalse(r['medical_treatment']);self.assertFalse(r['ai_calls_made'])
+            with self.assertRaisesRegex(p.InvalidPlan,'view-only'):
+                p.build_plan({'experience':'aghor','topic_id':'medicine','mode':mode})
     def test_invalid_fields_and_modes(self):
         for more in [{'mode':'ritual'},{'mode':'treatment'},{'symptoms':'pain'},{'dose':5},{'topic_id':'../../secret'},{'mode':[]},{'topic_id':None},{'publish':True}]:
             with self.assertRaises(p.InvalidPlan):p.build_plan({'experience':'aghor',**more})
-    def test_all_chapters_can_be_studied(self):
-        for c in self.data['chapters']:self.assertTrue(p.build_plan({'experience':'aghor','topic_id':c['id']})['source_references'])
-    def test_reads_only_two_safe_metadata_files(self):
-        original=Path.read_text;seen=[]
-        def read(path,*a,**k):
-            self.assertIn(path,{p.PACKS['aghor'],p.CORE/'agents/AGENT_REGISTRY_CURRENT.json'});seen.append(path);return original(path,*a,**k)
-        with patch.object(Path,'read_text',read):p.build_plan({'experience':'aghor'})
-        self.assertEqual(len(seen),2)
+    def test_all_chapters_are_view_only(self):
+        self.assertEqual(self.data['content_mode'],'entertainment_view_only')
+        self.assertFalse(self.data['plan_generation_enabled'])
+        self.assertTrue(all(x['steps']==[] for x in self.data['practices']))
+        for c in self.data['chapters']:
+            with self.assertRaises(p.InvalidPlan):p.build_plan({'experience':'aghor','topic_id':c['id']})
+    def test_disabled_planner_reads_no_files(self):
+        with patch.object(Path,'read_text',side_effect=AssertionError('No file reads expected')):
+            with self.assertRaises(p.InvalidPlan):p.build_plan({'experience':'aghor'})
 
 if __name__=='__main__':unittest.main()

@@ -1,3 +1,7 @@
+# Aghor & Aghori — View-only update
+
+Owner correction: entertainment and viewing only, voluntary participation and non-harm. All practice steps removed; Aghor plan API rejects every request. Source-aware chapters, context cards and care boundaries remain. Sovereign `/sovereign/`, draft terms `/contracts/`, current update `/reports/policy`. Earlier implementation notes below are historical, not available planning features.
+
 # Aghor & Aghori — Bhakti-Shakti sub-agent
 
 User-requested new agent `BHAKTI-AGHOR-S1` under BHAKTI / Bhakti-Shakti. The previous two unnamed Bhakti slots are preserved; active totals become **128 counted slots, 13 categories, six uncounted headings**, with 42 supplied/approved names and 86 still unnamed.

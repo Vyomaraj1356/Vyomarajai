@@ -19,7 +19,7 @@ Local capabilities: discovery, food rotation/steps/preferences, deterministic Vy
 
 ## Aghor & Aghori — later requested Bhakti sub-agent
 
-Viewer /aghor/; research /reports/aghor; latest deployment/DR evidence /reports/resilience. BHAKTI-AGHOR-S1 is a new user-requested slot; BHAKTI now has 3 and the active total is 128. Fourteen proposed study chapters, seven selected figures, six practice-context cards and six care-boundary cards. Not a clinical service, initiation or supernatural ranking.
+Entertainment and view-only; Aghor planning disabled. Sovereign /sovereign/; draft contracts /contracts/; latest policy /reports/policy. Viewer /aghor/; research /reports/aghor; latest deployment/DR evidence /reports/resilience. BHAKTI-AGHOR-S1 is a new user-requested slot; BHAKTI now has 3 and the active total is 128. Fourteen proposed study chapters, seven selected figures, six practice-context cards and six care-boundary cards. Not a clinical service, initiation or supernatural ranking.
 
 ### Aghor: chapters
 
@@ -50,11 +50,11 @@ Viewer /aghor/; research /reports/aghor; latest deployment/DR evidence /reports/
 
 ### Aghor: practices
 
-- A gentle reflection sequence
-- Optional prayer or japa
-- A consent-led seva plan
-- A source-checking study session
-- Visiting a community respectfully
+- Reflection in public accounts
+- Prayer and japa: cultural context
+- Seva: community-service context
+- Reading different kinds of evidence
+- Community visits: context only
 - Historical ritual practices: context only
 
 ### Aghor: care

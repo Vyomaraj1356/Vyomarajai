@@ -550,7 +550,7 @@
     },
     {
       "id": "aghor:practices:reflection",
-      "title": "A gentle reflection sequence",
+      "title": "Reflection in public accounts",
       "owner_category": "BHAKTI",
       "kind": "editorial_practices",
       "source_refs": [
@@ -563,7 +563,7 @@
     },
     {
       "id": "aghor:practices:prayer",
-      "title": "Optional prayer or japa",
+      "title": "Prayer and japa: cultural context",
       "owner_category": "BHAKTI",
       "kind": "editorial_practices",
       "source_refs": [
@@ -576,7 +576,7 @@
     },
     {
       "id": "aghor:practices:service",
-      "title": "A consent-led seva plan",
+      "title": "Seva: community-service context",
       "owner_category": "BHAKTI",
       "kind": "editorial_practices",
       "source_refs": [
@@ -589,7 +589,7 @@
     },
     {
       "id": "aghor:practices:study",
-      "title": "A source-checking study session",
+      "title": "Reading different kinds of evidence",
       "owner_category": "BHAKTI",
       "kind": "editorial_practices",
       "source_refs": [
@@ -602,7 +602,7 @@
     },
     {
       "id": "aghor:practices:visit",
-      "title": "Visiting a community respectfully",
+      "title": "Community visits: context only",
       "owner_category": "BHAKTI",
       "kind": "editorial_practices",
       "source_refs": [
