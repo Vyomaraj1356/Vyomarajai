@@ -51,6 +51,10 @@ For the expanded agent roster, historical candidates, content-label index, platf
 
 The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records the current 404/403 access blockers, local fixes and GitHub PR/CI evidence. For readable tables, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174` and use the Arena live preview. Only the three sanitized reports are served; do not replace this with unrestricted repository-root file serving.
 
+## Liquor + Bar: Roots & Pairings
+
+The [Liquor/Bar content expansion](ops/vyomaraj-core/liquor-bar/README.md) adds local tadi/toddy, regional/global cultural research, event-source records, and eight chakhna/snack concepts with preparation, allergen preferences and non-alcoholic pairings. Run `python ops/vyomaraj-core/liquor-bar/server.py --port 4175` for the interactive browser prototype. Its 3D-style plate, 4D sequence and 5D preference controls are illustrative; no AI renderer or alcohol service is connected. Proposed chapters live in a separate extension catalog without changing the original 133/421 counts or 32-file snapshot.
+
 ## Priority recovery / cleanup status
 
 The [non-destructive recovery audit](ops/vyomaraj-core/handover/PRIORITY_RECOVERY_AUDIT_2026_10_03.md) records the full available primary fetch, duplicate archive candidates and the ordered reconciliation plan. Secondary access is still blocked; see [priority issue #6](https://github.com/Vyomaraj1356/Vyomarajai/issues/6). Do not delete historical archives or enable exact-snapshot DR writes before secondary-only work has been inspected and preserved.

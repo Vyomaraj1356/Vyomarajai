@@ -42,6 +42,8 @@ jobs:
           python ops/vyomaraj-core/handover/rebuild_handover.py --check
           python -m unittest discover -s ops/vyomaraj-core/handover -p 'test_*.py' -v
           node --test ops/vyomaraj-core/test_safe_metadata.cjs
+          python -m unittest discover -s ops/vyomaraj-core/liquor-bar -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/liquor-bar/app.js
           bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh
 
   verify-or-sync:
