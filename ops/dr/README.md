@@ -1,5 +1,9 @@
 # Safe Primary → DR verification and replication
 
+## Deployed MATCH — 3 October 2026
+
+PR #5 merged at `3793020`; main sync `37126108656` and scheduled repeat `37126121716` succeeded with tree `e69e5c90f2ddec237a307b45830cff712649ed92` on both repositories (244 tracked files at that checkpoint). Rollback parent: `7107980ce0bb1fc788da9e1f7a87f3d6cd9bf1d3`. Evidence: `DEPLOYED_MATCH_2026_10_03.json`; report `/reports/resilience`. The one-snapshot approval is consumed/disabled; future target-only removal remains guarded. This is not runtime/site DR or a permanent live-HEAD guarantee. Earlier pending statements below are historical.
+
 ## Latest confirmed mismatch: 125 primary files + 149 secondary-only files
 
 Real Actions probe run `37125323786` succeeded using the existing Actions credential. Primary main has 125 files, secondary 274; missing 0, changed shared content/mode 0, secondary-only 149. `ACTIONS_PROBE_EVIDENCE_2026_10_03.json` retains the sanitized check-run annotation. This confirms the current tree mismatch and demonstrates that Actions read access works, separately from Arena's restricted credential.
