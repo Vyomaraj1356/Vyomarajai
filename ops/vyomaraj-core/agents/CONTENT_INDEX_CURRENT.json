@@ -276,6 +276,435 @@
       "full_content_imported": false
     },
     {
+      "id": "aghor:chapters:meaning",
+      "title": "Aghor, Aghori and Aughar: words and meanings",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.meaning"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:origins",
+      "title": "Sacred origins are not a dated beginning of the universe",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.origins"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:history",
+      "title": "History, hagiography and the limits of the record",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.history"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:kinaram",
+      "title": "Kina Ram / Kinaram / Keenaram and Krim Kund",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.kinaram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:bhagwan-reform",
+      "title": "Bhagwan Ram and twentieth-century service",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.bhagwan-reform"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:living",
+      "title": "Contemporary communities and diaspora",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.living"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:types",
+      "title": "Ways of describing practice—not fixed universal types",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.types"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:sadhana",
+      "title": "Sadhana: ordinary discipline and personal boundaries",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.sadhana"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:seva",
+      "title": "Seva: service without stigma",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.seva"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:ritual-context",
+      "title": "Cremation-ground imagery and antinomian traditions",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.ritual-context"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:medicine",
+      "title": "Ethnography is not a clinical treatment trial",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.medicine"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:leprosy",
+      "title": "Hansen disease: treatment and dignity",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.leprosy"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:upayas",
+      "title": "Upayas as optional support, not promised cures",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.upayas"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:chapters:research-ethics",
+      "title": "Study respectfully and verify claims",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_chapters",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "chapters.research-ethics"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:shiva",
+      "title": "Shiva / Aghora aspect",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.shiva"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:dattatreya",
+      "title": "Dattatreya",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.dattatreya"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:kaluram",
+      "title": "Baba Kaluram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.kaluram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:kina-ram",
+      "title": "Baba Kina Ram / Kinaram / Keenaram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.kina-ram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:bhagwan-ram",
+      "title": "Aghoreshwar Bhagwan Ram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.bhagwan-ram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:harihar-ram",
+      "title": "Baba Harihar Ram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.harihar-ram"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:people:siddharth",
+      "title": "Baba Siddharth Gautam Ram",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_people",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "people.siddharth"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:reflection",
+      "title": "A gentle reflection sequence",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.reflection"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:prayer",
+      "title": "Optional prayer or japa",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.prayer"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:service",
+      "title": "A consent-led seva plan",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.service"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:study",
+      "title": "A source-checking study session",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.study"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:visit",
+      "title": "Visiting a community respectfully",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.visit"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:practices:historical-rites",
+      "title": "Historical ritual practices: context only",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_practices",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "practices.historical-rites"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-skin",
+      "title": "Skin patches, numbness or suspected leprosy",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-skin"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-claims",
+      "title": "Pain, infertility and other cure claims",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-claims"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-products",
+      "title": "Ashes, unknown herbs and mineral preparations",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-products"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-fear",
+      "title": "Fear of curses or supernatural harm",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-fear"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-emergency",
+      "title": "Serious symptoms or immediate danger",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-emergency"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "aghor:care:care-upaya",
+      "title": "A non-medical upaya checklist",
+      "owner_category": "BHAKTI",
+      "kind": "editorial_care",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/aghor-experience/content.json",
+          "locator": "care.care-upaya"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
       "id": "film:items:shyam",
       "title": "Shyamchi Aai · 1953 version",
       "owner_category": "ENTERTAINMENT",
@@ -1823,7 +2252,7 @@
       "full_content_imported": false
     }
   ],
-  "indexed_reference_count": 140,
+  "indexed_reference_count": 173,
   "education_topic_count": 21,
   "deduplication_basis": "Exact identity + equal source record only. Conflicts stop rebuild; similar titles, different editions or source contexts are not silently merged.",
   "duplicates_removed": [],

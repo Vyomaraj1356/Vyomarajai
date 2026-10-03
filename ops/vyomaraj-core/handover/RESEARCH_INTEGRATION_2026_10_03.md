@@ -1,5 +1,7 @@
 # Vyomaraj / Jarvis — Integrated Research & System Update
 
+> **Latest DR / Aghor follow-up:** `/reports/resilience` supersedes earlier live-status statements below. Primary main advanced to `9be6d39`; the corrected secondary ends `6d64e`. Main Actions run `37123060948` passed authentication but failed replication; integrity reporting was skipped. Arena access still differs (404/403). A same-host failover rehearsal is tested separately, not production DR. The newly requested Aghor sub-agent makes the active total 128 (BHAKTI 3); see `/aghor/` and `/reports/aghor`.
+
 > **Later owner-approved reconciliation:** Current directory `/agents/`; Education and all Government Schemes `/education/`; report `/reports/agents`. Current counts are 13 categories / 127 counted slots / 6 uncounted headings (Education 16, Finance 7, Entertainment 32). Earlier 133/38/15/8 figures below describe the historical snapshot, not current counts. Existing feature slot IDs and earlier validation evidence are preserved.
 
 **3 October 2026 · review branch · metadata-only discovery · no production or DR-success claim**

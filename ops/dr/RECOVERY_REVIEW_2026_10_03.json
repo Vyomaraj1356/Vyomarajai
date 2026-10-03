@@ -1,0 +1,5 @@
+{
+  "status": "BLOCKED",
+  "reason": "read_access_or_snapshot_validation_failed",
+  "writes_performed": false
+}

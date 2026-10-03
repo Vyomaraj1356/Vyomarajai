@@ -11,7 +11,7 @@ class RegistryTests(unittest.TestCase):
         self.source=json.loads(r.SNAPSHOT.read_text());self.rules=json.loads((r.HERE/'RECONCILIATION_RULES.json').read_text())
         self.data=r.build(self.source,self.rules)
     def test_current_totals(self):
-        self.assertEqual(self.data['totals']['sub_agents'],127);self.assertEqual(self.data['totals']['main_agents'],13)
+        self.assertEqual(self.data['totals']['sub_agents'],128);self.assertEqual(self.data['totals']['main_agents'],13)
         self.assertEqual(self.data['totals']['uncounted_parent_headings'],6)
     def test_education_finance_transfer(self):
         cats={c['id']:c for c in self.data['categories']}
@@ -36,7 +36,7 @@ class RegistryTests(unittest.TestCase):
     def test_no_names_coined_for_unknowns(self):
         unnamed=[a for a in self.data['agents'] if a['name'] is None]
         self.assertEqual(len(unnamed),86);self.assertTrue(all(a['name_status']=='UNKNOWN' for a in unnamed))
-        self.assertEqual(sum(a['name'] is not None for a in self.data['agents']),41)
+        self.assertEqual(sum(a['name'] is not None for a in self.data['agents']),42)
     def test_grantha_six_stay_unassigned(self):
         for i in range(8,14):self.assertIsNone(next(a for a in self.data['agents'] if a['id']==f'EDU-S{i}')['name'])
     def test_platform_serial_not_source_s20(self):
@@ -61,13 +61,13 @@ class RegistryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Conflicting duplicate'):r.build(self.source,self.rules)
     def test_education_duplicate_exact_removed(self):
         rows=self.source['rosters']['EDU']['entries'];rows.append(copy.deepcopy(rows[0]));d=r.build(self.source,self.rules)
-        self.assertEqual(d['totals']['sub_agents'],127);self.assertEqual(len(d['count_reconciliation']['exact_duplicate_records_removed']),1)
+        self.assertEqual(d['totals']['sub_agents'],128);self.assertEqual(len(d['count_reconciliation']['exact_duplicate_records_removed']),1)
     def test_education_duplicate_conflict_refused(self):
         rows=self.source['rosters']['EDU']['entries'];new=copy.deepcopy(rows[0]);new['name']='Different';rows.append(new)
         with self.assertRaisesRegex(ValueError,'Conflicting duplicate'):r.build(self.source,self.rules)
     def test_entertainment_group_duplicate_removed(self):
         rows=self.source['rosters']['ENTERTAINMENT']['groups'];rows.append(copy.deepcopy(rows[2]));d=r.build(self.source,self.rules)
-        self.assertEqual(d['totals']['sub_agents'],127)
+        self.assertEqual(d['totals']['sub_agents'],128)
     def test_platform_and_named_roster_duplicates_removed(self):
         self.source['rosters']['PLATFORM']['lanes'].append('YouTube');self.source['rosters']['WAR'].append('PAST')
         d=r.build(self.source,self.rules);self.assertEqual(len(d['count_reconciliation']['exact_duplicate_records_removed']),2)

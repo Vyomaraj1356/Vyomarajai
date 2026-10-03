@@ -14,6 +14,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -27,8 +28,9 @@ class CheckError(Exception):
 
 
 class APIError(CheckError):
-    def __init__(self, status):
+    def __init__(self, status, operation=None):
         self.status = status
+        self.operation = operation
         explanation = {
             401: 'Invalid or expired credentials; reconnect GitHub / review the Actions secret.',
             403: 'Access denied or rate limited; review repository/Actions permissions.',
@@ -62,18 +64,30 @@ class GitHub:
                 match = re.search(r'HTTP (\d{3})', result.stderr)
                 raise APIError(int(match.group(1)) if match else 'unavailable')
             return json.loads(result.stdout)
+        operation = method + ':' + next((part for part in ('git/blobs','git/trees','git/commits','git/refs','git/ref') if part in path), 'identity' if path == 'user' else 'repository')
         headers = {'Authorization': f'Bearer {self.token}',
                    'Accept': 'application/vnd.github+json',
                    'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'Vyomaraj-DR-Check'}
         data = None if body is None else json.dumps(body).encode()
         req = urllib.request.Request(API + '/' + path, data=data, headers=headers, method=method)
-        try:
-            with self.opener.open(req, timeout=60) as response:
-                return json.load(response)
-        except urllib.error.HTTPError as exc:
-            raise APIError(exc.code) from None
-        except (urllib.error.URLError, TimeoutError) as exc:
-            raise CheckError('GitHub network request failed; response details withheld') from exc
+        for attempt in range(3):
+            try:
+                with self.opener.open(req, timeout=60) as response:
+                    return json.load(response)
+            except urllib.error.HTTPError as exc:
+                if method == 'GET' and exc.code in (429, 502, 503, 504) and attempt < 2:
+                    delay = 2 ** attempt
+                    retry_after = exc.headers.get('Retry-After') if exc.headers else None
+                    if retry_after is not None:
+                        try: delay = int(retry_after)
+                        except ValueError: raise APIError(exc.code, operation) from None
+                    if not 0 <= delay <= 60: raise APIError(exc.code, operation) from None
+                    time.sleep(max(1, delay)); continue
+                raise APIError(exc.code, operation) from None
+            except (urllib.error.URLError, TimeoutError, OSError):
+                if method == 'GET' and attempt < 2:
+                    time.sleep(2 ** attempt); continue
+                raise CheckError('GitHub network request failed; response details withheld; writes are never blindly retried') from None
 
 
 def validate_target(target):
@@ -99,7 +113,7 @@ def assert_unchanged(client, repo, expected):
         raise CheckError('Source or target changed during the operation; refusing stale replication')
 
 
-def source_entries(response):
+def source_entries(response, allow_empty=False):
     if response.get('truncated') or not isinstance(response.get('tree'), list):
         raise CheckError('Truncated/invalid source tree; refusing partial replication')
     entries = []
@@ -114,7 +128,7 @@ def source_entries(response):
             raise CheckError('Invalid or duplicate source path')
         seen.add(path)
         entries.append(entry)
-    if not entries:
+    if not entries and not allow_empty:
         raise CheckError('Empty source snapshot refused')
     return entries
 
@@ -123,7 +137,7 @@ def git_blob_sha(raw):
     return hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
 
 
-def replicate(primary, secondary, target, src, dst):
+def replicate(primary, secondary, target, src, dst, metrics=None):
     """Build exact tree, verify before publication, preserve prior DR history.
 
     Target-only files are removed from the new snapshot, not its history. This
@@ -131,8 +145,16 @@ def replicate(primary, secondary, target, src, dst):
     """
     source = primary.request('GET', f'repos/{PRIMARY}/git/trees/{src["tree"]}?recursive=1')
     entries = source_entries(source)
+    old_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{dst["tree"]}?recursive=1'), allow_empty=True)
+    available = {entry['sha'] for entry in old_entries}
+    metrics = {} if metrics is None else metrics
+    metrics.update(uploaded_blobs=0, reused_blobs=0)
     target_entries = []
     for entry in entries:
+        if entry['sha'] in available:
+            target_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+            metrics['reused_blobs'] += 1
+            continue
         blob = primary.request('GET', f'repos/{PRIMARY}/git/blobs/{entry["sha"]}')
         if blob.get('encoding') != 'base64':
             raise CheckError('Unsupported blob encoding')
@@ -143,6 +165,8 @@ def replicate(primary, secondary, target, src, dst):
                                     {'encoding': 'base64', 'content': base64.b64encode(raw).decode()})
         if created['sha'] != entry['sha']:
             raise CheckError('Target blob integrity mismatch')
+        available.add(entry['sha'])
+        metrics['uploaded_blobs'] += 1
         target_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
     # No base_tree: retaining it would preserve deleted source files on DR.
     tree = secondary.request('POST', f'repos/{target}/git/trees', {'tree': target_entries})['sha']
@@ -188,14 +212,15 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
     src, dst = snapshot(primary, PRIMARY), snapshot(secondary, target)
     # Never fabricate an initial target on a 404: permission failure is ambiguous.
     changed = False
+    transfer = {'uploaded_blobs': 0, 'reused_blobs': 0}
     if src['tree'] != dst['tree'] and sync:
-        dst = replicate(primary, secondary, target, src, dst)
+        dst = replicate(primary, secondary, target, src, dst, transfer)
         changed = True
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
     return {'primary_repository': PRIMARY, 'secondary_repository': target, 'branch': BRANCH,
             'primary': src, 'secondary': dst, 'data_match': src['tree'] == dst['tree'],
-            'replication_performed': changed, 'traffic_switched': False,
+            'replication_performed': changed, 'traffic_switched': False, 'transfer': transfer,
             'status': 'MATCH' if src['tree'] == dst['tree'] else 'MISMATCH'}
 
 
@@ -213,7 +238,7 @@ def main():
         # input in exception messages; never emit them or provider response bodies.
         result = {'status': 'BLOCKED', 'detail': str(exc) if isinstance(exc, CheckError)
                   else 'Malformed source/API response; no success claimed',
-                  'traffic_switched': False}
+                  'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None)}
         code = 2
     result['checked_at_utc'] = datetime.now(timezone.utc).isoformat()
     result['requested_operation'] = 'sync' if args.sync else 'read_only_verification'

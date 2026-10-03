@@ -1,13 +1,15 @@
 # Current Vyomaraj hierarchy / Education reconciliation
 
+**Later Aghor addition:** `BHAKTI-AGHOR-S1` is a new user-requested slot. Active total is now 128 (BHAKTI 3, named 42, unnamed 86); the earlier 127-slot reconciliation and 180-test results below describe the preceding baseline. Current evidence: `/reports/resilience`. The active index now contains 173 references across Education and five editorial packs, including 33 Aghor chapter/profile/practice/care records.
+
 The user explicitly approved **all Government Schemes under Education** and **Comedy, Cartoon, Music, Movie, Wit and Shayari as parent headings, not extra counted agents**.
 
 ## Current source of truth
 
-- `AGENT_REGISTRY_CURRENT.json`: 13 categories, **127 counted positions**, six uncounted headings; **Education 16, Finance 7, Entertainment 32**. Other category counts unchanged.
+- `AGENT_REGISTRY_CURRENT.json`: 13 categories, **128 counted positions**, six uncounted headings; **Education 16, Finance 7, Entertainment 32**. Bhakti-Shakti now has 3 after the newly requested Aghor addition; other category counts are unchanged.
 - `RECONCILIATION_RULES.json`: owner-approved transformation from the pinned historical registry. The active builder is deterministic and refuses conflicting duplicate identities.
 - `CONTENT_OWNERSHIP_CURRENT.json`: 21 Education topic references, including all Government Schemes. Source-backed single-slot mappings are retained; shared Grantha positions remain unmapped.
-- `CONTENT_INDEX_CURRENT.json`: 140 indexed references (21 Education + 119 selected references from the four editorial packs). **Not** all 421 products or an exhaustive archive-content inventory.
+- `CONTENT_INDEX_CURRENT.json`: 173 indexed references (21 Education + 152 selected references from five editorial packs). **Not** all 421 products or an exhaustive archive-content inventory.
 - The V16.7.24 historical registry still reports 133. It is preserved byte-for-byte, not the current hierarchy. The previous full report is preserved byte-for-byte as `handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md`.
 
 Unnamed agents have `name: null`, `name_status: UNKNOWN`. The viewer displays only their serial unless audit IDs are explicitly enabled. Serials are **new display positions**, not recovered source slot mappings. The PLATFORM unnamed position is not falsely assigned a historical S20. Existing Music/Movie/Liquor/Bar IDs remain stable; the local planner and discovery enqueue validate them against the active registry. Named creative functions in the earlier editorial packs remain **proposals**, not assigned agent names.
@@ -25,7 +27,7 @@ The current editorial packs did not contain a misplaced Education pack. The Educ
 - All 32 historical catalogue paths are already unique. Multiple files referring to one agent do not create multiple agents. Historical archives, snapshots and versions are not deleted as “duplicates.”
 - Historical sovereign roles remain separate cross-cutting references, not extra children in the current total. No unverified third-level roster has been invented.
 
-There are 41 supplied/approved individual names and 86 unnamed positions. Source-reported product numbers remain historical metadata; **current product ownership/counts are unreconciled**, particularly after the Government Schemes transfer. The complete 421-title list is unavailable, so no fabricated “all products deduplicated” claim is made.
+There are 42 supplied/approved individual names and 86 unnamed positions. Source-reported product numbers remain historical metadata; **current product ownership/counts are unreconciled**, particularly after the Government Schemes transfer. The complete 421-title list is unavailable, so no fabricated “all products deduplicated” claim is made.
 
 ## Viewer and commands
 
@@ -42,8 +44,8 @@ python ops/vyomaraj-core/experience/studio_server.py --home agents --port 4176
 - `/reports/history`: historical audit with an explicit supersession banner.
 - Existing Film, Music, Bhakti, Pairings and Research views all link to the current directory/Education.
 
-The builder reads only the pinned metadata registry, explicit rules/ownership, the four reviewed editorial packs and the historical filename catalogue. Source topic paths are checked for existence, not ingested as arbitrary HTML/code. Runtime, device, Hanuman and environment bodies are not imported. The server allows only explicit public metadata/assets/reports; builder/rule/private paths are not served. No source controllers, archive members, external AI, media downloads, publication or DR operations run during reconciliation.
+The builder reads only the pinned metadata registry, explicit rules/ownership, the five reviewed editorial packs and the historical filename catalogue. Source topic paths are checked for existence, not ingested as arbitrary HTML/code. Runtime, device, Hanuman and environment bodies are not imported. The server allows only explicit public metadata/assets/reports; builder/rule/private paths are not served. No source controllers, archive members, external AI, media downloads, publication or DR operations run during reconciliation.
 
-**Validation: 180 automated checks PASS** (DR 29, handover 13, Pairings 9, integrated experience/HTTP 62, research 36, active registry 28, Node 3). All **five real Chromium suites PASS**, including serial-only display, unique hierarchy identities, Education ownership, current versus historical reports and existing media/planner flows. Both rebuild checks, six app-script syntax checks, YAML syntax and diff checks pass. Previous inventory preserved byte-for-byte; canonical source hashes unchanged. No external AI/production/DR success is claimed.
+**Earlier baseline validation: 180 automated checks PASS** (DR 29, handover 13, Pairings 9, integrated experience/HTTP 62, research 36, active registry 28, Node 3). All **five real Chromium suites PASS**, including serial-only display, unique hierarchy identities, Education ownership, current versus historical reports and existing media/planner flows. Both rebuild checks, six app-script syntax checks, YAML syntax and diff checks pass. Previous inventory preserved byte-for-byte; canonical source hashes unchanged. No external AI/production/DR success is claimed.
 
 Directory serials run within each category; the Music/Movie experience widgets number their six local positions. These are presentation numbers, not different agent identities; the internal IDs are unchanged.

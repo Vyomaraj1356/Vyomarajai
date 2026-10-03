@@ -56,3 +56,34 @@ No external requests, tokens or production writes are used by these tests.
 `python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json` performs GET-only identity/repository/main-ref checks using the same explicit process-token or local read-only `gh` client. `DR_REPO` must be a confirmed owner/repository for normal use; no target is guessed. Missing/malformed target returns a redacted blocked result. GET `/user` is narrowly allowed; user writes and arbitrary external URLs are not. No identity response body, login, token or scopes are logged.
 
 Identity access is not repository access; repository read access is not verified write permission or exact-tree DR equality. A local gh diagnostic does not test the Actions PAT. Workflow preflight runs before compare/sync and preserves redacted evidence on a failed check. Current evidence remains blocked (secondary 404; Actions-variable access 403); see `DR_FOLLOWUP_2026_10_03.json` and the integrated `/reports/research` report. The linked e69af4d curl formatting change cannot itself repair permissions.
+
+## Latest technical follow-up: corrected target, authenticated Actions, failed replication
+
+Primary `main` advanced independently to `9be6d3950cb65dcdd5dba36e548f48c599361d57`. Its preceding commit corrects the actual secondary to `deepakGoyal1356/Vyomaraj-Agent-6d64e`; the next fixes the verification workflow's target. Main run **37123060948 passed Authenticate DR but failed Replicate PRIMARY main to DR main**. Integrity reporting was skipped. Full failed-log retrieval was unavailable; exit-code annotation alone does not establish the exact cause. This supersedes earlier blanket statements that the Actions PAT could not authenticate.
+
+Arena's separate GitHub connection still returns secondary 404 and Actions settings/secret-name metadata/dispatch 403, even though primary repository metadata reports admin/push capabilities. Repository role flags do not grant absent token endpoint permissions. No PAT value was retrieved or requested.
+
+`DR_POLICY.json` records the target proven by those main commits and the owner-requested single-writer backup policy. The consolidated workflow uses reviewed file defaults when repository variables are unset; explicit `VYOMARAJ_DR_REPO` / `VYOMARAJ_DR_SYNC_ENABLED` values still override them. This removes the need to *write variables through Arena* just to select the already-confirmed target. It does **not** grant API access, repair a PAT, or activate review-branch code on main. Default primary→secondary sync is approved in that policy based on the owner's request and the already-operating main workflow; writes still require primary/main, the real Actions PAT and all integrity guards. Set the repository variable to `false` to disable scheduled/push-triggered writes, or keep the default branch change unmerged.
+
+### Exact technical changes
+
+- Keep one workflow; retire the redundant verification workflow rather than run competing target definitions. Preserve the owner's corrected target in policy. Reconcile main's two target changes into this session branch, not onto main.
+- Reuse blob SHAs already present in the authenticated target tree, and upload repeated new blob content once. This reduces needless transfer of retained archives.
+- Bounded GET retries for transient transport failures / 429 / 502 / 503 / 504; respect numeric Retry-After up to 60 seconds, otherwise stop. Do not retry 401/403 or ambiguous writes.
+- Redacted failed API operation classification (e.g. POST:git/blobs), not credential values or raw response bodies.
+- Existing exact-tree construction **without base_tree**, source/target race checks, hash checks, non-force publication, no auto-initialization on 404 and final read-after-write comparison remain. The deployed old main workflow's `base_tree` approach can retain target-only files; that is an observed code risk, **not a proven cause of the latest failure**.
+- Workflow timeout: 25 minutes. Timeout/failure is not converted to success.
+- `dr_live_audit.py`: reproducible GET-only redacted audit of the connection and latest main workflow.
+- `recovery_plan.py`: GET-only secondary→primary recovery-review metadata and stable-ref checks. It cannot write a ref. It requires fencing, a known-good snapshot, diff/security review, backups and independent application recovery tests before a separately authorized restore.
+
+### Operator activation / verification
+
+1. Reconnect/reauthorize the Arena GitHub connection for the intended private secondary and required Actions endpoints. Do not paste credentials into chat. A successful Actions PAT read does not make Arena's token interchangeable with it.
+2. Review this branch/PR and the in-repository policy; merge through the authorized GitHub process. No main merge was performed by this session. Review-branch CI only proves offline tests, not replication.
+3. In GitHub Settings → Secrets and variables → Actions, privately verify the `VYOMARAJ_PAT` secret. The target token needs access to the corrected private repository, Contents read/write and Workflows write if `.github/workflows` files are changed, plus any required organization approval/SSO. A fine-grained token is scoped to its selected owner/repositories; primary reads use the primary `GITHUB_TOKEN` separately. Branch rules can still block writes. Repo metadata read success is not proof of any write permission.
+4. Run **verify** first. Both exact repository identities and main refs must be readable. A 404 must not auto-create or erase a branch. Review any tree mismatch. Inspect sanitized diagnostic evidence if blocked.
+5. After confirming the intended mirror/diff and policy, run **sync** on primary main. Require `status=MATCH`, `data_match=true`, complete-tree verification and final read-after-write evidence. A job merely starting, authenticating or staying green elsewhere is not proof.
+6. Protect independent versioned backups and a known-good recovery checkpoint. A mirror alone also propagates deletions/corruption. Git snapshots do not capture ignored SQLite state, process memory, browser-local media, credentials, settings, protections, issues/releases or every ref/history.
+7. Failback is deliberate single-writer recovery, not simultaneous bidirectional overwrites. This tool does not implement automated failback or production traffic switching.
+
+The same-host application rehearsal lives in `../availability/`. It demonstrates process availability only; it is not the private Git mirror or an independent disaster-recovery deployment.

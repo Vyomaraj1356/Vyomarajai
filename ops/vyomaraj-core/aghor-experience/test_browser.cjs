@@ -1,0 +1,24 @@
+const {chromium}=require('playwright');const assert=require('node:assert/strict');const path=require('node:path');
+const base=(process.env.VYOMARAJ_PREVIEW_URL||'http://127.0.0.1:4176').replace(/\/$/,'');
+(async()=>{const browser=await chromium.launch({executablePath:process.env.TEST_CHROMIUM_EXECUTABLE||undefined,headless:true});try{
+ const page=await browser.newPage({viewport:{width:1440,height:1050}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(base+'/aghor/');await page.waitForFunction(()=>!document.getElementById('make-plan').disabled);
+ assert.equal(await page.locator('.chapter').count(),14);assert.equal(await page.locator('.person').count(),7);assert.equal(await page.locator('.practice').count(),6);assert.equal(await page.locator('.care-card').count(),6);assert.equal(await page.locator('#sources article').count(),11);
+ if(process.env.AGHOR_SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.AGHOR_SCREENSHOT_DIR,'aghor-desktop.png')});
+ await page.selectOption('#lens','Public health');assert.equal(await page.locator('.chapter').count(),1);
+ await page.locator('.chapter button').click();assert.equal(await page.locator('#topic').inputValue(),'leprosy');
+ await page.locator('#make-plan').click();await page.waitForFunction(()=>!document.getElementById('download').hidden);
+ const dlPromise=page.waitForEvent('download');await page.locator('#download').click();const dl=await dlPromise;const stream=await dl.createReadStream(),chunks=[];for await(const c of stream)chunks.push(c);const plan=JSON.parse(Buffer.concat(chunks));
+ assert.deepEqual(plan.canonical_agent_ids,['BHAKTI-AGHOR-S1']);assert.equal(plan.medical_treatment,false);assert.equal(plan.dangerous_ritual_instructions,false);assert.ok(plan.source_references.some(x=>x.id==='who'));
+ await page.selectOption('#mode','service');assert.equal(await page.locator('#download').isVisible(),false);await page.locator('#make-plan').click();await page.waitForFunction(()=>!document.getElementById('download').hidden);
+ const bad=await page.request.post(base+'/api/plan',{data:{experience:'aghor',mode:'treatment',symptoms:'pain'}});assert.equal(bad.status(),400);
+ await page.selectOption('#era','Sacred origin');assert.equal(await page.locator('.person').count(),2);
+ assert.ok((await page.locator('#care-list').textContent()).includes('112'));assert.ok((await page.locator('#practices').textContent()).includes('No procedure supplied'));
+ await page.goto(base+'/bhakti/');assert.equal(await page.locator('#aghor-agent a[href="/aghor/"]').count(),1);
+ await page.goto(base+'/agents/');await page.waitForFunction(()=>document.querySelectorAll('.slot').length===128);await page.selectOption('#category','BHAKTI');assert.equal(await page.locator('.slot').count(),3);assert.equal(await page.locator('.slot:not(.named)').count(),2);
+ const status=await(await page.request.get(base+'/api/availability')).json();assert.equal(status.production_dr_verified,false);assert.ok(status.replicas.every(r=>r.metadata_ready));
+ await page.goto(base+'/reports/aghor');assert.ok((await page.locator('body').textContent()).includes('BHAKTI-AGHOR-S1'));
+ await page.setViewportSize({width:390,height:844});await page.goto(base+'/aghor/');await page.waitForFunction(()=>document.querySelectorAll('.chapter').length===14);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ if(process.env.AGHOR_SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.AGHOR_SCREENSHOT_DIR,'aghor-mobile.png')});
+ assert.deepEqual(errors,[]);console.log('PASS Aghor through real failover gateway: sourced chapters/profiles/practice/care, filters, safe plan/download/invalidation, treatment refusal, Bhakti/registry links, both replicas ready, mobile and no JS errors.');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1);});

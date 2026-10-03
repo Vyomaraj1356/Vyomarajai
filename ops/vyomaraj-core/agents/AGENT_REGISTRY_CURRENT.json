@@ -70,7 +70,7 @@
       "source_reported_products": 8,
       "active_product_count": null,
       "product_status": "UNRECONCILED_no_complete_item_level_mapping",
-      "sub_agents": 2,
+      "sub_agents": 3,
       "headings": 0
     },
     {
@@ -787,6 +787,21 @@
       "counted": true,
       "source_reported_chapter_count": null,
       "runtime_status": "NOT_VERIFIED"
+    },
+    {
+      "id": "BHAKTI-AGHOR-S1",
+      "category_id": "BHAKTI",
+      "parent_id": "BHAKTI",
+      "name": "Aghor & Aghori",
+      "name_status": "SUPPLIED_OR_OWNER_APPROVED",
+      "source_slot": null,
+      "id_status": "current_reference_id_not_recovered_slot",
+      "serial": 3,
+      "kind": "sub_agent",
+      "counted": true,
+      "source_reported_chapter_count": null,
+      "runtime_status": "NOT_VERIFIED",
+      "ownership_basis": "Explicit user request on 2026-10-03; new sub-agent, not a rename of either existing unnamed Bhakti slot."
     },
     {
       "id": "SPORTS-REF-01",
@@ -2057,9 +2072,9 @@
   },
   "totals": {
     "main_agents": 13,
-    "sub_agents": 127,
+    "sub_agents": 128,
     "uncounted_parent_headings": 6,
-    "named_sub_agents": 41,
+    "named_sub_agents": 42,
     "unnamed_numbered_sub_agents": 86,
     "active_products": null,
     "historical_reported_products": 421

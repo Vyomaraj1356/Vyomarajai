@@ -323,7 +323,8 @@
     "film": "ENTERTAINMENT",
     "music": "ENTERTAINMENT",
     "bhakti": "BHAKTI",
-    "pairings": "ENTERTAINMENT"
+    "pairings": "ENTERTAINMENT",
+    "aghor": "BHAKTI"
   },
   "education_in_entertainment": "not_found_in_current_editorial_packs; education-topic ownership now explicitly EDU",
   "public_scheme_details": "No scheme benefits, eligibility, application links or current validity researched in this structural task.",

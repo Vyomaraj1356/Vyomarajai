@@ -1,5 +1,7 @@
 # GitHub, report-link and DR resolution — 3 October 2026
 
+> **Latest DR / Aghor follow-up:** `/reports/resilience` supersedes earlier live-status statements below. Primary main advanced to `9be6d39`; the corrected secondary ends `6d64e`. Main Actions run `37123060948` passed authentication but failed replication; integrity reporting was skipped. Arena access still differs (404/403). A same-host failover rehearsal is tested separately, not production DR. The newly requested Aghor sub-agent makes the active total 128 (BHAKTI 3); see `/aghor/` and `/reports/aghor`.
+
 ## Latest follow-up — discovery integration pass
 
 Read-only preflight: local `gh` identity, primary repository and primary main are readable. The old workflow secondary candidate still returns 404 (missing or hidden); Actions-variable listing still returns 403. This tests the local GitHub connection, **not the Actions PAT secret**. Primary main remains `e69af4d6155aca87eb87f3da5c4c90e1b8b681a1`. Run [37120524834](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37120524834) is successful only for `offline-tests`; `verify-or-sync` was **skipped**. PR #5 remains open. No secondary write or merge was attempted.

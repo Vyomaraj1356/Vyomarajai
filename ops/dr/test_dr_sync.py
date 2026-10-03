@@ -21,6 +21,7 @@ class FakeGitHub:
         self.bad_blob = False
         self.bad_readback = False
         self.advance_after_tree = False
+        self.existing_source_blob = repo == dr.PRIMARY
 
     def request(self, method, path, body=None):
         self.calls.append((method, path, body))
@@ -34,7 +35,7 @@ class FakeGitHub:
             return {'tree': {'sha': self.tree}}
         if method == 'GET' and '/git/trees/' in path:
             return {'truncated': self.truncated, 'tree': [
-                {'path': 'safe.txt', 'mode': '100644', 'type': self.entry_type, 'sha': BLOB}]}
+                {'path': 'safe.txt', 'mode': '100644', 'type': self.entry_type, 'sha': BLOB if self.existing_source_blob else 'old-blob'}]}
         if method == 'GET' and '/git/blobs/' in path:
             return {'encoding': 'base64', 'content': base64.b64encode(RAW).decode()}
         if method == 'POST' and path.endswith('/git/blobs'):
@@ -166,6 +167,18 @@ class DRTests(unittest.TestCase):
         entry = {'type': 'blob', 'mode': '100644', 'path': 'same', 'sha': BLOB}
         with self.assertRaisesRegex(dr.CheckError, 'duplicate'):
             dr.source_entries({'tree': [entry, entry]})
+
+    def test_existing_blob_reused_without_upload(self):
+        self.secondary.existing_source_blob=True
+        result=self.run_check(True)
+        self.assertEqual(result['transfer'],{'uploaded_blobs':0,'reused_blobs':1})
+        self.assertFalse(any('/git/blobs/' in p for m,p,b in self.primary.calls))
+        self.assertFalse(any(m=='POST' and p.endswith('/blobs') for m,p,b in self.secondary.calls))
+
+    def test_target_truncated_refuses_writes(self):
+        self.secondary.truncated=True
+        with self.assertRaises(dr.CheckError):self.run_check(True)
+        self.assert_no_ref_writes()
 
     def test_redirect_refused(self):
         self.assertIsNone(dr.NoRedirect().redirect_request(None, None, 302, '', {}, 'https://other'))

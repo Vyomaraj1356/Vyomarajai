@@ -13,9 +13,58 @@ This index lists all content records in the four new editorial extensions. It is
 
 Repeatable metadata discovery and review: /research/. Integrated connection, configuration and DR follow-up report: /reports/research. Discovery queue records are separate from the four editorial packs and are not new canonical products. Public API runtime checks are blocked; SearXNG/Ollama and the opt-in daily schedule are not active.
 
-Current system inventory: /reports/. Owner-approved hierarchy: /agents/ and /reports/agents. Education and Government Schemes: /education/. Historical audit: /reports/history. Music and Movie slot bindings are proposals; canonical names remain UNKNOWN. BHAKTI child mapping remains UNMAPPED. Current structure: 13 categories, 127 counted slots and six uncounted headings. The immutable source snapshot still reports 133 slots / 421 products and the historical catalog lists 32 files; current product reallocation is unreconciled.
+Current system inventory: /reports/. Owner-approved hierarchy: /agents/ and /reports/agents. Education and Government Schemes: /education/. Historical audit: /reports/history. Music and Movie slot bindings are proposals; canonical names remain UNKNOWN. BHAKTI child mapping remains UNMAPPED. Current structure: 13 categories, 128 counted slots and six uncounted headings. The immutable source snapshot still reports 133 slots / 421 products and the historical catalog lists 32 files; current product reallocation is unreconciled.
 
 Local capabilities: discovery, food rotation/steps/preferences, deterministic Vyomaraj/Jarvis plans, authorized-file audio/video playback, local trim/reorder/sequence preview and edit-decision export. No commercial media hosting, external AI renderer, automatic publication, production release or verified DR is claimed.
+
+## Aghor & Aghori — later requested Bhakti sub-agent
+
+Viewer /aghor/; research /reports/aghor; latest deployment/DR evidence /reports/resilience. BHAKTI-AGHOR-S1 is a new user-requested slot; BHAKTI now has 3 and the active total is 128. Fourteen proposed study chapters, seven selected figures, six practice-context cards and six care-boundary cards. Not a clinical service, initiation or supernatural ranking.
+
+### Aghor: chapters
+
+- Aghor, Aghori and Aughar: words and meanings
+- Sacred origins are not a dated beginning of the universe
+- History, hagiography and the limits of the record
+- Kina Ram / Kinaram / Keenaram and Krim Kund
+- Bhagwan Ram and twentieth-century service
+- Contemporary communities and diaspora
+- Ways of describing practice—not fixed universal types
+- Sadhana: ordinary discipline and personal boundaries
+- Seva: service without stigma
+- Cremation-ground imagery and antinomian traditions
+- Ethnography is not a clinical treatment trial
+- Hansen disease: treatment and dignity
+- Upayas as optional support, not promised cures
+- Study respectfully and verify claims
+
+### Aghor: people
+
+- Shiva / Aghora aspect
+- Dattatreya
+- Baba Kaluram
+- Baba Kina Ram / Kinaram / Keenaram
+- Aghoreshwar Bhagwan Ram
+- Baba Harihar Ram
+- Baba Siddharth Gautam Ram
+
+### Aghor: practices
+
+- A gentle reflection sequence
+- Optional prayer or japa
+- A consent-led seva plan
+- A source-checking study session
+- Visiting a community respectfully
+- Historical ritual practices: context only
+
+### Aghor: care
+
+- Skin patches, numbness or suspected leprosy
+- Pain, infertility and other cure claims
+- Ashes, unknown herbs and mineral preparations
+- Fear of curses or supernatural harm
+- Serious symptoms or immediate danger
+- A non-medical upaya checklist
 
 ## Frame & Stage
 

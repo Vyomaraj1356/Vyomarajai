@@ -51,5 +51,13 @@
   "unnamed_display": "serial_number_only",
   "archives": "preserve_historical_snapshots",
   "product_reallocation": "UNRECONCILED_no_complete_item_level_list",
-  "unverified_sub_sub_agents": "do_not_invent"
+  "unverified_sub_sub_agents": "do_not_invent",
+  "new_sub_agents": [
+    {
+      "category_id": "BHAKTI",
+      "id": "BHAKTI-AGHOR-S1",
+      "name": "Aghor & Aghori",
+      "approval": "Explicit user request on 2026-10-03; new sub-agent, not a rename of either existing unnamed Bhakti slot."
+    }
+  ]
 }

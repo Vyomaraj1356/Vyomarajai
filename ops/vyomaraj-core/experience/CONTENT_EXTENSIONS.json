@@ -76,6 +76,20 @@
       "automatic_provider_calls": false,
       "automatic_publishing": false,
       "review_before_external_publication": true
+    },
+    {
+      "id": "aghor-study-service",
+      "path": "ops/vyomaraj-core/aghor-experience/content.json",
+      "category_id": "BHAKTI",
+      "agent_ids": [
+        "BHAKTI-AGHOR-S1"
+      ],
+      "assignment_status": "user_requested_new_sub_agent",
+      "additional_agents_created": 1,
+      "registry_totals_changed": true,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "medical_treatment": false
     }
   ]
 }

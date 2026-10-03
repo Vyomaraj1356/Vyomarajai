@@ -1,0 +1,95 @@
+{
+  "scope": "CONTROLLED_SINGLE_HOST_PROCESS_FAILURE_REHEARSAL",
+  "production_dr_verified": false,
+  "independent_failure_domains": false,
+  "shared_filesystem_and_SQLite": true,
+  "zero_rpo_or_rto_claimed": false,
+  "operations": "GET only; one owned local replica stopped at a time, then both stopped briefly; restored afterward",
+  "observations": [
+    {
+      "phase": "baseline",
+      "checked_at_utc": "2026-10-03T12:43:45.187695+00:00",
+      "http_status": 200,
+      "served_by": "primary",
+      "single_request_latency_ms_after_fault": 3.572,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": true
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": true
+        }
+      ]
+    },
+    {
+      "phase": "primary_stopped",
+      "checked_at_utc": "2026-10-03T12:43:51.308113+00:00",
+      "http_status": 200,
+      "served_by": "secondary",
+      "single_request_latency_ms_after_fault": 5.396,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": false
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": true
+        }
+      ]
+    },
+    {
+      "phase": "secondary_stopped",
+      "checked_at_utc": "2026-10-03T12:44:01.294849+00:00",
+      "http_status": 200,
+      "served_by": "primary",
+      "single_request_latency_ms_after_fault": 5.152,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": true
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": false
+        }
+      ]
+    },
+    {
+      "phase": "both_stopped",
+      "checked_at_utc": "2026-10-03T12:44:06.525830+00:00",
+      "http_status": 503,
+      "served_by": null,
+      "single_request_latency_ms_after_fault": 2.609,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": false
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": false
+        }
+      ]
+    },
+    {
+      "phase": "both_restored",
+      "checked_at_utc": "2026-10-03T12:44:16.739066+00:00",
+      "http_status": 200,
+      "served_by": "primary",
+      "single_request_latency_ms_after_fault": 3.678,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": true
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": true
+        }
+      ]
+    }
+  ]
+}

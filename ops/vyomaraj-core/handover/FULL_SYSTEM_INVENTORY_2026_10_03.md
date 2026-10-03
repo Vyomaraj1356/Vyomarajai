@@ -1,6 +1,6 @@
 # Vyomaraj / Jarvis — Current System Inventory
 
-**Current structure: 13 categories · 127 counted sub-agent slots · 6 uncounted parent headings.**
+**Current structure: 13 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**
 
 This is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.
 
@@ -9,6 +9,8 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 | Area | Viewer / report |
 |---|---|
 | Current hierarchy | /agents/ · /reports/agents |
+| Aghor & Aghori | /aghor/ · /reports/aghor |
+| Latest DR / Aghor update | /reports/resilience |
 | Education and all Government Schemes | /education/ |
 | All experience content | /reports/contents |
 | Research Desk | /research/ · /reports/research |
@@ -16,7 +18,7 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 | Music | /music/ · /reports/music |
 | Bhakti-Shakti | /bhakti/ · /reports/bhakti |
 | Roots & Pairings | /pairings/ |
-| DR (still blocked) | /reports/dr |
+| Earlier DR audit (latest status above) | /reports/dr |
 | Historical source audit | /reports/history |
 
 # Current Agent Reconciliation
@@ -25,6 +27,7 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 
 ## Applied decisions
 
+- A later explicit user request adds **Aghor & Aghori** (`BHAKTI-AGHOR-S1`) under BHAKTI / Bhakti-Shakti. BHAKTI now has 3 counted positions; its earlier two unnamed positions are retained.
 - EDU is now displayed as **Education**. All Government Schemes are owned by Education, not Finance or Entertainment.
 - Comedy hub, Cartoon, Music, Movie, Wit and Shayari are uncounted parent headings, not six additional counted agents. Their existing child IDs are preserved.
 - INDICOM and Criticism gate stay as distinct named agents. Hasya, Liquor and Bar keep their own numbered positions; similar subject matter is not sufficient evidence to merge them.
@@ -36,16 +39,16 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 | Measure | Historical snapshot | Current |
 |---|---:|---:|
 | Main categories | 13 | 13 |
-| Counted sub-agent slots | 133 | 127 |
+| Counted sub-agent slots | 133 | 128 |
 | Entertainment slots | 38 | 32 |
 | Education slots | 15 | 16 |
 | Finance slots | 8 | 7 |
 | Separate uncounted Entertainment headings | Not separated | 6 |
-| Supplied/approved individual names | 46 | 41 |
+| Supplied/approved individual names | 46 | 42 |
 | Unnamed numbered positions | 87 | 86 |
 | Reported products | 421 | Reallocation / unique total UNRECONCILED |
 
-The six-heading reclassification accounts for 133 → 127. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.
+The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 128. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.
 
 ## Current main-agent inventory
 
@@ -56,7 +59,7 @@ The six-heading reclassification accounts for 133 → 127. Government Schemes is
 | ASTRO | Astro-Celestial & Universal | 3 | 0 | 9 |
 | FINANCE | Finance & Wealth | 7 | 0 | 15 |
 | LIFE | Life Coach & Wellness | 10 | 0 | 34 |
-| BHAKTI | Bhakti Mandir — Ritual, Festival & Grantha | 2 | 0 | 8 |
+| BHAKTI | Bhakti Mandir — Ritual, Festival & Grantha | 3 | 0 | 8 |
 | SPORTS | Sports & Legends | 14 | 0 | 29 |
 | AGRI | Agriculture & Environment | 6 | 0 | 14 |
 | ENTERTAINMENT | Entertainment — Comedy, Movies, Hollywood, Bollywood | 32 | 6 | 168 |
@@ -69,9 +72,9 @@ Product figures above are source-history metadata, not current reallocated or de
 
 ## Duplicate audit and scope
 
-- Active hierarchy: 13 category identities, 127 counted agent identities and 6 heading identities; all unique and parent-validated.
+- Active hierarchy: 13 category identities, 128 counted agent identities and 6 heading identities; all unique and parent-validated.
 - Exact repeated source roster records removed: **0**. The six semantic double-counted hub positions were reclassified by the explicit approval above, not presented as byte-identical records.
-- Current content index: **140 references**, including **21 Education topics** and the selected collections in the four editorial experiences. These are references, not all 421 products or new agents.
+- Current content index: **173 references**, including **21 Education topics** and the selected collections in the five editorial experiences. These are references, not all 421 products or new agents.
 - Exact repeated indexed content records removed: **0**. Equal identities collapse only if records are equal; conflicting duplicates stop the builder.
 - All 32 historical catalogue paths are unique. No runtime/configuration bodies are imported by this reconciliation builder.
 - Multiple references to the same stable agent ID from planners, content and reports are links to one agent, not duplicate agents to delete.
@@ -179,6 +182,7 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 |---:|---|---|
 | 1 |  |  |
 | 2 |  |  |
+| 3 | Aghor & Aghori |  |
 ### Sports & Legends
 
 | Serial | Supplied/approved name (blank = not assigned) | Parent heading |
@@ -299,7 +303,7 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 - Music ENT-MUS-S1–S6, Movie ENT-MOVIE-S1–S6, Liquor ENT-LIQUOR-S1 and Bar ENT-BAR-S1 remain valid. Their functional/chapter bindings remain proposals, not newly assigned names.
 - Source-reported Hasya / Liquor / Bar chapter counts 12 / 12 / 10 remain metadata, not extra agent or product counts.
 - Six approved headings establish those parent-child edges only. Other missing sub-sub-agent identities/counts remain UNMAPPED.
-- Eleven historical sovereign roles remain separate cross-cutting references, not extra children in the 127 total: Creator, Thinker, Scout, Analyst, Guardian, Evolution, Jarvis, Hermes, Cinema, Sync, Family.
+- Eleven historical sovereign roles remain separate cross-cutting references, not extra children in the 128 total: Creator, Thinker, Scout, Analyst, Guardian, Evolution, Jarvis, Hermes, Cinema, Sync, Family.
 - No populated private runtime, device, environment or credential values are exposed. No provider deployment, publication, GitHub permission change or DR success is implied.
 
 ## Files, viewer and reproducibility
@@ -314,8 +318,9 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 - `python ops/vyomaraj-core/agents/rebuild_registry.py --check`: deterministic rebuild, unique identities, conflict refusal, parent/count validation and pack-link checks.
 - Historical `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json` and `experience/CONTENT_CATALOG.json` remain byte-for-byte unchanged.
 
-## Validation completed
+## Validation scope
 
-**180 automated checks PASS:** DR 29; historical handover 13; Pairings 9; integrated experience/HTTP 62; discovery 36; current registry 28; Node metadata-safety 3.
-**All five real Chromium suites PASS:** Agents/Education, Research, Film/Stage/Ads, Music, Bhakti/Pairings. Checks cover the 127 unique identities and six headings, serial-only unnamed display, Education/Government Schemes ownership, audit toggle/search/filter/download, all existing plans and local media flows, current/historical reports, navigation, desktop/mobile layout, no horizontal overflow or JS errors.
+**Earlier reconciliation baseline: 180 automated checks PASS:** DR 29; historical handover 13; Pairings 9; integrated experience/HTTP 62; discovery 36; current registry 28; Node metadata-safety 3.
+**Earlier baseline: all five real Chromium suites PASS:** Agents/Education, Research, Film/Stage/Ads, Music, Bhakti/Pairings. Checks cover the 127 unique identities and six headings, serial-only unnamed display, Education/Government Schemes ownership, audit toggle/search/filter/download, all existing plans and local media flows, current/historical reports, navigation, desktop/mobile layout, no horizontal overflow or JS errors.
+Current Aghor / DR follow-up validation is recorded separately at `/reports/resilience`. The preceding numbers describe the earlier 127-slot baseline, not the later test total.
 Both deterministic rebuild checks, six app-script syntax checks, workflow YAML parsing and diff whitespace checks pass. The earlier full inventory is preserved byte-for-byte as the historical inventory. Source registry/catalogue hashes remain pinned. No production deployment, external AI connection or DR verification was performed by these tests.

@@ -10,7 +10,8 @@
     "bhakti",
     "liquor-bar",
     "music",
-    "film"
+    "film",
+    "aghor"
   ],
   "modes": [
     "3d",
@@ -63,9 +64,15 @@
     "education_viewer": "/education/",
     "report": "/reports/agents",
     "main_categories": 13,
-    "counted_sub_agents": 127,
+    "counted_sub_agents": 128,
     "uncounted_headings": 6,
     "historical_snapshot_unchanged": true,
     "product_total": "UNRECONCILED"
+  },
+  "aghor": {
+    "agent_id": "BHAKTI-AGHOR-S1",
+    "chapter_titles": "proposals",
+    "clinical_service": false,
+    "source_aware": true
   }
 }
