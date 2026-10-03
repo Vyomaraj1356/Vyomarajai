@@ -1,0 +1,57 @@
+system:
+  id: VYOMARAJ-AI-STUDIO
+  home_plane: SHRIYANTRA
+  service_model: 24x7x365
+  public_surface: approved_outputs_only
+brains:
+  bharath:
+    alias: VYOMARAJ
+    role: autonomous_head
+    repo: Vyomaraj1356/Vyomarajai
+    branch: main
+  laxman:
+    alias: JARVIS
+    role: autonomous_peer_head
+    repo: SET_LAXMAN_REPO_BEFORE_ACTIVATION
+    branch: main
+hermes:
+  role: protection_coordination_witness
+  mode: ACTIVE
+  split_brain_policy: DENY_UNLESS_FENCED
+  destructive_overwrite: DISABLED
+  force_ref_update: DISABLED
+sync:
+  direction: BIDIRECTIONAL
+  model: EVENT_AND_VERSION_AWARE
+  preserve_both_on_conflict: true
+  append_only_audit: true
+  secrets_replicated: false
+  last_writer_wins: false
+failover:
+  automatic: true
+  require_peer_failure_confirmation: true
+  require_fencing: true
+  require_integrity_check: true
+  require_freshness_check: true
+  require_business_probe: true
+  require_hermes_witness: true
+failback:
+  automatic: true
+  require_reconciliation_complete: true
+  require_integrity_check: true
+  require_business_probe: true
+  require_no_unresolved_conflicts: true
+content_pipeline:
+  research: true
+  create: true
+  verify: true
+  publish: true
+  measure: true
+  monetize: true
+  internal_control_plane_public: false
+safety:
+  no_secret_commit: true
+  no_blind_overwrite: true
+  quarantine_conflicts: true
+  immutable_recovery_snapshot_before_reconcile: true
+  audit_every_state_transition: true
