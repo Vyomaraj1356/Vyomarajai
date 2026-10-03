@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED",
+  "detail": "GitHub HTTP 404: Repository/ref missing OR hidden by permissions; do not infer nonexistence.",
+  "traffic_switched": false,
+  "checked_at_utc": "2026-10-03T10:34:50.681135+00:00",
+  "requested_operation": "read_only_verification",
+  "primary_repository": "Vyomaraj1356/Vyomarajai",
+  "secondary_repository": "deepakGoyal1356/Vyomaraj-Agent-6d64"
+}

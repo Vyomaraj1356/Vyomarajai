@@ -1,0 +1,239 @@
+VYOMARAJ — ALL UPDATES HANDOVER — 2026-10-03
+================================================================
+STATUS: RECONSTRUCTED FROM VERIFIED GIT SOURCE FILES
+This is NOT the recovered original 365-line notepad.
+The exact original was not found in the inspected sources.
+Scope: available roster and catalog metadata, not all private chats or updates.
+
+1. RECOVERY AND PROVENANCE
+Source repository: Vyomaraj1356/Vyomarajai
+Source branch: arena/live-preview-reconciled-20261002 (PR #3)
+Source commit: 7b7dd403c79266d3250e6b334a7598a5432adc17
+Original session branch: arena/01a0f634-vyomarajai (PR #1, closed).
+PR #1 directs subsequent work to the reconciled PR #3 branch.
+Both source JSON files were restored byte-for-byte from the source commit.
+Only those metadata files and this recovery documentation/tooling were added.
+Application code, workflows, archives and runtime/device files were not imported.
+The Arena session link could not be loaded through the available access.
+Remote branches, fetched full Git history and local ZIP entries were inspected.
+Missing evidence is not proof that the original file never existed.
+No deployment, provider connectivity, device health or DR sync is asserted.
+
+Source registry: ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json
+Registry SHA-256: 9e301bfcb1c6e8b23c1bea4fbdcf0d9d12d4c457fe62d7ef60e3161ac3a908a9
+Source catalog: ops/vyomaraj-core/experience/CONTENT_CATALOG.json
+Catalog SHA-256: 86f2fc0a5b5c9adb606b5f72aa5047fa8ed0bf5bc6c7d9bcd9c82dbcf5b95f70
+
+2. VERIFIED CATEGORY ARITHMETIC (NOT RUNTIME STATUS)
+Registry release: V16.7.24 / build 194
+Registry snapshot: 2026-10-01
+Category | Sub-agents | Products | Description
+FOOD | 3 | 6 | Food & Social Connect
+EDU | 15 | 68 | Education & World Wisdom
+ASTRO | 3 | 9 | Astro-Celestial & Universal
+FINANCE | 8 | 15 | Finance & Wealth
+LIFE | 10 | 34 | Life Coach & Wellness
+BHAKTI | 2 | 8 | Bhakti Mandir — Ritual, Festival & Grantha
+SPORTS | 14 | 29 | Sports & Legends
+AGRI | 6 | 14 | Agriculture & Environment
+ENTERTAINMENT | 38 | 168 | Entertainment — Comedy, Movies, Hollywood, Bollywood
+PLATFORM | 20 | 39 | Platform & Social Hub + Earn — All Platforms + Monetization
+TOUR | 4 | 9 | Tour and Travel
+WAR | 5 | 13 | War Room — Warriors
+PODCAST | 5 | 9 | Podcast & Entertainment Studio
+TOTAL: 13 main-agent categories | 133 sub-agents | 421 products
+Counts are registry-reported; arithmetic is checked, operational readiness is not.
+
+3. ROSTER — NO INFERRED NAMES OR SLOT ASSIGNMENTS
+UNKNOWN means an individual name was not supplied.
+UNMAPPED means an individual slot assignment was not supplied.
+Grouped names and lane order do not establish individual slot mappings.
+
+FOOD — 3 sub-agents / 6 products
+Names: UNKNOWN (3 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+EDU — 15 sub-agents / 68 products
+S1: Veda Rishi
+S2: Upanishad Guru
+S3: Gita Acharya
+S4: Mythology & Mystery Rishi
+S5: Vyomaraj Picker
+S6: Lectures Hub
+S7: Short Notes
+S8-S13: supplied group label: Bharat Grantha, Chanakya and the Granthas
+Individual names: UNKNOWN; individual assignments: UNMAPPED.
+S14: Care & Bikes — Bicycles & Two-Wheelers | chapters: 16
+S15: Social Thinkers, Visionaries & Legends | chapters: 14
+
+ASTRO — 3 sub-agents / 9 products
+Names: UNKNOWN (3 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+FINANCE — 8 sub-agents / 15 products
+Names: UNKNOWN (8 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+LIFE — 10 sub-agents / 34 products
+Names: UNKNOWN (10 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+BHAKTI — 2 sub-agents / 8 products
+Names: UNKNOWN (2 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+SPORTS — 14 sub-agents / 29 products
+Names: UNKNOWN (14 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+AGRI — 6 sub-agents / 14 products
+Names: UNKNOWN (6 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+ENTERTAINMENT — 38 sub-agents / 168 products
+S1-S8 | count: 8
+Supplied names in source order: Comedy hub; INDICOM; Cartoon; Music; Movie; Wit; Shayari; Criticism gate
+ENT-AI-S1/S2 | count: 2
+Individual names: UNKNOWN; source group IDs retained above.
+ENT-CARTOON-S1-S3 | count: 3
+Individual names: UNKNOWN; source group IDs retained above.
+ENT-COM-S1-S8 | count: 8
+Individual names: UNKNOWN; source group IDs retained above.
+ENT-MOVIE-S1-S6 | count: 6
+Individual names: UNKNOWN; source group IDs retained above.
+ENT-MUS-S1-S6 | count: 6
+Individual names: UNKNOWN; source group IDs retained above.
+ENT-SHAYARI-S1 | count: 1
+Individual names: UNKNOWN; source group IDs retained above.
+ENT-WIT-S1 | count: 1
+Individual names: UNKNOWN; source group IDs retained above.
+ENT-HASYA-S1 | count: 1
+Individual names: UNKNOWN; source group IDs retained above.
+Registry chapter_count: 12
+ENT-LIQUOR-S1 | count: 1
+Individual names: UNKNOWN; source group IDs retained above.
+Registry chapter_count: 12
+ENT-BAR-S1 | count: 1
+Individual names: UNKNOWN; source group IDs retained above.
+Registry chapter_count: 10
+
+PLATFORM — 20 sub-agents / 39 products
+Named lanes (no numeric slot IDs supplied):
+- YouTube
+- Instagram
+- Facebook
+- TikTok
+- X
+- LinkedIn
+- Telegram
+- WhatsApp
+- Discord
+- Pinterest
+- Threads
+- Snapchat
+- Reddit
+- Twitch
+- Vimeo
+- Tumblr
+- Mastodon
+- EARN
+- AI
+Remaining name: UNKNOWN (1). Remaining slot: UNMAPPED.
+The source does not identify which slot is missing; do not label it S20.
+
+TOUR — 4 sub-agents / 9 products
+Names: UNKNOWN (4 individuals).
+Slots: UNMAPPED; the registry supplies category counts only.
+
+WAR — 5 sub-agents / 13 products
+Supplied names: PAST; HISTORY; PRESENT; FUTURE; CROSS-CUTTING
+Numeric slot IDs: UNMAPPED (not supplied by the registry).
+
+PODCAST — 5 sub-agents / 9 products
+Supplied names: RESEARCH; SCRIPT; PRODUCE; ANALYSIS; PUBLISH
+Numeric slot IDs: UNMAPPED (not supplied by the registry).
+
+4. CONTENT READINESS — SEPARATE, UNRECONCILED OWNER-REPORTED FIGURES
+active_content_products_reported: 394
+placeholder_videos_shared: 12
+pending_products_requiring_chapters: 52
+planned_products_requiring_chapters: 5
+These figures are NOT reconciled to 421. Overlap and status definitions are unknown.
+They are not independently verified active products, deployments or published videos.
+
+5. CATALOG — EXACTLY 32 JSON FILENAMES, NOT 421 PRODUCT TITLES
+Only cataloged filenames are listed below; JSON bodies are not reproduced or loaded.
+These are file/module names, NOT all 421 product titles.
+Complete product-title list: UNKNOWN / not supplied.
+Product-to-module and product-to-slot mapping: UNMAPPED / not supplied.
+Catalog inventory date: 2026-10-02
+
+food-agent | directory: ops/vyomaraj-core/food-agent | files: 9
+- ai_platforms_prompts.json
+- bloggers.json
+- books_history.json
+- chefs.json
+- cuisines.json
+- dishes.json
+- food_science_art.json
+- herbs_flavours.json
+- lost_recipes.json
+Source ingestion policy: metadata_only_by_default
+
+bhakti-shakti | directory: ops/bhakti-shakti | files: 20
+- additional-sathi-detailed.json
+- additional-sathi.json
+- all-indian-gods.json
+- damru.json
+- dashavatar.json
+- jyotirlinga-12.json
+- major-gods.json
+- nandi.json
+- navagraha.json
+- regional-gods.json
+- revenue-reel-system.json
+- rudraksh.json
+- shakti-forms.json
+- shankh.json
+- shiv-bhakts.json
+- shiv-ke-sathi.json
+- trimurti-tridevi.json
+- trishul.json
+- vasuki.json
+- village-gram-devta.json
+Source ingestion policy: metadata_only_by_default
+
+hanuman-cross-cutting-config | directory: ops/hanuman | files: 3
+- hanuman-panch-shakti.json
+- ports.json
+- social-platforms.json
+Source ingestion policy: not_loaded
+
+6. PRIVACY AND OPERATIONAL BOUNDARIES
+No populated environment, runtime, device, credential or private contact values included.
+The generator reads only the two restored metadata JSON files.
+Catalog paths are checked for existence; their bodies are never read.
+Hanuman configuration filenames are metadata, not runtime evidence.
+No external provider, publishing, device-control or recovery action was executed.
+No source code, controller, ZIP member or shell script from another branch was executed.
+No main-branch merge, remote push or secondary-repository write was performed.
+
+7. REMAINING GAPS AND NEXT ACTIONS
+- Original 365-line notepad: NOT RECOVERED; this is an explicit reconstruction.
+- Missing individual names: UNKNOWN until supported by further source evidence.
+- EDU S8-S13: retain the group label; individual names UNKNOWN / mapping UNMAPPED.
+- PLATFORM: retain 19 lane names; remaining name UNKNOWN / slot UNMAPPED.
+- Full 421-title product catalog and product mappings: not supplied.
+- Reconcile readiness figures only when overlap/status rules are available.
+- Registry integration blockers are historical, not current secret-store checks.
+- Live integrations, deployment, legal compliance and DR sync require separate verification.
+- Preserve the historical archives; this recovery does not rewrite their contents.
+
+8. REPEATABLE VALIDATION
+Run from the repository root:
+python ops/vyomaraj-core/handover/rebuild_handover.py --check
+Checks: category totals, grouped counts, unique catalog paths, file existence,
+and exact agreement of this notepad with deterministic metadata-only output.
+This validation does not certify missing source material, runtime state or legal compliance.
+
+END OF RECONSTRUCTED HANDOVER

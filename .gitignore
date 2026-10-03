@@ -1,0 +1,9 @@
+# Generated Python files and local validation outputs
+__pycache__/
+*.py[cod]
+.pytest_cache/
+dr-evidence.json
+
+# New private/local configuration (legacy tracked files need separate review)
+ops/jarvis/llm-harness.env
+ops/dr/dr.local.env

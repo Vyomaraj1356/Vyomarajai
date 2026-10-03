@@ -1,0 +1,234 @@
+#!/usr/bin/env python3
+"""Read-only DR verification by default; explicit, main-only snapshot replication.
+
+Never loads dr.env. Uses process credentials, or gh for local read-only checks.
+Reports status/SHAs only, not response bodies, tokens or device configuration.
+"""
+import argparse
+import base64
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import urllib.error
+import urllib.request
+
+PRIMARY = 'Vyomaraj1356/Vyomarajai'
+BRANCH = 'main'
+API = 'https://api.github.com'
+
+
+class CheckError(Exception):
+    pass
+
+
+class APIError(CheckError):
+    def __init__(self, status):
+        self.status = status
+        explanation = {
+            401: 'Invalid or expired credentials; reconnect GitHub / review the Actions secret.',
+            403: 'Access denied or rate limited; review repository/Actions permissions.',
+            404: 'Repository/ref missing OR hidden by permissions; do not infer nonexistence.',
+        }.get(status, 'GitHub request failed; no response body was logged.')
+        super().__init__(f'GitHub HTTP {status}: {explanation}')
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+class GitHub:
+    def __init__(self, token=None):
+        self.token = token
+        self.opener = urllib.request.build_opener(NoRedirect())
+
+    def request(self, method, path, body=None):
+        if not path.startswith('repos/') or '..' in path or '://' in path:
+            raise CheckError('Invalid GitHub API path')
+        if not self.token:
+            if method != 'GET':
+                raise CheckError('Writes require explicit process credentials; gh fallback is read-only')
+            try:
+                result = subprocess.run(['gh', 'api', '--method', 'GET', path],
+                                        capture_output=True, text=True, timeout=60)
+            except (OSError, subprocess.TimeoutExpired) as exc:
+                raise CheckError('GitHub CLI unavailable or timed out') from exc
+            if result.returncode:
+                match = re.search(r'HTTP (\d{3})', result.stderr)
+                raise APIError(int(match.group(1)) if match else 'unavailable')
+            return json.loads(result.stdout)
+        headers = {'Authorization': f'Bearer {self.token}',
+                   'Accept': 'application/vnd.github+json',
+                   'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'Vyomaraj-DR-Check'}
+        data = None if body is None else json.dumps(body).encode()
+        req = urllib.request.Request(API + '/' + path, data=data, headers=headers, method=method)
+        try:
+            with self.opener.open(req, timeout=60) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as exc:
+            raise APIError(exc.code) from None
+        except (urllib.error.URLError, TimeoutError) as exc:
+            raise CheckError('GitHub network request failed; response details withheld') from exc
+
+
+def validate_target(target):
+    if not target:
+        raise CheckError('DR_REPO is unset. Confirm the private secondary full name, then set '
+                         'the GitHub repository variable VYOMARAJ_DR_REPO. No target is guessed.')
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', target):
+        raise CheckError('DR_REPO must be an owner/repository name, not a URL')
+    if target.lower() == PRIMARY.lower() or '..' in target:
+        raise CheckError('DR_REPO must be a separate repository')
+    return target
+
+
+def snapshot(client, repo):
+    ref = client.request('GET', f'repos/{repo}/git/ref/heads/{BRANCH}')
+    commit = ref['object']['sha']
+    tree = client.request('GET', f'repos/{repo}/git/commits/{commit}')['tree']['sha']
+    return {'commit': commit, 'tree': tree}
+
+
+def assert_unchanged(client, repo, expected):
+    if snapshot(client, repo) != expected:
+        raise CheckError('Source or target changed during the operation; refusing stale replication')
+
+
+def source_entries(response):
+    if response.get('truncated') or not isinstance(response.get('tree'), list):
+        raise CheckError('Truncated/invalid source tree; refusing partial replication')
+    entries = []
+    seen = set()
+    for entry in response['tree']:
+        if entry['type'] == 'tree':
+            continue
+        if entry['type'] != 'blob' or entry['mode'] not in ('100644', '100755', '120000'):
+            raise CheckError('Unsupported source entry (including submodules); refusing partial replication')
+        path = entry['path']
+        if path in seen or path.startswith('/') or '..' in path.split('/'):
+            raise CheckError('Invalid or duplicate source path')
+        seen.add(path)
+        entries.append(entry)
+    if not entries:
+        raise CheckError('Empty source snapshot refused')
+    return entries
+
+
+def git_blob_sha(raw):
+    return hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+
+
+def replicate(primary, secondary, target, src, dst):
+    """Build exact tree, verify before publication, preserve prior DR history.
+
+    Target-only files are removed from the new snapshot, not its history. This
+    is an explicit mirror operation. Unknown/empty targets are never initialized.
+    """
+    source = primary.request('GET', f'repos/{PRIMARY}/git/trees/{src["tree"]}?recursive=1')
+    entries = source_entries(source)
+    target_entries = []
+    for entry in entries:
+        blob = primary.request('GET', f'repos/{PRIMARY}/git/blobs/{entry["sha"]}')
+        if blob.get('encoding') != 'base64':
+            raise CheckError('Unsupported blob encoding')
+        raw = base64.b64decode(''.join(blob['content'].split()), validate=True)
+        if git_blob_sha(raw) != entry['sha']:
+            raise CheckError('Source blob integrity mismatch')
+        created = secondary.request('POST', f'repos/{target}/git/blobs',
+                                    {'encoding': 'base64', 'content': base64.b64encode(raw).decode()})
+        if created['sha'] != entry['sha']:
+            raise CheckError('Target blob integrity mismatch')
+        target_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+    # No base_tree: retaining it would preserve deleted source files on DR.
+    tree = secondary.request('POST', f'repos/{target}/git/trees', {'tree': target_entries})['sha']
+    if tree != src['tree']:
+        raise CheckError('New DR tree differs from source; refusing to update DR ref')
+    assert_unchanged(primary, PRIMARY, src)
+    assert_unchanged(secondary, target, dst)
+    commit = secondary.request('POST', f'repos/{target}/git/commits', {
+        'message': f'chore(dr): snapshot {PRIMARY}:{BRANCH} at {src["commit"]}',
+        'tree': tree, 'parents': [dst['commit']],
+    })['sha']
+    # Recheck immediately before publication. force:false also rejects a
+    # concurrent divergent target advance; it never force-overwrites a branch.
+    assert_unchanged(primary, PRIMARY, src)
+    assert_unchanged(secondary, target, dst)
+    secondary.request('PATCH', f'repos/{target}/git/refs/heads/{BRANCH}',
+                      {'sha': commit, 'force': False})
+    observed = snapshot(secondary, target)
+    if observed != {'commit': commit, 'tree': tree}:
+        raise CheckError('Read-after-write mismatch; no sync success claimed')
+    assert_unchanged(primary, PRIMARY, src)
+    return observed
+
+
+def execute(target, sync=False, primary=None, secondary=None, environ=None):
+    env = os.environ if environ is None else environ
+    target = validate_target(target)
+    if sync:
+        if env.get('GITHUB_REPOSITORY') != PRIMARY or env.get('GITHUB_REF') != 'refs/heads/main':
+            raise CheckError('Replication is restricted to the primary repository main workflow')
+        if env.get('DR_SYNC_APPROVED') != 'true':
+            raise CheckError('Replication requires explicit DR_SYNC_APPROVED=true')
+        if not env.get('PRIMARY_TOKEN') or not env.get('DR_TOKEN'):
+            raise CheckError('Replication credentials are missing; do not paste tokens in chat')
+    primary = primary or GitHub(env.get('PRIMARY_TOKEN'))
+    secondary = secondary or GitHub(env.get('DR_TOKEN'))
+    for client, repo in ((primary, PRIMARY), (secondary, target)):
+        info = client.request('GET', f'repos/{repo}')
+        if info.get('full_name', '').lower() != repo.lower():
+            raise CheckError('Repository identity mismatch or rename; confirmation required')
+        if info.get('archived') or info.get('disabled'):
+            raise CheckError('Repository is archived/disabled')
+    src, dst = snapshot(primary, PRIMARY), snapshot(secondary, target)
+    # Never fabricate an initial target on a 404: permission failure is ambiguous.
+    changed = False
+    if src['tree'] != dst['tree'] and sync:
+        dst = replicate(primary, secondary, target, src, dst)
+        changed = True
+    assert_unchanged(primary, PRIMARY, src)
+    assert_unchanged(secondary, target, dst)
+    return {'primary_repository': PRIMARY, 'secondary_repository': target, 'branch': BRANCH,
+            'primary': src, 'secondary': dst, 'data_match': src['tree'] == dst['tree'],
+            'replication_performed': changed, 'traffic_switched': False,
+            'status': 'MATCH' if src['tree'] == dst['tree'] else 'MISMATCH'}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--target', default=os.environ.get('DR_REPO', ''))
+    parser.add_argument('--sync', action='store_true', help='Approved primary-main workflow only')
+    parser.add_argument('--output', type=Path, help='Write sanitized evidence JSON')
+    args = parser.parse_args()
+    try:
+        result = execute(args.target, args.sync)
+        code = 0 if result['data_match'] else 1
+    except (CheckError, ValueError, KeyError, TypeError) as exc:
+        # Only CheckError messages are controlled. Other failures may embed raw
+        # input in exception messages; never emit them or provider response bodies.
+        result = {'status': 'BLOCKED', 'detail': str(exc) if isinstance(exc, CheckError)
+                  else 'Malformed source/API response; no success claimed',
+                  'traffic_switched': False}
+        code = 2
+    result['checked_at_utc'] = datetime.now(timezone.utc).isoformat()
+    result['requested_operation'] = 'sync' if args.sync else 'read_only_verification'
+    result['primary_repository'] = PRIMARY
+    try:
+        result['secondary_repository'] = validate_target(args.target)
+    except CheckError:
+        result['secondary_repository'] = None
+    text = json.dumps(result, indent=2) + '\n'
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(text, encoding='utf-8')
+    print(text, end='')
+    return code
+
+
+if __name__ == '__main__':
+    sys.exit(main())

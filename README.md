@@ -21,8 +21,8 @@ The repository contains operational material for authorized development and reco
 ## Repository roles
 
 - **Primary:** `Vyomaraj1356/Vyomarajai`
-- **DR / secondary:** `deepakGoyal1356/Vyomaraj-Agent-6d64e`
-- Primary-to-DR replication is authenticated and controlled.
+- **DR / secondary:** not yet verified; historical names conflict and authenticated checks returned 404. Confirm the destination through the [repository map](VYOMARAJ_REPOSITORY_MAP.md), then set Actions variable `VYOMARAJ_DR_REPO`.
+- Primary-to-DR replication is authenticated, opt-in and main-only; see the [DR verification runbook](ops/dr/README.md). A 404 is not proof that a private repository does not exist.
 - DR-to-primary promotion is a controlled recovery operation; no blind two-way overwrite or force-push is used.
 
 ## Verification policy
@@ -40,6 +40,14 @@ Current claims should be backed by:
 ## Development
 
 Use review branches and pull requests for changes. Do not push experimental Arena changes directly over `main`.
+
+## Reconstructed handover — 3 October 2026
+
+The [handover notepad](ops/vyomaraj-core/handover/HANDOVER_ALL_UPDATES_2026_10_03.txt) was reconstructed from the verified roster and content catalog on the reconciled Arena branch. It is **not the recovered original 365-line file**. It preserves `UNKNOWN` names and `UNMAPPED` slots, lists only the 32 cataloged JSON filenames (not all 421 product titles), and excludes populated runtime/device values.
+
+Validate it locally with `python ops/vyomaraj-core/handover/rebuild_handover.py --check`.
+
+For the expanded agent roster, historical candidates, content-label index, platform/technology configuration, and unresolved work, see the [full system inventory](ops/vyomaraj-core/handover/FULL_SYSTEM_INVENTORY_2026_10_03.md). It distinguishes local files, remote-only implementations and unverified historical claims; private configuration values are excluded.
 
 ## Security
 
