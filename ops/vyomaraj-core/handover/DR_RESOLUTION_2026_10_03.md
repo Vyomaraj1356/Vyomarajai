@@ -58,4 +58,11 @@ The broken `http://03.md` link is not a project report URL. Use the Arena file v
 
 ## Publication status
 
-The repair is being prepared on `arena/01a10140-vyomarajai` only. See the final session response for the verified push/PR outcome. Nothing in this document authorizes direct main updates, reverse sync or force writes.
+- Repair commit `922feee857968d2e8132a88da4bee53e968164a3` was pushed to `arena/01a10140-vyomarajai`; the origin ref was verified. This document is a follow-up evidence update.
+- Review PR **#5** is OPEN: https://github.com/Vyomaraj1356/Vyomarajai/pull/5. It was MERGEABLE at the check; it has not been merged.
+- GitHub CI run **37116901675** passed the offline-tests job. The verify-or-sync job was **SKIPPED by the feature-branch safety gate**. A green workflow here is not evidence of DR synchronization.
+- An explicit READ-ONLY workflow dispatch on this session branch was attempted, with the old main workflow's target as a diagnostic candidate. GitHub rejected dispatch with **403 Resource not accessible by integration**. No secondary write was attempted by that request.
+- Published inventory URL returned **HTTP 200**: https://github.com/Vyomaraj1356/Vyomarajai/blob/arena/01a10140-vyomarajai/ops/vyomaraj-core/handover/FULL_SYSTEM_INVENTORY_2026_10_03.md.
+- Local report-preview routes `/`, `/dr-status`, `/handover` and `/download/inventory.md` all returned HTTP 200. Private-file/traversal routes are rejected in tests.
+
+Primary main remains unchanged by this session. No secondary write or traffic switch occurred. Reconnection/permissions, target confirmation and PR review are required before the live sync can be completed.
