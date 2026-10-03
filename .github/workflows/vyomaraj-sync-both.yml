@@ -17,7 +17,7 @@ concurrency:
 env:
   PRIMARY_REPO: Vyomaraj1356/Vyomarajai
   PRIMARY_BRANCH: main
-  DR_REPO: deepakGoyal1356/Vyomaraj-Agent-6d64
+  DR_REPO: deepakGoyal1356/Vyomaraj-Agent-6d64e
   DR_BRANCH: main
 
 jobs:
