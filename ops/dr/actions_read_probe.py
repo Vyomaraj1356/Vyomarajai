@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 import sys
-from dr_sync import GitHub, PRIMARY, CheckError, APIError, snapshot, assert_unchanged, validate_target
+from dr_sync import GitHub, PRIMARY, CheckError, APIError, snapshot, assert_unchanged, validate_target, source_entries
 from dr_diagnostics import diagnose
 
 class ReadOnlyClient:
@@ -28,6 +28,15 @@ def probe(primary, secondary, target):
     if result['status'] == 'READ_ACCESS_CONFIRMED':
         try:
             p, s = snapshot(primary, PRIMARY), snapshot(secondary, target)
+            if p['tree'] != s['tree']:
+                a = {x['path']: x for x in source_entries(primary.request('GET', f'repos/{PRIMARY}/git/trees/{p["tree"]}?recursive=1'))}
+                b = {x['path']: x for x in source_entries(secondary.request('GET', f'repos/{target}/git/trees/{s["tree"]}?recursive=1'), allow_empty=True)}
+                result['difference_counts'] = {
+                    'primary_files': len(a), 'secondary_files': len(b),
+                    'missing_on_secondary': len(a.keys() - b.keys()),
+                    'secondary_only': len(b.keys() - a.keys()),
+                    'changed_content_or_mode': sum(any(a[k][f] != b[k][f] for f in ('sha','mode','type')) for k in a.keys() & b.keys()),
+                }
             assert_unchanged(primary, PRIMARY, p)
             assert_unchanged(secondary, target, s)
             result['tree_comparison'] = 'MATCH' if p['tree'] == s['tree'] else 'MISMATCH'
@@ -54,6 +63,9 @@ def annotation(result):
         status = value.get('http_status')
         parts.append(key + '=' + enum(value.get('status')) + (f':HTTP_{status}' if type(status) is int and 100 <= status <= 599 else ''))
     parts += ['tree=' + enum(result.get('tree_comparison')), 'writes=NONE', 'write_permission=UNVERIFIED']
+    for key in ('primary_files', 'secondary_files', 'missing_on_secondary', 'secondary_only', 'changed_content_or_mode'):
+        count = result.get('difference_counts', {}).get(key)
+        if type(count) is int and 0 <= count <= 10000000: parts.append(f'{key}={count}')
     return '; '.join(parts)
 
 def main():

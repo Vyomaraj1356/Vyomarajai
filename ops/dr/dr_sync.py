@@ -224,6 +224,18 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
             'status': 'MATCH' if src['tree'] == dst['tree'] else 'MISMATCH'}
 
 
+def actions_result_annotation(result):
+    """Closed-vocabulary public error/success signal, available without log downloads."""
+    status = result.get('status')
+    if status not in ('MATCH', 'MISMATCH', 'BLOCKED'): status = 'UNKNOWN'
+    operation = result.get('failed_api_operation')
+    allowed = {m + ':' + p for m in ('GET','POST','PATCH') for p in ('git/blobs','git/trees','git/commits','git/refs','git/ref','identity','repository')}
+    if operation not in allowed: operation = 'NONE_OR_UNCLASSIFIED'
+    http = result.get('failed_http_status')
+    http = str(http) if type(http) is int and 100 <= http <= 599 else 'UNAVAILABLE'
+    return f'status={status}; failed_api_operation={operation}; http={http}; traffic_switched=NONE'
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--target', default=os.environ.get('DR_REPO', ''))
@@ -238,7 +250,7 @@ def main():
         # input in exception messages; never emit them or provider response bodies.
         result = {'status': 'BLOCKED', 'detail': str(exc) if isinstance(exc, CheckError)
                   else 'Malformed source/API response; no success claimed',
-                  'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None)}
+                  'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None), 'failed_http_status': getattr(exc, 'status', None)}
         code = 2
     result['checked_at_utc'] = datetime.now(timezone.utc).isoformat()
     result['requested_operation'] = 'sync' if args.sync else 'read_only_verification'
@@ -252,6 +264,9 @@ def main():
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(text, encoding='utf-8')
     print(text, end='')
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        level = 'error' if code else 'notice'
+        print(f'::{level} title=DR SNAPSHOT RESULT::' + actions_result_annotation(result))
     return code
 
 
