@@ -10,6 +10,8 @@
 
 **Music/audio/video extension:** Music and ENT-MUS-S1–S6 already exist. `MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md` records six proposed functional bindings (canonical names still UNKNOWN), 39 discovery cards, a dated IFPI top-five example, browser-local media preview and deterministic programme planning. No extra agents, live chart feed, licensed streaming, production release or DR verification is claimed.
 
+**Films/theatre/ads extension:** `FILM_THEATRE_ADS_UPDATE_2026_10_03.md` covers 27 starter records/formats, seven original-outline formats and a browser-local trim/reorder/mix preview with edit-decision export. ENT-MOVIE-S1–S6 already existed; functions are proposals and canonical names remain UNKNOWN. No full commercial films or plays are rehosted. `EXPERIENCE_CONTENTS_2026_10_03.md` indexes all four editorial extensions and their sources.
+
 ## 1. Scope and evidence rules
 
 This is a source-backed inventory of the current checkout and selected files inspected at reconciled commit `7b7dd403c79266d3250e6b334a7598a5432adc17`. It is not proof of live devices, connected accounts, paid subscriptions, running agents, production deployments, all private chats, or all 421 product titles. Historical archives have not been exhaustively audited for every embedded content item.

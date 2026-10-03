@@ -56,6 +56,26 @@
       "automatic_provider_calls": false,
       "automatic_publishing": false,
       "review_before_external_publication": true
+    },
+    {
+      "id": "film-frame-stage",
+      "path": "ops/vyomaraj-core/film-experience/content.json",
+      "category_id": "ENTERTAINMENT",
+      "agent_ids": [
+        "ENT-MOVIE-S1",
+        "ENT-MOVIE-S2",
+        "ENT-MOVIE-S3",
+        "ENT-MOVIE-S4",
+        "ENT-MOVIE-S5",
+        "ENT-MOVIE-S6"
+      ],
+      "assignment_status": "proposed_functional_bindings",
+      "canonical_names": "UNKNOWN",
+      "additional_agents_created": 0,
+      "registry_totals_changed": false,
+      "automatic_provider_calls": false,
+      "automatic_publishing": false,
+      "review_before_external_publication": true
     }
   ]
 }

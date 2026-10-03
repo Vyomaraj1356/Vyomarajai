@@ -51,6 +51,10 @@ For the expanded agent roster, historical candidates, content-label index, platf
 
 The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records the current 404/403 access blockers, local fixes and GitHub PR/CI evidence. For readable tables, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174` and use the Arena live preview. Only the three sanitized reports are served; do not replace this with unrestricted repository-root file serving.
 
+## Films, theatre, clips and advertising
+
+[Frame & Stage](ops/vyomaraj-core/film-experience/README.md) extends the six existing Movie slots with proposed functions for films, shorts, clips, Marathi/Hindi theatre and advertising. It adds source-linked discovery, original outline planning, and browser-local trim/reorder previews with edit-decision JSON—not rehosted commercial films or encoded movie exports. Run the shared server with `--home film`; open `/film/`, `/reports/film` and `/reports/contents`. [All experience contents](ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md) · [Film update](ops/vyomaraj-core/handover/FILM_THEATRE_ADS_UPDATE_2026_10_03.md).
+
 ## Music, radio, audio and video
 
 [Memory & Melody](ops/vyomaraj-core/music-experience/README.md) fills the dedicated music experience gap without duplicating the six existing ENT-MUS slots. It adds researched nostalgia/album/folk/world/chart/video discovery, a browser-local authorized-file player, and source-linked Vyomaraj/Jarvis programme plans. Run the shared studio on port 4176 and open `/music/`. [Updated audit and feature report](ops/vyomaraj-core/handover/MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md). Slot functions are proposals; streaming, live charts and external AI are not connected.

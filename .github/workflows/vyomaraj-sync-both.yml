@@ -47,6 +47,7 @@ jobs:
           python -m unittest discover -s ops/vyomaraj-core/experience -p 'test_*.py' -v
           node --check ops/vyomaraj-core/bhakti-experience/app.js
           node --check ops/vyomaraj-core/music-experience/app.js
+          node --check ops/vyomaraj-core/film-experience/app.js
           bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh
 
   verify-or-sync:

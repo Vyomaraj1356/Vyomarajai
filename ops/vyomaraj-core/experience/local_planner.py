@@ -6,7 +6,8 @@ from pathlib import Path
 CORE = Path(__file__).resolve().parent.parent
 PACKS = {'bhakti': CORE / 'bhakti-experience/content.json',
          'liquor-bar': CORE / 'liquor-bar/content.json',
-         'music': CORE / 'music-experience/content.json'}
+         'music': CORE / 'music-experience/content.json',
+         'film': CORE / 'film-experience/content.json'}
 
 
 class InvalidPlan(ValueError):
@@ -16,6 +17,12 @@ class InvalidPlan(ValueError):
 def build_plan(request):
     if not isinstance(request, dict):
         raise InvalidPlan('Request must be a JSON object.')
+    if request.get('experience') == 'film':
+        from film_planner import build_film_plan, InvalidFilmPlan
+        try:
+            return build_film_plan(request, PACKS['film'])
+        except InvalidFilmPlan as exc:
+            raise InvalidPlan(str(exc)) from exc
     if request.get('experience') == 'music':
         from music_planner import build_music_plan, InvalidMusicPlan
         try:
