@@ -58,6 +58,36 @@ jobs:
           python -m unittest discover -s ops/availability -p 'test_*.py' -v
           bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh
 
+  diagnose-existing-pat:
+    needs: offline-tests
+    # Trusted same-repository push only; never execute a fork/PR credential probe.
+    if: >-
+      github.repository == 'Vyomaraj1356/Vyomarajai' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/arena/01a10140-vyomarajai'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read-only repository, ref and tree diagnostic (never replicate)
+        env:
+          PRIMARY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
+        run: python ops/dr/actions_read_probe.py
+      - name: Upload sanitized read evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dr-read-only-diagnostic
+          path: dr-read-probe.json
+          if-no-files-found: ignore
+          retention-days: 7
+
   verify-or-sync:
     needs: offline-tests
     if: >-
