@@ -27,6 +27,12 @@ class CheckError(Exception):
     pass
 
 
+class TargetOnlyRemovalRequired(CheckError):
+    def __init__(self, count):
+        self.count = count
+        super().__init__(f'Secondary has {count} target-only files; refusing removal without explicit DR_ALLOW_TARGET_ONLY_REMOVAL=true review approval.')
+
+
 class APIError(CheckError):
     def __init__(self, status, operation=None):
         self.status = status
@@ -137,7 +143,7 @@ def git_blob_sha(raw):
     return hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
 
 
-def replicate(primary, secondary, target, src, dst, metrics=None):
+def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_only_removal=False):
     """Build exact tree, verify before publication, preserve prior DR history.
 
     Target-only files are removed from the new snapshot, not its history. This
@@ -146,9 +152,12 @@ def replicate(primary, secondary, target, src, dst, metrics=None):
     source = primary.request('GET', f'repos/{PRIMARY}/git/trees/{src["tree"]}?recursive=1')
     entries = source_entries(source)
     old_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{dst["tree"]}?recursive=1'), allow_empty=True)
+    extra = {entry['path'] for entry in old_entries} - {entry['path'] for entry in entries}
+    if extra and not allow_target_only_removal:
+        raise TargetOnlyRemovalRequired(len(extra))
     available = {entry['sha'] for entry in old_entries}
     metrics = {} if metrics is None else metrics
-    metrics.update(uploaded_blobs=0, reused_blobs=0)
+    metrics.update(uploaded_blobs=0, reused_blobs=0, target_only_files_removed_from_snapshot=len(extra))
     target_entries = []
     for entry in entries:
         if entry['sha'] in available:
@@ -212,9 +221,9 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
     src, dst = snapshot(primary, PRIMARY), snapshot(secondary, target)
     # Never fabricate an initial target on a 404: permission failure is ambiguous.
     changed = False
-    transfer = {'uploaded_blobs': 0, 'reused_blobs': 0}
+    transfer = {'uploaded_blobs': 0, 'reused_blobs': 0, 'target_only_files_removed_from_snapshot': 0}
     if src['tree'] != dst['tree'] and sync:
-        dst = replicate(primary, secondary, target, src, dst, transfer)
+        dst = replicate(primary, secondary, target, src, dst, transfer, env.get('DR_ALLOW_TARGET_ONLY_REMOVAL') == 'true')
         changed = True
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
@@ -233,7 +242,9 @@ def actions_result_annotation(result):
     if operation not in allowed: operation = 'NONE_OR_UNCLASSIFIED'
     http = result.get('failed_http_status')
     http = str(http) if type(http) is int and 100 <= http <= 599 else 'UNAVAILABLE'
-    return f'status={status}; failed_api_operation={operation}; http={http}; traffic_switched=NONE'
+    count = result.get('target_only_files_awaiting_review')
+    gate = f'; target_only_files_awaiting_review={count}' if type(count) is int and count > 0 else ''
+    return f'status={status}; failed_api_operation={operation}; http={http}; traffic_switched=NONE' + gate
 
 
 def main():
@@ -250,7 +261,8 @@ def main():
         # input in exception messages; never emit them or provider response bodies.
         result = {'status': 'BLOCKED', 'detail': str(exc) if isinstance(exc, CheckError)
                   else 'Malformed source/API response; no success claimed',
-                  'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None), 'failed_http_status': getattr(exc, 'status', None)}
+                  'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None), 'failed_http_status': getattr(exc, 'status', None),
+                  'target_only_files_awaiting_review': exc.count if isinstance(exc, TargetOnlyRemovalRequired) else None}
         code = 2
     result['checked_at_utc'] = datetime.now(timezone.utc).isoformat()
     result['requested_operation'] = 'sync' if args.sync else 'read_only_verification'

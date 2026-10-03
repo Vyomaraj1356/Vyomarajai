@@ -12,6 +12,10 @@ on:
         type: choice
         options: [verify, sync]
         default: verify
+      allow_target_only_removal:
+        description: 'SYNC ONLY: after reviewing/backing up secondary-only files, approve removal from its current snapshot (history retained)'
+        type: boolean
+        default: false
       diagnostic_target:
         description: 'Optional owner/repo for READ-ONLY diagnosis; never used for sync'
         type: string
@@ -109,6 +113,7 @@ jobs:
           DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
           DR_REPO: ${{ vars.VYOMARAJ_DR_REPO }}
           DR_SYNC_APPROVED: ${{ vars.VYOMARAJ_DR_SYNC_ENABLED }}
+          DR_ALLOW_TARGET_ONLY_REMOVAL: ${{ inputs.allow_target_only_removal }}
           REQUEST_MODE: ${{ inputs.mode }}
           DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
         run: |

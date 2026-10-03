@@ -1,5 +1,7 @@
 # GitHub, report-link and DR resolution — 3 October 2026
 
+**New GitHub-side evidence:** real Actions reads confirm all 125 primary-main files match on secondary, with 149 additional secondary-only files. The old base-tree construction retains extras while requiring whole-tree equality. The correction and explicit removal-review gate are in PR #5, not yet deployed on main. See `/reports/resilience` for the findings and actual run evidence; this is more specific than the earlier Arena 404/403 observations below.
+
 > **Latest DR / Aghor follow-up:** `/reports/resilience` supersedes earlier live-status statements below. Primary main advanced to `9be6d39`; the corrected secondary ends `6d64e`. Main Actions run `37123060948` passed authentication but failed replication; integrity reporting was skipped. Arena access still differs (404/403). A same-host failover rehearsal is tested separately, not production DR. The newly requested Aghor sub-agent makes the active total 128 (BHAKTI 3); see `/aghor/` and `/reports/aghor`.
 
 ## Latest follow-up — discovery integration pass

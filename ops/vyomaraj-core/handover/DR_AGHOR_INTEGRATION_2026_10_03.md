@@ -1,3 +1,64 @@
+# DR Script Investigation — Confirmed Tree Mismatch
+
+**3 October 2026 · real GitHub Actions credential probes executed, not just local tests.**
+
+## Confirmed current problem
+
+Actions run **37125323786**, job **111209399552**, successfully read primary and secondary repository metadata, both main refs, both commit/tree snapshots and full non-truncated tree metadata. Stable refs were rechecked. It reported:
+
+| Measurement | Observed count |
+|---|---:|
+| Files on primary main | 125 |
+| Files on secondary main | 274 |
+| Primary files missing on secondary | 0 |
+| Shared files with different content or mode | 0 |
+| Secondary-only files | **149** |
+
+**All 125 primary files match, but the entire trees differ because secondary contains 149 extra files.** This is a confirmed explanation of the current integrity mismatch, not speculation that the repository is missing or its credential is invalid. Counts describe primary main `9be6d39` at the audit; they must be recalculated after the proposed changes reach main.
+
+Evidence: `ops/dr/ACTIONS_PROBE_EVIDENCE_2026_10_03.json`. GitHub run: https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37125323786 . The earlier probe `37125232441` independently confirmed read access and tree mismatch. The evidence was retrieved from check-run annotations, so it did not depend on the broken log-download path. No file bodies, private filenames or credentials were emitted; neither probe wrote data or refs.
+
+## Actual script defect and correction
+
+The old main workflow sets `tree_payload["base_tree"] = base_tree`, overlays primary entries, publishes the resulting commit, and only afterward checks whole-tree equality. That construction retains secondary-only paths while its validation requires them not to exist. It can publish a non-matching snapshot before reporting failure.
+
+The replacement script in this review branch:
+
+- Builds an exact tree **without base_tree** and verifies its SHA **before publishing a ref**.
+- Preserves the old secondary commit as the new commit's parent; no force push or automatic history deletion.
+- Rechecks source and destination refs and verifies the published result.
+- Reuses blobs already on secondary instead of uploading matching content again.
+- Emits a sanitized **DR SNAPSHOT RESULT** annotation with HTTP status and failed API operation, so future errors remain visible when log downloads fail.
+- **Refuses target-only file removal by default, before any write.** The newly measured extra files are not assumed to be disposable.
+
+Local regression tests verify both paths: unapproved removal is blocked without any writes; explicit approval produces the exact tree without `base_tree`, while retaining the previous commit as parent. The DR suite now has **48 passing tests**.
+
+## What is, and is not, proved
+
+The existing Actions credential can read both main branches and their trees. The failure of Arena's separate connection to read the private secondary is not the same failure. Replacing the Actions PAT blindly is not justified by these results. Its permission to perform future writes remains unverified.
+
+The old main replication run `37123060948` and separate verifier `37123060897` are failed. Both log-download methods (`gh api` job logs and `gh run view --log-failed`) returned EOF with zero log bytes; the exact historical exception is still unavailable. The 149-file mismatch and the conflicting old-script logic are independently confirmed, but we do not invent a historical HTTP error or claim this excludes another error in that run.
+
+## Deployment and approval gates
+
+The corrected code is on `arena/01a10140-vyomarajai`, in **open PR #5**, not on main. Thus main still runs the old script. PR: https://github.com/Vyomaraj1356/Vyomarajai/pull/5 . No merge to main, secondary ref update or production traffic switch was performed in this investigation.
+
+1. Review/merge the correction through the authorized GitHub process. Automatic main sync will still refuse any unapproved target-only removals.
+2. Run **verify** against the then-current primary main and secondary. Do not assume today's 149-file count still applies after the merge.
+3. Review secondary-only content and preserve an independent backup/known-good recovery checkpoint. If secondary has its own necessary application files, do not authorize an exact-root mirror until storage/layout requirements are resolved.
+4. Only when an exact-root mirror and the specific removals are intended: manually run the main workflow with `mode=sync` and **allow_target_only_removal=true**. The checkbox defaults false; scheduled and push-triggered runs do not implicitly grant this approval. The script also requires the existing main/repository/credential gates.
+5. Require final `MATCH` / `data_match=true` and readback evidence. If GitHub rejects a write, the new annotation identifies the failing operation/HTTP status; then address the actual permission or branch-rule issue.
+
+**Implemented solution: exact-tree construction, pre-publication integrity, actionable error reporting and a removal-review gate. Production correction is not yet executed.** Git mirroring is still separate from runtime/database recovery, independent-site failover, and any zero-RPO/RTO claim.
+
+## Current validation
+
+**222 automated checks PASS locally:** DR 48; local availability 8; handover 13; Pairings 9; experience/governance 77; research 36; registry 28; Node metadata safety 3. Registry and historical-handover rebuild checks also pass. Real Actions read probes passed in runs 37125232441 and 37125323786; these are read evidence, not production sync.
+
+## Earlier integration snapshot
+
+The following report retains earlier local drill results and Aghor research history. The latest owner-directed entertainment/view-only policy still applies; Aghor practice planning remains disabled. See `/reports/policy`, `/sovereign/` and `/contracts/`.
+
 # Vyomaraj / Jarvis — DR and Aghor Integration Update
 
 **Latest owner correction:** Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Aghor practice-plan UI/API and all practice steps have been removed. Previous planner descriptions below are historical. See `/reports/policy`, `/sovereign/` and `/contracts/` for the current non-harm policy and draft earning terms.

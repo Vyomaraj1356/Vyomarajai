@@ -171,7 +171,7 @@ class DRTests(unittest.TestCase):
     def test_existing_blob_reused_without_upload(self):
         self.secondary.existing_source_blob=True
         result=self.run_check(True)
-        self.assertEqual(result['transfer'],{'uploaded_blobs':0,'reused_blobs':1})
+        self.assertEqual(result['transfer'],{'uploaded_blobs':0,'reused_blobs':1,'target_only_files_removed_from_snapshot':0})
         self.assertFalse(any('/git/blobs/' in p for m,p,b in self.primary.calls))
         self.assertFalse(any(m=='POST' and p.endswith('/blobs') for m,p,b in self.secondary.calls))
 

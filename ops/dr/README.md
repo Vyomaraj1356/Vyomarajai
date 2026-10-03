@@ -1,5 +1,16 @@
 # Safe Primary → DR verification and replication
 
+## Latest confirmed mismatch: 125 primary files + 149 secondary-only files
+
+Real Actions probe run `37125323786` succeeded using the existing Actions credential. Primary main has 125 files, secondary 274; missing 0, changed shared content/mode 0, secondary-only 149. `ACTIONS_PROBE_EVIDENCE_2026_10_03.json` retains the sanitized check-run annotation. This confirms the current tree mismatch and demonstrates that Actions read access works, separately from Arena's restricted credential.
+
+Old main overlays entries onto `base_tree` and checks equality only after publishing. The replacement uses no base tree and verifies before ref publication. **New safety gate:** `DR_ALLOW_TARGET_ONLY_REMOVAL` must be literal `true` before any target-only removal; workflow input `allow_target_only_removal` defaults false and is only explicitly approved in manual dispatch. Main still owns writes; the guard is checked before blob/tree/commit writes. Review and independently back up extra files first. Counts are recalculated and may change after main receives PR #5.
+
+The trusted same-repository review-branch **push** now runs a separate GET-only Actions probe, after offline tests. It never runs on pull requests/forks, never copies blobs and never changes refs. Green probe = readable, not synchronized or write-authorized. The main-only verify/sync guard is unchanged. `DR SNAPSHOT RESULT` annotations now expose only closed-vocabulary result, failed API operation, HTTP status and removal-review count, never raw provider bodies or credentials.
+
+PR #5 remains the deployment gate. Do not claim production success until an authorized exact snapshot receives final MATCH/readback. Previous failed-log download still returns EOF, so this audit does not invent the historical exception. Latest viewer report: `/reports/resilience`.
+
+
 ## One configuration authority, no guessed private repository
 
 Primary is `Vyomaraj1356/Vyomarajai:main`. The secondary must be explicitly confirmed in the primary repository's GitHub Actions **variable** `VYOMARAJ_DR_REPO` (`owner/repository`, not a URL). There is deliberately no default: legacy files disagree between several names and all inspected candidates returned 404 to the Arena integration on 3 October 2026.

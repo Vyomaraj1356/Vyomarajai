@@ -1,5 +1,7 @@
 # Vyomaraj — View-only Policy & Preview Update
 
+**New GitHub-side evidence:** real Actions reads confirm all 125 primary-main files match on secondary, with 149 additional secondary-only files. The old base-tree construction retains extras while requiring whole-tree equality. The correction and explicit removal-review gate are in PR #5, not yet deployed on main. See `/reports/resilience` for the findings and actual run evidence; this is more specific than the earlier Arena 404/403 observations below.
+
 **Owner-directed update · 3 October 2026**
 
 ## Completed changes

@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-10-03T13:12:09.292235+00:00",
+  "source": "GitHub check-run annotations from real Actions credential probes",
+  "observations": [
+    {
+      "run_id": 37125232441,
+      "job_id": 111209126806,
+      "job_conclusion": "success",
+      "url": "https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37125232441",
+      "public_diagnostic_annotations": [
+        "read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED"
+      ]
+    },
+    {
+      "run_id": 37125323786,
+      "job_id": 111209399552,
+      "job_conclusion": "success",
+      "url": "https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37125323786",
+      "public_diagnostic_annotations": [
+        "read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=125; secondary_files=274; missing_on_secondary=0; secondary_only=149; changed_content_or_mode=0"
+      ]
+    }
+  ],
+  "write_test_performed": false,
+  "production_sync_executed_by_probe": false,
+  "old_failure_log_download": "Both gh api job logs and gh run view --log-failed returned EOF with zero log bytes for main runs 37123060948 and 37123060897; no HTTP cause established."
+}

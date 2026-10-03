@@ -10,5 +10,7 @@
   "automatic_reverse_overwrite": false,
   "zero_rpo_verified": false,
   "zero_rto_verified": false,
-  "scope": "Git main snapshot only; not runtime databases, secret stores, live media sessions or production traffic"
+  "scope": "Git main snapshot only; not runtime databases, secret stores, live media sessions or production traffic",
+  "automatic_target_only_file_removal": false,
+  "target_only_file_removal": "Explicit manual workflow-dispatch approval after reviewing current diff and preserving a backup; false by default. Retain old secondary commit history."
 }
