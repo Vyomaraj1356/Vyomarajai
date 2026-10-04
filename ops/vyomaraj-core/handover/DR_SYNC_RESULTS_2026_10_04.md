@@ -5,7 +5,7 @@
 ## 1. Scope — what this record does and does not assert
 
 Primary repository: `Vyomaraj1356/Vyomarajai`. Secondary repository: `deepakGoyal1356/Vyomaraj-Agent-6d64e`.
-Main tip covered by this record: `244f5a66cee8c80bab1603ea4d9aad0ff942a25a`.
+Main tip covered by this record: `a47f76602b26e7101b55b25a6c51c85a95f47308`.
 Workflow: `.github/workflows/vyomaraj-sync-both.yml` — triggers: push, pull_request, workflow_dispatch, schedule; schedule: `*/30 * * * *` (UTC).
 Recorded scope: Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR.
 
@@ -15,20 +15,20 @@ This is a Git-snapshot replication record. It is **not** a production disaster-r
 
 | Source | SHA256 | What it contributes |
 |---|---|---|
-| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `ecff349186244f0c299a806ac80d862b65484f9e8e4f6ac3ec8b25b5ddb93405` | 13 MATCH checkpoints, 9 replication writes, 1 blocked run, 1 read-only probe |
+| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `fff496a02e9957b8236954be986b39f55bf1cddc0a6a328184c012277d70de49` | 14 MATCH checkpoints, 10 replication writes, 1 blocked run, 1 read-only probe |
 | `ops/dr/DR_POLICY.json` | `6090042dc9e05fa1273ba0f0345a6821d633e28c755cac6be806712e7ee222df` | scope flags and the time-boxed one-snapshot removal approval |
 | `.github/workflows/vyomaraj-sync-both.yml` | `f567ee62daacd1d4aa23aec9d6cc0e142891f5feefd4971f9b8581f6b049f398` | triggers and schedule |
 
 Method: All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.
 
-Re-validation: every check-run id in this record, plus the #18 run, was re-read live from the GitHub API; each DR SNAPSHOT annotation was re-parsed and compared with the values stored here. Result: all 13 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; no mismatch in status, trees or rollback commits
+Re-validation: every check-run id in this record was re-read live from the GitHub API; each DR SNAPSHOT annotation was re-parsed and compared with the values stored here. The newest checkpoint (the merge that delivered this rebuild) was recorded from its live annotation in the same pass. Result: all 14 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; no mismatch in status, trees or rollback commits
 
 Timestamp corrections applied during that re-validation (status, trees and rollback commits were unchanged):
 
 - check-run `111379204732`: recorded `2026-10-04T06:31:25Z` → live `2026-10-04T06:31:26Z`
 - check-run `111380439332`: recorded `2026-10-04T06:46:30Z` → live `2026-10-04T06:40:03Z`
 
-## 3. Verification checkpoints (13)
+## 3. Verification checkpoints (14)
 
 A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commit` present means the run replicated (wrote) the snapshot to the secondary; absent means the two snapshots were already identical and the run changed nothing. Trees are shown shortened from the full 40-character values in the record; every row ended `data_match=true`.
 
@@ -47,10 +47,11 @@ A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commi
 | 11 | 2026-10-04T06:34:56Z | `a128173cbb10` | #16 | `37183181239` | `111379714913` | MATCH | `7b166ac14ac0` | `7b166ac14ac0` | yes (`ced0a0928492`) |
 | 12 | 2026-10-04T06:40:03Z | `c1d625047056` | #17 | `37183425727` | `111380439332` | MATCH | `1d13c7ee7a50` | `1d13c7ee7a50` | yes (`a979bac5aab9`) |
 | 13 | 2026-10-04T06:44:02Z | `244f5a66cee8` | #18 | `37183619048` | `111380998467` | MATCH | `b6029f977847` | `b6029f977847` | yes (`6a614f7f6706`) |
+| 14 | 2026-10-04T07:18:10Z | `a47f76602b26` | #19 | `37185319991` | `111385960390` | MATCH | `91597533650f` | `91597533650f` | yes (`0216f1a8e93c`) |
 
-All 13 rows were re-read from the GitHub API at 2026-10-04T07:11:55Z and matched the values stored in the record.
+All 14 rows were re-read from the GitHub API at 2026-10-04T07:18:45Z and matched the values stored in the record.
 
-## 4. Replication writes (9)
+## 4. Replication writes (10)
 
 | merge | PR | run | check-run | rollback commit (previous secondary tip, retained) |
 |---|---|---|---|---|
@@ -63,6 +64,7 @@ All 13 rows were re-read from the GitHub API at 2026-10-04T07:11:55Z and matched
 | `a128173cbb10` | #16 | `37183181239` | `111379714913` | `ced0a09284924e5fa8e98289dbc507b1ec0d9b1b` |
 | `c1d625047056` | #17 | `37183425727` | `111380439332` | `a979bac5aab924f97f79549d7e46fa202d765f2c` |
 | `244f5a66cee8` | #18 | `37183619048` | `111380998467` | `6a614f7f6706e2564440ebfcf147930b4e5676d1` |
+| `a47f76602b26` | #19 | `37185319991` | `111385960390` | `0216f1a8e93c0e67a92899348230a0cb9a23d684` |
 
 A write replaces the secondary snapshot with the primary snapshot and keeps the previous secondary commit as the rollback parent; no force-push and no history deletion is used.
 

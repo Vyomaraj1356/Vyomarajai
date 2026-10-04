@@ -1,27 +1,27 @@
 {
-  "verified_at_utc": "2026-10-04T07:15:37+00:00",
+  "verified_at_utc": "2026-10-04T07:19:02+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/01a105bf-vyomarajai",
-    "commit": "244f5a66cee8c80bab1603ea4d9aad0ff942a25a"
+    "commit": "f36ae9cc077eef9dbe64981fdf3a5aa6a4d5d825"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-    "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
-    "bytes": 12238
+    "sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4",
+    "bytes": 12868
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f",
-    "bytes": 56432
+    "sha256": "70a3df45b4d2b9bfe373c95f936f3e299c606471c9bbced6b6b9cfb544a41c17",
+    "bytes": 57002
   },
   "byte_identity": {
-    "viewer_next_session_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
-    "gateway_next_session_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
-    "viewer_handover_notepad_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
-    "gateway_handover_notepad_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
-    "viewer_transfer_package_download_sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f",
-    "gateway_transfer_package_download_sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f"
+    "viewer_next_session_download_sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4",
+    "gateway_next_session_download_sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4",
+    "viewer_handover_notepad_download_sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4",
+    "gateway_handover_notepad_download_sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4",
+    "viewer_transfer_package_download_sha256": "70a3df45b4d2b9bfe373c95f936f3e299c606471c9bbced6b6b9cfb544a41c17",
+    "gateway_transfer_package_download_sha256": "70a3df45b4d2b9bfe373c95f936f3e299c606471c9bbced6b6b9cfb544a41c17"
   },
   "viewer_routes": [
     {
@@ -66,8 +66,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14503,
-      "sha256": "e4f40452294fb22b9619edcc9113b88701a6119831ef7888317f61b2efd56b47"
+      "bytes": 14548,
+      "sha256": "4baa3a103dd42f07fd1e7e0d2d13facdfaa39832277749ed91451c54d1b7ca2f"
     },
     {
       "route": "/reports/next-session",
@@ -75,8 +75,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14595,
-      "sha256": "43fc8d2a555132bb6215be2afcfe53cbe393ed369ae10bcdcdd8337185d3e1a8"
+      "bytes": 15225,
+      "sha256": "a0fea8d150ab909449689a724b744f49531d4918b6312b817b298abf7091eff5"
     },
     {
       "route": "/reports/handover-notepad",
@@ -84,8 +84,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14595,
-      "sha256": "43fc8d2a555132bb6215be2afcfe53cbe393ed369ae10bcdcdd8337185d3e1a8"
+      "bytes": 15225,
+      "sha256": "a0fea8d150ab909449689a724b744f49531d4918b6312b817b298abf7091eff5"
     },
     {
       "route": "/reports/dr-sync",
@@ -93,8 +93,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 15562,
-      "sha256": "65715552ef937b52df993c1c3eced3ad16d5aed2edb310738a6531954d257c2d"
+      "bytes": 16133,
+      "sha256": "7520b6f3cc9033b06e064cd82c5bb3007e7ca92d57dbca75ccc9ef8a09f49f11"
     },
     {
       "route": "/reports/recovery",
@@ -111,8 +111,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 12238,
-      "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f"
+      "bytes": 12868,
+      "sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4"
     },
     {
       "route": "/reports/download/handover-notepad.txt",
@@ -120,8 +120,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 12238,
-      "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f"
+      "bytes": 12868,
+      "sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4"
     },
     {
       "route": "/reports/download/transfer-package.zip",
@@ -129,8 +129,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 56432,
-      "sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f"
+      "bytes": 57002,
+      "sha256": "70a3df45b4d2b9bfe373c95f936f3e299c606471c9bbced6b6b9cfb544a41c17"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -158,8 +158,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14847,
-      "sha256": "ca8475fc5669ead485f51535b46611ad3c151eba40a8fef79a2c0f310f3dbcfc"
+      "bytes": 14892,
+      "sha256": "68f2cffa3643db9a54f0957cca5c5ceb098fc7c89fcb97c399a8d513965b92fb"
     },
     {
       "route": "/reports/next-session",
@@ -167,8 +167,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 16043,
-      "sha256": "9c09bd80a037ad70050f6014fdf67b600c44af3d68fd9e5e3ea50a9c3bbcc220"
+      "bytes": 16729,
+      "sha256": "2a163ef46d5e6689d0c7bd42b28d2517dfc298325771a1b69344f91a83a12f0b"
     },
     {
       "route": "/reports/handover-notepad",
@@ -176,8 +176,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 16043,
-      "sha256": "9c09bd80a037ad70050f6014fdf67b600c44af3d68fd9e5e3ea50a9c3bbcc220"
+      "bytes": 16729,
+      "sha256": "2a163ef46d5e6689d0c7bd42b28d2517dfc298325771a1b69344f91a83a12f0b"
     },
     {
       "route": "/reports/dr-sync",
@@ -185,8 +185,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 15906,
-      "sha256": "8a666ab015f5cbac31a3f4db3e300cb033a5d833f79ab336daabb41155c2152c"
+      "bytes": 16477,
+      "sha256": "c8f1302a8ac4f66a3aec11b7b84e93f724822c142928d6a1e612290d2035b546"
     },
     {
       "route": "/reports/recovery",
@@ -203,8 +203,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 12238,
-      "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f"
+      "bytes": 12868,
+      "sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4"
     },
     {
       "route": "/reports/agents",
@@ -261,7 +261,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 30,
+      "primary_responses": 45,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0
