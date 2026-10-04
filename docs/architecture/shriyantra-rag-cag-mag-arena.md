@@ -46,3 +46,9 @@ Bound retries; use backoff and circuit breakers; reroute provider/runtime failur
 - Enforce least privilege, tool allowlists and approval gates for high-risk actions.
 - Public surfaces expose approved outputs only.
 - Target 24x7 operation with measured SLO, RTO and RPO. Literal zero downtime/data loss cannot be guaranteed; objective is no intentional loss of acknowledged valid state.
+
+## Owner-only authority and voice/text permissions
+
+The verified owner is the only principal allowed to create/invite users, assign roles, grant or revoke permissions, change authentication policy or authorize privileged production operations. Vyomaraj/Bharath and Jarvis/Laxman may receive separate text-input, text-output, voice-input, transcription, voice-output, tool, project, data and task scopes, but cannot self-grant or create users. Arena is a delegated runtime and has no root authority.
+
+Require phishing-resistant passkeys/WebAuthn with device-local biometric unlock; biometric templates remain on-device. Voice is an input modality, not proof of identity. Phone/WhatsApp is not sufficient by itself; any WhatsApp OTP requires a verified authentication provider and anti-replay/expiry/rate controls. Never store credentials or biometric data in GitHub, prompts, RAG, MAG or logs. Privileged actions require step-up approval bound to the exact action. Updates may be proposed and tested by agents, but production promotion follows owner-controlled policy. See `docs/security/SHRIYANTRA-OWNER-AUTHORITY.md`.
