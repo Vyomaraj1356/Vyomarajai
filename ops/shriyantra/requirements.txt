@@ -1,0 +1,2 @@
+# Public-key signature verification only; signing keys remain in the trusted control plane.
+cryptography>=42.0.0,<47.0.0
