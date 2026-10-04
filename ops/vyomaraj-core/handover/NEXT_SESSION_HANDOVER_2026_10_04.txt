@@ -117,9 +117,9 @@ ambiguous failure). Full record: ops/availability/LOCAL_FAILOVER_DRILL_2026_10_0
 In repository : ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip
 Root-level    : Vyomaraj-Next-Session-Transfer-2026_10_04.zip (same artifact),
                 NEXT_SESSION_HANDOVER_2026_10_04.txt (copy),
-                vyomaraj-handover-2026-10-04.bundle (THIN git bundle: contains this session's
-                commits and REQUIRES base commit 3936bad to already be present; it is the
-                origin/main tip, so fetch origin first),
+                vyomaraj-handover-2026-10-04.bundle (THIN git bundle of this branch: contains
+                this session's commits and REQUIRES base commit 3936bad to already exist in the
+                receiving repository, e.g. the current main history),
                 VYOMARAJ_TRANSFER_README_2026_10_04.txt (instructions).
 Contents      : this note, the recovery/transfer page, the canonical 2026-10-03 handover text,
                 the viewer and availability scripts, the handover/transfer tests, both local
@@ -136,6 +136,7 @@ i.e. a verified replication write:
   #12 merge 2424e786 -> trees 434fc389 / 434fc389, rollback 4363387e (check-run 111377398899)
   #13 merge 15cbfea0 -> trees 5a9d1418 / 5a9d1418, rollback 5203c222 (check-run 111377861073)
   #14 merge dd341acc -> trees 01197482 / 01197482, rollback 11c1de61 (check-run 111378391997)
+  #15 merge eead435a -> trees 3604bb15 / 3604bb15, rollback 1b374fd9 (check-run 111379204732)
 The #11 merge was CORRECTLY BLOCKED (status=BLOCKED, target_only_files_awaiting_review=1): PR #10
 had accidentally committed the transient ci-diagnostics.log, PR #11 deleted it, so the secondary
 held one file main did not. A read-only probe (check-run 111376891786) confirmed the secondary at

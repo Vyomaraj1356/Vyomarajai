@@ -1,25 +1,25 @@
 {
-  "verified_at_utc": "2026-10-04T06:28:40+00:00",
+  "verified_at_utc": "2026-10-04T06:32:21+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/01a1056f-vyomarajai",
-    "commit": "b80b1e8a322eddfc93273f80a75a46ae1bac809f"
+    "commit": "f39168b71b54e3743258d66e02d07f71eecc375d"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-    "sha256": "18c5d08bce6c78fc56d4d2ce0af57aa53c0cc844a1bfdc09bec1169c36927481",
-    "bytes": 12251
+    "sha256": "a35fb749e72eca4f04da80458def7be77ef731c682e0b0c8d1f47b472481b21f",
+    "bytes": 12364
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "cb4c8c2ddf3260beb8a5c75ae33d4cbd3f75779504319ee164ea4461f9a8bd32",
-    "bytes": 43500
+    "sha256": "a7250e38182e65d08469b6856e42083635cd0cba8a4587b30d4d17cf25a39e32",
+    "bytes": 43545
   },
   "byte_identity": {
-    "viewer_next_session_download_sha256": "18c5d08bce6c78fc56d4d2ce0af57aa53c0cc844a1bfdc09bec1169c36927481",
-    "gateway_next_session_download_sha256": "18c5d08bce6c78fc56d4d2ce0af57aa53c0cc844a1bfdc09bec1169c36927481",
-    "viewer_transfer_package_download_sha256": "cb4c8c2ddf3260beb8a5c75ae33d4cbd3f75779504319ee164ea4461f9a8bd32",
-    "gateway_transfer_package_download_sha256": "cb4c8c2ddf3260beb8a5c75ae33d4cbd3f75779504319ee164ea4461f9a8bd32"
+    "viewer_next_session_download_sha256": "a35fb749e72eca4f04da80458def7be77ef731c682e0b0c8d1f47b472481b21f",
+    "gateway_next_session_download_sha256": "a35fb749e72eca4f04da80458def7be77ef731c682e0b0c8d1f47b472481b21f",
+    "viewer_transfer_package_download_sha256": "a7250e38182e65d08469b6856e42083635cd0cba8a4587b30d4d17cf25a39e32",
+    "gateway_transfer_package_download_sha256": "a7250e38182e65d08469b6856e42083635cd0cba8a4587b30d4d17cf25a39e32"
   },
   "viewer_routes": [
     {
@@ -73,8 +73,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14543,
-      "sha256": "03f479b0f5c203dcef8447853888ffc2387e90d894291ebfe40bc838517b3c89"
+      "bytes": 14659,
+      "sha256": "610dbcc276d01e1491efe41deaec771d61b194ccf48920cb445f7d7abe221652"
     },
     {
       "route": "/reports/recovery",
@@ -91,8 +91,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 12251,
-      "sha256": "18c5d08bce6c78fc56d4d2ce0af57aa53c0cc844a1bfdc09bec1169c36927481"
+      "bytes": 12364,
+      "sha256": "a35fb749e72eca4f04da80458def7be77ef731c682e0b0c8d1f47b472481b21f"
     },
     {
       "route": "/reports/download/transfer-package.zip",
@@ -100,8 +100,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 43500,
-      "sha256": "cb4c8c2ddf3260beb8a5c75ae33d4cbd3f75779504319ee164ea4461f9a8bd32"
+      "bytes": 43545,
+      "sha256": "a7250e38182e65d08469b6856e42083635cd0cba8a4587b30d4d17cf25a39e32"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -138,8 +138,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 16077,
-      "sha256": "ee1126687d1002c47143d538b7ae7db89ab82de2507edfc6a035b5f5c162e696"
+      "bytes": 16200,
+      "sha256": "138824c11a34b64e4365f9bd1fcd140d3a623f6c6edc9dd89bea7adc625fc411"
     },
     {
       "route": "/reports/recovery",
@@ -205,7 +205,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 80,
+      "primary_responses": 90,
       "secondary_responses": 1,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 1
