@@ -109,14 +109,50 @@ class PreviewTests(unittest.TestCase):
                     text = response.read().decode()
                 self.assertIn(marker, text)
 
+    def test_auto_align_platform_check_and_issue_ledger_pages(self):
+        cases = (
+            ('/reports/auto-align', 'AUTO-ALIGN EXECUTION PLAN'),
+            ('/reports/platform-check', 'How it gets configured (auto-align plan)'),
+            ('/reports/issues', 'New-session runbook (in order)'),
+        )
+        for route, marker in cases:
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.status, 200)
+                    text = response.read().decode()
+                self.assertIn(marker, text)
+
+    def test_new_report_downloads_are_byte_identical(self):
+        cases = (
+            ('/reports/download/auto-align.json', 'AUTO_ALIGN_NEXT_SESSION.json', 'application/json'),
+            ('/reports/download/platform-check.md', 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md', 'text/plain'),
+            ('/reports/download/issues-ledger.json', 'ISSUES_AND_PRS_LEDGER.json', 'application/json'),
+        )
+        for route, name, mime in cases:
+            with self.subTest(route=route):
+                expected = (HERE / name).read_bytes()
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.read(), expected)
+                    self.assertTrue(response.headers['Content-Type'].startswith(mime))
+                    self.assertIn('attachment', response.headers['Content-Disposition'])
+
+    def test_chats_notice_states_both_counts_and_owner_confirmation(self):
+        with urllib.request.urlopen(self.url + '/reports/chats') as response:
+            text = response.read().decode()
+        for marker in ('heading says 28 chats', '34 numbered entries', 'owner confirmation'):
+            self.assertIn(marker, text)
+
     def test_every_report_page_carries_the_three_new_nav_links(self):
         for route in ('/', '/reports/build', '/reports/chats', '/reports/issue-6',
-                      '/reports/test-evidence', '/reports/handover-notepad'):
+                      '/reports/test-evidence', '/reports/handover-notepad', '/reports/auto-align',
+                      '/reports/platform-check', '/reports/issues'):
             with self.subTest(route=route):
                 with urllib.request.urlopen(self.url + route) as response:
                     text = response.read().decode()
                 for link in ('href="/reports/chats"', 'href="/reports/issue-6"',
-                             'href="/reports/test-evidence"'):
+                             'href="/reports/test-evidence"', 'href="/reports/auto-align"',
+                             'href="/reports/platform-check"', 'href="/reports/issues"',
+                             'New-session runbook (in order)'):
                     self.assertIn(link, text)
 
     def test_theme_is_inherited_by_every_page(self):

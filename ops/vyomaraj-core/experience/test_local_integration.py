@@ -150,7 +150,10 @@ class ServerTests(unittest.TestCase):
     def test_lane_serves_the_three_new_report_pages_with_shared_theme(self):
         for route, marker in (('/reports/chats', 'All Chats from Arena Database'),
                               ('/reports/issue-6', 'Issue #6 resolution statement'),
-                              ('/reports/test-evidence', 'python_tests_total')):
+                              ('/reports/test-evidence', 'python_tests_total'),
+                              ('/reports/auto-align', 'AUTO-ALIGN EXECUTION PLAN'),
+                              ('/reports/platform-check', 'How it gets configured (auto-align plan)'),
+                              ('/reports/issues', 'New-session runbook (in order)')):
             with self.subTest(route=route):
                 with urllib.request.urlopen(self.url + route) as response:
                     self.assertEqual(response.status, 200)
@@ -162,6 +165,20 @@ class ServerTests(unittest.TestCase):
                 self.assertIn('href="/reports/chats"', text)
                 self.assertIn('href="/reports/issue-6"', text)
                 self.assertIn('href="/reports/test-evidence"', text)
+                self.assertIn('href="/reports/auto-align"', text)
+                self.assertIn('href="/reports/platform-check"', text)
+                self.assertIn('href="/reports/issues"', text)
+
+    def test_lane_downloads_new_plan_ledger_and_platform_report(self):
+        cases = (
+            ('/reports/download/auto-align.json', studio.CORE / 'handover/AUTO_ALIGN_NEXT_SESSION.json'),
+            ('/reports/download/platform-check.md', studio.CORE / 'handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md'),
+            ('/reports/download/issues-ledger.json', studio.CORE / 'handover/ISSUES_AND_PRS_LEDGER.json'),
+        )
+        for route, path in cases:
+            with self.subTest(route=route), urllib.request.urlopen(self.url + route) as response:
+                self.assertEqual(response.read(), path.read_bytes())
+                self.assertIn('attachment', response.headers['Content-Disposition'])
 
     def test_end_to_end_handoff(self):
         with self.post(json.dumps({'experience': 'bhakti', 'topic_id': 'kamakhya'}).encode()) as response:

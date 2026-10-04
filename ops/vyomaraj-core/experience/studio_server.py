@@ -80,6 +80,9 @@ REPORTS = {
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
     '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/test-evidence': 'TEST_EVIDENCE_2026_10_04.json',
+    '/reports/auto-align': 'AUTO_ALIGN_NEXT_SESSION_2026_10_04.md',
+    '/reports/platform-check': 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md',
+    '/reports/issues': 'ISSUES_AND_PRS_LEDGER_2026_10_04.md',
 }
 
 
@@ -148,6 +151,15 @@ class Handler(BaseHTTPRequestHandler):
             self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
         elif route == '/reports/download/transfer-package.zip':
             self.send_download((CORE / 'handover' / reports.TRANSFER_ZIP).read_bytes(), 'application/zip', Path(reports.TRANSFER_ZIP).name)
+        elif route == '/reports/download/auto-align.json':
+            path = CORE / 'handover/AUTO_ALIGN_NEXT_SESSION.json'
+            self.send_download(path.read_bytes(), 'application/json', path.name)
+        elif route == '/reports/download/platform-check.md':
+            path = CORE / 'handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/issues-ledger.json':
+            path = CORE / 'handover/ISSUES_AND_PRS_LEDGER.json'
+            self.send_download(path.read_bytes(), 'application/json', path.name)
         elif route in REPORTS or route in reports.REFERENCE_REPORTS:
             path = (reports.REFERENCE_REPORTS[route] if route in reports.REFERENCE_REPORTS
                     else CORE / 'handover' / REPORTS[route])
@@ -163,7 +175,7 @@ class Handler(BaseHTTPRequestHandler):
                     '<meta name="theme-color" content="#0a1628"><title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
                     '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/comics/">Comics</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
-                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a></nav>'
+                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a></nav>'
                     '<p class="notice">Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Respect for humans, animals, religions, castes and creeds. Earning is not guaranteed. Local preview and creative planning are implemented. Git snapshot match evidence is in the DR report; external AI '
                     'and runtime/site disaster recovery are not verified.</p>' + body + '</main></html>')
             self.send_bytes(page.encode(), 'text/html')

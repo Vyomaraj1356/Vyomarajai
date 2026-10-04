@@ -1,8 +1,8 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "0389ad4557c1ca6ff26e2749cbd17a101e40b85b6c13c0732787befcaf3e81bf",
-  "package_bytes": 75684,
-  "note_sha256": "185fed482dd9c1afc468574f9d49570047c61c37c896d0a4298af406d279ff89",
+  "package_sha256": "8125959942d3d293f4971d3f52f46a9047868a3b5f113ee6d2b80efee2240a67",
+  "package_bytes": 133941,
+  "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
@@ -11,8 +11,8 @@
     {
       "archive_name": "NEXT_SESSION_HANDOVER_2026_10_04.txt",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-      "sha256": "185fed482dd9c1afc468574f9d49570047c61c37c896d0a4298af406d279ff89",
-      "bytes": 24594
+      "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
+      "bytes": 30728
     },
     {
       "archive_name": "RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md",
@@ -23,8 +23,8 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "66fd2bb705f1b9a91cd1944df26e91ef32a5f78a779cfc35feeeeb4e1e4d3efb",
-      "bytes": 14399
+      "sha256": "769ab53fa25bec13c746210fc1765bc252baef950feb39093c9885c264b265a9",
+      "bytes": 15129
     },
     {
       "archive_name": "build_dr_sync_report.py",
@@ -47,20 +47,20 @@
     {
       "archive_name": "build_transfer_package.py",
       "source": "ops/vyomaraj-core/handover/build_transfer_package.py",
-      "sha256": "8fd3a7e80de5f43df8ab449fccefd88319eb1185e675040ac2aeabfdcc7f6897",
-      "bytes": 6165
+      "sha256": "a3d0d9f27dcca7e06e9f799b9cc110ccb6e1f989a9ff212c3b61a792f8590f29",
+      "bytes": 7700
     },
     {
       "archive_name": "preview_reports.py",
       "source": "ops/vyomaraj-core/handover/preview_reports.py",
-      "sha256": "24b4a7e0c3ac0d321560170198c9a245a4d717c80298213bbf23d93556b4907a",
-      "bytes": 12053
+      "sha256": "1cd467c7d51b73eea5c2832c39f817dd6af467d73ca9e95b324c184005732cdd",
+      "bytes": 13055
     },
     {
       "archive_name": "test_preview_reports.py",
       "source": "ops/vyomaraj-core/handover/test_preview_reports.py",
-      "sha256": "f000b80a30972233d9e8f83a09a54f47ddac91205ffebc24d2c2fe24a20cca88",
-      "bytes": 7333
+      "sha256": "108e2b96dc8353fcf2373a8c6d0bc3d845452b7b57ef6ccd9a8cabce758aa23e",
+      "bytes": 9426
     },
     {
       "archive_name": "test_transfer_package.py",
@@ -71,20 +71,20 @@
     {
       "archive_name": "verify_preview.py",
       "source": "ops/vyomaraj-core/handover/verify_preview.py",
-      "sha256": "b33e216708ece46f138cbcb7e7e6e923cf043220c7c6d13db66fc717d6b4b216",
-      "bytes": 8452
+      "sha256": "c874679f5dc40c37495c4405e668e8b1d1944dae4f78f8203bbf21b2477c1840",
+      "bytes": 10867
     },
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "dadeb32dec7242edd765943d72d6fe4768c1114de0f7ec6b4f88e0608ed4805d",
-      "bytes": 10708
+      "sha256": "9e2a5794695ba96ac95d7c058be360ac2a803e368c7f233c284c07fd03720051",
+      "bytes": 11042
     },
     {
       "archive_name": "build_configuration_report.py",
       "source": "ops/vyomaraj-core/handover/build_configuration_report.py",
-      "sha256": "908dd475fa2b35d90968a4fe8fbd27a506d8ad162b1a85865e8b981b962a926c",
-      "bytes": 14514
+      "sha256": "ef02e752695e244aa04fb32c46f64db1700a7432adc1d857d0762dd9d6b42ef0",
+      "bytes": 15540
     },
     {
       "archive_name": "test_build_configuration_report.py",
@@ -95,14 +95,20 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "21986bca4b9760f32c0678d9979b9165aa956042a7b961d972b606dc4ea74d9f",
-      "bytes": 24265
+      "sha256": "d04983f1c6709640dc96d9dbeb17cf8d01b22961dc72aa6e494e6bc8aa2ebf30",
+      "bytes": 25330
     },
     {
       "archive_name": "studio_server.py",
       "source": "ops/vyomaraj-core/experience/studio_server.py",
-      "sha256": "1db2d52c75860580ad1a3e475adc1105c02dcdad87fcca641edc12cf7c1ebedf",
-      "bytes": 17001
+      "sha256": "2eca457b9cbef3374ddb7fe6f92d735a42697ba3cd903ce4f790978a39885f47",
+      "bytes": 18013
+    },
+    {
+      "archive_name": "experience/rebuild_contents.py",
+      "source": "ops/vyomaraj-core/experience/rebuild_contents.py",
+      "sha256": "3dcf99da4f0c8ab51b81bc0a93f790d15b367cc5ac63fa211400422c88bf3fb1",
+      "bytes": 8061
     },
     {
       "archive_name": "gateway.py",
@@ -145,6 +151,108 @@
       "source": "ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json",
       "sha256": "e4f9cffb6f1c2e7ba985618e67b90a8d8c186c10b47e300e2d829c077651a08d",
       "bytes": 4035
+    },
+    {
+      "archive_name": "V16.9/AUTO_ALIGN_NEXT_SESSION.json",
+      "source": "ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json",
+      "sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
+      "bytes": 18501
+    },
+    {
+      "archive_name": "V16.9/AUTO_ALIGN_NEXT_SESSION_2026_10_04.md",
+      "source": "ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION_2026_10_04.md",
+      "sha256": "6cf6a0ab0fad05d850fbe62a159b6efced3e63876f563d685d719c40f945b826",
+      "bytes": 22232
+    },
+    {
+      "archive_name": "V16.9/PLATFORM_OPEN_ITEMS_2026_10_04.json",
+      "source": "ops/vyomaraj-core/handover/PLATFORM_OPEN_ITEMS_2026_10_04.json",
+      "sha256": "8769062b168335fb6f26191cbe016f0cea9a9c9ebe9706dc40c41a162b4b45d6",
+      "bytes": 5871
+    },
+    {
+      "archive_name": "V16.9/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md",
+      "source": "ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md",
+      "sha256": "55d3e64017ff0f46645b9c9cbedc68d83c4481216ad1898ec5a4cd4e28912433",
+      "bytes": 8659
+    },
+    {
+      "archive_name": "V16.9/ISSUES_AND_PRS_LEDGER.json",
+      "source": "ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json",
+      "sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345",
+      "bytes": 11255
+    },
+    {
+      "archive_name": "V16.9/ISSUES_AND_PRS_LEDGER_2026_10_04.md",
+      "source": "ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md",
+      "sha256": "6a0fedb44fd5bdfab0478bf4c830962ebf0fc319107bffd70c30d634f8a55714",
+      "bytes": 8321
+    },
+    {
+      "archive_name": "V16.9/build_platform_check.py",
+      "source": "ops/vyomaraj-core/handover/build_platform_check.py",
+      "sha256": "d2b14dd545739fe1dbd2888fd8366974a6e8d698783cfaffad3d39fa19940708",
+      "bytes": 4369
+    },
+    {
+      "archive_name": "V16.9/build_issue_ledger.py",
+      "source": "ops/vyomaraj-core/handover/build_issue_ledger.py",
+      "sha256": "6ce6e8052f987fca1e5c3c3daaa00993016a9faf06059fb87ed00c24af85f6e4",
+      "bytes": 8251
+    },
+    {
+      "archive_name": "V16.9/auto_align.py",
+      "source": "ops/vyomaraj-core/handover/auto_align.py",
+      "sha256": "53de64547827e5fc3e39825f208eaf89c2815540ad90288f59fdb0e3d166f14a",
+      "bytes": 18352
+    },
+    {
+      "archive_name": "V16.9/run_offline_suites.py",
+      "source": "ops/vyomaraj-core/handover/run_offline_suites.py",
+      "sha256": "8daeb10f5ad2860df40edd968194dcd1ca40af9ed30a6ece00092ec374134c1b",
+      "bytes": 9833
+    },
+    {
+      "archive_name": "V16.9/check_language_policy.py",
+      "source": "ops/vyomaraj-core/handover/check_language_policy.py",
+      "sha256": "d3304e74329896a2a6e03be01edf3e171e2620445a98a4eadb90593b99d6f136",
+      "bytes": 2388
+    },
+    {
+      "archive_name": "V16.9/test_auto_align.py",
+      "source": "ops/vyomaraj-core/handover/test_auto_align.py",
+      "sha256": "598586710b3fa4fd1812b27ada0cdc2f39940f3174a87b37fc1fae4cf34b8d29",
+      "bytes": 4643
+    },
+    {
+      "archive_name": "V16.9/test_build_platform_check.py",
+      "source": "ops/vyomaraj-core/handover/test_build_platform_check.py",
+      "sha256": "38fe5aca763fb79d9493ae7e4a657b20d279a5d50de8fe73bc8f1bb848d6ffc7",
+      "bytes": 1878
+    },
+    {
+      "archive_name": "V16.9/test_issue_ledger.py",
+      "source": "ops/vyomaraj-core/ledger/test_issue_ledger.py",
+      "sha256": "70f1e14145c110c5a308619a125814952354d4bc78c54b721d6ba5c9a5fd3dad",
+      "bytes": 4513
+    },
+    {
+      "archive_name": "V16.9/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md",
+      "source": "ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md",
+      "sha256": "e6f12c275f68c89f430a614588146eb053e6ed700fe9526e3b2a9ffc029527a8",
+      "bytes": 1166
+    },
+    {
+      "archive_name": "V16.9/ISSUE_6_RESOLUTION_2026_10_04.md",
+      "source": "ops/dr/ISSUE_6_RESOLUTION_2026_10_04.md",
+      "sha256": "8cb776b7b3628ec92d8a57e55c2cefe0d8d51517921ceab1257aa0c0563f0aea",
+      "bytes": 7049
+    },
+    {
+      "archive_name": "V16.9/GITHUB_TRIAGE_2026_10_04.md",
+      "source": "GITHUB_TRIAGE_2026_10_04.md",
+      "sha256": "a8b9ed7fb8dd1286e60f4da27cc959c353cabfb903bedba20344174f44946bae",
+      "bytes": 3059
     }
   ]
 }

@@ -21,7 +21,7 @@ The repository contains operational material for authorized development and reco
 ## Repository roles
 
 - **Primary:** `Vyomaraj1356/Vyomarajai`
-- **DR / secondary (snapshot replication target):** `Vyomaraj1356/Vyomarajai` → `deepakGoyal1356/Vyomaraj-Agent-6d64e` — confirmed by the recorded `verify-or-sync` evidence (18 MATCH checkpoints through merge #23 in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`; every checkpoint re-read live from the GitHub API). This is Git-snapshot replication of `main` only — not runtime/site disaster recovery. See the [DR sync results](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md) and the [repository map](VYOMARAJ_REPOSITORY_MAP.md).
+- **DR / secondary (snapshot replication target):** `Vyomaraj1356/Vyomarajai` → `deepakGoyal1356/Vyomaraj-Agent-6d64e` — confirmed by the recorded `verify-or-sync` evidence (19 MATCH checkpoints and 15 replication writes through merge #24 in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`; checkpoint #19 was re-read live in this session, with the earlier rows carried from the prior full-set revalidation). This is Git-snapshot replication of `main` only — not runtime/site disaster recovery. See the [DR sync results](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md) and the [repository map](VYOMARAJ_REPOSITORY_MAP.md).
 - Primary-to-DR replication is authenticated, opt-in and main-only; see the [DR verification runbook](ops/dr/README.md). A 404 is not proof that a private repository does not exist.
 - DR-to-primary promotion is a controlled recovery operation; no blind two-way overwrite or force-push is used.
 
@@ -84,6 +84,10 @@ Run `python ops/vyomaraj-core/experience/studio_server.py --port 4176` for a uni
 ## Liquor + Bar: Roots & Pairings
 
 The [Liquor/Bar content expansion](ops/vyomaraj-core/liquor-bar/README.md) adds local tadi/toddy, regional/global cultural research, event-source records, and eight chakhna/snack concepts with preparation, allergen preferences and non-alcoholic pairings. Run `python ops/vyomaraj-core/liquor-bar/server.py --port 4175` for the interactive browser prototype. Its 3D-style plate, 4D sequence and 5D preference controls are illustrative; no AI renderer or alcohol service is connected. Proposed chapters live in a separate extension catalog without changing the original 133/421 counts or 32-file snapshot.
+
+## V16.9 auto-align and open-item ledger
+
+The [auto-align plan](ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION_2026_10_04.md) gives every open platform-check item a concrete completion step; the [platform check](ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md) lists those mappings, and the [issues/PRs ledger](ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md) is the new-session runbook. Validate with `python3 ops/vyomaraj-core/handover/auto_align.py --check` and `python3 ops/vyomaraj-core/handover/build_issue_ledger.py --check`. The runner is local-only: it does not install, purchase, connect providers, publish content or change GitHub state. Issue #6 close-out text is prepared but not sent.
 
 ## Priority recovery / cleanup status
 

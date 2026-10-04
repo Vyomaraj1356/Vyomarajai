@@ -1,7 +1,9 @@
-"""Rebuild the public all-experiences index from four allowlisted editorial packs only."""
+"""Rebuild or check the public all-experiences index from allowlisted editorial packs only."""
+import argparse
 import json
 from pathlib import Path
 CORE = Path(__file__).resolve().parent.parent
+OUTPUT = CORE / 'handover/EXPERIENCE_CONTENTS_2026_10_03.md'
 
 def build():
     packs = {key: json.loads((CORE / directory / 'content.json').read_text()) for key, directory in
@@ -54,5 +56,21 @@ def build():
         lines += ['- '+s['title']+' — '+s.get('citation',s['url']) for s in data['sources']]
     return '\n'.join(lines)+'\n'
 
-if __name__=='__main__':
-    (CORE/'handover/EXPERIENCE_CONTENTS_2026_10_03.md').write_text(build())
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true', help='verify the checked-in index without writing')
+    args = parser.parse_args()
+    expected = build()
+    if args.check:
+        if not OUTPUT.is_file() or OUTPUT.read_text(encoding='utf-8') != expected:
+            print(f'{OUTPUT.name} is out of date; run rebuild_contents.py without --check')
+            return 1
+        print(f'PASS: {OUTPUT.relative_to(CORE)} matches the allowlisted editorial packs')
+        return 0
+    OUTPUT.write_text(expected, encoding='utf-8')
+    print(f'Wrote {OUTPUT.relative_to(CORE)} ({OUTPUT.stat().st_size} bytes)')
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

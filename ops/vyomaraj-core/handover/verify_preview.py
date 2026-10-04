@@ -20,20 +20,35 @@ REPORT = HERE / 'PREVIEW_VERIFICATION_2026_10_04.json'
 MANIFEST = HERE / 'TRANSFER_MANIFEST_2026_10_04.json'
 NOTE = HERE / 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_TRANSFER_2026_10_04.zip'
+AUTO_ALIGN_JSON = HERE / 'AUTO_ALIGN_NEXT_SESSION.json'
+PLATFORM_CHECK = HERE / 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md'
+ISSUES_LEDGER = HERE / 'ISSUES_AND_PRS_LEDGER.json'
 VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/build', '/reports/architecture',
                  '/reports/next-session', '/reports/handover-notepad', '/reports/dr-sync',
                  '/reports/recovery', '/reports/chats', '/reports/issue-6', '/reports/test-evidence',
                  '/reports/download/next-session.txt',
                  '/reports/download/handover-notepad.txt',
-                 '/reports/download/transfer-package.zip', '/not-an-allowlisted-route']
+                 '/reports/download/transfer-package.zip', '/reports/auto-align', '/reports/platform-check',
+                 '/reports/issues', '/reports/download/auto-align.json',
+                 '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
+                 '/not-an-allowlisted-route']
 GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
                   '/reports/dr-sync', '/reports/recovery', '/reports/chats', '/reports/issue-6',
                   '/reports/test-evidence', '/reports/download/handover-notepad.txt',
-                  '/reports/agents', '/sovereign/', '/contracts/', '/not-an-allowlisted-route']
+                  '/reports/agents', '/sovereign/', '/contracts/', '/reports/auto-align',
+                  '/reports/platform-check', '/reports/issues', '/reports/download/auto-align.json',
+                  '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
+                  '/not-an-allowlisted-route']
+LANE_REPORT_ROUTES = ['/reports/auto-align', '/reports/platform-check', '/reports/issues',
+                      '/reports/download/auto-align.json', '/reports/download/platform-check.md',
+                      '/reports/download/issues-ledger.json']
 # A 200 alone is not enough for the three reference pages: require a known content marker too.
 CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
                    '/reports/issue-6': 'Issue #6 resolution statement',
-                   '/reports/test-evidence': 'python_tests_total'}
+                   '/reports/test-evidence': 'python_tests_total',
+                   '/reports/auto-align': 'AUTO-ALIGN EXECUTION PLAN',
+                   '/reports/platform-check': 'How it gets configured (auto-align plan)',
+                   '/reports/issues': 'New-session runbook (in order)'}
 
 
 def sha256(data):
@@ -73,13 +88,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--viewer-port', type=int, default=4174)
     parser.add_argument('--gateway-port', type=int, default=4176)
+    parser.add_argument('--lane-a-port', type=int, default=4181)
+    parser.add_argument('--lane-b-port', type=int, default=4182)
     args = parser.parse_args()
     viewer, gateway = f'http://127.0.0.1:{args.viewer_port}', f'http://127.0.0.1:{args.gateway_port}'
+    lane_a, lane_b = f'http://127.0.0.1:{args.lane_a_port}', f'http://127.0.0.1:{args.lane_b_port}'
     problems = []
 
     viewer_checks, p = check(viewer, VIEWER_ROUTES)
     gateway_checks, p2 = check(gateway, GATEWAY_ROUTES)
-    problems += p + p2
+    lane_a_checks, p3 = check(lane_a, LANE_REPORT_ROUTES)
+    lane_b_checks, p4 = check(lane_b, LANE_REPORT_ROUTES)
+    problems += p + p2 + p3 + p4
 
     note_bytes = NOTE.read_bytes()
     package_bytes = PACKAGE.read_bytes()
@@ -104,6 +124,18 @@ def main():
         problems.append('gateway transfer-package download is not byte-identical to the packaged artifact')
     if sha256(package_bytes) != manifest['package_sha256']:
         problems.append('packaged artifact differs from TRANSFER_MANIFEST package_sha256')
+
+    extra_download_hashes = {}
+    for label, path, route in (
+            ('auto_align_json', AUTO_ALIGN_JSON, '/reports/download/auto-align.json'),
+            ('platform_check', PLATFORM_CHECK, '/reports/download/platform-check.md'),
+            ('issues_ledger_json', ISSUES_LEDGER, '/reports/download/issues-ledger.json')):
+        expected_bytes = path.read_bytes()
+        for name, base in (('viewer', viewer), ('gateway', gateway)):
+            result = fetch(base + route)
+            if result['body'] != expected_bytes:
+                problems.append(f'{name} {label} download is not byte-identical to its source')
+            extra_download_hashes[f'{name}_{label}_download_sha256'] = result['sha256']
 
     try:
         availability = json.loads(fetch(gateway + '/api/availability')['body'])
@@ -133,9 +165,14 @@ def main():
             'gateway_handover_notepad_download_sha256': gateway_notepad_download['sha256'],
             'viewer_transfer_package_download_sha256': package_download['sha256'],
             'gateway_transfer_package_download_sha256': gateway_package_download['sha256'],
+            **extra_download_hashes,
         },
         'viewer_routes': viewer_checks,
         'gateway_routes': gateway_checks,
+        'studio_lanes': {
+            str(args.lane_a_port): lane_a_checks,
+            str(args.lane_b_port): lane_b_checks,
+        },
         'gateway_availability': availability,
         'problems': problems,
         'limitations': ['Single sandbox host; both replicas share one checkout, filesystem and SQLite queue.',
@@ -143,7 +180,7 @@ def main():
                         'Only HTTP responses observed at the recorded time are asserted.'],
     }
     REPORT.write_text(json.dumps(report, indent=2) + '\n')
-    for entry in viewer_checks + gateway_checks:
+    for entry in viewer_checks + gateway_checks + lane_a_checks + lane_b_checks:
         print(f"  {entry['status']:>3}  {entry['route']:<42} {entry['content_type'] or ''}")
     print(f"canonical note sha256 {report['canonical_note']['sha256']}")
     print(f"package sha256        {report['transfer_package']['sha256']}")

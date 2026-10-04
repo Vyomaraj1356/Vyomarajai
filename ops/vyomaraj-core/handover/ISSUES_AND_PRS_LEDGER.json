@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-04T10:56:22Z",
+  "repository": "Vyomaraj1356/Vyomarajai",
+  "source_note": "Read-only GitHub state was re-read in this session for issue #6, PRs #2/#3/#4/#7/#9, the merged PR list and the #24 verify-or-sync check-run. Text conflicts and owner decisions are not inferred from GitHub state.",
+  "snapshot": {
+    "main_commit": "d9147fffc5884702d7fcbc38fd666d62622f3b8c",
+    "issue_6_state": "OPEN",
+    "issue_6_url": "https://github.com/Vyomaraj1356/Vyomarajai/issues/6",
+    "pull_requests": {
+      "2": {"state": "OPEN", "head": "6c80252fb3b3f249aef1900073f7e7a1de97dd1c", "draft": false},
+      "3": {"state": "OPEN", "head": "7b7dd403c79266d3250e6b334a7598a5432adc17", "draft": false},
+      "4": {"state": "OPEN", "head": "888b408b69d75249b94716e7e704bccbc16aa3ab", "draft": false},
+      "7": {"state": "OPEN", "head": "d909ce0f4d27a943d13389cf9b63de7f811a4c2e", "draft": false},
+      "9": {"state": "OPEN", "head": "831dd77a50f2d71289b8cab2d46e92669a0b15b1", "draft": true}
+    },
+    "merge_checkpoint": {
+      "pull_request": 24,
+      "merge_commit": "d9147fffc5884702d7fcbc38fd666d62622f3b8c",
+      "check_run_id": 111404791435,
+      "workflow_run_id": 37191596397,
+      "completed_at_utc": "2026-10-04T09:17:04Z",
+      "status": "MATCH",
+      "primary_tree": "e8c66bd451484071d03afc68ac1aeeb010e8fa96",
+      "secondary_tree": "e8c66bd451484071d03afc68ac1aeeb010e8fa96",
+      "rollback_commit": "be715362ca394464844e5058745fb10914e40a1e",
+      "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=e8c66bd451484071d03afc68ac1aeeb010e8fa96; secondary_tree=e8c66bd451484071d03afc68ac1aeeb010e8fa96; rollback_commit=be715362ca394464844e5058745fb10914e40a1e; data_match=true"
+    }
+  },
+  "entries": [
+    {
+      "id": "issue-6",
+      "type": "issue",
+      "reference": "#6",
+      "title": "Unblock private DR access and confirm the authoritative secondary before synchronization",
+      "status": "READY_TO_CLOSE",
+      "summary": "Issue acceptance evidence is current through the PR #24 merge. The issue is still OPEN; no comment or close action has been performed.",
+      "next_action": "Re-read the recorded checkpoint rows live, then use the prepared comment and close-out command only after owner confirmation.",
+      "evidence": ["ops/dr/DEPLOYED_MATCH_2026_10_04.json", "ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md", "check-run 111404791435"]
+    },
+    {
+      "id": "pr-2",
+      "type": "pull_request",
+      "reference": "#2",
+      "title": "Security guard from a divergent branch",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply selected content as a fresh reviewed change if the owner wants it.",
+      "next_action": "Owner selects whether any specific file or behavior should be freshly re-applied.",
+      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head 6c80252fb3b3f249aef1900073f7e7a1de97dd1c"]
+    },
+    {
+      "id": "pr-3",
+      "type": "pull_request",
+      "reference": "#3",
+      "title": "Live preview and reconciled recovery from a divergent branch",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply only owner-selected changes on a fresh branch.",
+      "next_action": "Owner identifies any specific change to re-apply; leave the PR open and untouched meanwhile.",
+      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head 7b7dd403c79266d3250e6b334a7598a5432adc17"]
+    },
+    {
+      "id": "pr-4",
+      "type": "pull_request",
+      "reference": "#4",
+      "title": "Active integrity guard from a divergent branch",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply selected content as a fresh reviewed change if the owner wants it.",
+      "next_action": "Owner selects whether any specific file or behavior should be freshly re-applied.",
+      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head 888b408b69d75249aef1900073f7e7a1de97dd1c"]
+    },
+    {
+      "id": "pr-7",
+      "type": "pull_request",
+      "reference": "#7",
+      "title": "Bharath-Laxman-Hermes resilience foundation",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply owner-selected content as a new change if desired.",
+      "next_action": "Owner selects whether any specific resilience behavior should be freshly re-applied.",
+      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head d909ce0f4d27a943d13389cf9b63de7f811a4c2e"]
+    },
+    {
+      "id": "pr-9",
+      "type": "pull_request",
+      "reference": "#9",
+      "title": "ShriYantra RAG CAG MAG and Arena foundation",
+      "status": "WATCH",
+      "summary": "OPEN draft from another session. It was not reviewed, edited or closed as part of this recovery.",
+      "next_action": "Continue read-only watch; do not merge, close or modify without an explicit owner decision.",
+      "evidence": ["live PR head 831dd77a50f2d71289b8cab2d46e92669a0b15b1"]
+    },
+    {
+      "id": "merge-chain-10-24",
+      "type": "merged_pull_requests",
+      "reference": "#10–#24",
+      "title": "Published merge chain",
+      "status": "RESOLVED_DOCUMENTED",
+      "summary": "The PR #10–#24 merge chain is recorded in main and the DR verification record; PR #24 is the current main tip in this checkout.",
+      "next_action": "Keep the merge/checkpoint mapping in the generated DR report; no action required on these merged PRs.",
+      "evidence": ["ops/dr/DEPLOYED_MATCH_2026_10_04.json", "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md"]
+    },
+    {
+      "id": "chats-count-conflict",
+      "type": "repository_conflict",
+      "reference": "All-chats database",
+      "title": "Heading says 28 chats; the file contains 34 numbered entries",
+      "status": "FIX_APPLIED_OFFLINE",
+      "summary": "The source file is preserved unchanged. The viewer notice states both counts and asks the owner to confirm; neither count is silently rewritten.",
+      "next_action": "Owner confirms the canonical count; then update the source with a dated correction while preserving its history.",
+      "evidence": ["Vyomaraj-All-Chats-Database-One-Month.md", "ops/vyomaraj-core/handover/preview_reports.py"]
+    },
+    {
+      "id": "contract-status-conflict",
+      "type": "repository_conflict",
+      "reference": "Contract status",
+      "title": "Conflicting contract-status records",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "The conflict is documented; this ledger does not guess which record governs or erase historical text.",
+      "next_action": "Owner identifies the governing record; retain a superseded-by pointer on the other record.",
+      "evidence": ["ops/vyomaraj-core/governance/PUBLIC_POLICY.json", "AUTO_ALIGN_EVIDENCE/o02-contract-authority.json"]
+    },
+    {
+      "id": "secret-manager",
+      "type": "platform_readiness",
+      "reference": "Owner decision O-01",
+      "title": "Secret manager and access policy",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "No secret manager is configured by this plan and no secret value belongs in the repository.",
+      "next_action": "Follow auto-align step o01-secret-manager.",
+      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"]
+    },
+    {
+      "id": "tool-accounts-plans",
+      "type": "platform_readiness",
+      "reference": "Owner decision O-03",
+      "title": "Tool accounts and plans",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "Required accounts and owner-selected plans have not been inferred or activated here.",
+      "next_action": "Follow auto-align step o03-tool-accounts.",
+      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"]
+    },
+    {
+      "id": "posilki",
+      "type": "owner_decision",
+      "reference": "Owner decision O-04",
+      "title": "Meaning of the recorded term \"posilki\"",
+      "status": "OWNER_DECISION_REQUIRED",
+      "summary": "The term remains unidentified; no tool or service was inferred from it.",
+      "next_action": "Follow auto-align step o04-posilki.",
+      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"]
+    },
+    {
+      "id": "provider-readiness",
+      "type": "platform_readiness",
+      "reference": "Provider items P-01–P-15",
+      "title": "Research, media, publishing, scheduling and analytics providers",
+      "status": "OWNER_ACTION_REQUIRED",
+      "summary": "Provider setup paths are mapped; connection and operational readiness remain unverified.",
+      "next_action": "Follow auto-align steps p01-research-drafting through p04-review-gates after owner decisions.",
+      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json", "ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md"]
+    },
+    {
+      "id": "runtime-and-dr-readiness",
+      "type": "platform_readiness",
+      "reference": "Studio/services S-01–S-14; DR/ops D-01–D-08",
+      "title": "Studio, services, independent DR and operations",
+      "status": "OWNER_ACTION_REQUIRED",
+      "summary": "Local preview and Git snapshot evidence do not establish an installed studio, independent DR, runtime restore or 24x7 operations.",
+      "next_action": "Follow auto-align steps s01-studio-install through d04-intelligence-learning in order.",
+      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json", "ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md"]
+    }
+  ],
+  "issue_6_closeout": {
+    "state_at_snapshot": "OPEN",
+    "checkpoint": "#19",
+    "replication_writes": 15,
+    "pr": 24,
+    "check_run_id": 111404791435,
+    "workflow_run_id": 37191596397,
+    "closeout_file": "ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md",
+    "prepared_but_not_sent": true,
+    "runbook": [
+      "Before any GitHub write, use the 19 check_run_id values in DEPLOYED_MATCH_2026_10_04.json to re-read every check-run annotation via gh api repos/Vyomaraj1356/Vyomarajai/check-runs/{id}/annotations; compare status, primary_tree, secondary_tree, data_match and rollback_commit row by row. Specifically confirm check-run 111404791435 (PR #24) is MATCH with equal e8c66bd4 trees. Stop if any row is missing or differs.",
+      "Run python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check and inspect checkpoint #19 in ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md.",
+      "After owner approval, post the prepared statement with gh issue comment 6 --repo Vyomaraj1356/Vyomarajai --body-file ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md.",
+      "After the comment succeeds and issue #6 is still OPEN, close with gh issue close 6 --repo Vyomaraj1356/Vyomarajai --reason completed --comment \"19 MATCH checkpoints (15 replication writes) through merge #24\".",
+      "If the integration returns 403, do not retry with another credential; preserve the prepared file and report that owner-side permission is required."
+    ]
+  }
+}

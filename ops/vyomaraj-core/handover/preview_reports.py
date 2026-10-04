@@ -36,6 +36,9 @@ REPORTS = {
     '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
     '/reports/test-evidence': 'TEST_EVIDENCE_2026_10_04.json',
+    '/reports/auto-align': 'AUTO_ALIGN_NEXT_SESSION_2026_10_04.md',
+    '/reports/platform-check': 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md',
+    '/reports/issues': 'ISSUES_AND_PRS_LEDGER_2026_10_04.md',
 }
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
@@ -46,9 +49,9 @@ REFERENCE_REPORTS = {
 }
 # Fixed, code-composed notices. Report text itself is never turned into markup or a hyperlink.
 PAGE_NOTES = {
-    '/reports/chats': '<p class="notice"><strong>All-chats database:</strong> the repository file is '
-                      'served unchanged at this route. The totals shown are that file\'s own headings; '
-                      'the viewer neither recounts nor extends them.</p>',
+    '/reports/chats': '<p class="notice"><strong>All-chats count notice:</strong> the source heading says '
+                      '28 chats while the file contains 34 numbered entries. The file is served unchanged; '
+                      'owner confirmation is required before changing either count.</p>',
     '/reports/issue-6': '<p class="notice"><strong>Issue #6 resolution statement</strong> — acceptance '
                         'criteria, the correctly blocked run it followed, and the addenda that cite '
                         'the live DR record.</p>',
@@ -62,10 +65,16 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/download/handover.txt': (REPORTS['/handover'], 'text/plain; charset=utf-8'),
              '/reports/download/next-session.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
              '/reports/download/handover-notepad.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
-             '/reports/download/transfer-package.zip': (TRANSFER_ZIP, 'application/zip')}
+             '/reports/download/transfer-package.zip': (TRANSFER_ZIP, 'application/zip'),
+             '/reports/download/auto-align.json': ('AUTO_ALIGN_NEXT_SESSION.json', 'application/json'),
+             '/reports/download/platform-check.md': ('PLATFORM_CONFIGURATION_CHECK_2026_10_04.md', 'text/plain; charset=utf-8'),
+             '/reports/download/issues-ledger.json': ('ISSUES_AND_PRS_LEDGER.json', 'application/json')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
-RECOVERY_LINKS = ('<div class="notice"><strong>Recovery package:</strong> '
-                  '<a href="/reports/next-session">Next session handover (local)</a> &middot; '
+RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</strong> '
+                  '<a href="/reports/issues">Issues and PRs ledger</a> &middot; '
+                  '<a href="/reports/auto-align">Auto-align execution plan</a> &middot; '
+                  '<a href="/reports/platform-check">Platform completion paths</a> &middot; '
+                  '<a href="/reports/next-session">Next session handover</a> &middot; '
                   '<a href="/reports/download/next-session.txt">Download Notepad .txt</a> &middot; '
                   '<a href="/reports/dr-sync">DR sync results</a> &middot; '
                   '<a href="/reports/download/transfer-package.zip">Download transfer package .zip</a></div>')
@@ -159,7 +168,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()
