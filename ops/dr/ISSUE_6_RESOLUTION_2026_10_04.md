@@ -48,3 +48,30 @@ re-reads both refs (`assert_unchanged`) before reporting `MATCH`. `traffic_switc
 
 Scope carried forward: this is Git main-snapshot integrity and replication, not runtime/site DR,
 backup-restore, RPO/RTO or traffic failover.
+
+---
+
+## Final addendum — third 2026-10-04 session (arena/01a105da-vyomarajai)
+
+The rebuild-and-integrate session exercised the same publish path end-to-end twice more, and the
+record now holds **16 MATCH checkpoints (12 replication writes)** — every row re-read live from
+the GitHub API in one pass as a complete set, zero mismatches. Two further rows observed live:
+
+| UTC | Result | Trees | Note |
+|---|---|---|---|
+| Oct 4 08:20 | write + MATCH | `9b95c7e8` / `9b95c7e8` | rollback `a3e4e630`, check-run 111395579579 (PR #21 merge — comics lane + V16.8 architecture + governance desks) |
+| Oct 4 08:26 | write + MATCH | `99c42eb6` / `99c42eb6` | rollback `96537d32`, check-run 111396668243 (PR #22 merge — DR record close-out at checkpoint #16) |
+
+With PR #22 merged as `feb72068`, the **rebuilt trilingual comics lane (Hindi/English/Hinglish,
+past and future versions), the V16.8 architecture and the governance desks are genuinely part of
+the replicated snapshot on the secondary** — verified, not claimed. Local full set is now 294
+Python tests across 10 suites, all green on every PR and every main merge.
+
+Verification without log access (any row): `gh api repos/Vyomaraj1356/Vyomarajai/check-runs/<id>/annotations`
+→ the `DR SNAPSHOT RESULT` annotation carries the row verbatim. Full evidence:
+`ops/dr/DEPLOYED_MATCH_2026_10_04.json` and
+`ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` (sections 5b–5d).
+
+**Status: RESOLVED.** All five acceptance criteria are met and re-verified; the remaining
+owner-side item (reconnect GitHub in Arena with the secondary repository selected) is optional —
+the 30-minute schedule plus main-push triggers already cover verification and replication.
