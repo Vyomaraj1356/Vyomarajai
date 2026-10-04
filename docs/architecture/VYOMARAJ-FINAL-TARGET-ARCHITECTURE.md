@@ -107,3 +107,12 @@ Treat model output, retrieved documents, web pages, Arena results and tool respo
 ## 10. Current implementation truth
 
 The ShriYantra RAG/CAG/MAG + Arena foundation on PR #9 is a reference architecture and runner. RAG and MAG adapters are placeholders until a real backend is configured. The runner intentionally does not execute Arena tasks without a reviewed deployment-specific adapter. This document defines the complete target and safe path to operational integration; it does not claim that external systems have already been connected.
+
+
+## 11. Owner-only authority and authentication (mandatory)
+
+The verified owner is the sole authority for adding/inviting users, approving membership, changing roles, granting/revoking capabilities, changing security policy and approving privileged production actions. Bharath/Vyomaraj, Laxman/Jarvis, Hermes, Arena, providers and subagents cannot self-elevate or create users. ShriYantra must expose owner-controlled add/suspend/revoke/delete/restore and per-agent text, voice input, transcription, voice response, tools, data and task permissions. Deny by default; log every change; revoke sessions/tokens on removal.
+
+Use phishing-resistant passkeys/WebAuthn and device-local biometric unlock; biometric templates stay on the device and are never stored by agents, models or GitHub. Use step-up authentication for user/permission changes, authentication recovery, external publishing, destructive changes, deployments and DR authority switches. Voice intent alone is not identity proof; bind fresh approval to the exact action and target. A phone number or WhatsApp account is not sufficient authentication by itself. Use WhatsApp OTP only through a verified authentication provider with expiry, anti-replay, rate limits and account-takeover controls, and never store or echo codes. Keep all credentials and personal contact details out of source control, prompts, RAG, MAG and logs.
+
+Agents may propose updates, open PRs, test patches, prepare canary/rollback plans and recommend scaling. Production promotion and privileged policy/auth changes remain subject to owner policy and step-up approval. Emergency recovery must preserve newer revocations/security epochs and cannot let an agent authorize itself. If owner authentication is unavailable, allow safe read-only diagnostics but block privileged changes. See `docs/security/SHRIYANTRA-OWNER-AUTHORITY.md`.
