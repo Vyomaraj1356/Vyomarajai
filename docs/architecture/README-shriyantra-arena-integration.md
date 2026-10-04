@@ -7,13 +7,39 @@
 - `ops/shriyantra/shriyantra-arena.py`: runnable safe reference CLI for health, checkpoints and task-envelope generation.
 
 ## Run locally
+
+Dry-run and health checks:
 ```bash
+python -m pip install -r ops/shriyantra/requirements.txt
 python ops/shriyantra/shriyantra-arena.py init
 python ops/shriyantra/shriyantra-arena.py health
 python ops/shriyantra/shriyantra-arena.py task --task "Audit repository health" --head BHARATH
+python -m unittest tests.test_owner_guard -v
 ```
 
-Task generation is dry-run by default. The reference runner deliberately does not pretend RAG/vector storage, persistent memory, model providers or the installed Arena runtime are connected. Implement reviewed adapters for the specific deployed services before enabling execution.
+Windows launcher:
+```bat
+ops\shriyantra\run-arena-safe.bat init
+ops\shriyantra\run-arena-safe.bat health
+ops\shriyantra\run-arena-safe.bat task --task "Audit repository health" --head BHARATH
+```
+
+Task-envelope generation is dry-run by default. **Actual execution remains blocked unless all controls below are configured.** The reference runner does not claim RAG/vector storage, persistent memory, model providers or Arena are already connected.
+
+### Owner-gated execution setup
+
+The trusted ShriYantra control plane must issue a short-lived EdDSA-signed JWT approval. The signing private key stays in the control plane and must never be copied to Arena, an agent, a developer machine, or this repository. Configure these environment variables in the secured execution environment (never commit their values):
+- `VYOMARAJ_AUTH_PUBLIC_KEY`: path to the trusted Ed25519 public key PEM.
+- `VYOMARAJ_OWNER_SUBJECT`: immutable owner identity from the identity provider.
+- `VYOMARAJ_AUTH_ISSUER` and `VYOMARAJ_AUTH_AUDIENCE`: exact trusted issuer and audience.
+- `VYOMARAJ_SECURITY_EPOCH`: current revocation/security epoch; increment it when invalidating outstanding approvals.
+- `VYOMARAJ_AUTHZ_REPLAY_DIR`: persistent shared directory with atomic create semantics to prevent approval reuse across workers.
+- `VYOMARAJ_AUTHZ_TOKEN`: short-lived, exact-action approval token injected securely by the control plane; never print or log it.
+- `VYOMARAJ_ARENA_ADAPTER` and `VYOMARAJ_ARENA_ADAPTER_SHA256`: reviewed adapter path and its pinned SHA-256 digest.
+
+Approval claims must include `sub`, `iss`, `aud`, `iat`, `exp`, unique `jti`, exact `action=arena.execute`, the SHA-256 target hash for the exact task/head/risk tuple, `scope` containing `arena.execute`, current `security_epoch`, `authn=webauthn` or `passkey`, and `step_up=true` for HIGH risk. The runner consumes the `jti` once. A per-machine replay directory is not sufficient for a multi-worker deployment; use shared atomic storage or a central consume-once API.
+
+The reviewed adapter receives one JSON envelope on stdin via `--envelope-stdin), without a shell. It must return one JSON object on stdout containing an allowed `status`, the matching `task_id`, and matching `checkpoint_id`. Non-zero exit, timeout, invalid schema, mismatched IDs or adapter digest mismatch fail closed. Review and test the adapter in a sandbox before pinning it. These controls are a reference enforcement layer, not a substitute for production identity-provider integration, protected branch rules, least-privilege runtime isolation, monitoring, and recovery testing.
 
 ## Arena adapter contract
 Input: `VYOMARAJ_ARENA_TASK_V1` JSON with task ID, idempotency key, checkpoint, risk tier, allowed tools and bounded context.
