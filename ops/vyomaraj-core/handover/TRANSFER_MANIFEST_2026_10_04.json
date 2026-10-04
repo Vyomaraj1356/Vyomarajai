@@ -1,8 +1,8 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "c5adf1426e2e676f4301bedc9e67f969853a06448d6e99cd0b226ffc9c31f1af",
-  "package_bytes": 41527,
-  "note_sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
+  "package_sha256": "cb4c8c2ddf3260beb8a5c75ae33d4cbd3f75779504319ee164ea4461f9a8bd32",
+  "package_bytes": 43500,
+  "note_sha256": "18c5d08bce6c78fc56d4d2ce0af57aa53c0cc844a1bfdc09bec1169c36927481",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
@@ -11,8 +11,8 @@
     {
       "archive_name": "NEXT_SESSION_HANDOVER_2026_10_04.txt",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-      "sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
-      "bytes": 8696
+      "sha256": "18c5d08bce6c78fc56d4d2ce0af57aa53c0cc844a1bfdc09bec1169c36927481",
+      "bytes": 12251
     },
     {
       "archive_name": "RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md",
@@ -59,8 +59,8 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "42865e0b24f590652c70b65c029955c89576489937e3bc28add3ceb2cb05785c",
-      "bytes": 9446
+      "sha256": "8edcc491bf2950acba0ca806935f034f1910a00318925f79ed2e236635b61dd7",
+      "bytes": 9589
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -77,8 +77,8 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "658cc99090360e4779ce6903cd8b2cb2fb3d1775eb15534350e935d3f728a5a2",
-      "bytes": 5814
+      "sha256": "cd9255542788a112b28a697324aa27cea434f1ab4d6517e2a321a4ffad968856",
+      "bytes": 7776
     },
     {
       "archive_name": "studio_server.py",
