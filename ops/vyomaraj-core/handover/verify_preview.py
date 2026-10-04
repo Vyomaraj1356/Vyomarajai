@@ -21,9 +21,12 @@ MANIFEST = HERE / 'TRANSFER_MANIFEST_2026_10_04.json'
 NOTE = HERE / 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_TRANSFER_2026_10_04.zip'
 VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/build',
-                 '/reports/next-session', '/reports/recovery', '/reports/download/next-session.txt',
+                 '/reports/next-session', '/reports/handover-notepad', '/reports/dr-sync',
+                 '/reports/recovery', '/reports/download/next-session.txt',
+                 '/reports/download/handover-notepad.txt',
                  '/reports/download/transfer-package.zip', '/not-an-allowlisted-route']
-GATEWAY_ROUTES = ['/aghor/', '/reports/build', '/reports/next-session', '/reports/recovery',
+GATEWAY_ROUTES = ['/aghor/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
+                  '/reports/dr-sync', '/reports/recovery', '/reports/download/handover-notepad.txt',
                   '/reports/agents', '/sovereign/', '/contracts/', '/not-an-allowlisted-route']
 
 
@@ -77,10 +80,16 @@ def main():
     package_download = fetch(viewer + '/reports/download/transfer-package.zip')
     gateway_note_download = fetch(gateway + '/reports/download/next-session.txt')
     gateway_package_download = fetch(gateway + '/reports/download/transfer-package.zip')
+    notepad_download = fetch(viewer + '/reports/download/handover-notepad.txt')
+    gateway_notepad_download = fetch(gateway + '/reports/download/handover-notepad.txt')
     if note_download['body'] != note_bytes:
         problems.append('viewer next-session download is not byte-identical to the canonical note')
     if gateway_note_download['body'] != note_bytes:
         problems.append('gateway next-session download is not byte-identical to the canonical note')
+    if notepad_download['body'] != note_bytes:
+        problems.append('viewer handover-notepad download is not byte-identical to the canonical note')
+    if gateway_notepad_download['body'] != note_bytes:
+        problems.append('gateway handover-notepad download is not byte-identical to the canonical note')
     if package_download['body'] != package_bytes:
         problems.append('viewer transfer-package download is not byte-identical to the packaged artifact')
     if gateway_package_download['body'] != package_bytes:
@@ -112,6 +121,8 @@ def main():
         'byte_identity': {
             'viewer_next_session_download_sha256': note_download['sha256'],
             'gateway_next_session_download_sha256': gateway_note_download['sha256'],
+            'viewer_handover_notepad_download_sha256': notepad_download['sha256'],
+            'gateway_handover_notepad_download_sha256': gateway_notepad_download['sha256'],
             'viewer_transfer_package_download_sha256': package_download['sha256'],
             'gateway_transfer_package_download_sha256': gateway_package_download['sha256'],
         },

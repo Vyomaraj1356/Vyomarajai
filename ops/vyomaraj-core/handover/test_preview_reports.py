@@ -67,6 +67,26 @@ class PreviewTests(unittest.TestCase):
                          'href="/reports/download/transfer-package.zip"'):
             self.assertIn(fragment, text)
 
+    def test_handover_notepad_page_and_download_alias_the_note(self):
+        note = (HERE / preview.HANDOVER_NOTE).read_bytes()
+        with urllib.request.urlopen(self.url + '/reports/handover-notepad') as response:
+            page = response.read().decode()
+        self.assertIn('<pre>', page)
+        self.assertIn('href="/reports/handover-notepad"', page)
+        self.assertIn('href="/reports/dr-sync"', page)
+        with urllib.request.urlopen(self.url + '/reports/download/handover-notepad.txt') as response:
+            self.assertEqual(response.read(), note)
+            self.assertIn('attachment', response.headers['Content-Disposition'])
+
+    def test_dr_sync_report_page_is_generated_from_evidence(self):
+        with urllib.request.urlopen(self.url + '/reports/dr-sync') as response:
+            text = response.read().decode()
+        self.assertIn('DR sync results', text)
+        self.assertIn('<table>', text)
+        self.assertIn('Replication writes', text)
+        self.assertIn('BLOCKED', text)
+        self.assertIn('production disaster-recovery approval', text)
+
     def test_transfer_package_download_is_the_packaged_artifact(self):
         artifact = (HERE / preview.TRANSFER_ZIP).read_bytes()
         with urllib.request.urlopen(self.url + '/reports/download/transfer-package.zip') as response:
