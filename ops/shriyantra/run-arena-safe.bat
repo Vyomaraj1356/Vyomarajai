@@ -16,8 +16,7 @@ if /I "%~1"=="health" (
   exit /b %ERRORLEVEL%
 )
 if /I "%~1"=="task" (
-  shift
-  python ops\shriyantra\shriyantra-arena.py task %*
+  python ops\shriyantra\shriyantra-arena.py %*
   exit /b %ERRORLEVEL%
 )
 :usage
