@@ -17,3 +17,6 @@ research-candidates.json
 
 # Transient local validation evidence/screenshots
 .cache/
+
+# Transient CI diagnostics output (uploaded as an artifact by the workflow)
+ci-diagnostics.log

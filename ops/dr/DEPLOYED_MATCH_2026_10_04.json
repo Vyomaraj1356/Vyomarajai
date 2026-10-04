@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-10-04T05:51:06.587216+00:00",
+  "recorded_at_utc": "2026-10-04T06:08:47.511015+00:00",
   "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
   "primary": "Vyomaraj1356/Vyomarajai",
   "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -61,12 +61,25 @@
       "data_match": true,
       "replication_write_in_this_run": false,
       "rollback_commit": null
+    },
+    {
+      "check_run_id": 111375777820,
+      "completed_at_utc": "2026-10-04T06:07:16Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=ad4321bfa840f43855c05fd99379ca18b78dd374; secondary_tree=ad4321bfa840f43855c05fd99379ca18b78dd374; rollback_commit=7a7a539ddca7e0ee12f5d216c84edaa2a1d61b74; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
+      "secondary_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "7a7a539ddca7e0ee12f5d216c84edaa2a1d61b74",
+      "trigger": "merge of PR #10 (main advanced 3936bad -> 8adf9496); this is the replication of the next-session work, DR evidence and build/configuration report to the secondary"
     }
   ],
   "writes_to_secondary_observed": [
-    111212722666
+    111212722666,
+    111375777820
   ],
-  "current_state": "MATCH \u2014 primary and secondary trees are equal at the last five checkpoints.",
+  "current_state": "MATCH \u2014 primary and secondary trees are equal; the last write replicated the merged PR #10 tree ad4321bfa840f43855c05fd99379ca18b78dd374 to the secondary",
   "branch_scope_warning": "This evidence covers primary main only. Commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) are NOT on main and therefore NOT in the DR snapshot until merged.",
   "local_verification_attempt": {
     "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
