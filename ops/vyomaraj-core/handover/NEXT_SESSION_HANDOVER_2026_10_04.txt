@@ -303,3 +303,81 @@ re-implementation from that session's description, not recovered bytes.
   by the same workflow after publication and stays visible live in the check-run annotations.
 
 Chiranjeevi Eternal — Owner primary locked — no unverified claim asserted above.
+
+14. UPDATE — FIFTH SESSION (arena/01a10655-vyomarajai), 4 October 2026
+Scope: continue from the published PR #24 merge `d9147fffc5884702d7fcbc38fd666d62622f3b8c`.
+The earlier session's described patch, ZIP and bundle were not mounted in this fresh sandbox, and
+GitHub does not advertise commits `68baff5` or `c405eaa`. This update is a documented
+reconstruction from the owner-supplied handover text, not a byte-for-byte recovery of those
+unpublished commits. The published Vyomaraj repository through PR #24 remains intact.
+- Read-only GitHub verification: issue #6 is OPEN. PR #24 merged at `d9147ff`; check-run
+  `111404791435` / workflow run `37191596397` completed 2026-10-04T09:17:04Z with
+  `status=MATCH`, primary and secondary trees `e8c66bd451484071d03afc68ac1aeeb010e8fa96`,
+  and rollback commit `be715362ca394464844e5058745fb10914e40a1e` retained.
+- The DR record is extended through checkpoint #19 (19 MATCH / 15 replication writes). The
+  generated DR report reflects the appended row; prior rows are carried forward from the prior
+  full-set revalidation. This is Git snapshot evidence only, not production/runtime DR.
+- A prepared issue #6 close-out comment is stored at `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md`.
+  It has not been posted and issue #6 has not been closed.
+- `ISSUES_AND_PRS_LEDGER.json` + its builder/report account for 14 decisions. PRs #2/#3/#4/#7
+  remain owner decisions (never merge their no-merge-base branches); #9 remains watch-only; the
+  #10–#24 merge chain is documented as resolved. The 28-heading / 34-numbered-entry chat conflict
+  is disclosed without rewriting the historical file. The contract-status conflict remains an
+  owner decision.
+
+15. V16.9 AUTO-ALIGN EXECUTION PLAN
+- `AUTO_ALIGN_NEXT_SESSION.json` defines 21 steps in five phases: automatic readiness/publication;
+  owner decisions (four); provider connections (four); studio and services (six); DR and operations
+  (four). Eighteen steps await owner action and one publish step awaits agent action; the two
+  local/preview steps are runnable without provider credentials.
+- `PLATFORM_OPEN_ITEMS_2026_10_04.json` defines 41 open checks. The generated
+  `PLATFORM_CONFIGURATION_CHECK_2026_10_04.md` assigns each exactly one step id and prints
+  “How it gets configured (auto-align plan)” under every item.
+- Every step has an action, `verify`, `done_when` and evidence path. No step becomes DONE without
+  reviewed evidence. The local runner is allowlisted, shell-free and never installs packages,
+  purchases services, connects providers, publishes content, pushes/merges code, or comments on
+  or closes GitHub issues.
+- Run locally with `python3 ops/vyomaraj-core/handover/auto_align.py --run`. The run records
+  timestamped results in `AUTO_ALIGN_STATE_2026_10_04.json`; preview checks use only localhost and
+  explicitly skip if the viewer/gateway is not already running. A skip is not live verification.
+- `run_offline_suites.py` is the shared local/CI runner; it writes `TEST_EVIDENCE_2026_10_04.json`
+  only after tests execute. Evidence checks assert the recorded scope is contained in the runner's
+  configured lists; they do not require generated-at-end counts to equal a pre-run snapshot.
+- Executed locally in this session: `auto_align.py --run` **14/14 local checks OK, zero failed**;
+  **336 Python tests / 11 suites / 12 Node checks / 13 builder checks, zero failures**. The 13th
+  builder is a newly added non-writing `--check` for the existing experience-contents index. The
+  previously supplied **354-test** target remains 18 above the observed total; its original
+  evidence/payload is unavailable, so the test count has not been padded. Preview checks were
+  available rather than skipped. The exact run and evidence are in `AUTO_ALIGN_STATE_2026_10_04.json`
+  and `TEST_EVIDENCE_2026_10_04.json`.
+- Read-only preview check: **23 viewer routes, 24 gateway routes, six report/download routes on
+  each studio lane, problems: none**. The viewer, both lanes and gateway return 200 with expected
+  markers for `/reports/auto-align`, `/reports/platform-check` and `/reports/issues`; download
+  byte identity is recorded in `PREVIEW_VERIFICATION_2026_10_04.json`.
+
+16. NEW-SESSION RUNBOOK — IN ORDER
+1. `python3 ops/vyomaraj-core/handover/auto_align.py --run`
+2. `python3 ops/vyomaraj-core/handover/auto_align.py --check`
+3. `python3 ops/vyomaraj-core/handover/build_platform_check.py --check`
+4. `python3 ops/vyomaraj-core/handover/build_issue_ledger.py --check`
+5. Review `/reports/issues` and `/reports/auto-align`; re-read GitHub before any external action.
+6. Issue #6 close-out is prepared only. After explicit owner approval, run the ordered read/comment/
+   close steps in the ledger; on a 403, stop and request owner-side permissions. Nothing in auto-align
+   performs the comment or close.
+
+Viewer/gateway routes added for this update: `/reports/auto-align`, `/reports/platform-check`,
+`/reports/issues`, and their explicitly allowlisted downloads. Preview verification asserts content
+markers and download byte identity; unlisted routes remain 404. No provider account, contract,
+revenue, production traffic, independent DR, or runtime readiness is claimed.
+
+RECOVERY PRECEDENCE — ORIGINAL V16.9 BYTES
+This branch is a documented reconstruction only, not the original V16.9 patch. The expected tree
+`6350e444137f2383459cae6c97a6ef099758815a` remains unverified. If the actual source parts become
+available, prefer exact recovery over further reconstruction: concatenate `/reports/new-session-part-1`
+through `/reports/new-session-part-5` in order, strict-base64-decode and xz-decompress the payload,
+then verify both
+original SHA256 values from the source handover (do not derive or guess them from this reconstruction).
+Only after both hashes match, apply with `git apply --3way --whitespace=nowarn`, rebuild the transfer
+ZIP, and commit on the session branch as `V16.9 batch restored from the notepad transfer`. If the
+original patch is supplied as an email patch instead, use `git am --3way`. Keep this reconstruction
+clearly distinguished until that verification succeeds.

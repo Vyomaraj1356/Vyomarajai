@@ -91,3 +91,19 @@ GitHub API in one pass: **18 MATCH checkpoints (14 replication writes)**, closin
 The statement above, including its first addendum, remains the resolution of this issue; this
 paragraph only brings the DR tally up to date. The statement is served read-only at
 `/reports/issue-6` on the report viewer (4174) and through the lane/gateway stack.
+
+---
+
+## Fifth session update — checkpoint #19 through PR #24
+
+Read-only GitHub recheck in session `arena/01a10655-vyomarajai`: PR #24 merged as
+`d9147fffc5884702d7fcbc38fd666d62622f3b8c`. Its verify-or-sync check-run `111404791435`
+(workflow run `37191596397`) completed at `2026-10-04T09:17:04Z` with:
+
+`status=MATCH; primary_tree=e8c66bd451484071d03afc68ac1aeeb010e8fa96; secondary_tree=e8c66bd451484071d03afc68ac1aeeb010e8fa96; rollback_commit=be715362ca394464844e5058745fb10914e40a1e; data_match=true`.
+
+The carried record therefore has **19 MATCH checkpoints (15 replication writes)** through PR #24.
+This is Git main-snapshot replication evidence only; it does not establish production traffic,
+independent-site DR, runtime backup/restore or RPO/RTO. Issue #6 was re-read as OPEN. A current
+close-out comment is prepared in `ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md`; this update did not
+post a comment or close the issue.

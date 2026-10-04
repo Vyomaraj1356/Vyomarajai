@@ -5,6 +5,11 @@ silently closing anyone's unmerged work. The GitHub connection available in this
 `issues=read` only, so PR conversations cannot be commented from here (403 on
 `/issues/<n>/comments`); dispositions are recorded here instead, and every PR is left open.
 
+SUPERSEDED FOR CURRENT NAVIGATION: see `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md`
+(the generated ledger is the new-session runbook and includes the later #15–#24 merge chain).
+This triage note is retained as historical context; its original scope and wording are not silently
+rewritten.
+
 ## The shared blocker on #2, #3, #4, #7
 
 These four branches have **no merge base with `main`**: `git merge-base origin/main pr<N>` fails

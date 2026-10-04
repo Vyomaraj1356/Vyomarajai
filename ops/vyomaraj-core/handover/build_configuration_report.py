@@ -24,6 +24,8 @@ HISTORICAL = HERE / 'AGENT_CONTENT_REGISTRY_V16_7_24.json'
 INTEGRATION = CORE / 'experience/LOCAL_INTEGRATION.json'
 POLICY = CORE / 'governance/PUBLIC_POLICY.json'
 DR_POLICY = OPS / 'dr/DR_POLICY.json'
+AUTO_ALIGN_PLAN = HERE / 'AUTO_ALIGN_NEXT_SESSION.json'
+PLATFORM_OPEN_ITEMS = HERE / 'PLATFORM_OPEN_ITEMS_2026_10_04.json'
 JARVIS_ENV = OPS / 'jarvis/jarvis.env'
 JARVIS_DEVICES = OPS / 'jarvis/devices.json'
 EXPERIENCES = [('Aghor & Aghori', '/aghor/', 'aghor-experience'),
@@ -78,6 +80,8 @@ def render(root=ROOT):
     integration = load(root / INTEGRATION.relative_to(ROOT))
     policy = load(root / POLICY.relative_to(ROOT))
     dr_policy = load(root / DR_POLICY.relative_to(ROOT))
+    auto_align_plan = load(root / AUTO_ALIGN_PLAN.relative_to(ROOT))
+    platform_items = load(root / PLATFORM_OPEN_ITEMS.relative_to(ROOT))
 
     historical_by_id = {c['id']: c['sub_agents'] for c in historical['categories']}
     named = {c['id']: [] for c in registry['categories']}
@@ -226,8 +230,10 @@ def render(root=ROOT):
             continue
         data = load(root / path.relative_to(ROOT))
         if 'problems' in data:
+            lane_checks = sum(len(routes) for routes in data.get('studio_lanes', {}).values())
             detail = (f"{len(data.get('viewer_routes', []))} viewer route checks, "
-                      f"{len(data.get('gateway_routes', []))} gateway route checks, problems: "
+                      f"{len(data.get('gateway_routes', []))} gateway route checks, "
+                      f"{lane_checks} studio-lane route checks, problems: "
                       f"{data['problems'] or 'none'}")
         elif 'observations' in data and 'operations' in data:
             detail = (f"{len(data['observations'])} phases "
@@ -244,7 +250,15 @@ def render(root=ROOT):
         lines.append(f'- **{label}** (`{path.relative_to(ROOT).as_posix()}`): {detail}')
     lines += [
         '',
-        '## 6. What this report does not claim',
+        '## 6. Platform-check completion paths',
+        '',
+        f"- The auto-align plan defines **{len(auto_align_plan['steps'])} steps across {len(auto_align_plan['phases'])} phases**; "
+        f"all **{len(platform_items['items'])} open platform items** map to a step in "
+        '`PLATFORM_CONFIGURATION_CHECK_2026_10_04.md`.',
+        '- A mapped step is a completion path, not evidence that a provider, account, service or control is configured. '
+        'See `/reports/auto-align`, `/reports/platform-check` and `/reports/issues` for the executable sequence and decisions.',
+        '',
+        '## 7. What this report does not claim',
         '',
         '- No sub-agent, provider account, revenue channel or device is asserted operational; every registry '
         'entry carries `runtime_status`: NOT_VERIFIED.',

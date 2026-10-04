@@ -95,13 +95,18 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 ## 5. Recorded verification evidence
 
-- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 17 viewer route checks, 18 gateway route checks, problems: none
-- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 18 checkpoints; current state: This file covers the 2026-10-03 and 2026-10-04 runs through merge #23 (checkpoint #18) and is closed there on purpose: the merge that delivers this record update is verified by the same workflow, and its result stays visible in the live check-run annotations until the next update (trailing rule). Every checkpoint recorded here is status=MATCH with identical primary and secondary trees; 14 of the 18 carried a replication write (rollback_commit present). A run that finds the snapshots already equal carries no rollback_commit and is an idempotent no-op, not a failure. The one BLOCKED run (#11) is documented separately and is deliberately not counted as a MATCH checkpoint.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434, 111395579579, 111396668243, 111397396312]
+- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 23 viewer route checks, 24 gateway route checks, 12 studio-lane route checks, problems: none
+- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 19 checkpoints; current state: This record covers the 2026-10-03 and 2026-10-04 successful verify-or-sync runs through merge #24 (checkpoint #19). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 15 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Checkpoint #19 was re-read live in this session; the previous 18 rows retain their earlier full-set revalidation.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434, 111395579579, 111396668243, 111397396312, 111404791435]
 - **Failover drill 2026-10-03** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_03.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Failover drill 2026-10-04** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Test evidence** (`ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json`): recorded separately; see the file for per-suite counts and results
 
-## 6. What this report does not claim
+## 6. Platform-check completion paths
+
+- The auto-align plan defines **21 steps across 5 phases**; all **41 open platform items** map to a step in `PLATFORM_CONFIGURATION_CHECK_2026_10_04.md`.
+- A mapped step is a completion path, not evidence that a provider, account, service or control is configured. See `/reports/auto-align`, `/reports/platform-check` and `/reports/issues` for the executable sequence and decisions.
+
+## 7. What this report does not claim
 
 - No sub-agent, provider account, revenue channel or device is asserted operational; every registry entry carries `runtime_status`: NOT_VERIFIED.
 - No production deployment, traffic switch, RPO/RTO or independent-site DR is claimed; the DR evidence covers the Git main snapshot only.

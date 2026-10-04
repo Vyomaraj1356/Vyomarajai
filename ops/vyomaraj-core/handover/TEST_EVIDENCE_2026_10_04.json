@@ -1,143 +1,215 @@
 {
- "recorded_at_utc": "2026-10-04T09:14:59+00:00",
- "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml (plus the inheritance audit builder check), run locally on this checkout; recorded by the fourth 2026-10-04 session (arena/01a10629-vyomarajai) after the theme upgrade, the inheritance audit and the three reference viewer pages were rebuilt and the DR record was extended to checkpoint #18.",
- "python_suites": [
-  {
-   "path": "ops/dr",
-   "ran": 53,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/handover",
-   "ran": 43,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/liquor-bar",
-   "ran": 9,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/experience",
-   "ran": 95,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/research",
-   "ran": 36,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/agents",
-   "ran": 33,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/availability",
-   "ran": 8,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/approvals",
-   "ran": 10,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/finance",
-   "ran": 8,
-   "result": "OK",
-   "tail": "OK"
-  },
-  {
-   "path": "ops/vyomaraj-core/upgrades",
-   "ran": 9,
-   "result": "OK",
-   "tail": "OK"
-  }
- ],
- "python_tests_total": 304,
- "node_checks": [
-  {
-   "command": "node --test ops/vyomaraj-core/test_safe_metadata.cjs",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/liquor-bar/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/bhakti-experience/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/music-experience/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/film-experience/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/comics-experience/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/approvals/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/finance/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/upgrades/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/research/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/agents/app.js",
-   "result": "OK"
-  },
-  {
-   "command": "node --check ops/vyomaraj-core/aghor-experience/app.js",
-   "result": "OK"
-  }
- ],
- "builders": [
-  {
-   "command": "python3 ops/vyomaraj-core/handover/rebuild_handover.py --check",
-   "result": "OK"
-  },
-  {
-   "command": "python3 ops/vyomaraj-core/agents/rebuild_registry.py --check",
-   "result": "OK"
-  },
-  {
-   "command": "python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check",
-   "result": "OK"
-  },
-  {
-   "command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
-   "result": "OK"
-  },
-  {
-   "command": "python3 ops/vyomaraj-core/handover/build_configuration_report.py --check",
-   "result": "OK"
-  },
-  {
-   "command": "python3 ops/vyomaraj-core/agents/inheritance_audit.py --check",
-   "result": "OK"
-  }
- ]
+  "recorded_at_utc": "2026-10-04T11:12:18+00:00",
+  "scope": "Offline local suite set; generated only after the checks below have completed. No external provider, publishing or DR mutation is performed.",
+  "source_script": "ops/vyomaraj-core/handover/run_offline_suites.py",
+  "python_suites": [
+    {
+      "path": "ops/dr",
+      "command": "python3 -m unittest discover -s ops/dr -p test_*.py -v",
+      "ran": 53,
+      "result": "OK",
+      "tail": "test_403_scope_failure_not_retried (test_http_retry.Tests.test_403_scope_failure_not_retried) ... ok\ntest_retry_after_too_long_stops (test_http_retry.Tests.test_retry_after_too_long_stops) ... ok\ntest_transient_read_retry (test_http_retry.Tests.test_transient_read_retry) ... ok\ntest_write_is_not_retried (test_http_retry.Tests.test_write_is_not_retried) ... ok\ntest_changed_snapshot_not_approved (test_pinned_approval.PinnedApprovalTests.test_changed_snapshot_not_approved) ... ok\ntest_expired_or_naive_approval_not_approved (test_pinned_approval.PinnedApprovalTests.test_expired_or_naive_approval_not_approved) ... ok\ntest_not_review_branch_or_local (test_pinned_approval.PinnedApprovalTests.test_not_review_branch_or_local) ... ok\ntest_owner_approved_exact_snapshot (test_pinned_approval.PinnedApprovalTests.test_owner_approved_exact_snapshot) ... ok\ntest_wrong_target_or_disabled (test_pinned_approval.PinnedApprovalTests.test_wrong_target_or_disabled) ... ok\ntest_missing_target_fails (test_recovery_plan.Tests.test_missing_target_fails) ... ok\ntest_reverse_review_has_no_writes (test_recovery_plan.Tests.test_reverse_review_has_no_writes) ... ok\ntest_unreachable_secondary_is_not_ready (test_recovery_plan.Tests.test_unreachable_secondary_is_not_ready) ... ok\ntest_default_blocks_before_any_write (test_target_only_gate.TargetOnlyGateTests.test_default_blocks_before_any_write) ... ok\ntest_explicit_approval_exact_tree_preserves_history (test_target_only_gate.TargetOnlyGateTests.test_explicit_approval_exact_tree_preserves_history) ... ok\ntest_truthy_nonliteral_not_approval (test_target_only_gate.TargetOnlyGateTests.test_truthy_nonliteral_not_approval) ... ok\n----------------------------------------------------------------------\nRan 53 tests in 0.011s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/handover -p test_*.py -v",
+      "ran": 63,
+      "result": "OK",
+      "tail": "test_three_new_allowlisted_pages (test_preview_reports.PreviewTests.test_three_new_allowlisted_pages) ... ok\ntest_transfer_package_download_is_the_packaged_artifact (test_preview_reports.PreviewTests.test_transfer_package_download_is_the_packaged_artifact) ... ok\ntest_bad_category_total_rejected (test_rebuild_handover.HandoverTests.test_bad_category_total_rejected) ... ok\ntest_bad_group_count_rejected (test_rebuild_handover.HandoverTests.test_bad_group_count_rejected) ... ok\ntest_checked_in_output_matches (test_rebuild_handover.HandoverTests.test_checked_in_output_matches) ... ok\ntest_duplicate_catalog_file_rejected (test_rebuild_handover.HandoverTests.test_duplicate_catalog_file_rejected) ... ok\ntest_missing_catalog_file_rejected (test_rebuild_handover.HandoverTests.test_missing_catalog_file_rejected) ... ok\ntest_new_platform_mapping_requires_review (test_rebuild_handover.HandoverTests.test_new_platform_mapping_requires_review) ... ok\ntest_only_two_metadata_files_are_read (test_rebuild_handover.HandoverTests.test_only_two_metadata_files_are_read) ... ok\ntest_path_traversal_rejected (test_rebuild_handover.HandoverTests.test_path_traversal_rejected) ... ok\ntest_unknowns_and_scope_remain_explicit (test_rebuild_handover.HandoverTests.test_unknowns_and_scope_remain_explicit) ... ok\ntest_no_secret_like_or_runtime_members (test_transfer_package.PackageTests.test_no_secret_like_or_runtime_members) ... ok\ntest_note_member_is_the_canonical_note (test_transfer_package.PackageTests.test_note_member_is_the_canonical_note) ... ok\ntest_package_matches_manifest_and_member_sources (test_transfer_package.PackageTests.test_package_matches_manifest_and_member_sources) ... ok\ntest_rebuild_has_identical_members (test_transfer_package.PackageTests.test_rebuild_has_identical_members) ... ok\n----------------------------------------------------------------------\nRan 63 tests in 0.678s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/liquor-bar",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/liquor-bar -p test_*.py -v",
+      "ran": 9,
+      "result": "OK",
+      "tail": "test_canonical_ids_and_counts_unchanged (test_content.ContentTests.test_canonical_ids_and_counts_unchanged) ... ok\ntest_chapters_are_proposed_not_recovered (test_content.ContentTests.test_chapters_are_proposed_not_recovered) ... ok\ntest_events_separate_past_confirmed_and_unconfirmed (test_content.ContentTests.test_events_separate_past_confirmed_and_unconfirmed) ... ok\ntest_extension_does_not_rewrite_historical_catalog (test_content.ContentTests.test_extension_does_not_rewrite_historical_catalog) ... ok\ntest_no_connected_provider_or_fabricated_specs (test_content.ContentTests.test_no_connected_provider_or_fabricated_specs) ... ok\ntest_snack_procedures_allergens_and_zero_alcohol_options (test_content.ContentTests.test_snack_procedures_allergens_and_zero_alcohol_options) ... ok\ntest_sources_resolve_and_candidates_stay_marked (test_content.ContentTests.test_sources_resolve_and_candidates_stay_marked) ... ok\ntest_assets_served_with_same_origin_policy (test_content.ServerTests.test_assets_served_with_same_origin_policy) ... ok\ntest_private_and_non_allowlisted_files_rejected (test_content.ServerTests.test_private_and_non_allowlisted_files_rejected) ... ok\n----------------------------------------------------------------------\nRan 9 tests in 0.515s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/experience",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/experience -p test_*.py -v",
+      "ran": 96,
+      "result": "OK",
+      "tail": "test_only_reviewed_pack_read_and_active_registry_metadata (test_music.MusicPlannerTests.test_only_reviewed_pack_read_and_active_registry_metadata) ... ok\ntest_order_and_sources_preserved (test_music.MusicPlannerTests.test_order_and_sources_preserved) ... ok\ntest_routes_to_proposed_existing_bindings (test_music.MusicPlannerTests.test_routes_to_proposed_existing_bindings) ... ok\ntest_rundown_exact_budget_and_contiguous_slots (test_music.MusicPlannerTests.test_rundown_exact_budget_and_contiguous_slots) ... ok\ntest_http_music_handoff (test_music.MusicServerTests.test_http_music_handoff) ... ok\ntest_music_assets_and_report (test_music.MusicServerTests.test_music_assets_and_report) ... ok\ntest_no_upload_or_private_file_routes (test_music.MusicServerTests.test_no_upload_or_private_file_routes) ... ok\ntest_cross_origin_refused (test_research_http.ResearchHTTP.test_cross_origin_refused) ... ok\ntest_enqueue_closed_fields_and_profile (test_research_http.ResearchHTTP.test_enqueue_closed_fields_and_profile) ... ok\ntest_export_and_pagination (test_research_http.ResearchHTTP.test_export_and_pagination) ... ok\ntest_json_required_no_form_posts (test_research_http.ResearchHTTP.test_json_required_no_form_posts) ... ok\ntest_private_state_and_templates_not_served (test_research_http.ResearchHTTP.test_private_state_and_templates_not_served) ... ok\ntest_review_requires_ack_and_does_not_publish (test_research_http.ResearchHTTP.test_review_requires_ack_and_does_not_publish) ... ok\ntest_same_origin_accepted (test_research_http.ResearchHTTP.test_same_origin_accepted) ... ok\ntest_status_and_assets (test_research_http.ResearchHTTP.test_status_and_assets) ... ok\n----------------------------------------------------------------------\nRan 96 tests in 2.236s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/research",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/research -p test_*.py -v",
+      "ran": 36,
+      "result": "OK",
+      "tail": "test_optional_searxng_not_misreported (test_discovery.Tests.test_optional_searxng_not_misreported) ... ok\ntest_public_url_rejects_unsafe (test_discovery.Tests.test_public_url_rejects_unsafe) ... ok\ntest_queue_capacity (test_discovery.Tests.test_queue_capacity) ... ok\ntest_real_provider_empty_result_is_success_not_failure (test_discovery.Tests.test_real_provider_empty_result_is_success_not_failure) ... ok\ntest_record_storage_capacity_is_explicit (test_discovery.Tests.test_record_storage_capacity_is_explicit) ... ok\ntest_redirects_not_followed (test_discovery.Tests.test_redirects_not_followed) ... ok\ntest_review_never_clears_rights_or_publishes (test_discovery.Tests.test_review_never_clears_rights_or_publishes) ... ok\ntest_runtime_failures_not_empty_success (test_discovery.Tests.test_runtime_failures_not_empty_success) ... ok\ntest_saves_preserve_review_until_metadata_changes (test_discovery.Tests.test_saves_preserve_review_until_metadata_changes) ... ok\ntest_searxng_local_service_fixture (test_discovery.Tests.test_searxng_local_service_fixture) ... ok\ntest_single_claim_across_store_instances (test_discovery.Tests.test_single_claim_across_store_instances) ... ok\ntest_success_cache_and_expiry (test_discovery.Tests.test_success_cache_and_expiry) ... ok\ntest_throttle_shared_and_at_least_one_second (test_discovery.Tests.test_throttle_shared_and_at_least_one_second) ... ok\ntest_unknown_profile_refused (test_discovery.Tests.test_unknown_profile_refused) ... ok\ntest_unknown_review_decision_rejected (test_discovery.Tests.test_unknown_review_decision_rejected) ... ok\n----------------------------------------------------------------------\nRan 36 tests in 0.522s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/agents",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/agents -p test_*.py -v",
+      "ran": 33,
+      "result": "OK",
+      "tail": "test_entertainment_group_duplicate_removed (test_registry.RegistryTests.test_entertainment_group_duplicate_removed) ... ok\ntest_grantha_six_stay_unassigned (test_registry.RegistryTests.test_grantha_six_stay_unassigned) ... ok\ntest_heading_not_counted_as_agent (test_registry.RegistryTests.test_heading_not_counted_as_agent) ... ok\ntest_indicom_criticism_distinct (test_registry.RegistryTests.test_indicom_criticism_distinct) ... ok\ntest_no_names_coined_for_unknowns (test_registry.RegistryTests.test_no_names_coined_for_unknowns) ... ok\ntest_platform_and_named_roster_duplicates_removed (test_registry.RegistryTests.test_platform_and_named_roster_duplicates_removed) ... ok\ntest_platform_serial_not_source_s20 (test_registry.RegistryTests.test_platform_serial_not_source_s20) ... ok\ntest_privacy_metadata_only_reads (test_registry.RegistryTests.test_privacy_metadata_only_reads) ... ok\ntest_products_not_fabricated (test_registry.RegistryTests.test_products_not_fabricated) ... ok\ntest_repeatable_outputs (test_registry.RegistryTests.test_repeatable_outputs) ... ok\ntest_serials_contiguous_per_category (test_registry.RegistryTests.test_serials_contiguous_per_category) ... ok\ntest_source_and_current_json_separate (test_registry.RegistryTests.test_source_and_current_json_separate) ... ok\ntest_source_snapshot_unchanged (test_registry.RegistryTests.test_source_snapshot_unchanged) ... ok\ntest_topic_owner_and_no_duplicates (test_registry.RegistryTests.test_topic_owner_and_no_duplicates) ... ok\ntest_wrong_education_owner_refused (test_registry.RegistryTests.test_wrong_education_owner_refused) ... ok\n----------------------------------------------------------------------\nRan 33 tests in 0.107s\nOK"
+    },
+    {
+      "path": "ops/availability",
+      "command": "python3 -m unittest discover -s ops/availability -p test_*.py -v",
+      "ran": 8,
+      "result": "OK",
+      "tail": "test_404_is_not_hidden_by_failover (test_gateway.Tests.test_404_is_not_hidden_by_failover) ... ok\ntest_arbitrary_proxy_routes_refused (test_gateway.Tests.test_arbitrary_proxy_routes_refused) ... ok\ntest_both_down_not_false_success (test_gateway.Tests.test_both_down_not_false_success) ... ok\ntest_get_fallback (test_gateway.Tests.test_get_fallback) ... ok\ntest_health_shape_not_fake_ready (test_gateway.Tests.test_health_shape_not_fake_ready) ... ok\ntest_http_503_fallback (test_gateway.Tests.test_http_503_fallback) ... ok\ntest_post_never_replayed (test_gateway.Tests.test_post_never_replayed) ... ok\ntest_post_selects_live_replica_once (test_gateway.Tests.test_post_selects_live_replica_once) ... ok\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/approvals",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/approvals -p test_*.py -v",
+      "ran": 10,
+      "result": "OK",
+      "tail": "test_all_four_decisions_are_recorded_with_owner_and_shriyantra (test_approvals.ApprovalQueueBehaviourTests.test_all_four_decisions_are_recorded_with_owner_and_shriyantra) ... ok\ntest_build_queue_lists_dropdown_items (test_approvals.ApprovalQueueBehaviourTests.test_build_queue_lists_dropdown_items) ... ok\ntest_invalid_decisions_and_instructions_are_refused (test_approvals.ApprovalQueueBehaviourTests.test_invalid_decisions_and_instructions_are_refused) ... ok\ntest_open_review_opens_the_shutter_and_plays_the_payload (test_approvals.ApprovalQueueBehaviourTests.test_open_review_opens_the_shutter_and_plays_the_payload) ... ok\ntest_open_review_rejects_unknown_or_wrong_state_items (test_approvals.ApprovalQueueBehaviourTests.test_open_review_rejects_unknown_or_wrong_state_items) ... ok\ntest_rework_and_submit_repeat_the_same_cycle (test_approvals.ApprovalQueueBehaviourTests.test_rework_and_submit_repeat_the_same_cycle) ... ok\ntest_camera_is_the_wooden_nostalgic_one (test_approvals.ApprovalQueueContentTests.test_camera_is_the_wooden_nostalgic_one) ... ok\ntest_governing_principle_chain_is_recorded (test_approvals.ApprovalQueueContentTests.test_governing_principle_chain_is_recorded) ... ok\ntest_nothing_publishes_and_notifications_are_recorded_not_sent (test_approvals.ApprovalQueueContentTests.test_nothing_publishes_and_notifications_are_recorded_not_sent) ... ok\ntest_queue_items_are_awaiting_owner_with_review_payloads (test_approvals.ApprovalQueueContentTests.test_queue_items_are_awaiting_owner_with_review_payloads) ... ok\n----------------------------------------------------------------------\nRan 10 tests in 0.002s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/finance",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/finance -p test_*.py -v",
+      "ran": 8,
+      "result": "OK",
+      "tail": "test_classification_matches_the_ladder (test_finance.FollowupTests.test_classification_matches_the_ladder) ... ok\ntest_every_stage_has_a_draft_and_nothing_is_sent (test_finance.FollowupTests.test_every_stage_has_a_draft_and_nothing_is_sent) ... ok\ntest_followup_plan_covers_every_payment_with_a_next_action (test_finance.FollowupTests.test_followup_plan_covers_every_payment_with_a_next_action) ... ok\ntest_overdue_payments_escalate_with_history (test_finance.FollowupTests.test_overdue_payments_escalate_with_history) ... ok\ntest_reference_day_is_pinned (test_finance.FollowupTests.test_reference_day_is_pinned) ... ok\ntest_briefing_is_drafted_for_all_four_channels (test_finance.MorningBriefingTests.test_briefing_is_drafted_for_all_four_channels) ... ok\ntest_briefing_names_the_buddies_and_carries_the_sections (test_finance.MorningBriefingTests.test_briefing_names_the_buddies_and_carries_the_sections) ... ok\ntest_briefing_numbers_match_the_followup_plan (test_finance.MorningBriefingTests.test_briefing_numbers_match_the_followup_plan) ... ok\n----------------------------------------------------------------------\nRan 8 tests in 0.002s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/upgrades",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/upgrades -p test_*.py -v",
+      "ran": 9,
+      "result": "OK",
+      "tail": "test_only_planned_changes_can_be_decided (test_upgrades.ChangePermissionTests.test_only_planned_changes_can_be_decided) ... ok\ntest_owner_approval_schedules_the_upgrade_with_rollback_ready (test_upgrades.ChangePermissionTests.test_owner_approval_schedules_the_upgrade_with_rollback_ready) ... ok\ntest_owner_rejection_keeps_the_current_version (test_upgrades.ChangePermissionTests.test_owner_rejection_keeps_the_current_version) ... ok\ntest_all_change_kinds_are_accepted (test_upgrades.ChangePlanningTests.test_all_change_kinds_are_accepted) ... ok\ntest_invalid_instructions_are_refused (test_upgrades.ChangePlanningTests.test_invalid_instructions_are_refused) ... ok\ntest_owner_instruction_becomes_a_planned_change_with_all_stages (test_upgrades.ChangePlanningTests.test_owner_instruction_becomes_a_planned_change_with_all_stages) ... ok\ntest_upgrade_plan_snapshots_before_applying (test_upgrades.ChangePlanningTests.test_upgrade_plan_snapshots_before_applying) ... ok\ntest_failed_verification_engages_the_backup_plan (test_upgrades.RollbackTests.test_failed_verification_engages_the_backup_plan) ... ok\ntest_only_scheduled_upgrades_can_fail (test_upgrades.RollbackTests.test_only_scheduled_upgrades_can_fail) ... ok\n----------------------------------------------------------------------\nRan 9 tests in 0.002s\nOK"
+    },
+    {
+      "path": "ops/vyomaraj-core/ledger",
+      "command": "python3 -m unittest discover -s ops/vyomaraj-core/ledger -p test_*.py -v",
+      "ran": 11,
+      "result": "OK",
+      "tail": "test_all_open_platform_actions_point_to_the_auto_align_plan (test_issue_ledger.IssueLedgerTests.test_all_open_platform_actions_point_to_the_auto_align_plan) ... ok\ntest_chat_count_notice_preserves_source_and_both_counts (test_issue_ledger.IssueLedgerTests.test_chat_count_notice_preserves_source_and_both_counts) ... ok\ntest_contract_conflict_is_not_resolved_by_the_ledger (test_issue_ledger.IssueLedgerTests.test_contract_conflict_is_not_resolved_by_the_ledger) ... ok\ntest_divergent_pull_requests_remain_owner_decisions (test_issue_ledger.IssueLedgerTests.test_divergent_pull_requests_remain_owner_decisions) ... ok\ntest_fourteen_ledger_entries_and_unique_ids (test_issue_ledger.IssueLedgerTests.test_fourteen_ledger_entries_and_unique_ids) ... ok\ntest_issue_six_checkpoint_matches_the_live_snapshot_values (test_issue_ledger.IssueLedgerTests.test_issue_six_checkpoint_matches_the_live_snapshot_values) ... ok\ntest_issue_six_is_ready_to_close_but_not_closed_or_posted (test_issue_ledger.IssueLedgerTests.test_issue_six_is_ready_to_close_but_not_closed_or_posted) ... ok\ntest_merged_chain_is_documented_through_pr_twenty_four (test_issue_ledger.IssueLedgerTests.test_merged_chain_is_documented_through_pr_twenty_four) ... ok\ntest_pr_nine_is_watch_only (test_issue_ledger.IssueLedgerTests.test_pr_nine_is_watch_only) ... ok\ntest_report_matches_builder_and_contains_no_secrets_or_money_claims (test_issue_ledger.IssueLedgerTests.test_report_matches_builder_and_contains_no_secrets_or_money_claims) ... ok\ntest_runbook_is_ordered_and_contains_403_stop_rule (test_issue_ledger.IssueLedgerTests.test_runbook_is_ordered_and_contains_403_stop_rule) ... ok\n----------------------------------------------------------------------\nRan 11 tests in 0.001s\nOK"
+    }
+  ],
+  "python_tests_total": 336,
+  "node_checks": [
+    {
+      "command": "node --test ops/vyomaraj-core/test_safe_metadata.cjs",
+      "result": "OK",
+      "tail": "ok 2 - coordination snapshots cannot mutate platform declarations\n  ---\n  duration_ms: 0.840695\n  type: 'test'\n  ...\n# Subtest: Shriyantra is branding, not a security implementation\nok 3 - Shriyantra is branding, not a security implementation\n  ---\n  duration_ms: 0.849261\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 63.110316"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/liquor-bar/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/bhakti-experience/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/music-experience/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/film-experience/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/comics-experience/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/approvals/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/finance/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/upgrades/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/research/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/agents/app.js",
+      "result": "OK",
+      "tail": ""
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/aghor-experience/app.js",
+      "result": "OK",
+      "tail": ""
+    }
+  ],
+  "builders": [
+    {
+      "command": "python3 ops/vyomaraj-core/handover/rebuild_handover.py --check",
+      "result": "OK",
+      "tail": "PASS: 13 categories, 133 sub-agents, 421 product count, 32 catalog files; 239 lines"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/agents/rebuild_registry.py --check",
+      "result": "OK",
+      "tail": "PASS current hierarchy: 13 categories / 128 counted slots / 6 headings; Education 16, Finance 7, Entertainment 32. Historical snapshot preserved."
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check",
+      "result": "OK",
+      "tail": "PASS: 19 checkpoints, 15 replication writes, 1 blocked run; 153 lines"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
+      "result": "OK",
+      "tail": "OK: package reproducible and manifest matches (ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip)"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_configuration_report.py --check",
+      "result": "OK",
+      "tail": "OK: BUILD_AND_CONFIGURATION_2026_10_04.md matches the repository sources"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/experience/rebuild_contents.py --check",
+      "result": "OK",
+      "tail": "PASS: handover/EXPERIENCE_CONTENTS_2026_10_03.md matches the allowlisted editorial packs"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/agents/inheritance_audit.py --check",
+      "result": "OK",
+      "tail": "OK: ops/vyomaraj-core/handover/INHERITANCE_AUDIT_2026_10_04.md matches its sources (4500 bytes)"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_platform_check.py --check",
+      "result": "OK",
+      "tail": "OK: 41 open platform items have completion paths"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_issue_ledger.py --check",
+      "result": "OK",
+      "tail": "OK: 14 ledger entries; issue #6 close-out prepared, not sent"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/auto_align.py --check",
+      "result": "OK",
+      "tail": "OK: 21 steps, 5 phases, 41 open items covered, 14 local checks"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/check_language_policy.py --check",
+      "result": "OK",
+      "tail": "OK: 258 repository text files are valid UTF-8 with no NUL bytes"
+    },
+    {
+      "command": "python3 -m json.tool ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json",
+      "result": "OK",
+      "tail": "    ],\n    \"safety\": {\n        \"automatic_actions\": [\n            \"read repository files\",\n            \"run local test commands\",\n            \"render reports\",\n            \"write timestamped local evidence\"\n        ],\n        \"never_automatic\": [\n            \"install packages\",\n            \"purchase services\",\n            \"connect provider accounts\",\n            \"publish content\",\n            \"comment or close GitHub issues\",\n            \"push or merge code\",\n            \"change live infrastructure\"\n        ],\n        \"preview_policy\": \"Preview checks are localhost-only and skip explicitly when the service is not already listening.\"\n    }\n}"
+    },
+    {
+      "command": "bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh ops/vyomaraj-core/upgrades/upgrade-controller.sh",
+      "result": "OK",
+      "tail": ""
+    }
+  ],
+  "failures": []
 }

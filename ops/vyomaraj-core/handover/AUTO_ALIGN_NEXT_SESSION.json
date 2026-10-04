@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "title": "Vyomaraj V16.9 — auto-align execution plan",
+  "as_of": "2026-10-04",
+  "scope": "A finite completion path for every currently open platform-check item. Status does not become DONE without repository evidence; account access, owner decisions, installations, live connections and publishing are never performed by this runner.",
+  "platform_items_source": "PLATFORM_OPEN_ITEMS_2026_10_04.json",
+  "state_file": "AUTO_ALIGN_STATE_2026_10_04.json",
+  "report_file": "AUTO_ALIGN_NEXT_SESSION_2026_10_04.md",
+  "owner_evidence_directory": "AUTO_ALIGN_EVIDENCE",
+  "phases": [
+    {"id": "phase-0", "number": 0, "name": "Automatic readiness and publication", "step_ids": ["a01-local-auto-align", "a02-preview-verify", "a03-publish"]},
+    {"id": "phase-1", "number": 1, "name": "Owner decisions", "step_ids": ["o01-secret-manager", "o02-contract-authority", "o03-tool-accounts", "o04-posilki"]},
+    {"id": "phase-2", "number": 2, "name": "Provider connections", "step_ids": ["p01-research-drafting", "p02-media-pipeline", "p03-publishing-stack", "p04-review-gates"]},
+    {"id": "phase-3", "number": 3, "name": "Studio and services", "step_ids": ["s01-studio-install", "s02-queue-events", "s03-rag-cag-mag", "s04-workspaces-contracts", "s05-jarvis-channels", "s06-shriyantra"]},
+    {"id": "phase-4", "number": 4, "name": "Disaster recovery and operations", "step_ids": ["d01-independent-dr", "d02-business-probes", "d03-rollout-hermes", "d04-intelligence-learning"]}
+  ],
+  "steps": [
+    {
+      "id": "a01-local-auto-align", "phase": 0, "title": "Run local verification sequence", "actor": "agent", "status": "READY_AUTOMATIC", "covers": [],
+      "action": "Run the allowlisted local-only sequence below and write timestamped evidence for the commands that ran.",
+      "verify": "python3 ops/vyomaraj-core/handover/auto_align.py --run",
+      "done_when": "All required local checks pass; unavailable preview routes are explicitly recorded as expected skips; the state file lists failures as zero.",
+      "evidence_path": "AUTO_ALIGN_STATE_2026_10_04.json"
+    },
+    {
+      "id": "a02-preview-verify", "phase": 0, "title": "Verify the live preview when available", "actor": "agent", "status": "READY_AUTOMATIC", "covers": [],
+      "action": "Check the allowlisted viewer and gateway routes on the local preview ports; never start, stop or publish a service as part of this check.",
+      "verify": "The l09 and l13 checks in AUTO_ALIGN_STATE_2026_10_04.json.",
+      "done_when": "Each available route has its expected status and content marker, or a down preview port is recorded as SKIPPED_PREVIEW_UNAVAILABLE.",
+      "evidence_path": "AUTO_ALIGN_STATE_2026_10_04.json"
+    },
+    {
+      "id": "a03-publish", "phase": 0, "title": "Publish the reviewed branch", "actor": "agent", "status": "AWAITING_AGENT", "covers": [],
+      "action": "After local checks and owner review, publish only arena/01a10655-vyomarajai and open a pull request. Do not merge automatically.",
+      "verify": "Read the branch head and pull-request checks from GitHub after the owner-approved publish action.",
+      "done_when": "The change is visible in a pull request from the required session branch and the PR records its checks; merge remains an owner decision.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/a03-publish.json"
+    },
+
+    {
+      "id": "o01-secret-manager", "phase": 1, "title": "Select the secret manager", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["O-01"],
+      "action": "Choose the approved secret manager, access owners and rotation procedure; record names and policy only.",
+      "verify": "Review the secret-manager configuration and access policy without copying secret values into the repository.",
+      "done_when": "The owner-approved manager, access policy and rotation evidence are recorded in the repository with no secret values.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/o01-secret-manager.json"
+    },
+    {
+      "id": "o02-contract-authority", "phase": 1, "title": "Resolve the governing contract record", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["O-02"],
+      "action": "Identify which conflicting contract-status record governs and document the decision without deleting historical records.",
+      "verify": "Compare the candidate records, owner decision and their scope; retain a superseded-by pointer for the non-governing record.",
+      "done_when": "One governing record and its authority are owner-approved, with the conflict and retained history documented.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/o02-contract-authority.json"
+    },
+    {
+      "id": "o03-tool-accounts", "phase": 1, "title": "Confirm accounts and plans", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["O-03"],
+      "action": "Inventory the tool accounts, owners and selected plans needed for the approved work; leave unknowns explicit.",
+      "verify": "Review the account inventory and access boundaries; do not infer a price, plan limit or connected status.",
+      "done_when": "The owner has approved an account and plan inventory and each item has an evidence pointer or an explicit not-selected status.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/o03-tool-accounts.json"
+    },
+    {
+      "id": "o04-posilki", "phase": 1, "title": "Clarify the recorded term", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["O-04"],
+      "action": "Confirm what \"posilki\" means in the source note and whether it names a tool, person, workflow or typo.",
+      "verify": "Record the owner's exact interpretation and point to the source context.",
+      "done_when": "The term has an owner-confirmed meaning or is explicitly marked unresolved and removed from active setup assumptions.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/o04-posilki.json"
+    },
+
+    {
+      "id": "p01-research-drafting", "phase": 2, "title": "Configure research and drafting providers", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["P-01", "P-02", "P-03", "P-04", "P-05"],
+      "action": "Review Perplexity, ChatGPT, custom GPTs, Claude and Gemini as separate owner-approved workflows with scoped access.",
+      "verify": "For each selected provider, record the account owner, allowed data, test result, failure behavior and reviewer without storing credentials.",
+      "done_when": "Every provider is either owner-approved and tested with repo evidence, or explicitly declined with a reason and no connection made.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/p01-research-drafting.json"
+    },
+    {
+      "id": "p02-media-pipeline", "phase": 2, "title": "Configure media tools and rights evidence", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["P-06", "P-07", "P-08", "P-09", "P-10", "P-11"],
+      "action": "Review Canva, ElevenLabs, Animaker and CapCut; document approved stock and music sources with item-level rights evidence.",
+      "verify": "Test each selected tool using owner-approved sample media, consent records and export review gates.",
+      "done_when": "Selected tools and media sources have owner approval, documented rights/consent and a reviewed export path; unselected tools stay disabled.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/p02-media-pipeline.json"
+    },
+    {
+      "id": "p03-publishing-stack", "phase": 2, "title": "Configure publishing, scheduling and analytics", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["P-12", "P-13", "P-14"],
+      "action": "Select destinations, account owners, scheduling rules, analytics scope and rollback behavior.",
+      "verify": "Review platform permissions and conduct a non-publishing dry run with an owner-approved test asset.",
+      "done_when": "Each destination has explicit approval, least-privilege access, a schedule policy and analytics evidence; no item is published by this plan.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/p03-publishing-stack.json"
+    },
+    {
+      "id": "p04-review-gates", "phase": 2, "title": "Exercise review gates with real media", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["P-15"],
+      "action": "Exercise the approval path using real media selected and approved by the owner before enabling any publishing connection.",
+      "verify": "Record consent, rights, moderation, owner approval, rejection and rollback test outcomes.",
+      "done_when": "The owner signs off on the end-to-end review evidence and publishing remains disabled until that sign-off.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/p04-review-gates.json"
+    },
+
+    {
+      "id": "s01-studio-install", "phase": 3, "title": "Install the studio path", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["S-01", "S-02", "S-03", "S-04"],
+      "action": "Install and test the camera, voice path, mixer and cut room in the approved space.",
+      "verify": "Record device inventory, consent/access controls, signal tests and a reviewed handoff sample.",
+      "done_when": "Each studio component passes its documented test and the owner approves the handoff workflow.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/s01-studio-install.json"
+    },
+    {
+      "id": "s02-queue-events", "phase": 3, "title": "Deploy queue and event path", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["S-05", "S-06"],
+      "action": "Deploy the replicated queue and its event path with explicit ownership, idempotency, retry and recovery rules.",
+      "verify": "Run duplicate, delayed, retry, failover and restore tests; preserve their outputs as evidence.",
+      "done_when": "Queue and event tests pass on the intended failure domains and a documented restore procedure is owner-approved.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/s02-queue-events.json"
+    },
+    {
+      "id": "s03-rag-cag-mag", "phase": 3, "title": "Configure retrieval and memory boundaries", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["S-07", "S-08", "S-09"],
+      "action": "Define RAG sources, CAG context rules and MAG memory boundaries per data class and agent.",
+      "verify": "Review provenance, retention, deletion, cross-workspace isolation and output attribution tests.",
+      "done_when": "All retrieval and memory paths have owner-approved scope, tests and rollback evidence; unapproved sources remain excluded.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/s03-rag-cag-mag.json"
+    },
+    {
+      "id": "s04-workspaces-contracts", "phase": 3, "title": "Scope workspaces and agent contracts", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["S-10", "S-11"],
+      "action": "Create least-privilege workspaces and reconcile per-agent contracts against the owner-selected governing record.",
+      "verify": "Test isolation and audit logging; compare every assigned agent's permissions to its approved contract.",
+      "done_when": "Workspace boundaries and contract assignments have owner approval, evidence and a tested revocation path.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/s04-workspaces-contracts.json"
+    },
+    {
+      "id": "s05-jarvis-channels", "phase": 3, "title": "Configure Jarvis runtime and channels", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["S-12", "S-13"],
+      "action": "Design the Jarvis 24x7 service window and channels with an owner-controlled escalation route.",
+      "verify": "Test service restart, channel delivery, alerting, access revocation and safe shutdown.",
+      "done_when": "Runtime and channels pass their documented tests under owner-approved supervision and have a verified stop path.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/s05-jarvis-channels.json"
+    },
+    {
+      "id": "s06-shriyantra", "phase": 3, "title": "Deploy ShriYantra control services", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["S-14"],
+      "action": "Define authority boundaries and deploy the ShriYantra control services with fail-closed behavior.",
+      "verify": "Test authorized, unauthorized, unavailable and rollback paths with an owner-approved test fixture.",
+      "done_when": "The authority matrix and test evidence are approved by the owner; a control failure cannot silently widen access.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/s06-shriyantra.json"
+    },
+
+    {
+      "id": "d01-independent-dr", "phase": 4, "title": "Establish independent DR and tested restore", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["D-01", "D-02"],
+      "action": "Provision a separate DR failure domain and run a complete restore from an owner-approved backup.",
+      "verify": "Record the independent-site identity, backup provenance, restore test, integrity results and limitations.",
+      "done_when": "The separate site and restore test are independently reviewed and documented; local two-lane evidence is not substituted.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/d01-independent-dr.json"
+    },
+    {
+      "id": "d02-business-probes", "phase": 4, "title": "Define business window and real probes", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["D-03", "D-04"],
+      "action": "Set the business maintenance window, escalation ownership and real probe scope.",
+      "verify": "Run probes only with explicit owner authorization; record target, timing, safety boundaries and measured results.",
+      "done_when": "The business window is approved and each real probe has an auditable result with no production claim beyond its scope.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/d02-business-probes.json"
+    },
+    {
+      "id": "d03-rollout-hermes", "phase": 4, "title": "Stage rollout and Hermes monitoring", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["D-05", "D-06"],
+      "action": "Define canary, stop and rollback gates; configure Hermes monitors and prove alert delivery.",
+      "verify": "Exercise the rollout and alert path on an approved non-production target before any production change.",
+      "done_when": "The staged rollout and alert evidence are owner-reviewed and the rollback gate has passed a controlled test.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/d03-rollout-hermes.json"
+    },
+    {
+      "id": "d04-intelligence-learning", "phase": 4, "title": "Define runtime intelligence and learning loop", "actor": "owner", "status": "OWNER_ACTION_REQUIRED", "covers": ["D-07", "D-08"],
+      "action": "Set privacy scope, owner review, versioned evaluations and rollback criteria before activating runtime learning.",
+      "verify": "Review a reproducible evaluation set, data lineage, retention policy and rollback exercise.",
+      "done_when": "The owner approves the runtime-intelligence boundary and the measured learning loop demonstrates a reversible release.",
+      "evidence_path": "AUTO_ALIGN_EVIDENCE/d04-intelligence-learning.json"
+    }
+  ],
+  "local_sequence": [
+    {"id": "l01-platform-check", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/build_platform_check.py", "--check"], "purpose": "Verify all open platform items still map to a completion step."},
+    {"id": "l02-issue-ledger", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/build_issue_ledger.py", "--check"], "purpose": "Verify the issue and PR ledger is current with its source data."},
+    {"id": "l03-align-self-check", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/auto_align.py", "--check"], "purpose": "Validate the plan structure, safety and rendered page.", "allow_runner_check": true},
+    {"id": "l04-offline-suites", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/run_offline_suites.py"], "purpose": "Run the complete offline Python, Node and builder suite; write evidence only after execution."},
+    {"id": "l05-handover-check", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/rebuild_handover.py", "--check"], "purpose": "Verify the canonical handover note from its source data."},
+    {"id": "l06-registry-check", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/agents/rebuild_registry.py", "--check"], "purpose": "Verify the current registry builder."},
+    {"id": "l07-inheritance-check", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/agents/inheritance_audit.py", "--check"], "purpose": "Verify the ownership and inheritance audit."},
+    {"id": "l08-dr-report-check", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/build_dr_sync_report.py", "--check"], "purpose": "Verify the DR report from recorded evidence."},
+    {"id": "l09-viewer-preview", "kind": "preview", "port": 4174, "routes": ["/reports/auto-align", "/reports/platform-check", "/reports/issues"], "skip_if_unavailable": true, "purpose": "Check report-viewer routes when the local viewer is already running."},
+    {"id": "l10-language-policy", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/check_language_policy.py", "--check"], "purpose": "Check tracked text files decode as UTF-8 and contain no NUL bytes."},
+    {"id": "l11-transfer-package", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/build_transfer_package.py", "--check"], "purpose": "Verify the deterministic, non-secret handover package."},
+    {"id": "l12-diff-whitespace", "kind": "command", "argv": ["git", "diff", "--check"], "purpose": "Check the working diff for whitespace errors."},
+    {"id": "l13-gateway-preview", "kind": "preview", "port": 4176, "routes": ["/reports/auto-align", "/reports/platform-check", "/reports/issues"], "skip_if_unavailable": true, "purpose": "Check gateway report routes when the local gateway is already running."},
+    {"id": "l14-evidence-scope", "kind": "command", "argv": ["python3", "ops/vyomaraj-core/handover/run_offline_suites.py", "--check"], "purpose": "Check generated evidence for internally consistent counts without requiring it to predate the suite that wrote it."}
+  ],
+  "safety": {
+    "automatic_actions": ["read repository files", "run local test commands", "render reports", "write timestamped local evidence"],
+    "never_automatic": ["install packages", "purchase services", "connect provider accounts", "publish content", "comment or close GitHub issues", "push or merge code", "change live infrastructure"],
+    "preview_policy": "Preview checks are localhost-only and skip explicitly when the service is not already listening."
+  }
+}
