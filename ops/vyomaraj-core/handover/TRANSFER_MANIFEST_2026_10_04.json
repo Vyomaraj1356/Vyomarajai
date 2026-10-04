@@ -1,8 +1,8 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "570b5507be23c7220e3b2f87d8a615c1328ed8fe74b025a55b4fccc8e4887739",
-  "package_bytes": 63825,
-  "note_sha256": "3cf7a7772ece7a64dfed143132263d78d652678cedbaee052be001939d926945",
+  "package_sha256": "96f2b3bd1b6cf28edafe716fc7be98c1c2304332bcd27ac456edb9d315d40348",
+  "package_bytes": 64791,
+  "note_sha256": "9e51b7521e422f3fcf55812c3ff38a2d6237954225a03c73978ce4e3915a7cff",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
@@ -11,8 +11,8 @@
     {
       "archive_name": "NEXT_SESSION_HANDOVER_2026_10_04.txt",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-      "sha256": "3cf7a7772ece7a64dfed143132263d78d652678cedbaee052be001939d926945",
-      "bytes": 19427
+      "sha256": "9e51b7521e422f3fcf55812c3ff38a2d6237954225a03c73978ce4e3915a7cff",
+      "bytes": 20135
     },
     {
       "archive_name": "RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md",
@@ -23,20 +23,20 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "f925e9e8edbf2471b1e7ae9ff5ec53097d1a46b1ced0ac6acfa22eff085f1988",
-      "bytes": 13002
+      "sha256": "68d405fadc87895e70d5c72182b1f47f276bc0594b6e4ce14e1eee4a279851d2",
+      "bytes": 13931
     },
     {
       "archive_name": "build_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/build_dr_sync_report.py",
-      "sha256": "911279f63b0f0ac72fc5dfb5fb1d568d945e14c98dbd138d8989a11630cd134f",
-      "bytes": 14508
+      "sha256": "8e124d6a1184c69dbbdaa0cff7027769c38b6d7267a344cf6b8b58b21008ef05",
+      "bytes": 14833
     },
     {
       "archive_name": "test_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/test_dr_sync_report.py",
-      "sha256": "2b9e9cd3464daa5877ed75c0cc584e662246e5f9b346d37892cfac65c904b20b",
-      "bytes": 4723
+      "sha256": "7b9c735b7f1f576687add0eaa6374001b3c0294e0910a2e7b8c592a5481b53b7",
+      "bytes": 4872
     },
     {
       "archive_name": "HANDOVER_ALL_UPDATES_2026_10_03.txt",
@@ -77,8 +77,8 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "0656713a90991440969e407ac9cda982617fe8d5b5de41c326e9bab04e9f7b04",
-      "bytes": 10609
+      "sha256": "0d0ed0731e57f36c60c7d6d6b681c40e733ca1a34412ec6b4290033db84718d0",
+      "bytes": 10725
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -95,8 +95,8 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "dcd6ce0b71885186cab656bbd91de761c79ad2d51a65b94c875db61cb734d0c7",
-      "bytes": 20736
+      "sha256": "38e93a0ad8d72d748c0cbfe3d23a713ac32b30adf63bb0f746be5a13eb99bf0b",
+      "bytes": 22271
     },
     {
       "archive_name": "studio_server.py",

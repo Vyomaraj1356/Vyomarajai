@@ -3,7 +3,7 @@
   "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
   "primary": "Vyomaraj1356/Vyomarajai",
   "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-  "primary_main_tip_checked": "686c8e0b1c1a40877f5ac46925f1e8db58e77326",
+  "primary_main_tip_checked": "ad99c2eaf89603e013134b1f93ade43350017ca6",
   "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
   "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
   "observations": [
@@ -232,6 +232,21 @@
       "rollback_commit": "f2bfd8a581a3064d87a16dc67e7db22c2e8a219a",
       "head_commit_subject": "Merge pull request #20 from Vyomaraj1356/arena/01a105bf-vyomarajai",
       "merge_pr": 20
+    },
+    {
+      "check_run_id": 111395579579,
+      "workflow_run_id": 37188502423,
+      "head_sha": "ad99c2eaf89603e013134b1f93ade43350017ca6",
+      "completed_at_utc": "2026-10-04T08:20:20Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=9b95c7e8465ddc577f2b37f186fbeb7910acce38; secondary_tree=9b95c7e8465ddc577f2b37f186fbeb7910acce38; rollback_commit=a3e4e6309e919f1fbfa6afacba401be59eb64ad5; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "9b95c7e8465ddc577f2b37f186fbeb7910acce38",
+      "secondary_tree": "9b95c7e8465ddc577f2b37f186fbeb7910acce38",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "a3e4e6309e919f1fbfa6afacba401be59eb64ad5",
+      "head_commit_subject": "Merge pull request #21 from Vyomaraj1356/arena/01a105da-vyomarajai",
+      "merge_pr": 21
     }
   ],
   "writes_to_secondary_observed": [
@@ -245,9 +260,10 @@
     111380439332,
     111380998467,
     111385960390,
-    111386365434
+    111386365434,
+    111395579579
   ],
-  "current_state": "This file covers the 2026-10-03 and 2026-10-04 runs through merge #20 (686c8e0b, checkpoint #15) and is closed there on purpose: every later merge is verified by the same workflow and its result is visible in the live check-run annotations. Every checkpoint recorded here is status=MATCH with identical primary and secondary trees; 11 of the 15 carried a replication write (rollback_commit present). A run that finds the snapshots already equal carries no rollback_commit and is an idempotent no-op, not a failure. The one BLOCKED run (#11) is documented separately and is deliberately not counted as a MATCH checkpoint.",
+  "current_state": "This file covers the 2026-10-03 and 2026-10-04 runs through merge #21 (ad99c2ea, checkpoint #16 — the merge that delivered the rebuilt comics lane, the V16.8 architecture and the governance desks) and is closed there on purpose: every later merge is verified by the same workflow and its result is visible in the live check-run annotations. Every checkpoint recorded here is status=MATCH with identical primary and secondary trees; 12 of the 16 carried a replication write (rollback_commit present). A run that finds the snapshots already equal carries no rollback_commit and is an idempotent no-op, not a failure. The one BLOCKED run (#11) is documented separately and is deliberately not counted as a MATCH checkpoint.",
   "branch_scope_warning": "This evidence covers primary main only. Two earlier commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) were not on main at the time they were first reported and therefore were not in the DR snapshot then; the branch was subsequently merged through PRs #10-#18 and is now covered by the checkpoints above. Unmerged branch tips are never part of the DR snapshot.",
   "local_verification_attempt": {
     "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -258,16 +274,16 @@
   "traffic_switched": false,
   "runtime_or_site_dr_verified": false,
   "zero_rpo_or_rto_claimed": false,
-  "revalidated_at_utc": "2026-10-04T08:07:00Z",
+  "revalidated_at_utc": "2026-10-04T08:22:00Z",
   "revalidation": {
-    "by": "third 2026-10-04 Arena session (arena/01a105da-vyomarajai), after the 01a105bf session ended",
-    "method": "every check-run id in this record, including the new checkpoint #15, was re-read live from the GitHub API in one pass; each DR SNAPSHOT annotation was re-parsed and compared with the stored values before this record was rewritten.",
-    "result": "all 15 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; the 14 previously recorded checkpoints matched their stored annotations, completed times and head shas exactly; no mismatch in status, trees or rollback commits",
+    "by": "third 2026-10-04 Arena session (arena/01a105da-vyomarajai), after merging PR #21",
+    "method": "every check-run id in this record, including the new checkpoint #16 (the merge of the comics-lane and V16.8-architecture PR), was re-read live from the GitHub API in one pass; each DR SNAPSHOT annotation was re-parsed and compared with the stored values before this record was rewritten.",
+    "result": "all 16 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; the 15 previously recorded checkpoints matched their stored annotations exactly; no mismatch in status, trees or rollback commits",
     "timestamp_corrections": []
   },
-  "checkpoints_total": 15,
-  "replication_writes_total": 11,
-  "session_record": "Merges #10-#20 are each verified on the secondary. The record intentionally stops at #20: chasing every trailing idempotent run would rewrite this file forever, and later merges are visible live in the check-run annotations. The #11 run was correctly BLOCKED and is recorded separately, not as a MATCH.",
+  "checkpoints_total": 16,
+  "replication_writes_total": 12,
+  "session_record": "Merges #10-#21 are each verified on the secondary. The record intentionally stops at #21: chasing every trailing idempotent run would rewrite this file forever, and later merges are visible live in the check-run annotations. The #11 run was correctly BLOCKED and is recorded separately, not as a MATCH.",
   "blocked_runs": [
     {
       "check_run_id": 111376415924,
@@ -291,7 +307,14 @@
   "blocked_runs_total": 1,
   "publication_status": {
     "recorded_by_session": "arena/01a105da-vyomarajai (third 2026-10-04 session)",
-    "session_branch_base": "686c8e0b1c1a40877f5ac46925f1e8db58e77326 (merge of PR #20, checkpoint #15 in this record)",
+    "session_branch_base": "686c8e0b1c1a40877f5ac46925f1e8db58e77326 (merge of PR #20, checkpoint #15)",
+    "published_as": "PR #21, merged to main as ad99c2eaf89603e013134b1f93ade43350017ca6; checkpoint #16 in this record is that merge's verify-or-sync run (check-run 111395579579, replication write, rollback a3e4e630… retained)",
+    "comics_and_architecture_coverage": "the trilingual comics lane, the V16.8 architecture and the governance desks (approvals/finance/upgrades) are part of the replicated snapshot verified by checkpoint #16 — genuinely covered on the secondary, not just claimed",
+    "branch_tip_at_record": "this refresh commit on arena/01a105da-vyomarajai (records checkpoint #16 and closes the record there)",
+    "pushed_at_record_time": false,
+    "publish_path": "push arena/01a105da-vyomarajai → pull request → merge to main → the verify-or-sync workflow replicates and verifies main automatically (every push plus the 30-minute schedule)",
+    "dr_coverage_of_this_merge": "the checkpoint for this closing merge is created by the same workflow after the merge; it is recorded in the next record update and is visible live in the check-run annotations meanwhile",
+    "local_sync_possible_from_this_sandbox": false,
     "rebuilt_from_lost_local_commits": {
       "lost_session": "arena/01a105bf-vyomarajai sandbox; its local commits 2430a16 (comics lane) and ac2f741 (status + sharing) were never pushed and did not survive the sandbox deletion; its remote tip 47d0920f is fully merged into main and is byte-identical to main here",
       "rebuilt_in_this_merge": [
@@ -299,11 +322,6 @@
         "handover notepad publication-status section and DR report publication/trailing/local-attempt sections",
         "architecture V16.8 (governing principle) with the governance modules (approvals, finance, upgrades)"
       ]
-    },
-    "branch_tip_at_record": "recorded before this session's push; the exact tip and PR number are in the handover notepad section that this merge carries",
-    "pushed_at_record_time": false,
-    "publish_path": "push arena/01a105da-vyomarajai → pull request → merge to main → the verify-or-sync workflow replicates and verifies main automatically (every push plus the 30-minute schedule)",
-    "dr_coverage_of_this_merge": "the checkpoint for this merge is created by the same workflow after the merge; it is recorded in the next record update and is visible live in the check-run annotations meanwhile",
-    "local_sync_possible_from_this_sandbox": false
+    }
   }
 }

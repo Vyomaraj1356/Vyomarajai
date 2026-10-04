@@ -197,6 +197,14 @@ def render(root=ROOT):
             f"Recorded by session: `{publication.get('recorded_by_session')}`.",
             f"Session branch base: `{publication.get('session_branch_base')}`.",
             f"Pushed to origin at record time: {yes_no(publication.get('pushed_at_record_time'))}.",
+        ]
+        if publication.get('published_as'):
+            lines += [
+                f"Published as: {publication['published_as']}.",
+                f"Coverage: {publication.get('comics_and_architecture_coverage')}.",
+            ]
+        lines += [
+            f"Publish path: {publication.get('publish_path')}.",
             f"Publish path: {publication.get('publish_path')}.",
             f"DR coverage of the merge that carries this record: {publication.get('dr_coverage_of_this_merge')}.",
             f"Local sync possible from the recording sandbox: {yes_no(publication.get('local_sync_possible_from_this_sandbox'))}.",
