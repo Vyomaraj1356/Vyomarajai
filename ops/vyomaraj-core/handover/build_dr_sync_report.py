@@ -205,7 +205,6 @@ def render(root=ROOT):
             ]
         lines += [
             f"Publish path: {publication.get('publish_path')}.",
-            f"Publish path: {publication.get('publish_path')}.",
             f"DR coverage of the merge that carries this record: {publication.get('dr_coverage_of_this_merge')}.",
             f"Local sync possible from the recording sandbox: {yes_no(publication.get('local_sync_possible_from_this_sandbox'))}.",
             '',

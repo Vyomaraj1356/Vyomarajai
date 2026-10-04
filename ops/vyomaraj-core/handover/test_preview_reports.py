@@ -99,6 +99,47 @@ class PreviewTests(unittest.TestCase):
         self.assertNotIn('<img ', rendered)
         self.assertIn('&lt;script&gt;', rendered)
 
+    def test_three_new_allowlisted_pages(self):
+        for route, marker in (('/reports/chats', 'All Chats from Arena Database'),
+                              ('/reports/issue-6', 'Issue #6 resolution statement'),
+                              ('/reports/test-evidence', 'python_tests_total')):
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.status, 200)
+                    text = response.read().decode()
+                self.assertIn(marker, text)
+
+    def test_every_report_page_carries_the_three_new_nav_links(self):
+        for route in ('/', '/reports/build', '/reports/chats', '/reports/issue-6',
+                      '/reports/test-evidence', '/reports/handover-notepad'):
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    text = response.read().decode()
+                for link in ('href="/reports/chats"', 'href="/reports/issue-6"',
+                             'href="/reports/test-evidence"'):
+                    self.assertIn(link, text)
+
+    def test_theme_is_inherited_by_every_page(self):
+        # One shared constant carries the Vyomaraj palette (Shani Blue + Kuber Gold); every page
+        # of the viewer must inherit it rather than style itself.
+        self.assertIn('#0a1628', preview.STYLE)
+        self.assertIn('#f59e0b', preview.STYLE)
+        for route in ('/', '/reports/chats', '/reports/issue-6', '/reports/test-evidence',
+                      '/reports/handover-notepad', '/reports/build'):
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    text = response.read().decode()
+                self.assertIn('#0a1628', text)
+                self.assertIn('#f59e0b', text)
+                self.assertIn('<meta name="theme-color" content="#0a1628">', text)
+
+    def test_reference_pages_never_serve_unallowlisted_paths(self):
+        for path in ('/reports/chats/../../README.md', '/reports/chats/../.git/config',
+                     '/reports/chats/extra', '/reports/issue-6/../dr.env'):
+            with self.subTest(path=path), self.assertRaises(urllib.error.HTTPError) as error:
+                urllib.request.urlopen(self.url + path)
+            self.assertEqual(error.exception.code, 404)
+
 
 if __name__ == '__main__':
     unittest.main()

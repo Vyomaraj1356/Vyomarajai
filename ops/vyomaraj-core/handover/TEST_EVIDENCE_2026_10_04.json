@@ -1,150 +1,143 @@
 {
-  "recorded_at_utc": "2026-10-04T08:14:58+00:00",
-  "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml, run locally on this checkout; recorded by the third 2026-10-04 session (arena/01a105da-vyomarajai) after the comics lane, the V16.8 architecture upgrade and the governance modules (approvals/finance/upgrades) were added and the DR record was extended to checkpoint #15.",
-  "python_suites": [
-    {
-      "path": "ops/dr",
-      "ran": 53,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/handover",
-      "ran": 39,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/liquor-bar",
-      "ran": 9,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/experience",
-      "ran": 94,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/research",
-      "ran": 36,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/agents",
-      "ran": 28,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/availability",
-      "ran": 8,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/approvals",
-      "ran": 10,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/finance",
-      "ran": 8,
-      "result": "OK",
-      "tail": "OK"
-    },
-    {
-      "path": "ops/vyomaraj-core/upgrades",
-      "ran": 9,
-      "result": "OK",
-      "tail": "OK"
-    }
-  ],
-  "python_tests_total": 294,
-  "node_checks": [
-    {
-      "command": "node --test ops/vyomaraj-core/test_safe_metadata.cjs",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/liquor-bar/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/bhakti-experience/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/music-experience/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/film-experience/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/comics-experience/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/approvals/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/finance/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/upgrades/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/research/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/agents/app.js",
-      "result": "OK"
-    },
-    {
-      "command": "node --check ops/vyomaraj-core/aghor-experience/app.js",
-      "result": "OK"
-    }
-  ],
-  "builders": [
-    {
-      "command": "python3 ops/vyomaraj-core/handover/rebuild_handover.py --check",
-      "result": "OK"
-    },
-    {
-      "command": "python3 ops/vyomaraj-core/agents/rebuild_registry.py --check",
-      "result": "OK"
-    },
-    {
-      "command": "python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check",
-      "result": "OK"
-    },
-    {
-      "command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
-      "result": "OK"
-    },
-    {
-      "command": "python3 ops/vyomaraj-core/handover/build_configuration_report.py --check",
-      "result": "OK"
-    }
-  ],
-  "shell_syntax_checks": [
-    {
-      "command": "bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh ops/vyomaraj-core/upgrades/upgrade-controller.sh",
-      "result": "OK"
-    }
-  ],
-  "preview_verification": {
-    "command": "python3 ops/vyomaraj-core/handover/verify_preview.py",
-    "result": "OK",
-    "problems": "none"
+ "recorded_at_utc": "2026-10-04T09:14:59+00:00",
+ "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml (plus the inheritance audit builder check), run locally on this checkout; recorded by the fourth 2026-10-04 session (arena/01a10629-vyomarajai) after the theme upgrade, the inheritance audit and the three reference viewer pages were rebuilt and the DR record was extended to checkpoint #18.",
+ "python_suites": [
+  {
+   "path": "ops/dr",
+   "ran": 53,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/handover",
+   "ran": 43,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/liquor-bar",
+   "ran": 9,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/experience",
+   "ran": 95,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/research",
+   "ran": 36,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/agents",
+   "ran": 33,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/availability",
+   "ran": 8,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/approvals",
+   "ran": 10,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/finance",
+   "ran": 8,
+   "result": "OK",
+   "tail": "OK"
+  },
+  {
+   "path": "ops/vyomaraj-core/upgrades",
+   "ran": 9,
+   "result": "OK",
+   "tail": "OK"
   }
+ ],
+ "python_tests_total": 304,
+ "node_checks": [
+  {
+   "command": "node --test ops/vyomaraj-core/test_safe_metadata.cjs",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/liquor-bar/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/bhakti-experience/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/music-experience/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/film-experience/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/comics-experience/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/approvals/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/finance/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/upgrades/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/research/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/agents/app.js",
+   "result": "OK"
+  },
+  {
+   "command": "node --check ops/vyomaraj-core/aghor-experience/app.js",
+   "result": "OK"
+  }
+ ],
+ "builders": [
+  {
+   "command": "python3 ops/vyomaraj-core/handover/rebuild_handover.py --check",
+   "result": "OK"
+  },
+  {
+   "command": "python3 ops/vyomaraj-core/agents/rebuild_registry.py --check",
+   "result": "OK"
+  },
+  {
+   "command": "python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check",
+   "result": "OK"
+  },
+  {
+   "command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
+   "result": "OK"
+  },
+  {
+   "command": "python3 ops/vyomaraj-core/handover/build_configuration_report.py --check",
+   "result": "OK"
+  },
+  {
+   "command": "python3 ops/vyomaraj-core/agents/inheritance_audit.py --check",
+   "result": "OK"
+  }
+ ]
 }

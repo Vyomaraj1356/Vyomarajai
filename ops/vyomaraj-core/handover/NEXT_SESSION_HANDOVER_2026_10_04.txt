@@ -7,20 +7,23 @@ byte-for-byte copy of the lost note, and NOT a claim about private chats, revenu
 provider accounts or runtime state.
 
 PUBLICATION STATUS — READ BEFORE ANY CLAIM ABOUT WHERE THIS NOTE IS
-Branch    : arena/01a105da-vyomarajai (this session is fixed to this branch)
-Base      : started from main tip 686c8e0b1c1a40877f5ac46925f1e8db58e77326 (merge of PR #20,
-            checkpoint #15, verified live this session) and fast-forwarded through merge #21.
-Published : PR #21 — MERGED to main as ad99c2eaf89603e013134b1f93ade43350017ca6.
-DR state  : the merge's verify-or-sync run COMPLETED as checkpoint #16 (check-run 111395579579,
-            completed 2026-10-04T08:20:20Z): status=MATCH, trees 9b95c7e8… = 9b95c7e8…,
-            replication write with rollback parent a3e4e630… retained, data_match=true. The
-            rebuilt comics lane, the V16.8 architecture and the governance desks are therefore
-            part of the replicated snapshot — genuinely covered on the secondary, not claimed.
-Record    : ops/dr/DEPLOYED_MATCH_2026_10_04.json now holds 16 MATCH checkpoints (12 writes),
-            every one re-read live from the GitHub API in one pass in this session.
-This file : refreshed by the closing commit of the third 2026-10-04 session (section 12); the
-            refresh itself rides the same publish path — push → PR → merge → verify-or-sync —
-            and its checkpoint is the next row of the record (see DR report section 5c).
+Branch    : arena/01a10629-vyomarajai (this session is fixed to this branch)
+Base      : started from main tip 767f8798604449dd7a45ef40fb8c6f2dfb158304 (merge of PR #23,
+            checkpoint #18, verified live this session) — the tip the third session's PRs
+            #21–#23 produced.
+Published : this refresh rides the same publish path — push → PR → merge → verify-or-sync; the
+            note is committed on the branch, and its merge checkpoint stays visible live in the
+            check-run annotations until it becomes the next row of the DR record (trailing rule,
+            DR report section 5c).
+DR state  : ops/dr/DEPLOYED_MATCH_2026_10_04.json now holds 18 MATCH checkpoints (14 replication
+            writes), every row re-read live from the GitHub API in one pass in this session; the
+            record closes at merge #23 (checkpoint #18, check-run 111397396312, trees
+            5d1787ac… = 5d1787ac…, rollback 096c2ec6… retained).
+Loss      : the third session's local commits (theme upgrade + viewer update, reported head
+            4a5a6d9) never reached GitHub — verified live this session: the remote branch tip is
+            13f0832 (fully merged via PR #23) and no 4a5a6d9 exists in the repository. Their
+            content was rebuilt as a documented re-implementation, not recovered; section 13.
+This file : refreshed by the fourth 2026-10-04 session (section 13).
 Where     : canonical file ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt;
             served at /reports/next-session and /reports/handover-notepad on the report viewer
             (4174) and through the gateway (4176); downloads are byte-identical (section 11).
@@ -94,6 +97,11 @@ Port 4176 (gateway in front of the two replicas):
       /reports/dr-sync , /reports/handover-notepad , /sovereign/ , /contracts/ ;
   404 for unknown paths (404s are deliberately not hidden by failover).
   GET /api/availability reports mode SINGLE_HOST_REHEARSAL_NOT_PRODUCTION_DR.
+Fourth-session addition (section 13), observed live again: the viewer (4174) and the lane/gateway
+stack (4181/4182/4176) additionally serve /reports/chats , /reports/issue-6 and
+/reports/test-evidence — every route 200 with its content marker present; verify_preview.py now
+checks 17 viewer + 18 gateway routes (problems: none at the recorded time). The byte-identity
+checks for the notepad and transfer-package downloads are unchanged and pass.
 The handover-notepad download is byte-identical to this file, and the transfer-package download
 is byte-identical to the packaged artifact; both are asserted by tests and recorded, with SHA256
 values, in PREVIEW_VERIFICATION_2026_10_04.json. The APK is not served by these processes.
@@ -166,8 +174,9 @@ Deterministic: fixed member timestamps and permissions; rebuilt by
                checked by            build_transfer_package.py --check
 Contents      : this note, the recovery page, the DR sync results report and its builder, the
                 reconstructed 2026-10-03 roster handover, the viewer/gateway/build scripts and
-                their tests, the DR record, and both local drill evidence files. No secrets,
-                tokens, PATs or private configuration.
+                their tests, the DR record, both local drill evidence files, and (fourth-session
+                addition) the inheritance audit with its builder and test. No secrets, tokens,
+                PATs or private configuration.
 Verify        : python3 -m unittest discover -s ops/vyomaraj-core/handover -p 'test_*.py'
                 python3 -m unittest discover -s ops/dr -p 'test_*.py'
                 python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check
@@ -200,6 +209,11 @@ Also served   : /comics/ (Chitra Katha trilingual lane), /approvals/ (central no
                 briefing desk), /upgrades/ (post-deployment change management with backup and
                 rollback), /reports/architecture (the V16.8 architecture document),
                 /reports/dr-sync (DR sync results incl. sections 5b/5c/5d).
+Fourth session  : /reports/chats (the all-chats database file, served unchanged — the page shows
+                the file's own headings), /reports/issue-6 (issue #6 resolution statement plus the
+                fourth-session addendum), /reports/test-evidence (TEST_EVIDENCE_2026_10_04.json as
+                recorded). Navigation links to all three are on every report page of both servers;
+                the exact-route allowlist is unchanged (literal code paths only).
 The transfer package (ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip)
 carries this note; its download is byte-identical to the packaged artifact.
 The preview stack is unauthenticated and dies with its sandbox; the repository is what lasts.
@@ -249,5 +263,43 @@ external provider call, no publishing and no live-system change was performed.
   API in one pass — and the DR sync report, this note, the build/configuration report and the
   transfer package were regenerated. The record closes at merge #21; the closing merge's own
   checkpoint is visible live in the annotations and will be the first row of the next update.
+
+13. UPDATE — FOURTH SESSION (arena/01a10629-vyomarajai), 4 October 2026
+Scope of this update: rebuild the third session's unpublished viewer work, audit inheritance, and
+publish both. Loss verified before rebuilding: the third session's local commits never reached
+GitHub — the remote branch tip is 13f0832 (the head of PR #23, fully merged) and no commit 4a5a6d9
+exists in the repository; that sandbox's filesystem is gone, so the exact bytes are unrecoverable.
+What the third session DID publish (comics lane, V16.8 architecture, governance desks) is on main
+and covered by checkpoint #16 — nothing of it is lost. Everything below is a documented
+re-implementation from that session's description, not recovered bytes.
+- Theme upgrade (rebuilt): one shared theme constant (preview_reports.STYLE) now carries the
+  Vyomaraj palette — Shani Blue #0a1628 and Kuber Gold #f59e0b — and both report servers render
+  from it (the lane imports it as reports.STYLE); every served page carries the palette and a
+  theme-color meta, and the suites assert that no page styles itself.
+- Inheritance audit (rebuilt): new ops/vyomaraj-core/agents/inheritance_audit.py renders
+  INHERITANCE_AUDIT_2026_10_04.md from the registry, the content index, the ownership map and the
+  reconciliation rules, plus the shared-theme relationship between the two servers. It asserts
+  recorded structure and ownership routing only: runtime_status stays NOT_VERIFIED, product
+  mapping stays UNRECONCILED, UNKNOWN names stay UNKNOWN, sovereign roles stay historical.
+  Tested in the agents suite and run by CI with --check.
+- Viewer update (rebuilt): three new allowlisted pages, served on the viewer (4174), on the lane
+  (4181/4182) and therefore through the gateway (4176):
+    /reports/chats         — Vyomaraj-All-Chats-Database-One-Month.md, served unchanged. The page
+                             shows the file's own headings; the file states "Total 28 Chats
+                             Integrated" while carrying 34 numbered entries. The viewer neither
+                             re-counts nor edits it, and the lost session's "32 chats" wording is
+                             NOT reproduced or claimed.
+    /reports/issue-6       — ops/dr/ISSUE_6_RESOLUTION_2026_10_04.md plus a fourth-session
+                             addendum (record extended to 18 checkpoints).
+    /reports/test-evidence — TEST_EVIDENCE_2026_10_04.json, served exactly as recorded.
+  Navigation links to all three appear on every report page of both servers. Security posture is
+  unchanged: exact-route allowlist, literal code paths only, URL traversal and private files 404.
+- The DR record was extended to 18 MATCH checkpoints / 14 replication writes (new rows: #17 =
+  PR #22 merge, #18 = PR #23 merge); all 18 were re-read live from the GitHub API in one pass and
+  matched. DR_SYNC_RESULTS, this notepad, the build/configuration report, the test evidence and
+  the transfer package were regenerated with their builders; verify_preview.py now checks 17
+  viewer + 18 gateway routes and records the results in PREVIEW_VERIFICATION.
+- The record closes at merge #23 (trailing rule); this refresh's own merge checkpoint is created
+  by the same workflow after publication and stays visible live in the check-run annotations.
 
 Chiranjeevi Eternal — Owner primary locked — no unverified claim asserted above.

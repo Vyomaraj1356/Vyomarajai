@@ -21,7 +21,7 @@ The repository contains operational material for authorized development and reco
 ## Repository roles
 
 - **Primary:** `Vyomaraj1356/Vyomarajai`
-- **DR / secondary (snapshot replication target):** `Vyomaraj1356/Vyomarajai` → `deepakGoyal1356/Vyomaraj-Agent-6d64e` — confirmed by the recorded `verify-or-sync` evidence(15 MATCH checkpoints through merge #20 in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`; every checkpoint re-read live from the GitHub API). This is Git-snapshot replication of `main` only — not runtime/site disaster recovery. See the [DR sync results](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md) and the [repository map](VYOMARAJ_REPOSITORY_MAP.md).
+- **DR / secondary (snapshot replication target):** `Vyomaraj1356/Vyomarajai` → `deepakGoyal1356/Vyomaraj-Agent-6d64e` — confirmed by the recorded `verify-or-sync` evidence (18 MATCH checkpoints through merge #23 in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`; every checkpoint re-read live from the GitHub API). This is Git-snapshot replication of `main` only — not runtime/site disaster recovery. See the [DR sync results](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md) and the [repository map](VYOMARAJ_REPOSITORY_MAP.md).
 - Primary-to-DR replication is authenticated, opt-in and main-only; see the [DR verification runbook](ops/dr/README.md). A 404 is not proof that a private repository does not exist.
 - DR-to-primary promotion is a controlled recovery operation; no blind two-way overwrite or force-push is used.
 
@@ -65,7 +65,7 @@ Validate it locally with `python ops/vyomaraj-core/handover/rebuild_handover.py 
 
 For the expanded agent roster, historical candidates, content-label index, platform/technology configuration, and unresolved work, see the [full system inventory](ops/vyomaraj-core/handover/FULL_SYSTEM_INVENTORY_2026_10_03.md). It distinguishes local files, remote-only implementations and unverified historical claims; private configuration values are excluded.
 
-The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records the current 404/403 access blockers, local fixes and GitHub PR/CI evidence. For readable tables, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174` and use the Arena live preview. Only the three sanitized reports are served; do not replace this with unrestricted repository-root file serving.
+The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records the current 404/403 access blockers, local fixes and GitHub PR/CI evidence. For readable tables, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174` and use the Arena live preview. Only an exact-route allowlist of sanitized reports is served (the viewer and the lane/gateway stack both carry it); do not replace it with unrestricted repository-root file serving.
 
 ## Films, theatre, clips and advertising
 
