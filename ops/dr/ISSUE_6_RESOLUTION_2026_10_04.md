@@ -28,7 +28,7 @@ deleted in PR #11). It was reviewed and approved through the time-boxed one-snap
 The pin is disarmed again (`consumed: true`).
 
 **3. Offline CI green** — PRs #10, #11, #12, #13: `offline-tests` and `diagnostics` all pass, plus the
-new `dr-read-only-diagnostic`. Local full set: 237 Python tests across 7 suites, 8 node checks,
+new `dr-read-only-diagnostic`. Local full set: 238 Python tests across 7 suites, 8 node checks,
 2 rebuild checks, 20/20 diagnostic commands.
 
 **4. Authorized verification shows source/target tree SHAs** — annotations:
@@ -39,7 +39,8 @@ new `dr-read-only-diagnostic`. Local full set: 237 Python tests across 7 suites,
 | Oct 3 18:24 · Oct 4 00:12, 03:55, 05:38 | no-write MATCH | same trees | scheduled reconciliation |
 | Oct 4 06:07 | write + MATCH | `ad4321bf` / `ad4321bf` | rollback `7a7a539d`, run 37181811020 (PR #10 merge) |
 | Oct 4 06:20 | write + MATCH | `434fc389` / `434fc389` | rollback `4363387e`, run 37182374090 (approved removal) |
-| Oct 4 06:26 | write + MATCH | `5a9d1418` / `5a9d1418` | rollback `5203c222`, run 37182538000 |
+| Oct 4 06:21 | write + MATCH | `5a9d1418` / `5a9d1418` | rollback `5203c222`, run 37182538000 |
+| Oct 4 06:25 | write + MATCH | `01197482` / `01197482` | rollback `11c1de61`, run 37182720884 |
 
 **5. Approved non-force replication followed by read-after-write equality** — replication builds an
 exact tree without `base_tree`, verifies equality **before** publishing, uses `force:false`, then

@@ -1,92 +1,128 @@
 {
-  "recorded_at_utc": "2026-10-04T06:08:47.511015+00:00",
-  "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
-  "primary": "Vyomaraj1356/Vyomarajai",
-  "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-  "primary_main_tip_checked": "3936badc63cee2c7391149e5ab5fb41f4416d901",
-  "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
-  "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
-  "observations": [
-    {
-      "check_run_id": 111212722666,
-      "completed_at_utc": "2026-10-03T13:32:27Z",
-      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; rollback_commit=9d8678c69092db794fe42d3686093305f9fba7a4; data_match=true",
-      "status": "MATCH",
-      "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "data_match": true,
-      "replication_write_in_this_run": true,
-      "rollback_commit": "9d8678c69092db794fe42d3686093305f9fba7a4"
-    },
-    {
-      "check_run_id": 111264329856,
-      "completed_at_utc": "2026-10-03T18:24:59Z",
-      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
-      "status": "MATCH",
-      "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "data_match": true,
-      "replication_write_in_this_run": false,
-      "rollback_commit": null
-    },
-    {
-      "check_run_id": 111323711822,
-      "completed_at_utc": "2026-10-04T00:12:28Z",
-      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
-      "status": "MATCH",
-      "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "data_match": true,
-      "replication_write_in_this_run": false,
-      "rollback_commit": null
-    },
-    {
-      "check_run_id": 111356987170,
-      "completed_at_utc": "2026-10-04T03:55:22Z",
-      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
-      "status": "MATCH",
-      "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "data_match": true,
-      "replication_write_in_this_run": false,
-      "rollback_commit": null
-    },
-    {
-      "check_run_id": 111371856577,
-      "completed_at_utc": "2026-10-04T05:38:41Z",
-      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
-      "status": "MATCH",
-      "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
-      "data_match": true,
-      "replication_write_in_this_run": false,
-      "rollback_commit": null
-    },
-    {
-      "check_run_id": 111375777820,
-      "completed_at_utc": "2026-10-04T06:07:16Z",
-      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=ad4321bfa840f43855c05fd99379ca18b78dd374; secondary_tree=ad4321bfa840f43855c05fd99379ca18b78dd374; rollback_commit=7a7a539ddca7e0ee12f5d216c84edaa2a1d61b74; data_match=true",
-      "status": "MATCH",
-      "primary_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
-      "secondary_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
-      "data_match": true,
-      "replication_write_in_this_run": true,
-      "rollback_commit": "7a7a539ddca7e0ee12f5d216c84edaa2a1d61b74",
-      "trigger": "merge of PR #10 (main advanced 3936bad -> 8adf9496); this is the replication of the next-session work, DR evidence and build/configuration report to the secondary"
-    }
-  ],
-  "writes_to_secondary_observed": [
-    111212722666,
-    111375777820
-  ],
-  "current_state": "MATCH \u2014 primary and secondary trees are equal; the last write replicated the merged PR #10 tree ad4321bfa840f43855c05fd99379ca18b78dd374 to the secondary",
-  "branch_scope_warning": "This evidence covers primary main only. Commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) are NOT on main and therefore NOT in the DR snapshot until merged.",
-  "local_verification_attempt": {
-    "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
-    "result": "BLOCKED (HTTP 404 hidden by permissions)",
-    "explanation": "The Arena GitHub integration credential cannot see the private secondary; this is the documented reason the workflow uses a separate Actions credential. A 404 does not imply the secondary is missing, and no write was attempted."
+ "recorded_at_utc": "2026-10-04T06:27:43+00:00",
+ "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
+ "primary": "Vyomaraj1356/Vyomarajai",
+ "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+ "primary_main_tip_checked": "dd341accd7ee6407c4be2e309fd5007864b203d4",
+ "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
+ "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
+ "observations": [
+  {
+   "check_run_id": 111212722666,
+   "completed_at_utc": "2026-10-03T13:32:27Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; rollback_commit=9d8678c69092db794fe42d3686093305f9fba7a4; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "data_match": true,
+   "replication_write_in_this_run": true,
+   "rollback_commit": "9d8678c69092db794fe42d3686093305f9fba7a4"
   },
-  "traffic_switched": false,
-  "runtime_or_site_dr_verified": false,
-  "zero_rpo_or_rto_claimed": false
+  {
+   "check_run_id": 111264329856,
+   "completed_at_utc": "2026-10-03T18:24:59Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "data_match": true,
+   "replication_write_in_this_run": false,
+   "rollback_commit": null
+  },
+  {
+   "check_run_id": 111323711822,
+   "completed_at_utc": "2026-10-04T00:12:28Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "data_match": true,
+   "replication_write_in_this_run": false,
+   "rollback_commit": null
+  },
+  {
+   "check_run_id": 111356987170,
+   "completed_at_utc": "2026-10-04T03:55:22Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "data_match": true,
+   "replication_write_in_this_run": false,
+   "rollback_commit": null
+  },
+  {
+   "check_run_id": 111371856577,
+   "completed_at_utc": "2026-10-04T05:38:41Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; secondary_tree=3e3c55bbfca2c30e6606848f264cfa726f9cb6a6; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "secondary_tree": "3e3c55bbfca2c30e6606848f264cfa726f9cb6a6",
+   "data_match": true,
+   "replication_write_in_this_run": false,
+   "rollback_commit": null
+  },
+  {
+   "check_run_id": 111375777820,
+   "completed_at_utc": "2026-10-04T06:07:16Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=ad4321bfa840f43855c05fd99379ca18b78dd374; secondary_tree=ad4321bfa840f43855c05fd99379ca18b78dd374; rollback_commit=7a7a539ddca7e0ee12f5d216c84edaa2a1d61b74; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
+   "secondary_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
+   "data_match": true,
+   "replication_write_in_this_run": true,
+   "rollback_commit": "7a7a539ddca7e0ee12f5d216c84edaa2a1d61b74",
+   "trigger": "merge of PR #10 (main advanced 3936bad -> 8adf9496); this is the replication of the next-session work, DR evidence and build/configuration report to the secondary"
+  },
+  {
+   "check_run_id": 111377398899,
+   "completed_at_utc": "2026-10-04T06:18:22Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=434fc389fa45e80300dac3e7d7bf6387a42bdf0c; secondary_tree=434fc389fa45e80300dac3e7d7bf6387a42bdf0c; rollback_commit=4363387e94bfe03d6e9364dee4f36345ddca15d3; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "434fc389fa45e80300dac3e7d7bf6387a42bdf0c",
+   "secondary_tree": "434fc389fa45e80300dac3e7d7bf6387a42bdf0c",
+   "data_match": true,
+   "replication_write_in_this_run": true,
+   "rollback_commit": "4363387e94bfe03d6e9364dee4f36345ddca15d3"
+  },
+  {
+   "check_run_id": 111377861073,
+   "completed_at_utc": "2026-10-04T06:21:30Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=5a9d1418a037068822276bceced0936d302244c3; secondary_tree=5a9d1418a037068822276bceced0936d302244c3; rollback_commit=5203c22234810a128f6a1e68c0ffcb3419a36dbc; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "5a9d1418a037068822276bceced0936d302244c3",
+   "secondary_tree": "5a9d1418a037068822276bceced0936d302244c3",
+   "data_match": true,
+   "replication_write_in_this_run": true,
+   "rollback_commit": "5203c22234810a128f6a1e68c0ffcb3419a36dbc"
+  },
+  {
+   "check_run_id": 111378391997,
+   "completed_at_utc": "2026-10-04T06:25:24Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=01197482660bcfc7913af085538eb220ba04f35f; secondary_tree=01197482660bcfc7913af085538eb220ba04f35f; rollback_commit=11c1de61f21b4b2a559eb7eb01adf4f2c4c5a088; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "01197482660bcfc7913af085538eb220ba04f35f",
+   "secondary_tree": "01197482660bcfc7913af085538eb220ba04f35f",
+   "data_match": true,
+   "replication_write_in_this_run": true,
+   "rollback_commit": "11c1de61f21b4b2a559eb7eb01adf4f2c4c5a088"
+  }
+ ],
+ "writes_to_secondary_observed": [
+  111212722666,
+  111375777820,
+  111377398899,
+  111377861073,
+  111378391997
+ ],
+ "current_state": "MATCH on the last three consecutive main-push runs (#12 merge 434fc389, #13 merge 5a9d1418, #14 merge 01197482), each with rollback_commit present (a verified replication write), preceded by the one-snapshot approved removal of the single target-only path.",
+ "branch_scope_warning": "This evidence covers primary main only. Commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) are NOT on main and therefore NOT in the DR snapshot until merged.",
+ "local_verification_attempt": {
+  "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
+  "result": "BLOCKED (HTTP 404 hidden by permissions)",
+  "explanation": "The Arena GitHub integration credential cannot see the private secondary; this is the documented reason the workflow uses a separate Actions credential. A 404 does not imply the secondary is missing, and no write was attempted."
+ },
+ "traffic_switched": false,
+ "runtime_or_site_dr_verified": false,
+ "zero_rpo_or_rto_claimed": false
 }

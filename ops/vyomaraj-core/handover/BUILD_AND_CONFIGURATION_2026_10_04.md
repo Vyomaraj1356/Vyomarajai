@@ -87,7 +87,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 ## 5. Recorded verification evidence
 
 - **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 10 viewer route checks, 8 gateway route checks, problems: none
-- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 6 checkpoints; current state: MATCH — primary and secondary trees are equal; the last write replicated the merged PR #10 tree ad4321bfa840f43855c05fd99379ca18b78dd374 to the secondary; replication writes observed: [111212722666, 111375777820]
+- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 9 checkpoints; current state: MATCH on the last three consecutive main-push runs (#12 merge 434fc389, #13 merge 5a9d1418, #14 merge 01197482), each with rollback_commit present (a verified replication write), preceded by the one-snapshot approved removal of the single target-only path.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997]
 - **Failover drill 2026-10-03** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_03.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Failover drill 2026-10-04** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Test evidence** (`ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json`): recorded separately; see the file for per-suite counts and results
