@@ -20,6 +20,10 @@ The local read-only `dr_sync.py`/`dr_diagnostics.py` commands, using the sandbox
 
 **No sync was attempted.** The repository policy is `writer=primary_main_only`; the sync workflow is restricted to primary `main`. `automatic_target_only_file_removal=false`, and the pinned one-snapshot removal approval is false. The current primary `main` and secondary `main` already match, so there is nothing to sync at those refs. PR #25 is a different candidate snapshot and is not on `main`; it must not be pushed directly to the secondary. After owner review/merge to primary `main`, the existing main workflow is the allowed path to attempt replication. Do not bypass its guards.
 
+## Follow-up read-only check after adding this scan report
+
+A second trusted PR Actions probe completed 2026-10-04T11:22:16Z (check-run `111425149972`, run `37198493838`) against candidate head `521c099501d25c67e9352572c05dafc24f0bcb1c`. It again reported primary-main/secondary-main `tree=MATCH` at `e8c66bd451484071d03afc68ac1aeeb010e8fa96`, `writes=NONE`, and `write_permission=UNVERIFIED`. Candidate comparison was `315` files, `17` missing on secondary, `0` secondary-only, and `21` changed. Relative to the earlier probe, the added scan document accounts for the one additional missing path; the 16 reconstruction paths and 21 changed paths were unchanged.
+
 ## Scope and confidence
 
 - The base inventory below is from the primary `main` Git tree at `d9147fffc5884702d7fcbc38fd666d62622f3b8c`; the live GitHub branch read during this scan still pointed to that commit.
