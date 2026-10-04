@@ -19,8 +19,8 @@ SHA256 values for this note, the transfer package, and the key artifacts are rec
 Repository : Vyomaraj1356/Vyomarajai
 Branch     : arena/01a1056f-vyomarajai (this session is fixed to this branch)
 Base commit: 3936badc63cee2c7391149e5ab5fb41f4416d901 (main when this session began, 2026-10-04)
-Main tip   : dd341accd7ee6407c4be2e309fd5007864b203d4 (after this session's merges #10, #11, #12,
-             #13, #14; every merge was replicated and verified on the secondary — see section 9)
+Main tip   : a128173cbb10588a9e9b4d90ab9e77b5ce3071e0 (after this session's merges #10–#16;
+             every merge was replicated and verified on the secondary — see section 9)
 Branch     : arena/01a1056f-vyomarajai, merged to main only through reviewed, green PRs because
              main is protected.
 Checkout   : shallow clone (depth 1) whose boundary is the base commit, so this clone's
@@ -137,6 +137,7 @@ i.e. a verified replication write:
   #13 merge 15cbfea0 -> trees 5a9d1418 / 5a9d1418, rollback 5203c222 (check-run 111377861073)
   #14 merge dd341acc -> trees 01197482 / 01197482, rollback 11c1de61 (check-run 111378391997)
   #15 merge eead435a -> trees 3604bb15 / 3604bb15, rollback 1b374fd9 (check-run 111379204732)
+  #16 merge a128173c -> trees 7b166ac1 / 7b166ac1, rollback ced0a092 (check-run 111379714913)
 The #11 merge was CORRECTLY BLOCKED (status=BLOCKED, target_only_files_awaiting_review=1): PR #10
 had accidentally committed the transient ci-diagnostics.log, PR #11 deleted it, so the secondary
 held one file main did not. A read-only probe (check-run 111376891786) confirmed the secondary at
