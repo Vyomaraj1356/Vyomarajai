@@ -1,9 +1,9 @@
 {
- "recorded_at_utc": "2026-10-04T06:36:41+00:00",
+ "recorded_at_utc": "2026-10-04T06:41:15+00:00",
  "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
  "primary": "Vyomaraj1356/Vyomarajai",
  "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
- "primary_main_tip_checked": "a128173cbb10588a9e9b4d90ab9e77b5ce3071e0",
+ "primary_main_tip_checked": "c1d625047056bf93f7e2c2eaf4ccbee29de178e4",
  "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
  "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
  "observations": [
@@ -128,6 +128,17 @@
    "data_match": true,
    "replication_write_in_this_run": true,
    "rollback_commit": "ced0a09284924e5fa8e98289dbc507b1ec0d9b1b"
+  },
+  {
+   "check_run_id": 111380439332,
+   "completed_at_utc": "2026-10-04T06:46:30Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=1d13c7ee7a5005a1ac3d12029aac5cb8bd4d9934; secondary_tree=1d13c7ee7a5005a1ac3d12029aac5cb8bd4d9934; rollback_commit=a979bac5aab924f97f79549d7e46fa202d765f2c; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "1d13c7ee7a5005a1ac3d12029aac5cb8bd4d9934",
+   "secondary_tree": "1d13c7ee7a5005a1ac3d12029aac5cb8bd4d9934",
+   "data_match": true,
+   "replication_write_in_this_run": true,
+   "rollback_commit": "a979bac5aab924f97f79549d7e46fa202d765f2c"
   }
  ],
  "writes_to_secondary_observed": [
@@ -137,9 +148,10 @@
   111377861073,
   111378391997,
   111379204732,
-  111379714913
+  111379714913,
+  111380439332
  ],
- "current_state": "MATCH on the last five consecutive main-push runs (#12 434fc389, #13 5a9d1418, #14 01197482, #15 3604bb15, #16 7b166ac1), each with rollback_commit present (a verified replication write), preceded by the one-snapshot approved removal of the single target-only path.",
+ "current_state": "Every recorded main-push run ended in MATCH with identical primary/secondary trees (checkpoints are appended chronologically; this file covers every session merge through #17). The most recent recorded write is #17 (run 37183425727, tree 1d13c7ee, rollback a979bac5). Later merges appear in the live check-run annotations.",
  "branch_scope_warning": "This evidence covers primary main only. Commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) are NOT on main and therefore NOT in the DR snapshot until merged.",
  "local_verification_attempt": {
   "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
