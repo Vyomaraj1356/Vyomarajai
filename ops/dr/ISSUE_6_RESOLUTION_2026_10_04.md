@@ -1,0 +1,49 @@
+# Issue #6 resolution statement — 4 October 2026
+
+Issue: `[P0] Unblock private DR access and confirm the authoritative secondary before synchronization`
+Status: **acceptance criteria met by live evidence; ready to be pasted on GitHub and closed.**
+
+> Why this file exists: the GitHub connection available in this sandbox has `issues=read` only, so it
+> cannot comment on or close the issue (403 `Resource not accessible by integration`). The statement
+> below is the exact text to paste into issue #6; the evidence it cites is verifiable through the
+> public check-run annotations.
+
+## Statement
+
+All five acceptance criteria are now met with live evidence (check-run annotations, readable through
+the API without log downloads). The failures listed in the issue were real, and the repair path from
+PR #5 has since been exercised end-to-end.
+
+**1. Authenticated secondary metadata and main ref readable** — read-only probe, check-run `111376891786`:
+`read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; writes=NONE; secondary_commit=4363387e94bfe03d6e9364dee4f36345ddca15d3; secondary_tree=ad4321bfa840f43855c05fd99379ca18b78dd374`.
+Arena's own connection still receives 404 for the private secondary. The workflow's Actions credential
+is the reader/writer by design. **Owner-side remainder (non-blocking):** reconnect GitHub in Arena with
+the secondary repository selected if Arena itself should read it, and grant workflow-dispatch permission
+(currently 403). The 30-minute schedule plus main-push triggers already cover verification and replication.
+
+**2. Target-only data reviewed** — probe counts: `secondary_only=1; missing_on_secondary=0; changed_content_or_mode=6`.
+The single target-only path was the transient `ci-diagnostics.log` (committed accidentally in PR #10,
+deleted in PR #11). It was reviewed and approved through the time-boxed one-snapshot pin in
+`ops/dr/DR_POLICY.json`, removed in run `37182374090`, previous secondary commit retained as parent.
+The pin is disarmed again (`consumed: true`).
+
+**3. Offline CI green** — PRs #10, #11, #12, #13: `offline-tests` and `diagnostics` all pass, plus the
+new `dr-read-only-diagnostic`. Local full set: 237 Python tests across 7 suites, 8 node checks,
+2 rebuild checks, 20/20 diagnostic commands.
+
+**4. Authorized verification shows source/target tree SHAs** — annotations:
+
+| UTC | Result | Trees | Note |
+|---|---|---|---|
+| Oct 3 13:32 | write + MATCH | `3e3c55bb` / `3e3c55bb` | rollback `9d8678c6`, run 37126479491 |
+| Oct 3 18:24 · Oct 4 00:12, 03:55, 05:38 | no-write MATCH | same trees | scheduled reconciliation |
+| Oct 4 06:07 | write + MATCH | `ad4321bf` / `ad4321bf` | rollback `7a7a539d`, run 37181811020 (PR #10 merge) |
+| Oct 4 06:20 | write + MATCH | `434fc389` / `434fc389` | rollback `4363387e`, run 37182374090 (approved removal) |
+| Oct 4 06:26 | write + MATCH | `5a9d1418` / `5a9d1418` | rollback `5203c222`, run 37182538000 |
+
+**5. Approved non-force replication followed by read-after-write equality** — replication builds an
+exact tree without `base_tree`, verifies equality **before** publishing, uses `force:false`, then
+re-reads both refs (`assert_unchanged`) before reporting `MATCH`. `traffic_switched=NONE` on every run.
+
+Scope carried forward: this is Git main-snapshot integrity and replication, not runtime/site DR,
+backup-restore, RPO/RTO or traffic failover.
