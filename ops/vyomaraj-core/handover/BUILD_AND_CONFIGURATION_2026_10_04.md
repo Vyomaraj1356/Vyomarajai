@@ -56,6 +56,15 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 | Roots & Pairings (no-alcohol by default) (`/pairings/`) | traditions 8, research_backlog 8, snacks 8, events 3, sources 9 |
 | Music & media (`/music/`) | agents 6, items 39, sources 27 |
 | Film & stage (`/film/`) | agents 6, items 27, sources 25, formats 7 |
+| Chitra Katha comics (trilingual hi/en/hinglish, past+future versions) (`/comics/`) | agents 3, items 12, formats 4, sources 6 |
+
+### Governance modules (V16.8 architecture)
+
+| Module | Route | Files |
+|---|---|---|
+| Owner approvals — central nostalgic camera (`/approvals/`) | `approvals` | approval_queue.py, test_approvals.py |
+| Finance & audit follow-up + morning briefing (`/finance/`) | `finance` | finance_followup.py, test_finance.py |
+| Change management with backup and rollback (`/upgrades/`) | `upgrades` | change_manager.py, test_upgrades.py |
 
 - Ingested content packs: ops/vyomaraj-core/food-agent (9 files), ops/bhakti-shakti (20 files), ops/hanuman (3 files) — Repository file/module inventory only. This is not an item-level catalog of the 421 registry products, and it does not import source-file contents into the planner.
 - Readiness note: Registry-reported readiness figures are preserved separately and are not reconciled to the 421 product total without owner clarification.
@@ -63,7 +72,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 ## 3. Vyomaraj configuration
 
 - `LOCAL_INTEGRATION.json`: status `local_preview_planning_only`, roles — Vyomaraj: Validate experience/topic/preferences and assemble the local content route. Jarvis: Prepare a deterministic handoff with source references, unresolved mappings and review gates.
-- Planning endpoint `/api/plan`; experiences bhakti, liquor-bar, music, film, aghor; modes 3d, 4d, 5d
+- Planning endpoint `/api/plan`; experiences bhakti, liquor-bar, music, film, aghor, comics; modes 3d, 4d, 5d
 - Flags: automatic AI calls False, automatic publishing False, legacy Jarvis env loaded False, production deployed False
 - `PUBLIC_POLICY.json` (updated 2026-10-03): spiritual content mode `view_only_not_practice_instruction`, participation `voluntary_no_pressure_no_required_belief_or_practice`
 - `DR_POLICY.json`: secondary `deepakGoyal1356/Vyomaraj-Agent-6d64e`, writer `primary_main_only`, sync approved on main `True`, automatic target-only removal `False`, reverse overwrite `False`, zero-RPO/RTO verified False/False
@@ -86,8 +95,8 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 ## 5. Recorded verification evidence
 
-- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 13 viewer route checks, 11 gateway route checks, problems: none
-- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 14 checkpoints; current state: This file covers the 2026-10-03 and 2026-10-04 runs through merge #19 — the merge that delivered this rebuild — and is closed there on purpose: every later merge is verified by the same workflow and its result is visible in the live check-run annotations. Every checkpoint recorded here is status=MATCH with identical primary and secondary trees; 10 of the 14 carried a replication write (rollback_commit present). A run that finds the snapshots already equal carries no rollback_commit and is an idempotent no-op, not a failure. The one BLOCKED run (#11) is documented separately and is deliberately not counted as a MATCH checkpoint.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390]
+- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 14 viewer route checks, 15 gateway route checks, problems: none
+- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 15 checkpoints; current state: This file covers the 2026-10-03 and 2026-10-04 runs through merge #20 (686c8e0b, checkpoint #15) and is closed there on purpose: every later merge is verified by the same workflow and its result is visible in the live check-run annotations. Every checkpoint recorded here is status=MATCH with identical primary and secondary trees; 11 of the 15 carried a replication write (rollback_commit present). A run that finds the snapshots already equal carries no rollback_commit and is an idempotent no-op, not a failure. The one BLOCKED run (#11) is documented separately and is deliberately not counted as a MATCH checkpoint.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434]
 - **Failover drill 2026-10-03** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_03.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Failover drill 2026-10-04** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Test evidence** (`ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json`): recorded separately; see the file for per-suite counts and results

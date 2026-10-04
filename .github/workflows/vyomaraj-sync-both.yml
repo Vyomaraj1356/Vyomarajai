@@ -53,6 +53,14 @@ jobs:
           node --check ops/vyomaraj-core/bhakti-experience/app.js
           node --check ops/vyomaraj-core/music-experience/app.js
           node --check ops/vyomaraj-core/film-experience/app.js
+          node --check ops/vyomaraj-core/comics-experience/app.js
+          python -m unittest discover -s ops/vyomaraj-core/approvals -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/approvals/app.js
+          python -m unittest discover -s ops/vyomaraj-core/finance -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/finance/app.js
+          python -m unittest discover -s ops/vyomaraj-core/upgrades -p 'test_*.py' -v
+          node --check ops/vyomaraj-core/upgrades/app.js
+          bash -n ops/vyomaraj-core/upgrades/upgrade-controller.sh
           python -m unittest discover -s ops/vyomaraj-core/research -p 'test_*.py' -v
           node --check ops/vyomaraj-core/research/app.js
           python ops/vyomaraj-core/agents/rebuild_registry.py --check

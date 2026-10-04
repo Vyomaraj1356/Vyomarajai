@@ -10,6 +10,15 @@ from urllib.parse import urlsplit, parse_qs
 
 from local_planner import build_plan, InvalidPlan
 
+CORE_ROOT = Path(__file__).resolve().parent.parent
+
+
+def _load_governance_module(name):
+    spec = importlib.util.spec_from_file_location(name, CORE_ROOT / name / (name + '_queue.py' if name == 'approvals' else {'finance': 'finance_followup.py', 'upgrades': 'change_manager.py'}[name]))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
 CORE = Path(__file__).resolve().parent.parent
 spec = importlib.util.spec_from_file_location('report_renderer', CORE / 'handover/preview_reports.py')
 reports = importlib.util.module_from_spec(spec)
@@ -17,6 +26,14 @@ spec.loader.exec_module(reports)
 research_spec = importlib.util.spec_from_file_location('vyomaraj_discovery', CORE / 'research/discovery.py')
 discovery = importlib.util.module_from_spec(research_spec)
 research_spec.loader.exec_module(discovery)
+GOVERNANCE = {}
+for module_name, file_name in (('approvals', 'approval_queue.py'),
+                               ('finance', 'finance_followup.py'),
+                               ('upgrades', 'change_manager.py')):
+    _spec = importlib.util.spec_from_file_location(module_name, CORE / module_name / file_name)
+    GOVERNANCE[module_name] = importlib.util.module_from_spec(_spec)
+    _spec.loader.exec_module(GOVERNANCE[module_name])
+
 RESEARCH_STORE = None
 
 def research_store():
@@ -26,7 +43,7 @@ def research_store():
     return RESEARCH_STORE
 
 ASSETS = {'/policy.json': (CORE / 'governance/PUBLIC_POLICY.json', 'application/json')}
-for prefix, directory in [('/aghor/', 'aghor-experience'), ('/bhakti/', 'bhakti-experience'), ('/pairings/', 'liquor-bar'), ('/music/', 'music-experience'), ('/film/', 'film-experience')]:
+for prefix, directory in [('/aghor/', 'aghor-experience'), ('/bhakti/', 'bhakti-experience'), ('/pairings/', 'liquor-bar'), ('/music/', 'music-experience'), ('/film/', 'film-experience'), ('/comics/', 'comics-experience'), ('/approvals/', 'approvals'), ('/finance/', 'finance'), ('/upgrades/', 'upgrades')]:
     for name, mime in [('index.html', 'text/html'), ('app.js', 'application/javascript'),
                        ('styles.css', 'text/css'), ('content.json', 'application/json')]:
         ASSETS[prefix + name] = (CORE / directory / name, mime)
@@ -61,6 +78,7 @@ REPORTS = {
     '/reports/recovery': reports.RECOVERY_DOC,
     '/reports/dr-sync': reports.DR_SYNC_REPORT,
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
+    '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
 }
 
 
@@ -141,9 +159,9 @@ class Handler(BaseHTTPRequestHandler):
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                     '<meta name="viewport" content="width=device-width,initial-scale=1">'
                     '<title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
-                    '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
+                    '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/comics/">Comics</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
-                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a></nav>'
+                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a></nav>'
                     '<p class="notice">Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Respect for humans, animals, religions, castes and creeds. Earning is not guaranteed. Local preview and creative planning are implemented. Git snapshot match evidence is in the DR report; external AI '
                     'and runtime/site disaster recovery are not verified.</p>' + body + '</main></html>')
             self.send_bytes(page.encode(), 'text/html')
@@ -152,9 +170,10 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         route = urlsplit(self.path).path
-        if route not in ('/api/plan', '/api/research/run', '/api/research/review'):
+        if route not in ('/api/plan', '/api/research/run', '/api/research/review',
+                         '/api/approvals/decide', '/api/finance/briefing', '/api/upgrades/plan'):
             self.send_error(404); return
-        if route.startswith('/api/research/'):
+        if route.startswith('/api/research/') or route.startswith('/api/approvals/') or route.startswith('/api/finance/') or route.startswith('/api/upgrades/'):
             origin = self.headers.get('Origin')
             if self.headers.get('Sec-Fetch-Site') == 'cross-site' or (origin and (urlsplit(origin).scheme not in ('http', 'https') or urlsplit(origin).netloc != self.headers.get('Host'))):
                 self.json_response({'error': 'cross_origin_refused'}, 403); return
@@ -171,6 +190,26 @@ class Handler(BaseHTTPRequestHandler):
             data = json.loads(self.rfile.read(length))
             if route == '/api/plan':
                 plan = build_plan(data)
+            elif route == '/api/approvals/decide':
+                if (not isinstance(data, dict) or set(data) - {'item_id', 'decision', 'voice_instruction'}
+                        or not isinstance(data.get('item_id'), str) or not isinstance(data.get('decision'), str)):
+                    raise GOVERNANCE['approvals'].InvalidApproval('item_id and decision are required.')
+                plan = GOVERNANCE['approvals'].record_decision(
+                    data['item_id'], data['decision'], data.get('voice_instruction'))
+            elif route == '/api/finance/briefing':
+                if not isinstance(data, dict) or set(data) != {'request'} or data['request'] != 'followup_and_briefing':
+                    raise ValueError('request must be followup_and_briefing.')
+                plan = {'schema_version': 1, 'status': 'local_followup_and_briefing_drafted',
+                        'followup': GOVERNANCE['finance'].build_followup(),
+                        'briefing': GOVERNANCE['finance'].build_morning_briefing(),
+                        'drafts_only': True, 'notifications_sent': False}
+            elif route == '/api/upgrades/plan':
+                if isinstance(data, dict) and data.get('record') and data.get('decision'):
+                    plan = GOVERNANCE['upgrades'].apply_permission(data['record'], data['decision'])
+                elif isinstance(data, dict) and data.get('record') and data.get('failure'):
+                    plan = GOVERNANCE['upgrades'].report_failure(data['record'], data['failure'])
+                else:
+                    plan = GOVERNANCE['upgrades'].plan_change(data)
             elif route == '/api/research/run':
                 if not isinstance(data, dict) or set(data) != {'profile'} or not isinstance(data['profile'], str):
                     raise discovery.DiscoveryError('profile_only_request_required')
@@ -182,6 +221,10 @@ class Handler(BaseHTTPRequestHandler):
         except discovery.DiscoveryError as exc:
             self.json_response({'error': str(exc)}, 400); return
         except InvalidPlan as exc:
+            self.json_response({'error': str(exc)}, 400); return
+        except GOVERNANCE['approvals'].InvalidApproval as exc:
+            self.json_response({'error': str(exc)}, 400); return
+        except GOVERNANCE['upgrades'].InvalidChange as exc:
             self.json_response({'error': str(exc)}, 400); return
         except (ValueError, UnicodeError, RecursionError):
             self.json_response({'error': 'Invalid JSON.'}, 400); return
@@ -196,7 +239,7 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=4176)
-    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'research', 'agents', 'education', 'aghor', 'reports'), default='bhakti')
+    parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'comics', 'research', 'agents', 'education', 'aghor', 'reports'), default='bhakti')
     args = parser.parse_args()
     Handler.home_route = '/' + args.home + '/'
     threading.Thread(target=discovery.worker_loop, args=(research_store(), threading.Event()), daemon=True).start()

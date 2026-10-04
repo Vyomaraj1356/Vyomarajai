@@ -21,7 +21,7 @@ The repository contains operational material for authorized development and reco
 ## Repository roles
 
 - **Primary:** `Vyomaraj1356/Vyomarajai`
-- **DR / secondary:** not yet verified; historical names conflict and authenticated checks returned 404. Confirm the destination through the [repository map](VYOMARAJ_REPOSITORY_MAP.md), then set Actions variable `VYOMARAJ_DR_REPO`.
+- **DR / secondary (snapshot replication target):** `Vyomaraj1356/Vyomarajai` → `deepakGoyal1356/Vyomaraj-Agent-6d64e` — confirmed by the recorded `verify-or-sync` evidence(15 MATCH checkpoints through merge #20 in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`; every checkpoint re-read live from the GitHub API). This is Git-snapshot replication of `main` only — not runtime/site disaster recovery. See the [DR sync results](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md) and the [repository map](VYOMARAJ_REPOSITORY_MAP.md).
 - Primary-to-DR replication is authenticated, opt-in and main-only; see the [DR verification runbook](ops/dr/README.md). A 404 is not proof that a private repository does not exist.
 - DR-to-primary promotion is a controlled recovery operation; no blind two-way overwrite or force-push is used.
 
@@ -40,6 +40,22 @@ Current claims should be backed by:
 ## Development
 
 Use review branches and pull requests for changes. Do not push experimental Arena changes directly over `main`.
+
+## Architecture V16.8 (2026-10-04)
+
+The governing principle — You (Owner) → ShriYantra (authority) → Vyomaraj/Bharath + Jarvis/Laxman →
+agents and sub-agents → content creation and verification → **owner approval (central nostalgic
+camera)** → approved publishing → social platforms → analytics and monetization → learning — with
+Hermes guarding integrity end to end and Arena executing approved tasks only. Full document:
+[ARCHITECTURE_V16_8_2026_10_04.md](ops/vyomaraj-core/handover/ARCHITECTURE_V16_8_2026_10_04.md),
+interactive diagram: [flow-diagram.html](flow-diagram.html).
+
+Local lanes and desks (deterministic planners + tests + browser prototypes, nothing publishes
+automatically): `/comics/` (Chitra Katha — every title and edition in Hindi, English and
+Hinglish, past versions preserved, future versions plannable), `/approvals/` (the wooden
+nostalgic-camera owner approval queue), `/finance/` (finance and audit follow-up plus the
+every-morning briefing drafts), `/upgrades/` (post-deployment change management with
+backup-first rollback).
 
 ## Reconstructed handover — 3 October 2026
 

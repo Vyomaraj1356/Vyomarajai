@@ -6,6 +6,25 @@ GitHub evidence re-read live in this session. This is NOT a production DR approv
 byte-for-byte copy of the lost note, and NOT a claim about private chats, revenue, contracts,
 provider accounts or runtime state.
 
+PUBLICATION STATUS — READ BEFORE ANY CLAIM ABOUT WHERE THIS NOTE IS
+Branch    : arena/01a105da-vyomarajai (this session is fixed to this branch)
+Base      : main tip 686c8e0b1c1a40877f5ac46925f1e8db58e77326 — the merge of PR #20,
+            checkpoint #15 in ops/dr/DEPLOYED_MATCH_2026_10_04.json (verified live this session).
+This file : updated by the third 2026-10-04 session (see section 12); at record time it is
+            committed on the session branch and NOT yet pushed to origin.
+Why       : the previous session (arena/01a105bf) lost two local commits when its sandbox was
+            deleted (2430a16 comics lane, ac2f741 status + sharing); this session rebuilt that
+            work and adds the architecture V16.8 upgrade (section 12). Nothing is claimed as
+            pushed or replicated until the publish path below actually runs.
+Publish   : push arena/01a105da-vyomarajai → pull request → merge to main → the verify-or-sync
+            workflow replicates and verifies main automatically (every push + 30-min schedule).
+            The checkpoint for that merge is the next row of the DR record; it is visible live
+            in the check-run annotations immediately after the merge.
+Where     : canonical file ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt;
+            served at /reports/next-session and /reports/handover-notepad on the report viewer
+            (4174) and through the gateway (4176); downloads are byte-identical (section 11).
+Preview links die with their sandbox; the repository copy is the one that lasts.
+
 0. PROVENANCE OF THIS REBUILD — READ FIRST
 The first 2026-10-04 session ended with a 12,782-byte note (reported SHA256 ba084682...) that it
 committed locally as 7f60778 but could not push; its GitHub access had ended. When this session
@@ -163,5 +182,65 @@ Verify        : python3 -m unittest discover -s ops/vyomaraj-core/handover -p 't
 4. Keep the honesty rules the tests enforce: unknown names stay UNKNOWN, view-only is not
    operational, historical snapshots are marked NOT CURRENT, and generated files are rebuilt
    with their builder instead of edited by hand.
+
+11. HOW THIS NOTEPAD IS SERVED — LOCAL PREVIEW, BYTE IDENTITY
+Canonical notepad : ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt
+                    (its exact size and SHA256 are recorded in PREVIEW_VERIFICATION_2026_10_04.json
+                    and TRANSFER_MANIFEST_2026_10_04.json, never restated by hand here)
+Report viewer (4174, standalone):
+  /reports/next-session and /reports/handover-notepad render this file;
+  /reports/download/next-session.txt and /reports/download/handover-notepad.txt serve the same
+  bytes as an attachment — asserted byte-identical by tests and by verify_preview.py.
+Gateway (4176, in front of the two replicas 4181/4182):
+  the same report routes and downloads are reachable through the gateway; byte identity is
+  asserted there too. /api/availability reports mode SINGLE_HOST_REHEARSAL_NOT_PRODUCTION_DR.
+Also served   : /comics/ (Chitra Katha trilingual lane), /approvals/ (central nostalgic camera
+                owner approval queue), /finance/ (finance + audit follow-up and the every-morning
+                briefing desk), /upgrades/ (post-deployment change management with backup and
+                rollback), /reports/architecture (the V16.8 architecture document),
+                /reports/dr-sync (DR sync results incl. sections 5b/5c/5d).
+The transfer package (ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip)
+carries this note; its download is byte-identical to the packaged artifact.
+The preview stack is unauthenticated and dies with its sandbox; the repository is what lasts.
+
+12. UPDATE — THIRD SESSION (arena/01a105da-vyomarajai), 4 October 2026
+Scope of this update: rebuild the previous session's lost local work and add the owner's
+architecture upgrade. Everything listed below is local, deterministic and test-covered; no
+external provider call, no publishing and no live-system change was performed.
+- Comics lane REBUILT (lost commit 2430a16 did not survive its sandbox): ops/vyomaraj-core/
+  comics-experience/ + comics_planner.py + test_comics.py + viewer /comics/. Binds the EXISTING
+  slots ENT-CARTOON-S1–S3 (names remain UNKNOWN, no duplicate agents, registry totals
+  unchanged). Every title and every edition carries Hindi, English and Hinglish — in all
+  versions, past (preserved in history) and future (plannable). Heritage publishers are context
+  references only; nothing is copied.
+- DR record extended to checkpoint #15 (merge #20, check-run 111386365434, MATCH, trees
+  7fb902cc… = 7fb902cc…, rollback f2bfd8a5…, replication write). ALL 15 checkpoints were
+  re-read live from the GitHub API in one pass before this record was rewritten; the 14
+  previously recorded checkpoints matched exactly. The local dr_sync.py attempt was re-run and
+  remains BLOCKED (404 hidden by permissions) — section 5d of the DR report.
+- DR sync report (DR_SYNC_RESULTS_2026_10_04.md) now renders sections 5b (publication status),
+  5c (trailing-checkpoint rule) and 5d (local verification attempt) from the record.
+- Architecture V16.8 (the owner's governing principle): flow-diagram.html gained the
+  governing-principle diagram and four detail cards (nostalgic camera cycle, finance follow-up +
+  morning briefing, change management with rollback, trilingual comics); nothing old was
+  deleted. New document ARCHITECTURE_V16_8_2026_10_04.md served at /reports/architecture.
+- New governance modules (all following repo conventions: JSON + deterministic planner + tests
+  + browser prototype + POST routes with origin checks):
+    ops/vyomaraj-core/approvals/  — central nostalgic camera: wooden shutter, queue dropdown,
+      video+sound review payload, approve/reject/rework/submit with voice instructions, the
+      same cycle repeats for rework; Vyomaraj and Jarvis always notify (recorded, not sent).
+    ops/vyomaraj-core/finance/    — finance + audit follow-up: audit checks, reminder ladder
+      (gentle email → firm email → call script → owner escalation for delayed payments), and
+      the every-morning owner briefing drafted for voice, email, text and WhatsApp. Drafts only.
+    ops/vyomaraj-core/upgrades/   — post-deployment change management: owner instruction →
+      ShriYantra alignment → agent coordination → version-controlled branch → separate testing
+      → PENDING_OWNER_PERMISSION → upgrade with snapshot-first backup; any failure engages the
+      backup plan, rolls back and continues on the current version. upgrade-controller.sh is
+      the stage-by-stage skeleton (dry-run by default).
+- CI (vyomaraj-sync-both.yml offline-tests) now also runs the comics/approvals/finance/upgrades
+  suites and node --check for their app.js files, plus bash -n on the upgrade controller.
+- EXPERIENCE_CONTENTS, CONTENT_EXTENSIONS, LOCAL_INTEGRATION, the DR record, this note, the
+  DR sync report, the transfer package and the preview verification were all regenerated with
+  their builders after these changes.
 
 Chiranjeevi Eternal — Owner primary locked — no unverified claim asserted above.

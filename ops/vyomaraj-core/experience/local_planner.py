@@ -8,7 +8,8 @@ PACKS = {'aghor': CORE / 'aghor-experience/content.json',
          'bhakti': CORE / 'bhakti-experience/content.json',
          'liquor-bar': CORE / 'liquor-bar/content.json',
          'music': CORE / 'music-experience/content.json',
-         'film': CORE / 'film-experience/content.json'}
+         'film': CORE / 'film-experience/content.json',
+         'comics': CORE / 'comics-experience/content.json'}
 
 
 class InvalidPlan(ValueError):
@@ -35,6 +36,12 @@ def _build_plan(request):
         try:
             return build_music_plan(request, PACKS['music'])
         except InvalidMusicPlan as exc:
+            raise InvalidPlan(str(exc)) from exc
+    if request.get('experience') == 'comics':
+        from comics_planner import build_comics_plan, InvalidComicsPlan
+        try:
+            return build_comics_plan(request, PACKS['comics'])
+        except InvalidComicsPlan as exc:
             raise InvalidPlan(str(exc)) from exc
     allowed = {'experience', 'topic_id', 'recipe_id', 'mode', 'diet', 'exclude_allergens'}
     if set(request) - allowed:

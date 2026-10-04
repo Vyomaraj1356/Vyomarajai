@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "title": "Finance & Audit Desk — Follow-up and Morning Briefing",
+  "updated": "2026-10-04",
+  "governing_principle": "Jarvis and Vyomaraj always follow up with the Finance and auditing agents. They check the data, follow up with the social platforms, email them and call them to remind them about payments and delayed payments — and every morning they share updates and data with the owner through voice, email, text or WhatsApp.",
+  "scope": {
+    "live_payment_data_connected": false,
+    "emails_sent": false,
+    "calls_made": false,
+    "messages_sent": false,
+    "drafts_only": true
+  },
+  "reminder_ladder": [
+    {"stage": 1, "when": "due within 7 days", "action": "gentle_email", "tone": "friendly confirmation of the upcoming payout date and invoice reference"},
+    {"stage": 2, "when": "due today", "action": "due_email", "tone": "clear statement of the amount, invoice and expected transfer date"},
+    {"stage": 3, "when": "1–7 days overdue", "action": "firm_email", "tone": "firm reminder citing the invoice, the agreed terms and the delay"},
+    {"stage": 4, "when": "8–14 days overdue", "action": "call_script", "tone": "polite call: confirm receipt, ask for the payment date, offer to re-send the invoice"},
+    {"stage": 5, "when": "more than 14 days overdue", "action": "escalate_to_owner", "tone": "escalation note for the owner with the full history attached"}
+  ],
+  "payments": [
+    {"platform": "YouTube / AdSense", "invoice": "ADS-2026-09", "amount_inr": 258000, "due_date": "2026-10-21", "status_basis": "payout-schedule", "reference": "AdSense pays around the 21st; amount is a planning figure, not a confirmed payout."},
+    {"platform": "Meta (Instagram/Facebook Reels bonus)", "invoice": "META-BONUS-2026-09", "amount_inr": 129000, "due_date": "2026-10-05", "status_basis": "bonus-terms", "reference": "Reels bonus programme payout; terms set by Meta."},
+    {"platform": "Telegram VIP subscriptions", "invoice": "TG-SUB-2026-10", "amount_inr": 567000, "due_date": "2026-10-01", "status_basis": "subscription-cycle", "reference": "Monthly subscription collection; gateway settlement pending review."},
+    {"platform": "Brand collab (B2B lead)", "invoice": "BRAND-COLLAB-2026-08", "amount_inr": 840000, "due_date": "2026-09-15", "status_basis": "contract-terms", "reference": "Twelve tracked leads, ₹8.4L pipeline; payment overdue per agreed terms."},
+    {"platform": "Razorpay settlements", "invoice": "RZP-SETTLE-2026-10", "amount_inr": 96400, "due_date": "2026-10-03", "status_basis": "settlement-cycle", "reference": "UPI settlement cycle; amount is a planning figure."}
+  ],
+  "morning_briefing": {
+    "schedule": "every morning",
+    "channels": ["voice", "email", "text", "whatsapp"],
+    "sections": ["payments_pending", "overdue_escalations", "approvals_awaiting", "dr_sync_state", "yesterday_highlights"],
+    "rule": "Vyomaraj and Jarvis share the updates and data with the owner every morning — voice or email, text or WhatsApp. In this prototype the briefing is drafted, never sent."
+  },
+  "audit": {
+    "agents": "Finance and auditing agents check the data before any reminder goes out",
+    "checks": ["amount matches the invoice", "due date matches the agreed terms", "platform and account match", "history of previous reminders is attached"],
+    "disputes": "If a platform disputes an amount, the reminder stops and the owner is notified the same morning."
+  }
+}
