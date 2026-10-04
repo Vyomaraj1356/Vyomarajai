@@ -1,170 +1,159 @@
-VYOMARAJ — NEXT SESSION HANDOVER — 2026-10-04
-================================================================
-STATUS: LOCAL PREVIEW STACK REBUILT AND RE-VERIFIED IN THIS SESSION (2026-10-04 UTC)
-Scope: this repository checkout, its local preview processes, and the files listed below.
-This is NOT a production DR approval, NOT a byte-for-byte copy of any earlier note, and NOT
-a claim about private chats, revenue, contracts or provider accounts.
+VYOMARAJ — NEXT SESSION HANDOVER — 2026-10-04 (REBUILT BY THE SECOND SESSION)
+================================================================================
+STATUS: REBUILT IN A NEW SANDBOX AFTER THE FIRST 2026-10-04 SESSION'S SANDBOX WAS DELETED.
+Scope: this repository checkout, its local preview processes, the files listed below, and the
+GitHub evidence re-read live in this session. This is NOT a production DR approval, NOT a
+byte-for-byte copy of the lost note, and NOT a claim about private chats, revenue, contracts,
+provider accounts or runtime state.
 
-HOW THIS NOTE RELATES TO THE PREVIOUS ONE
-The prior sandbox reported a note named NEXT_SESSION_HANDOVER_2026_10_03.txt with SHA256
-9d5fc218... That sandbox was re-provisioned; those bytes did not survive and cannot be
-reproduced from this checkout (they are not in the repository, its history, or any remote
-ref). This note is therefore a NEW document with its own SHA256. No hash equality or byte
-identity with the old note is claimed anywhere.
-SHA256 values for this note, the transfer package, and the key artifacts are recorded in:
-  ops/vyomaraj-core/handover/TRANSFER_MANIFEST_2026_10_04.json
-  ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json
+0. PROVENANCE OF THIS REBUILD — READ FIRST
+The first 2026-10-04 session ended with a 12,782-byte note (reported SHA256 ba084682...) that it
+committed locally as 7f60778 but could not push; its GitHub access had ended. When this session
+checked the host that served those bytes (4190/4174-ir9cja5hdxih69wns3dlj.e2b.app), E2B answered
+"Sandbox not found": the sandbox, its filesystem and its local commit no longer exist. Those exact
+bytes are therefore unrecoverable, and this file does not reproduce or claim them.
+What main DID contain before this session is the earlier 12,688-byte note (SHA256 3b499724...),
+committed by the previous rebuild and still visible in Git history. This file is a NEW document
+that supersedes that note for navigation; it has its own SHA256, recorded in
+ops/vyomaraj-core/handover/TRANSFER_MANIFEST_2026_10_04.json and
+ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json. No byte identity with any
+earlier note is claimed anywhere.
+Losses caused by the sandbox deletion, rebuilt here and not recoverable from the lost disk:
+the #18 refresh of the note and package, the ad-hoc downloads server on port 4190, and the
+"final #18" local commit. Everything else the first session reported is on main (PRs #10-#18).
 
 1. REPOSITORY STATE (verified in this checkout)
 Repository : Vyomaraj1356/Vyomarajai
-Branch     : arena/01a1056f-vyomarajai (this session is fixed to this branch)
-Base commit: 3936badc63cee2c7391149e5ab5fb41f4416d901 (main when this session began, 2026-10-04)
-Main tip   : c1d625047056bf93f7e2c2eaf4ccbee29de178e4 (after this session's merges #10–#17;
-             every merge was replicated and verified on the secondary — see section 9)
-Branch     : arena/01a1056f-vyomarajai, merged to main only through reviewed, green PRs because
-             main is protected.
-Checkout   : shallow clone (depth 1) whose boundary is the base commit, so this clone's
-             local history before this session contains ONLY 3936bad.
-Lost work  : local commits 65dda1e and 1b496d2 reported by the previous session are absent
-             from this clone and were not found on any remote branch or tag. The pending
-             files they described were also absent from the working tree (no next-session
-             note, no /reports/next-session route, no /reports/recovery page, no transfer
-             package). They were rebuilt from scratch in this session; the lost objects
-             remain unrecoverable from here unless the previous sandbox disk is recovered.
-Open PRs at the end of this session: #2, #3, #4 and #7 (branches with NO merge base against
-             main — they cannot merge as-is; see GITHUB_TRIAGE_2026_10_04.md for the per-PR
-             comparison) and #9 (DRAFT, another session's active work). Nothing in them was
-             merged, closed or altered by this session.
+Branch     : arena/01a105bf-vyomarajai (this session is fixed to this branch)
+Base       : main tip 244f5a66cee8c80bab1603ea4d9aad0ff942a25a — the merge of PR #18, i.e. the
+             first session's last merge is already on main and is covered by the DR record.
+Main history since 2026-10-04 05:47 UTC: 8b5f9c55 → e79c71fc → ecdc4bcd → c0123044 → #10
+             8adf9496 → #11 f8f948b6 → #12 2424e786 → #13 15cbfea0 → #14 dd341acc → #15 eead435a
+             → #16 a128173c → #17 c1d62504 → #18 244f5a66 (all merge subjects re-read from the
+             GitHub API in this session; #11 is a merge whose DR run was correctly BLOCKED —
+             see section 7).
+Open PRs  : #2, #3, #4 and #7 (branches with NO merge base against main; cannot merge as-is) and
+             #9 (DRAFT, another session's work). Nothing in them was merged, closed or altered.
 
 2. LIVE LOCAL STACK — EXACT COMMANDS (run each from the repository root)
 python3 ops/vyomaraj-core/experience/studio_server.py --port 4181 --home aghor
 python3 ops/vyomaraj-core/experience/studio_server.py --port 4182 --home aghor
 python3 ops/availability/gateway.py --port 4176 --primary-port 4181 --secondary-port 4182
 python3 ops/vyomaraj-core/handover/preview_reports.py --port 4174
-Bindings are 0.0.0.0 for the sandbox preview. Browser code uses relative URLs only; gateway
-upstreams are fixed loopback ports and the original Host/Origin identity is forwarded.
+Bindings are 0.0.0.0 so the sandbox preview proxy can reach them. Browser code uses relative URLs
+only; the gateway's upstreams are fixed loopback ports and it forwards the original Host/Origin.
 
-3. WHAT THIS SESSION REBUILT (all committed on this branch)
-- NEXT_SESSION_HANDOVER_2026_10_04.txt (this note).
-- RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md (recovery/transfer page, served at
-  /reports/recovery with literal links to the note and the package download).
-- preview_reports.py routes: /reports/next-session, /reports/recovery,
-  /reports/download/next-session.txt, /reports/download/transfer-package.zip; nav entries
-  "Next session handover" and "Recovery package".
-- studio_server.py (replicas behind the gateway) mirrors those four routes and the nav, so
-  /reports/next-session and /reports/recovery also answer on port 4176.
-- build_transfer_package.py: deterministic builder for the small package below.
-- test_preview_reports.py / test_transfer_package.py: offline checks, including that the
-  download route serves bytes identical to the canonical note file.
-- PREVIEW_VERIFICATION_2026_10_04.json: machine-readable record of the route checks below.
-- ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json: this session's controlled failover drill.
-- /reports/build: BUILD_AND_CONFIGURATION_2026_10_04.md (9,373 bytes) regenerated from repository
-  sources by build_configuration_report.py, which a test guards against embedding checkout-
-  specific absolute paths; test_build_configuration_report.py covers it (6 tests).
-- ops/ci/ci_diagnostics.py + .github/workflows/vyomaraj-ci-diagnostics.yml: re-runs the whole
-  offline set on every PR and emits the failures as GitHub annotations (raw log download is
-  unavailable from this sandbox, so annotations are the readable CI channel). The same workflow
-  gained a fork-safe dr-read-only-diagnostic job that publishes the secondary's exact commit
-  and tree as a closed-vocabulary notice.
-- ops/dr/secondary_read_probe.py: GET-only probe used to obtain that evidence.
-- ops/dr/DR_POLICY.json one_snapshot_removal_approval: time-boxed, owner-authorised approval for
-  the single reviewed target-only path (see section 9); disarmed again after the MATCH.
-- ops/dr/ISSUE_6_RESOLUTION_2026_10_04.md: the evidence statement for issue #6, committed because
-  this sandbox's GitHub connection cannot post issue comments (issues=read only).
-- GITHUB_TRIAGE_2026_10_04.md: dispositions for the open PRs; nothing was closed silently.
+3. WHAT THIS SESSION ADDED OR REBUILT (all committed on this branch)
+- NEXT_SESSION_HANDOVER_2026_10_04.txt — this note (section 0 explains its provenance).
+- ops/dr/DEPLOYED_MATCH_2026_10_04.json — extended to 13 MATCH checkpoints and 9 replication
+  writes, with head_sha/PR mapping and workflow run ids. Every checkpoint was re-read live from
+  the GitHub API in this session; two recorded completed_at values were corrected to the live
+  values (1 second, and 6 minutes 27 seconds; status, trees and rollback commits were unchanged).
+  The record now also carries the live annotation of the correctly BLOCKED #11 run and of the
+  read-only secondary probe that preceded its approved fix.
+- DR_SYNC_RESULTS_2026_10_04.md + build_dr_sync_report.py + test_dr_sync_report.py — a new,
+  generated DR sync results report (sections 6-7 below summarise it). It is rebuilt from the DR
+  record, the DR policy and the workflow file; --check fails if it drifts from that evidence.
+- preview_reports.py and studio_server.py — new routes and nav entries (section 4).
+- Regenerated after those changes: transfer package + TRANSFER_MANIFEST, BUILD_AND_CONFIGURATION,
+  PREVIEW_VERIFICATION, TEST_EVIDENCE.
 
 4. VERIFIED ROUTES AND BYTE IDENTITY (observed in this session)
 Port 4174 (standalone report viewer):
   200 / , /sovereign/ , /contracts/ , /reports/agents , /reports/build , /reports/next-session ,
-      /reports/recovery , /reports/download/next-session.txt ,
+      /reports/recovery , /reports/dr-sync , /reports/handover-notepad ,
+      /reports/download/next-session.txt , /reports/download/handover-notepad.txt ,
       /reports/download/transfer-package.zip
-  The .txt download returns Content-Disposition: attachment with the canonical file name and
-  its body is byte-identical to ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt
-  (asserted by test and recorded with SHA256 in PREVIEW_VERIFICATION_2026_10_04.json).
-  The .zip download returns application/zip and matches the packaged artifact's SHA256.
 Port 4176 (gateway in front of the two replicas):
   200 /aghor/ , /reports/build , /reports/next-session , /reports/recovery , /reports/agents ,
-      /sovereign/ , /contracts/ ; 404 for unknown paths (404s are deliberately not hidden by
-      failover).
-  GET /api/availability reports mode SINGLE_HOST_REHEARSAL_NOT_PRODUCTION_DR with both
-  replica metadata checks true and ambiguous_post_failures = 0.
+      /reports/dr-sync , /reports/handover-notepad , /sovereign/ , /contracts/ ;
+  404 for unknown paths (404s are deliberately not hidden by failover).
+  GET /api/availability reports mode SINGLE_HOST_REHEARSAL_NOT_PRODUCTION_DR.
+The handover-notepad download is byte-identical to this file, and the transfer-package download
+is byte-identical to the packaged artifact; both are asserted by tests and recorded, with SHA256
+values, in PREVIEW_VERIFICATION_2026_10_04.json. The APK is not served by these processes.
 
-5. CONTROLLED FAILOVER DRILL (real responses, 2026-10-04 05:45 UTC)
-Probe: GET /aghor/ through the gateway; latency is ONE request measured after the fault, not
-time from disaster onset, not production RTO/RPO.
-  baseline           200 served_by=primary    both replicas ready=true
-  primary stopped    200 served_by=secondary  (Vyomaraj replica ready=false)
-  secondary stopped  200 served_by=primary    (Jarvis replica ready=false)
-  both stopped       503 no false healthy result
-  both restored      200 served_by=primary    both replicas ready=true
-Ambiguous POST failures: 0 throughout (POST is sent once and never replayed after an
-ambiguous failure). Full record: ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json.
+5. CONTROLLED FAILOVER DRILL — CARRIED RECORD, NOT RE-RUN HERE
+Recorded by the first session at 2026-10-04 05:45 UTC in
+ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json: baseline 200/primary; primary stopped
+200/secondary; secondary stopped 200/primary; both stopped 503 (no false healthy result); both
+restored 200/primary; ambiguous POST failures 0 throughout. This session did not re-run the drill
+and does not restate it as its own measurement; latency is ONE request after the fault, not
+time from disaster onset, and not a production RTO/RPO.
 
-6. WHAT IS NOT VERIFIED — DO NOT RESTATE OTHERWISE
-- No independent DR site, no redundant production load balancer, no autonomous agent
-  replication. Both replicas share ONE sandbox, ONE checkout and ONE SQLite queue; losing
-  that machine or its storage defeats both. The gateway itself is a single point of failure
-  and was not stopped during the drill.
-- No zero-RPO/RTO claim. The drill shows process-failure fallback behaviour for one GET.
-- No runtime datastore backup/restore, no separate-host deployment and no machine-loss
-  recovery was tested. No production traffic or Git ref was touched by the drill.
-- The preview stack is unauthenticated and is not an approval or revenue system.
+6. DR SYNC RESULTS — RE-VERIFIED LIVE IN THIS SESSION
+Every checkpoint in the record was re-read from the GitHub API at 2026-10-04T07:11:55Z: all 13
+are status=MATCH with identical primary/secondary trees, and 9 carried a replication write
+(rollback_commit retained as the previous secondary tip). Main tip covered: 244f5a66 (= #18).
+    completed (UTC)        merge      PR    trees (primary = secondary)     write
+    2026-10-03T13:32:27Z   3936badc   base  3e3c55bb… = 3e3c55bb…           yes (9d8678c6)
+    2026-10-03T18:24:59Z   3936badc   base  3e3c55bb… = 3e3c55bb…           no
+    2026-10-04T00:12:28Z   3936badc   base  3e3c55bb… = 3e3c55bb…           no
+    2026-10-04T03:55:22Z   3936badc   base  3e3c55bb… = 3e3c55bb…           no
+    2026-10-04T05:38:41Z   3936badc   base  3e3c55bb… = 3e3c55bb…           no
+    2026-10-04T06:07:16Z   8adf9496   #10   ad4321bf… = ad4321bf…           yes (7a7a539d)
+    2026-10-04T06:18:22Z   2424e786   #12   434fc389… = 434fc389…           yes (4363387e)
+    2026-10-04T06:21:30Z   15cbfea0   #13   5a9d1418… = 5a9d1418…           yes (5203c222)
+    2026-10-04T06:25:24Z   dd341acc   #14   01197482… = 01197482…           yes (11c1de61)
+    2026-10-04T06:31:26Z   eead435a   #15   3604bb15… = 3604bb15…           yes (1b374fd9)
+    2026-10-04T06:34:56Z   a128173c   #16   7b166ac1… = 7b166ac1…           yes (ced0a092)
+    2026-10-04T06:40:03Z   c1d62504   #17   1d13c7ee… = 1d13c7ee…           yes (a979bac5)
+    2026-10-04T06:44:02Z   244f5a66   #18   b6029f97… = b6029f97…           yes (6a614f7f)
+A run with no rollback_commit found the snapshots already equal: an idempotent no-op, not a
+failure. Full detail, including run and check-run ids and the exact annotation strings, is in
+DR_SYNC_RESULTS_2026_10_04.md (generated) and ops/dr/DEPLOYED_MATCH_2026_10_04.json.
+
+7. THE RUN THAT WAS CORRECTLY BLOCKED (#11), AND ITS APPROVED FIX
+Run 37182034198 on merge #11 (f8f948b6) ended in failure BY DESIGN: check-run 111376415924
+reported "status=BLOCKED; ...; traffic_switched=NONE; target_only_files_awaiting_review=1".
+PR #10 had accidentally committed the transient ci-diagnostics.log; the file was removed from
+main, so the secondary held one path main did not. The gate refused to delete it. A read-only
+probe (check-run 111376891786, tree=MISMATCH, writes=NONE, secondary_only=1, missing_on_secondary=0,
+writes=NONE) confirmed exactly one reviewed path, and the time-boxed, single-path
+one_snapshot_removal_approval in ops/dr/DR_POLICY.json (expires 2026-10-06T06:15:52+00:00, now
+consumed) let the next run remove exactly that path and reach MATCH with the previous secondary
+commit retained as the rollback parent. The block was the safety system working, not a defect,
+and the blocked run is deliberately NOT counted among the 13 MATCH checkpoints.
+
+8. WHAT IS NOT VERIFIED — DO NOT RESTATE OTHERWISE
+- No independent DR site, no redundant production load balancer, no autonomous agent replication.
+  Both replicas share ONE sandbox, ONE checkout and ONE SQLite queue; losing that machine or its
+  storage defeats both. The gateway itself is a single point of failure.
+- No zero-RPO/RTO claim: both the record and DR_POLICY.json store zero_rpo_verified=false and
+  zero_rto_verified=false. traffic_switched is false everywhere; no production traffic or Git ref
+  was touched by any run.
+- No runtime datastore backup/restore, no separate-host deployment and no machine-loss recovery
+  was tested. The Git snapshot record says nothing about runtime databases or live services.
+- The preview stack is unauthenticated and is not an approval or revenue system. A preview link
+  dies with its sandbox, as the 4190/4174 links from the first session did.
 - Metadata (registries, counts, rosters, names) is source-reported; operational readiness of
   agents/providers is not verified. Product-catalog ownership remains partly unreconciled.
-- The lost prior-session note bytes (SHA256 9d5fc218...) are NOT reproduced by this session.
+- The lost 12,782-byte note (ba084682...) is NOT reproduced by this session; main's earlier
+  12,688-byte note (3b499724...) is preserved in Git history only.
 
-7. TRANSFER PACKAGE (small, non-secret, human-reviewable)
+9. TRANSFER PACKAGE (small, non-secret, human-reviewable)
 In repository : ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip
-Root-level    : Vyomaraj-Next-Session-Transfer-2026_10_04.zip (same artifact),
-                NEXT_SESSION_HANDOVER_2026_10_04.txt (copy),
-                vyomaraj-handover-2026-10-04.bundle (THIN git bundle of this branch: contains
-                this session's commits and REQUIRES base commit 3936bad to already exist in the
-                receiving repository, e.g. the current main history),
-                VYOMARAJ_TRANSFER_README_2026_10_04.txt (instructions).
-Contents      : this note, the recovery/transfer page, the canonical 2026-10-03 handover text,
-                the viewer and availability scripts, the handover/transfer tests, both local
-                drill evidence files. No secrets, tokens, PATs or private configuration.
+Deterministic: fixed member timestamps and permissions; rebuilt by
+               python3 ops/vyomaraj-core/handover/build_transfer_package.py
+               checked by            build_transfer_package.py --check
+Contents      : this note, the recovery page, the DR sync results report and its builder, the
+                reconstructed 2026-10-03 roster handover, the viewer/gateway/build scripts and
+                their tests, the DR record, and both local drill evidence files. No secrets,
+                tokens, PATs or private configuration.
 Verify        : python3 -m unittest discover -s ops/vyomaraj-core/handover -p 'test_*.py'
-                python3 -m unittest discover -s ops/availability -p 'test_*.py'
+                python3 -m unittest discover -s ops/dr -p 'test_*.py'
+                python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check
                 python3 ops/vyomaraj-core/handover/build_transfer_package.py --check
 
-9. DR SYNC RESULTS AND GITHUB RESOLUTION (2026-10-04, closed-vocabulary evidence)
-Every main-push run of .github/workflows/vyomaraj-sync-both.yml in this session ended in
-MATCH with identical primary/secondary trees; the recent runs each carried a rollback_commit,
-i.e. a verified replication write. Recorded here through #17 (later merges appear in the live
-check-run annotations):
-  #10 merge 8adf9496 -> trees ad4321bf / ad4321bf, rollback 7a7a539d (check-run 111375777820)
-  #12 merge 2424e786 -> trees 434fc389 / 434fc389, rollback 4363387e (check-run 111377398899)
-  #13 merge 15cbfea0 -> trees 5a9d1418 / 5a9d1418, rollback 5203c222 (check-run 111377861073)
-  #14 merge dd341acc -> trees 01197482 / 01197482, rollback 11c1de61 (check-run 111378391997)
-  #15 merge eead435a -> trees 3604bb15 / 3604bb15, rollback 1b374fd9 (check-run 111379204732)
-  #16 merge a128173c -> trees 7b166ac1 / 7b166ac1, rollback ced0a092 (check-run 111379714913)
-  #17 merge c1d62504 -> trees 1d13c7ee / 1d13c7ee, rollback a979bac5 (check-run 111380439332;
-      later merges are visible in the live check-run annotations)
-The #11 merge was CORRECTLY BLOCKED (status=BLOCKED, target_only_files_awaiting_review=1): PR #10
-had accidentally committed the transient ci-diagnostics.log, PR #11 deleted it, so the secondary
-held one file main did not. A read-only probe (check-run 111376891786) confirmed the secondary at
-4363387e / tree ad4321bf with exactly that one target-only path, and a time-boxed one-snapshot
-removal approval in DR_POLICY.json let the next run remove exactly it and reach MATCH — the block
-was the safety system working, not a defect. Full record: ops/dr/DEPLOYED_MATCH_2026_10_04.json.
-Scope, unchanged: Git main-snapshot integrity and replication, not runtime/site DR, no zero-
-RPO/RTO claim, traffic_switched=NONE everywhere.
-GitHub connection limits found and worked around: issues=read and no workflow-dispatch (403), so
-issue #6 could not be commented or closed from here (statement committed for pasting instead),
-and DR runs trigger only on push/PR events. Repo-owner leftovers: reconnect Arena to the private
-secondary if Arena itself must read it, and grant issue-write/workflow-dispatch if wanted.
-
-
-8. WHAT THE NEXT SESSION SHOULD DO
-1. Confirm the branch tip still equals the commit recorded in
-   PREVIEW_VERIFICATION_2026_10_04.json; if the sandbox was re-provisioned again, repeat
-   section 2 and re-run section 4's checks before repeating any status claim.
-2. Re-verify before re-asserting: route statuses, note SHA256, package SHA256 and the
-   availability counters are all cheap to re-check with the commands above.
-3. Do not present section 5's numbers as production RTO/RPO or as independent-site DR.
-4. If the prior sandbox's lost commits are ever recovered, do not force-merge them; diff
-   against this branch's rebuilt files first, since the content differs (this note is new).
-5. Keep the honesty rules already enforced by the tests: unknown names stay UNKNOWN, view-
-   only is not operational, and historical snapshots are marked NOT CURRENT.
+10. WHAT THE NEXT SESSION SHOULD DO
+1. Confirm the branch tip equals the commit recorded in PREVIEW_VERIFICATION_2026_10_04.json; if
+   the sandbox was re-provisioned, repeat section 2 and the section-4 checks before repeating any
+   status claim. Preview links from this session do not survive their sandbox.
+2. Re-verify before re-asserting: check-run annotations, route statuses and SHA256 values are all
+   cheap to re-read (commands in DR_SYNC_RESULTS_2026_10_04.md section 7).
+3. Never present the DR record as production RTO/RPO or as independent-site disaster recovery.
+4. Keep the honesty rules the tests enforce: unknown names stay UNKNOWN, view-only is not
+   operational, historical snapshots are marked NOT CURRENT, and generated files are rebuilt
+   with their builder instead of edited by hand.
 
 Chiranjeevi Eternal — Owner primary locked — no unverified claim asserted above.

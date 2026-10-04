@@ -26,6 +26,9 @@ AVAILABILITY = HERE.parents[1] / 'availability'
 MEMBERS = [
     (NOTE, HERE / NOTE),
     (RECOVERY, HERE / RECOVERY),
+    ('DR_SYNC_RESULTS_2026_10_04.md', HERE / 'DR_SYNC_RESULTS_2026_10_04.md'),
+    ('build_dr_sync_report.py', HERE / 'build_dr_sync_report.py'),
+    ('test_dr_sync_report.py', HERE / 'test_dr_sync_report.py'),
     ('HANDOVER_ALL_UPDATES_2026_10_03.txt', HERE / 'HANDOVER_ALL_UPDATES_2026_10_03.txt'),
     ('build_transfer_package.py', HERE / 'build_transfer_package.py'),
     ('preview_reports.py', HERE / 'preview_reports.py'),

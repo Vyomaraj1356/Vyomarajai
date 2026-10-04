@@ -10,6 +10,7 @@ from urllib.parse import urlsplit
 HERE = Path(__file__).resolve().parent
 HANDOVER_NOTE = 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 RECOVERY_DOC = 'RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md'
+DR_SYNC_REPORT = 'DR_SYNC_RESULTS_2026_10_04.md'
 TRANSFER_ZIP = 'transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip'
 REPORTS = {
     '/sovereign/': 'SOVEREIGN_POLICY_2026_10_03.md',
@@ -28,7 +29,9 @@ REPORTS = {
     '/reports/bhakti': 'BHAKTI_FEATURE_UPDATE_2026_10_03.md',
     '/handover': 'HANDOVER_ALL_UPDATES_2026_10_03.txt',
     '/reports/next-session': HANDOVER_NOTE,
+    '/reports/handover-notepad': HANDOVER_NOTE,
     '/reports/recovery': RECOVERY_DOC,
+    '/reports/dr-sync': DR_SYNC_REPORT,
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
 }
 # route -> (file relative to this directory, exact content type)
@@ -36,11 +39,13 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/download/dr-status.md': (REPORTS['/dr-status'], 'text/plain; charset=utf-8'),
              '/download/handover.txt': (REPORTS['/handover'], 'text/plain; charset=utf-8'),
              '/reports/download/next-session.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
+             '/reports/download/handover-notepad.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
              '/reports/download/transfer-package.zip': (TRANSFER_ZIP, 'application/zip')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
 RECOVERY_LINKS = ('<div class="notice"><strong>Recovery package:</strong> '
                   '<a href="/reports/next-session">Next session handover (local)</a> &middot; '
                   '<a href="/reports/download/next-session.txt">Download Notepad .txt</a> &middot; '
+                  '<a href="/reports/dr-sync">DR sync results</a> &middot; '
                   '<a href="/reports/download/transfer-package.zip">Download transfer package .zip</a></div>')
 STYLE = '''body{margin:0;background:#f3f5f8;color:#152536;font:16px/1.65 system-ui,sans-serif}
 main{max-width:1100px;margin:32px auto;padding:32px;background:white;border-radius:16px}
@@ -117,7 +122,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="viewport" content="width=device-width,initial-scale=1">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/recovery">Recovery package</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()

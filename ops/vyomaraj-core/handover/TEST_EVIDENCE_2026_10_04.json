@@ -1,6 +1,6 @@
 {
-  "recorded_at_utc": "2026-10-04T06:41:24+00:00",
-  "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml, run locally on this checkout",
+  "recorded_at_utc": "2026-10-04T07:15:45+00:00",
+  "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml, run locally on this checkout; recorded by the second 2026-10-04 session after the DR sync report and handover-notepad routes were added.",
   "python_suites": [
     {
       "path": "ops/dr",
@@ -10,7 +10,7 @@
     },
     {
       "path": "ops/vyomaraj-core/handover",
-      "ran": 27,
+      "ran": 36,
       "result": "OK",
       "tail": "OK"
     },
@@ -45,7 +45,7 @@
       "tail": "OK"
     }
   ],
-  "python_tests_total": 238,
+  "python_tests_total": 247,
   "node_checks": [
     {
       "command": "node --test ops/vyomaraj-core/test_safe_metadata.cjs",
@@ -87,6 +87,18 @@
     },
     {
       "command": "python3 ops/vyomaraj-core/agents/rebuild_registry.py --check",
+      "result": "OK"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_configuration_report.py --check",
+      "result": "OK"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check",
+      "result": "OK"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
       "result": "OK"
     }
   ],

@@ -1,25 +1,27 @@
 {
-  "verified_at_utc": "2026-10-04T06:41:25+00:00",
+  "verified_at_utc": "2026-10-04T07:15:37+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
-    "branch": "arena/01a1056f-vyomarajai",
-    "commit": "2861bfa6d9f92d0ff68040ee58b2c57e72f2e464"
+    "branch": "arena/01a105bf-vyomarajai",
+    "commit": "244f5a66cee8c80bab1603ea4d9aad0ff942a25a"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-    "sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd",
-    "bytes": 12688
+    "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
+    "bytes": 12238
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab",
-    "bytes": 44050
+    "sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f",
+    "bytes": 56432
   },
   "byte_identity": {
-    "viewer_next_session_download_sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd",
-    "gateway_next_session_download_sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd",
-    "viewer_transfer_package_download_sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab",
-    "gateway_transfer_package_download_sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab"
+    "viewer_next_session_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
+    "gateway_next_session_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
+    "viewer_handover_notepad_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
+    "gateway_handover_notepad_download_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
+    "viewer_transfer_package_download_sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f",
+    "gateway_transfer_package_download_sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f"
   },
   "viewer_routes": [
     {
@@ -28,8 +30,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 24908,
-      "sha256": "5b6444c100dd1a9d34dd2c428114f9953aa2eb973b28932b71a3ff84beb3781d"
+      "bytes": 25010,
+      "sha256": "a8740e25c21cf25b28be246814af6aefb3484e87ffae4d48bcdae677911969fa"
     },
     {
       "route": "/sovereign/",
@@ -37,8 +39,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 5845,
-      "sha256": "c5559f830aaf3ac8ce545569cea956beef0d5b2a9724ddd2f2544e8c86c0210e"
+      "bytes": 5947,
+      "sha256": "acc670e8d569876d568ac9103f75f92f5ae62500317713b765185a19b86f6e35"
     },
     {
       "route": "/contracts/",
@@ -46,8 +48,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 6102,
-      "sha256": "3f36ba027faf39bd1316ec79e073d1c177bf71733571819bedeee31f10c923a2"
+      "bytes": 6204,
+      "sha256": "4d5b9d1a5295557d51cbb0f1747784f0d87238f928cf35cffbf4de00beee61c2"
     },
     {
       "route": "/reports/agents",
@@ -55,8 +57,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 23380,
-      "sha256": "515b440df72e8794edd47edb00cf0de28eefde39d4a20057b460860503298a04"
+      "bytes": 23482,
+      "sha256": "a9182a43fa4ebddaf061403069f766ba3fd05c2b8e72bd9245add56821334be0"
     },
     {
       "route": "/reports/build",
@@ -64,8 +66,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14100,
-      "sha256": "f69c9f6fe040559e2d9f081942dc2b7953cbe7bd74c337fbfad87ffc9e10316b"
+      "bytes": 14503,
+      "sha256": "e4f40452294fb22b9619edcc9113b88701a6119831ef7888317f61b2efd56b47"
     },
     {
       "route": "/reports/next-session",
@@ -73,8 +75,26 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14989,
-      "sha256": "26dfcac3f838909e3963b4b80e6a149ec84d3a64ddde910641a0351612f42805"
+      "bytes": 14595,
+      "sha256": "43fc8d2a555132bb6215be2afcfe53cbe393ed369ae10bcdcdd8337185d3e1a8"
+    },
+    {
+      "route": "/reports/handover-notepad",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 14595,
+      "sha256": "43fc8d2a555132bb6215be2afcfe53cbe393ed369ae10bcdcdd8337185d3e1a8"
+    },
+    {
+      "route": "/reports/dr-sync",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 15562,
+      "sha256": "65715552ef937b52df993c1c3eced3ad16d5aed2edb310738a6531954d257c2d"
     },
     {
       "route": "/reports/recovery",
@@ -82,8 +102,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 7331,
-      "sha256": "9d8721d03213e2d85f6853a4bba03ee974e173e6695ee43e577fe49c416ce595"
+      "bytes": 9130,
+      "sha256": "330a9ac8e2cfef5ea23d07b50ed709b107eedcabb0c227cfb49a13bf0ada328a"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -91,8 +111,17 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 12688,
-      "sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd"
+      "bytes": 12238,
+      "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f"
+    },
+    {
+      "route": "/reports/download/handover-notepad.txt",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
+      "bytes": 12238,
+      "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f"
     },
     {
       "route": "/reports/download/transfer-package.zip",
@@ -100,8 +129,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 44050,
-      "sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab"
+      "bytes": 56432,
+      "sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -129,8 +158,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14444,
-      "sha256": "faedd99458d33bcc53e78f797f928a2189df5e128644d83ab2dfc1c1d3988d36"
+      "bytes": 14847,
+      "sha256": "ca8475fc5669ead485f51535b46611ad3c151eba40a8fef79a2c0f310f3dbcfc"
     },
     {
       "route": "/reports/next-session",
@@ -138,8 +167,26 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 16558,
-      "sha256": "61e5adfe1b0f601f2f47627cfd749575492e9b06be2eadc326d1bd02e44fe2d6"
+      "bytes": 16043,
+      "sha256": "9c09bd80a037ad70050f6014fdf67b600c44af3d68fd9e5e3ea50a9c3bbcc220"
+    },
+    {
+      "route": "/reports/handover-notepad",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 16043,
+      "sha256": "9c09bd80a037ad70050f6014fdf67b600c44af3d68fd9e5e3ea50a9c3bbcc220"
+    },
+    {
+      "route": "/reports/dr-sync",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 15906,
+      "sha256": "8a666ab015f5cbac31a3f4db3e300cb033a5d833f79ab336daabb41155c2152c"
     },
     {
       "route": "/reports/recovery",
@@ -147,8 +194,17 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 7675,
-      "sha256": "a39f1ef16f4088e76f63a10d37a2131af6962a32f9a20876a0d6f8e5d1c65495"
+      "bytes": 9474,
+      "sha256": "6f59488a060b4622f972b565f5913cfcf9c5a5fc282ba48375d3cd8d48cd5958"
+    },
+    {
+      "route": "/reports/download/handover-notepad.txt",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
+      "bytes": 12238,
+      "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f"
     },
     {
       "route": "/reports/agents",
@@ -156,8 +212,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 23724,
-      "sha256": "c2b9b662ce7f4b714206b860cc655d327fab5ccd7c18108a0bea158a5652a53c"
+      "bytes": 23826,
+      "sha256": "b13282ea06714916e1545281f692b87ac30fe066646cd36fc88f0442fb79c4ff"
     },
     {
       "route": "/sovereign/",
@@ -165,8 +221,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 6189,
-      "sha256": "c515e9902fc3baa379a3e9a1cd7240005b4106c8be312094e6dd199e180ec1a1"
+      "bytes": 6291,
+      "sha256": "ec5663c2213b91c8302b56b72a7dc48fb889fe4312619e88fbcff4e329c9662f"
     },
     {
       "route": "/contracts/",
@@ -174,8 +230,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 6446,
-      "sha256": "7d292b37625167244805637c22d40de817068dfdc4f8f143743d693f7ba1fef1"
+      "bytes": 6548,
+      "sha256": "992e8b01cfeee98d816caba8ea9c71ba6b6c1fa885d7a25f499b6b88484678ce"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -205,10 +261,10 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 113,
-      "secondary_responses": 1,
+      "primary_responses": 30,
+      "secondary_responses": 0,
       "ambiguous_post_failures": 0,
-      "unavailable_responses": 1
+      "unavailable_responses": 0
     }
   },
   "problems": [],
