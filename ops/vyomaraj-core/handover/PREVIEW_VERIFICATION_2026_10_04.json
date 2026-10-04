@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-04T05:51:09+00:00",
+  "verified_at_utc": "2026-10-04T05:58:31+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/01a1056f-vyomarajai",
-    "commit": "0c737066dab7776da5e78635033272ff3e8e384f"
+    "commit": "16ac3d6db591036eb37e73d17cf6e4da2b011564"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
@@ -12,14 +12,14 @@
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "4ce045de82d2f8ac1ef453ad6427b5390eded955191c83fafcbf73379edd7c4e",
-    "bytes": 29097
+    "sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66",
+    "bytes": 41071
   },
   "byte_identity": {
     "viewer_next_session_download_sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
     "gateway_next_session_download_sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
-    "viewer_transfer_package_download_sha256": "4ce045de82d2f8ac1ef453ad6427b5390eded955191c83fafcbf73379edd7c4e",
-    "gateway_transfer_package_download_sha256": "4ce045de82d2f8ac1ef453ad6427b5390eded955191c83fafcbf73379edd7c4e"
+    "viewer_transfer_package_download_sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66",
+    "gateway_transfer_package_download_sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66"
   },
   "viewer_routes": [
     {
@@ -28,8 +28,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 24854,
-      "sha256": "a78379e9e5399488b5093704b3243e5f6ff1653a19028894948d59a01c521f20"
+      "bytes": 24908,
+      "sha256": "5b6444c100dd1a9d34dd2c428114f9953aa2eb973b28932b71a3ff84beb3781d"
     },
     {
       "route": "/sovereign/",
@@ -37,8 +37,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 5791,
-      "sha256": "8582592b6cc966abe6c68c6bd14db3bf3c07c291e0912977dfa0eebe919d0e9e"
+      "bytes": 5845,
+      "sha256": "c5559f830aaf3ac8ce545569cea956beef0d5b2a9724ddd2f2544e8c86c0210e"
     },
     {
       "route": "/contracts/",
@@ -46,8 +46,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 6048,
-      "sha256": "fbd8dff2ec8d4d6f213947f02a5c0b23a3b1dc8891061347ef4bf5590514dc2d"
+      "bytes": 6102,
+      "sha256": "3f36ba027faf39bd1316ec79e073d1c177bf71733571819bedeee31f10c923a2"
     },
     {
       "route": "/reports/agents",
@@ -55,8 +55,17 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 23326,
-      "sha256": "ffa15b6d15133fd9a3ebf0853c21c481e315692edbe91f1f8413152872dbd6ed"
+      "bytes": 23380,
+      "sha256": "515b440df72e8794edd47edb00cf0de28eefde39d4a20057b460860503298a04"
+    },
+    {
+      "route": "/reports/build",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 13617,
+      "sha256": "d9fc06f22620d6ba0588a4ab635041bfbee7cd4465b1b38fb8f974c042d27d07"
     },
     {
       "route": "/reports/next-session",
@@ -64,8 +73,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 10902,
-      "sha256": "04203b87c047fd1b561125ef642a86fbfb877ec3cd3da8d9caef1517e92d3be4"
+      "bytes": 10956,
+      "sha256": "d65e1f7f6512339b890e3642edb1dc995ca738fe9aa59984fa79b7c0d9a12cb5"
     },
     {
       "route": "/reports/recovery",
@@ -73,8 +82,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 7277,
-      "sha256": "a1852dce3e3d5d9c7d254681eaecf79bfe7277dd06759686e6ffc1a39faa929c"
+      "bytes": 7331,
+      "sha256": "9d8721d03213e2d85f6853a4bba03ee974e173e6695ee43e577fe49c416ce595"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -91,8 +100,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 29097,
-      "sha256": "4ce045de82d2f8ac1ef453ad6427b5390eded955191c83fafcbf73379edd7c4e"
+      "bytes": 41071,
+      "sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -115,13 +124,22 @@
       "sha256": "22b68ec01f871ff87250dae87530bc9294e1af0f59359490077aa4b32c1a28c0"
     },
     {
+      "route": "/reports/build",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 13961,
+      "sha256": "e21c8d37a6482b45b9283f8b408ca6eb4233cd8d62f18fa0098ddcac788490ea"
+    },
+    {
       "route": "/reports/next-session",
       "expected_status": 200,
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 12107,
-      "sha256": "37edb3d9be03d2873e232d407b6b7ee670fbb4d212a721d6af7c5b2bc1be704c"
+      "bytes": 12161,
+      "sha256": "2fcbaea1048e5a8e3c315e2b39660102435a0f9df49003806a669b05655ef6e4"
     },
     {
       "route": "/reports/recovery",
@@ -129,8 +147,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 7621,
-      "sha256": "c9256255b7d95e567376b8814f7b60b2c9a170fa6dc3742667b46f2f022e4709"
+      "bytes": 7675,
+      "sha256": "a39f1ef16f4088e76f63a10d37a2131af6962a32f9a20876a0d6f8e5d1c65495"
     },
     {
       "route": "/reports/agents",
@@ -138,8 +156,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 23670,
-      "sha256": "6da7c4f652265369ebfe8fc13a0cf19f3b38c58e24ce194d83bbf69cdfcd1aa8"
+      "bytes": 23724,
+      "sha256": "c2b9b662ce7f4b714206b860cc655d327fab5ccd7c18108a0bea158a5652a53c"
     },
     {
       "route": "/sovereign/",
@@ -147,8 +165,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 6135,
-      "sha256": "54f4593d987611ee3c864338826004868b49c5fed96a2834b7ca96e0ac01f426"
+      "bytes": 6189,
+      "sha256": "c515e9902fc3baa379a3e9a1cd7240005b4106c8be312094e6dd199e180ec1a1"
     },
     {
       "route": "/contracts/",
@@ -156,8 +174,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 6392,
-      "sha256": "58e7b11970886e402e0f99ba607b8b63f0f20927768792e2785889a97036b20f"
+      "bytes": 6446,
+      "sha256": "7d292b37625167244805637c22d40de817068dfdc4f8f143743d693f7ba1fef1"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -187,7 +205,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 37,
+      "primary_responses": 57,
       "secondary_responses": 1,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 1

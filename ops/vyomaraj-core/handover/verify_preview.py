@@ -20,11 +20,11 @@ REPORT = HERE / 'PREVIEW_VERIFICATION_2026_10_04.json'
 MANIFEST = HERE / 'TRANSFER_MANIFEST_2026_10_04.json'
 NOTE = HERE / 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_TRANSFER_2026_10_04.zip'
-VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/next-session',
-                 '/reports/recovery', '/reports/download/next-session.txt',
+VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/build',
+                 '/reports/next-session', '/reports/recovery', '/reports/download/next-session.txt',
                  '/reports/download/transfer-package.zip', '/not-an-allowlisted-route']
-GATEWAY_ROUTES = ['/aghor/', '/reports/next-session', '/reports/recovery', '/reports/agents',
-                  '/sovereign/', '/contracts/', '/not-an-allowlisted-route']
+GATEWAY_ROUTES = ['/aghor/', '/reports/build', '/reports/next-session', '/reports/recovery',
+                  '/reports/agents', '/sovereign/', '/contracts/', '/not-an-allowlisted-route']
 
 
 def sha256(data):

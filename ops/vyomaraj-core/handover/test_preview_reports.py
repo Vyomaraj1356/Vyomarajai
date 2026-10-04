@@ -53,6 +53,13 @@ class PreviewTests(unittest.TestCase):
             self.assertIn('attachment', disposition)
             self.assertIn(preview.HANDOVER_NOTE, disposition)
 
+    def test_build_configuration_report_route(self):
+        with urllib.request.urlopen(self.url + '/reports/build') as response:
+            text = response.read().decode()
+        for expected in ('Vyomaraj — build, configuration and inventory', '<table>', 'Agents — current',
+                         'Jarvis configuration'):
+            self.assertIn(expected, text)
+
     def test_recovery_page_links_handover_and_package(self):
         with urllib.request.urlopen(self.url + '/reports/recovery') as response:
             text = response.read().decode()

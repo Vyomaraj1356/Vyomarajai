@@ -1,0 +1,98 @@
+{
+  "recorded_at_utc": "2026-10-04T05:58:58+00:00",
+  "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml, run locally on this checkout",
+  "python_suites": [
+    {
+      "path": "ops/dr",
+      "ran": 53,
+      "result": "OK",
+      "tail": "OK"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover",
+      "ran": 26,
+      "result": "OK",
+      "tail": "OK"
+    },
+    {
+      "path": "ops/vyomaraj-core/liquor-bar",
+      "ran": 9,
+      "result": "OK",
+      "tail": "OK"
+    },
+    {
+      "path": "ops/vyomaraj-core/experience",
+      "ran": 77,
+      "result": "OK",
+      "tail": "OK"
+    },
+    {
+      "path": "ops/vyomaraj-core/research",
+      "ran": 36,
+      "result": "OK",
+      "tail": "OK"
+    },
+    {
+      "path": "ops/vyomaraj-core/agents",
+      "ran": 28,
+      "result": "OK",
+      "tail": "OK"
+    },
+    {
+      "path": "ops/availability",
+      "ran": 8,
+      "result": "OK",
+      "tail": "OK"
+    }
+  ],
+  "python_tests_total": 237,
+  "node_checks": [
+    {
+      "command": "node --test ops/vyomaraj-core/test_safe_metadata.cjs",
+      "result": "OK"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/liquor-bar/app.js",
+      "result": "OK"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/bhakti-experience/app.js",
+      "result": "OK"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/music-experience/app.js",
+      "result": "OK"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/film-experience/app.js",
+      "result": "OK"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/research/app.js",
+      "result": "OK"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/agents/app.js",
+      "result": "OK"
+    },
+    {
+      "command": "node --check ops/vyomaraj-core/aghor-experience/app.js",
+      "result": "OK"
+    }
+  ],
+  "rebuild_checks": [
+    {
+      "command": "python3 ops/vyomaraj-core/handover/rebuild_handover.py --check",
+      "result": "OK"
+    },
+    {
+      "command": "python3 ops/vyomaraj-core/agents/rebuild_registry.py --check",
+      "result": "OK"
+    }
+  ],
+  "overall": "OK",
+  "limitations": [
+    "Offline tests only; no provider/API credential is exercised.",
+    "Green tests are not runtime readiness or production DR proof."
+  ]
+}
