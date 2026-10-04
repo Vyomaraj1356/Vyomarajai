@@ -56,6 +56,8 @@ REPORTS = {
     '/reports/contents': 'EXPERIENCE_CONTENTS_2026_10_03.md',
     '/reports/music': 'MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md',
     '/reports/dr': 'DR_RESOLUTION_2026_10_03.md',
+    '/reports/next-session': reports.HANDOVER_NOTE,
+    '/reports/recovery': reports.RECOVERY_DOC,
 }
 
 
@@ -69,6 +71,16 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; media-src blob:; font-src 'self'; base-uri 'none'; form-action 'none'")
+        self.end_headers()
+        self.wfile.write(content)
+
+    def send_download(self, content, mime, filename):
+        self.send_response(200)
+        self.send_header('Content-Type', mime)
+        self.send_header('Content-Length', str(len(content)))
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('X-Content-Type-Options', 'nosniff')
+        self.send_header('Content-Disposition', f'attachment; filename="{filename}"')
         self.end_headers()
         self.wfile.write(content)
 
@@ -108,6 +120,10 @@ class Handler(BaseHTTPRequestHandler):
             self.json_response(json.loads((CORE / 'experience/LOCAL_INTEGRATION.json').read_text()))
         elif route == '/reports/download/bhakti.md':
             self.send_bytes((CORE / 'handover/BHAKTI_FEATURE_UPDATE_2026_10_03.md').read_bytes(), 'text/plain')
+        elif route == '/reports/download/next-session.txt':
+            self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
+        elif route == '/reports/download/transfer-package.zip':
+            self.send_download((CORE / 'handover' / reports.TRANSFER_ZIP).read_bytes(), 'application/zip', Path(reports.TRANSFER_ZIP).name)
         elif route in REPORTS:
             path = CORE / 'handover' / REPORTS[route]
             if not path.is_file():
@@ -115,12 +131,14 @@ class Handler(BaseHTTPRequestHandler):
             body = reports.markdown(path.read_text())
             if route == '/reports/history':
                 body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: 128 counted slots, six uncounted headings; Education 16, Finance 7, Entertainment 32. See the current inventory or reconciliation above.</p>' + body
+            if route == '/reports/recovery':
+                body = reports.RECOVERY_LINKS + body
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                     '<meta name="viewport" content="width=device-width,initial-scale=1">'
                     '<title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
                     '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
-                    '<a href="/reports/dr">DR status</a></nav>'
+                    '<a href="/reports/dr">DR status</a><a href="/reports/next-session">Next session handover</a><a href="/reports/recovery">Recovery package</a></nav>'
                     '<p class="notice">Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Respect for humans, animals, religions, castes and creeds. Earning is not guaranteed. Local preview and creative planning are implemented. Git snapshot match evidence is in the DR report; external AI '
                     'and runtime/site disaster recovery are not verified.</p>' + body + '</main></html>')
             self.send_bytes(page.encode(), 'text/html')
