@@ -11,7 +11,8 @@
     "liquor-bar",
     "music",
     "film",
-    "aghor"
+    "aghor",
+    "comics"
   ],
   "modes": [
     "3d",
@@ -98,5 +99,13 @@
     "repeat_verification_run": 37126121716,
     "tracked_files_at_checkpoint": 244,
     "runtime_or_site_dr_verified": false
-  }
+  },
+  "comics_formats": [
+    "strip",
+    "oneshot",
+    "issue",
+    "graphic-novel"
+  ],
+  "comics_agent_assignment_status": "proposed_bindings_to_existing_three_slots",
+  "comics_language_policy": "every_title_carries_hi_en_hinglish_editions_past_and_future"
 }

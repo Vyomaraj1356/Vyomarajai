@@ -188,6 +188,58 @@ def render(root=ROOT):
             f"- outcome recorded: {approval.get('outcome')}",
             '',
         ]
+    publication = record.get('publication_status', {})
+    if publication:
+        rebuilt = publication.get('rebuilt_from_lost_local_commits', {})
+        lines += [
+            '## 5b. Publication status of this record',
+            '',
+            f"Recorded by session: `{publication.get('recorded_by_session')}`.",
+            f"Session branch base: `{publication.get('session_branch_base')}`.",
+            f"Pushed to origin at record time: {yes_no(publication.get('pushed_at_record_time'))}.",
+            f"Publish path: {publication.get('publish_path')}.",
+            f"DR coverage of the merge that carries this record: {publication.get('dr_coverage_of_this_merge')}.",
+            f"Local sync possible from the recording sandbox: {yes_no(publication.get('local_sync_possible_from_this_sandbox'))}.",
+            '',
+        ]
+        if rebuilt:
+            lines += [
+                f"Rebuilt from lost local commits: {rebuilt.get('lost_session')}.",
+                'Rebuilt in this merge:',
+                '',
+            ]
+            for item in rebuilt.get('rebuilt_in_this_merge', []):
+                lines.append(f"- {item}")
+            lines.append('')
+    lines += [
+        '## 5c. The trailing-checkpoint rule (why the newest merge is not a row yet)',
+        '',
+        'This record closes at the last checkpoint that was re-read live as a complete set. The merge that',
+        'publishes this very record is verified by the same workflow immediately after it lands; that',
+        'checkpoint is recorded in the next update and is visible live meanwhile:',
+        '',
+        '```',
+        "gh api repos/Vyomaraj1356/Vyomarajai/commits/main/check-runs --jq '.check_runs[] | select(.name==\"verify-or-sync\") | [.id, .conclusion] | @tsv'",
+        "gh api repos/Vyomaraj1356/Vyomarajai/check-runs/<check_run_id>/annotations --jq '.[] | select(.title==\"DR SNAPSHOT RESULT\") | .message'",
+        '```',
+        '',
+        'A checkpoint that is not yet a row here is not an unverified merge; it is a row waiting for the',
+        'next full-set re-read. No merge is ever silently skipped.',
+        '',
+        '## 5d. Local verification attempt in the recording session',
+        '',
+    ]
+    attempt = record.get('local_verification_attempt', {})
+    if attempt:
+        lines += [
+            f"- Command: `{attempt.get('command')}`",
+            f"- Result: **{attempt.get('result')}** (checked {attempt.get('checked_at_utc', 'at the previously recorded time')})",
+            f"- Explanation: {attempt.get('explanation')}",
+            '',
+            'This is why the record is built from the workflow\'s own public annotations: the Actions credential is the',
+            'authorized reader/writer for the private secondary, and a sandbox 404 is not evidence about the secondary.',
+            '',
+        ]
     lines += [
         '## 6. Scope limits — do not restate otherwise',
         '',

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "title": "Change Desk — Post-deployment Upgrades with Backup and Rollback",
+  "updated": "2026-10-04",
+  "governing_principle": "When Vyomaraj is deployed and live in the market, the owner can give instructions for any change, fix or upgrade. Vyomaraj and Jarvis align internally with ShriYantra, talk to each other and to all the AI agents, make the changes with full version control, test everything separately, check the test results, and upgrade themselves — with the owner's permission. If anything goes wrong, the backup plan engages immediately: roll back the changes and continue with the current version, with no business impact.",
+  "policy": {
+    "authority": "Owner instructions only, through ShriYantra (the authority root). Arena executes approved tasks; it is not the owner or the authority root.",
+    "alignment": "Vyomaraj/Bharath (central intelligence) and Jarvis/Laxman (coordination) align with ShriYantra before any change is planned.",
+    "agent_coordination": "All affected agents are informed and coordinated; no agent changes behaviour silently.",
+    "version_control": "Every change rides a version-controlled branch and commits; nothing overwrites the running version directly.",
+    "separate_testing": "Changes are tested separately from the running business; test results are checked before any upgrade.",
+    "permission_gate": "PENDING_OWNER_PERMISSION — the owner approves the upgrade before it is applied.",
+    "zero_business_impact": "The running business is not interrupted; if the verification fails, the backup plan engages and the current version continues.",
+    "rollback": "Backup first, always: the previous version is snapshotted before any upgrade, and rollback restores it without data loss.",
+    "no_force": "No force-push, no history deletion, no blind two-way overwrite — the same rules as the DR lane."
+  },
+  "change_kinds": ["feature", "fix", "upgrade", "rollback"],
+  "sample_instructions": [
+    {
+      "id": "add-hinglish-comics-lane",
+      "instruction": "Add Hinglish editions to the comics lane for all future versions.",
+      "kind": "feature",
+      "affected_agents": ["ENT-CARTOON-S1", "ENT-CARTOON-S2", "ENT-CARTOON-S3"],
+      "affected_lanes": ["comics"]
+    },
+    {
+      "id": "fix-camera-queue-order",
+      "instruction": "Fix the nostalgic camera queue so the oldest item is reviewed first.",
+      "kind": "fix",
+      "affected_agents": ["Jarvis/Laxman", "Vyomaraj/Bharath"],
+      "affected_lanes": ["approvals"]
+    },
+    {
+      "id": "upgrade-morning-briefing-voice",
+      "instruction": "Upgrade the morning briefing voice with the new family voice pack.",
+      "kind": "upgrade",
+      "affected_agents": ["Jarvis/Laxman", "Finance and auditing agents"],
+      "affected_lanes": ["finance"]
+    }
+  ],
+  "testing_stages": [
+    {"stage": 1, "name": "offline suite", "rule": "all unit and integrity tests pass on the change branch"},
+    {"stage": 2, "name": "separate preview", "rule": "the change runs on a separate preview, never on the live business"},
+    {"stage": 3, "name": "verification gate", "rule": "test results are checked and recorded before the owner is asked for permission"},
+    {"stage": 4, "name": "post-upgrade verification", "rule": "after the upgrade, the same checks confirm the business is healthy; any failure engages the backup plan"}
+  ],
+  "rollback_plan": {
+    "backup_first": "snapshot the current running version before any upgrade",
+    "trigger": "any failed post-upgrade verification",
+    "action": "roll back to the snapshot and continue with the current version",
+    "data": "version control retains the full history; no commit is deleted",
+    "business_impact": "the running business continues on the current version while the failed change is repaired"
+  }
+}

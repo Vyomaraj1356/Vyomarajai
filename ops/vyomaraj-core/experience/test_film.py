@@ -41,7 +41,7 @@ class FilmContentTests(unittest.TestCase):
         self.assertIn('CC_BY_3.0', d['sintel']['rights'])
         self.assertIn('entire credits', d['sintel']['summary'])
 
-    def test_all_content_index_current_and_reads_only_five_packs(self):
+    def test_all_content_index_current_and_reads_only_six_packs(self):
         import rebuild_contents
         original = Path.read_text
         seen = []
@@ -51,7 +51,7 @@ class FilmContentTests(unittest.TestCase):
             return original(path, *args, **kw)
         with patch.object(Path, 'read_text', read):
             content = rebuild_contents.build()
-        self.assertEqual(len(seen), 5)
+        self.assertEqual(len(seen), 6)
         self.assertEqual(content, (planner.CORE / 'handover/EXPERIENCE_CONTENTS_2026_10_03.md').read_text())
 
     def test_no_media_or_connected_provider_claims(self):
@@ -149,10 +149,10 @@ class FilmServerTests(unittest.TestCase):
                 urllib.request.urlopen(self.url + route)
             self.assertEqual(e.exception.code, 404)
 
-    def test_all_contents_includes_four_extensions(self):
+    def test_all_contents_includes_five_extensions(self):
         with urllib.request.urlopen(self.url + '/reports/contents') as r:
             body = r.read().decode()
-            for title in ('Frame &amp; Stage', 'Memory &amp; Melody', 'Bhakti', 'Pairings'):
+            for title in ('Frame &amp; Stage', 'Memory &amp; Melody', 'Bhakti', 'Pairings', 'Chitra Katha'):
                 self.assertIn(title, body)
 
 

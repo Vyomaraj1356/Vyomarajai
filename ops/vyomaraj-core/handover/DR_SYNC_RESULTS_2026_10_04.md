@@ -5,7 +5,7 @@
 ## 1. Scope — what this record does and does not assert
 
 Primary repository: `Vyomaraj1356/Vyomarajai`. Secondary repository: `deepakGoyal1356/Vyomaraj-Agent-6d64e`.
-Main tip covered by this record: `a47f76602b26e7101b55b25a6c51c85a95f47308`.
+Main tip covered by this record: `686c8e0b1c1a40877f5ac46925f1e8db58e77326`.
 Workflow: `.github/workflows/vyomaraj-sync-both.yml` — triggers: push, pull_request, workflow_dispatch, schedule; schedule: `*/30 * * * *` (UTC).
 Recorded scope: Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR.
 
@@ -15,20 +15,15 @@ This is a Git-snapshot replication record. It is **not** a production disaster-r
 
 | Source | SHA256 | What it contributes |
 |---|---|---|
-| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `fff496a02e9957b8236954be986b39f55bf1cddc0a6a328184c012277d70de49` | 14 MATCH checkpoints, 10 replication writes, 1 blocked run, 1 read-only probe |
+| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `dcd6ce0b71885186cab656bbd91de761c79ad2d51a65b94c875db61cb734d0c7` | 15 MATCH checkpoints, 11 replication writes, 1 blocked run, 1 read-only probe |
 | `ops/dr/DR_POLICY.json` | `6090042dc9e05fa1273ba0f0345a6821d633e28c755cac6be806712e7ee222df` | scope flags and the time-boxed one-snapshot removal approval |
-| `.github/workflows/vyomaraj-sync-both.yml` | `f567ee62daacd1d4aa23aec9d6cc0e142891f5feefd4971f9b8581f6b049f398` | triggers and schedule |
+| `.github/workflows/vyomaraj-sync-both.yml` | `db47852d87e6fc3124bba789b4661fad579e18ba4effcc812290e8223b7a5d0a` | triggers and schedule |
 
 Method: All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.
 
-Re-validation: every check-run id in this record was re-read live from the GitHub API; each DR SNAPSHOT annotation was re-parsed and compared with the values stored here. The newest checkpoint (the merge that delivered this rebuild) was recorded from its live annotation in the same pass. Result: all 14 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; no mismatch in status, trees or rollback commits
+Re-validation: every check-run id in this record, including the new checkpoint #15, was re-read live from the GitHub API in one pass; each DR SNAPSHOT annotation was re-parsed and compared with the stored values before this record was rewritten. Result: all 15 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; the 14 previously recorded checkpoints matched their stored annotations, completed times and head shas exactly; no mismatch in status, trees or rollback commits
 
-Timestamp corrections applied during that re-validation (status, trees and rollback commits were unchanged):
-
-- check-run `111379204732`: recorded `2026-10-04T06:31:25Z` → live `2026-10-04T06:31:26Z`
-- check-run `111380439332`: recorded `2026-10-04T06:46:30Z` → live `2026-10-04T06:40:03Z`
-
-## 3. Verification checkpoints (14)
+## 3. Verification checkpoints (15)
 
 A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commit` present means the run replicated (wrote) the snapshot to the secondary; absent means the two snapshots were already identical and the run changed nothing. Trees are shown shortened from the full 40-character values in the record; every row ended `data_match=true`.
 
@@ -48,10 +43,11 @@ A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commi
 | 12 | 2026-10-04T06:40:03Z | `c1d625047056` | #17 | `37183425727` | `111380439332` | MATCH | `1d13c7ee7a50` | `1d13c7ee7a50` | yes (`a979bac5aab9`) |
 | 13 | 2026-10-04T06:44:02Z | `244f5a66cee8` | #18 | `37183619048` | `111380998467` | MATCH | `b6029f977847` | `b6029f977847` | yes (`6a614f7f6706`) |
 | 14 | 2026-10-04T07:18:10Z | `a47f76602b26` | #19 | `37185319991` | `111385960390` | MATCH | `91597533650f` | `91597533650f` | yes (`0216f1a8e93c`) |
+| 15 | 2026-10-04T07:20:56Z | `686c8e0b1c1a` | #20 | `37185458807` | `111386365434` | MATCH | `7fb902cc997d` | `7fb902cc997d` | yes (`f2bfd8a581a3`) |
 
-All 14 rows were re-read from the GitHub API at 2026-10-04T07:18:45Z and matched the values stored in the record.
+All 15 rows were re-read from the GitHub API at 2026-10-04T08:07:00Z and matched the values stored in the record.
 
-## 4. Replication writes (10)
+## 4. Replication writes (11)
 
 | merge | PR | run | check-run | rollback commit (previous secondary tip, retained) |
 |---|---|---|---|---|
@@ -65,6 +61,7 @@ All 14 rows were re-read from the GitHub API at 2026-10-04T07:18:45Z and matched
 | `c1d625047056` | #17 | `37183425727` | `111380439332` | `a979bac5aab924f97f79549d7e46fa202d765f2c` |
 | `244f5a66cee8` | #18 | `37183619048` | `111380998467` | `6a614f7f6706e2564440ebfcf147930b4e5676d1` |
 | `a47f76602b26` | #19 | `37185319991` | `111385960390` | `0216f1a8e93c0e67a92899348230a0cb9a23d684` |
+| `686c8e0b1c1a` | #20 | `37185458807` | `111386365434` | `f2bfd8a581a3064d87a16dc67e7db22c2e8a219a` |
 
 A write replaces the secondary snapshot with the primary snapshot and keeps the previous secondary commit as the rollback parent; no force-push and no history deletion is used.
 
@@ -86,6 +83,45 @@ The approval recorded in `DR_POLICY.json` was narrow by design:
 - approved: no; consumed: yes; reviewed candidate secondary-only paths: 1; expired at 2026-10-06T06:15:52+00:00.
 - expected secondary commit `4363387e94bfe03d6e9364dee4f36345ddca15d3` / tree `ad4321bfa840f43855c05fd99379ca18b78dd374`; fulfilled by run `37182374090`.
 - outcome recorded: MATCH after replication; primary_tree == secondary_tree == 434fc389fa45e80300dac3e7d7bf6387a42bdf0c; rollback_commit 4363387e... retained as parent
+
+## 5b. Publication status of this record
+
+Recorded by session: `arena/01a105da-vyomarajai (third 2026-10-04 session)`.
+Session branch base: `686c8e0b1c1a40877f5ac46925f1e8db58e77326 (merge of PR #20, checkpoint #15 in this record)`.
+Pushed to origin at record time: no.
+Publish path: push arena/01a105da-vyomarajai → pull request → merge to main → the verify-or-sync workflow replicates and verifies main automatically (every push plus the 30-minute schedule).
+DR coverage of the merge that carries this record: the checkpoint for this merge is created by the same workflow after the merge; it is recorded in the next record update and is visible live in the check-run annotations meanwhile.
+Local sync possible from the recording sandbox: no.
+
+Rebuilt from lost local commits: arena/01a105bf-vyomarajai sandbox; its local commits 2430a16 (comics lane) and ac2f741 (status + sharing) were never pushed and did not survive the sandbox deletion; its remote tip 47d0920f is fully merged into main and is byte-identical to main here.
+Rebuilt in this merge:
+
+- comics lane (Chitra Katha, trilingual hi/en/hinglish, preserved past + plannable future versions)
+- handover notepad publication-status section and DR report publication/trailing/local-attempt sections
+- architecture V16.8 (governing principle) with the governance modules (approvals, finance, upgrades)
+
+## 5c. The trailing-checkpoint rule (why the newest merge is not a row yet)
+
+This record closes at the last checkpoint that was re-read live as a complete set. The merge that
+publishes this very record is verified by the same workflow immediately after it lands; that
+checkpoint is recorded in the next update and is visible live meanwhile:
+
+```
+gh api repos/Vyomaraj1356/Vyomarajai/commits/main/check-runs --jq '.check_runs[] | select(.name=="verify-or-sync") | [.id, .conclusion] | @tsv'
+gh api repos/Vyomaraj1356/Vyomarajai/check-runs/<check_run_id>/annotations --jq '.[] | select(.title=="DR SNAPSHOT RESULT") | .message'
+```
+
+A checkpoint that is not yet a row here is not an unverified merge; it is a row waiting for the
+next full-set re-read. No merge is ever silently skipped.
+
+## 5d. Local verification attempt in the recording session
+
+- Command: `python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e`
+- Result: **BLOCKED (HTTP 404 hidden by permissions)** (checked 2026-10-04T08:07:38Z)
+- Explanation: Re-attempted by the recording session (arena/01a105da-vyomarajai) with the same result: the Arena GitHub integration credential cannot see the private secondary; this is the documented reason the workflow uses a separate Actions credential (VYOMARAJ_PAT). A 404 does not imply the secondary is missing, and no write was attempted.
+
+This is why the record is built from the workflow's own public annotations: the Actions credential is the
+authorized reader/writer for the private secondary, and a sandbox 404 is not evidence about the secondary.
 
 ## 6. Scope limits — do not restate otherwise
 

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "title": "Owner Approvals — Central Nostalgic Camera",
+  "updated": "2026-10-04",
+  "governing_principle": "You (Owner) → ShriYantra (authority and control) → Vyomaraj/Bharath (central intelligence) + Jarvis/Laxman (coordination and content movement) → agents and sub-agents → content creation and verification → THIS QUEUE → approved publishing → social platforms → analytics and monetization → learning and improvement. Hermes guards integrity and recovery across the entire process. Arena executes approved tasks; it is not the owner or the authority root.",
+  "camera": {
+    "id": "central-nostalgic-camera",
+    "style": "Wooden old-style shutter camera — nostalgic look",
+    "interaction": "Published candidates arrive in a queue shown as a dropdown. When the owner picks one, the wooden shutter opens, the item's video and sound play for review, and the owner takes the appropriate action.",
+    "playback": "Local review payload only: video and sound play as described metadata in this prototype. No media is hosted, uploaded or streamed.",
+    "shutter": "opens on pick, closes on decision"
+  },
+  "owner": {
+    "identity": "Deepak Goyal (Vyomarajai@gmail.com) — Owner primary locked",
+    "authority_root": "ShriYantra",
+    "buddies": {
+      "left": "Jarvis/Laxman — coordination and content movement",
+      "right": "Vyomaraj/Bharath — central intelligence",
+      "rule": "Vyomaraj and Jarvis always notify the owner for every decision point, every morning briefing and every escalation."
+    }
+  },
+  "decisions": ["approve", "reject", "rework", "submit"],
+  "decision_meanings": {
+    "approve": "Owner approves the item for the publishing gate (still recorded, never auto-published).",
+    "reject": "Owner rejects the item; the reason is kept and the creating agents are notified.",
+    "rework": "Owner requests changes; the item returns to the creating agents and comes back through the same approval cycle.",
+    "submit": "Owner submits additional instructions with the item and it stays in the cycle until explicitly approved or rejected."
+  },
+  "voice_instructions": {
+    "enabled": true,
+    "loop": "Owner speaks an instruction with the decision → the instruction is attached to the decision record → agents rework accordingly → the item resubmits → the same camera approval cycle repeats.",
+    "transcripts_in_preview": "typed_text_only_no_voice_capture"
+  },
+  "notifications": {
+    "policy": "Vyomaraj and Jarvis always notify the owner",
+    "channels": ["voice", "email", "text", "whatsapp"],
+    "sent_in_preview": false
+  },
+  "publishing": {
+    "enabled": false,
+    "gate": "PENDING_OWNER_PERMISSION",
+    "rule": "Nothing is published by this prototype. Approval records are planning metadata only."
+  },
+  "queue": [
+    {
+      "id": "comics-monsoon-post-issue",
+      "lane": "comics",
+      "title": "Chitra Katha — The Monsoon Post (issue plan)",
+      "languages": ["hi", "en", "hinglish"],
+      "version_line": "past v1/v2 preserved · future v3/v4 plannable",
+      "created_by": {"vyomaraj": "deterministic comics router", "jarvis": "deterministic comics review"},
+      "status": "awaiting_owner",
+      "review_payload": {
+        "video_note": "Panel-by-panel issue plan: cold open, two acts, climax, ending hook — trilingual lettering matrix attached.",
+        "sound_note": "Hindi and Hinglish caption read-through drafts attached for the sound check.",
+        "duration_seconds": 210,
+        "description": "Original proposal — no published character, artwork or voice is used."
+      }
+    },
+    {
+      "id": "film-monsoon-outline",
+      "lane": "film",
+      "title": "Frame & Stage — original short outline (Monsoon premise)",
+      "languages": ["Marathi", "Hindi", "English"],
+      "version_line": "first outline",
+      "created_by": {"vyomaraj": "deterministic film router", "jarvis": "deterministic film review"},
+      "status": "awaiting_owner",
+      "review_payload": {
+        "video_note": "Timed story beats with stage cues; no reference footage inserted.",
+        "sound_note": "Original dialogue samples in Marathi, Hindi and English.",
+        "duration_seconds": 300,
+        "description": "Outline budgets, not finished media."
+      }
+    },
+    {
+      "id": "music-memory-programme",
+      "lane": "music",
+      "title": "Memory & Melody — 30-minute radio programme plan",
+      "languages": ["Hindi", "English"],
+      "version_line": "first rundown",
+      "created_by": {"vyomaraj": "deterministic music router", "jarvis": "deterministic music review"},
+      "status": "awaiting_owner",
+      "review_payload": {
+        "video_note": "Timed editorial rundown with source credits; no playback attached.",
+        "sound_note": "Presenter commentary plan; no licensed recording attached.",
+        "duration_seconds": 1800,
+        "description": "Editorial slot budgets, not measured track lengths."
+      }
+    }
+  ],
+  "escalation": {
+    "finance_and_audit": "Jarvis and Vyomaraj always follow up with the Finance and auditing agents; payment follow-up and morning briefings live in /finance/.",
+    "change_management": "Post-deployment changes follow /upgrades/: owner instruction → ShriYantra alignment → agent coordination → version-controlled change → separate testing → permission → upgrade, with backup plan and rollback on failure."
+  }
+}

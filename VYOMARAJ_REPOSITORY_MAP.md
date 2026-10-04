@@ -1,8 +1,8 @@
 # Vyomaraj repository map — confirmation required for DR
 
 - **Primary source:** `Vyomaraj1356/Vyomarajai`, branch `main`.
-- **This repair branch:** `arena/01a10140-vyomarajai`.
-- **Secondary:** UNCONFIRMED. Do not infer it from a 404 or select a spelling silently.
+- **Current session branch:** `arena/01a105da-vyomarajai` (earlier repair branch: `arena/01a10140-vyomarajai`).
+- **Secondary (snapshot replication target): CONFIRMED in use** — `deepakGoyal1356/Vyomaraj-Agent-6d64e`, recorded in `ops/dr/DR_POLICY.json` and evidenced by the 15 MATCH checkpoints in `ops/dr/DEPLOYED_MATCH_2026_10_04.json` (each re-read live from the GitHub API; latest: merge #20, check-run 111386365434, rollback parent f2bfd8a5… retained). Confirmation basis: the primary's own Actions workflow annotations, not a 404 inference. A sandbox credential that cannot see the private secondary does not disprove it.
 - **Authoritative setting after confirmation:** primary repository Actions variable `VYOMARAJ_DR_REPO`.
 - **Write approval:** `VYOMARAJ_DR_SYNC_ENABLED=true` only after a successful authorized access check and review of exact-snapshot behavior.
 

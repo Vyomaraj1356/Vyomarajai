@@ -1,8 +1,8 @@
 # Vyomaraj — All Experience Contents
 
-**Updated 3 October 2026 · Review-branch local studio**
+**Updated 4 October 2026 · Review-branch local studio**
 
-This index lists all content records in the four new editorial extensions. It is not all 421 canonical product titles, all historical archives or a complete world catalogue. Detailed metadata, source review basis and recipes remain in each allowlisted content.json and experience viewer.
+This index lists all content records in the five new editorial extensions. It is not all 421 canonical product titles, all historical archives or a complete world catalogue. Detailed metadata, source review basis and recipes remain in each allowlisted content.json and experience viewer.
 
 | Experience | Viewer | Detailed report |
 |---|---|---|
@@ -10,12 +10,13 @@ This index lists all content records in the four new editorial extensions. It is
 | Memory & Melody | /music/ | /reports/music |
 | Bhakti-Shakti | /bhakti/ | /reports/bhakti |
 | Roots & Pairings | /pairings/ | liquor-bar/README.md |
+| Chitra Katha (comics) | /comics/ | /reports/contents |
 
-Repeatable metadata discovery and review: /research/. Integrated connection, configuration and DR follow-up report: /reports/research. Discovery queue records are separate from the four editorial packs and are not new canonical products. Public API runtime checks are blocked; SearXNG/Ollama and the opt-in daily schedule are not active.
+Repeatable metadata discovery and review: /research/. Integrated connection, configuration and DR follow-up report: /reports/research. Discovery queue records are separate from the five editorial packs and are not new canonical products. Public API runtime checks are blocked; SearXNG/Ollama and the opt-in daily schedule are not active.
 
-Current system inventory: /reports/. Owner-approved hierarchy: /agents/ and /reports/agents. Education and Government Schemes: /education/. Historical audit: /reports/history. Music and Movie slot bindings are proposals; canonical names remain UNKNOWN. BHAKTI child mapping remains UNMAPPED. Current structure: 13 categories, 128 counted slots and six uncounted headings. The immutable source snapshot still reports 133 slots / 421 products and the historical catalog lists 32 files; current product reallocation is unreconciled.
+Current system inventory: /reports/. Owner-approved hierarchy: /agents/ and /reports/agents. Education and Government Schemes: /education/. Historical audit: /reports/history. Music, Movie and Cartoon slot bindings are proposals; canonical names remain UNKNOWN. BHAKTI child mapping remains UNMAPPED. Current structure: 13 categories, 128 counted slots and six uncounted headings. The immutable source snapshot still reports 133 slots / 421 products and the historical catalog lists 32 files; current product reallocation is unreconciled.
 
-Local capabilities: discovery, food rotation/steps/preferences, deterministic Vyomaraj/Jarvis plans, authorized-file audio/video playback, local trim/reorder/sequence preview and edit-decision export. No commercial media hosting, external AI renderer, automatic publication, production release or verified DR is claimed.
+Local capabilities: discovery, food rotation/steps/preferences, deterministic Vyomaraj/Jarvis plans, authorized-file audio/video playback, local trim/reorder/sequence preview and edit-decision export, trilingual comics planning with preserved past and plannable future versions. No commercial media hosting, external AI renderer, automatic publication, production release or verified DR is claimed.
 
 ## Aghor & Aghori — later requested Bhakti sub-agent
 
@@ -181,6 +182,34 @@ Period 2025; published 2026-02-19; dated annual snapshot, not live.
 - 3. Ordinary — Alex Warren
 - 4. Die With A Smile — Lady Gaga, Bruno Mars
 - 5. Beautiful Things — Benson Boone
+
+## Chitra Katha (comics) — trilingual editions, past and future versions
+
+Existing slots ENT-CARTOON-S1–S3; canonical names UNKNOWN; proposed functional bindings only. Every original title carries Hindi, English and Hinglish editions; past editions are preserved in history and future editions stay plannable. Heritage publishers (Amar Chitra Katha, Tinkle, Chacha Chaudhary, Raj Comics, Indrajal, Chandamama) are context references only — no characters, artwork or stories are copied.
+
+| Existing slot | Proposed function |
+|---|---|
+| ENT-CARTOON-S1 | Heritage & mythology comics discovery (Indian comics-history context) — canonical name UNKNOWN |
+| ENT-CARTOON-S2 | Humour strips & cartoon panels — canonical name UNKNOWN |
+| ENT-CARTOON-S3 | Original series, trilingual editions & version lineage — canonical name UNKNOWN |
+
+| ID | Title | Kind | Era | Summary |
+|---|---|---|---|---|
+| amar-chitra-katha | Amar Chitra Katha (heritage context) | heritage-reference | heritage | Indian comics-history context: the mythology and history comic-book tradition since 1967. Referenced for context only; no characters, artwork or stories are copied, and no affiliation is claimed. |
+| tinkle | Tinkle (heritage context) | heritage-reference | heritage | Children's humour-digest tradition since 1980. Referenced for context only; no characters, artwork or stories are copied. |
+| chacha-chaudhary | Chacha Chaudhary (heritage context) | heritage-reference | heritage | Hindi humour-strip tradition since 1971. Referenced for context only; the character and art belong to their creators and are never copied or imitated here. |
+| raj-comics | Raj Comics (heritage context) | heritage-reference | heritage | Indian superhero comic line since 1986. Referenced for context only; no characters, artwork or stories are copied. |
+| indrajal-comics | Indrajal Comics (heritage context) | heritage-reference | heritage | Newspaper comic-book tradition 1964–1984, including licensed foreign characters. Referenced for context only; licensed characters are never copied or adapted. |
+| chandamama | Chandamama (heritage context) | heritage-reference | heritage | Children's mythology-magazine tradition 1947–2013 across many Indian languages. Referenced for context only; no stories or artwork are copied. |
+| vayu-sena | Vayu Sena | original-hero | proposal | Original sky-guardian hero proposal: a young flyer who protects the monsoon skies above a growing city. Entirely original; not based on any published character. |
+| mithai-marg | Mithai Marg | food-comic | proposal | Original sweet-street humour strip: a mithai shop lane where every shop competes for the morning crowd. Entirely original; not based on any published strip. |
+| saptarishi-files | The Saptarishi Files | mythology-mystery | proposal | Original mythology-mystery proposal: seven young researchers follow clues left by the seven sages. Respectful of traditions; no scripture text is reproduced and no claim is made about living teachers. |
+| meter-down | Meter Down | humour-strip | proposal | Original auto-rickshaw detective humour strip: by day a driver, by evening a curious solver of small street mysteries. Entirely original; not based on any published character. |
+| aakash-ganga-patrol | Aakash Ganga Patrol | space-comic | proposal | Original space-patrol proposal: a small crew watching over a quiet stretch of the Milky Way. Astronomy facts are checked; the crew and story are entirely original. |
+| rani-ki-rasoi | Rani ki Rasoi | farm-comic | proposal | Original farm-to-table heroine proposal: Rani follows her food from seed to plate and rebuilds her family kitchen lane. Entirely original; food facts require review like every recipe lane. |
+
+Every original entry additionally lists its hi/en/hinglish editions and its preserved-past + plannable-future version line in the pack and the /comics/ viewer.
+
 
 ## Bhakti-Shakti
 
@@ -382,3 +411,12 @@ Per-record attribution is retained in the corresponding pack; research is not ne
 - Official Oktoberfest — history — [1](https://www.oktoberfest.de/en/magazine/tradition/the-history-of-oktoberfest)
 - Official Oktoberfest — visitor FAQ — [2](https://www.oktoberfest.de/en/information/service-for-visitors/faqs-for-wiesn-visitors)
 - WHO — alcohol and health risk — [1](https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health)
+
+### Chitra Katha
+
+- Amar Chitra Katha — history and context — [1] Wikipedia: Amar Chitra Katha
+- Tinkle — history and context — [2] Wikipedia: Tinkle
+- Chacha Chaudhary — history and context — [3] Wikipedia: Chacha Chaudhary
+- Raj Comics — history and context — [4] Wikipedia: Raj Comics
+- Indrajal Comics — history and context — [5] Wikipedia: Indrajal Comics
+- Chandamama — history and context — [6] Wikipedia: Chandamama

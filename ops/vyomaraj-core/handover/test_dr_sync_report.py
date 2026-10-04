@@ -58,6 +58,32 @@ class DrSyncReportTests(unittest.TestCase):
             self.assertIn(path.relative_to(dr.ROOT).as_posix(), self.text)
             self.assertIn(dr.digest(path), self.text)
 
+    def test_publication_status_section_reports_the_record_not_a_wish(self):
+        publication = self.record['publication_status']
+        self.assertFalse(publication['pushed_at_record_time'])
+        self.assertFalse(publication['local_sync_possible_from_this_sandbox'])
+        self.assertIn('## 5b. Publication status of this record', self.text)
+        self.assertIn(publication['recorded_by_session'], self.text)
+        self.assertIn('→ pull request → merge to main', self.text)
+        for item in publication['rebuilt_from_lost_local_commits']['rebuilt_in_this_merge']:
+            self.assertIn(item, self.text)
+        self.assertIn('2430a16', self.text)
+        self.assertIn('ac2f741', self.text)
+
+    def test_trailing_checkpoint_rule_is_stated_with_a_live_command(self):
+        self.assertIn('## 5c. The trailing-checkpoint rule', self.text)
+        self.assertIn('not an unverified merge', self.text)
+        self.assertIn('commits/main/check-runs', self.text)
+        self.assertIn('DR SNAPSHOT RESULT', self.text)
+
+    def test_local_verification_attempt_is_reported_as_blocked(self):
+        attempt = self.record['local_verification_attempt']
+        self.assertIn('BLOCKED', attempt['result'])
+        self.assertIn('## 5d. Local verification attempt', self.text)
+        self.assertIn(attempt['command'], self.text)
+        self.assertIn('404', self.text)
+        self.assertIn('not evidence about the secondary', self.text)
+
     def test_no_secret_like_values(self):
         lowered = self.text.lower()
         for marker in ('ghp_', 'github_pat_', 'token=', 'password', 'secret='):

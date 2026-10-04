@@ -30,7 +30,11 @@ EXPERIENCES = [('Aghor & Aghori', '/aghor/', 'aghor-experience'),
                ('Bhakti-Shakti', '/bhakti/', 'bhakti-experience'),
                ('Roots & Pairings (no-alcohol by default)', '/pairings/', 'liquor-bar'),
                ('Music & media', '/music/', 'music-experience'),
-               ('Film & stage', '/film/', 'film-experience')]
+               ('Film & stage', '/film/', 'film-experience'),
+               ('Chitra Katha comics (trilingual hi/en/hinglish, past+future versions)', '/comics/', 'comics-experience')]
+GOVERNANCE_MODULES = [('Owner approvals — central nostalgic camera', '/approvals/', 'approvals'),
+                      ('Finance & audit follow-up + morning briefing', '/finance/', 'finance'),
+                      ('Change management with backup and rollback', '/upgrades/', 'upgrades')]
 EVIDENCE = [('Preview verification', HERE / 'PREVIEW_VERIFICATION_2026_10_04.json'),
             ('Primary-secondary verification', OPS / 'dr/DEPLOYED_MATCH_2026_10_04.json'),
             ('Failover drill 2026-10-03', OPS / 'availability/LOCAL_FAILOVER_DRILL_2026_10_03.json'),
@@ -155,6 +159,12 @@ def render(root=ROOT):
     ]
     for label, route, directory in EXPERIENCES:
         lines.append(f'| {label} (`{route}`) | {experience_summary(directory)} |')
+    lines += ['', '### Governance modules (V16.8 architecture)', '',
+              '| Module | Route | Files |', '|---|---|---|']
+    for label, route, directory in GOVERNANCE_MODULES:
+        path = CORE / directory
+        files = ', '.join(sorted(f.name for f in path.glob('*.py') if f.name.startswith('test_') or f.name != '__pycache__'))
+        lines.append(f'| {label} (`{route}`) | `{directory}` | {files} |')
     packs = ', '.join(f"{p['path']} ({p['module_count']} files)" for p in catalog['packs'])
     lines += [
         '',

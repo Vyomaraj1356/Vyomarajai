@@ -20,12 +20,12 @@ REPORT = HERE / 'PREVIEW_VERIFICATION_2026_10_04.json'
 MANIFEST = HERE / 'TRANSFER_MANIFEST_2026_10_04.json'
 NOTE = HERE / 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_TRANSFER_2026_10_04.zip'
-VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/build',
+VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/build', '/reports/architecture',
                  '/reports/next-session', '/reports/handover-notepad', '/reports/dr-sync',
                  '/reports/recovery', '/reports/download/next-session.txt',
                  '/reports/download/handover-notepad.txt',
                  '/reports/download/transfer-package.zip', '/not-an-allowlisted-route']
-GATEWAY_ROUTES = ['/aghor/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
+GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
                   '/reports/dr-sync', '/reports/recovery', '/reports/download/handover-notepad.txt',
                   '/reports/agents', '/sovereign/', '/contracts/', '/not-an-allowlisted-route']
 

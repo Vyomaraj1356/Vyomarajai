@@ -1,0 +1,672 @@
+{
+  "schema_version": 1,
+  "title": "Chitra Katha",
+  "updated": "2026-10-04",
+  "scope": {
+    "media_rendered": false,
+    "artwork_generated": false,
+    "characters_copied": false,
+    "provider_connected": false,
+    "publishing_connected": false
+  },
+  "ownership": {
+    "category_id": "ENTERTAINMENT",
+    "existing_group": "ENT-CARTOON-S1-S3",
+    "additional_agents_created": 0,
+    "canonical_names": "UNKNOWN",
+    "assignments": "proposals_not_recovered_historical_names"
+  },
+  "language_policy": {
+    "required_edition_languages": [
+      "hi",
+      "en",
+      "hinglish"
+    ],
+    "labels": {
+      "hi": "Hindi (Devanagari)",
+      "en": "English",
+      "hinglish": "Hinglish (Hindi–English mix, Roman script)"
+    },
+    "rule": "Every title and every edition carries all three language versions — Hindi, English and Hinglish — in past and future versions alike. No edition is published in one language only.",
+    "translation_review": "Native-language review is required for each edition before any release."
+  },
+  "version_policy": {
+    "past_versions": "preserved_in_history_never_overwritten",
+    "future_versions": "plannable_extensions_of_the_same_line",
+    "rule": "Past editions stay readable as history; future editions are added as new versions. Versions are never silently merged or deleted.",
+    "edition_languages_apply_to_all_versions": true
+  },
+  "agents": [
+    {
+      "slot": "ENT-CARTOON-S1",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Heritage & mythology comics discovery (Indian comics-history context)",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "heritage-reference"
+      ]
+    },
+    {
+      "slot": "ENT-CARTOON-S2",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Humour strips & cartoon panels",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "humour-strip"
+      ]
+    },
+    {
+      "slot": "ENT-CARTOON-S3",
+      "canonical_name": "UNKNOWN",
+      "proposed_label": "Original series, trilingual editions & version lineage",
+      "assignment_status": "proposed_functional_binding",
+      "kinds": [
+        "original-hero",
+        "mythology-mystery",
+        "space-comic",
+        "food-comic",
+        "farm-comic",
+        "edition",
+        "version"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "amar-chitra-katha",
+      "kind": "heritage-reference",
+      "era": "heritage",
+      "title": "Amar Chitra Katha (heritage context)",
+      "language": "English / Hindi",
+      "summary": "Indian comics-history context: the mythology and history comic-book tradition since 1967. Referenced for context only; no characters, artwork or stories are copied, and no affiliation is claimed.",
+      "rights": "Third-party publisher; reference only, no copy or adaptation",
+      "source_ids": [
+        "wiki-ack"
+      ]
+    },
+    {
+      "id": "tinkle",
+      "kind": "heritage-reference",
+      "era": "heritage",
+      "title": "Tinkle (heritage context)",
+      "language": "English",
+      "summary": "Children's humour-digest tradition since 1980. Referenced for context only; no characters, artwork or stories are copied.",
+      "rights": "Third-party publisher; reference only, no copy or adaptation",
+      "source_ids": [
+        "wiki-tinkle"
+      ]
+    },
+    {
+      "id": "chacha-chaudhary",
+      "kind": "heritage-reference",
+      "era": "heritage",
+      "title": "Chacha Chaudhary (heritage context)",
+      "language": "Hindi",
+      "summary": "Hindi humour-strip tradition since 1971. Referenced for context only; the character and art belong to their creators and are never copied or imitated here.",
+      "rights": "Third-party publisher; reference only, no copy or adaptation",
+      "source_ids": [
+        "wiki-chacha"
+      ]
+    },
+    {
+      "id": "raj-comics",
+      "kind": "heritage-reference",
+      "era": "heritage",
+      "title": "Raj Comics (heritage context)",
+      "language": "Hindi",
+      "summary": "Indian superhero comic line since 1986. Referenced for context only; no characters, artwork or stories are copied.",
+      "rights": "Third-party publisher; reference only, no copy or adaptation",
+      "source_ids": [
+        "wiki-raj"
+      ]
+    },
+    {
+      "id": "indrajal-comics",
+      "kind": "heritage-reference",
+      "era": "heritage",
+      "title": "Indrajal Comics (heritage context)",
+      "language": "English",
+      "summary": "Newspaper comic-book tradition 1964–1984, including licensed foreign characters. Referenced for context only; licensed characters are never copied or adapted.",
+      "rights": "Third-party publisher; reference only, no copy or adaptation",
+      "source_ids": [
+        "wiki-indrajal"
+      ]
+    },
+    {
+      "id": "chandamama",
+      "kind": "heritage-reference",
+      "era": "heritage",
+      "title": "Chandamama (heritage context)",
+      "language": "Telugu / Tamil / Hindi and more",
+      "summary": "Children's mythology-magazine tradition 1947–2013 across many Indian languages. Referenced for context only; no stories or artwork are copied.",
+      "rights": "Third-party publisher; reference only, no copy or adaptation",
+      "source_ids": [
+        "wiki-chandamama"
+      ]
+    },
+    {
+      "id": "vayu-sena",
+      "kind": "original-hero",
+      "era": "proposal",
+      "title": "Vayu Sena",
+      "language": "hi / en / hinglish",
+      "summary": "Original sky-guardian hero proposal: a young flyer who protects the monsoon skies above a growing city. Entirely original; not based on any published character.",
+      "credits": "Original Vyomaraj proposal",
+      "language_editions": {
+        "hi": {
+          "title": "वायु सेना",
+          "tagline": "आसमान का रखवाला"
+        },
+        "en": {
+          "title": "Vayu Sena",
+          "tagline": "Guardian of the Sky"
+        },
+        "hinglish": {
+          "title": "Vayu Sena",
+          "tagline": "Aasmaan ka rakshak — sky ka guard"
+        }
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Concept draft v1 (single-language sketch)",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          },
+          {
+            "edition": 2,
+            "label": "Trilingual rewrite v2",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 3,
+            "label": "Issue 3 proposal — monsoon arc",
+            "status": "plannable"
+          },
+          {
+            "edition": 4,
+            "label": "Future special edition — Diwali sky festival",
+            "status": "plannable"
+          }
+        ]
+      },
+      "source_ids": [
+        "wiki-ack",
+        "wiki-raj"
+      ]
+    },
+    {
+      "id": "mithai-marg",
+      "kind": "food-comic",
+      "era": "proposal",
+      "title": "Mithai Marg",
+      "language": "hi / en / hinglish",
+      "summary": "Original sweet-street humour strip: a mithai shop lane where every shop competes for the morning crowd. Entirely original; not based on any published strip.",
+      "credits": "Original Vyomaraj proposal",
+      "language_editions": {
+        "hi": {
+          "title": "मिठाई मार्ग",
+          "tagline": "गली की मीठी होड़"
+        },
+        "en": {
+          "title": "Mithai Marg",
+          "tagline": "The Sweet Street Rivalry"
+        },
+        "hinglish": {
+          "title": "Mithai Marg",
+          "tagline": "Gali ki meethi race"
+        }
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Three-panel pilot strip",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 2,
+            "label": "Weekly strip run proposal",
+            "status": "plannable"
+          },
+          {
+            "edition": 3,
+            "label": "Festival-special collection",
+            "status": "plannable"
+          }
+        ]
+      },
+      "source_ids": [
+        "wiki-tinkle"
+      ]
+    },
+    {
+      "id": "saptarishi-files",
+      "kind": "mythology-mystery",
+      "era": "proposal",
+      "title": "The Saptarishi Files",
+      "language": "hi / en / hinglish",
+      "summary": "Original mythology-mystery proposal: seven young researchers follow clues left by the seven sages. Respectful of traditions; no scripture text is reproduced and no claim is made about living teachers.",
+      "credits": "Original Vyomaraj proposal",
+      "language_editions": {
+        "hi": {
+          "title": "सप्तरिषि फ़ाइलें",
+          "tagline": "सात ऋषि, सात सुराग़"
+        },
+        "en": {
+          "title": "The Saptarishi Files",
+          "tagline": "Seven sages, seven clues"
+        },
+        "hinglish": {
+          "title": "The Saptarishi Files",
+          "tagline": "Saat rishi, saat clues — mythology ka mystery mode"
+        }
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Outline draft v1",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          },
+          {
+            "edition": 2,
+            "label": "Research-checked outline v2",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 3,
+            "label": "Case-of-the-week proposal",
+            "status": "plannable"
+          }
+        ]
+      },
+      "source_ids": [
+        "wiki-ack",
+        "wiki-chandamama"
+      ]
+    },
+    {
+      "id": "meter-down",
+      "kind": "humour-strip",
+      "era": "proposal",
+      "title": "Meter Down",
+      "language": "hi / en / hinglish",
+      "summary": "Original auto-rickshaw detective humour strip: by day a driver, by evening a curious solver of small street mysteries. Entirely original; not based on any published character.",
+      "credits": "Original Vyomaraj proposal",
+      "language_editions": {
+        "hi": {
+          "title": "मीटर डाउन",
+          "tagline": "ऑटो जासूस"
+        },
+        "en": {
+          "title": "Meter Down",
+          "tagline": "The Auto Detective"
+        },
+        "hinglish": {
+          "title": "Meter Down",
+          "tagline": "Auto wala detective — meter down, mystery up"
+        }
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Four-panel pilot",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 2,
+            "label": "Daily strip proposal",
+            "status": "plannable"
+          },
+          {
+            "edition": 3,
+            "label": "Guest-character season (originals only)",
+            "status": "plannable"
+          }
+        ]
+      },
+      "source_ids": [
+        "wiki-chacha"
+      ]
+    },
+    {
+      "id": "aakash-ganga-patrol",
+      "kind": "space-comic",
+      "era": "proposal",
+      "title": "Aakash Ganga Patrol",
+      "language": "hi / en / hinglish",
+      "summary": "Original space-patrol proposal: a small crew watching over a quiet stretch of the Milky Way. Astronomy facts are checked; the crew and story are entirely original.",
+      "credits": "Original Vyomaraj proposal",
+      "language_editions": {
+        "hi": {
+          "title": "आकाशगंगा पहरा",
+          "tagline": "आकाशगंगा की रखवाली"
+        },
+        "en": {
+          "title": "Aakash Ganga Patrol",
+          "tagline": "Watching the Milky Way"
+        },
+        "hinglish": {
+          "title": "Aakash Ganga Patrol",
+          "tagline": "Galaxy ki guarding — aakash ganga pe patrol"
+        }
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Concept draft v1",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 2,
+            "label": "First mission arc proposal",
+            "status": "plannable"
+          },
+          {
+            "edition": 3,
+            "label": "Telescope-special edition (fact-checked)",
+            "status": "plannable"
+          }
+        ]
+      },
+      "source_ids": [
+        "wiki-ack"
+      ]
+    },
+    {
+      "id": "rani-ki-rasoi",
+      "kind": "farm-comic",
+      "era": "proposal",
+      "title": "Rani ki Rasoi",
+      "language": "hi / en / hinglish",
+      "summary": "Original farm-to-table heroine proposal: Rani follows her food from seed to plate and rebuilds her family kitchen lane. Entirely original; food facts require review like every recipe lane.",
+      "credits": "Original Vyomaraj proposal",
+      "language_editions": {
+        "hi": {
+          "title": "रानी की रसोई",
+          "tagline": "खेत से थाली तक"
+        },
+        "en": {
+          "title": "Rani ki Rasoi",
+          "tagline": "From Farm to Plate"
+        },
+        "hinglish": {
+          "title": "Rani ki Rasoi",
+          "tagline": "Khet se thali tak — farm-to-table desi style"
+        }
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Concept draft v1",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 2,
+            "label": "Harvest arc proposal",
+            "status": "plannable"
+          },
+          {
+            "edition": 3,
+            "label": "Recipe-collection special (reviewed recipes only)",
+            "status": "plannable"
+          }
+        ]
+      },
+      "source_ids": [
+        "wiki-tinkle",
+        "wiki-chandamama"
+      ]
+    }
+  ],
+  "formats": [
+    {
+      "id": "strip",
+      "title": "Newspaper strip",
+      "default_panels": 4,
+      "beats": [
+        "Set-up",
+        "Gag",
+        "Payoff"
+      ]
+    },
+    {
+      "id": "oneshot",
+      "title": "One-shot story",
+      "default_panels": 16,
+      "beats": [
+        "Opening",
+        "Development",
+        "Turn",
+        "Payoff"
+      ]
+    },
+    {
+      "id": "issue",
+      "title": "Full issue",
+      "default_panels": 32,
+      "beats": [
+        "Cold open",
+        "Act one",
+        "Act two",
+        "Climax",
+        "Ending hook"
+      ]
+    },
+    {
+      "id": "graphic-novel",
+      "title": "Graphic novel outline",
+      "default_panels": 128,
+      "beats": [
+        "Part one",
+        "Part two",
+        "Part three",
+        "Part four",
+        "Epilogue"
+      ]
+    }
+  ],
+  "original_seeds": {
+    "monsoon-post": {
+      "title": "The Monsoon Post",
+      "premise": "The first monsoon cloud arrives over the city the same morning the old rooftop letter-box disappears. A young guardian of the skies must follow the rain to find it before the last letter is lost.",
+      "editions": {
+        "hi": {
+          "title": "मानसून पोस्ट",
+          "tagline": "पहली बारिश की कहानी"
+        },
+        "en": {
+          "title": "The Monsoon Post",
+          "tagline": "A first-rain story"
+        },
+        "hinglish": {
+          "title": "The Monsoon Post",
+          "tagline": "Pehli baarish ki kahani"
+        }
+      },
+      "captions": {
+        "English": [
+          "Panel 1 — The morning the first cloud crossed the river…",
+          "Panel 2 — …the old letter-box on the rooftop was gone.",
+          "Panel 3 — 'One letter is still inside,' said the watchman. 'It has waited forty years.'",
+          "Panel 4 — The guardian of the skies looked up. 'Then the rain and I have work to do.'"
+        ],
+        "Hindi": [
+          "पैनल 1 — जिस सुबह पहला बादल नदी पार आया…",
+          "पैनल 2 — …उसी सुबह छत पर पुराना लेटर-बॉक्स गायब था।",
+          "पैनल 3 — 'अंदर एक चिट्ठी अब भी है,' चौकीदार ने कहा। 'चालीस साल से इंतज़ार में है।'",
+          "पैनल 4 — आसमान के रखवाले ने ऊपर देखा। 'तो बारिश और हम, दोनों को काम करना होगा।'"
+        ],
+        "Hinglish": [
+          "Panel 1 — Jis subah pehla baadal nadi paar aaya…",
+          "Panel 2 — …usi subah chatt purani letter-box gayab thi.",
+          "Panel 3 — 'Andar ek chitthi ab bhi hai,' chowkidar ne kaha. 'Chalis saal se intezaar mein hai.'",
+          "Panel 4 — Aasman ke rakshak ne upar dekha. 'Toh baarish aur hum — dono ko kaam karna hoga.'"
+        ]
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Concept draft v1 (English only, single pass)",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          },
+          {
+            "edition": 2,
+            "label": "Trilingual rewrite v2 (hi / en / hinglish)",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 3,
+            "label": "Issue proposal — monsoon arc part one",
+            "status": "plannable"
+          },
+          {
+            "edition": 4,
+            "label": "Future special edition — first-rain festival",
+            "status": "plannable"
+          }
+        ]
+      }
+    },
+    "first-flight": {
+      "title": "First Flight",
+      "premise": "A courier girl who has never left her lane is trusted with the city's first solar glider for one evening. Every rooftop wants a delivery; only one parcel matters.",
+      "editions": {
+        "hi": {
+          "title": "पहली उड़ान",
+          "tagline": "एक शाम, एक पार्सल"
+        },
+        "en": {
+          "title": "First Flight",
+          "tagline": "One evening, one parcel"
+        },
+        "hinglish": {
+          "title": "First Flight",
+          "tagline": "Ek shaam, ek parcel"
+        }
+      },
+      "captions": {
+        "English": [
+          "Panel 1 — The glider arrived on a cart, folded like a tired bird.",
+          "Panel 2 — 'Only one evening,' said the mechanic. 'Only one parcel that matters.'",
+          "Panel 3 — She had never flown. The lane had never been quiet.",
+          "Panel 4 — Both changed at sunset."
+        ],
+        "Hindi": [
+          "पैनल 1 — ग्लाइडर एक ठेले पर आया, थकी चिड़िया की तरह जुड़ा हुआ।",
+          "पैनल 2 — 'सिर्फ़ एक शाम,' मिस्त्री ने कहा। 'और सिर्फ़ एक पार्सल जो मायने रखता है।'",
+          "पैनल 3 — उसने कभी उड़ान नहीं भरी थी। गली कभी शांत नहीं हुई थी।",
+          "पैनल 4 — दोनों बदल गए, सूर्यास्त के साथ।"
+        ],
+        "Hinglish": [
+          "Panel 1 — Glider ek thele par aaya, thaki chidiya ki tarah juda hua.",
+          "Panel 2 — 'Sirf ek shaam,' mistri ne kaha. 'Aur sirf ek parcel jo mayne rakhta hai.'",
+          "Panel 3 — Usne kabhi udaan nahi bhari thi. Gali kabhi shaant nahi hui thi.",
+          "Panel 4 — Dono badal gaye, sunset ke saath."
+        ]
+      },
+      "versions": {
+        "past": [
+          {
+            "edition": 1,
+            "label": "Outline draft v1 (Hindi first draft)",
+            "status": "preserved_in_history",
+            "basis": "reconstructed_2026_10_04"
+          }
+        ],
+        "future": [
+          {
+            "edition": 2,
+            "label": "Trilingual rewrite proposal (hi / en / hinglish)",
+            "status": "plannable"
+          },
+          {
+            "edition": 3,
+            "label": "Sequel short proposal — second sunset",
+            "status": "plannable"
+          }
+        ]
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "wiki-ack",
+      "title": "Amar Chitra Katha — history and context",
+      "citation": "[1] Wikipedia: Amar Chitra Katha",
+      "url": "https://en.wikipedia.org/wiki/Amar_Chitra_Katha",
+      "review_basis": "Encyclopaedia context for the Indian comics tradition; publisher characters and artwork are never copied, imitated or adapted."
+    },
+    {
+      "id": "wiki-tinkle",
+      "title": "Tinkle — history and context",
+      "citation": "[2] Wikipedia: Tinkle",
+      "url": "https://en.wikipedia.org/wiki/Tinkle",
+      "review_basis": "Context for the children's humour-digest tradition; no characters or artwork copied."
+    },
+    {
+      "id": "wiki-chacha",
+      "title": "Chacha Chaudhary — history and context",
+      "citation": "[3] Wikipedia: Chacha Chaudhary",
+      "url": "https://en.wikipedia.org/wiki/Chacha_Chaudhary",
+      "review_basis": "Context for the Hindi humour-strip tradition; the character and art belong to their creators."
+    },
+    {
+      "id": "wiki-raj",
+      "title": "Raj Comics — history and context",
+      "citation": "[4] Wikipedia: Raj Comics",
+      "url": "https://en.wikipedia.org/wiki/Raj_Comics",
+      "review_basis": "Context for the Indian superhero-comic line; no characters or artwork copied."
+    },
+    {
+      "id": "wiki-indrajal",
+      "title": "Indrajal Comics — history and context",
+      "citation": "[5] Wikipedia: Indrajal Comics",
+      "url": "https://en.wikipedia.org/wiki/Indrajal_Comics",
+      "review_basis": "Context for the newspaper comic-book tradition; licensed characters are never copied or adapted."
+    },
+    {
+      "id": "wiki-chandamama",
+      "title": "Chandamama — history and context",
+      "citation": "[6] Wikipedia: Chandamama",
+      "url": "https://en.wikipedia.org/wiki/Chandamama",
+      "review_basis": "Context for the multilingual children's mythology-magazine tradition; no stories or artwork copied."
+    }
+  ],
+  "backlog": [
+    "Trilingual lettering needs native review in all three editions before any release.",
+    "Hinglish register must stay consistent: Roman script, natural mix, never a mechanical transliteration.",
+    "Past editions are preserved read-only; future editions extend the line without rewriting history.",
+    "Original characters only: no published character, likeness, logo or art style is copied or imitated.",
+    "Fact-bearing panels (astronomy, food, history) need the same review as the corresponding knowledge lanes."
+  ]
+}
