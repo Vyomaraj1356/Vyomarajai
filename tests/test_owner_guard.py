@@ -1,9 +1,10 @@
 """Unit tests for owner approval claim policy; no secrets or live provider required."""
 import os
+import tempfile
 import unittest
 from unittest.mock import patch
 
-from ops.shriyantra.owner_guard import AuthorizationDenied, canonical_target, validate_claims
+from ops.shriyantra.owner_guard import AuthorizationDenied, canonical_target, consume_approval_jti, validate_claims
 
 
 class OwnerGuardTests(unittest.TestCase):
@@ -64,6 +65,13 @@ class OwnerGuardTests(unittest.TestCase):
             validate_claims(claims, action="arena.execute",
                             target=claims["target"], required_scope="arena.execute",
                             now=self.now)
+
+    def test_approval_jti_can_only_be_consumed_once(self):
+        with tempfile.TemporaryDirectory() as replay_dir:
+            with patch.dict(os.environ, {"VYOMARAJ_AUTHZ_REPLAY_DIR": replay_dir}):
+                consume_approval_jti(self.claims)
+                with self.assertRaises(AuthorizationDenied):
+                    consume_approval_jti(self.claims)
 
 
 if __name__ == "__main__":
