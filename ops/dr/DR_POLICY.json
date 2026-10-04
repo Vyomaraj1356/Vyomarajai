@@ -14,7 +14,7 @@
   "automatic_target_only_file_removal": false,
   "target_only_file_removal": "Explicit manual workflow-dispatch approval after reviewing current diff and preserving a backup; false by default. Retain old secondary commit history.",
   "one_snapshot_removal_approval": {
-    "approved": true,
+    "approved": false,
     "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
     "expected_commit": "4363387e94bfe03d6e9364dee4f36345ddca15d3",
     "expected_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
@@ -27,6 +27,8 @@
     },
     "reviewed_candidate_secondary_only_paths": 1,
     "rollback": "Previous secondary commit 4363387e94bfe03d6e9364dee4f36345ddca15d3 is retained as the parent of the exact snapshot; no force push or history deletion. This is Git rollback history, not an independent-site backup.",
-    "consumed": false
+    "consumed": true,
+    "fulfilled_by_run": 37182374090,
+    "outcome": "MATCH after replication; primary_tree == secondary_tree == 434fc389fa45e80300dac3e7d7bf6387a42bdf0c; rollback_commit 4363387e... retained as parent"
   }
 }
