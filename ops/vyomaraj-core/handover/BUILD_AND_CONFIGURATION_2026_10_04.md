@@ -73,6 +73,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 | File | Name | Schedule |
 |---|---|---|
+| `vyomaraj-ci-diagnostics.yml` | Vyomaraj CI diagnostics (readable annotations) | `no schedule` |
 | `vyomaraj-research.yml` | Vyomaraj Metadata Discovery | `15 3 * * *` |
 | `vyomaraj-sync-both.yml` | Vyomaraj PRIMARY to DR Sync | `*/30 * * * *` |
 

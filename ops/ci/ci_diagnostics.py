@@ -32,8 +32,8 @@ COMMANDS = [
     ['python3', '-m', 'unittest', 'discover', '-s', 'ops/availability', '-p', 'test_*.py', '-v'],
     ['bash', '-n', 'ops/dr/run-dr.sh', 'ops/dr/failover-controller.sh'],
 ]
-SECRET = re.compile(r'(ghp_[A-Za-z0-9]{16,}|github_pat_[A-Za-z0-9_]{16,}|x-access-token:[^@\s]+@|'
-                    r'(?i)(token|secret|password|pat)[=:\s]+[A-Za-z0-9_\-\.]{12,})')
+SECRET = re.compile(r'(ghp_[A-Za-z0-9]{16,}|github_pat_[A-Za-z0-9_]{16,}|x-access-token:[^@\s]+@'
+                    r'|(?:token|secret|password|pat)[=:\s]+[A-Za-z0-9_\-\.]{12,})', re.IGNORECASE)
 
 
 def redact(text):
