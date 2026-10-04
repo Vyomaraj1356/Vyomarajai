@@ -3,7 +3,7 @@
  "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
  "primary": "Vyomaraj1356/Vyomarajai",
  "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
- "primary_main_tip_checked": "244f5a66cee8c80bab1603ea4d9aad0ff942a25a",
+ "primary_main_tip_checked": "a47f76602b26e7101b55b25a6c51c85a95f47308",
  "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
  "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
  "observations": [
@@ -202,6 +202,21 @@
    "rollback_commit": "6a614f7f6706e2564440ebfcf147930b4e5676d1",
    "head_commit_subject": "Merge pull request #18 from Vyomaraj1356/arena/01a1056f-vyomarajai",
    "merge_pr": 18
+  },
+  {
+   "check_run_id": 111385960390,
+   "workflow_run_id": 37185319991,
+   "head_sha": "a47f76602b26e7101b55b25a6c51c85a95f47308",
+   "completed_at_utc": "2026-10-04T07:18:10Z",
+   "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=91597533650f78bf3fff9a5de549c3ec2b4222f8; secondary_tree=91597533650f78bf3fff9a5de549c3ec2b4222f8; rollback_commit=0216f1a8e93c0e67a92899348230a0cb9a23d684; data_match=true",
+   "status": "MATCH",
+   "primary_tree": "91597533650f78bf3fff9a5de549c3ec2b4222f8",
+   "secondary_tree": "91597533650f78bf3fff9a5de549c3ec2b4222f8",
+   "data_match": true,
+   "replication_write_in_this_run": true,
+   "rollback_commit": "0216f1a8e93c0e67a92899348230a0cb9a23d684",
+   "head_commit_subject": "Merge pull request #19 from Vyomaraj1356/arena/01a105bf-vyomarajai",
+   "merge_pr": 19
   }
  ],
  "writes_to_secondary_observed": [
@@ -213,9 +228,10 @@
   111379204732,
   111379714913,
   111380439332,
-  111380998467
+  111380998467,
+  111385960390
  ],
- "current_state": "This file covers the 2026-10-03 and 2026-10-04 main-push and scheduled runs through merge #18 (main tip 244f5a66). Every checkpoint recorded here is status=MATCH with identical primary and secondary trees; nine of the thirteen carried a replication write (rollback_commit present). A run that finds the snapshots already equal carries no rollback_commit and is an idempotent no-op, not a failure. One run in the session (#11) was correctly BLOCKED and is documented separately; it is deliberately not counted as a MATCH checkpoint. Trailing runs after merge #18 repeat the same tree until main changes again.",
+ "current_state": "This file covers the 2026-10-03 and 2026-10-04 runs through merge #19 \u2014 the merge that delivered this rebuild \u2014 and is closed there on purpose: every later merge is verified by the same workflow and its result is visible in the live check-run annotations. Every checkpoint recorded here is status=MATCH with identical primary and secondary trees; 10 of the 14 carried a replication write (rollback_commit present). A run that finds the snapshots already equal carries no rollback_commit and is an idempotent no-op, not a failure. The one BLOCKED run (#11) is documented separately and is deliberately not counted as a MATCH checkpoint.",
  "branch_scope_warning": "This evidence covers primary main only. Two earlier commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) were not on main at the time they were first reported and therefore were not in the DR snapshot then; the branch was subsequently merged through PRs #10-#18 and is now covered by the checkpoints above. Unmerged branch tips are never part of the DR snapshot.",
  "local_verification_attempt": {
   "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -225,11 +241,11 @@
  "traffic_switched": false,
  "runtime_or_site_dr_verified": false,
  "zero_rpo_or_rto_claimed": false,
- "revalidated_at_utc": "2026-10-04T07:11:55Z",
+ "revalidated_at_utc": "2026-10-04T07:18:45Z",
  "revalidation": {
   "by": "next Arena session, sandbox re-provisioned after the 01a1056f session ended",
-  "method": "every check-run id in this record, plus the #18 run, was re-read live from the GitHub API; each DR SNAPSHOT annotation was re-parsed and compared with the values stored here.",
-  "result": "all 13 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; no mismatch in status, trees or rollback commits",
+  "method": "every check-run id in this record was re-read live from the GitHub API; each DR SNAPSHOT annotation was re-parsed and compared with the values stored here. The newest checkpoint (the merge that delivered this rebuild) was recorded from its live annotation in the same pass.",
+  "result": "all 14 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; no mismatch in status, trees or rollback commits",
   "timestamp_corrections": [
    {
     "check_run_id": 111379204732,
@@ -243,9 +259,9 @@
    }
   ]
  },
- "checkpoints_total": 13,
- "replication_writes_total": 9,
- "session_record": "Main tip 244f5a66 (merge of PR #18) is the last commit this record covers. Merges #10-#18 were each verified on the secondary; the #11 run was correctly BLOCKED and is recorded separately, not as a MATCH. Trailing runs after the last merge are idempotent.",
+ "checkpoints_total": 14,
+ "replication_writes_total": 10,
+ "session_record": "Merges #10-#19 are each verified on the secondary. The record intentionally stops at #19: chasing every trailing idempotent run would rewrite this file forever, and later merges are visible live in the check-run annotations. The #11 run was correctly BLOCKED and is recorded separately, not as a MATCH.",
  "blocked_runs": [
   {
    "check_run_id": 111376415924,

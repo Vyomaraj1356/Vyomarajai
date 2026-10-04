@@ -1,8 +1,8 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "91b8a62ccf7672746293f7e4d326efbdd900993ad0b50c8b475678d02301401f",
-  "package_bytes": 56432,
-  "note_sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
+  "package_sha256": "70a3df45b4d2b9bfe373c95f936f3e299c606471c9bbced6b6b9cfb544a41c17",
+  "package_bytes": 57002,
+  "note_sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
@@ -11,8 +11,8 @@
     {
       "archive_name": "NEXT_SESSION_HANDOVER_2026_10_04.txt",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-      "sha256": "62ab1e90918c428434d3fc02ed6bbd8bda7de75df134c003cccc32650c43ad9f",
-      "bytes": 12238
+      "sha256": "14922dd65453c469a622b611a2fe235fedffc197be896a188ed0414b0fa32ff4",
+      "bytes": 12868
     },
     {
       "archive_name": "RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md",
@@ -23,8 +23,8 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "ae40c612e6b2d1341bd7c2434c6130a69a30e3d6e944b91f6e00d8a011a7cdae",
-      "bytes": 9674
+      "sha256": "ce708b3f89f1cd2579d05d8ffa7b1bc389b05a924b148b259caf3bbd66e13d72",
+      "bytes": 10029
     },
     {
       "archive_name": "build_dr_sync_report.py",
@@ -77,8 +77,8 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "c9cfaade5ceecbc1e5d7c3b0fe118de8142f9d9997704cb891391fc587b82abe",
-      "bytes": 9999
+      "sha256": "3f5ec0ec452bbc030aaaa046bb650b0cfc3579f9890c557e775a72e06f89fda2",
+      "bytes": 10044
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -95,8 +95,8 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "ecff349186244f0c299a806ac80d862b65484f9e8e4f6ac3ec8b25b5ddb93405",
-      "bytes": 16429
+      "sha256": "fff496a02e9957b8236954be986b39f55bf1cddc0a6a328184c012277d70de49",
+      "bytes": 17518
     },
     {
       "archive_name": "studio_server.py",

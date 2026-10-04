@@ -21,17 +21,22 @@ earlier note is claimed anywhere.
 Losses caused by the sandbox deletion, rebuilt here and not recoverable from the lost disk:
 the #18 refresh of the note and package, the ad-hoc downloads server on port 4190, and the
 "final #18" local commit. Everything else the first session reported is on main (PRs #10-#18).
+This rebuild itself was published as PR #19 and merged; the DR workflow then verified the new
+main tip a47f7660 on the secondary (MATCH, trees 91597533... = 91597533..., rollback 0216f1a8...),
+which is checkpoint #14 in section 6.
 
 1. REPOSITORY STATE (verified in this checkout)
 Repository : Vyomaraj1356/Vyomarajai
 Branch     : arena/01a105bf-vyomarajai (this session is fixed to this branch)
 Base       : main tip 244f5a66cee8c80bab1603ea4d9aad0ff942a25a — the merge of PR #18, i.e. the
-             first session's last merge is already on main and is covered by the DR record.
+             first session's last merge was already on main and is covered by the DR record.
+After publication: main tip a47f76602b26e7101b55b25a6c51c85a95f47308 — the merge of PR #19,
+             which carried this rebuild (see section 6, checkpoint #14).
 Main history since 2026-10-04 05:47 UTC: 8b5f9c55 → e79c71fc → ecdc4bcd → c0123044 → #10
              8adf9496 → #11 f8f948b6 → #12 2424e786 → #13 15cbfea0 → #14 dd341acc → #15 eead435a
-             → #16 a128173c → #17 c1d62504 → #18 244f5a66 (all merge subjects re-read from the
-             GitHub API in this session; #11 is a merge whose DR run was correctly BLOCKED —
-             see section 7).
+             → #16 a128173c → #17 c1d62504 → #18 244f5a66 → #19 a47f7660 (all merge subjects
+             re-read from the GitHub API in this session; #11 is a merge whose DR run was
+             correctly BLOCKED — see section 7).
 Open PRs  : #2, #3, #4 and #7 (branches with NO merge base against main; cannot merge as-is) and
              #9 (DRAFT, another session's work). Nothing in them was merged, closed or altered.
 
@@ -82,9 +87,11 @@ and does not restate it as its own measurement; latency is ONE request after the
 time from disaster onset, and not a production RTO/RPO.
 
 6. DR SYNC RESULTS — RE-VERIFIED LIVE IN THIS SESSION
-Every checkpoint in the record was re-read from the GitHub API at 2026-10-04T07:11:55Z: all 13
-are status=MATCH with identical primary/secondary trees, and 9 carried a replication write
-(rollback_commit retained as the previous secondary tip). Main tip covered: 244f5a66 (= #18).
+Every checkpoint in the record was re-read from the GitHub API: all 14 are status=MATCH with
+identical primary/secondary trees, and 10 carried a replication write (rollback_commit retained
+as the previous secondary tip). The record is closed at checkpoint #14, the merge that delivered
+this rebuild; later merges are verified by the same workflow and stay visible in the live
+check-run annotations.
     completed (UTC)        merge      PR    trees (primary = secondary)     write
     2026-10-03T13:32:27Z   3936badc   base  3e3c55bb… = 3e3c55bb…           yes (9d8678c6)
     2026-10-03T18:24:59Z   3936badc   base  3e3c55bb… = 3e3c55bb…           no
@@ -99,6 +106,7 @@ are status=MATCH with identical primary/secondary trees, and 9 carried a replica
     2026-10-04T06:34:56Z   a128173c   #16   7b166ac1… = 7b166ac1…           yes (ced0a092)
     2026-10-04T06:40:03Z   c1d62504   #17   1d13c7ee… = 1d13c7ee…           yes (a979bac5)
     2026-10-04T06:44:02Z   244f5a66   #18   b6029f97… = b6029f97…           yes (6a614f7f)
+    2026-10-04T07:18:10Z   a47f7660   #19   91597533… = 91597533…           yes (0216f1a8)
 A run with no rollback_commit found the snapshots already equal: an idempotent no-op, not a
 failure. Full detail, including run and check-run ids and the exact annotation strings, is in
 DR_SYNC_RESULTS_2026_10_04.md (generated) and ops/dr/DEPLOYED_MATCH_2026_10_04.json.

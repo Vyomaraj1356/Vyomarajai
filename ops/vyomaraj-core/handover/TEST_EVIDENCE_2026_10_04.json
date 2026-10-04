@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-10-04T07:15:45+00:00",
+  "recorded_at_utc": "2026-10-04T07:19:09+00:00",
   "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml, run locally on this checkout; recorded by the second 2026-10-04 session after the DR sync report and handover-notepad routes were added.",
   "python_suites": [
     {
