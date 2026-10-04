@@ -14,16 +14,19 @@
   "automatic_target_only_file_removal": false,
   "target_only_file_removal": "Explicit manual workflow-dispatch approval after reviewing current diff and preserving a backup; false by default. Retain old secondary commit history.",
   "one_snapshot_removal_approval": {
-    "approved": false,
+    "approved": true,
     "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-    "expected_commit": "7107980ce0bb1fc788da9e1f7a87f3d6cd9bf1d3",
-    "expected_tree": "bd628db084433e9cc885fdc6e4c99c6ab2fe44d7",
-    "expires_at_utc": "2026-10-04T00:00:00+00:00",
-    "authorization_basis": "Owner explicitly requested resolving PR #5 and producing a perfect file match on both repositories on 3 October 2026, after being informed that exact matching removes secondary-only files.",
-    "preflight_run": 37125967048,
-    "reviewed_candidate_secondary_only_paths": 150,
-    "rollback": "Previous secondary commit is retained as parent of the exact snapshot; no force push or history deletion. This is Git rollback history, not an independent-site backup.",
-    "consumed": true,
-    "fulfilled_by_run": 37126108656
+    "expected_commit": "4363387e94bfe03d6e9364dee4f36345ddca15d3",
+    "expected_tree": "ad4321bfa840f43855c05fd99379ca18b78dd374",
+    "expires_at_utc": "2026-10-06T06:15:52+00:00",
+    "authorization_basis": "Owner asked on 4 October 2026 to resolve and sync primary and secondary with a DR test, after the repository documents that exact matching removes secondary-only files from the new tree (prior commits are retained).",
+    "preflight": {
+      "source": "read-only probe check-run 111376891786",
+      "annotation": "secondary_only=1; missing_on_secondary=0; changed_content_or_mode=6",
+      "removed_path_basis": "git diff --stat between merged main 8adf9496 and f8f948b6 shows exactly one deleted file: ci-diagnostics.log (a transient artifact committed by accident in PR #10 and removed in PR #11)."
+    },
+    "reviewed_candidate_secondary_only_paths": 1,
+    "rollback": "Previous secondary commit 4363387e94bfe03d6e9364dee4f36345ddca15d3 is retained as the parent of the exact snapshot; no force push or history deletion. This is Git rollback history, not an independent-site backup.",
+    "consumed": false
   }
 }
