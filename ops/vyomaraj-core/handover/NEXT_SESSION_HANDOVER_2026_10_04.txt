@@ -19,7 +19,7 @@ SHA256 values for this note, the transfer package, and the key artifacts are rec
 Repository : Vyomaraj1356/Vyomarajai
 Branch     : arena/01a1056f-vyomarajai (this session is fixed to this branch)
 Base commit: 3936badc63cee2c7391149e5ab5fb41f4416d901 (main when this session began, 2026-10-04)
-Main tip   : a128173cbb10588a9e9b4d90ab9e77b5ce3071e0 (after this session's merges #10–#16;
+Main tip   : c1d625047056bf93f7e2c2eaf4ccbee29de178e4 (after this session's merges #10–#17;
              every merge was replicated and verified on the secondary — see section 9)
 Branch     : arena/01a1056f-vyomarajai, merged to main only through reviewed, green PRs because
              main is protected.
@@ -130,14 +130,17 @@ Verify        : python3 -m unittest discover -s ops/vyomaraj-core/handover -p 't
 
 9. DR SYNC RESULTS AND GITHUB RESOLUTION (2026-10-04, closed-vocabulary evidence)
 Every main-push run of .github/workflows/vyomaraj-sync-both.yml in this session ended in
-MATCH with identical primary/secondary trees; the last three each carried a rollback_commit,
-i.e. a verified replication write:
+MATCH with identical primary/secondary trees; the recent runs each carried a rollback_commit,
+i.e. a verified replication write. Recorded here through #17 (later merges appear in the live
+check-run annotations):
   #10 merge 8adf9496 -> trees ad4321bf / ad4321bf, rollback 7a7a539d (check-run 111375777820)
   #12 merge 2424e786 -> trees 434fc389 / 434fc389, rollback 4363387e (check-run 111377398899)
   #13 merge 15cbfea0 -> trees 5a9d1418 / 5a9d1418, rollback 5203c222 (check-run 111377861073)
   #14 merge dd341acc -> trees 01197482 / 01197482, rollback 11c1de61 (check-run 111378391997)
   #15 merge eead435a -> trees 3604bb15 / 3604bb15, rollback 1b374fd9 (check-run 111379204732)
   #16 merge a128173c -> trees 7b166ac1 / 7b166ac1, rollback ced0a092 (check-run 111379714913)
+  #17 merge c1d62504 -> trees 1d13c7ee / 1d13c7ee, rollback a979bac5 (check-run 111380439332;
+      later merges are visible in the live check-run annotations)
 The #11 merge was CORRECTLY BLOCKED (status=BLOCKED, target_only_files_awaiting_review=1): PR #10
 had accidentally committed the transient ci-diagnostics.log, PR #11 deleted it, so the secondary
 held one file main did not. A read-only probe (check-run 111376891786) confirmed the secondary at

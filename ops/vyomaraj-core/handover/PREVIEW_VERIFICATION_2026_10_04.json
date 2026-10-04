@@ -1,25 +1,25 @@
 {
-  "verified_at_utc": "2026-10-04T06:36:51+00:00",
+  "verified_at_utc": "2026-10-04T06:41:25+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/01a1056f-vyomarajai",
-    "commit": "43097ecd329f64178aded8fcbd251a222ec52cf3"
+    "commit": "2861bfa6d9f92d0ff68040ee58b2c57e72f2e464"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
-    "sha256": "25c9d258958808e008f00db1c86328eb9c3e5a70d74d60df18bca6618a8cabb6",
-    "bytes": 12444
+    "sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd",
+    "bytes": 12688
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "e4bf0364cafe3f12ec23869cfe0f799db0842d8db76fe34fcc05ad8d6f9f5f25",
-    "bytes": 43816
+    "sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab",
+    "bytes": 44050
   },
   "byte_identity": {
-    "viewer_next_session_download_sha256": "25c9d258958808e008f00db1c86328eb9c3e5a70d74d60df18bca6618a8cabb6",
-    "gateway_next_session_download_sha256": "25c9d258958808e008f00db1c86328eb9c3e5a70d74d60df18bca6618a8cabb6",
-    "viewer_transfer_package_download_sha256": "e4bf0364cafe3f12ec23869cfe0f799db0842d8db76fe34fcc05ad8d6f9f5f25",
-    "gateway_transfer_package_download_sha256": "e4bf0364cafe3f12ec23869cfe0f799db0842d8db76fe34fcc05ad8d6f9f5f25"
+    "viewer_next_session_download_sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd",
+    "gateway_next_session_download_sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd",
+    "viewer_transfer_package_download_sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab",
+    "gateway_transfer_package_download_sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab"
   },
   "viewer_routes": [
     {
@@ -64,8 +64,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14029,
-      "sha256": "4452ac2657547ecc5920188053b867f856649863176c616f754e951ea0c88940"
+      "bytes": 14100,
+      "sha256": "f69c9f6fe040559e2d9f081942dc2b7953cbe7bd74c337fbfad87ffc9e10316b"
     },
     {
       "route": "/reports/next-session",
@@ -73,8 +73,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14742,
-      "sha256": "a82dd810af3430a87df8f8fa9ba98baae98b1e7995e03cc614a77a1cf954efd2"
+      "bytes": 14989,
+      "sha256": "26dfcac3f838909e3963b4b80e6a149ec84d3a64ddde910641a0351612f42805"
     },
     {
       "route": "/reports/recovery",
@@ -91,8 +91,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 12444,
-      "sha256": "25c9d258958808e008f00db1c86328eb9c3e5a70d74d60df18bca6618a8cabb6"
+      "bytes": 12688,
+      "sha256": "3b499724c546c826d68e3cffb1ac8fc39ef490fc0884a5db5d71a3ba3e63d1dd"
     },
     {
       "route": "/reports/download/transfer-package.zip",
@@ -100,8 +100,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 43816,
-      "sha256": "e4bf0364cafe3f12ec23869cfe0f799db0842d8db76fe34fcc05ad8d6f9f5f25"
+      "bytes": 44050,
+      "sha256": "4b5dc85a2a23fad05306a3a36d675a68c0767fee4c3db095b687aa0892990bab"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -129,8 +129,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14373,
-      "sha256": "76e12a7b9242bd5e8bd64382d5dcb851952f2390fb852ce9e0c3380e67f475db"
+      "bytes": 14444,
+      "sha256": "faedd99458d33bcc53e78f797f928a2189df5e128644d83ab2dfc1c1d3988d36"
     },
     {
       "route": "/reports/next-session",
@@ -138,8 +138,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 16290,
-      "sha256": "7c1f9ea7fbf045b876bb0e0d5fc8b2286ca02574e896a0ff1b5d04303bd5fc84"
+      "bytes": 16558,
+      "sha256": "61e5adfe1b0f601f2f47627cfd749575492e9b06be2eadc326d1bd02e44fe2d6"
     },
     {
       "route": "/reports/recovery",
@@ -205,7 +205,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 103,
+      "primary_responses": 113,
       "secondary_responses": 1,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 1
