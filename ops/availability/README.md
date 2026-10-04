@@ -31,6 +31,8 @@ All application listeners bind `0.0.0.0` for the sandbox preview. Gateway upstre
 4. Both stopped: 503, no false healthy result.
 5. Both restored: 200 from primary; both readiness checks true.
 
+`LOCAL_FAILOVER_DRILL_2026_10_04.json` records a repeat of the same controlled drill on 2026-10-04 (200 → 200 from secondary → 200 from primary → 503 with both stopped → 200 restored, zero ambiguous POST failures) after the sandbox was re-provisioned. The same limitations apply.
+
 Recorded milliseconds measure one request **after the fault**, not elapsed time from disaster onset, guaranteed detection time, production RTO or replication lag. No production traffic or Git ref was changed during the drill. No runtime database backup/restore, separate-host deployment or machine-loss recovery was tested.
 
 ## Production requirements still outstanding
