@@ -1,0 +1,123 @@
+{
+  "system": "VYOMARAJ-AI-STUDIO",
+  "shared_services": [
+    "LLM_FOUNDATION",
+    "HARNESS_FOUNDATION",
+    "RAG_ENGINE",
+    "CAG_CONTEXT_ASSEMBLER",
+    "MAG_MEMORY_ENGINE",
+    "HERMES_WITNESS",
+    "RESILIENCE_ORCHESTRATOR",
+    "SELF_HEALING_ENGINE",
+    "STATE_RECONCILIATION_ENGINE",
+    "PROMPT_GOVERNANCE_ENGINE",
+    "MODEL_PROVIDER_ROUTER",
+    "BACKUP_RESTORE",
+    "DR_FAILOVER_FAILBACK",
+    "OBSERVABILITY_HEALTH",
+    "CAPACITY_AUTOSCALER",
+    "AUDIT_LEARNING"
+  ],
+  "heads": [
+    {
+      "id": "BHARATH",
+      "alias": "VYOMARAJ",
+      "role": "peer_autonomous_head"
+    },
+    {
+      "id": "LAXMAN",
+      "alias": "JARVIS",
+      "role": "peer_autonomous_head",
+      "activation": "requires verified runtime/repository identity"
+    }
+  ],
+  "agent_families": {
+    "core": [
+      "ORCHESTRATOR_AGENT",
+      "RESEARCH_AGENT",
+      "WEB_RESEARCH_AGENT",
+      "FACT_CHECK_AGENT",
+      "ARCHITECTURE_AGENT",
+      "PROJECT_MANAGER_AGENT",
+      "FINAL_REVIEW_AGENT"
+    ],
+    "ai": [
+      "OPENAI_AGENT",
+      "CLAUDE_AGENT",
+      "GEMINI_AGENT",
+      "LOCAL_MODEL_AGENT",
+      "MODEL_ROUTER_AGENT",
+      "PROMPT_GOVERNANCE_AGENT"
+    ],
+    "engineering": [
+      "CODING_AGENT",
+      "GITHUB_AGENT",
+      "DEBUG_AGENT",
+      "DEVOPS_AGENT",
+      "QA_AGENT",
+      "SECURITY_AGENT"
+    ],
+    "creative": [
+      "CONTENT_AGENT",
+      "CREATIVE_AGENT",
+      "SCRIPT_AGENT",
+      "IMAGE_AGENT",
+      "AUDIO_AGENT",
+      "VIDEO_AGENT",
+      "MEDIA_AGENT"
+    ],
+    "social": [
+      "YOUTUBE_STRATEGY_AGENT",
+      "YOUTUBE_RESEARCH_AGENT",
+      "YOUTUBE_SCRIPT_AGENT",
+      "YOUTUBE_SEO_AGENT",
+      "THUMBNAIL_AGENT",
+      "SHORTS_AGENT",
+      "ANALYTICS_AGENT",
+      "MONETIZATION_AGENT",
+      "SOCIAL_PUBLISHER_AGENT"
+    ],
+    "knowledge": [
+      "DATA_AGENT",
+      "MEMORY_AGENT",
+      "KNOWLEDGE_AGENT",
+      "DATA_ANALYTICS_AGENT",
+      "RAG_AGENT",
+      "CAG_AGENT",
+      "MAG_AGENT"
+    ],
+    "business": [
+      "MARKETING_AGENT",
+      "SALES_AGENT",
+      "PRODUCT_AGENT",
+      "BUSINESS_AGENT",
+      "AUTOMATION_AGENT"
+    ],
+    "resilience": [
+      "HEALTH_MONITOR_AGENT",
+      "SRE_AGENT",
+      "SELF_HEALING_AGENT",
+      "DR_AUDIT_AGENT",
+      "FAILOVER_AGENT",
+      "FAILBACK_AGENT",
+      "BACKUP_AGENT",
+      "RESTORE_AGENT",
+      "CONFLICT_RESOLUTION_AGENT"
+    ]
+  },
+  "domains": [
+    "FOOD",
+    "EDU",
+    "ASTRO",
+    "FINANCE",
+    "LIFE",
+    "BHAKTI",
+    "SPORTS",
+    "AGRI",
+    "ENTERTAINMENT",
+    "PLATFORM_SOCIAL_EARN",
+    "TOUR",
+    "WAR_ROOM"
+  ],
+  "enforcement": "Every agent uses shared Harness policy, RAG access filters, CAG context contract, MAG scope rules, Hermes integrity checks, checkpoints and audit."
+}
