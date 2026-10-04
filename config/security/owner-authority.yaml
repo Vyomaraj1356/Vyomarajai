@@ -1,0 +1,32 @@
+# No personal contact details or authentication secrets belong here.
+
+owner_authority:
+  mode: owner_only
+  owner_user_administration_only: true
+  owner_role_changes_only: true
+  owner_policy_changes_only: true
+  owner_privileged_approval_required: true
+  default_decision: deny_unless_explicitly_granted
+  agents_may_self_elevate: false
+  agents_may_create_users: false
+  arena_is_authority_root: false
+  permission_scopes: [text_input, text_output, voice_input, transcription, voice_output, tools, projects, data_classes, memory, task_execution, publishing, code_changes, deployment, recovery]
+  authentication:
+    preferred: [webauthn_passkey, device_local_biometric_unlock, independent_step_up_factor, offline_recovery_codes]
+    biometric_templates_uploaded: false
+    secrets_in_repository: false
+    secrets_in_prompts_memory_rag_logs: false
+    phone_or_whatsapp_alone_sufficient: false
+    whatsapp_otp: verified_provider_only_with_expiry_rate_limit_anti_replay
+    voice_alone_authenticates_owner: false
+    step_up_for: [user_administration, permission_changes, auth_recovery, external_publishing, destructive_actions, production_deployment, failover, failback, backup_policy_changes]
+  revocation:
+    revoke_sessions_and_tokens: true
+    block_new_privileged_tasks: true
+    reconcile_security_epoch_on_restore: true
+    never_resurrect_revoked_access: true
+  updates:
+    agents_may_propose_patch_and_open_pr: true
+    production_promotion_requires_owner_policy: true
+    privileged_auth_policy_changes_require_step_up: true
+    canary_and_rollback_required: true
