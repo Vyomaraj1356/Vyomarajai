@@ -28,3 +28,7 @@ Output: status, task ID, checkpoint ID, artifact/evidence references, usage and 
 - Verify integrity and business health before committing or publishing.
 - Target 24x7x365 with measured RTO/RPO; literal zero downtime/data loss is not guaranteed by code alone.
 - Laxman/Jarvis must not be connected to a guessed repository/runtime identity.
+
+## Owner authority and authentication
+
+See `docs/security/SHRIYANTRA-OWNER-AUTHORITY.md` and `config/security/owner-authority.yaml`. Do not put owner phone numbers, biometric templates, OTPs, passcodes, recovery codes or access tokens into source control. The reference runner is not an authentication provider; enforce owner identity at the trusted ShriYantra control plane and Harness boundary. Verify revocation, step-up approvals, voice replay resistance and restore behavior before production use.
