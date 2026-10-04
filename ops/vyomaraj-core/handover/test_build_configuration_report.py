@@ -36,6 +36,14 @@ class ReportTests(unittest.TestCase):
                 if value and len(value) > 3:
                     self.assertNotIn(value, text, f'Jarvis env value leaked for {line.split("=")[0]}')
 
+    def test_report_uses_repository_relative_paths(self):
+        # A checkout-path leak makes the report unmatchable on any other machine (for example CI),
+        # which is exactly how the first generation of this file failed.
+        text = report.render()
+        self.assertNotIn(report.ROOT.as_posix(), text)
+        self.assertNotIn('/home/', text)
+        self.assertNotIn('runner/work', text)
+
     def test_change_summary_is_present(self):
         text = report.render()
         for expected in ('ENTERTAINMENT 38 → 32', 'FINANCE 8 → 7 and EDU 15 → 16', 'BHAKTI 2 → 3',

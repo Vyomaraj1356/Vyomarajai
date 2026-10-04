@@ -199,7 +199,7 @@ def render(root=ROOT):
         '- `ops/jarvis/jarvis-24x7-controller.sh` — controller script; not started as an unattended service '
         'in this session, and no switch/fencing URL in it was called.',
         f"- Local roles: the two preview replicas act as the Vyomaraj and Jarvis sides of the availability "
-        f"rehearsal ({OPS.as_posix()}/availability/README.md); both share one host and one queue.",
+        f"rehearsal (`ops/availability/README.md`); both share one host and one queue.",
         '',
         '## 5. Recorded verification evidence',
         '',

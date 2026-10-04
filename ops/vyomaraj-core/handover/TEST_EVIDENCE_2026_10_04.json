@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-10-04T06:02:53+00:00",
+  "recorded_at_utc": "2026-10-04T06:04:26+00:00",
   "scope": "Full offline suite set as executed by .github/workflows/vyomaraj-sync-both.yml, run locally on this checkout",
   "python_suites": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "path": "ops/vyomaraj-core/handover",
-      "ran": 26,
+      "ran": 27,
       "result": "OK",
       "tail": "OK"
     },
@@ -45,7 +45,7 @@
       "tail": "OK"
     }
   ],
-  "python_tests_total": 237,
+  "python_tests_total": 238,
   "node_checks": [
     {
       "command": "node --test ops/vyomaraj-core/test_safe_metadata.cjs",
