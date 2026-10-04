@@ -5,7 +5,7 @@
 ## 1. Scope — what this record does and does not assert
 
 Primary repository: `Vyomaraj1356/Vyomarajai`. Secondary repository: `deepakGoyal1356/Vyomaraj-Agent-6d64e`.
-Main tip covered by this record: `686c8e0b1c1a40877f5ac46925f1e8db58e77326`.
+Main tip covered by this record: `ad99c2eaf89603e013134b1f93ade43350017ca6`.
 Workflow: `.github/workflows/vyomaraj-sync-both.yml` — triggers: push, pull_request, workflow_dispatch, schedule; schedule: `*/30 * * * *` (UTC).
 Recorded scope: Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR.
 
@@ -15,15 +15,15 @@ This is a Git-snapshot replication record. It is **not** a production disaster-r
 
 | Source | SHA256 | What it contributes |
 |---|---|---|
-| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `dcd6ce0b71885186cab656bbd91de761c79ad2d51a65b94c875db61cb734d0c7` | 15 MATCH checkpoints, 11 replication writes, 1 blocked run, 1 read-only probe |
+| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `38e93a0ad8d72d748c0cbfe3d23a713ac32b30adf63bb0f746be5a13eb99bf0b` | 16 MATCH checkpoints, 12 replication writes, 1 blocked run, 1 read-only probe |
 | `ops/dr/DR_POLICY.json` | `6090042dc9e05fa1273ba0f0345a6821d633e28c755cac6be806712e7ee222df` | scope flags and the time-boxed one-snapshot removal approval |
 | `.github/workflows/vyomaraj-sync-both.yml` | `db47852d87e6fc3124bba789b4661fad579e18ba4effcc812290e8223b7a5d0a` | triggers and schedule |
 
 Method: All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.
 
-Re-validation: every check-run id in this record, including the new checkpoint #15, was re-read live from the GitHub API in one pass; each DR SNAPSHOT annotation was re-parsed and compared with the stored values before this record was rewritten. Result: all 15 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; the 14 previously recorded checkpoints matched their stored annotations, completed times and head shas exactly; no mismatch in status, trees or rollback commits
+Re-validation: every check-run id in this record, including the new checkpoint #16 (the merge of the comics-lane and V16.8-architecture PR), was re-read live from the GitHub API in one pass; each DR SNAPSHOT annotation was re-parsed and compared with the stored values before this record was rewritten. Result: all 16 checkpoints re-read as status=MATCH with primary_tree == secondary_tree; the 15 previously recorded checkpoints matched their stored annotations exactly; no mismatch in status, trees or rollback commits
 
-## 3. Verification checkpoints (15)
+## 3. Verification checkpoints (16)
 
 A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commit` present means the run replicated (wrote) the snapshot to the secondary; absent means the two snapshots were already identical and the run changed nothing. Trees are shown shortened from the full 40-character values in the record; every row ended `data_match=true`.
 
@@ -44,10 +44,11 @@ A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commi
 | 13 | 2026-10-04T06:44:02Z | `244f5a66cee8` | #18 | `37183619048` | `111380998467` | MATCH | `b6029f977847` | `b6029f977847` | yes (`6a614f7f6706`) |
 | 14 | 2026-10-04T07:18:10Z | `a47f76602b26` | #19 | `37185319991` | `111385960390` | MATCH | `91597533650f` | `91597533650f` | yes (`0216f1a8e93c`) |
 | 15 | 2026-10-04T07:20:56Z | `686c8e0b1c1a` | #20 | `37185458807` | `111386365434` | MATCH | `7fb902cc997d` | `7fb902cc997d` | yes (`f2bfd8a581a3`) |
+| 16 | 2026-10-04T08:20:20Z | `ad99c2eaf896` | #21 | `37188502423` | `111395579579` | MATCH | `9b95c7e8465d` | `9b95c7e8465d` | yes (`a3e4e6309e91`) |
 
-All 15 rows were re-read from the GitHub API at 2026-10-04T08:07:00Z and matched the values stored in the record.
+All 16 rows were re-read from the GitHub API at 2026-10-04T08:22:00Z and matched the values stored in the record.
 
-## 4. Replication writes (11)
+## 4. Replication writes (12)
 
 | merge | PR | run | check-run | rollback commit (previous secondary tip, retained) |
 |---|---|---|---|---|
@@ -62,6 +63,7 @@ All 15 rows were re-read from the GitHub API at 2026-10-04T08:07:00Z and matched
 | `244f5a66cee8` | #18 | `37183619048` | `111380998467` | `6a614f7f6706e2564440ebfcf147930b4e5676d1` |
 | `a47f76602b26` | #19 | `37185319991` | `111385960390` | `0216f1a8e93c0e67a92899348230a0cb9a23d684` |
 | `686c8e0b1c1a` | #20 | `37185458807` | `111386365434` | `f2bfd8a581a3064d87a16dc67e7db22c2e8a219a` |
+| `ad99c2eaf896` | #21 | `37188502423` | `111395579579` | `a3e4e6309e919f1fbfa6afacba401be59eb64ad5` |
 
 A write replaces the secondary snapshot with the primary snapshot and keeps the previous secondary commit as the rollback parent; no force-push and no history deletion is used.
 
@@ -87,10 +89,13 @@ The approval recorded in `DR_POLICY.json` was narrow by design:
 ## 5b. Publication status of this record
 
 Recorded by session: `arena/01a105da-vyomarajai (third 2026-10-04 session)`.
-Session branch base: `686c8e0b1c1a40877f5ac46925f1e8db58e77326 (merge of PR #20, checkpoint #15 in this record)`.
+Session branch base: `686c8e0b1c1a40877f5ac46925f1e8db58e77326 (merge of PR #20, checkpoint #15)`.
 Pushed to origin at record time: no.
+Published as: PR #21, merged to main as ad99c2eaf89603e013134b1f93ade43350017ca6; checkpoint #16 in this record is that merge's verify-or-sync run (check-run 111395579579, replication write, rollback a3e4e630… retained).
+Coverage: the trilingual comics lane, the V16.8 architecture and the governance desks (approvals/finance/upgrades) are part of the replicated snapshot verified by checkpoint #16 — genuinely covered on the secondary, not just claimed.
 Publish path: push arena/01a105da-vyomarajai → pull request → merge to main → the verify-or-sync workflow replicates and verifies main automatically (every push plus the 30-minute schedule).
-DR coverage of the merge that carries this record: the checkpoint for this merge is created by the same workflow after the merge; it is recorded in the next record update and is visible live in the check-run annotations meanwhile.
+Publish path: push arena/01a105da-vyomarajai → pull request → merge to main → the verify-or-sync workflow replicates and verifies main automatically (every push plus the 30-minute schedule).
+DR coverage of the merge that carries this record: the checkpoint for this closing merge is created by the same workflow after the merge; it is recorded in the next record update and is visible live in the check-run annotations meanwhile.
 Local sync possible from the recording sandbox: no.
 
 Rebuilt from lost local commits: arena/01a105bf-vyomarajai sandbox; its local commits 2430a16 (comics lane) and ac2f741 (status + sharing) were never pushed and did not survive the sandbox deletion; its remote tip 47d0920f is fully merged into main and is byte-identical to main here.

@@ -69,6 +69,8 @@ class DrSyncReportTests(unittest.TestCase):
             self.assertIn(item, self.text)
         self.assertIn('2430a16', self.text)
         self.assertIn('ac2f741', self.text)
+        self.assertIn(publication['published_as'], self.text)
+        self.assertIn(publication['comics_and_architecture_coverage'][:80], self.text)
 
     def test_trailing_checkpoint_rule_is_stated_with_a_live_command(self):
         self.assertIn('## 5c. The trailing-checkpoint rule', self.text)

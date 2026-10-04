@@ -8,18 +8,19 @@ provider accounts or runtime state.
 
 PUBLICATION STATUS — READ BEFORE ANY CLAIM ABOUT WHERE THIS NOTE IS
 Branch    : arena/01a105da-vyomarajai (this session is fixed to this branch)
-Base      : main tip 686c8e0b1c1a40877f5ac46925f1e8db58e77326 — the merge of PR #20,
-            checkpoint #15 in ops/dr/DEPLOYED_MATCH_2026_10_04.json (verified live this session).
-This file : updated by the third 2026-10-04 session (see section 12); at record time it is
-            committed on the session branch and NOT yet pushed to origin.
-Why       : the previous session (arena/01a105bf) lost two local commits when its sandbox was
-            deleted (2430a16 comics lane, ac2f741 status + sharing); this session rebuilt that
-            work and adds the architecture V16.8 upgrade (section 12). Nothing is claimed as
-            pushed or replicated until the publish path below actually runs.
-Publish   : push arena/01a105da-vyomarajai → pull request → merge to main → the verify-or-sync
-            workflow replicates and verifies main automatically (every push + 30-min schedule).
-            The checkpoint for that merge is the next row of the DR record; it is visible live
-            in the check-run annotations immediately after the merge.
+Base      : started from main tip 686c8e0b1c1a40877f5ac46925f1e8db58e77326 (merge of PR #20,
+            checkpoint #15, verified live this session) and fast-forwarded through merge #21.
+Published : PR #21 — MERGED to main as ad99c2eaf89603e013134b1f93ade43350017ca6.
+DR state  : the merge's verify-or-sync run COMPLETED as checkpoint #16 (check-run 111395579579,
+            completed 2026-10-04T08:20:20Z): status=MATCH, trees 9b95c7e8… = 9b95c7e8…,
+            replication write with rollback parent a3e4e630… retained, data_match=true. The
+            rebuilt comics lane, the V16.8 architecture and the governance desks are therefore
+            part of the replicated snapshot — genuinely covered on the secondary, not claimed.
+Record    : ops/dr/DEPLOYED_MATCH_2026_10_04.json now holds 16 MATCH checkpoints (12 writes),
+            every one re-read live from the GitHub API in one pass in this session.
+This file : refreshed by the closing commit of the third 2026-10-04 session (section 12); the
+            refresh itself rides the same publish path — push → PR → merge → verify-or-sync —
+            and its checkpoint is the next row of the record (see DR report section 5c).
 Where     : canonical file ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt;
             served at /reports/next-session and /reports/handover-notepad on the report viewer
             (4174) and through the gateway (4176); downloads are byte-identical (section 11).
@@ -242,5 +243,11 @@ external provider call, no publishing and no live-system change was performed.
 - EXPERIENCE_CONTENTS, CONTENT_EXTENSIONS, LOCAL_INTEGRATION, the DR record, this note, the
   DR sync report, the transfer package and the preview verification were all regenerated with
   their builders after these changes.
+- CLOSING UPDATE (after the merge): PR #21 merged to main as ad99c2ea; its verify-or-sync run
+  completed as checkpoint #16 (MATCH, trees 9b95c7e8…, replication write, rollback a3e4e630…
+  retained). The DR record was extended to 16 checkpoints — each re-read live from the GitHub
+  API in one pass — and the DR sync report, this note, the build/configuration report and the
+  transfer package were regenerated. The record closes at merge #21; the closing merge's own
+  checkpoint is visible live in the annotations and will be the first row of the next update.
 
 Chiranjeevi Eternal — Owner primary locked — no unverified claim asserted above.
