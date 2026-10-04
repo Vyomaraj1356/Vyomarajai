@@ -1,0 +1,40 @@
+name: Vyomaraj CI diagnostics (readable annotations)
+
+# Purpose: run the offline suite set and publish the result as check-run annotations.
+# Some sandboxes cannot download Actions logs (the endpoints return EOF), and annotations stay
+# readable through the API. Credential-free: no secrets are read, echoed or uploaded.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vyomaraj-ci-diagnostics-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  diagnostics:
+    if: github.repository == 'Vyomaraj1356/Vyomarajai'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run offline suites and surface failures as annotations
+        run: python3 ops/ci/ci_diagnostics.py
+      - name: Keep the full log as an artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-diagnostics
+          path: ci-diagnostics.log
+          if-no-files-found: ignore
+          retention-days: 7
