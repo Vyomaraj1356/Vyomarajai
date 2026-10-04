@@ -125,9 +125,35 @@ def verify_owner_approval(
     return claims
 
 
+def consume_approval_jti(claims: dict[str, Any]) -> None:
+    """Atomically consume a jti in a persistent/shared replay directory.
+
+    Production workers must point this at a shared store with atomic create semantics,
+    or replace it with the control plane's atomic one-time approval-consumption API.
+    A per-machine directory does not prevent replay across different workers.
+    """
+    replay_dir_value = os.environ.get("VYOMARAJ_AUTHZ_REPLAY_DIR", "")
+    if not replay_dir_value:
+        raise AuthorizationDenied(
+            "Approval replay protection is not configured; set a persistent shared replay directory."
+        )
+    replay_dir = Path(replay_dir_value).resolve()
+    replay_dir.mkdir(parents=True, exist_ok=True)
+    jti_hash = hashlib.sha256(str(claims["jti"]).encode("utf-8")).hexdigest()
+    marker = replay_dir / (jti_hash + ".used")
+    try:
+        fd = os.open(str(marker), os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(json.dumps({"consumed_at": int(time.time()), "jti_hash": jti_hash}))
+    except FileExistsError as exc:
+        raise AuthorizationDenied("This owner approval has already been used.") from exc
+
+
 def require_owner_approval(*, action: str, target: str, required_scope: str) -> dict[str, Any]:
-    """Read the short-lived approval from environment and fail closed."""
-    return verify_owner_approval(
+    """Verify and consume a short-lived approval; never issues owner tokens."""
+    claims = verify_owner_approval(
         os.environ.get("VYOMARAJ_AUTHZ_TOKEN", ""),
         action=action, target=target, required_scope=required_scope,
     )
+    consume_approval_jti(claims)
+    return claims
