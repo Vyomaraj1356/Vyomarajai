@@ -147,6 +147,22 @@ class ServerTests(unittest.TestCase):
         with urllib.request.urlopen(self.url + '/api/status') as response:
             self.assertEqual(json.load(response)['status'], 'local_preview_planning_only')
 
+    def test_lane_serves_the_three_new_report_pages_with_shared_theme(self):
+        for route, marker in (('/reports/chats', 'All Chats from Arena Database'),
+                              ('/reports/issue-6', 'Issue #6 resolution statement'),
+                              ('/reports/test-evidence', 'python_tests_total')):
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.status, 200)
+                    text = response.read().decode()
+                self.assertIn(marker, text)
+                # The lane pages inherit the same single theme constant as the viewer.
+                self.assertIn('#0a1628', text)
+                self.assertIn('#f59e0b', text)
+                self.assertIn('href="/reports/chats"', text)
+                self.assertIn('href="/reports/issue-6"', text)
+                self.assertIn('href="/reports/test-evidence"', text)
+
     def test_end_to_end_handoff(self):
         with self.post(json.dumps({'experience': 'bhakti', 'topic_id': 'kamakhya'}).encode()) as response:
             data = json.load(response)

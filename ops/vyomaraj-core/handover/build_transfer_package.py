@@ -42,6 +42,9 @@ MEMBERS = [
     ('studio_server.py', CORE / 'experience' / 'studio_server.py'),
     ('gateway.py', AVAILABILITY / 'gateway.py'),
     ('test_gateway.py', AVAILABILITY / 'test_gateway.py'),
+    ('INHERITANCE_AUDIT_2026_10_04.md', HERE / 'INHERITANCE_AUDIT_2026_10_04.md'),
+    ('inheritance_audit.py', CORE / 'agents' / 'inheritance_audit.py'),
+    ('test_inheritance_audit.py', CORE / 'agents' / 'test_inheritance_audit.py'),
     ('LOCAL_FAILOVER_DRILL_2026_10_03.json', AVAILABILITY / 'LOCAL_FAILOVER_DRILL_2026_10_03.json'),
     ('LOCAL_FAILOVER_DRILL_2026_10_04.json', AVAILABILITY / 'LOCAL_FAILOVER_DRILL_2026_10_04.json'),
 ]

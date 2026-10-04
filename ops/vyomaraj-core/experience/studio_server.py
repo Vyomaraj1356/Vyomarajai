@@ -79,6 +79,7 @@ REPORTS = {
     '/reports/dr-sync': reports.DR_SYNC_REPORT,
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
     '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
+    '/reports/test-evidence': 'TEST_EVIDENCE_2026_10_04.json',
 }
 
 
@@ -147,21 +148,22 @@ class Handler(BaseHTTPRequestHandler):
             self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
         elif route == '/reports/download/transfer-package.zip':
             self.send_download((CORE / 'handover' / reports.TRANSFER_ZIP).read_bytes(), 'application/zip', Path(reports.TRANSFER_ZIP).name)
-        elif route in REPORTS:
-            path = CORE / 'handover' / REPORTS[route]
+        elif route in REPORTS or route in reports.REFERENCE_REPORTS:
+            path = (reports.REFERENCE_REPORTS[route] if route in reports.REFERENCE_REPORTS
+                    else CORE / 'handover' / REPORTS[route])
             if not path.is_file():
                 self.send_error(404); return
-            body = reports.markdown(path.read_text())
+            body = reports.PAGE_NOTES.get(route, '') + reports.render_document(path)
             if route == '/reports/history':
                 body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: 128 counted slots, six uncounted headings; Education 16, Finance 7, Entertainment 32. See the current inventory or reconciliation above.</p>' + body
             if route == '/reports/recovery':
                 body = reports.RECOVERY_LINKS + body
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                     '<meta name="viewport" content="width=device-width,initial-scale=1">'
-                    '<title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
+                    '<meta name="theme-color" content="#0a1628"><title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
                     '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/comics/">Comics</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
-                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a></nav>'
+                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a></nav>'
                     '<p class="notice">Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Respect for humans, animals, religions, castes and creeds. Earning is not guaranteed. Local preview and creative planning are implemented. Git snapshot match evidence is in the DR report; external AI '
                     'and runtime/site disaster recovery are not verified.</p>' + body + '</main></html>')
             self.send_bytes(page.encode(), 'text/html')

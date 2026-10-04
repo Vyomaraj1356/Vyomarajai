@@ -75,3 +75,19 @@ Verification without log access (any row): `gh api repos/Vyomaraj1356/Vyomarajai
 **Status: RESOLVED.** All five acceptance criteria are met and re-verified; the remaining
 owner-side item (reconnect GitHub in Arena with the secondary repository selected) is optional —
 the 30-minute schedule plus main-push triggers already cover verification and replication.
+
+---
+
+## Fourth 2026-10-04 session update — record extended to 18 checkpoints
+
+The DR record was extended after every row, including two new ones, was re-read live from the
+GitHub API in one pass: **18 MATCH checkpoints (14 replication writes)**, closing at merge #23.
+
+| UTC | Result | Trees | Note |
+|---|---|---|---|
+| Oct 4 08:26 | write + MATCH | `99c42eb6` / `99c42eb6` | rollback `96537d32`, check-run 111396668243 (PR #22 merge) |
+| Oct 4 08:30 | write + MATCH | `5d1787ac` / `5d1787ac` | rollback `096c2ec6`, check-run 111397396312 (PR #23 merge) |
+
+The statement above, including its first addendum, remains the resolution of this issue; this
+paragraph only brings the DR tally up to date. The statement is served read-only at
+`/reports/issue-6` on the report viewer (4174) and through the lane/gateway stack.

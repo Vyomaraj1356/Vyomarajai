@@ -22,12 +22,18 @@ NOTE = HERE / 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_TRANSFER_2026_10_04.zip'
 VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/build', '/reports/architecture',
                  '/reports/next-session', '/reports/handover-notepad', '/reports/dr-sync',
-                 '/reports/recovery', '/reports/download/next-session.txt',
+                 '/reports/recovery', '/reports/chats', '/reports/issue-6', '/reports/test-evidence',
+                 '/reports/download/next-session.txt',
                  '/reports/download/handover-notepad.txt',
                  '/reports/download/transfer-package.zip', '/not-an-allowlisted-route']
 GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
-                  '/reports/dr-sync', '/reports/recovery', '/reports/download/handover-notepad.txt',
+                  '/reports/dr-sync', '/reports/recovery', '/reports/chats', '/reports/issue-6',
+                  '/reports/test-evidence', '/reports/download/handover-notepad.txt',
                   '/reports/agents', '/sovereign/', '/contracts/', '/not-an-allowlisted-route']
+# A 200 alone is not enough for the three reference pages: require a known content marker too.
+CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
+                   '/reports/issue-6': 'Issue #6 resolution statement',
+                   '/reports/test-evidence': 'python_tests_total'}
 
 
 def sha256(data):
@@ -56,6 +62,8 @@ def check(base, routes):
         expected = 404 if route == '/not-an-allowlisted-route' else 200
         if result['status'] != expected:
             problems.append(f'{base}{route}: expected {expected}, got {result["status"]}')
+        elif expected == 200 and route in CONTENT_MARKERS and CONTENT_MARKERS[route].encode() not in result['body']:
+            problems.append(f'{base}{route}: 200 but the expected content marker is missing')
         checks.append({'route': route, 'expected_status': expected,
                        **{k: v for k, v in result.items() if k != 'body'}})
     return checks, problems

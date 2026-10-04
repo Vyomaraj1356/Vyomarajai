@@ -64,6 +64,7 @@ jobs:
           python -m unittest discover -s ops/vyomaraj-core/research -p 'test_*.py' -v
           node --check ops/vyomaraj-core/research/app.js
           python ops/vyomaraj-core/agents/rebuild_registry.py --check
+          python ops/vyomaraj-core/agents/inheritance_audit.py --check
           python -m unittest discover -s ops/vyomaraj-core/agents -p 'test_*.py' -v
           node --check ops/vyomaraj-core/agents/app.js
           node --check ops/vyomaraj-core/aghor-experience/app.js

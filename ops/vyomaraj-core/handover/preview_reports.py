@@ -8,6 +8,7 @@ import re
 from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
 HANDOVER_NOTE = 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 RECOVERY_DOC = 'RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md'
 DR_SYNC_REPORT = 'DR_SYNC_RESULTS_2026_10_04.md'
@@ -34,6 +35,26 @@ REPORTS = {
     '/reports/dr-sync': DR_SYNC_REPORT,
     '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
+    '/reports/test-evidence': 'TEST_EVIDENCE_2026_10_04.json',
+}
+# Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
+# is a literal path fixed in code; no request value is ever joined to the filesystem, so the
+# exact-route allowlist stays exact.
+REFERENCE_REPORTS = {
+    '/reports/chats': ROOT / 'Vyomaraj-All-Chats-Database-One-Month.md',
+    '/reports/issue-6': ROOT / 'ops/dr/ISSUE_6_RESOLUTION_2026_10_04.md',
+}
+# Fixed, code-composed notices. Report text itself is never turned into markup or a hyperlink.
+PAGE_NOTES = {
+    '/reports/chats': '<p class="notice"><strong>All-chats database:</strong> the repository file is '
+                      'served unchanged at this route. The totals shown are that file\'s own headings; '
+                      'the viewer neither recounts nor extends them.</p>',
+    '/reports/issue-6': '<p class="notice"><strong>Issue #6 resolution statement</strong> — acceptance '
+                        'criteria, the correctly blocked run it followed, and the addenda that cite '
+                        'the live DR record.</p>',
+    '/reports/test-evidence': '<p class="notice"><strong>Recorded test evidence</strong> — the counts '
+                              'are those actually executed at the recorded time, not a standing '
+                              'promise about later runs.</p>',
 }
 # route -> (file relative to this directory, exact content type)
 DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8'),
@@ -48,13 +69,17 @@ RECOVERY_LINKS = ('<div class="notice"><strong>Recovery package:</strong> '
                   '<a href="/reports/download/next-session.txt">Download Notepad .txt</a> &middot; '
                   '<a href="/reports/dr-sync">DR sync results</a> &middot; '
                   '<a href="/reports/download/transfer-package.zip">Download transfer package .zip</a></div>')
-STYLE = '''body{margin:0;background:#f3f5f8;color:#152536;font:16px/1.65 system-ui,sans-serif}
-main{max-width:1100px;margin:32px auto;padding:32px;background:white;border-radius:16px}
-nav{display:flex;gap:20px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid #ccd5df}
-a{color:#1759a7}h1,h2,h3{line-height:1.25;color:#102f52}h2{margin-top:48px;border-top:1px solid #dce3eb;padding-top:24px}
-code{font-size:.88em;background:#edf2f7;padding:2px 4px;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere}
-.table{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #dce3eb;padding:10px;text-align:left;vertical-align:top}th{background:#e9eff6}
-.notice{background:#fff4d6;padding:14px;border-left:4px solid #c18506}li{margin:5px 0}@media(max-width:700px){main{margin:0;padding:18px;border-radius:0}}'''
+STYLE = '''body{margin:0;background:#0a1628;color:#e9eff7;font:16px/1.65 system-ui,sans-serif}
+main{max-width:1100px;margin:32px auto;padding:32px;background:#0e2138;border:1px solid #23405f;border-radius:16px}
+nav{display:flex;gap:18px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid #23405f}
+a{color:#f5c96b}a:hover{color:#ffe0a3}h1,h2,h3{line-height:1.25;color:#f59e0b}h2{margin-top:48px;border-top:1px solid #23405f;padding-top:24px}
+code{font-size:.88em;background:#132b47;color:#ffe0a3;padding:2px 4px;overflow-wrap:anywhere;border-radius:4px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#081524;border:1px solid #23405f;border-radius:10px;padding:14px}
+.table{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #23405f;padding:10px;text-align:left;vertical-align:top}th{background:#16334f;color:#f5c96b}tr:nth-child(even) td{background:#0c1c2f}
+.notice{background:#2a2109;padding:14px;border-left:4px solid #f59e0b;border-radius:6px}li{margin:5px 0}@media(max-width:700px){main{margin:0;padding:18px;border-radius:0}}'''
+# The palette above is the Vyomaraj product palette (Shani Blue #0a1628, Kuber Gold #f59e0b).
+# It is defined once here; every page of both report servers inherits it from this constant.
+
 
 
 def inline(text):
@@ -100,30 +125,41 @@ def markdown(text):
     return '\n'.join(result)
 
 
+def render_document(path):
+    """Render one allowlisted document to an HTML body. Non-markdown suffixes stay escaped text."""
+    text = path.read_text(encoding='utf-8')
+    if path.suffix == '.md':
+        return markdown(text)
+    if path.suffix == '.json':
+        return ('<p class="notice">Machine-readable evidence, served exactly as recorded in the '
+                'repository.</p><pre>' + html.escape(text) + '</pre>')
+    return '<pre>' + html.escape(text) + '</pre>'
+
+
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         route = urlsplit(self.path).path
         filename = REPORTS.get(route) or (DOWNLOADS.get(route) or (None,))[0]
-        if filename is None:
+        if filename is None and route not in REFERENCE_REPORTS:
             self.send_error(404, 'Only the allowlisted reports are available'); return
-        path = HERE / filename
+        path = REFERENCE_REPORTS[route] if route in REFERENCE_REPORTS else HERE / filename
         if not path.is_file():
             self.send_error(404, 'Report not available'); return
         if route in DOWNLOADS:
             content = path.read_bytes()
             kind = DOWNLOADS[route][1]
         else:
-            text = path.read_text(encoding='utf-8')
-            body = markdown(text) if path.suffix == '.md' else '<pre>' + html.escape(text) + '</pre>'
+            body = PAGE_NOTES.get(route, '') + render_document(path)
             if route == '/reports/history':
                 body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT CURRENT.</strong> Current total: 128 counted slots and six uncounted headings. See the current inventory and agent reconciliation.</p>' + body
             if route == '/reports/recovery':
                 body = RECOVERY_LINKS + body
             content = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+                       '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()
