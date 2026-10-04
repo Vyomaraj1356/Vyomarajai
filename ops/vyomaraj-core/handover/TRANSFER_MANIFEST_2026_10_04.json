@@ -1,0 +1,114 @@
+{
+  "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
+  "package_sha256": "de3ce78d0c1d1c8d5653953336cda36c26958f6f3a7cdea7830b20770c4cdd37",
+  "package_bytes": 41261,
+  "note_sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
+  "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
+  "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
+  "check_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
+  "determinism": "fixed member timestamps and permissions; same-Python/zlib rebuilds are byte-identical",
+  "members": [
+    {
+      "archive_name": "NEXT_SESSION_HANDOVER_2026_10_04.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
+      "sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
+      "bytes": 8696
+    },
+    {
+      "archive_name": "RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md",
+      "source": "ops/vyomaraj-core/handover/RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md",
+      "sha256": "c15d39085fb5ea6629eabb06e46d5acdc40781c76fc015afd6db7953998151a9",
+      "bytes": 3805
+    },
+    {
+      "archive_name": "HANDOVER_ALL_UPDATES_2026_10_03.txt",
+      "source": "ops/vyomaraj-core/handover/HANDOVER_ALL_UPDATES_2026_10_03.txt",
+      "sha256": "57eb76f03c48a5dc53a0fdbc04c95e33128be1b7b8597bb2a12f089ea1f3a535",
+      "bytes": 9433
+    },
+    {
+      "archive_name": "build_transfer_package.py",
+      "source": "ops/vyomaraj-core/handover/build_transfer_package.py",
+      "sha256": "7c74bb99c3e2f91c17ed7cccc5a31429071d50cf3feedb078b1b6f30525613ff",
+      "bytes": 5717
+    },
+    {
+      "archive_name": "preview_reports.py",
+      "source": "ops/vyomaraj-core/handover/preview_reports.py",
+      "sha256": "894618da1c5211aa43b30e7c1b89883de2142f485b058fbf544a7692f6662d94",
+      "bytes": 8856
+    },
+    {
+      "archive_name": "test_preview_reports.py",
+      "source": "ops/vyomaraj-core/handover/test_preview_reports.py",
+      "sha256": "76fb55da40d86f42db02ed3066f8be8cab415c4f46b7537010fd39e6d9dfbac5",
+      "bytes": 3817
+    },
+    {
+      "archive_name": "test_transfer_package.py",
+      "source": "ops/vyomaraj-core/handover/test_transfer_package.py",
+      "sha256": "0bdc6861afb067b8b71ab2a88c31bd78ba70d00834f31d445190d0770b30c4d3",
+      "bytes": 2203
+    },
+    {
+      "archive_name": "verify_preview.py",
+      "source": "ops/vyomaraj-core/handover/verify_preview.py",
+      "sha256": "0adf2f26fdaa0a5285ef8599889be31ca6fc0976d152fef2b334c32a888b590f",
+      "bytes": 6806
+    },
+    {
+      "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
+      "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
+      "sha256": "9dee6f94cb40ef11e70b89e032558942a7cbe4571c5117aab901f3665f875bb2",
+      "bytes": 9354
+    },
+    {
+      "archive_name": "build_configuration_report.py",
+      "source": "ops/vyomaraj-core/handover/build_configuration_report.py",
+      "sha256": "5c01882725c99075f08deff8d35e9003b326c4b8a1ca6e2347e979e5c22018be",
+      "bytes": 13681
+    },
+    {
+      "archive_name": "test_build_configuration_report.py",
+      "source": "ops/vyomaraj-core/handover/test_build_configuration_report.py",
+      "sha256": "3139d5bd2d530c733a84fcaede6b2617a0fbdbbbc1185d23210f8fce0cc3f1db",
+      "bytes": 2295
+    },
+    {
+      "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
+      "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
+      "sha256": "ebd89de11e4bcca02cffeb92cf9d4754aaa8ea7cda1dd76265d8b43614a9d36f",
+      "bytes": 4824
+    },
+    {
+      "archive_name": "studio_server.py",
+      "source": "ops/vyomaraj-core/experience/studio_server.py",
+      "sha256": "433c08e0364f3f81a67434dbdf116d69df18e135ae1a7f13aaa825e1ca01a7cc",
+      "bytes": 12894
+    },
+    {
+      "archive_name": "gateway.py",
+      "source": "ops/availability/gateway.py",
+      "sha256": "9494e345da0ff6f95c68d4be1f30484c9cbd1ccfeb8387b5b04015803db6e158",
+      "bytes": 5910
+    },
+    {
+      "archive_name": "test_gateway.py",
+      "source": "ops/availability/test_gateway.py",
+      "sha256": "70e60538bb2e68b73a200129d6ae4339bdf4d3c6dbbc649e6132754fe6c2f332",
+      "bytes": 2433
+    },
+    {
+      "archive_name": "LOCAL_FAILOVER_DRILL_2026_10_03.json",
+      "source": "ops/availability/LOCAL_FAILOVER_DRILL_2026_10_03.json",
+      "sha256": "932a1856dfa864de54c177a1b1d9bbf9555fdff5792214d1599dc5543d69a851",
+      "bytes": 2480
+    },
+    {
+      "archive_name": "LOCAL_FAILOVER_DRILL_2026_10_04.json",
+      "source": "ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json",
+      "sha256": "e4f9cffb6f1c2e7ba985618e67b90a8d8c186c10b47e300e2d829c077651a08d",
+      "bytes": 4035
+    }
+  ]
+}

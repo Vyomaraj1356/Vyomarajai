@@ -1,0 +1,365 @@
+$ python3 -m unittest discover -s ops/dr -p test_*.py -v
+test_annotation_closed_values_prevent_injection (test_actions_read_probe.ProbeTests.test_annotation_closed_values_prevent_injection) ... ok
+test_matching_read_never_claims_sync (test_actions_read_probe.ProbeTests.test_matching_read_never_claims_sync) ... ok
+test_mismatch_is_diagnostic_not_write (test_actions_read_probe.ProbeTests.test_mismatch_is_diagnostic_not_write) ... ok
+test_token_value_not_retained (test_actions_read_probe.ProbeTests.test_token_value_not_retained) ... ok
+test_write_guard (test_actions_read_probe.ProbeTests.test_write_guard) ... ok
+test_error_operation_and_http_without_raw_body (test_actions_read_probe.ResultAnnotationTests.test_error_operation_and_http_without_raw_body) ... ok
+test_untrusted_values_cannot_inject_annotations (test_actions_read_probe.ResultAnnotationTests.test_untrusted_values_cannot_inject_annotations) ... ok
+test_401_redacted (test_dr_diagnostics.Tests.test_401_redacted) ... ok
+test_installation_identity_403_not_false_read_failure (test_dr_diagnostics.Tests.test_installation_identity_403_not_false_read_failure) ... ok
+test_invalid_identity_shape_not_success (test_dr_diagnostics.Tests.test_invalid_identity_shape_not_success) ... ok
+test_invalid_repository_shape_is_redacted (test_dr_diagnostics.Tests.test_invalid_repository_shape_is_redacted) ... ok
+test_missing_target_not_guessed (test_dr_diagnostics.Tests.test_missing_target_not_guessed) ... ok
+test_no_login_or_body_output (test_dr_diagnostics.Tests.test_no_login_or_body_output) ... ok
+test_primary_as_target_rejected (test_dr_diagnostics.Tests.test_primary_as_target_rejected) ... ok
+test_user_success_does_not_authorize_repository (test_dr_diagnostics.Tests.test_user_success_does_not_authorize_repository) ... ok
+test_user_write_and_external_paths_refused (test_dr_diagnostics.Tests.test_user_write_and_external_paths_refused) ... ok
+test_approval_guard (test_dr_sync.DRTests.test_approval_guard) ... ok
+test_bad_blob_hash (test_dr_sync.DRTests.test_bad_blob_hash) ... ok
+test_bad_read_after_write_is_failure (test_dr_sync.DRTests.test_bad_read_after_write_is_failure) ... ok
+test_bad_tree_never_published (test_dr_sync.DRTests.test_bad_tree_never_published) ... ok
+test_branch_write_guard (test_dr_sync.DRTests.test_branch_write_guard) ... ok
+test_concurrent_target_change_never_published (test_dr_sync.DRTests.test_concurrent_target_change_never_published) ... ok
+test_default_is_read_only_mismatch (test_dr_sync.DRTests.test_default_is_read_only_mismatch) ... ok
+test_duplicate_source_refused (test_dr_sync.DRTests.test_duplicate_source_refused) ... ok
+test_empty_source_refused (test_dr_sync.DRTests.test_empty_source_refused) ... ok
+test_equal_tree_different_commit_is_match (test_dr_sync.DRTests.test_equal_tree_different_commit_is_match) ... ok
+test_existing_blob_reused_without_upload (test_dr_sync.DRTests.test_existing_blob_reused_without_upload) ... ok
+test_invalid_token_report_is_redacted (test_dr_sync.DRTests.test_invalid_token_report_is_redacted) ... ok
+test_missing_token_guard (test_dr_sync.DRTests.test_missing_token_guard) ... ok
+test_no_target_guessed (test_dr_sync.DRTests.test_no_target_guessed) ... ok
+test_redirect_refused (test_dr_sync.DRTests.test_redirect_refused) ... ok
+test_repository_write_guard (test_dr_sync.DRTests.test_repository_write_guard) ... ok
+test_submodule_rejected (test_dr_sync.DRTests.test_submodule_rejected) ... ok
+test_sync_already_equal_is_noop (test_dr_sync.DRTests.test_sync_already_equal_is_noop) ... ok
+test_sync_exact_tree_preserves_parent_never_force (test_dr_sync.DRTests.test_sync_exact_tree_preserves_parent_never_force) ... ok
+test_target_404_does_not_initialize (test_dr_sync.DRTests.test_target_404_does_not_initialize) ... ok
+test_target_truncated_refuses_writes (test_dr_sync.DRTests.test_target_truncated_refuses_writes) ... ok
+test_truncated_tree (test_dr_sync.DRTests.test_truncated_tree) ... ok
+test_403_scope_failure_not_retried (test_http_retry.Tests.test_403_scope_failure_not_retried) ... ok
+test_retry_after_too_long_stops (test_http_retry.Tests.test_retry_after_too_long_stops) ... ok
+test_transient_read_retry (test_http_retry.Tests.test_transient_read_retry) ... ok
+test_write_is_not_retried (test_http_retry.Tests.test_write_is_not_retried) ... ok
+test_changed_snapshot_not_approved (test_pinned_approval.PinnedApprovalTests.test_changed_snapshot_not_approved) ... ok
+test_expired_or_naive_approval_not_approved (test_pinned_approval.PinnedApprovalTests.test_expired_or_naive_approval_not_approved) ... ok
+test_not_review_branch_or_local (test_pinned_approval.PinnedApprovalTests.test_not_review_branch_or_local) ... ok
+test_owner_approved_exact_snapshot (test_pinned_approval.PinnedApprovalTests.test_owner_approved_exact_snapshot) ... ok
+test_wrong_target_or_disabled (test_pinned_approval.PinnedApprovalTests.test_wrong_target_or_disabled) ... ok
+test_missing_target_fails (test_recovery_plan.Tests.test_missing_target_fails) ... ok
+test_reverse_review_has_no_writes (test_recovery_plan.Tests.test_reverse_review_has_no_writes) ... ok
+test_unreachable_secondary_is_not_ready (test_recovery_plan.Tests.test_unreachable_secondary_is_not_ready) ... ok
+test_default_blocks_before_any_write (test_target_only_gate.TargetOnlyGateTests.test_default_blocks_before_any_write) ... ok
+test_explicit_approval_exact_tree_preserves_history (test_target_only_gate.TargetOnlyGateTests.test_explicit_approval_exact_tree_preserves_history) ... ok
+test_truthy_nonliteral_not_approval (test_target_only_gate.TargetOnlyGateTests.test_truthy_nonliteral_not_approval) ... ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 0.010s
+
+OK
+
+--- exit 0 ---
+$ python3 ops/vyomaraj-core/handover/rebuild_handover.py --check
+PASS: 13 categories, 133 sub-agents, 421 product count, 32 catalog files; 239 lines
+
+--- exit 0 ---
+$ python3 ops/vyomaraj-core/handover/build_configuration_report.py --check
+OK: BUILD_AND_CONFIGURATION_2026_10_04.md matches the repository sources
+
+--- exit 0 ---
+$ python3 ops/vyomaraj-core/handover/build_transfer_package.py --check
+OK: package reproducible and manifest matches (ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip)
+
+--- exit 0 ---
+$ python3 -m unittest discover -s ops/vyomaraj-core/handover -p test_*.py -v
+test_change_summary_is_present (test_build_configuration_report.ReportTests.test_change_summary_is_present) ... ok
+test_checked_in_report_matches_generator (test_build_configuration_report.ReportTests.test_checked_in_report_matches_generator) ... ok
+test_named_agents_are_listed (test_build_configuration_report.ReportTests.test_named_agents_are_listed) ... ok
+test_no_secret_values_are_printed (test_build_configuration_report.ReportTests.test_no_secret_values_are_printed) ... ok
+test_report_uses_repository_relative_paths (test_build_configuration_report.ReportTests.test_report_uses_repository_relative_paths) ... ok
+test_totals_match_the_registry (test_build_configuration_report.ReportTests.test_totals_match_the_registry) ... ok
+test_build_configuration_report_route (test_preview_reports.PreviewTests.test_build_configuration_report_route) ... ok
+test_html_injection_escaped (test_preview_reports.PreviewTests.test_html_injection_escaped) ... ok
+test_markdown_download (test_preview_reports.PreviewTests.test_markdown_download) ... ok
+test_next_session_note_download_is_byte_identical (test_preview_reports.PreviewTests.test_next_session_note_download_is_byte_identical) ... ok
+test_private_files_and_traversal_not_served (test_preview_reports.PreviewTests.test_private_files_and_traversal_not_served) ... ok
+test_readable_inventory_table (test_preview_reports.PreviewTests.test_readable_inventory_table) ... ok
+test_recovery_page_links_handover_and_package (test_preview_reports.PreviewTests.test_recovery_page_links_handover_and_package) ... ok
+test_transfer_package_download_is_the_packaged_artifact (test_preview_reports.PreviewTests.test_transfer_package_download_is_the_packaged_artifact) ... ok
+test_bad_category_total_rejected (test_rebuild_handover.HandoverTests.test_bad_category_total_rejected) ... ok
+test_bad_group_count_rejected (test_rebuild_handover.HandoverTests.test_bad_group_count_rejected) ... ok
+test_checked_in_output_matches (test_rebuild_handover.HandoverTests.test_checked_in_output_matches) ... ok
+test_duplicate_catalog_file_rejected (test_rebuild_handover.HandoverTests.test_duplicate_catalog_file_rejected) ... ok
+test_missing_catalog_file_rejected (test_rebuild_handover.HandoverTests.test_missing_catalog_file_rejected) ... ok
+test_new_platform_mapping_requires_review (test_rebuild_handover.HandoverTests.test_new_platform_mapping_requires_review) ... ok
+test_only_two_metadata_files_are_read (test_rebuild_handover.HandoverTests.test_only_two_metadata_files_are_read) ... ok
+test_path_traversal_rejected (test_rebuild_handover.HandoverTests.test_path_traversal_rejected) ... ok
+test_unknowns_and_scope_remain_explicit (test_rebuild_handover.HandoverTests.test_unknowns_and_scope_remain_explicit) ... ok
+test_no_secret_like_or_runtime_members (test_transfer_package.PackageTests.test_no_secret_like_or_runtime_members) ... ok
+test_note_member_is_the_canonical_note (test_transfer_package.PackageTests.test_note_member_is_the_canonical_note) ... ok
+test_package_matches_manifest_and_member_sources (test_transfer_package.PackageTests.test_package_matches_manifest_and_member_sources) ... ok
+test_rebuild_has_identical_members (test_transfer_package.PackageTests.test_rebuild_has_identical_members) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.591s
+
+OK
+
+--- exit 0 ---
+$ node --test ops/vyomaraj-core/test_safe_metadata.cjs
+TAP version 13
+# Subtest: coordination has no fabricated health or automatic actions
+ok 1 - coordination has no fabricated health or automatic actions
+  ---
+  duration_ms: 2.381446
+  type: 'test'
+  ...
+# Subtest: coordination snapshots cannot mutate platform declarations
+ok 2 - coordination snapshots cannot mutate platform declarations
+  ---
+  duration_ms: 0.804652
+  type: 'test'
+  ...
+# Subtest: Shriyantra is branding, not a security implementation
+ok 3 - Shriyantra is branding, not a security implementation
+  ---
+  duration_ms: 0.762425
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 64.201764
+
+--- exit 0 ---
+$ python3 -m unittest discover -s ops/vyomaraj-core/liquor-bar -p test_*.py -v
+test_canonical_ids_and_counts_unchanged (test_content.ContentTests.test_canonical_ids_and_counts_unchanged) ... ok
+test_chapters_are_proposed_not_recovered (test_content.ContentTests.test_chapters_are_proposed_not_recovered) ... ok
+test_events_separate_past_confirmed_and_unconfirmed (test_content.ContentTests.test_events_separate_past_confirmed_and_unconfirmed) ... ok
+test_extension_does_not_rewrite_historical_catalog (test_content.ContentTests.test_extension_does_not_rewrite_historical_catalog) ... ok
+test_no_connected_provider_or_fabricated_specs (test_content.ContentTests.test_no_connected_provider_or_fabricated_specs) ... ok
+test_snack_procedures_allergens_and_zero_alcohol_options (test_content.ContentTests.test_snack_procedures_allergens_and_zero_alcohol_options) ... ok
+test_sources_resolve_and_candidates_stay_marked (test_content.ContentTests.test_sources_resolve_and_candidates_stay_marked) ... ok
+test_assets_served_with_same_origin_policy (test_content.ServerTests.test_assets_served_with_same_origin_policy) ... ok
+test_private_and_non_allowlisted_files_rejected (test_content.ServerTests.test_private_and_non_allowlisted_files_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.514s
+
+OK
+
+--- exit 0 ---
+$ node --check ops/vyomaraj-core/liquor-bar/app.js
+
+--- exit 0 ---
+$ python3 -m unittest discover -s ops/vyomaraj-core/experience -p test_*.py -v
+test_all_chapters_are_view_only (test_aghor.AghorTests.test_all_chapters_are_view_only) ... ok
+test_content_counts_and_unique_ids (test_aghor.AghorTests.test_content_counts_and_unique_ids) ... ok
+test_disabled_planner_reads_no_files (test_aghor.AghorTests.test_disabled_planner_reads_no_files) ... ok
+test_invalid_fields_and_modes (test_aghor.AghorTests.test_invalid_fields_and_modes) ... ok
+test_new_subagent_without_replacing_unknowns (test_aghor.AghorTests.test_new_subagent_without_replacing_unknowns) ... ok
+test_plan_modes_disabled (test_aghor.AghorTests.test_plan_modes_disabled) ... ok
+test_proposals_and_non_rankings (test_aghor.AghorTests.test_proposals_and_non_rankings) ... ok
+test_provenance_all_records (test_aghor.AghorTests.test_provenance_all_records) ... ok
+test_unsafe_rites_have_no_steps (test_aghor.AghorTests.test_unsafe_rites_have_no_steps) ... ok
+test_active_json_routes (test_current_registry.CurrentRegistryTests.test_active_json_routes) ... ok
+test_directory_and_education_routes (test_current_registry.CurrentRegistryTests.test_directory_and_education_routes) ... ok
+test_planner_refuses_uncounted_heading_as_agent (test_current_registry.CurrentRegistryTests.test_planner_refuses_uncounted_heading_as_agent) ... ok
+test_planner_refuses_unknown_category (test_current_registry.CurrentRegistryTests.test_planner_refuses_unknown_category) ... ok
+test_reports_current_vs_historical (test_current_registry.CurrentRegistryTests.test_reports_current_vs_historical) ... ok
+test_rules_builder_and_private_paths_not_served (test_current_registry.CurrentRegistryTests.test_rules_builder_and_private_paths_not_served) ... ok
+test_all_content_index_current_and_reads_only_five_packs (test_film.FilmContentTests.test_all_content_index_current_and_reads_only_five_packs) ... ok
+test_conflicts_and_licences_preserved (test_film.FilmContentTests.test_conflicts_and_licences_preserved) ... ok
+test_existing_slots_names_and_proposals (test_film.FilmContentTests.test_existing_slots_names_and_proposals) ... ok
+test_ids_sources_resolve (test_film.FilmContentTests.test_ids_sources_resolve) ... ok
+test_no_media_or_connected_provider_claims (test_film.FilmContentTests.test_no_media_or_connected_provider_claims) ... ok
+test_pinned_registry_catalog_unchanged (test_film.FilmContentTests.test_pinned_registry_catalog_unchanged) ... ok
+test_advert_review_and_no_external_claims (test_film.FilmPlanTests.test_advert_review_and_no_external_claims) ... ok
+test_all_formats_contiguous_budget (test_film.FilmPlanTests.test_all_formats_contiguous_budget) ... ok
+test_invalid_requests_rejected (test_film.FilmPlanTests.test_invalid_requests_rejected) ... ok
+test_marathi_hindi_theatre_routes (test_film.FilmPlanTests.test_marathi_hindi_theatre_routes) ... ok
+test_reads_only_selected_pack_and_active_registry_metadata (test_film.FilmPlanTests.test_reads_only_selected_pack_and_active_registry_metadata) ... ok
+test_reference_context_not_adaptation (test_film.FilmPlanTests.test_reference_context_not_adaptation) ... ok
+test_all_contents_includes_four_extensions (test_film.FilmServerTests.test_all_contents_includes_four_extensions) ... ok
+test_assets_and_reports (test_film.FilmServerTests.test_assets_and_reports) ... ok
+test_http_outline (test_film.FilmServerTests.test_http_outline) ... ok
+test_no_upload_or_private_routes (test_film.FilmServerTests.test_no_upload_or_private_routes) ... ok
+test_historical_contracts_not_public_assets (test_governance.GovernanceTests.test_historical_contracts_not_public_assets) ... ok
+test_metadata_distinguishes_viewer_and_planner (test_governance.GovernanceTests.test_metadata_distinguishes_viewer_and_planner) ... ok
+test_no_contract_execution_or_income_claim (test_governance.GovernanceTests.test_no_contract_execution_or_income_claim) ... ok
+test_policy_allowlist (test_governance.GovernanceTests.test_policy_allowlist) ... ok
+test_report_routes_exist (test_governance.GovernanceTests.test_report_routes_exist) ... ok
+test_view_only_markup (test_governance.GovernanceTests.test_view_only_markup) ... ok
+test_avatar_variant_and_tv_rights_explicit (test_local_integration.ContentTests.test_avatar_variant_and_tv_rights_explicit) ... ok
+test_food_allergens_and_procedures (test_local_integration.ContentTests.test_food_allergens_and_procedures) ... ok
+test_historical_totals_unchanged (test_local_integration.ContentTests.test_historical_totals_unchanged) ... ok
+test_peetha_counts_and_variant_traditions (test_local_integration.ContentTests.test_peetha_counts_and_variant_traditions) ... ok
+test_proposed_chapter_scope (test_local_integration.ContentTests.test_proposed_chapter_scope) ... ok
+test_sources_and_ids_resolve (test_local_integration.ContentTests.test_sources_and_ids_resolve) ... ok
+test_cross_pack_topic_or_recipe_rejected (test_local_integration.PlannerTests.test_cross_pack_topic_or_recipe_rejected) ... ok
+test_dietary_conflicts_rejected (test_local_integration.PlannerTests.test_dietary_conflicts_rejected) ... ok
+test_local_handoff_does_not_claim_ai_or_production (test_local_integration.PlannerTests.test_local_handoff_does_not_claim_ai_or_production) ... ok
+test_no_source_topic_requires_research (test_local_integration.PlannerTests.test_no_source_topic_requires_research) ... ok
+test_pairing_pack_routes_to_existing_ids (test_local_integration.PlannerTests.test_pairing_pack_routes_to_existing_ids) ... ok
+test_reads_only_selected_reviewed_pack_and_active_registry_metadata (test_local_integration.PlannerTests.test_reads_only_selected_reviewed_pack_and_active_registry_metadata) ... ok
+test_untrusted_fields_and_types_rejected (test_local_integration.PlannerTests.test_untrusted_fields_and_types_rejected) ... ok
+test_end_to_end_handoff (test_local_integration.ServerTests.test_end_to_end_handoff) ... ok
+test_preview_assets_and_status (test_local_integration.ServerTests.test_preview_assets_and_status) ... ok
+test_private_routes_blocked (test_local_integration.ServerTests.test_private_routes_blocked) ... ok
+test_unsupported_json_and_oversize (test_local_integration.ServerTests.test_unsupported_json_and_oversize) ... ok
+test_dated_chart_not_current (test_music.MusicContentTests.test_dated_chart_not_current) ... ok
+test_existing_slots_only_proposed_names (test_music.MusicContentTests.test_existing_slots_only_proposed_names) ... ok
+test_formats_and_eras_are_distinct (test_music.MusicContentTests.test_formats_and_eras_are_distinct) ... ok
+test_no_bundled_or_live_media_claims (test_music.MusicContentTests.test_no_bundled_or_live_media_claims) ... ok
+test_pinned_registry_and_historical_catalog (test_music.MusicContentTests.test_pinned_registry_and_historical_catalog) ... ok
+test_sources_and_catalogue_ids (test_music.MusicContentTests.test_sources_and_catalogue_ids) ... ok
+test_invalid_ids_types_and_budget_rejected (test_music.MusicPlannerTests.test_invalid_ids_types_and_budget_rejected) ... ok
+test_no_model_stream_publish_or_device_claims (test_music.MusicPlannerTests.test_no_model_stream_publish_or_device_claims) ... ok
+test_only_reviewed_pack_read_and_active_registry_metadata (test_music.MusicPlannerTests.test_only_reviewed_pack_read_and_active_registry_metadata) ... ok
+test_order_and_sources_preserved (test_music.MusicPlannerTests.test_order_and_sources_preserved) ... ok
+test_routes_to_proposed_existing_bindings (test_music.MusicPlannerTests.test_routes_to_proposed_existing_bindings) ... ok
+test_rundown_exact_budget_and_contiguous_slots (test_music.MusicPlannerTests.test_rundown_exact_budget_and_contiguous_slots) ... ok
+test_http_music_handoff (test_music.MusicServerTests.test_http_music_handoff) ... ok
+test_music_assets_and_report (test_music.MusicServerTests.test_music_assets_and_report) ... ok
+test_no_upload_or_private_file_routes (test_music.MusicServerTests.test_no_upload_or_private_file_routes) ... ok
+test_cross_origin_refused (test_research_http.ResearchHTTP.test_cross_origin_refused) ... ok
+test_enqueue_closed_fields_and_profile (test_research_http.ResearchHTTP.test_enqueue_closed_fields_and_profile) ... ok
+test_export_and_pagination (test_research_http.ResearchHTTP.test_export_and_pagination) ... ok
+test_json_required_no_form_posts (test_research_http.ResearchHTTP.test_json_required_no_form_posts) ... ok
+test_private_state_and_templates_not_served (test_research_http.ResearchHTTP.test_private_state_and_templates_not_served) ... ok
+test_review_requires_ack_and_does_not_publish (test_research_http.ResearchHTTP.test_review_requires_ack_and_does_not_publish) ... ok
+test_same_origin_accepted (test_research_http.ResearchHTTP.test_same_origin_accepted) ... ok
+test_status_and_assets (test_research_http.ResearchHTTP.test_status_and_assets) ... ok
+
+----------------------------------------------------------------------
+Ran 77 tests in 2.648s
+
+OK
+
+--- exit 0 ---
+$ node --check ops/vyomaraj-core/bhakti-experience/app.js
+
+--- exit 0 ---
+$ node --check ops/vyomaraj-core/music-experience/app.js
+
+--- exit 0 ---
+$ node --check ops/vyomaraj-core/film-experience/app.js
+
+--- exit 0 ---
+$ python3 -m unittest discover -s ops/vyomaraj-core/research -p test_*.py -v
+test_bad_result_rows_skipped (test_discovery.Tests.test_bad_result_rows_skipped) ... ok
+test_bounded_response_and_json_content_type (test_discovery.Tests.test_bounded_response_and_json_content_type) ... ok
+test_catalog_reuses_attributed_packs (test_discovery.Tests.test_catalog_reuses_attributed_packs) ... ok
+test_cli_active_job_does_not_return_false_success (test_discovery.Tests.test_cli_active_job_does_not_return_false_success) ... ok
+test_cli_reused_blocked_job_does_not_return_false_success (test_discovery.Tests.test_cli_reused_blocked_job_does_not_return_false_success) ... ok
+test_complete_fixture_run_then_cache_no_network (test_discovery.Tests.test_complete_fixture_run_then_cache_no_network) ... ok
+test_enqueue_dedup (test_discovery.Tests.test_enqueue_dedup) ... ok
+test_expired_worker_recovery (test_discovery.Tests.test_expired_worker_recovery) ... ok
+test_fetch_redacts_http_error (test_discovery.Tests.test_fetch_redacts_http_error) ... ok
+test_inactive_registry_slot_refused (test_discovery.Tests.test_inactive_registry_slot_refused) ... ok
+test_invalid_local_port_is_redacted (test_discovery.Tests.test_invalid_local_port_is_redacted) ... ok
+test_invalid_provider_payloads (test_discovery.Tests.test_invalid_provider_payloads) ... ok
+test_loc_and_openlibrary_provenance (test_discovery.Tests.test_loc_and_openlibrary_provenance) ... ok
+test_loc_external_host_not_accepted (test_discovery.Tests.test_loc_external_host_not_accepted) ... ok
+test_local_services_refuse_arbitrary_egress (test_discovery.Tests.test_local_services_refuse_arbitrary_egress) ... ok
+test_multi_profile_merge_does_not_merge_different_provider (test_discovery.Tests.test_multi_profile_merge_does_not_merge_different_provider) ... ok
+test_musicbrainz_bounded_query_identification (test_discovery.Tests.test_musicbrainz_bounded_query_identification) ... ok
+test_musicbrainz_normalization (test_discovery.Tests.test_musicbrainz_normalization) ... ok
+test_no_remote_ai_by_default (test_discovery.Tests.test_no_remote_ai_by_default) ... ok
+test_ollama_malformed_and_extra_actions_rejected (test_discovery.Tests.test_ollama_malformed_and_extra_actions_rejected) ... ok
+test_ollama_output_is_advisory_only (test_discovery.Tests.test_ollama_output_is_advisory_only) ... ok
+test_optional_searxng_not_misreported (test_discovery.Tests.test_optional_searxng_not_misreported) ... ok
+test_public_url_rejects_unsafe (test_discovery.Tests.test_public_url_rejects_unsafe) ... ok
+test_queue_capacity (test_discovery.Tests.test_queue_capacity) ... ok
+test_real_provider_empty_result_is_success_not_failure (test_discovery.Tests.test_real_provider_empty_result_is_success_not_failure) ... ok
+test_record_storage_capacity_is_explicit (test_discovery.Tests.test_record_storage_capacity_is_explicit) ... ok
+test_redirects_not_followed (test_discovery.Tests.test_redirects_not_followed) ... ok
+test_review_never_clears_rights_or_publishes (test_discovery.Tests.test_review_never_clears_rights_or_publishes) ... ok
+test_runtime_failures_not_empty_success (test_discovery.Tests.test_runtime_failures_not_empty_success) ... ok
+test_saves_preserve_review_until_metadata_changes (test_discovery.Tests.test_saves_preserve_review_until_metadata_changes) ... ok
+test_searxng_local_service_fixture (test_discovery.Tests.test_searxng_local_service_fixture) ... ok
+test_single_claim_across_store_instances (test_discovery.Tests.test_single_claim_across_store_instances) ... ok
+test_success_cache_and_expiry (test_discovery.Tests.test_success_cache_and_expiry) ... ok
+test_throttle_shared_and_at_least_one_second (test_discovery.Tests.test_throttle_shared_and_at_least_one_second) ... ok
+test_unknown_profile_refused (test_discovery.Tests.test_unknown_profile_refused) ... ok
+test_unknown_review_decision_rejected (test_discovery.Tests.test_unknown_review_decision_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.438s
+
+OK
+
+--- exit 0 ---
+$ node --check ops/vyomaraj-core/research/app.js
+
+--- exit 0 ---
+$ python3 ops/vyomaraj-core/agents/rebuild_registry.py --check
+PASS current hierarchy: 13 categories / 128 counted slots / 6 headings; Education 16, Finance 7, Entertainment 32. Historical snapshot preserved.
+
+--- exit 0 ---
+$ python3 -m unittest discover -s ops/vyomaraj-core/agents -p test_*.py -v
+test_all_six_hubs_uncounted (test_registry.RegistryTests.test_all_six_hubs_uncounted) ... ok
+test_child_ids_preserved (test_registry.RegistryTests.test_child_ids_preserved) ... ok
+test_conflicting_category_not_silently_deleted (test_registry.RegistryTests.test_conflicting_category_not_silently_deleted) ... ok
+test_conflicting_topic_does_not_disappear (test_registry.RegistryTests.test_conflicting_topic_does_not_disappear) ... ok
+test_correct_hub_edges (test_registry.RegistryTests.test_correct_hub_edges) ... ok
+test_cross_category_parent_refused (test_registry.RegistryTests.test_cross_category_parent_refused) ... ok
+test_current_totals (test_registry.RegistryTests.test_current_totals) ... ok
+test_dangling_parent_refused (test_registry.RegistryTests.test_dangling_parent_refused) ... ok
+test_duplicate_category_exact_removed (test_registry.RegistryTests.test_duplicate_category_exact_removed) ... ok
+test_duplicate_serial_refused (test_registry.RegistryTests.test_duplicate_serial_refused) ... ok
+test_education_duplicate_conflict_refused (test_registry.RegistryTests.test_education_duplicate_conflict_refused) ... ok
+test_education_duplicate_exact_removed (test_registry.RegistryTests.test_education_duplicate_exact_removed) ... ok
+test_education_finance_transfer (test_registry.RegistryTests.test_education_finance_transfer) ... ok
+test_entertainment_group_duplicate_removed (test_registry.RegistryTests.test_entertainment_group_duplicate_removed) ... ok
+test_grantha_six_stay_unassigned (test_registry.RegistryTests.test_grantha_six_stay_unassigned) ... ok
+test_heading_not_counted_as_agent (test_registry.RegistryTests.test_heading_not_counted_as_agent) ... ok
+test_indicom_criticism_distinct (test_registry.RegistryTests.test_indicom_criticism_distinct) ... ok
+test_no_names_coined_for_unknowns (test_registry.RegistryTests.test_no_names_coined_for_unknowns) ... ok
+test_platform_and_named_roster_duplicates_removed (test_registry.RegistryTests.test_platform_and_named_roster_duplicates_removed) ... ok
+test_platform_serial_not_source_s20 (test_registry.RegistryTests.test_platform_serial_not_source_s20) ... ok
+test_privacy_metadata_only_reads (test_registry.RegistryTests.test_privacy_metadata_only_reads) ... ok
+test_products_not_fabricated (test_registry.RegistryTests.test_products_not_fabricated) ... ok
+test_repeatable_outputs (test_registry.RegistryTests.test_repeatable_outputs) ... ok
+test_serials_contiguous_per_category (test_registry.RegistryTests.test_serials_contiguous_per_category) ... ok
+test_source_and_current_json_separate (test_registry.RegistryTests.test_source_and_current_json_separate) ... ok
+test_source_snapshot_unchanged (test_registry.RegistryTests.test_source_snapshot_unchanged) ... ok
+test_topic_owner_and_no_duplicates (test_registry.RegistryTests.test_topic_owner_and_no_duplicates) ... ok
+test_wrong_education_owner_refused (test_registry.RegistryTests.test_wrong_education_owner_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.090s
+
+OK
+
+--- exit 0 ---
+$ node --check ops/vyomaraj-core/agents/app.js
+
+--- exit 0 ---
+$ node --check ops/vyomaraj-core/aghor-experience/app.js
+
+--- exit 0 ---
+$ python3 -m unittest discover -s ops/availability -p test_*.py -v
+test_404_is_not_hidden_by_failover (test_gateway.Tests.test_404_is_not_hidden_by_failover) ... ok
+test_arbitrary_proxy_routes_refused (test_gateway.Tests.test_arbitrary_proxy_routes_refused) ... ok
+test_both_down_not_false_success (test_gateway.Tests.test_both_down_not_false_success) ... ok
+test_get_fallback (test_gateway.Tests.test_get_fallback) ... ok
+test_health_shape_not_fake_ready (test_gateway.Tests.test_health_shape_not_fake_ready) ... ok
+test_http_503_fallback (test_gateway.Tests.test_http_503_fallback) ... ok
+test_post_never_replayed (test_gateway.Tests.test_post_never_replayed) ... ok
+test_post_selects_live_replica_once (test_gateway.Tests.test_post_selects_live_replica_once) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+OK
+
+--- exit 0 ---
+$ bash -n ops/dr/run-dr.sh ops/dr/failover-controller.sh
+
+--- exit 0 ---

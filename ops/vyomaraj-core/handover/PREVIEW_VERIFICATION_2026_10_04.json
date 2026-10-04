@@ -1,0 +1,220 @@
+{
+  "verified_at_utc": "2026-10-04T05:58:31+00:00",
+  "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
+  "git": {
+    "branch": "arena/01a1056f-vyomarajai",
+    "commit": "16ac3d6db591036eb37e73d17cf6e4da2b011564"
+  },
+  "canonical_note": {
+    "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
+    "sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
+    "bytes": 8696
+  },
+  "transfer_package": {
+    "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
+    "sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66",
+    "bytes": 41071
+  },
+  "byte_identity": {
+    "viewer_next_session_download_sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
+    "gateway_next_session_download_sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076",
+    "viewer_transfer_package_download_sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66",
+    "gateway_transfer_package_download_sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66"
+  },
+  "viewer_routes": [
+    {
+      "route": "/",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 24908,
+      "sha256": "5b6444c100dd1a9d34dd2c428114f9953aa2eb973b28932b71a3ff84beb3781d"
+    },
+    {
+      "route": "/sovereign/",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 5845,
+      "sha256": "c5559f830aaf3ac8ce545569cea956beef0d5b2a9724ddd2f2544e8c86c0210e"
+    },
+    {
+      "route": "/contracts/",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 6102,
+      "sha256": "3f36ba027faf39bd1316ec79e073d1c177bf71733571819bedeee31f10c923a2"
+    },
+    {
+      "route": "/reports/agents",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 23380,
+      "sha256": "515b440df72e8794edd47edb00cf0de28eefde39d4a20057b460860503298a04"
+    },
+    {
+      "route": "/reports/build",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 13617,
+      "sha256": "d9fc06f22620d6ba0588a4ab635041bfbee7cd4465b1b38fb8f974c042d27d07"
+    },
+    {
+      "route": "/reports/next-session",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 10956,
+      "sha256": "d65e1f7f6512339b890e3642edb1dc995ca738fe9aa59984fa79b7c0d9a12cb5"
+    },
+    {
+      "route": "/reports/recovery",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 7331,
+      "sha256": "9d8721d03213e2d85f6853a4bba03ee974e173e6695ee43e577fe49c416ce595"
+    },
+    {
+      "route": "/reports/download/next-session.txt",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
+      "bytes": 8696,
+      "sha256": "4beeb677ae60846b16a3d4a3960a5abffa928c25181a14eaf5b4c0a5563ec076"
+    },
+    {
+      "route": "/reports/download/transfer-package.zip",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "application/zip",
+      "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
+      "bytes": 41071,
+      "sha256": "22fb5d4492d8ffa727cbe5ef67cb1ed055305af67c9bed5d50ee8f787ffa4d66"
+    },
+    {
+      "route": "/not-an-allowlisted-route",
+      "expected_status": 404,
+      "status": 404,
+      "content_type": "text/html;charset=utf-8",
+      "content_disposition": null,
+      "bytes": 363,
+      "sha256": "818a789ae5677db80667ceb296a8cacdf478b337cce668d2d6b967831eb8a623"
+    }
+  ],
+  "gateway_routes": [
+    {
+      "route": "/aghor/",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 5203,
+      "sha256": "22b68ec01f871ff87250dae87530bc9294e1af0f59359490077aa4b32c1a28c0"
+    },
+    {
+      "route": "/reports/build",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 13961,
+      "sha256": "e21c8d37a6482b45b9283f8b408ca6eb4233cd8d62f18fa0098ddcac788490ea"
+    },
+    {
+      "route": "/reports/next-session",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 12161,
+      "sha256": "2fcbaea1048e5a8e3c315e2b39660102435a0f9df49003806a669b05655ef6e4"
+    },
+    {
+      "route": "/reports/recovery",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 7675,
+      "sha256": "a39f1ef16f4088e76f63a10d37a2131af6962a32f9a20876a0d6f8e5d1c65495"
+    },
+    {
+      "route": "/reports/agents",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 23724,
+      "sha256": "c2b9b662ce7f4b714206b860cc655d327fab5ccd7c18108a0bea158a5652a53c"
+    },
+    {
+      "route": "/sovereign/",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 6189,
+      "sha256": "c515e9902fc3baa379a3e9a1cd7240005b4106c8be312094e6dd199e180ec1a1"
+    },
+    {
+      "route": "/contracts/",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 6446,
+      "sha256": "7d292b37625167244805637c22d40de817068dfdc4f8f143743d693f7ba1fef1"
+    },
+    {
+      "route": "/not-an-allowlisted-route",
+      "expected_status": 404,
+      "status": 404,
+      "content_type": "text/html;charset=utf-8",
+      "content_disposition": null,
+      "bytes": 372,
+      "sha256": "7562c4dfe1d7a22760737829f9cf3fc09b6e1aa57eea4fda3ef5ad0aff88bf29"
+    }
+  ],
+  "gateway_availability": {
+    "mode": "SINGLE_HOST_REHEARSAL_NOT_PRODUCTION_DR",
+    "independent_failure_domains": false,
+    "shared_filesystem_and_queue": true,
+    "production_dr_verified": false,
+    "zero_rto_claimed": false,
+    "replicas": [
+      {
+        "role": "Vyomaraj replica",
+        "metadata_ready": true
+      },
+      {
+        "role": "Jarvis replica",
+        "metadata_ready": true
+      }
+    ],
+    "write_policy": "POST is sent once, never replayed after an ambiguous failure",
+    "counters": {
+      "primary_responses": 57,
+      "secondary_responses": 1,
+      "ambiguous_post_failures": 0,
+      "unavailable_responses": 1
+    }
+  },
+  "problems": [],
+  "limitations": [
+    "Single sandbox host; both replicas share one checkout, filesystem and SQLite queue.",
+    "The preview stack is unauthenticated and is not a production DR approval.",
+    "Only HTTP responses observed at the recorded time are asserted."
+  ]
+}

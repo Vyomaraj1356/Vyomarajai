@@ -1,0 +1,137 @@
+{
+  "scope": "CONTROLLED_SINGLE_HOST_PROCESS_FAILURE_REHEARSAL",
+  "recorded_utc_date": "2026-10-04",
+  "production_dr_verified": false,
+  "independent_failure_domains": false,
+  "shared_filesystem_and_SQLite": true,
+  "zero_rpo_or_rto_claimed": false,
+  "operations": "GET only through the local gateway; owned local replica processes stopped one at a time, then both briefly; restored afterward",
+  "probe": "GET /aghor/ through gateway port 4176; latency is one request measured after the fault, not time from disaster onset",
+  "observations": [
+    {
+      "phase": "baseline",
+      "checked_at_utc": "2026-10-04T05:45:31+00:00",
+      "probe": "GET /aghor/ through the gateway",
+      "http_status": 200,
+      "served_by": "primary",
+      "single_request_latency_ms_after_fault": 4.866,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": true
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": true
+        }
+      ],
+      "counters": {
+        "primary_responses": 4,
+        "secondary_responses": 0,
+        "ambiguous_post_failures": 0,
+        "unavailable_responses": 0
+      }
+    },
+    {
+      "phase": "primary_stopped",
+      "checked_at_utc": "2026-10-04T05:45:35+00:00",
+      "probe": "GET /aghor/ through the gateway",
+      "http_status": 200,
+      "served_by": "secondary",
+      "single_request_latency_ms_after_fault": 3.739,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": false
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": true
+        }
+      ],
+      "counters": {
+        "primary_responses": 4,
+        "secondary_responses": 1,
+        "ambiguous_post_failures": 0,
+        "unavailable_responses": 0
+      }
+    },
+    {
+      "phase": "secondary_stopped",
+      "checked_at_utc": "2026-10-04T05:45:42+00:00",
+      "probe": "GET /aghor/ through the gateway",
+      "http_status": 200,
+      "served_by": "primary",
+      "single_request_latency_ms_after_fault": 3.721,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": true
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": false
+        }
+      ],
+      "counters": {
+        "primary_responses": 5,
+        "secondary_responses": 1,
+        "ambiguous_post_failures": 0,
+        "unavailable_responses": 0
+      }
+    },
+    {
+      "phase": "both_stopped",
+      "checked_at_utc": "2026-10-04T05:45:46+00:00",
+      "probe": "GET /aghor/ through the gateway",
+      "http_status": 503,
+      "served_by": null,
+      "single_request_latency_ms_after_fault": 4.687,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": false
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": false
+        }
+      ],
+      "counters": {
+        "primary_responses": 5,
+        "secondary_responses": 1,
+        "ambiguous_post_failures": 0,
+        "unavailable_responses": 1
+      }
+    },
+    {
+      "phase": "both_restored",
+      "checked_at_utc": "2026-10-04T05:45:52+00:00",
+      "probe": "GET /aghor/ through the gateway",
+      "http_status": 200,
+      "served_by": "primary",
+      "single_request_latency_ms_after_fault": 3.978,
+      "replicas": [
+        {
+          "role": "Vyomaraj replica",
+          "metadata_ready": true
+        },
+        {
+          "role": "Jarvis replica",
+          "metadata_ready": true
+        }
+      ],
+      "counters": {
+        "primary_responses": 6,
+        "secondary_responses": 1,
+        "ambiguous_post_failures": 0,
+        "unavailable_responses": 1
+      }
+    }
+  ],
+  "limitations": [
+    "Single sandbox host, single checkout, shared SQLite queue and shared filesystem.",
+    "The gateway itself is a single point of failure and was never stopped in this drill.",
+    "No production traffic, Git ref, datastore restore or independent-site failover was exercised."
+  ]
+}
