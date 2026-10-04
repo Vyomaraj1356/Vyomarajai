@@ -38,3 +38,33 @@ jobs:
           path: ci-diagnostics.log
           if-no-files-found: ignore
           retention-days: 7
+
+  dr-read-only-diagnostic:
+    # Trusted same-repository contexts only; fork pull requests never receive the DR secret.
+    if: >-
+      github.repository == 'Vyomaraj1356/Vyomarajai' &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read-only secondary probe (GET only, never writes)
+        env:
+          PRIMARY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DR_TOKEN: ${{ secrets.VYOMARAJ_PAT }}
+          GITHUB_HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+        run: python3 ops/dr/secondary_read_probe.py
+      - name: Upload sanitized probe evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dr-read-probe
+          path: dr-read-probe.json
+          if-no-files-found: ignore
+          retention-days: 7
