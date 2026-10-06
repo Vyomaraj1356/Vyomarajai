@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-arena-recovery/1",
-  "generated_at_utc": "2026-10-06 12:39 UTC",
+  "generated_at_utc": "2026-10-06 12:46 UTC",
   "session_branches_count": 12,
   "session_branches": [
     {
@@ -127,17 +127,13 @@
     },
     {
       "branch": "arena/6bc12929-vyomarajai",
-      "tip": "4af341e7de8035e7effc8932bd60561a61a074b8",
+      "tip": "eac21fe91bc882e69e2ea9fb997595e99ae11455",
       "date": "2026-10-06",
-      "subject": "record: fill publication SHAs in the next-session plan",
-      "commits_ahead_of_main": 2,
-      "files_unique_to_branch": 3,
-      "unique_examples": [
-        "ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md",
-        "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md",
-        "ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md"
-      ],
-      "content_in_main": false
+      "subject": "follow-up: checkpoint #29, correct the issues-write claim",
+      "commits_ahead_of_main": 1,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
     }
   ],
   "archives_count": 42,
@@ -415,5 +411,5 @@
     "raw_transcripts_exported": false,
     "why_not": null
   },
-  "unique_files_across_branches": 16
+  "unique_files_across_branches": 13
 }

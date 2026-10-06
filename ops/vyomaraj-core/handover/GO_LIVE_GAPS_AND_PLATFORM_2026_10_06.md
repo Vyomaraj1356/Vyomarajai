@@ -1,6 +1,6 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-06 12:45 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-06 12:46 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
@@ -19,7 +19,7 @@ runs. Details and alternatives in section 4. The important part is that **the pl
 interchangeable** — whichever one you pick reads the same repo.
 
 **"Did I lose the 12 sessions?"** No. All 12 session branches are still on GitHub and
-42 archives are in the repository; 16 files exist on session branches that main
+42 archives are in the repository; 13 files exist on session branches that main
 does not carry. The one thing that is genuinely not recoverable from here is the raw per-chat transcripts —
 that lives in Arena's own session history, not in the repo (section 5).
 
