@@ -1,6 +1,6 @@
 # ARENA SESSION RECOVERY INDEX
 
-Computed 2026-10-06 12:46 UTC from this repository. The owner was told the work of 12 Arena sessions may be lost. This is what actually survives, and where.
+Computed 2026-10-06 12:52 UTC from this repository. The owner was told the work of 12 Arena sessions may be lost. This is what actually survives, and where.
 
 ## The headline
 
@@ -24,7 +24,7 @@ Computed 2026-10-06 12:46 UTC from this repository. The owner was told the work 
 | 9 | `arena/01a10655-vyomarajai` | 2026-10-04 | Refresh deep scan with follow-up DR check | 0 | 0 | yes |
 | 10 | `arena/01a106da-vyomarajai` | 2026-10-06 | fix: rebuild transfer package d9f2b0ae after index r | 0 | 0 | yes |
 | 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | docs(go-live): the PR backlog is cleared - record wh | 0 | 0 | yes |
-| 12 | `arena/6bc12929-vyomarajai` | 2026-10-06 | follow-up: checkpoint #29, correct the issues-write  | 1 | 0 | yes |
+| 12 | `arena/6bc12929-vyomarajai` | 2026-10-06 | record: stale-head race note for future DR reads | 1 | 0 | yes |
 
 Across all branches, **13 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
 

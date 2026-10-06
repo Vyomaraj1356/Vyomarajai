@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-arena-recovery/1",
-  "generated_at_utc": "2026-10-06 12:46 UTC",
+  "generated_at_utc": "2026-10-06 12:52 UTC",
   "session_branches_count": 12,
   "session_branches": [
     {
@@ -127,9 +127,9 @@
     },
     {
       "branch": "arena/6bc12929-vyomarajai",
-      "tip": "eac21fe91bc882e69e2ea9fb997595e99ae11455",
+      "tip": "6ac630fe1fb1de7b6247303a7c72374ed98077cd",
       "date": "2026-10-06",
-      "subject": "follow-up: checkpoint #29, correct the issues-write claim",
+      "subject": "record: stale-head race note for future DR reads",
       "commits_ahead_of_main": 1,
       "files_unique_to_branch": 0,
       "unique_examples": [],

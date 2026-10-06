@@ -598,5 +598,23 @@
     "rule": "One checkpoint row per distinct new main tip plus the latest schedule confirmation on the final tip; the complete per-tip check-run sets were enumerated with per_page=100, so no successful verify-or-sync run on these tips is missing.",
     "next_checkpoint": "The merge carrying this extension is verified by the same workflow immediately after it lands; that run becomes checkpoint #29 per the trailing rule (section 5c).",
     "fulfilled_by": "run 37465147285 (checkpoint #29, 2026-10-06T12:43:24Z): the PR #32 merge verified write + MATCH, trees c2f20ec8, rollback 8af782db retained."
+  },
+  "stale_head_race_note_2026_10_06": {
+    "phenomenon": "Schedule runs pin head_sha at creation but read LIVE main via the API at execution. If a merge lands in between, the run verifies (and may replicate) a NEWER snapshot than its head_sha, and its check-run files under the stale head. Attribute replication writes by ANNOTATION TREES, not by head_sha filing.",
+    "observed_instance": {
+      "schedule_run_id": 37465859915,
+      "schedule_head_sha": "1c13650ce19e18cdc80fe6f8e9ded4fe8c3e6a99",
+      "schedule_check_run_id": 112276811314,
+      "schedule_completed_at_utc": "2026-10-06T12:49:03Z",
+      "schedule_annotation_trees": "e7b65c5952a3b31344fc15b6294afc80f21c5791",
+      "schedule_rollback_commit": "b665606630e6002103dc667cf40935db3615d78b",
+      "push_run_id": 37465870496,
+      "push_head_sha": "e9bfba0efd3688e4757bfc9a9e352b14c5af006b",
+      "push_check_run_id": 112277370308,
+      "push_completed_at_utc": "2026-10-06T12:49:55Z",
+      "push_annotation": "no-op MATCH, trees e7b65c59, no rollback (snapshots already equal)"
+    },
+    "rule_for_future_reads": "When a verify-or-sync annotation trees do not match git rev-parse of its head SHA, list sibling workflow runs before flagging a mismatch: a schedule/push race is the expected cause. The push run filed under the new tip remains the canonical checkpoint row for that tip.",
+    "checkpoint_30_guidance": "Record push-run check 112277370308 (no-op MATCH, trees e7b65c59) as the row for tip e9bfba0 with replication_write_in_this_run=false, and note the snapshot write was performed minutes earlier by schedule run 37465859915 (filed under 1c13650, rollback b6656066 retained)."
   }
 }
