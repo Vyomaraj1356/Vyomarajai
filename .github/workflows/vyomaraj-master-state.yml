@@ -1,0 +1,39 @@
+name: Vyomaraj Master State Verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ops/vyomaraj-core/handover/VYOMARAJ_MASTER_STATE.json'
+      - 'ops/vyomaraj-core/handover/verify_master_state.py'
+      - 'ops/dr/dr.env'
+  pull_request:
+    paths:
+      - 'ops/vyomaraj-core/handover/VYOMARAJ_MASTER_STATE.json'
+      - 'ops/vyomaraj-core/handover/verify_master_state.py'
+      - 'ops/dr/dr.env'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-master-state:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify authoritative master state
+        run: python3 ops/vyomaraj-core/handover/verify_master_state.py
+      - name: Reject unsafe DR claims
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("ops/dr/dr.env").read_text()
+          forbidden=("MIRROR_MODE=--mirror --force",
+                     "ALL_SOCIAL_PLATFORMS_ACTIVATED=true",
+                     "ZERO_LOSS_FRACTION_SECONDS=true",
+                     "BIDIRECTIONAL_SYNC=true")
+          bad=[x for x in forbidden if x in p]
+          if bad:
+              raise SystemExit("Unsafe/stale DR claims found: "+", ".join(bad))
+          print("DR safety assertions: PASS")
+          PY
