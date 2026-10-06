@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-06T12:39:15+00:00",
+  "verified_at_utc": "2026-10-06T12:45:00+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/6bc12929-vyomarajai",
-    "commit": "1ecf59b7150f0dea4b1d8a785d2000052bcdfbd5"
+    "commit": "9ce9a37025bd4c6f1fc1259370807770854c1c41"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
@@ -12,16 +12,16 @@
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "b7581fe10b0ba5dc2e652ae0b390776eee3a4fdbbd8c235dc4aa12ccbe2f4b10",
-    "bytes": 148708
+    "sha256": "08646bbb370a3a7472d57d4a29867c9b26f1631e1d655985c1878747c0d79db1",
+    "bytes": 149125
   },
   "byte_identity": {
     "viewer_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "viewer_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-    "viewer_transfer_package_download_sha256": "b7581fe10b0ba5dc2e652ae0b390776eee3a4fdbbd8c235dc4aa12ccbe2f4b10",
-    "gateway_transfer_package_download_sha256": "b7581fe10b0ba5dc2e652ae0b390776eee3a4fdbbd8c235dc4aa12ccbe2f4b10",
+    "viewer_transfer_package_download_sha256": "08646bbb370a3a7472d57d4a29867c9b26f1631e1d655985c1878747c0d79db1",
+    "gateway_transfer_package_download_sha256": "08646bbb370a3a7472d57d4a29867c9b26f1631e1d655985c1878747c0d79db1",
     "viewer_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "gateway_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "viewer_platform_check_download_sha256": "55d3e64017ff0f46645b9c9cbedc68d83c4481216ad1898ec5a4cd4e28912433",
@@ -30,8 +30,8 @@
     "gateway_issues_ledger_json_download_sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345",
     "viewer_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
     "gateway_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
-    "viewer_post_pr25_package_download_sha256": "361aed9f8195f275e471d5ca0d24727ca74bc4281660ec8fb1b7b192c7ef2203",
-    "gateway_post_pr25_package_download_sha256": "361aed9f8195f275e471d5ca0d24727ca74bc4281660ec8fb1b7b192c7ef2203"
+    "viewer_post_pr25_package_download_sha256": "8d01d9f74d7acb7be538b46ca58fd8faf02ab563c2050665585ed4efcef5a517",
+    "gateway_post_pr25_package_download_sha256": "8d01d9f74d7acb7be538b46ca58fd8faf02ab563c2050665585ed4efcef5a517"
   },
   "viewer_routes": [
     {
@@ -76,8 +76,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 17839,
-      "sha256": "8355737aeebc94be6d9ed435529a4e2c68e2044ecbd70e6e9837fd0b21a65620"
+      "bytes": 17853,
+      "sha256": "35725c7b537d24440784083f61b1546143f4547150e4bccce5b207c6eefc1760"
     },
     {
       "route": "/reports/architecture",
@@ -112,8 +112,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 35617,
-      "sha256": "9a533046801a0e7525d8af326532d90715a144c3dabf9b4d59df8d0d2a8c3821"
+      "bytes": 36299,
+      "sha256": "48b63117cf8e587ee61c689f4e57ad06d85a83da098646c20207cf0536276c29"
     },
     {
       "route": "/reports/recovery",
@@ -149,7 +149,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 35827,
-      "sha256": "1a85d0ea7fd53ac5cef183789ab600cf744aad95e23c429801a8fd70c8d87de5"
+      "sha256": "b4e8616344fcc632f024667e93aaf4deaf54addc2937f2d9f6ae5aacf6c01c52"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -175,8 +175,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 148708,
-      "sha256": "b7581fe10b0ba5dc2e652ae0b390776eee3a4fdbbd8c235dc4aa12ccbe2f4b10"
+      "bytes": 149125,
+      "sha256": "08646bbb370a3a7472d57d4a29867c9b26f1631e1d655985c1878747c0d79db1"
     },
     {
       "route": "/reports/post-pr25-handover",
@@ -202,8 +202,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 184918,
-      "sha256": "361aed9f8195f275e471d5ca0d24727ca74bc4281660ec8fb1b7b192c7ef2203"
+      "bytes": 185335,
+      "sha256": "8d01d9f74d7acb7be538b46ca58fd8faf02ab563c2050665585ed4efcef5a517"
     },
     {
       "route": "/reports/go-live",
@@ -221,7 +221,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 60070,
-      "sha256": "e6d6bfb931bfbee837623b275a6cb161b4489283f4b856e7696ed9f76d5d4753"
+      "sha256": "04d26c889708adcf16932ad45c04b4669f627096bd5572e8d5654eeb456a85fd"
     },
     {
       "route": "/reports/stack",
@@ -266,7 +266,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 2566,
-      "sha256": "c03a289065c7d156c6a0d1e6eac757d7b7ae440d14af4986294f1e4fa4ad7d23"
+      "sha256": "68e84cbe40aa8b45ea92f04b80c40b38cbb504ed81c2226dd7667f455f244656"
     },
     {
       "route": "/reports/full-handover",
@@ -301,8 +301,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 17320,
-      "sha256": "d5c370dcaa487e0e6b6af151c06e9c278f5596e4363ec29266cf0813e6e6193d"
+      "bytes": 17855,
+      "sha256": "c5080f570189f0f20ccab3b12de447d22b0843c0581c63fc74e905a087faf9cc"
     },
     {
       "route": "/reports/go-live-gaps",
@@ -311,7 +311,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 16760,
-      "sha256": "a88313e86176205d57dac0c9ed30b7dc491f74960974b4b2a766f1cc3eaceacd"
+      "sha256": "b1c85837f3ca48154e664f9e5f4bcafbd4b9c2fbc5f3fcbb2d0f46f41e4ba6a0"
     },
     {
       "route": "/reports/next-session-plan",
@@ -319,8 +319,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 20878,
-      "sha256": "f982b8e59c10112238cc74505350237a8a348217896e37231869409ef060ebfb"
+      "bytes": 21327,
+      "sha256": "918e315bab98ebf2c7ef967694c919682cd1578d0c891665f67c26121e80b9ca"
     },
     {
       "route": "/reports/session-update",
@@ -328,8 +328,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 8430,
-      "sha256": "2d70436177bb8381d5fd6efc9b887822ffe1986ea0f565c72209a84db3f6b531"
+      "bytes": 8661,
+      "sha256": "bfa3a71ac47bd343c9a29bb56df7442863e2866213b228b78bbab742734974df"
     },
     {
       "route": "/reports/download/next-session-plan.md",
@@ -337,8 +337,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-      "bytes": 14162,
-      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+      "bytes": 14539,
+      "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
     },
     {
       "route": "/reports/download/next-session-plan.txt",
@@ -346,8 +346,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-      "bytes": 14162,
-      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+      "bytes": 14539,
+      "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
     },
     {
       "route": "/reports/download/session-update.md",
@@ -355,8 +355,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 3616,
-      "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+      "bytes": 3811,
+      "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
     },
     {
       "route": "/reports/download/session-update.txt",
@@ -364,8 +364,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 3616,
-      "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+      "bytes": 3811,
+      "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
     },
     {
       "route": "/reports/auto-align",
@@ -427,8 +427,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 20878,
-      "sha256": "f982b8e59c10112238cc74505350237a8a348217896e37231869409ef060ebfb"
+      "bytes": 21327,
+      "sha256": "918e315bab98ebf2c7ef967694c919682cd1578d0c891665f67c26121e80b9ca"
     },
     {
       "route": "/reports/session-update",
@@ -436,8 +436,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 8430,
-      "sha256": "2d70436177bb8381d5fd6efc9b887822ffe1986ea0f565c72209a84db3f6b531"
+      "bytes": 8661,
+      "sha256": "bfa3a71ac47bd343c9a29bb56df7442863e2866213b228b78bbab742734974df"
     },
     {
       "route": "/reports/download/next-session-plan.md",
@@ -445,8 +445,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-      "bytes": 14162,
-      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+      "bytes": 14539,
+      "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
     },
     {
       "route": "/reports/download/next-session-plan.txt",
@@ -454,8 +454,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-      "bytes": 14162,
-      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+      "bytes": 14539,
+      "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
     },
     {
       "route": "/reports/download/session-update.md",
@@ -463,8 +463,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 3616,
-      "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+      "bytes": 3811,
+      "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
     },
     {
       "route": "/reports/download/session-update.txt",
@@ -472,8 +472,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 3616,
-      "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+      "bytes": 3811,
+      "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -537,8 +537,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 17663,
-      "sha256": "38e12e2e571e0e1c2e4cdc8bb367c7b9595772daaf4d833f4a0486ba6cb23ccc"
+      "bytes": 17677,
+      "sha256": "bd0cde86c2c5336f4f1e10542ecef9db3240ff3c4cb11bf0b7fcd6efa9f4e49d"
     },
     {
       "route": "/reports/next-session",
@@ -582,8 +582,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 184918,
-      "sha256": "361aed9f8195f275e471d5ca0d24727ca74bc4281660ec8fb1b7b192c7ef2203"
+      "bytes": 185335,
+      "sha256": "8d01d9f74d7acb7be538b46ca58fd8faf02ab563c2050665585ed4efcef5a517"
     },
     {
       "route": "/reports/dr-sync",
@@ -591,8 +591,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 35441,
-      "sha256": "4e6c6ad481148ec7b652eefc4fac070b5b3c0179fcc043de91f1a0ad3b0c783c"
+      "bytes": 36123,
+      "sha256": "b00b2424f6c9f142e07905da9fa60f8ad772e40aea4949060eef5205c4a24856"
     },
     {
       "route": "/reports/recovery",
@@ -628,7 +628,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 35651,
-      "sha256": "16aa6677f8d6eec8c7df29834354138c2d6f43c49509bb21bad9f8795efa7aa4"
+      "sha256": "6252d9336400306004395e0f6e239974ed2b115ad814c11e0f4b07c6d599f82a"
     },
     {
       "route": "/reports/download/handover-notepad.txt",
@@ -748,7 +748,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 59894,
-        "sha256": "2e70f500688b4467c25ffd2343f27cf1e8f4fcc2aebd81fd441ea846b9cb1498"
+        "sha256": "60407f83811883010cb99644db56bdfa4369f1d66cbd015939654bd097d635e6"
       },
       {
         "route": "/reports/stack",
@@ -793,7 +793,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 2566,
-        "sha256": "4db4bd68987829d8f1568b8dfb3aa10e76cd760801f91f2f5d7759056346ccd9"
+        "sha256": "f0185d53cfd333f40414b0c933a6670519daeca87329b30b291340cf66bbf97c"
       },
       {
         "route": "/reports/full-handover",
@@ -828,8 +828,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 17144,
-        "sha256": "3db5d6a7dd342b4224d21adedddbb21665a406a42a55f4779c0439bc1367e276"
+        "bytes": 17679,
+        "sha256": "e166847625ea245ffc4a881be71ef709d4dee135ebaace683a82a49e90a8856e"
       },
       {
         "route": "/reports/next-session-plan",
@@ -837,8 +837,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 20702,
-        "sha256": "ecad25e162a6b42c47f78397cff9f663d5bfd2467f0dd1590d48dbb6f7c07c61"
+        "bytes": 21151,
+        "sha256": "2ec9a178a050c377e682a2ed54fdc24ebf2897727f4886e639a3765ae5e52492"
       },
       {
         "route": "/reports/session-update",
@@ -846,8 +846,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 8254,
-        "sha256": "835f6e47fe694b917c0a03ae55b451a4784ddf41b241bc1a112cbe19456db254"
+        "bytes": 8485,
+        "sha256": "5a7a0a52a8f0e0d606245d1c3ac26b1f8e97c6ca06963e8b460241398927d6ca"
       },
       {
         "route": "/reports/download/next-session-plan.md",
@@ -855,8 +855,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-        "bytes": 14162,
-        "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+        "bytes": 14539,
+        "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
       },
       {
         "route": "/reports/download/next-session-plan.txt",
@@ -864,8 +864,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-        "bytes": 14162,
-        "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+        "bytes": 14539,
+        "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
       },
       {
         "route": "/reports/download/session-update.md",
@@ -873,8 +873,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 3616,
-        "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+        "bytes": 3811,
+        "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
       },
       {
         "route": "/reports/download/session-update.txt",
@@ -882,8 +882,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 3616,
-        "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+        "bytes": 3811,
+        "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
       },
       {
         "route": "/reports/auto-align",
@@ -975,7 +975,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 59894,
-        "sha256": "2e70f500688b4467c25ffd2343f27cf1e8f4fcc2aebd81fd441ea846b9cb1498"
+        "sha256": "60407f83811883010cb99644db56bdfa4369f1d66cbd015939654bd097d635e6"
       },
       {
         "route": "/reports/stack",
@@ -1020,7 +1020,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 2566,
-        "sha256": "4db4bd68987829d8f1568b8dfb3aa10e76cd760801f91f2f5d7759056346ccd9"
+        "sha256": "f0185d53cfd333f40414b0c933a6670519daeca87329b30b291340cf66bbf97c"
       },
       {
         "route": "/reports/full-handover",
@@ -1055,8 +1055,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 17144,
-        "sha256": "3db5d6a7dd342b4224d21adedddbb21665a406a42a55f4779c0439bc1367e276"
+        "bytes": 17679,
+        "sha256": "e166847625ea245ffc4a881be71ef709d4dee135ebaace683a82a49e90a8856e"
       },
       {
         "route": "/reports/next-session-plan",
@@ -1064,8 +1064,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 20702,
-        "sha256": "ecad25e162a6b42c47f78397cff9f663d5bfd2467f0dd1590d48dbb6f7c07c61"
+        "bytes": 21151,
+        "sha256": "2ec9a178a050c377e682a2ed54fdc24ebf2897727f4886e639a3765ae5e52492"
       },
       {
         "route": "/reports/session-update",
@@ -1073,8 +1073,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 8254,
-        "sha256": "835f6e47fe694b917c0a03ae55b451a4784ddf41b241bc1a112cbe19456db254"
+        "bytes": 8485,
+        "sha256": "5a7a0a52a8f0e0d606245d1c3ac26b1f8e97c6ca06963e8b460241398927d6ca"
       },
       {
         "route": "/reports/download/next-session-plan.md",
@@ -1082,8 +1082,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-        "bytes": 14162,
-        "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+        "bytes": 14539,
+        "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
       },
       {
         "route": "/reports/download/next-session-plan.txt",
@@ -1091,8 +1091,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"NEXT_SESSION_PLAN_2026_10_07.md\"",
-        "bytes": 14162,
-        "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70"
+        "bytes": 14539,
+        "sha256": "e39349f36e7850852ead33c835adc2fc92aa602f5a406d236e188945d32eb11e"
       },
       {
         "route": "/reports/download/session-update.md",
@@ -1100,8 +1100,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 3616,
-        "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+        "bytes": 3811,
+        "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
       },
       {
         "route": "/reports/download/session-update.txt",
@@ -1109,8 +1109,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 3616,
-        "sha256": "2d479202363166eaa5e6199f8d54adf7c5a4a75f688009f07a307e046929ebb6"
+        "bytes": 3811,
+        "sha256": "56f40159db7755bdeb7f47789a62bc543b28ccd2504106104c0d2bfbd32ca4b2"
       },
       {
         "route": "/reports/auto-align",
@@ -1204,7 +1204,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 114,
+      "primary_responses": 185,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0

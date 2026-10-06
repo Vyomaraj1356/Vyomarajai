@@ -15,9 +15,11 @@ Marker: SESSION UPDATE (the viewer contract checks for this line).
   `git rev-parse d46d8b3^{tree}`.
 - **History intact:** the checkout is a shallow clone (depth 1); full history is
   on the remote. No history loss, no force-push anywhere.
-- **Issue #6 still OPEN**, as the ledger snapshot says. This connection carries
-  admin/push/triage (expires 2026-10-06 20:16 UTC), so it can post and close —
-  earlier sessions could not.
+- **Issue #6 still OPEN**, as the ledger snapshot says. This connection reports
+  admin/push/triage on the repository object, but issues writes are denied
+  (`403 Resource not accessible by integration`, verified live when posting was
+  attempted) — the same limitation as earlier sessions. The owner posts the
+  prepared comment from `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md`.
 
 ## 2 · Lost (reported, not disguised)
 

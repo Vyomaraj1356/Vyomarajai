@@ -26,8 +26,9 @@ PUBLICATION RECORD (filled by the writing session before pushing):
 - Branch: `arena/6bc12929-vyomarajai`
 - Base: `main` at `d46d8b3705a7161938096bfc953b0cd4fd440b8c`
 - Content commit: `1ecf59b7150f0dea4b1d8a785d2000052bcdfbd5` (rebuild: plan, update, routes, tests, DR extension, regenerated chain)
-- Record commit: this commit (fills the content SHA above + rebuilds the AI handoff archive)
-- Recovery-index commit: filled after the first push (12-session index + go-live brief, after the branch exists on origin)
+- Record commit: `4af341e7de8035e7effc8932bd60561a61a074b8` (fills the content SHA above + rebuilds the AI handoff archive)
+- Recovery-index commit: `9ce9a37025bd4c6f1fc1259370807770854c1c41` (12-session index + go-live brief)
+- PR #32 merged as `1c13650ce19e18cdc80fe6f8e9ded4fe8c3e6a99` (2026-10-06); its verify run is checkpoint #29, recorded in the follow-up commit on this branch.
 
 Primary path — run from the repository root on this branch:
 
@@ -99,9 +100,12 @@ gh api repos/Vyomaraj1356/Vyomarajai/check-runs/<verify-id>/annotations \
 
 Issue #6 (`[P0] Unblock private DR access and confirm the authoritative secondary
 before synchronization`) is OPEN. The verification below is current through the
-PR #31 merge. The writing session's connection carries admin/push/triage, so —
-unlike earlier sessions — it can post and close. If this connection cannot (403),
-the owner pastes the same text.
+PR #31 merge (the PR #32 merge verified separately as checkpoint #29 — see the
+DR report). The writing session attempted to post this comment and received
+`403 Resource not accessible by integration` (verified live 2026-10-06): the
+token's repository permissions do not extend to issues writes — the same
+limitation as earlier sessions. The owner pastes the text and closes, per the
+procedure below.
 
 Comment text (paste-ready; also checked in at
 `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md`):
