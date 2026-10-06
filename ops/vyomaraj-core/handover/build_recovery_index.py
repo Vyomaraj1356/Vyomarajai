@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Arena session recovery index — what survives from each of the 11 sessions, and where it is.
+"""Arena session recovery index — what survives from each session, and where it is.
 
-The owner was told the work of 11 Arena sessions was lost. This index is the evidence for what is
+The owner was told the work of the Arena sessions was lost. This index is the evidence for what is
 actually still recoverable, computed from the repository rather than remembered:
 
   * every `origin/arena/*` branch (each one is a session's workspace pushed to GitHub),
@@ -125,8 +125,8 @@ def build() -> str:
     a = L.append
     a("# ARENA SESSION RECOVERY INDEX")
     a("")
-    a(f"Computed {now} from this repository. The owner was told the work of 11 Arena sessions may be "
-      "lost. This is what actually survives, and where.")
+    a(f"Computed {now} from this repository. The owner was told the work of {len(sessions)} Arena "
+      "sessions may be lost. This is what actually survives, and where.")
     a("")
     a("## The headline")
     a("")
@@ -138,7 +138,7 @@ def build() -> str:
     a("- **The consolidated chats record is present** with its session-by-session database.")
     a("- **One thing is genuinely gone**, and it is named in section 4 so nobody hunts for it.")
     a("")
-    a("## 1 · The 11 Arena session branches")
+    a(f"## 1 · The {len(sessions)} Arena session branches")
     a("")
     a("| # | Session branch | Date | Tip commit | Commits ahead of main | Files unique to the branch | Content already in main |")
     a("|---|---|---|---|---|---|---|")
@@ -202,7 +202,7 @@ def build() -> str:
       "built, in order). The *verbatim* conversation does not, and only Arena's own session history "
       "can supply it. Anything an AI needs in order to continue the work is in sections 1–3.")
     a("")
-    a("## 5 · The honest answer to \"do we have to do the 11 sessions again?\"")
+    a(f"## 5 · The honest answer to \"do we have to do the {len(sessions)} sessions again?\"")
     a("")
     a("**No.** The work is in three places at once: the session branches (section 1), the archives "
       "(section 3), and the merged history in main. What was never in this repository is the raw chat "
@@ -216,7 +216,7 @@ def build() -> str:
     a("")
     a("Paste this, so no assistant starts rebuilding what already exists:")
     a("")
-    a("> Vyomaraj is not lost and must not be rebuilt from zero. The work of 11 Arena sessions is")
+    a(f"> Vyomaraj is not lost and must not be rebuilt from zero. The work of {len(sessions)} Arena sessions is")
     a("> present on GitHub as `origin/arena/*` branches, in "
       f"{len(arcs)} archives, and merged into `main`. Before proposing any rebuild, run "
       "`git diff --name-status main origin/arena/<branch>` and read "
@@ -232,12 +232,12 @@ def check() -> int:
         problems.append("index or manifest missing")
     else:
         text = OUT.read_text(encoding="utf-8")
-        for marker in ("## 1 · The 11 Arena session branches", "must not be rebuilt from zero",
+        data = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        recorded = int(data.get("session_branches_count") or 0)
+        for marker in (f"## 1 · The {recorded} Arena session branches", "must not be rebuilt from zero",
                        "never to\n  force-push" .replace("\n  ", " "), "raw per-chat transcripts"):
             if marker not in text:
                 problems.append(f"index lost: {marker[:40]}")
-        data = json.loads(MANIFEST.read_text(encoding="utf-8"))
-        recorded = int(data.get("session_branches_count") or 0)
         live = session_branches()
         if recorded and len(live) >= recorded:
             if data.get("session_branches_count") != len(live):
@@ -249,10 +249,10 @@ def check() -> int:
             print(f"note: {len(live)} of {recorded} recorded session refs are visible from this "
                   "clone (shallow or single-branch checkout) - branch freshness is not verifiable "
                   "here, so this check verified structure only")
-            if recorded != 11 or len(data.get("session_branches", [])) != 11:
-                problems.append("manifest no longer records 11 sessions")
-            if not re.search(r"^\| 11 \|", text, re.M):
-                problems.append("index lost its 11th session row")
+            if not recorded or len(data.get("session_branches", [])) != recorded:
+                problems.append(f"manifest session rows do not match its count {recorded}")
+            if not re.search(rf"^\| {recorded} \|", text, re.M):
+                problems.append(f"index lost its {recorded}th session row")
     if problems:
         print("recovery index check FAILED")
         for p in problems:
@@ -270,10 +270,13 @@ def main() -> int:
     if args.check:
         return check()
     sessions, arcs, chats = session_branches(), archives(), chats_state()
-    if MANIFEST.is_file() and len(sessions) < 11:
-        print(f"refusing to write a degraded index: this clone shows {len(sessions)} of 11 sessions "
-              "(shallow or single-branch checkout). Run where every session branch is fetched.")
-        return 2
+    if MANIFEST.is_file():
+        recorded = int(json.loads(MANIFEST.read_text(encoding="utf-8")).get("session_branches_count") or 0)
+        if recorded and len(sessions) < recorded:
+            print(f"refusing to write a degraded index: this clone shows {len(sessions)} of {recorded} "
+                  "recorded sessions (shallow or single-branch checkout). Run where every session "
+                  "branch is fetched.")
+            return 2
     OUT.write_text(build(), encoding="utf-8")
     MANIFEST.write_text(json.dumps({
         "schema": "vyomaraj-arena-recovery/1",

@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-arena-recovery/1",
-  "generated_at_utc": "2026-10-06 11:37 UTC",
+  "generated_at_utc": "2026-10-06 12:36 UTC",
   "session_branches_count": 11,
   "session_branches": [
     {
@@ -8,7 +8,7 @@
       "tip": "3a59454e7594e8180ac16720cb3af3084494c2b5",
       "date": "2026-10-01",
       "subject": "Add Complete All Sessions All Handover Zips V16.7.22 \u2014 25 zips 12.44 MB + All ",
-      "commits_ahead_of_main": 0,
+      "commits_ahead_of_main": 112,
       "files_unique_to_branch": 2,
       "unique_examples": [
         ".github/workflows/dr-readiness.yml",
@@ -21,14 +21,14 @@
       "tip": "b95c842898cabb4fc5d9b8477e0c16478082f46d",
       "date": "2026-10-02",
       "subject": "feat(experience): add modular plan-only studio and router",
-      "commits_ahead_of_main": 44,
-      "files_unique_to_branch": 35,
+      "commits_ahead_of_main": 158,
+      "files_unique_to_branch": 9,
       "unique_examples": [
         ".gitattributes",
         ".github/workflows/arena-recovery.yml",
         ".github/workflows/dr-readiness.yml",
         ".github/workflows/dr-replication.yml",
-        "All-Chats-Array-From-Index.txt"
+        "Vyomaraj-Handover-V16.7.23-v193.zip"
       ],
       "content_in_main": false
     },
@@ -38,13 +38,10 @@
       "date": "2026-10-02",
       "subject": "fix(ci): keep PR check while restricting DR replication to main",
       "commits_ahead_of_main": 7,
-      "files_unique_to_branch": 28,
+      "files_unique_to_branch": 2,
       "unique_examples": [
-        "All-Chats-Array-From-Index.txt",
-        "Git-Commits-One-Month.txt",
-        "ops/integration/README.md",
-        "ops/integration/bootstrap-vyomaraj-global.bat",
-        "ops/integration/run-arena-recovery.bat"
+        "ops/vyomaraj-core/experience/preview_server.py",
+        "ops/vyomaraj-core/experience/test_experience_orchestrator.py"
       ],
       "content_in_main": false
     },
@@ -120,19 +117,13 @@
     },
     {
       "branch": "arena/582559e8-vyomarajai",
-      "tip": "da611e19b21b1bac3a0b46f5dbeda37ad2b85daf",
+      "tip": "cce107411fad6a245558b834d852b6d29775632a",
       "date": "2026-10-06",
-      "subject": "resolve: integrate main's master-state work and PR #9, gate the owner-guard te",
-      "commits_ahead_of_main": 56,
-      "files_unique_to_branch": 67,
-      "unique_examples": [
-        ".github/workflows/shriyantra-owner-guard.yml",
-        ".github/workflows/vyomaraj-master-state.yml",
-        "config/agents/shriyantra-agent-registry.json",
-        "config/intelligence/shriyantra-rag-cag-mag.yaml",
-        "config/security/owner-authority.yaml"
-      ],
-      "content_in_main": false
+      "subject": "docs(go-live): the PR backlog is cleared - record what actually happened",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
     }
   ],
   "archives_count": 42,
@@ -410,5 +401,5 @@
     "raw_transcripts_exported": false,
     "why_not": null
   },
-  "unique_files_across_branches": 132
+  "unique_files_across_branches": 13
 }

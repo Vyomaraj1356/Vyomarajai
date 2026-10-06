@@ -4,7 +4,7 @@
 Answers three questions the owner asked, from measurements rather than memory:
   1. What is still missing before go-live?
   2. Which AI platform should carry the work next?
-  3. How does the work of the 11 Arena sessions come across, without rebuilding it?
+  3. How does the work of the Arena sessions come across, without rebuilding it?
 
     python3 build_go_live_brief.py            write the brief
     python3 build_go_live_brief.py --check    fail if the brief no longer matches the repository
@@ -23,6 +23,7 @@ ROOT = HERE.parents[2]
 OUT = HERE / "GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md"
 EVIDENCE = HERE / "TEST_EVIDENCE_2026_10_04.json"
 RECOVERY = HERE / "ARENA_SESSION_RECOVERY_MANIFEST_2026_10_06.json"
+DR_RECORD = HERE.parents[1] / "dr" / "DEPLOYED_MATCH_2026_10_04.json"
 
 
 def git(*args: str) -> str:
@@ -32,11 +33,16 @@ def git(*args: str) -> str:
 def facts() -> dict:
     ev = json.loads(EVIDENCE.read_text(encoding="utf-8")) if EVIDENCE.is_file() else {}
     rm = json.loads(RECOVERY.read_text(encoding="utf-8")) if RECOVERY.is_file() else {}
+    rec = json.loads(DR_RECORD.read_text(encoding="utf-8")) if DR_RECORD.is_file() else {}
+    obs = rec.get("observations", [])
     return {
         "sessions": rm.get("session_branches_count", "—"),
         "archives": rm.get("archives_count", "—"),
         "unique_files": rm.get("unique_files_across_branches", "—"),
         "chats_missing": "raw per-chat transcripts",
+        "dr_checkpoints": len(obs) if obs else "—",
+        "dr_writes": sum(1 for o in obs if o.get("replication_write_in_this_run")) if obs else "—",
+        "dr_end": obs[-1].get("completed_at_utc", "")[:10] if obs else "—",
     }
 
 
@@ -60,7 +66,7 @@ repository-shaped, many-file work. Codex is the sensible second ({codex_price}) 
 runs. Details and alternatives in section 4. The important part is that **the platform is now
 interchangeable** — whichever one you pick reads the same repo.
 
-**"Did I lose the 11 sessions?"** No. All {sessions} session branches are still on GitHub and
+**"Did I lose the {sessions} sessions?"** No. All {sessions} session branches are still on GitHub and
 {archives} archives are in the repository; {unique_files} files exist on session branches that main
 does not carry. The one thing that is genuinely not recoverable from here is the {chats_missing} —
 that lives in Arena's own session history, not in the repo (section 5).
@@ -102,9 +108,9 @@ that lives in Arena's own session history, not in the repo (section 5).
 6. **The pull-request backlog is cleared; one issue is not.** #27 and #9 were merged into `main`;
    #2, #4, #7 and #3 were closed as superseded, each after its unique files were recovered into
    `main` first (35 files: the Jarvis LLM harness, the Experience orchestrator, the Hermes health
-   probe, the security protocol, and the V16.7.23/V16.7.24 handover archives). Issue #6 still shows
-   open only because this connection cannot write to issues: the DR pipeline is verified working and
-   the closing comment is prepared. Nothing was deleted from any branch.
+   probe, the security protocol, and the V16.7.23/V16.7.24 handover archives). Issue #6's
+   verification is complete and its closing comment is prepared; the issue record itself lives on
+   GitHub, re-read it there rather than trusting this snapshot. Nothing was deleted from any branch.
 7. **The DR gateway is a local rehearsal, not independent-site DR.** The real cross-site
    verification stays owner-gated by design.
 8. **One address is still unpublished.** Both landing pages now read `[OWNER_EMAIL_REDACTED]`.
@@ -125,7 +131,7 @@ running intelligence, and it should be merged as a foundation.
 The recorded target is `deepakGoyal1356/Vyomaraj-Agent-6d64e` — private and under another account, so
 an API call from here returns 404. That is expected and is not evidence of breakage. The evidence
 that matters: the most recent push to `main` ran the replication job and it succeeded, and the DR
-record carries 20 MATCH observations ending 2026-10-04. Independent verification still requires the
+record carries {dr_checkpoints} MATCH observations ({dr_writes} replication writes) ending {dr_end}. Independent verification still requires the
 owner's credentials — the one step no outside audit can perform.
 
 ## 4 · The platform recommendation, and why
@@ -148,7 +154,7 @@ experiments. Whichever you choose, point it at the repository and paste
 constraints, the verified-state table, and the rule that it must never emit a status the system
 cannot prove.
 
-## 5 · Moving the 11 sessions — recovery, not redoing
+## 5 · Moving the {sessions} sessions — recovery, not redoing
 
 The work is not in the chat, it is in Git. Each Arena session pushed its branch, so the sessions
 survive as `origin/arena/*`.

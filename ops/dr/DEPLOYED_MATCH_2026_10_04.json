@@ -3,7 +3,7 @@
   "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
   "primary": "Vyomaraj1356/Vyomarajai",
   "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-  "primary_main_tip_checked": "f735f92b00be903384c18fdcfa2a7a264ba3e09a",
+  "primary_main_tip_checked": "d46d8b3705a7161938096bfc953b0cd4fd440b8c",
   "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
   "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
   "observations": [
@@ -307,6 +307,126 @@
       "rollback_commit": "307d0383e2b46c064332e35025e25d97614c709d",
       "head_commit_subject": "Merge pull request #25 from Vyomaraj1356/arena/01a10655-vyomarajai",
       "merge_pr": 25
+    },
+    {
+      "check_run_id": 112224787168,
+      "completed_at_utc": "2026-10-06T10:31:15Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915; secondary_tree=aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915; rollback_commit=c0edf483cd786b63a149c987bce370ab81404897; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915",
+      "secondary_tree": "aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "c0edf483cd786b63a149c987bce370ab81404897",
+      "head_sha": "d6f10dde04b495d19f13a50156443463986b2f03",
+      "head_commit_subject": "Fix DR gate: validate frozen transfer package correctly",
+      "merge_pr": 28,
+      "workflow_run_id": 37450204853
+    },
+    {
+      "check_run_id": 112229472156,
+      "completed_at_utc": "2026-10-06T10:43:59Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915; secondary_tree=aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915",
+      "secondary_tree": "aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "d6f10dde04b495d19f13a50156443463986b2f03",
+      "head_commit_subject": "Fix DR gate: validate frozen transfer package correctly",
+      "merge_pr": 28,
+      "workflow_run_id": 37451637449
+    },
+    {
+      "check_run_id": 112239413563,
+      "completed_at_utc": "2026-10-06T11:11:30Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915; secondary_tree=aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915",
+      "secondary_tree": "aa19889fb3755bb89a5ea49c5cb6bc5ff12ca915",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "d6f10dde04b495d19f13a50156443463986b2f03",
+      "head_commit_subject": "Fix DR gate: validate frozen transfer package correctly",
+      "merge_pr": 28,
+      "workflow_run_id": 37454689059
+    },
+    {
+      "check_run_id": 112247203850,
+      "completed_at_utc": "2026-10-06T11:35:40Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=ec594b22fb4960518e3423adb5b03d96afcd7a61; secondary_tree=ec594b22fb4960518e3423adb5b03d96afcd7a61; rollback_commit=6eef7c79bc7bb1f159d6501b43867f030e556396; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "ec594b22fb4960518e3423adb5b03d96afcd7a61",
+      "secondary_tree": "ec594b22fb4960518e3423adb5b03d96afcd7a61",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "6eef7c79bc7bb1f159d6501b43867f030e556396",
+      "head_sha": "cbc402fe4e5c018a8d5717f1b0dccb6443ab2a31",
+      "head_commit_subject": "Merge pull request #27 from Vyomaraj1356/arena/582559e8-vyomarajai",
+      "merge_pr": 27,
+      "workflow_run_id": 37457034872
+    },
+    {
+      "check_run_id": 112251025871,
+      "completed_at_utc": "2026-10-06T11:43:11Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=ec594b22fb4960518e3423adb5b03d96afcd7a61; secondary_tree=ec594b22fb4960518e3423adb5b03d96afcd7a61; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "ec594b22fb4960518e3423adb5b03d96afcd7a61",
+      "secondary_tree": "ec594b22fb4960518e3423adb5b03d96afcd7a61",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "cbc402fe4e5c018a8d5717f1b0dccb6443ab2a31",
+      "head_commit_subject": "Merge pull request #27 from Vyomaraj1356/arena/582559e8-vyomarajai",
+      "merge_pr": 27,
+      "workflow_run_id": 37458191303
+    },
+    {
+      "check_run_id": 112251697240,
+      "completed_at_utc": "2026-10-06T11:46:13Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=0f4a78550c66abdccacb83445cededafe224ba54; secondary_tree=0f4a78550c66abdccacb83445cededafe224ba54; rollback_commit=6d4335caf932381f8edcba2181d39433b19a1481; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "0f4a78550c66abdccacb83445cededafe224ba54",
+      "secondary_tree": "0f4a78550c66abdccacb83445cededafe224ba54",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "6d4335caf932381f8edcba2181d39433b19a1481",
+      "head_sha": "ed21fe71c6b6ecb059929843c3b79bfedac27a5d",
+      "head_commit_subject": "Merge pull request #30 from Vyomaraj1356/arena/582559e8-vyomarajai",
+      "merge_pr": 30,
+      "workflow_run_id": 37458392452
+    },
+    {
+      "check_run_id": 112253587690,
+      "completed_at_utc": "2026-10-06T11:50:21Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=bb8632f62eb978417dc4fb39265d32c305f3942f; secondary_tree=bb8632f62eb978417dc4fb39265d32c305f3942f; rollback_commit=42c401d27070c037b3f3782735af0d144fe4465e; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "bb8632f62eb978417dc4fb39265d32c305f3942f",
+      "secondary_tree": "bb8632f62eb978417dc4fb39265d32c305f3942f",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "42c401d27070c037b3f3782735af0d144fe4465e",
+      "head_sha": "d46d8b3705a7161938096bfc953b0cd4fd440b8c",
+      "head_commit_subject": "Merge pull request #31 from Vyomaraj1356/arena/582559e8-vyomarajai",
+      "merge_pr": 31,
+      "workflow_run_id": 37458973059
+    },
+    {
+      "check_run_id": 112262665018,
+      "completed_at_utc": "2026-10-06T12:13:39Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=bb8632f62eb978417dc4fb39265d32c305f3942f; secondary_tree=bb8632f62eb978417dc4fb39265d32c305f3942f; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "bb8632f62eb978417dc4fb39265d32c305f3942f",
+      "secondary_tree": "bb8632f62eb978417dc4fb39265d32c305f3942f",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "d46d8b3705a7161938096bfc953b0cd4fd440b8c",
+      "head_commit_subject": "Merge pull request #31 from Vyomaraj1356/arena/582559e8-vyomarajai",
+      "merge_pr": 31,
+      "workflow_run_id": 37461681369
     }
   ],
   "writes_to_secondary_observed": [
@@ -325,9 +445,13 @@
     111396668243,
     111397396312,
     111404791435,
-    111425773341
+    111425773341,
+    112224787168,
+    112247203850,
+    112251697240,
+    112253587690
   ],
-  "current_state": "This record covers the 2026-10-03 and 2026-10-04 successful verify-or-sync runs through the PR #25 merge (checkpoint #20). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 16 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Two windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Checkpoint #20 was re-read live on 2026-10-06; the previous 19 rows retain their earlier full-set revalidation.",
+  "current_state": "This record covers the 2026-10-03 to 2026-10-06 successful verify-or-sync runs through the PR #31 merge (checkpoint #28). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 20 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Three windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Window B (PR #26 tip, 13 runs) was closed by checkpoint #21; window C (PR #29 tip) remains a documented gap. All 28 rows were re-read live on 2026-10-06 with zero mismatches.",
   "branch_scope_warning": "This evidence covers primary main only. Two earlier commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) were not on main at the time they were first reported and therefore were not in the DR snapshot then; the branch was subsequently merged through PRs #10-#18 and is now covered by the checkpoints above. Unmerged branch tips are never part of the DR snapshot.",
   "local_verification_attempt": {
     "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -338,15 +462,15 @@
   "traffic_switched": false,
   "runtime_or_site_dr_verified": false,
   "zero_rpo_or_rto_claimed": false,
-  "revalidated_at_utc": "2026-10-06T05:56:57Z",
+  "revalidated_at_utc": "2026-10-06T12:33:02Z",
   "revalidation": {
-    "by": "arena/582559e8-vyomarajai session (2026-10-06)",
-    "method": "Checkpoint #20 and every run in the two unverified windows below were re-read live from the GitHub API in this session: the push run that carried the PR #25 merge, the annotation of its verify-or-sync check-run, the workflow-run conclusions for 2026-10-05 and 2026-10-06, and the job conclusions and runtimes of each affected offline-tests job. The 19 previously recorded checkpoints retain their earlier full-set revalidation.",
-    "result": "Checkpoint #20 (PR #25) re-read live: status=MATCH, primary_tree == secondary_tree == 88f681aae844..., replication write with rollback 307d0383e2b4... retained, check-run id matches the stored annotation. Two windows in which verify-or-sync did NOT execute were found and are recorded in full: 2026-10-05 19:13-21:25Z (five scheduled runs, offline-tests cancelled by the platform after 15m02s each) and 2026-10-06 05:29Z onward (four runs failed at offline-tests; see the repo regression recorded in section 6)."
+    "by": "arena/6bc12929-vyomarajai session (2026-10-06)",
+    "method": "All 20 previously recorded annotations re-read live from the GitHub API in one pass (zero mismatches), plus 8 new verify-or-sync annotations for the #28/#27/#30/#31 main tips re-read live; every annotation tree cross-checked against git rev-parse of its head SHA. Skipped check-runs on f735f92 (11) and 95b2133 (1) confirm the two windows hold no checkpoint.",
+    "result": "28 MATCH checkpoints (20 replication writes) through the PR #31 merge; window B completed and closed by checkpoint #21; window C (PR #29 tip) recorded as a gap."
   },
-  "checkpoints_total": 20,
-  "replication_writes_total": 16,
-  "session_record": "Updated in arena/01a10655-vyomarajai after a read-only recheck of the PR #24 merge check-run.",
+  "checkpoints_total": 28,
+  "replication_writes_total": 20,
+  "session_record": "Extended in arena/6bc12929-vyomarajai: checkpoints #21-#28 recorded from live annotation re-reads through the PR #31 merge; window B completed; window C added.",
   "blocked_runs": [
     {
       "check_run_id": 111376415924,
@@ -405,18 +529,38 @@
       "resumed_by": 37377733744
     },
     {
-      "window": "2026-10-06 05:29Z - open at record time (push and scheduled)",
+      "window": "2026-10-06 05:29Z - 10:31Z (push, scheduled, and two pull-request runs) - closed by checkpoint #21",
       "head_sha": "f735f92b00be903384c18fdcfa2a7a264ba3e09a",
       "runs": [
         37418230309,
         37418814411,
         37418836991,
-        37419872626
+        37419872626,
+        37422569870,
+        37425864571,
+        37428197083,
+        37431461993,
+        37434510525,
+        37438051850,
+        37441262759,
+        37444957085,
+        37448075653
       ],
-      "observation": "Four runs concluded failure; the offline-tests job failed on two unit tests and a builder check, so verify-or-sync was skipped and the main tip f735f92 (tree 4064ba289bd5...) has no verify-or-sync checkpoint.",
+      "observation": "Thirteen runs concluded failure; the offline-tests job failed in each, so verify-or-sync never executed (11 skipped check-runs on the main tip f735f92, completed 05:30-10:11Z, plus two pull-request runs on branch heads b636964 and 4935ec8). The main tip f735f92 (tree 4064ba289bd5...) has no verify-or-sync checkpoint.",
       "cause_recorded": "Repository defect introduced by commits 4935ec8d and f735f92: the transfer-package archive and TRANSFER_MANIFEST were restored from an older tree while their five member sources stayed current, so test_transfer_package failed and build_transfer_package.py --check reported five members differing from source.",
-      "effect": "The secondary snapshot remains at the PR #25 snapshot 0671fc59 (tree 88f681aae844...); the two commits after it (4935ec8d, f735f92) were never replicated. This is a real Git-snapshot replication gap, closed only by a successful verify-or-sync run on the fixed main tip.",
-      "resumed_by": null
+      "effect": "The secondary snapshot remains at the PR #25 snapshot 0671fc59 (tree 88f681aae844...); the two commits after it (4935ec8d, f735f92) were never replicated. This is a real Git-snapshot replication gap, closed only by a successful verify-or-sync run on the fixed main tip. Closed by checkpoint #21 (run 37450204853, 2026-10-06T10:31:15Z), which replicated the PR #28 tree aa19889f with rollback c0edf483 retained.",
+      "resumed_by": "run 37450204853 (checkpoint #21, 2026-10-06T10:31:15Z)"
+    },
+    {
+      "window": "2026-10-06 11:17Z - tip superseded unverified (single push run)",
+      "head_sha": "95b21335ad1035c223c4f930dfa15885ebd4b56b",
+      "runs": [
+        37455387004
+      ],
+      "observation": "One push run concluded failure; the offline-tests job failed after 18s, so verify-or-sync was skipped (check-run 112241732986) and the PR #29 squash tip 95b2133 (tree b457b3d1...) has no verify-or-sync checkpoint. Exactly one verify-or-sync check-run exists for this tip, so no schedule or dispatch run covered it before PR #27 merged.",
+      "cause_recorded": "CI annotations on offline-tests check-run 112241605747: build_configuration_report.py --check failed (BUILD_AND_CONFIGURATION_2026_10_04.md out of date) plus a handover-suite failure; 2 failures in that run.",
+      "effect": "The secondary snapshot moved from the PR #28 tree (aa19889f...) directly to the PR #27 tree (ec594b22...) on checkpoint #24. Exact-snapshot replication does not need the intermediate tip, but no observation proves what the secondary held at the #29 tip.",
+      "resumed_by": "run 37457034872 (checkpoint #24, 2026-10-06T11:35:40Z) - next verified write after the gap"
     }
   ],
   "record_extension_2026_10_06": {
@@ -430,5 +574,12 @@
       "meaning": "Independently confirms the gap recorded in window B: the secondary really is at tree 88f681aae844 (the PR #25 snapshot) while main has moved on, and the credential can read it. Writes stayed NONE and write permission stays UNVERIFIED - a green diagnostic means readable, not replicated.",
       "second_class_defect": "The probe script itself was pinned to the same expired branch name (GITHUB_REF == 'refs/heads/arena/01a10140-vyomarajai'), so once the workflow was fixed to run the job on any arena/ branch, the script exited 2 with 'restricted to the trusted review-branch push'. The guard is now a prefix rule ('refs/heads/arena/') covered by TrustedPushTests in ops/dr/test_actions_read_probe.py."
     }
+  },
+  "record_extension_2026_10_06_b": {
+    "session": "arena/6bc12929-vyomarajai",
+    "finding": "The record stopped at PR #25 while main had moved to PR #31; the #26 tip (f735f92) was an open gap (window B, then listing 4 of its 13 runs) and the #29 tip (95b2133) was never verified at all.",
+    "fix": "Re-read every verify-or-sync annotation live: all 20 old rows match byte-for-byte, and 8 new checkpoints (#21-#28, 4 writes) were recorded from the #28/#27/#30/#31 main tips plus schedule confirmations. Every annotation tree was cross-checked against git rev-parse of its head SHA. Window B is completed (13 runs) and closed by checkpoint #21; window C documents the #29 tip as a gap.",
+    "rule": "One checkpoint row per distinct new main tip plus the latest schedule confirmation on the final tip; the complete per-tip check-run sets were enumerated with per_page=100, so no successful verify-or-sync run on these tips is missing.",
+    "next_checkpoint": "The merge carrying this extension is verified by the same workflow immediately after it lands; that run becomes checkpoint #29 per the trailing rule (section 5c)."
   }
 }

@@ -51,12 +51,15 @@ VIEWER_ROUTES = {
     '/reports/live-wiring': ('ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json', 'blocking_checks'),
     '/reports/test-evidence': ('ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json', 'python_tests_total'),
     '/reports/issues': ('ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md', 'New-session runbook (in order)'),
+    '/reports/next-session-plan': ('ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md', 'NEXT-SESSION PLAN'),
+    '/reports/session-update': ('ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md', 'SESSION UPDATE'),
 }
 REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/aghor/', '/research/',
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
                   '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
                   '/reports/market-readiness', '/reports/screenshots', '/reports/realtime',
-                  '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps']
+                  '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps',
+                  '/reports/next-session-plan', '/reports/session-update']
 # Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
 # allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
 SCREENSHOT_ROUTES = {
@@ -81,6 +84,10 @@ DOWNLOADS = {
     '/reports/download/go-live-gaps.md': 'ops/vyomaraj-core/handover/GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
     '/reports/download/ai-handoff.zip': 'ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip',
     '/reports/download/network-diagram.png': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
+    '/reports/download/next-session-plan.md': 'ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md',
+    '/reports/download/next-session-plan.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md',
+    '/reports/download/session-update.md': 'ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md',
+    '/reports/download/session-update.txt': 'ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md',
 
 }
 REQUIRED_FILES = [
@@ -114,6 +121,8 @@ REQUIRED_FILES = [
     'ops/dr/DEPLOYED_MATCH_2026_10_04.json',
     'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip',
     'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip',
+    'ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md',
+    'ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md',
 ]
 FLOW_REPORTER = 'https://uidai.in'
 
