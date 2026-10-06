@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Render only explicitly allowlisted sanitized handover reports; never serve repository paths."""
+import json
 import argparse
 import html
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -46,6 +47,8 @@ REPORTS = {
     '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
     '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/market-readiness': 'MARKET_READINESS_AND_WIRING_2026_10_06.md',
+    '/reports/full-handover': 'VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
+    '/reports/realtime': 'REALTIME_STATUS.md',
 }
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
@@ -102,12 +105,20 @@ PAGE_NOTES = {
                         'run-up to Ghatasthapana, Sunday 11 October 2026: day-by-day plan, the '
                         'owner decisions that block it, the gates, and the risks in the order they '
                         'can stop a launch.</p>',
+    '/reports/realtime': '<p class="notice"><strong>Live status</strong> - measured on this request, never cached. '
+                         'JSON at <a href="/api/realtime">/api/realtime</a>.</p>',
     '/reports/screenshots': '<p class="notice"><strong>Real captures of the running pages</strong> - taken with a '
                             'headless Chromium against the live servers, one file per page, hashes recorded in the '
                             'manifest below. Nothing here is a mock-up.</p>' + screenshot_gallery(),
     '/reports/market-readiness': '<p class="notice"><strong>Market readiness and wiring</strong> - what is configured, '
                                  'what is integrated, what was inherited, which parts of the vision are connected, and '
                                  'the exact free wiring needed before real earning. Generated from live checks.</p>',
+    '/reports/full-handover': '<p class="notice"><strong>Full handover — all details</strong> - real-time '
+                              'state, the chats record, the complete agent tree, the Vyomaraj and Jarvis '
+                              'configurations, every AI platform and what is connected, and the issue '
+                              'research. <a href="/reports/download/full-handover.md">Download the document</a> '
+                              '&middot; <a href="/reports/download/full-handover.zip">Download everything as '
+                              'one archive</a></p>',
     '/reports/network-diagram': '<p class="notice"><strong>Network and architecture diagram</strong> - '
                                 'generated from the verified stack record, layer by layer: people, live '
                                 'delivery, browser runtime, local rehearsal, automation, DR, and what is not '
@@ -143,7 +154,11 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/reports/download/network-diagram.png':
                  ('ARCHITECTURE_DIAGRAM_2026_10_06.png', 'image/png'),
              '/reports/download/network-diagram.svg':
-                 ('ARCHITECTURE_DIAGRAM_2026_10_06.svg', 'image/svg+xml')}
+                 ('ARCHITECTURE_DIAGRAM_2026_10_06.svg', 'image/svg+xml'),
+             '/reports/download/full-handover.zip':
+                 ('transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip', 'application/zip'),
+             '/reports/download/full-handover.md':
+                 ('VYOMARAJ_FULL_HANDOVER_2026_10_06.md', 'text/plain; charset=utf-8')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
 RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</strong> '
                   '<a href="/reports/issues">Issues and PRs ledger</a> &middot; '
@@ -223,12 +238,29 @@ def render_document(path):
 
 
 SCREENSHOT_NAME = re.compile(r'^[a-z0-9-]+\.(png|jpg)$')
+
+
+def _realtime():
+    import importlib.util as _ilu
+    spec = _ilu.spec_from_file_location('realtime_status', HERE / 'realtime_status.py')
+    mod = _ilu.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 SCREENSHOT_MIME = {'.png': 'image/png', '.jpg': 'image/jpeg'}
 
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         route = urlsplit(self.path).path
+        if route == '/api/realtime':
+            body = json.dumps(_realtime().realtime_facts(), indent=2).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
         if route.startswith('/reports/screenshot/'):
             name = route.rsplit('/', 1)[-1]
             path = SCREENSHOTS_DIR / name
@@ -241,6 +273,15 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Cache-Control', 'no-store')
             self.end_headers()
             self.wfile.write(content)
+            return
+        if route == '/reports/realtime':
+            body = (PAGE_NOTES.get(route, '') + _realtime().realtime_page()).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
             return
         filename = REPORTS.get(route) or (DOWNLOADS.get(route) or (None,))[0]
         if filename is None and route not in REFERENCE_REPORTS:
@@ -262,7 +303,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/full-handover">Full handover</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()

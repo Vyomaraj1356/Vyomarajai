@@ -89,6 +89,7 @@ REPORTS = {
     '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
     '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/market-readiness': 'MARKET_READINESS_AND_WIRING_2026_10_06.md',
+    '/reports/full-handover': 'VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
 }
 
 
@@ -163,6 +164,22 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError, KeyError):
                 ready = False
             self.json_response({'ready': ready, 'scope': 'local_application_metadata_only', 'production_dr_verified': False}, 200 if ready else 503)
+        elif route == '/api/realtime':
+            self.json_response(reports._realtime().realtime_facts())
+        elif route == '/reports/realtime':
+            body = (reports.PAGE_NOTES.get(route, '') + reports._realtime().realtime_page()).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+        elif route == '/reports/download/full-handover.md':
+            path = CORE / 'handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/full-handover.zip':
+            path = CORE / 'handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip'
+            self.send_download(path.read_bytes(), 'application/zip', path.name)
         elif route == '/api/sync/status':
             self.json_response(sync_status())
         elif route == '/api/research/status':

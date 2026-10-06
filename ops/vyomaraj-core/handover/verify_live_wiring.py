@@ -55,7 +55,8 @@ VIEWER_ROUTES = {
 REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/aghor/', '/research/',
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
                   '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
-                  '/reports/market-readiness', '/reports/screenshots']
+                  '/reports/market-readiness', '/reports/screenshots', '/reports/realtime',
+                  '/reports/full-handover', '/api/realtime']
 # Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
 # allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
 SCREENSHOT_ROUTES = {
@@ -70,6 +71,8 @@ DOWNLOADS = {
     '/reports/download/transfer-package.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip',
     '/reports/download/post-pr25-transfer.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip',
     '/reports/download/network-diagram.svg': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg',
+    '/reports/download/full-handover.md': 'ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
+    '/reports/download/full-handover.zip': 'ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip',
     '/reports/download/network-diagram.png': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
 
 }
@@ -80,6 +83,9 @@ REQUIRED_FILES = [
     'ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md',
     'ops/vyomaraj-core/handover/screenshots/SCREENSHOT_CAPTURE_RAW.json',
     'ops/vyomaraj-core/handover/screenshots/product-page.jpg',
+    'ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
+    'ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip',
+    'ops/vyomaraj-core/handover/realtime_status.py',
     'ops/vyomaraj-core/music-experience/content.json',
     'ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json',
     'ops/vyomaraj-core/agents/CONTENT_INDEX_CURRENT.json',
