@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "8125959942d3d293f4971d3f52f46a9047868a3b5f113ee6d2b80efee2240a67",
-  "package_bytes": 133941,
+  "package_sha256": "d9f2b0aec87059f187d55d944d2a06c79693a451cd8b83fca8abbd59bf1f0a0c",
+  "package_bytes": 134979,
   "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
@@ -23,8 +23,8 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "769ab53fa25bec13c746210fc1765bc252baef950feb39093c9885c264b265a9",
-      "bytes": 15129
+      "sha256": "7f6f7563ff00a3e88d6af340e042f6a41cc101808c1838467ddf75e45dd04db1",
+      "bytes": 15372
     },
     {
       "archive_name": "build_dr_sync_report.py",
@@ -53,8 +53,8 @@
     {
       "archive_name": "preview_reports.py",
       "source": "ops/vyomaraj-core/handover/preview_reports.py",
-      "sha256": "1cd467c7d51b73eea5c2832c39f817dd6af467d73ca9e95b324c184005732cdd",
-      "bytes": 13055
+      "sha256": "c61aca4bfccf569cc0ba1793b845fea1d1f6ab6ef5b7eb6c7053ccf9598ec069",
+      "bytes": 15195
     },
     {
       "archive_name": "test_preview_reports.py",
@@ -77,8 +77,8 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "9e2a5794695ba96ac95d7c058be360ac2a803e368c7f233c284c07fd03720051",
-      "bytes": 11042
+      "sha256": "a8041c79c3f9419d6ecf46840174193a409738a043b4709665a40e9557d1f733",
+      "bytes": 11056
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -95,14 +95,14 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "d04983f1c6709640dc96d9dbeb17cf8d01b22961dc72aa6e494e6bc8aa2ebf30",
-      "bytes": 25330
+      "sha256": "d461cc58bbfac0b9be004ea75fb30eae1c50bfe2ad95eabe2ad51743c0f3b490",
+      "bytes": 26309
     },
     {
       "archive_name": "studio_server.py",
       "source": "ops/vyomaraj-core/experience/studio_server.py",
-      "sha256": "2eca457b9cbef3374ddb7fe6f92d735a42697ba3cd903ce4f790978a39885f47",
-      "bytes": 18013
+      "sha256": "b5c6e808a895fb69dda59a665be3bee7fbe4459ef5a57060cbb8c31ec03cf61a",
+      "bytes": 19292
     },
     {
       "archive_name": "experience/rebuild_contents.py",
