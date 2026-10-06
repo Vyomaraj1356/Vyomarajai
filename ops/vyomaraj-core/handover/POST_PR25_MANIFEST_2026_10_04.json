@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
-  "package_sha256": "a23bb6a435412f9b710dbe624ba6bb56370fec2cb1a1d2f8a425e9de24fe5537",
-  "package_bytes": 178284,
+  "package_sha256": "0a5ec14c795df1be4f7275ee8a9622b9f421081da84e19a745f274baf4d11f0b",
+  "package_bytes": 178893,
   "note": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
   "note_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
   "note_bytes": 23864,
@@ -11,7 +11,7 @@
   "additions_total": 8,
   "superset_of_canonical": true,
   "canonical_package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "canonical_package_sha256_rebuilt_from_source": "05681b5166e2ed6a27d1ddbe9918a2e05687d1ee98ef05725283c5fb9c68995f",
+  "canonical_package_sha256_rebuilt_from_source": "1067d91d67a4461e966847df74c7d38f7ffcf60559b187c54d2857aad17d650b",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py --check",
   "determinism": "fixed member timestamps and permissions; same-Python/zlib rebuilds are byte-identical",
@@ -109,8 +109,8 @@
     {
       "archive_name": "studio_server.py",
       "source": "ops/vyomaraj-core/experience/studio_server.py",
-      "sha256": "8907f955782d2e9eba7a6774bb6ddebc8ce06be3e10e40143f287b3e18ca18ee",
-      "bytes": 19675
+      "sha256": "5fac33565479116481230aacdd4441e172b300cc423e4d8147f300d2302c3f56",
+      "bytes": 21169
     },
     {
       "archive_name": "experience/rebuild_contents.py",

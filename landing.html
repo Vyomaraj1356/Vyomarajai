@@ -89,10 +89,12 @@ a{color:inherit;text-decoration:none}
     <a class="btn btnEmerald" href="#mac">🍎 Get Mac App</a>
   </div>
   <div id="landingSyncHUD" style="margin:18px auto 0; max-width:520px; background:rgba(8,20,45,.85); border:1.5px solid rgba(16,185,129,0.28); border-radius:12px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; font-size:11px;">
-    <span style="color:#10b981; font-weight:800;" id="landingSyncText">🔄 Loading sync status…</span>
+    <span style="color:#10b981; font-weight:800;" id="landingSyncText">Replication runs in the repository pipeline on push</span>
     <span style="display:flex; gap:6px; align-items:center;">
       <span class="pill gold" id="landingSyncProgress" style="font-size:10px;">—</span>
-      <button onclick="landingTriggerSync()" style="background:linear-gradient(135deg,#f59e0b,#d97706); border:none; color:#000; font-weight:800; padding:6px 12px; border-radius:8px; cursor:pointer; font-size:11px;">⚡ Master Sync Now</button>
+      <!-- The "⚡ Master Sync Now" button was removed: it called a function that POSTed to an
+           endpoint no server provides, so clicking it did nothing but fail. Replication is a
+           GitHub Actions job triggered by pushing to the repository. -->
     </span>
   </div>
   <div class="trust">
@@ -295,36 +297,30 @@ try{
   }
 }catch(e){}
 
-// ── Landing unified sync HUD — polls /api/sync/status every 4s, auto-sync every 2 mins via backend ──
+// ── Replication status line ────────────────────────────────────────────────────────────────
+// This page is static: GitHub Pages serves it with no backend, so there is no live sync process
+// to poll. It asks the real /api/sync/status endpoint where one exists (the lane studios and the
+// gateway serve it from checked-in DR evidence) and otherwise states the truth in one line.
+// The previous version polled every 4 seconds and POSTed /api/sync/trigger every 2 minutes against
+// a route that did not exist, so the box sat on "Loading sync status..." forever and logged a 404
+// storm. It also described six sub-agents "syncing together", which nothing here ever did.
 async function landingPollSync(){
+  const txt=document.getElementById('landingSyncText');
+  const prog=document.getElementById('landingSyncProgress');
+  const setSafe=(text,badge)=>{ if(txt) txt.textContent=text; if(prog){ prog.textContent=badge; prog.style.borderColor='rgba(16,185,129,0.35)'; } };
   try{
-    const host=location.host; const proto=location.protocol;
-    let base='';
-    if(host.includes('e2b.app')){ const sandbox=host.substring(host.indexOf('-')+1); base=proto+'//3000-'+sandbox; }
-    const url = base ? base+'/api/sync/status' : '/api/sync/status';
-    const r = await fetch(url); const s = await r.json();
-    const txt = document.getElementById('landingSyncText');
-    const prog = document.getElementById('landingSyncProgress');
-    if(txt) txt.textContent = s.isSyncing ? `🌸 Master Sync ACTIVE — ${s.progress}% • 6 sub-agents syncing together` : `✅ All 6 sub-agents synced • Last: ${s.lastSync ? new Date(s.lastSync).toLocaleTimeString() : 'ready'} • Auto-sync every 2 mins`;
-    if(prog) prog.textContent = s.isSyncing ? `Syncing ${s.progress}%` : `Sync #${s.syncCount||0} • 6/6 agents`;
-    if(prog) prog.style.borderColor = s.isSyncing ? 'var(--gold)' : 'rgba(16,185,129,0.35)';
-  }catch(e){}
+    const r=await fetch('/api/sync/status',{cache:'no-store'});
+    if(!r.ok) throw new Error('no status endpoint on this host');
+    const s=await r.json();
+    if(s.live_sync_process_running !== false) throw new Error('unexpected status shape');
+    setSafe('Replication runs in the repository pipeline on push', s.evidence_date ? 'Evidence: '+s.evidence_date : 'Repository evidence');
+  }catch(e){
+    setSafe('Replication runs in the repository pipeline on push','No live sync process in this page');
+  }
 }
-async function landingTriggerSync(){
-  try{
-    const host=location.host; const proto=location.protocol;
-    let base='';
-    if(host.includes('e2b.app')){ const sandbox=host.substring(host.indexOf('-')+1); base=proto+'//3000-'+sandbox; }
-    const url = base ? base+'/api/sync/trigger' : '/api/sync/trigger';
-    await fetch(url,{method:'POST'});
-    try{localStorage.setItem('vyomaraj_sync_trigger',Date.now().toString());}catch(e){}
-  }catch(e){}
-  landingPollSync();
-}
-setInterval(landingPollSync, 4000);
 landingPollSync();
-// landing auto-sync heartbeat every 2 mins (mirrors console)
-setInterval(()=>{ landingTriggerSync(); }, 120000);
+// No interval: nothing on this page changes between fetches, and re-asking every few seconds only
+// produced failed requests in the server log.
 
 </script>
 </body>

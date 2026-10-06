@@ -4,6 +4,7 @@ import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
 import json
+import re
 import threading
 from pathlib import Path
 from urllib.parse import urlsplit, parse_qs
@@ -91,6 +92,33 @@ REPORTS = {
 }
 
 
+def sync_status():
+    """Replication facts taken from checked-in evidence.
+
+    There is no live sync process in these servers, and this endpoint does not pretend there is:
+    it reports what the repository can prove. The landing page used to poll /api/sync/status every
+    four seconds and POST /api/sync/trigger every two minutes against an endpoint that never
+    existed, so its status box hung on "Loading sync status..." forever.
+    """
+    path = CORE / 'handover' / reports.DR_SYNC_REPORT
+    text = path.read_text(encoding='utf-8', errors='ignore') if path.is_file() else ''
+    date = re.search(r'DR sync results — (\d{4}-\d{2}-\d{2})', text)
+    tip = re.search(r'Main tip covered by this record: `([0-9a-f]{7,40})`', text)
+    schedule = re.search(r'schedule: `([^`]+)`', text)
+    return {
+        'schema': 'vyomaraj-sync-status/1',
+        'mode': 'repository_evidence_only',
+        'isSyncing': False,
+        'live_sync_process_running': False,
+        'evidence_date': date.group(1) if date else None,
+        'main_tip_covered': tip.group(1)[:8] if tip else None,
+        'workflow_schedule_utc': schedule.group(1) if schedule else None,
+        'detail': ('Replication is a GitHub Actions job on push and schedule, '
+                   'not a background process in this page'),
+        'source': str(path.relative_to(reports.ROOT)) if path.is_file() else None,
+    }
+
+
 class Handler(BaseHTTPRequestHandler):
     home_route = '/bhakti/'
 
@@ -135,6 +163,8 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError, KeyError):
                 ready = False
             self.json_response({'ready': ready, 'scope': 'local_application_metadata_only', 'production_dr_verified': False}, 200 if ready else 503)
+        elif route == '/api/sync/status':
+            self.json_response(sync_status())
         elif route == '/api/research/status':
             self.json_response(research_store().status())
         elif route == '/api/research/records':

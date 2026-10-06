@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "05681b5166e2ed6a27d1ddbe9918a2e05687d1ee98ef05725283c5fb9c68995f",
-  "package_bytes": 142074,
+  "package_sha256": "1067d91d67a4461e966847df74c7d38f7ffcf60559b187c54d2857aad17d650b",
+  "package_bytes": 142683,
   "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
@@ -101,8 +101,8 @@
     {
       "archive_name": "studio_server.py",
       "source": "ops/vyomaraj-core/experience/studio_server.py",
-      "sha256": "8907f955782d2e9eba7a6774bb6ddebc8ce06be3e10e40143f287b3e18ca18ee",
-      "bytes": 19675
+      "sha256": "5fac33565479116481230aacdd4441e172b300cc423e4d8147f300d2302c3f56",
+      "bytes": 21169
     },
     {
       "archive_name": "experience/rebuild_contents.py",

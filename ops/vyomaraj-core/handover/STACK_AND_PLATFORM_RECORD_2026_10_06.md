@@ -83,7 +83,7 @@ This is the answer to "what technologies and platforms did we use and configure?
 |---|---|
 | `index.html` | 2,738 |
 | `Index.html` | 12,761 |
-| `landing.html` | 22,846 |
+| `landing.html` | 22,949 |
 | `flow-diagram.html` | 61,964 |
 
 ### The one-month chat record
