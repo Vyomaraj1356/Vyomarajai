@@ -152,6 +152,27 @@ triggers on `main` and `arena/**`, and the diagnostic condition is
 diagnostic run on whichever branch a session actually pushes. Replication itself stays
 main-only: the verify-or-sync job still requires `refs/heads/main`.
 
+Third defect, found only because the second was fixed. With the job finally executing, the
+probe script inside it refused to run: `ops/dr/actions_read_probe.py` guarded itself with
+`GITHUB_REF != 'refs/heads/arena/01a10140-vyomarajai'` and exited 2. The pin existed in two
+places, and the workflow was the visible one. The guard is now a prefix rule
+(`refs/heads/arena/`) and is covered by TrustedPushTests in ops/dr/test_actions_read_probe.py,
+which fails if any future session's branch — or main, or a pull-request ref — is mis-classified.
+
+Read-only confirmation of the open window (run on 2026-10-06, commit d2bf6d63). With the
+diagnostic working, its public annotation is:
+  read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE;
+  primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE;
+  tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=315;
+  secondary_files=315; missing_on_secondary=0; secondary_only=0; changed_content_or_mode=3;
+  secondary_commit=c0edf483cd786b63a149c987bce370ab81404897;
+  secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; candidate_files=320;
+  candidate_secondary_only=0; candidate_missing=5; candidate_changed=14
+That is independent confirmation of the gap in section 2, read from the private secondary
+itself: the secondary really is at tree 88f681aa (the PR #25 snapshot) while main has moved on,
+and the credential really can read it. It also states its own limits — writes=NONE, write
+permission UNVERIFIED — so a green diagnostic means readable, and never replicated.
+
 4. THE COMPANION PACKAGE (49 members)
 In repository: ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip
 Manifest     : ops/vyomaraj-core/handover/POST_PR25_MANIFEST_2026_10_04.json

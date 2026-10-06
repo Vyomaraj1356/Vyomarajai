@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-06T06:00:05+00:00",
+  "verified_at_utc": "2026-10-06T06:02:55+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/582559e8-vyomarajai",
-    "commit": "f735f92b00be903384c18fdcfa2a7a264ba3e09a"
+    "commit": "d2bf6d631b73f6af8215b13a6caaa217e3793257"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
@@ -148,8 +148,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 33523,
-      "sha256": "d1d7d582dec5d016657e2720908ef034f997ae8c84f2e61a3215343de0a7357d"
+      "bytes": 31298,
+      "sha256": "c74dea4f05774af9d13ab7dc4473068436e28cacadf0b8f06a7a3949747e4423"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -411,8 +411,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 33787,
-      "sha256": "c79d118329d3a35bf3728bd518a42a0d28138d19cee28729e77904ffc6c9c215"
+      "bytes": 31562,
+      "sha256": "7cd45a019e606a05fd50f267bd1208e80bc1855dce809e8cdbf6e251828cd0e2"
     },
     {
       "route": "/reports/download/handover-notepad.txt",
@@ -682,7 +682,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 141,
+      "primary_responses": 211,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0

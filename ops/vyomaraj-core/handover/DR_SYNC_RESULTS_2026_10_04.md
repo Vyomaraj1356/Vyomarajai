@@ -15,7 +15,7 @@ This is a Git-snapshot replication record. It is **not** a production disaster-r
 
 | Source | SHA256 | What it contributes |
 |---|---|---|
-| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `e611792a4a01ddc46beb365cd59e082908f92daa4dee0542e3f56bd7ed2b09c6` | 20 MATCH checkpoints, 16 replication writes, 1 blocked run, 1 read-only probe |
+| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `0f3d2a4706558e52cf8e5aef9d604f575595392358303fa8533d3918ec7f06a9` | 20 MATCH checkpoints, 16 replication writes, 1 blocked run, 1 read-only probe |
 | `ops/dr/DR_POLICY.json` | `6090042dc9e05fa1273ba0f0345a6821d633e28c755cac6be806712e7ee222df` | scope flags and the time-boxed one-snapshot removal approval |
 | `.github/workflows/vyomaraj-sync-both.yml` | `299ff016ebd02919252a56de396c60b63b0c2246f74190923b24eb8216206681` | triggers and schedule |
 
@@ -166,6 +166,13 @@ as matches would overstate coverage, and counting them as mismatches would overs
 - Finding: The tip published on 2026-10-06 (f735f92, 'Vyomaraj sovereign restore') had no successful verify-or-sync run: the offline gate failed first, so replication never ran and the failure was silent in the DR record until this re-read.
 - Fix: The transfer package and its manifest were rebuilt from the current sources with their own builder (package sha256 8125959942d3d293f4971d3f52f46a9047868a3b5f113ee6d2b80efee2240a67, 133941 bytes - byte-identical to the package that PR #25 recorded in PREVIEW_VERIFICATION), and the workflow no longer pins a single expired session branch, so the offline gate and the read-only PAT diagnostic run on every Arena session branch.
 - Next checkpoint: The merge of the fix on main is verified by the same workflow immediately after it lands; that run becomes checkpoint #21 and closes the 2026-10-06 window.
+
+### Read-only confirmation of the open window
+
+- Source: Read-only Actions credential probe (ops/dr/actions_read_probe.py), run 37421416568 job diagnose-existing-pat on commit d2bf6d631b73, annotation read live from check-run 112131576824
+- Public annotation: `read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=315; secondary_files=315; missing_on_secondary=0; secondary_only=0; changed_content_or_mode=3; secondary_commit=c0edf483cd786b63a149c987bce370ab81404897; secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; candidate_files=320; candidate_secondary_only=0; candidate_missing=5; candidate_changed=14`
+- What it means: Independently confirms the gap recorded in window B: the secondary really is at tree 88f681aae844 (the PR #25 snapshot) while main has moved on, and the credential can read it. Writes stayed NONE and write permission stays UNVERIFIED - a green diagnostic means readable, not replicated.
+- Second defect found by making the diagnostic run again: The probe script itself was pinned to the same expired branch name (GITHUB_REF == 'refs/heads/arena/01a10140-vyomarajai'), so once the workflow was fixed to run the job on any arena/ branch, the script exited 2 with 'restricted to the trusted review-branch push'. The guard is now a prefix rule ('refs/heads/arena/') covered by TrustedPushTests in ops/dr/test_actions_read_probe.py.
 
 ## 6. Scope limits — do not restate otherwise
 

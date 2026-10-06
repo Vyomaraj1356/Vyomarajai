@@ -282,6 +282,17 @@ def render(root=ROOT):
             f"- Next checkpoint: {extension.get('next_checkpoint')}",
             '',
         ]
+        probe = extension.get('read_only_probe_confirmation')
+        if probe:
+            lines += [
+                '### Read-only confirmation of the open window',
+                '',
+                f"- Source: {probe.get('source')}",
+                f"- Public annotation: `{probe.get('annotation')}`",
+                f"- What it means: {probe.get('meaning')}",
+                f"- Second defect found by making the diagnostic run again: {probe.get('second_class_defect')}",
+                '',
+            ]
     lines += [
         '## 6. Scope limits — do not restate otherwise',
         '',

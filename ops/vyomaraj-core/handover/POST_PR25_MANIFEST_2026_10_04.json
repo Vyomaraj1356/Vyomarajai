@@ -1,17 +1,17 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
-  "package_sha256": "81d4b2b5a6b65047611351f5a5aaa3bebda7b07a88e8b5582425ace337503b31",
-  "package_bytes": 173854,
+  "package_sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760",
+  "package_bytes": 175560,
   "note": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
-  "note_sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad",
-  "note_bytes": 22268,
+  "note_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
+  "note_bytes": 23864,
   "note_byte_identical_download": "/reports/download/post-pr25-handover.txt serves the note unchanged",
   "members_total": 49,
   "canonical_members_total": 41,
   "additions_total": 8,
   "superset_of_canonical": true,
   "canonical_package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "canonical_package_sha256_rebuilt_from_source": "6be799e66983e4008fccf66d11cf7d45117b04673674635da8bd1f91cc016025",
+  "canonical_package_sha256_rebuilt_from_source": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py --check",
   "determinism": "fixed member timestamps and permissions; same-Python/zlib rebuilds are byte-identical",
@@ -31,14 +31,14 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "67ea7f15ada57bb6f10a71005067a7859d62786f2575b75f135e7415ffd14be9",
-      "bytes": 19220
+      "sha256": "88b88b92321d071a0c21b9fc72ddb9da85dc500f5d0767e8ded153c298d535fe",
+      "bytes": 20763
     },
     {
       "archive_name": "build_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/build_dr_sync_report.py",
-      "sha256": "91dca3e939f64b1b9ad23ecb6144a2a2239b2bc3833e09f517d339bd808c1642",
-      "bytes": 16568
+      "sha256": "b87ed841d52c7badf564a3f4417dbcc526dd4abb4047f94ef56c9c22ca532291",
+      "bytes": 17084
     },
     {
       "archive_name": "test_dr_sync_report.py",
@@ -103,8 +103,8 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "e611792a4a01ddc46beb365cd59e082908f92daa4dee0542e3f56bd7ed2b09c6",
-      "bytes": 30011
+      "sha256": "0f3d2a4706558e52cf8e5aef9d604f575595392358303fa8533d3918ec7f06a9",
+      "bytes": 31536
     },
     {
       "archive_name": "studio_server.py",
@@ -265,8 +265,8 @@
     {
       "archive_name": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
-      "sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad",
-      "bytes": 22268
+      "sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
+      "bytes": 23864
     },
     {
       "archive_name": "post-pr25/DEEP_PRIMARY_SECONDARY_CONFIGURATION_SCAN_2026_10_04.md",

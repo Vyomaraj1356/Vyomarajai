@@ -83,8 +83,20 @@ def annotation(result):
         if type(value) is int and 0 <= value <= 10000000: parts.append(f'candidate_{key}={value}')
     return '; '.join(parts)
 
+def trusted_push():
+    """A trusted review-branch push: this repository, a push event, an arena/ session branch.
+
+    The branch name is matched by prefix, never pinned to one session. Pinning it to a single
+    dead branch (arena/01a10140-vyomarajai) meant the probe refused on every later session, and
+    the job that calls it was skipped before it could even refuse; both are fixed together.
+    """
+    return (os.environ.get('GITHUB_REPOSITORY') == PRIMARY
+            and os.environ.get('GITHUB_EVENT_NAME') == 'push'
+            and os.environ.get('GITHUB_REF', '').startswith('refs/heads/arena/'))
+
+
 def main():
-    if os.environ.get('GITHUB_REPOSITORY') != PRIMARY or os.environ.get('GITHUB_EVENT_NAME') != 'push' or os.environ.get('GITHUB_REF') != 'refs/heads/arena/01a10140-vyomarajai':
+    if not trusted_push():
         print('Read-only probe is restricted to the trusted review-branch push.');return 2
     if not os.environ.get('PRIMARY_TOKEN') or not os.environ.get('DR_TOKEN'):
         result = {'status':'BLOCKED','tree_comparison':'NOT_ATTEMPTED','reason':'required_actions_secret_unavailable',

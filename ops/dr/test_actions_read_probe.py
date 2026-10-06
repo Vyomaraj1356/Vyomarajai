@@ -1,8 +1,45 @@
+import os
 import unittest
 from unittest.mock import Mock, patch
-from actions_read_probe import ReadOnlyClient, probe, annotation
+from actions_read_probe import ReadOnlyClient, probe, annotation, trusted_push
 from test_dr_sync import FakeGitHub,TARGET
 from dr_sync import PRIMARY,CheckError
+
+
+class TrustedPushTests(unittest.TestCase):
+    """The probe must run on any arena/ session branch, and nowhere else.
+
+    It was pinned to one branch name (arena/01a10140-vyomarajai); when that session ended the
+    probe could never run again, so every later session lost the read-only credential
+    diagnostic. These cases lock the prefix rule in both directions.
+    """
+    def setUp(self):
+        self.env = patch.dict(os.environ, {'GITHUB_REPOSITORY': PRIMARY, 'GITHUB_EVENT_NAME': 'push',
+                                           'GITHUB_REF': 'refs/heads/arena/582559e8-vyomarajai'})
+        self.env.start(); self.addCleanup(self.env.stop)
+
+    def test_current_session_branch_is_trusted(self):
+        self.assertTrue(trusted_push())
+
+    def test_any_arena_branch_is_trusted(self):
+        for ref in ('refs/heads/arena/01a10655-vyomarajai', 'refs/heads/arena/some-future-session'):
+            with self.subTest(ref=ref), patch.dict(os.environ, {'GITHUB_REF': ref}):
+                self.assertTrue(trusted_push())
+
+    def test_main_and_other_refs_are_not_probed(self):
+        for ref in ('refs/heads/main', 'refs/heads/feature/x', 'refs/pull/27/merge'):
+            with self.subTest(ref=ref), patch.dict(os.environ, {'GITHUB_REF': ref}):
+                self.assertFalse(trusted_push())
+
+    def test_foreign_repository_and_non_push_events_are_not_probed(self):
+        with patch.dict(os.environ, {'GITHUB_REPOSITORY': 'someone/fork'}):
+            self.assertFalse(trusted_push())
+        with patch.dict(os.environ, {'GITHUB_EVENT_NAME': 'pull_request'}):
+            self.assertFalse(trusted_push())
+
+    def test_missing_ref_is_not_trusted(self):
+        with patch.dict(os.environ, {'GITHUB_REF': ''}):
+            self.assertFalse(trusted_push())
 
 class ProbeTests(unittest.TestCase):
     def test_write_guard(self):
