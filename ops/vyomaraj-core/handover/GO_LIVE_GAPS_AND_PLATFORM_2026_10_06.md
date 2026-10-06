@@ -1,6 +1,6 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-06 11:40 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-06 11:44 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
@@ -57,9 +57,12 @@ that lives in Arena's own session history, not in the repo (section 5).
 5. **Personal data is out of the files but still in git history.** The guard protects every future
    commit; history still contains the earlier state. Fixing that means a history rewrite or a
    public/private split, and both are owner decisions with consequences (section 6).
-6. **Six pull requests and one issue are waiting on you**: #27, #9 (draft), #7, #4, #3, #2, and
-   issue #6 which is ready to close with a prepared comment. Nothing has been sent or merged on
-   your behalf.
+6. **The pull-request backlog is cleared; one issue is not.** #27 and #9 were merged into `main`;
+   #2, #4, #7 and #3 were closed as superseded, each after its unique files were recovered into
+   `main` first (35 files: the Jarvis LLM harness, the Experience orchestrator, the Hermes health
+   probe, the security protocol, and the V16.7.23/V16.7.24 handover archives). Issue #6 still shows
+   open only because this connection cannot write to issues: the DR pipeline is verified working and
+   the closing comment is prepared. Nothing was deleted from any branch.
 7. **The DR gateway is a local rehearsal, not independent-site DR.** The real cross-site
    verification stays owner-gated by design.
 8. **One address is still unpublished.** Both landing pages now read `[OWNER_EMAIL_REDACTED]`.
@@ -131,7 +134,7 @@ chats database and the two chat archives.
 | Git history | Identifiers removed from files remain in past commits | Rewrite history (recovery branch, force-push rules permitting) or accept that the old snapshot stays readable |
 | Public contact | The site currently shows no address | Publish a contact address (a dedicated one, not a personal mailbox) or keep the redaction |
 | APK | Unsigned and unexplained byte matches | Rebuild from clean source, sign it, then distribute |
-| The six PRs and issue #6 | They are waiting | Merge, close or keep each — nothing has been actioned |
+| Issue #6 | Only the comment is missing, not the verification | Paste the prepared comment (this connection has no issues write access) or grant it |
 
 ## 7 · Verify every claim above
 
