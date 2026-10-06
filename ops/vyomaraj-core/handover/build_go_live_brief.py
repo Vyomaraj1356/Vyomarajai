@@ -32,16 +32,7 @@ def git(*args: str) -> str:
 def facts() -> dict:
     ev = json.loads(EVIDENCE.read_text(encoding="utf-8")) if EVIDENCE.is_file() else {}
     rm = json.loads(RECOVERY.read_text(encoding="utf-8")) if RECOVERY.is_file() else {}
-    suites = ev.get("python_suites", [])
-    node = ev.get("node_checks", [])
-    builders = ev.get("builders", [])
-    total = len(suites) + len(node) + len(builders)
     return {
-        "gate_total": total,
-        "suites_total": len(suites),
-        "tests": ev.get("python_tests_total", "—"),
-        "node": len(node) or "—",
-        "builders": len(builders) or "—",
         "sessions": rm.get("session_branches_count", "—"),
         "archives": rm.get("archives_count", "—"),
         "unique_files": rm.get("unique_files_across_branches", "—"),
@@ -56,10 +47,10 @@ recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
 
-**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, and the
-work of every session is on GitHub. The gate covers {gate_total} offline checks — {suites_total}
-Python suites ({tests} tests), {node} Node checks and {builders} builders — and its receipt is
-`TEST_EVIDENCE_2026_10_04.json`; run it (section 7) for the result at the moment you read this. Ready to *operate
+**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, the
+privacy guard and recovery checks are permanent parts of the gate, and the work of every session is
+on GitHub. The gate's receipt is `TEST_EVIDENCE_2026_10_04.json`; run it (section 7) for the current
+result rather than reading a number frozen into this document. Ready to *operate
 itself*, no — the assistant/agent layer is records and documentation, not running services (section
 3). That is the honest line between "the shell is finished" and "the machine runs".
 
@@ -187,7 +178,7 @@ chats database and the two chat archives.
 ## 7 · Verify every claim above
 
 ```bash
-python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate, {gate_total} checks
+python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate - prints its own totals
 python3 ops/vyomaraj-core/handover/sanitize_personal_data.py --check   # privacy guard
 python3 ops/vyomaraj-core/handover/build_recovery_index.py --check     # sessions still recoverable
 python3 ops/vyomaraj-core/handover/build_go_live_brief.py --check      # this document

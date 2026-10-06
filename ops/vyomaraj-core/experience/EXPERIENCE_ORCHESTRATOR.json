@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "configuration_status": "plan_only_adapters_not_connected",
+  "system": {
+    "name": "Vyomaraj Experience Engine",
+    "description": "A configurable router for creative experience jobs, canonical agent categories, content modules, and visual-tool adapters.",
+    "source_agent_registry": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+    "source_safety_policy": "ops/vyomaraj-core/handover/CONTENT_SAFETY_POLICY_V16_7_24.json",
+    "scope_note": "The source registry has 13 categories, 133 sub-agent counts, and 421 product counts. It contains only partial child names; unspecified names and sub-subagent relationships remain unspecified."
+  },
+  "orchestrators": [
+    {
+      "id": "vyomaraj",
+      "display_name": "Vyomaraj",
+      "role": "Product and experience request orchestrator",
+      "llm_profile": "vyomaraj",
+      "execution_status": "local_planner_only"
+    },
+    {
+      "id": "jarvis",
+      "display_name": "Jarvis",
+      "role": "Continuity, handoff, unresolved-state tracking, and workflow coordination",
+      "llm_profile": "jarvis",
+      "execution_status": "local_planner_only"
+    }
+  ],
+  "agent_hierarchy": {
+    "flow": ["vyomaraj", "jarvis", "owner_supplied_category", "configured_tool_adapters", "human_approval"],
+    "category_count_source": "registry.categories",
+    "child_names_source": "registry.rosters",
+    "unknown_names_policy": "Do not invent agent, sub-agent, or sub-subagent names. Surface count-only and partial rosters as unresolved.",
+    "execution_note": "This configuration describes routes; it does not claim that separate agent processes or RPC services are running."
+  },
+  "existing_configuration_audit": {
+    "vyomaraj": {
+      "canonical_registry": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+      "bootstrap_scripts": [
+        {"path": "ops/integration/bootstrap-vyomaraj-global.bat", "layout": "global bootstrap", "status": "present; retained separately"},
+        {"path": "setup-vyomaraj-one-shot.bat", "layout": "one-shot setup", "status": "present; retained separately"}
+      ],
+      "bootstrap_execution_status": "not_invoked"
+    },
+    "jarvis": {
+      "llm_harness": {"path": "ops/jarvis/llm_harness.py", "status": "provider-neutral client present; provider unconfigured"},
+      "controller": {"path": "ops/jarvis/jarvis-24x7-controller.sh", "status": "present; not invoked by this planner; live heartbeat not verified"},
+      "legacy_environment": {"path": "ops/jarvis/jarvis.env", "status": "present with populated assignments; values are not read, served, or reproduced here", "owner_review_required": true},
+      "device_manifest": {"path": "ops/jarvis/devices.json", "status": "present; not read or served by this planner; device and endpoint state not verified"}
+    },
+    "remote_agent_rpc_or_sync": "not_configured_or_verified",
+    "review_note": "This is a safe metadata inventory only. It does not invoke controllers, bootstrap scripts, device endpoints, or recovery workflows."
+  },
+  "experience_modes": {
+    "3d": {
+      "label": "3D spatial experience",
+      "definition": "A spatial model or scene with a renderable viewpoint.",
+      "default_outputs": ["model_3d", "still_image", "render_preview"]
+    },
+    "4d": {
+      "label": "4D time-based experience",
+      "definition": "Project convention: a 3D scene plus a time-based sequence or animation; this is not asserted as a universal standard.",
+      "default_outputs": ["model_3d", "animation", "video", "render_preview"]
+    },
+    "5d": {
+      "label": "5D interactive experience",
+      "definition": "Project convention: a 3D/4D experience with interactive, contextual, accessibility, or multi-sensory design layers; owner review should define the intended dimensions. This is not asserted as a universal standard.",
+      "default_outputs": ["model_3d", "animation", "render_preview", "ar_preview"]
+    },
+    "ar": {
+      "label": "AR experience",
+      "definition": "A spatial asset and presentation plan for an AR-capable target device; no device runtime is connected yet.",
+      "default_outputs": ["model_3d", "render_preview", "ar_preview"]
+    }
+  },
+  "outputs": {
+    "still_image": {"label": "Still image / key visual", "required_adapters": ["image_generation", "rendering"]},
+    "video": {"label": "Video / storyboard", "required_adapters": ["video_generation", "animation", "rendering"]},
+    "model_3d": {"label": "3D model / configurator scene", "required_adapters": ["model_3d_generation", "rendering"]},
+    "animation": {"label": "Animation / motion sequence", "required_adapters": ["animation", "rendering"]},
+    "render_preview": {"label": "Rendered preview", "required_adapters": ["rendering"]},
+    "ar_preview": {"label": "AR handoff / device preview", "required_adapters": ["ar_runtime", "model_3d_generation", "rendering"]}
+  },
+  "domain_routes": [
+    {
+      "id": "food_menu",
+      "label": "Food menu / dish visualization",
+      "category_ids": ["FOOD"],
+      "mapping_status": "canonical_category_description_match",
+      "required_adapter_ids": [],
+      "risk_tags": ["claims_review", "rights_review"],
+      "route_note": "FOOD is the supplied category. Individual child names and all product titles are not supplied."
+    },
+    {
+      "id": "hotel_menu",
+      "label": "Hotel menu / venue experience",
+      "category_ids": ["FOOD", "TOUR"],
+      "mapping_status": "provisional_composite_owner_review",
+      "required_adapter_ids": [],
+      "risk_tags": ["claims_review", "rights_review"],
+      "route_note": "No HOTEL category is present. FOOD + TOUR is a provisional mapping from the supplied category descriptions, not a newly named agent."
+    },
+    {
+      "id": "vehicle_configurator",
+      "label": "Automobile / car / bike configurator",
+      "category_ids": [],
+      "mapping_status": "owner_mapping_required",
+      "required_adapter_ids": [],
+      "risk_tags": ["product_claims_review", "rights_review"],
+      "route_note": "No dedicated automotive or vehicle sub-agent is named in the canonical roster. Keep the job at the Vyomaraj/Jarvis studio layer until the owner assigns a category."
+    },
+    {
+      "id": "fashion_visualization",
+      "label": "Fashion visualization",
+      "category_ids": [],
+      "mapping_status": "owner_mapping_required",
+      "required_adapter_ids": [],
+      "risk_tags": ["rights_review", "synthetic_media_review"],
+      "route_note": "No dedicated fashion sub-agent is named in the canonical roster. Do not invent one."
+    },
+    {
+      "id": "temple_heritage",
+      "label": "Temple / heritage experience",
+      "category_ids": ["BHAKTI", "TOUR"],
+      "mapping_status": "provisional_composite_owner_review",
+      "required_adapter_ids": [],
+      "risk_tags": ["religion_and_cultural_review", "rights_review", "fact_check"],
+      "route_note": "BHAKTI + TOUR is a provisional mapping from supplied category descriptions. Require cultural/context review before release."
+    },
+    {
+      "id": "tourism_experience",
+      "label": "Tourism / place experience",
+      "category_ids": ["TOUR"],
+      "mapping_status": "canonical_category_description_match",
+      "required_adapter_ids": [],
+      "risk_tags": ["claims_review", "rights_review"],
+      "route_note": "TOUR is the supplied Tour and Travel category."
+    },
+    {
+      "id": "educational_model",
+      "label": "Educational interactive model",
+      "category_ids": ["EDU"],
+      "mapping_status": "canonical_category_description_match",
+      "required_adapter_ids": [],
+      "risk_tags": ["fact_check", "age_safety_review"],
+      "route_note": "EDU is the supplied Education and World Wisdom category. Its roster is partial."
+    },
+    {
+      "id": "trend_campaign",
+      "label": "Trend-inspired content campaign",
+      "category_ids": ["ENTERTAINMENT", "PLATFORM"],
+      "mapping_status": "partial_roster_owner_review",
+      "required_adapter_ids": ["trend_source"],
+      "risk_tags": ["copyright_review", "platform_policy_review", "ad_disclosure_review"],
+      "route_note": "Use a user-supplied trend reference until a trend provider is configured. Adapt into original work; do not copy source assets. PLATFORM has one unmapped slot."
+    },
+    {
+      "id": "war_history_visualization",
+      "label": "War / arms history visualization (non-operational only)",
+      "category_ids": ["WAR"],
+      "mapping_status": "canonical_category_description_match_restricted_scope",
+      "required_adapter_ids": [],
+      "risk_tags": ["violence_review", "fact_check", "human_review"],
+      "route_note": "Historical or fictional, non-functional visualization only. No weapon construction, optimization, targeting, or operational configurator output."
+    }
+  ],
+  "tool_adapters": [
+    {"id": "image_generation", "label": "Image generation", "provider": null, "status": "not_configured", "execution_enabled": false},
+    {"id": "video_generation", "label": "Video generation", "provider": null, "status": "not_configured", "execution_enabled": false},
+    {"id": "model_3d_generation", "label": "3D model generation", "provider": null, "status": "not_configured", "execution_enabled": false},
+    {"id": "animation", "label": "Animation / motion graphics", "provider": null, "status": "not_configured", "execution_enabled": false},
+    {"id": "rendering", "label": "Rendering / export", "provider": null, "status": "not_configured", "execution_enabled": false},
+    {"id": "ar_runtime", "label": "AR preview / runtime", "provider": null, "status": "not_configured", "execution_enabled": false},
+    {"id": "trend_source", "label": "Trend discovery / verification", "provider": null, "status": "manual_reference_only", "execution_enabled": false},
+    {"id": "publisher", "label": "Social/content publishing", "provider": null, "status": "not_configured", "execution_enabled": false}
+  ],
+  "llm": {
+    "harness_path": "ops/jarvis/llm_harness.py",
+    "status": "provider_unconfigured",
+    "available_profiles": ["vyomaraj", "jarvis"],
+    "automatic_calls": false,
+    "tool_access": false,
+    "note": "Optional LLM drafting is an explicit local CLI action only; the browser planner does not send user briefs to a provider."
+  },
+  "release_gates": {
+    "policy_source": "ops/vyomaraj-core/handover/CONTENT_SAFETY_POLICY_V16_7_24.json",
+    "policy_status": "proposed_owner_policy_specification_not_a_deployed_filter",
+    "always_plan_only_until_dispatch_executor_implemented": true,
+    "human_approval_before_publish": true,
+    "trend_freshness_claim_without_verified_source": false,
+    "copy_existing_media_without_rights_clearance": false,
+    "weapon_scope": "non_operational_historical_or_fictional_visualization_only"
+  }
+}
