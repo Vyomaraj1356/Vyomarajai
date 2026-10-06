@@ -57,6 +57,7 @@ BUILDER_COMMANDS = [
     # file is published personal data. This fails the build if one ever returns.
     ['python3', 'ops/vyomaraj-core/handover/sanitize_personal_data.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_recovery_index.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_go_live_brief.py', '--check'],
     ['python3', 'ops/vyomaraj-core/experience/voice_enrollment.py', '--audit'],
     ['python3', 'ops/vyomaraj-core/handover/build_configuration_report.py', '--check'],
     ['python3', 'ops/vyomaraj-core/experience/rebuild_contents.py', '--check'],

@@ -93,6 +93,7 @@ REPORTS = {
     '/reports/ai-handoff': 'AI_PLATFORM_HANDOFF_2026_10_06.md',
     '/reports/runbook': 'VYOMARAJ_RUNBOOK_2026_10_06.md',
     '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
+    '/reports/go-live': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
 }
 
 
@@ -177,6 +178,9 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Content-Length', str(len(body)))
             self.end_headers()
             self.wfile.write(body)
+        elif route == '/reports/download/go-live-gaps.md':
+            path = CORE / 'handover/GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
         elif route == '/reports/download/recovery-index.md':
             path = CORE / 'handover/ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md'
             self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
