@@ -86,6 +86,7 @@ REPORTS = {
     '/reports/issues': 'ISSUES_AND_PRS_LEDGER_2026_10_04.md',
     '/reports/go-live': 'NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
     '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
+    '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
 }
 
 
@@ -167,6 +168,12 @@ class Handler(BaseHTTPRequestHandler):
         elif route == '/reports/download/issues-ledger.json':
             path = CORE / 'handover/ISSUES_AND_PRS_LEDGER.json'
             self.send_download(path.read_bytes(), 'application/json', path.name)
+        elif route == '/reports/download/network-diagram.png':
+            path = CORE / 'handover/ARCHITECTURE_DIAGRAM_2026_10_06.png'
+            self.send_download(path.read_bytes(), 'image/png', path.name)
+        elif route == '/reports/download/network-diagram.svg':
+            path = CORE / 'handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg'
+            self.send_download(path.read_bytes(), 'image/svg+xml', path.name)
         elif route in REPORTS or route in reports.REFERENCE_REPORTS:
             path = (reports.REFERENCE_REPORTS[route] if route in reports.REFERENCE_REPORTS
                     else CORE / 'handover' / REPORTS[route])

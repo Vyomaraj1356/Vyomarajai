@@ -44,6 +44,7 @@ REPORTS = {
     '/reports/issues': 'ISSUES_AND_PRS_LEDGER_2026_10_04.md',
     '/reports/go-live': 'NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
     '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
+    '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
 }
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
@@ -68,6 +69,12 @@ PAGE_NOTES = {
                         'run-up to Ghatasthapana, Sunday 11 October 2026: day-by-day plan, the '
                         'owner decisions that block it, the gates, and the risks in the order they '
                         'can stop a launch.</p>',
+    '/reports/network-diagram': '<p class="notice"><strong>Network and architecture diagram</strong> - '
+                                'generated from the verified stack record, layer by layer: people, live '
+                                'delivery, browser runtime, local rehearsal, automation, DR, and what is not '
+                                'owned. Red means claimed with nothing running behind it. '
+                                '<a href="/reports/download/network-diagram.png">Download the colour PNG</a> &middot; '
+                                '<a href="/reports/download/network-diagram.svg">Download the SVG</a></p>',
     '/reports/stack': '<p class="notice"><strong>Stack and platform record</strong> — what the '
                       'product is actually built on, the whole one-month archive with hashes, and '
                       'which claims in the old market-ready README have nothing running behind '
@@ -93,7 +100,11 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/reports/download/post-pr25-transfer.zip': (POST_PR25_ZIP, 'application/zip'),
              '/reports/download/auto-align.json': ('AUTO_ALIGN_NEXT_SESSION.json', 'application/json'),
              '/reports/download/platform-check.md': ('PLATFORM_CONFIGURATION_CHECK_2026_10_04.md', 'text/plain; charset=utf-8'),
-             '/reports/download/issues-ledger.json': ('ISSUES_AND_PRS_LEDGER.json', 'application/json')}
+             '/reports/download/issues-ledger.json': ('ISSUES_AND_PRS_LEDGER.json', 'application/json'),
+             '/reports/download/network-diagram.png':
+                 ('ARCHITECTURE_DIAGRAM_2026_10_06.png', 'image/png'),
+             '/reports/download/network-diagram.svg':
+                 ('ARCHITECTURE_DIAGRAM_2026_10_06.svg', 'image/svg+xml')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
 RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</strong> '
                   '<a href="/reports/issues">Issues and PRs ledger</a> &middot; '
@@ -195,7 +206,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()

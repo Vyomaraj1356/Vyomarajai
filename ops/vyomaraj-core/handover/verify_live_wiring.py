@@ -54,7 +54,7 @@ VIEWER_ROUTES = {
 }
 REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/aghor/', '/research/',
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
-                  '/reports/stack', '/reports/post-pr25-handover']
+                  '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover']
 # route -> repository path whose bytes the download must be identical to
 DOWNLOADS = {
     '/reports/download/next-session.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt',
@@ -62,9 +62,13 @@ DOWNLOADS = {
     '/reports/download/post-pr25-handover.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt',
     '/reports/download/transfer-package.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip',
     '/reports/download/post-pr25-transfer.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip',
+    '/reports/download/network-diagram.svg': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg',
+    '/reports/download/network-diagram.png': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
 }
 REQUIRED_FILES = [
     'Vyomaraj-App.apk', 'index.html', 'landing.html', 'flow-diagram.html',
+    'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg',
+    'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
     'ops/vyomaraj-core/music-experience/content.json',
     'ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json',
     'ops/vyomaraj-core/agents/CONTENT_INDEX_CURRENT.json',
