@@ -45,14 +45,47 @@ REPORTS = {
     '/reports/go-live': 'NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
     '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
     '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
+    '/reports/market-readiness': 'MARKET_READINESS_AND_WIRING_2026_10_06.md',
 }
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
 # exact-route allowlist stays exact.
+SCREENSHOTS_DIR = HERE / 'screenshots'
+
+
+def screenshot_gallery():
+    """Inline every capture that is small enough to send, link the rest. Never invent a caption."""
+    if not SCREENSHOTS_DIR.is_dir():
+        return '<p class="notice">No captures have been taken. Run capture_screens.mjs.</p>'
+    manifest = SCREENSHOTS_DIR / 'SCREENSHOT_CAPTURE_RAW.json'
+    meta = {}
+    if manifest.is_file():
+        import json as _json
+        meta = {s['name']: s for s in _json.loads(manifest.read_text()).get('screenshots', [])}
+    cards = []
+    for png in sorted(list(SCREENSHOTS_DIR.glob('*.jpg')) + list(SCREENSHOTS_DIR.glob('*.png'))):
+        size_mb = png.stat().st_size / 1e6
+        record = meta.get(png.stem, {})
+        caption = f"{record.get('title', png.stem)} — {record.get('url', '')} · {size_mb:.2f} MB"
+        blocked = record.get('failed_requests') or []
+        warn = (f'<br><strong>blocked sub-request:</strong> <code>{blocked[0]["url"][:90]}</code>'
+                if blocked else '')
+        if size_mb <= 2.5:
+            body = (f'<img src="/reports/screenshot/{png.name}" alt="{png.stem} screenshot" '
+                    f'style="max-width:100%;height:auto;border:1px solid #23405f;border-radius:10px">')
+        else:
+            body = (f'<p><em>{size_mb:.1f} MB — too large to display inline. '
+                    f'<a href="/reports/screenshot/{png.name}">Open the full capture</a></em></p>')
+        cards.append(f'<figure style="margin:26px 0">{body}<figcaption style="color:#94a3b8;'
+                     f'font-size:13px;margin-top:8px">{caption}{warn}</figcaption></figure>')
+    return ''.join(cards)
+
+
 REFERENCE_REPORTS = {
     '/reports/chats': ROOT / 'Vyomaraj-All-Chats-Database-One-Month.md',
     '/reports/issue-6': ROOT / 'ops/dr/ISSUE_6_RESOLUTION_2026_10_04.md',
     '/reports/live-wiring': HERE / 'LIVE_WIRING_STATE_2026_10_06.json',
+    '/reports/screenshots': SCREENSHOTS_DIR / 'SCREENSHOT_CAPTURE_RAW.json',
 }
 # Fixed, code-composed notices. Report text itself is never turned into markup or a hyperlink.
 PAGE_NOTES = {
@@ -69,6 +102,12 @@ PAGE_NOTES = {
                         'run-up to Ghatasthapana, Sunday 11 October 2026: day-by-day plan, the '
                         'owner decisions that block it, the gates, and the risks in the order they '
                         'can stop a launch.</p>',
+    '/reports/screenshots': '<p class="notice"><strong>Real captures of the running pages</strong> - taken with a '
+                            'headless Chromium against the live servers, one file per page, hashes recorded in the '
+                            'manifest below. Nothing here is a mock-up.</p>' + screenshot_gallery(),
+    '/reports/market-readiness': '<p class="notice"><strong>Market readiness and wiring</strong> - what is configured, '
+                                 'what is integrated, what was inherited, which parts of the vision are connected, and '
+                                 'the exact free wiring needed before real earning. Generated from live checks.</p>',
     '/reports/network-diagram': '<p class="notice"><strong>Network and architecture diagram</strong> - '
                                 'generated from the verified stack record, layer by layer: people, live '
                                 'delivery, browser runtime, local rehearsal, automation, DR, and what is not '
@@ -183,9 +222,26 @@ def render_document(path):
     return '<pre>' + html.escape(text) + '</pre>'
 
 
+SCREENSHOT_NAME = re.compile(r'^[a-z0-9-]+\.(png|jpg)$')
+SCREENSHOT_MIME = {'.png': 'image/png', '.jpg': 'image/jpeg'}
+
+
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         route = urlsplit(self.path).path
+        if route.startswith('/reports/screenshot/'):
+            name = route.rsplit('/', 1)[-1]
+            path = SCREENSHOTS_DIR / name
+            if not SCREENSHOT_NAME.fullmatch(name) or not path.is_file():
+                self.send_error(404, 'Only captured screenshots are available'); return
+            content = path.read_bytes()
+            self.send_response(200)
+            self.send_header('Content-Type', SCREENSHOT_MIME[path.suffix])
+            self.send_header('Content-Length', str(len(content)))
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(content)
+            return
         filename = REPORTS.get(route) or (DOWNLOADS.get(route) or (None,))[0]
         if filename is None and route not in REFERENCE_REPORTS:
             self.send_error(404, 'Only the allowlisted reports are available'); return
@@ -206,7 +262,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()
@@ -215,7 +271,10 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', kind)
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Cache-Control', 'no-store')
-        self.send_header('Content-Security-Policy', "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'")
+        # 'img-src self' is required for the capture gallery: same-origin images only, still no scripts,
+        # no external hosts, no frames. Without it the hardened default-src 'none' blocks every image.
+        self.send_header('Content-Security-Policy',
+                         "default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'")
         if route in DOWNLOADS:
             self.send_header('Content-Disposition', f'attachment; filename="{Path(filename).name}"')
         self.send_header('Content-Length', str(len(content)))

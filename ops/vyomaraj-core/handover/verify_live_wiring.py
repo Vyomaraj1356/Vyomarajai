@@ -54,7 +54,14 @@ VIEWER_ROUTES = {
 }
 REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/aghor/', '/research/',
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
-                  '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover']
+                  '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
+                  '/reports/market-readiness', '/reports/screenshots']
+# Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
+# allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
+SCREENSHOT_ROUTES = {
+    '/reports/screenshot/product-page.jpg': 'ops/vyomaraj-core/handover/screenshots/product-page.jpg',
+    '/reports/screenshot/lane-music.jpg': 'ops/vyomaraj-core/handover/screenshots/lane-music.jpg',
+}
 # route -> repository path whose bytes the download must be identical to
 DOWNLOADS = {
     '/reports/download/next-session.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt',
@@ -64,11 +71,15 @@ DOWNLOADS = {
     '/reports/download/post-pr25-transfer.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip',
     '/reports/download/network-diagram.svg': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg',
     '/reports/download/network-diagram.png': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
+
 }
 REQUIRED_FILES = [
     'Vyomaraj-App.apk', 'index.html', 'landing.html', 'flow-diagram.html',
     'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg',
     'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
+    'ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md',
+    'ops/vyomaraj-core/handover/screenshots/SCREENSHOT_CAPTURE_RAW.json',
+    'ops/vyomaraj-core/handover/screenshots/product-page.jpg',
     'ops/vyomaraj-core/music-experience/content.json',
     'ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json',
     'ops/vyomaraj-core/agents/CONTENT_INDEX_CURRENT.json',
@@ -128,7 +139,7 @@ def check_routes(base, routes, label, problems):
 
 def check_downloads(base, label, problems):
     results = []
-    for route, source in DOWNLOADS.items():
+    for route, source in list(DOWNLOADS.items()) + list(SCREENSHOT_ROUTES.items()):
         expected = (ROOT / source).read_bytes()
         result = fetch(base + route)
         identical = result['body'] == expected

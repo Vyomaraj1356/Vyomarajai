@@ -87,6 +87,7 @@ REPORTS = {
     '/reports/go-live': 'NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
     '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
     '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
+    '/reports/market-readiness': 'MARKET_READINESS_AND_WIRING_2026_10_06.md',
 }
 
 
@@ -99,7 +100,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Length', str(len(content)))
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
-        self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; media-src blob:; font-src 'self'; base-uri 'none'; form-action 'none'")
+        # img-src 'self' carries the same-origin capture gallery; no external image host is allowed.
+        self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; media-src blob:; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'")
         self.end_headers()
         self.wfile.write(content)
 
@@ -168,6 +170,12 @@ class Handler(BaseHTTPRequestHandler):
         elif route == '/reports/download/issues-ledger.json':
             path = CORE / 'handover/ISSUES_AND_PRS_LEDGER.json'
             self.send_download(path.read_bytes(), 'application/json', path.name)
+        elif route.startswith('/reports/screenshot/'):
+            name = route.rsplit('/', 1)[-1]
+            path = reports.SCREENSHOTS_DIR / name
+            if not reports.SCREENSHOT_NAME.fullmatch(name) or not path.is_file():
+                self.send_error(404); return
+            self.send_download(path.read_bytes(), reports.SCREENSHOT_MIME[path.suffix], name)
         elif route == '/reports/download/network-diagram.png':
             path = CORE / 'handover/ARCHITECTURE_DIAGRAM_2026_10_06.png'
             self.send_download(path.read_bytes(), 'image/png', path.name)

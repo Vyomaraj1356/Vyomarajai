@@ -33,7 +33,7 @@ VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports
                  '/reports/download/handover-notepad.txt',
                  '/reports/download/transfer-package.zip', '/reports/post-pr25-handover',
                  '/reports/download/post-pr25-handover.txt', '/reports/download/post-pr25-transfer.zip',
-                 '/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram',
+                 '/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots',
                  '/reports/auto-align', '/reports/platform-check',
                  '/reports/issues', '/reports/download/auto-align.json',
                  '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
@@ -47,7 +47,7 @@ GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/
                   '/reports/platform-check', '/reports/issues', '/reports/download/auto-align.json',
                   '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
                   '/not-an-allowlisted-route']
-LANE_REPORT_ROUTES = ['/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram',
+LANE_REPORT_ROUTES = ['/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots',
                       '/reports/auto-align', '/reports/platform-check', '/reports/issues',
                       '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
                       '/reports/download/auto-align.json', '/reports/download/platform-check.md',
@@ -63,7 +63,9 @@ CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
                    '/reports/go-live': 'Navaratri 2026 go-live plan',
                    '/reports/live-wiring': 'blocking_checks',
                    '/reports/stack': 'Stack and platform record',
-                   '/reports/network-diagram': 'Network and architecture diagram'}
+                   '/reports/network-diagram': 'Network and architecture diagram',
+                   '/reports/market-readiness': 'Market readiness and wiring',
+                   '/reports/screenshots': 'Real captures of the running pages'}
 
 
 def sha256(data):

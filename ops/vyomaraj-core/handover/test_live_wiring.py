@@ -24,6 +24,18 @@ class RouteContractTests(unittest.TestCase):
             self.assertIn(route, viewer.DOWNLOADS, f'{route} is not in the viewer download allowlist')
             self.assertTrue((wiring.ROOT / source).is_file(), f'{source} is missing')
 
+    def test_every_captured_page_is_served_by_the_screenshot_branch(self):
+        # Screenshots travel through the /reports/screenshot/<name> prefix branch, which allowlists
+        # names by shape. The contract: the viewer must publish that prefix and the name must match
+        # the published pattern, and the file must exist.
+        self.assertIn('/reports/screenshot/', (wiring.ROOT / 'ops/vyomaraj-core/handover/'
+                                               'preview_reports.py').read_text(encoding='utf-8'))
+        for route, source in wiring.SCREENSHOT_ROUTES.items():
+            with self.subTest(route=route):
+                name = route.rsplit('/', 1)[-1]
+                self.assertTrue(viewer.SCREENSHOT_NAME.fullmatch(name), f'{name} is not allowlisted')
+                self.assertTrue((wiring.ROOT / source).is_file(), f'{source} is missing')
+
     def test_replica_routes_are_served_by_the_lanes(self):
         # The replicas serve their own route table and also consult the shared renderer's
         # allowlists, so a route counts as served if either place knows it.
@@ -64,7 +76,8 @@ class FailureReportingTests(unittest.TestCase):
                                                          'seconds': 0.0, 'body': b'nope',
                                                          'content_type': 'text/plain'}):
             wiring.check_downloads('http://127.0.0.1:1', 'viewer', problems)
-        self.assertEqual(len(problems), len(wiring.DOWNLOADS))
+        # the byte check covers the download allowlist plus the captured-page branch
+        self.assertEqual(len(problems), len(wiring.DOWNLOADS) + len(wiring.SCREENSHOT_ROUTES))
         for problem in problems:
             self.assertIn('not byte-identical', problem)
 
