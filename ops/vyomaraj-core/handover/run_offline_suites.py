@@ -27,6 +27,7 @@ SUITES = [
     'ops/vyomaraj-core/finance',
     'ops/vyomaraj-core/upgrades',
     'ops/vyomaraj-core/ledger',
+    'tests',
 ]
 NODE_COMMANDS = [
     ['node', '--test', 'ops/vyomaraj-core/test_safe_metadata.cjs'],
@@ -47,6 +48,18 @@ BUILDER_COMMANDS = [
     ['python3', 'ops/vyomaraj-core/agents/rebuild_registry.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_dr_sync_report.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_transfer_package.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_post_pr25_package.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_stack_record.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/architecture_diagram.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_market_readiness.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_full_handover.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_ai_handoff.py', '--check'],
+    # Privacy gate: the public site serves this branch root, so a personal identifier in any tracked
+    # file is published personal data. This fails the build if one ever returns.
+    ['python3', 'ops/vyomaraj-core/handover/sanitize_personal_data.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_recovery_index.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_go_live_brief.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/experience/voice_enrollment.py', '--audit'],
     ['python3', 'ops/vyomaraj-core/handover/build_configuration_report.py', '--check'],
     ['python3', 'ops/vyomaraj-core/experience/rebuild_contents.py', '--check'],
     ['python3', 'ops/vyomaraj-core/agents/inheritance_audit.py', '--check'],

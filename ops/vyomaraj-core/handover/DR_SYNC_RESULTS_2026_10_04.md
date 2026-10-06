@@ -5,7 +5,7 @@
 ## 1. Scope — what this record does and does not assert
 
 Primary repository: `Vyomaraj1356/Vyomarajai`. Secondary repository: `deepakGoyal1356/Vyomaraj-Agent-6d64e`.
-Main tip covered by this record: `d9147fffc5884702d7fcbc38fd666d62622f3b8c`.
+Main tip covered by this record: `f735f92b00be903384c18fdcfa2a7a264ba3e09a`.
 Workflow: `.github/workflows/vyomaraj-sync-both.yml` — triggers: push, pull_request, workflow_dispatch, schedule; schedule: `*/30 * * * *` (UTC).
 Recorded scope: Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR.
 
@@ -15,15 +15,15 @@ This is a Git-snapshot replication record. It is **not** a production disaster-r
 
 | Source | SHA256 | What it contributes |
 |---|---|---|
-| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `d04983f1c6709640dc96d9dbeb17cf8d01b22961dc72aa6e494e6bc8aa2ebf30` | 19 MATCH checkpoints, 15 replication writes, 1 blocked run, 1 read-only probe |
+| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `0f3d2a4706558e52cf8e5aef9d604f575595392358303fa8533d3918ec7f06a9` | 20 MATCH checkpoints, 16 replication writes, 1 blocked run, 1 read-only probe |
 | `ops/dr/DR_POLICY.json` | `6090042dc9e05fa1273ba0f0345a6821d633e28c755cac6be806712e7ee222df` | scope flags and the time-boxed one-snapshot removal approval |
-| `.github/workflows/vyomaraj-sync-both.yml` | `62ffaa76c31a87823dc4ebe59a15787aaad74724303f5b009899706fe0c1f985` | triggers and schedule |
+| `.github/workflows/vyomaraj-sync-both.yml` | `299ff016ebd02919252a56de396c60b63b0c2246f74190923b24eb8216206681` | triggers and schedule |
 
 Method: All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.
 
-Re-validation: The PR #24 merge and its verify-or-sync check-run were re-read through the GitHub API. The latest DR SNAPSHOT RESULT annotation was parsed and compared with the new row; the previously recorded rows are preserved from the earlier full-set revalidation. Result: Checkpoint #19 (PR #24) re-read live: status=MATCH, primary_tree == secondary_tree, rollback commit and check-run id match the stored annotation. The earlier 18 rows retain their recorded full-set validation.
+Re-validation: Checkpoint #20 and every run in the two unverified windows below were re-read live from the GitHub API in this session: the push run that carried the PR #25 merge, the annotation of its verify-or-sync check-run, the workflow-run conclusions for 2026-10-05 and 2026-10-06, and the job conclusions and runtimes of each affected offline-tests job. The 19 previously recorded checkpoints retain their earlier full-set revalidation. Result: Checkpoint #20 (PR #25) re-read live: status=MATCH, primary_tree == secondary_tree == 88f681aae844..., replication write with rollback 307d0383e2b4... retained, check-run id matches the stored annotation. Two windows in which verify-or-sync did NOT execute were found and are recorded in full: 2026-10-05 19:13-21:25Z (five scheduled runs, offline-tests cancelled by the platform after 15m02s each) and 2026-10-06 05:29Z onward (four runs failed at offline-tests; see the repo regression recorded in section 6).
 
-## 3. Verification checkpoints (19)
+## 3. Verification checkpoints (20)
 
 A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commit` present means the run replicated (wrote) the snapshot to the secondary; absent means the two snapshots were already identical and the run changed nothing. Trees are shown shortened from the full 40-character values in the record; every row ended `data_match=true`.
 
@@ -48,10 +48,11 @@ A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commi
 | 17 | 2026-10-04T08:26:11Z | `feb720681514` | #22 | `37188867431` | `111396668243` | MATCH | `99c42eb64224` | `99c42eb64224` | yes (`96537d32b58b`) |
 | 18 | 2026-10-04T08:30:31Z | `767f87986044` | #23 | `37189095334` | `111397396312` | MATCH | `5d1787acac6f` | `5d1787acac6f` | yes (`096c2ec6e0dc`) |
 | 19 | 2026-10-04T09:17:04Z | `d9147fffc588` | #24 | `37191596397` | `111404791435` | MATCH | `e8c66bd45148` | `e8c66bd45148` | yes (`be715362ca39`) |
+| 20 | 2026-10-04T11:26:52Z | `0671fc590a87` | #25 | `37198689808` | `111425773341` | MATCH | `88f681aae844` | `88f681aae844` | yes (`307d0383e2b4`) |
 
-All 19 rows were re-read from the GitHub API at 2026-10-04T10:56:22Z and matched the values stored in the record.
+All 20 rows were re-read from the GitHub API at 2026-10-06T05:56:57Z and matched the values stored in the record.
 
-## 4. Replication writes (15)
+## 4. Replication writes (16)
 
 | merge | PR | run | check-run | rollback commit (previous secondary tip, retained) |
 |---|---|---|---|---|
@@ -70,6 +71,7 @@ All 19 rows were re-read from the GitHub API at 2026-10-04T10:56:22Z and matched
 | `feb720681514` | #22 | `37188867431` | `111396668243` | `96537d32b58bc2221608d42a1fba5af9abad02b6` |
 | `767f87986044` | #23 | `37189095334` | `111397396312` | `096c2ec6e0dc05762af0c2d22a03507839a22bc6` |
 | `d9147fffc588` | #24 | `37191596397` | `111404791435` | `be715362ca394464844e5058745fb10914e40a1e` |
+| `0671fc590a87` | #25 | `37198689808` | `111425773341` | `307d0383e2b46c064332e35025e25d97614c709d` |
 
 A write replaces the secondary snapshot with the primary snapshot and keeps the previous secondary commit as the rollback parent; no force-push and no history deletion is used.
 
@@ -133,6 +135,44 @@ next full-set re-read. No merge is ever silently skipped.
 
 This is why the record is built from the workflow's own public annotations: the Actions credential is the
 authorized reader/writer for the private secondary, and a sandbox 404 is not evidence about the secondary.
+
+## 5e. Windows in which verify-or-sync did not execute (2)
+
+A window is a period in which the workflow ran but the verify-or-sync job never executed, so
+**no** checkpoint exists for it — no match, no mismatch and no write was observed. Windows are
+recorded here rather than in section 3 precisely because they are not checkpoints: counting them
+as matches would overstate coverage, and counting them as mismatches would overstate damage.
+
+### 1. 2026-10-05 19:13Z - 21:25Z (scheduled)
+
+- Head SHA at the time: `0671fc590a8778e5984f89ca66eb65e38d6ec734`
+- Runs involved: `37361831782`, `37365244096`, `37368125663`, `37371579909`, `37374236163`
+- Observation: Five consecutive scheduled runs concluded failure with the offline-tests job CANCELLED - not failed on a test - after running for 15m02s each; verify-or-sync was skipped in all five, so no checkpoint was produced.
+- Cause recorded: Platform-side cancellation: the job was stopped after a uniform 15m02s with no test output, and the same commit's next scheduled run at 21:43Z completed the identical suite in 21 seconds. No repository defect is claimed or ruled out beyond that evidence.
+- Effect: The already-verified snapshot for 0671fc59 stayed in place; the secondary was not touched and no drift was created by the window itself.
+- Resumed by: run `37377733744`
+
+### 2. 2026-10-06 05:29Z - open at record time (push and scheduled)
+
+- Head SHA at the time: `f735f92b00be903384c18fdcfa2a7a264ba3e09a`
+- Runs involved: `37418230309`, `37418814411`, `37418836991`, `37419872626`
+- Observation: Four runs concluded failure; the offline-tests job failed on two unit tests and a builder check, so verify-or-sync was skipped and the main tip f735f92 (tree 4064ba289bd5...) has no verify-or-sync checkpoint.
+- Cause recorded: Repository defect introduced by commits 4935ec8d and f735f92: the transfer-package archive and TRANSFER_MANIFEST were restored from an older tree while their five member sources stayed current, so test_transfer_package failed and build_transfer_package.py --check reported five members differing from source.
+- Effect: The secondary snapshot remains at the PR #25 snapshot 0671fc59 (tree 88f681aae844...); the two commits after it (4935ec8d, f735f92) were never replicated. This is a real Git-snapshot replication gap, closed only by a successful verify-or-sync run on the fixed main tip.
+- Resumed by: open at record time — the next checkpoint closes it
+
+## 5f. Record extension by `arena/582559e8-vyomarajai` (2026-10-06)
+
+- Finding: The tip published on 2026-10-06 (f735f92, 'Vyomaraj sovereign restore') had no successful verify-or-sync run: the offline gate failed first, so replication never ran and the failure was silent in the DR record until this re-read.
+- Fix: The transfer package and its manifest were rebuilt from the current sources with their own builder (package sha256 8125959942d3d293f4971d3f52f46a9047868a3b5f113ee6d2b80efee2240a67, 133941 bytes - byte-identical to the package that PR #25 recorded in PREVIEW_VERIFICATION), and the workflow no longer pins a single expired session branch, so the offline gate and the read-only PAT diagnostic run on every Arena session branch.
+- Next checkpoint: The merge of the fix on main is verified by the same workflow immediately after it lands; that run becomes checkpoint #21 and closes the 2026-10-06 window.
+
+### Read-only confirmation of the open window
+
+- Source: Read-only Actions credential probe (ops/dr/actions_read_probe.py), run 37421416568 job diagnose-existing-pat on commit d2bf6d631b73, annotation read live from check-run 112131576824
+- Public annotation: `read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=315; secondary_files=315; missing_on_secondary=0; secondary_only=0; changed_content_or_mode=3; secondary_commit=c0edf483cd786b63a149c987bce370ab81404897; secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; candidate_files=320; candidate_secondary_only=0; candidate_missing=5; candidate_changed=14`
+- What it means: Independently confirms the gap recorded in window B: the secondary really is at tree 88f681aae844 (the PR #25 snapshot) while main has moved on, and the credential can read it. Writes stayed NONE and write permission stays UNVERIFIED - a green diagnostic means readable, not replicated.
+- Second defect found by making the diagnostic run again: The probe script itself was pinned to the same expired branch name (GITHUB_REF == 'refs/heads/arena/01a10140-vyomarajai'), so once the workflow was fixed to run the job on any arena/ branch, the script exited 2 with 'restricted to the trusted review-branch push'. The guard is now a prefix rule ('refs/heads/arena/') covered by TrustedPushTests in ops/dr/test_actions_read_probe.py.
 
 ## 6. Scope limits — do not restate otherwise
 

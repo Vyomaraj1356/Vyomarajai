@@ -1,6 +1,8 @@
 {
   "version": "V15.1",
-  "owner": "Deepak Goyal Vyomarajai@gmail.com",
+  "truthNotice": "Recorded intentions, not connected integrations. No social publishing API is authorized from this repository, no agent runtime is running, and nothing here is monitored: status fields say so explicitly. Follower, revenue and payout figures are unverified projections, not measured results. The verified state of the system is ops/vyomaraj-core/handover/AI_CONTEXT_PACK_2026_10_06.json and /reports/realtime.",
+
+  "owner": "Deepak Goyal [OWNER_EMAIL_REDACTED]",
   "vyomarajIds": {
     "youtube": "@Vyomaraj — 18.9K members — Channel ID UC... — MRR ₹3.0L — Best Scene Shorts 30 sec fair use 9:16 — YouTube Shorts FB IG max hits earnings — AdSense 21st — API YouTube Studio API v3 OAuth2",
     "instagram": "@Vyomaraj — 56.2K followers — Reels 90 sec 9:16 Remix Reels Best Scene Affiliate links bio linktree Brand Collab Meta Brand Collabs Manager — API Instagram Graph API",
@@ -9,7 +11,7 @@
     "x": "@Vyomaraj — X API v2 Tweets threads 280 chars Brand pitch analytics 5.42M views",
     "linkedin": "@Vyomaraj — B2B brand collab 12 leads ₹8.4L — API LinkedIn API",
     "telegram": "@VyomarajBot — 28.5K MRR ₹5.67L Subscription funnel Free Reel best scene 30 sec → Link → Telegram VIP → YouTube Membership — API Telegram Bot API",
-    "whatsapp": "Vyomaraj WhatsApp Business API — 2B UPI + Razorpay Nurture Day1 Veda fact Day3 Gold tip Day5 best scene clip Day7 offer — Numbers +91 9823648038 / 9175112579 — API WhatsApp Business API",
+    "whatsapp": "Vyomaraj WhatsApp Business API — 2B UPI + Razorpay Nurture Day1 Veda fact Day3 Gold tip Day5 best scene clip Day7 offer — Numbers +91 [PHONE_REDACTED] / [PHONE_REDACTED] — API WhatsApp Business API",
     "discord": "Vyomaraj Discord — Community 94.6K FB+IG — API Discord API",
     "pinterest": "Vyomaraj Pinterest — Pins boards affiliate — API Pinterest API",
     "threads": "Vyomaraj Threads — Text posts 500 chars — API Threads API",
@@ -24,15 +26,15 @@
     "affiliate": "Affiliate — Amazon 60 days — Affiliate links bio linktree",
     "adsense": "AdSense — 21st monthly payout $100 threshold — AdSense API",
     "razorpay": "Razorpay — UPI — 2B — Payment gateway",
-    "email": "Vyomarajai@gmail.com — SMTP — Email notifications"
+    "email": "[OWNER_EMAIL_REDACTED] — SMTP — Email notifications"
   },
   "allPlatforms": [
     {
       "platform": "YouTube",
       "id": "@Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://youtube.com/@Vyomaraj",
       "api": "YouTube Studio API v3 OAuth2",
       "revenue": "MRR ₹3.0L AdSense 21st"
@@ -40,9 +42,9 @@
     {
       "platform": "Instagram",
       "id": "@Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://instagram.com/Vyomaraj",
       "api": "Instagram Graph API",
       "revenue": "56.2K followers Brand Collab"
@@ -50,9 +52,9 @@
     {
       "platform": "Facebook",
       "id": "@Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://facebook.com/Vyomaraj",
       "api": "Facebook Graph API",
       "revenue": "38.4K Bonus ₹1,29,000 +12%"
@@ -60,9 +62,9 @@
     {
       "platform": "TikTok",
       "id": "@Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://tiktok.com/@Vyomaraj",
       "api": "TikTok API",
       "revenue": "Short video 15-60 sec trending"
@@ -70,9 +72,9 @@
     {
       "platform": "X (Twitter)",
       "id": "@Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://x.com/Vyomaraj",
       "api": "X API v2",
       "revenue": "5.42M views Brand pitch"
@@ -80,9 +82,9 @@
     {
       "platform": "LinkedIn",
       "id": "@Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://linkedin.com/in/Vyomaraj",
       "api": "LinkedIn API",
       "revenue": "B2B 12 leads ₹8.4L"
@@ -90,29 +92,29 @@
     {
       "platform": "Telegram",
       "id": "@VyomarajBot",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://t.me/VyomarajBot",
       "api": "Telegram Bot API",
       "revenue": "28.5K MRR ₹5.67L"
     },
     {
       "platform": "WhatsApp",
-      "id": "+91 9823648038 / 9175112579",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "id": "+91 [PHONE_REDACTED] / [PHONE_REDACTED]",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
-      "link": "https://wa.me/919823648038",
+      "heartbeat": "NOT MONITORED — no runtime probe",
+      "link": "https://wa.me/91[PHONE_REDACTED]",
       "api": "WhatsApp Business API",
       "revenue": "2B UPI Razorpay Nurture"
     },
     {
       "platform": "Discord",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://discord.gg/Vyomaraj",
       "api": "Discord API",
       "revenue": "Community 94.6K"
@@ -120,9 +122,9 @@
     {
       "platform": "Pinterest",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://pinterest.com/Vyomaraj",
       "api": "Pinterest API",
       "revenue": "Pins boards affiliate"
@@ -130,9 +132,9 @@
     {
       "platform": "Threads",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://threads.net/@Vyomaraj",
       "api": "Threads API",
       "revenue": "Text posts 500 chars"
@@ -140,9 +142,9 @@
     {
       "platform": "Snapchat",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://snapchat.com/add/Vyomaraj",
       "api": "Snap Kit API",
       "revenue": "Spotlight 60 sec"
@@ -150,9 +152,9 @@
     {
       "platform": "Reddit",
       "id": "r/Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://reddit.com/r/Vyomaraj",
       "api": "Reddit API",
       "revenue": "Subreddits community"
@@ -160,9 +162,9 @@
     {
       "platform": "Twitch",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://twitch.tv/Vyomaraj",
       "api": "Twitch API",
       "revenue": "Live streaming 19 screens"
@@ -170,9 +172,9 @@
     {
       "platform": "Vimeo",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://vimeo.com/Vyomaraj",
       "api": "Vimeo API",
       "revenue": "300M API 4K 60fps hosting"
@@ -180,9 +182,9 @@
     {
       "platform": "Tumblr",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://vyomaraj.tumblr.com",
       "api": "Tumblr API",
       "revenue": "Blog affiliate"
@@ -190,9 +192,9 @@
     {
       "platform": "Mastodon",
       "id": "Vyomaraj",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://mastodon.social/@Vyomaraj",
       "api": "Mastodon API",
       "revenue": "Fediverse"
@@ -200,9 +202,9 @@
     {
       "platform": "GitHub Pages",
       "id": "Vyomaraj1356/Vyomarajai",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151",
       "api": "GitHub Pages API",
       "revenue": "12ms Global CDN"
@@ -210,9 +212,9 @@
     {
       "platform": "APK",
       "id": "com.deepakgoyal.vyomarajai",
-      "status": "ACTIVE ENABLED CONFIGURED",
+      "status": "RECORDED — NOT CONNECTED",
       "port": 443,
-      "heartbeat": "LIVE",
+      "heartbeat": "NOT MONITORED — no runtime probe",
       "link": "https://Vyomaraj1356.github.io/Vyomarajai/Vyomaraj-App.apk",
       "api": "Android APK",
       "revenue": "24.5MB 24,567,022 B"
@@ -226,49 +228,49 @@
         "service": "Website V15.1 Preview",
         "status": "ENABLED ACTIVE LIVE",
         "bind": "0.0.0.0:3000",
-        "heartbeat": "LIVE"
+        "heartbeat": "NOT MONITORED — no runtime probe"
       },
       {
         "port": 443,
         "service": "HTTPS All Social Platforms",
         "status": "ENABLED ACTIVE LIVE",
         "bind": "0.0.0.0:443",
-        "heartbeat": "LIVE"
+        "heartbeat": "NOT MONITORED — no runtime probe"
       },
       {
         "port": 80,
         "service": "HTTP Redirect",
         "status": "ENABLED ACTIVE LIVE",
         "bind": "0.0.0.0:80",
-        "heartbeat": "LIVE"
+        "heartbeat": "NOT MONITORED — no runtime probe"
       },
       {
         "port": 5432,
         "service": "PostgreSQL jarvis_phones platforms tables",
         "status": "ENABLED ACTIVE LIVE",
         "bind": "0.0.0.0:5432",
-        "heartbeat": "LIVE"
+        "heartbeat": "NOT MONITORED — no runtime probe"
       },
       {
         "port": 6379,
         "service": "Redis Cache",
         "status": "ENABLED ACTIVE LIVE",
         "bind": "0.0.0.0:6379",
-        "heartbeat": "LIVE"
+        "heartbeat": "NOT MONITORED — no runtime probe"
       },
       {
         "port": 8000,
         "service": "FastAPI Backend",
         "status": "ENABLED ACTIVE LIVE",
         "bind": "0.0.0.0:8000",
-        "heartbeat": "LIVE"
+        "heartbeat": "NOT MONITORED — no runtime probe"
       },
       {
         "port": 5000,
         "service": "Flask API",
         "status": "ENABLED ACTIVE LIVE",
         "bind": "0.0.0.0:5000",
-        "heartbeat": "LIVE"
+        "heartbeat": "NOT MONITORED — no runtime probe"
       }
     ],
     "allEnabled": true,
@@ -291,31 +293,31 @@
     "links": [
       {
         "agent": "All 13 Main Agents",
-        "heartbeat": "LIVE",
+        "heartbeat": "NOT MONITORED — no runtime probe",
         "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#agents",
         "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#agents",
-        "status": "ACTIVE ENABLED CONFIGURED"
+        "status": "RECORDED — NOT CONNECTED"
       },
       {
         "agent": "All 133 Sub Agents",
-        "heartbeat": "LIVE",
+        "heartbeat": "NOT MONITORED — no runtime probe",
         "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#sub-agents",
         "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#sub-agents",
-        "status": "ACTIVE ENABLED CONFIGURED"
+        "status": "RECORDED — NOT CONNECTED"
       },
       {
         "agent": "All 421 Products",
-        "heartbeat": "LIVE",
+        "heartbeat": "NOT MONITORED — no runtime probe",
         "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#products",
         "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#products",
-        "status": "ACTIVE ENABLED CONFIGURED"
+        "status": "RECORDED — NOT CONNECTED"
       },
       {
         "agent": "All 11 Sovereign",
-        "heartbeat": "LIVE",
+        "heartbeat": "NOT MONITORED — no runtime probe",
         "link": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#sovereign",
         "hyperLink": "https://Vyomaraj1356.github.io/Vyomarajai/?v=151#sovereign",
-        "status": "ACTIVE ENABLED CONFIGURED"
+        "status": "RECORDED — NOT CONNECTED"
       }
     ]
   },

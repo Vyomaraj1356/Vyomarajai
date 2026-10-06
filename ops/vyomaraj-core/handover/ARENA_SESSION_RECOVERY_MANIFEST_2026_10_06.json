@@ -1,0 +1,414 @@
+{
+  "schema": "vyomaraj-arena-recovery/1",
+  "generated_at_utc": "2026-10-06 11:27 UTC",
+  "session_branches_count": 11,
+  "session_branches": [
+    {
+      "branch": "arena/01a0f1b1-vyomarajai",
+      "tip": "3a59454e7594e8180ac16720cb3af3084494c2b5",
+      "date": "2026-10-01",
+      "subject": "Add Complete All Sessions All Handover Zips V16.7.22 \u2014 25 zips 12.44 MB + All ",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 2,
+      "unique_examples": [
+        ".github/workflows/dr-readiness.yml",
+        ".github/workflows/dr-replication.yml"
+      ],
+      "content_in_main": false
+    },
+    {
+      "branch": "arena/01a0f634-vyomarajai",
+      "tip": "b95c842898cabb4fc5d9b8477e0c16478082f46d",
+      "date": "2026-10-02",
+      "subject": "feat(experience): add modular plan-only studio and router",
+      "commits_ahead_of_main": 44,
+      "files_unique_to_branch": 35,
+      "unique_examples": [
+        ".gitattributes",
+        ".github/workflows/arena-recovery.yml",
+        ".github/workflows/dr-readiness.yml",
+        ".github/workflows/dr-replication.yml",
+        "All-Chats-Array-From-Index.txt"
+      ],
+      "content_in_main": false
+    },
+    {
+      "branch": "arena/live-preview-reconciled-20261002",
+      "tip": "7b7dd403c79266d3250e6b334a7598a5432adc17",
+      "date": "2026-10-02",
+      "subject": "fix(ci): keep PR check while restricting DR replication to main",
+      "commits_ahead_of_main": 7,
+      "files_unique_to_branch": 28,
+      "unique_examples": [
+        "All-Chats-Array-From-Index.txt",
+        "Git-Commits-One-Month.txt",
+        "ops/integration/README.md",
+        "ops/integration/bootstrap-vyomaraj-global.bat",
+        "ops/integration/run-arena-recovery.bat"
+      ],
+      "content_in_main": false
+    },
+    {
+      "branch": "arena/01a10140-vyomarajai",
+      "tip": "3936badc63cee2c7391149e5ab5fb41f4416d901",
+      "date": "2026-10-03",
+      "subject": "Merge pull request #8 from Vyomaraj1356/arena/01a10140-vyomarajai",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
+    },
+    {
+      "branch": "arena/01a1056f-vyomarajai",
+      "tip": "37ba2c010d84da8ae7a7fb71cdceb0ef64568b78",
+      "date": "2026-10-04",
+      "subject": "Close the DR record at #17 with wording that does not age",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
+    },
+    {
+      "branch": "arena/01a105bf-vyomarajai",
+      "tip": "47d0920f80b36cd850b66563d2179239ca58a71b",
+      "date": "2026-10-04",
+      "subject": "Record checkpoint #14: the #19 merge verified MATCH on the secondary",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
+    },
+    {
+      "branch": "arena/01a105da-vyomarajai",
+      "tip": "13f083215306ae7f9cf2c32189f0eb2999ced74c",
+      "date": "2026-10-04",
+      "subject": "Issue #6 resolution doc: final addendum through checkpoint #17",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
+    },
+    {
+      "branch": "arena/01a10629-vyomarajai",
+      "tip": "99225903a4f6d104107eb195fe4d6f848a396a77",
+      "date": "2026-10-04",
+      "subject": "Rebuild the third session's unpublished viewer work: shared theme, inheritance",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
+    },
+    {
+      "branch": "arena/01a10655-vyomarajai",
+      "tip": "cfc1cd8f8965faa95b8c6cc6081c2bb4b68ad093",
+      "date": "2026-10-04",
+      "subject": "Refresh deep scan with follow-up DR check",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
+    },
+    {
+      "branch": "arena/01a106da-vyomarajai",
+      "tip": "4935ec8d5a973f0146a3d96f7998402abed50a42",
+      "date": "2026-10-06",
+      "subject": "fix: rebuild transfer package d9f2b0ae after index restore",
+      "commits_ahead_of_main": 0,
+      "files_unique_to_branch": 0,
+      "unique_examples": [],
+      "content_in_main": true
+    },
+    {
+      "branch": "arena/582559e8-vyomarajai",
+      "tip": "d67598af0e6c71d9d9a2e985f88c2e6970ad22c5",
+      "date": "2026-10-06",
+      "subject": "docs(go-live): record the PR #9 rehearsal and the DR verification in the brief",
+      "commits_ahead_of_main": 24,
+      "files_unique_to_branch": 51,
+      "unique_examples": [
+        "ops/vyomaraj-core/experience/product_server.py",
+        "ops/vyomaraj-core/experience/test_voice_enrollment.py",
+        "ops/vyomaraj-core/experience/voice_enrollment.py",
+        "ops/vyomaraj-core/governance/VOICE_ENROLLMENT_LOCAL.json",
+        "ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json"
+      ],
+      "content_in_main": false
+    }
+  ],
+  "archives_count": 42,
+  "archives": [
+    {
+      "name": "Vyomaraj-All-Chats-From-Arena-Database-Till-V16.7.22.zip",
+      "bytes": 5314,
+      "sha256": "d7018a01b394f897",
+      "members": 3
+    },
+    {
+      "name": "Vyomaraj-Complete-All-Sessions-All-Handover-Zips-V16.7.22.zip",
+      "bytes": 13048185,
+      "sha256": "05e38de17a3481cf",
+      "members": 31
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.5.3-v167.zip",
+      "bytes": 407729,
+      "sha256": "465f56e8ef9f99c1",
+      "members": 58
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.6-v168.zip",
+      "bytes": 472710,
+      "sha256": "9de7362323078c7d",
+      "members": 70
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7-v169.zip",
+      "bytes": 546712,
+      "sha256": "7fad96ecce832be9",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.1-v170.zip",
+      "bytes": 546712,
+      "sha256": "c6d3dd389e957add",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.10-v180.zip",
+      "bytes": 577569,
+      "sha256": "70de9dca3c87fb20",
+      "members": 83
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.11-v181.zip",
+      "bytes": 578874,
+      "sha256": "617b54535443dac9",
+      "members": 84
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.12-v182.zip",
+      "bytes": 577007,
+      "sha256": "c7efb4e91db0ec3c",
+      "members": 84
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.13-v183.zip",
+      "bytes": 577727,
+      "sha256": "758ecf7ff6d7ae77",
+      "members": 85
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.14-v184.zip",
+      "bytes": 577754,
+      "sha256": "243440032fbc6a16",
+      "members": 85
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.15-v185.zip",
+      "bytes": 436645,
+      "sha256": "a10c03b77ffa88d5",
+      "members": 37
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.16-v186.zip",
+      "bytes": 578890,
+      "sha256": "f5f3a784ace56240",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.17-v187.zip",
+      "bytes": 579032,
+      "sha256": "9b20c0e2cedbce3b",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.18-v188.zip",
+      "bytes": 579125,
+      "sha256": "cbf686c55c30571e",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.19-v189.zip",
+      "bytes": 579109,
+      "sha256": "e3676dcce3f62cbf",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.2-v171.zip",
+      "bytes": 546712,
+      "sha256": "c6d3dd389e957add",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.20-v190.zip",
+      "bytes": 579411,
+      "sha256": "b97348d8a8eba209",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.21-v191.zip",
+      "bytes": 579333,
+      "sha256": "ec7c0cf2cd4e854a",
+      "members": 74
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.22-v192.zip",
+      "bytes": 311660,
+      "sha256": "6f5c4297074e0d84",
+      "members": 92
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.3-v172.zip",
+      "bytes": 552522,
+      "sha256": "c3753c1174dd9612",
+      "members": 75
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.4-v173.zip",
+      "bytes": 552522,
+      "sha256": "300de0418e4e1dd0",
+      "members": 75
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.5-v174.zip",
+      "bytes": 552580,
+      "sha256": "ad1b70ed9c4feb0a",
+      "members": 75
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.6-v176.zip",
+      "bytes": 559194,
+      "sha256": "555b9fa641a2a5be",
+      "members": 76
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.7-v177.zip",
+      "bytes": 559421,
+      "sha256": "ff2c5697dd3def58",
+      "members": 76
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.8-v178.zip",
+      "bytes": 575383,
+      "sha256": "ccb052d73da329a7",
+      "members": 82
+    },
+    {
+      "name": "Vyomaraj-Handover-V16.7.9-v179.zip",
+      "bytes": 577794,
+      "sha256": "fbc983103126efef",
+      "members": 83
+    },
+    {
+      "name": "Vyomaraj-V10.0-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V11.0-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V12.0-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V12.1-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V13.0-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V14.0-Final-Market-Ready.zip",
+      "bytes": 28963815,
+      "sha256": "c0b12507910381ba",
+      "members": 38
+    },
+    {
+      "name": "Vyomaraj-V15.0-Final-Market-Ready.zip",
+      "bytes": 29088017,
+      "sha256": "cb3cba59b376e46b",
+      "members": 48
+    },
+    {
+      "name": "Vyomaraj-V15.1-Final-Market-Ready.zip",
+      "bytes": 29092780,
+      "sha256": "24d206172bac4a93",
+      "members": 53
+    },
+    {
+      "name": "Vyomaraj-V6.6-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V6.7-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V6.8-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V6.9-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V7.0-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V8.0-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    },
+    {
+      "name": "Vyomaraj-V9.0-Final-Market-Ready.zip",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6f",
+      "members": 34
+    }
+  ],
+  "chats": {
+    "database": {
+      "name": "Vyomaraj-All-Chats-Database-One-Month.md",
+      "bytes": 16879
+    },
+    "heading_count": 28,
+    "numbered_entries": 34,
+    "archives": [
+      {
+        "name": "Vyomaraj-All-Chats-From-Arena-Database-Till-V16.7.22.zip",
+        "bytes": 5314
+      },
+      {
+        "name": "Vyomaraj-Complete-All-Sessions-All-Handover-Zips-V16.7.22.zip",
+        "bytes": 13048185
+      }
+    ],
+    "raw_transcripts_exported": false,
+    "why_not": null
+  },
+  "unique_files_across_branches": 116
+}

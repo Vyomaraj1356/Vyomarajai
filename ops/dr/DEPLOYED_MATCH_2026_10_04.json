@@ -3,7 +3,7 @@
   "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
   "primary": "Vyomaraj1356/Vyomarajai",
   "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-  "primary_main_tip_checked": "d9147fffc5884702d7fcbc38fd666d62622f3b8c",
+  "primary_main_tip_checked": "f735f92b00be903384c18fdcfa2a7a264ba3e09a",
   "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
   "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
   "observations": [
@@ -292,6 +292,21 @@
       "rollback_commit": "be715362ca394464844e5058745fb10914e40a1e",
       "head_commit_subject": "Merge pull request #24 from Vyomaraj1356/arena/01a10629-vyomarajai",
       "merge_pr": 24
+    },
+    {
+      "check_run_id": 111425773341,
+      "workflow_run_id": 37198689808,
+      "head_sha": "0671fc590a8778e5984f89ca66eb65e38d6ec734",
+      "completed_at_utc": "2026-10-04T11:26:52Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; rollback_commit=307d0383e2b46c064332e35025e25d97614c709d; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "88f681aae8441eb0bf3b176f8222eeb68d5ba602",
+      "secondary_tree": "88f681aae8441eb0bf3b176f8222eeb68d5ba602",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "307d0383e2b46c064332e35025e25d97614c709d",
+      "head_commit_subject": "Merge pull request #25 from Vyomaraj1356/arena/01a10655-vyomarajai",
+      "merge_pr": 25
     }
   ],
   "writes_to_secondary_observed": [
@@ -309,9 +324,10 @@
     111395579579,
     111396668243,
     111397396312,
-    111404791435
+    111404791435,
+    111425773341
   ],
-  "current_state": "This record covers the 2026-10-03 and 2026-10-04 successful verify-or-sync runs through merge #24 (checkpoint #19). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 15 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Checkpoint #19 was re-read live in this session; the previous 18 rows retain their earlier full-set revalidation.",
+  "current_state": "This record covers the 2026-10-03 and 2026-10-04 successful verify-or-sync runs through the PR #25 merge (checkpoint #20). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 16 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Two windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Checkpoint #20 was re-read live on 2026-10-06; the previous 19 rows retain their earlier full-set revalidation.",
   "branch_scope_warning": "This evidence covers primary main only. Two earlier commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) were not on main at the time they were first reported and therefore were not in the DR snapshot then; the branch was subsequently merged through PRs #10-#18 and is now covered by the checkpoints above. Unmerged branch tips are never part of the DR snapshot.",
   "local_verification_attempt": {
     "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -322,15 +338,14 @@
   "traffic_switched": false,
   "runtime_or_site_dr_verified": false,
   "zero_rpo_or_rto_claimed": false,
-  "revalidated_at_utc": "2026-10-04T10:56:22Z",
+  "revalidated_at_utc": "2026-10-06T05:56:57Z",
   "revalidation": {
-    "by": "arena/01a10655-vyomarajai session",
-    "method": "The PR #24 merge and its verify-or-sync check-run were re-read through the GitHub API. The latest DR SNAPSHOT RESULT annotation was parsed and compared with the new row; the previously recorded rows are preserved from the earlier full-set revalidation.",
-    "result": "Checkpoint #19 (PR #24) re-read live: status=MATCH, primary_tree == secondary_tree, rollback commit and check-run id match the stored annotation. The earlier 18 rows retain their recorded full-set validation.",
-    "timestamp_corrections": []
+    "by": "arena/582559e8-vyomarajai session (2026-10-06)",
+    "method": "Checkpoint #20 and every run in the two unverified windows below were re-read live from the GitHub API in this session: the push run that carried the PR #25 merge, the annotation of its verify-or-sync check-run, the workflow-run conclusions for 2026-10-05 and 2026-10-06, and the job conclusions and runtimes of each affected offline-tests job. The 19 previously recorded checkpoints retain their earlier full-set revalidation.",
+    "result": "Checkpoint #20 (PR #25) re-read live: status=MATCH, primary_tree == secondary_tree == 88f681aae844..., replication write with rollback 307d0383e2b4... retained, check-run id matches the stored annotation. Two windows in which verify-or-sync did NOT execute were found and are recorded in full: 2026-10-05 19:13-21:25Z (five scheduled runs, offline-tests cancelled by the platform after 15m02s each) and 2026-10-06 05:29Z onward (four runs failed at offline-tests; see the repo regression recorded in section 6)."
   },
-  "checkpoints_total": 19,
-  "replication_writes_total": 15,
+  "checkpoints_total": 20,
+  "replication_writes_total": 16,
   "session_record": "Updated in arena/01a10655-vyomarajai after a read-only recheck of the PR #24 merge check-run.",
   "blocked_runs": [
     {
@@ -371,6 +386,49 @@
         "reconstructed from the supplied handover: a 21-step, five-phase auto-align plan with 41 completion paths and a bounded local runner; not byte-identical to the reported unpublished patch",
         "reconstructed from the supplied handover: a 14-entry issue/PR ledger and prepared issue #6 close-out; no comment or close action performed"
       ]
+    }
+  },
+  "unverified_windows": [
+    {
+      "window": "2026-10-05 19:13Z - 21:25Z (scheduled)",
+      "head_sha": "0671fc590a8778e5984f89ca66eb65e38d6ec734",
+      "runs": [
+        37361831782,
+        37365244096,
+        37368125663,
+        37371579909,
+        37374236163
+      ],
+      "observation": "Five consecutive scheduled runs concluded failure with the offline-tests job CANCELLED - not failed on a test - after running for 15m02s each; verify-or-sync was skipped in all five, so no checkpoint was produced.",
+      "cause_recorded": "Platform-side cancellation: the job was stopped after a uniform 15m02s with no test output, and the same commit's next scheduled run at 21:43Z completed the identical suite in 21 seconds. No repository defect is claimed or ruled out beyond that evidence.",
+      "effect": "The already-verified snapshot for 0671fc59 stayed in place; the secondary was not touched and no drift was created by the window itself.",
+      "resumed_by": 37377733744
+    },
+    {
+      "window": "2026-10-06 05:29Z - open at record time (push and scheduled)",
+      "head_sha": "f735f92b00be903384c18fdcfa2a7a264ba3e09a",
+      "runs": [
+        37418230309,
+        37418814411,
+        37418836991,
+        37419872626
+      ],
+      "observation": "Four runs concluded failure; the offline-tests job failed on two unit tests and a builder check, so verify-or-sync was skipped and the main tip f735f92 (tree 4064ba289bd5...) has no verify-or-sync checkpoint.",
+      "cause_recorded": "Repository defect introduced by commits 4935ec8d and f735f92: the transfer-package archive and TRANSFER_MANIFEST were restored from an older tree while their five member sources stayed current, so test_transfer_package failed and build_transfer_package.py --check reported five members differing from source.",
+      "effect": "The secondary snapshot remains at the PR #25 snapshot 0671fc59 (tree 88f681aae844...); the two commits after it (4935ec8d, f735f92) were never replicated. This is a real Git-snapshot replication gap, closed only by a successful verify-or-sync run on the fixed main tip.",
+      "resumed_by": null
+    }
+  ],
+  "record_extension_2026_10_06": {
+    "session": "arena/582559e8-vyomarajai",
+    "finding": "The tip published on 2026-10-06 (f735f92, 'Vyomaraj sovereign restore') had no successful verify-or-sync run: the offline gate failed first, so replication never ran and the failure was silent in the DR record until this re-read.",
+    "fix": "The transfer package and its manifest were rebuilt from the current sources with their own builder (package sha256 8125959942d3d293f4971d3f52f46a9047868a3b5f113ee6d2b80efee2240a67, 133941 bytes - byte-identical to the package that PR #25 recorded in PREVIEW_VERIFICATION), and the workflow no longer pins a single expired session branch, so the offline gate and the read-only PAT diagnostic run on every Arena session branch.",
+    "next_checkpoint": "The merge of the fix on main is verified by the same workflow immediately after it lands; that run becomes checkpoint #21 and closes the 2026-10-06 window.",
+    "read_only_probe_confirmation": {
+      "source": "Read-only Actions credential probe (ops/dr/actions_read_probe.py), run 37421416568 job diagnose-existing-pat on commit d2bf6d631b73, annotation read live from check-run 112131576824",
+      "annotation": "read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=315; secondary_files=315; missing_on_secondary=0; secondary_only=0; changed_content_or_mode=3; secondary_commit=c0edf483cd786b63a149c987bce370ab81404897; secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; candidate_files=320; candidate_secondary_only=0; candidate_missing=5; candidate_changed=14",
+      "meaning": "Independently confirms the gap recorded in window B: the secondary really is at tree 88f681aae844 (the PR #25 snapshot) while main has moved on, and the credential can read it. Writes stayed NONE and write permission stays UNVERIFIED - a green diagnostic means readable, not replicated.",
+      "second_class_defect": "The probe script itself was pinned to the same expired branch name (GITHUB_REF == 'refs/heads/arena/01a10140-vyomarajai'), so once the workflow was fixed to run the job on any arena/ branch, the script exited 2 with 'restricted to the trusted review-branch push'. The guard is now a prefix rule ('refs/heads/arena/') covered by TrustedPushTests in ops/dr/test_actions_read_probe.py."
     }
   }
 }

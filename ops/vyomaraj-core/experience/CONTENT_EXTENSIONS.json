@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-03",
+  "updated": "2026-10-06",
   "scope": "New editorial proposals, separate from the preserved 2026-10-02 32-file CONTENT_CATALOG snapshot. Not additional canonical agents or reconciled product counts.",
   "extensions": [
     {
@@ -55,7 +55,12 @@
       "registry_totals_changed": false,
       "automatic_provider_calls": false,
       "automatic_publishing": false,
-      "review_before_external_publication": true
+      "review_before_external_publication": true,
+      "sufi_ghazal_show_formats_added": 24,
+      "original_programmes_added": 4,
+      "heritage_items_are_context_only": true,
+      "media_rehosted": false,
+      "updated": "2026-10-06"
     },
     {
       "id": "chitra-katha-comics",

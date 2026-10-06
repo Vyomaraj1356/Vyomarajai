@@ -8,7 +8,21 @@ This audit covers the current tracked checkout and reviewed registry, not every 
 
 ## What is implemented
 
-- A 39-card starter catalogue: seven radio references, fourteen artist/recording entries, five folk/world routes, eight chart formats/references, one audio format and four video entries/formats.
+- A 63-card starter catalogue: seven radio references, fourteen artist/recording entries,
+  seventeen folk/regional/tradition routes, eight chart formats/references, five audio
+  programmes and twelve video/show formats.
+- A Sufi, ghazal and studio-show FORMAT layer (24 cards, added 6 October 2026): six Sufi cards
+  (qawwali, kafi, Amir Khusrau, mehfil/sama, sufi rock, Baul), six ghazal cards (form,
+  gharanas and the thumri tie, the poets, Begum Akhtar, Mehdi Hassan, the form today), eight
+  studio/show formats (Coke Studio Pakistan and its franchise editions, the 2011 Indian
+  edition, the 2022 Bangla edition, MTV Unplugged, The Dewarists, Tiny Desk Concerts, and one
+  card stating the rights rule) and four ORIGINAL programme formats that are ours: Mehfil
+  Sessions, the nine-night Sufi Cycle, the Ghazal Cycle and the Navaratri 2026 launch cycle.
+  Inherited cards are context, credits and programme structure only and each says so in its own
+  words; no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted,
+  and every card carries a source link with its check date. The four original programmes carry
+  `owned_original_not_yet_recorded`, claim no performer or writer credit yet, and state their
+  own rights basis.
 - Search plus collection, era and region filters. Modern examples are not automatically the latest releases.
 - Ordered selection of up to eight entries, with move/remove controls.
 - Same-origin `/api/plan` music dispatch, deterministic role assignment and 15/30/60-minute radio/audio/video programme budgets.

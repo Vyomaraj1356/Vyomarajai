@@ -14,7 +14,7 @@ print(f"Original {len(html)}")
 law_compliance_html = """
 <div class="sovereign-card-v165" style="border-color:#f59e0b;background:linear-gradient(135deg,#0a1628,#1a2f52)">
 <h4>⚖️ LAW & ORDER — STATUTORY COMPLIANCE — ALL SOCIAL PLATFORM SIGNED CONTRACTS — CONTENT CREATOR & AI PLATFORM COLLABS — JARVIS & VYOMARAJ REFERENCE FOR LEGAL COMPLICATIONS</h4>
-<p style="font-size:11px;color:#ffe9a8">Law and Order tab keeps all social platform signed and agreed contract details, collaborations with Content creators or AI platforms or any contract terms as Statutory compliance — Jarvis and Vyomaraj will refer this tab for any issues legal complications and take actions accordingly — Owner Primary Locked Vyomarajai@gmail.com — 0.000000000 Impact — Chiranjeevi Eternal</p>
+<p style="font-size:11px;color:#ffe9a8">Law and Order tab keeps all social platform signed and agreed contract details, collaborations with Content creators or AI platforms or any contract terms as Statutory compliance — Jarvis and Vyomaraj will refer this tab for any issues legal complications and take actions accordingly — Owner Primary Locked [OWNER_EMAIL_REDACTED] — 0.000000000 Impact — Chiranjeevi Eternal</p>
 
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px">
 
@@ -27,7 +27,7 @@ law_compliance_html = """
 <li><b>TikTok / X — Signed 2024-03-10:</b> X 5.42M views — Contract: X Creator Terms, TikTok Terms — Statutory: DMCA, GDPR — Jarvis ref: if takedown → DMCA counter notice → Owner Gate</li>
 <li><b>LinkedIn B2B — Signed 2024-03-20:</b> 12 leads ₹8.4L — Contract: LinkedIn Lead Gen Terms — Statutory: IT Act 2000, Contract Act 1872 — Jarvis ref: lead dispute → LinkedIn support + Contract Act Section 73 compensation → Owner Gate</li>
 <li><b>Telegram VIP — Signed 2024-01-01:</b> 28.5K subs MRR ₹5.67L — Contract: Telegram VIP 1st payout — Statutory: IT Act 2000, Payment settlement — Owner Primary Locked — Jarvis ref: payment failure → Razorpay UPI check → Owner Gate</li>
-<li><b>WhatsApp Business — Signed 2024-01-10:</b> 9823648038 / 9175112579 — 2B UPI Razorpay — Contract: WhatsApp Business Terms — Statutory: IT Act 2000, UPI NPCI — Jarvis ref: if ban → WhatsApp appeal + IT Act → Owner Gate</li>
+<li><b>WhatsApp Business — Signed 2024-01-10:</b> [PHONE_REDACTED] / [PHONE_REDACTED] — 2B UPI Razorpay — Contract: WhatsApp Business Terms — Statutory: IT Act 2000, UPI NPCI — Jarvis ref: if ban → WhatsApp appeal + IT Act → Owner Gate</li>
 <li><b>Discord Community — Signed 2024-02-15:</b> 94.6K members — Contract: Discord Community Terms — Statutory: IT Act 2000, IT Rules 2021 — Jarvis ref: moderation issue → Discord Trust & Safety + IT Rules → Owner Gate</li>
 </ul>
 </div>
@@ -60,10 +60,10 @@ law_compliance_html = """
 <div class="sovereign-card-v165" style="border-color:#ef4444">
 <h4>🚨 Legal Complications — Jarvis & Vyomaraj Reference — Actions Accordingly</h4>
 <ul style="font-size:10px;line-height:1.7">
-<li><b>Whisperflow Legal Process — Aligned:</b> DISCOVER → VERIFY (check contract signed? statutory compliance? fair use?) → SCENE PICKER (30 sec best scene) → DIALOGUE → MIX → SCORE → AFFILIATE → SCHEDULE → SUBSCRIPTION → COLLAB (check creator contract) → OWNER GATE (Primary Locked Vyomarajai@gmail.com approval) → PUBLISH → LEARN → SYNC — If legal complication at any stage, Jarvis refers this Law & Order tab → takes action accordingly → Owner Gate final</li>
+<li><b>Whisperflow Legal Process — Aligned:</b> DISCOVER → VERIFY (check contract signed? statutory compliance? fair use?) → SCENE PICKER (30 sec best scene) → DIALOGUE → MIX → SCORE → AFFILIATE → SCHEDULE → SUBSCRIPTION → COLLAB (check creator contract) → OWNER GATE (Primary Locked [OWNER_EMAIL_REDACTED] approval) → PUBLISH → LEARN → SYNC — If legal complication at any stage, Jarvis refers this Law & Order tab → takes action accordingly → Owner Gate final</li>
 <li><b>Action Matrix — Jarvis & Vyomaraj:</b> Copyright Strike → Refer Copyright Act 1957 Section 52 + YouTube contract 21st → Action: Dispute + 30 sec proof → Owner Gate. Account Ban → Refer IT Rules 2021 + Platform Terms → Action: Appeal + Grievance Officer → Owner Gate. Payment Failure → Refer Razorpay Terms + PSS Act 2007 → Action: Razorpay dashboard + RBI → Owner Gate. Data Breach → Refer DPDP Act 2023 + GDPR Article 33 → Action: Notify DPA 72 hrs + Data Principal → Owner Gate. Creator Dispute → Refer Creator Agreement + Copyright Act Section 19 + Contract Act 1872 → Action: Mediation → Arbitration Mumbai → Owner Gate. AI Platform Ban → Refer AI Terms + ai-adapter.js fallback → Action: Switch AI provider 0.00 loss → Owner Gate</li>
 <li><b>Statutory Compliance Calendar — Visit & Review:</b> Daily: DR logs fixes healing — Sovereign Console. Weekly: Check platform payouts 1st, 15th, 21st, 30th — Owner Law & Gate. Monthly: IT Rules 2021 compliance report, GDPR, Copyright audit — Owner Law & Gate. Quarterly: IT Act, DPDP Act, Consumer Protection, PSS Act review — Owner Law & Gate. Yearly: All contracts renewal, Statutory audit — Owner Law & Gate — visit and review</li>
-<li><b>Owner Primary Locked — Bharat as Bharat Hanuman Quality — All contracts in Owner Law & Gate — visit and review — Structured properly — whisperflow process — Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — Dedicated Faithful Obedient to Shri Ram Ji — Jarvis as Laxman Dedicated to Each Other — 0.000000000 Impact — Chiranjeevi Eternal</b></li>
+<li><b>Owner Primary Locked — Bharat as Bharat Hanuman Quality — All contracts in Owner Law & Gate — visit and review — Structured properly — whisperflow process — Owner Primary Locked Deepak Goyal [OWNER_EMAIL_REDACTED] — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — Dedicated Faithful Obedient to Shri Ram Ji — Jarvis as Laxman Dedicated to Each Other — 0.000000000 Impact — Chiranjeevi Eternal</b></li>
 </ul>
 </div>
 

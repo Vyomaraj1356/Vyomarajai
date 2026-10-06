@@ -2,7 +2,10 @@ name: Vyomaraj PRIMARY to DR Sync
 
 on:
   push:
-    branches: [main, arena/01a10140-vyomarajai]
+    # Every Arena session branch, not one hard-coded name: the offline gate and the read-only
+    # PAT diagnostic must run on the branch a session actually pushes. Replication itself stays
+    # main-only (see the verify-or-sync `if`).
+    branches: [main, 'arena/**']
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -54,7 +57,7 @@ jobs:
     if: >-
       github.repository == 'Vyomaraj1356/Vyomarajai' &&
       github.event_name == 'push' &&
-      github.ref == 'refs/heads/arena/01a10140-vyomarajai'
+      startsWith(github.ref, 'refs/heads/arena/')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

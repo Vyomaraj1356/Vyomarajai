@@ -4,6 +4,7 @@ import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
 import json
+import re
 import threading
 from pathlib import Path
 from urllib.parse import urlsplit, parse_qs
@@ -77,13 +78,50 @@ REPORTS = {
     '/reports/handover-notepad': reports.HANDOVER_NOTE,
     '/reports/recovery': reports.RECOVERY_DOC,
     '/reports/dr-sync': reports.DR_SYNC_REPORT,
+    '/reports/post-pr25-handover': reports.POST_PR25_NOTE,
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
     '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/test-evidence': 'TEST_EVIDENCE_2026_10_04.json',
     '/reports/auto-align': 'AUTO_ALIGN_NEXT_SESSION_2026_10_04.md',
     '/reports/platform-check': 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md',
     '/reports/issues': 'ISSUES_AND_PRS_LEDGER_2026_10_04.md',
+    '/reports/go-live': 'NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
+    '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
+    '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
+    '/reports/market-readiness': 'MARKET_READINESS_AND_WIRING_2026_10_06.md',
+    '/reports/full-handover': 'VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
+    '/reports/ai-handoff': 'AI_PLATFORM_HANDOFF_2026_10_06.md',
+    '/reports/runbook': 'VYOMARAJ_RUNBOOK_2026_10_06.md',
+    '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
+    '/reports/go-live-gaps': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
 }
+
+
+def sync_status():
+    """Replication facts taken from checked-in evidence.
+
+    There is no live sync process in these servers, and this endpoint does not pretend there is:
+    it reports what the repository can prove. The landing page used to poll /api/sync/status every
+    four seconds and POST /api/sync/trigger every two minutes against an endpoint that never
+    existed, so its status box hung on "Loading sync status..." forever.
+    """
+    path = CORE / 'handover' / reports.DR_SYNC_REPORT
+    text = path.read_text(encoding='utf-8', errors='ignore') if path.is_file() else ''
+    date = re.search(r'DR sync results — (\d{4}-\d{2}-\d{2})', text)
+    tip = re.search(r'Main tip covered by this record: `([0-9a-f]{7,40})`', text)
+    schedule = re.search(r'schedule: `([^`]+)`', text)
+    return {
+        'schema': 'vyomaraj-sync-status/1',
+        'mode': 'repository_evidence_only',
+        'isSyncing': False,
+        'live_sync_process_running': False,
+        'evidence_date': date.group(1) if date else None,
+        'main_tip_covered': tip.group(1)[:8] if tip else None,
+        'workflow_schedule_utc': schedule.group(1) if schedule else None,
+        'detail': ('Replication is a GitHub Actions job on push and schedule, '
+                   'not a background process in this page'),
+        'source': str(path.relative_to(reports.ROOT)) if path.is_file() else None,
+    }
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -95,7 +133,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Length', str(len(content)))
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
-        self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; media-src blob:; font-src 'self'; base-uri 'none'; form-action 'none'")
+        # img-src 'self' carries the same-origin capture gallery; no external image host is allowed.
+        self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; media-src blob:; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'")
         self.end_headers()
         self.wfile.write(content)
 
@@ -129,6 +168,45 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError, KeyError):
                 ready = False
             self.json_response({'ready': ready, 'scope': 'local_application_metadata_only', 'production_dr_verified': False}, 200 if ready else 503)
+        elif route == '/api/realtime':
+            self.json_response(reports._realtime().realtime_facts())
+        elif route == '/reports/realtime':
+            body = (reports.PAGE_NOTES.get(route, '') + reports._realtime().realtime_page()).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+        elif route == '/reports/download/go-live-gaps.md':
+            path = CORE / 'handover/GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/recovery-index.md':
+            path = CORE / 'handover/ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/recovery-manifest.json':
+            path = CORE / 'handover/ARENA_SESSION_RECOVERY_MANIFEST_2026_10_06.json'
+            self.send_download(path.read_bytes(), 'application/json', path.name)
+        elif route == '/reports/download/ai-handoff.md':
+            path = CORE / 'handover/AI_PLATFORM_HANDOFF_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/ai-context-pack.json':
+            path = CORE / 'handover/AI_CONTEXT_PACK_2026_10_06.json'
+            self.send_download(path.read_bytes(), 'application/json', path.name)
+        elif route == '/reports/download/runbook.md':
+            path = CORE / 'handover/VYOMARAJ_RUNBOOK_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/ai-handoff.zip':
+            path = CORE / 'handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip'
+            self.send_download(path.read_bytes(), 'application/zip', path.name)
+        elif route == '/reports/download/full-handover.md':
+            path = CORE / 'handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/full-handover.zip':
+            path = CORE / 'handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip'
+            self.send_download(path.read_bytes(), 'application/zip', path.name)
+        elif route == '/api/sync/status':
+            self.json_response(sync_status())
         elif route == '/api/research/status':
             self.json_response(research_store().status())
         elif route == '/api/research/records':
@@ -151,6 +229,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
         elif route == '/reports/download/transfer-package.zip':
             self.send_download((CORE / 'handover' / reports.TRANSFER_ZIP).read_bytes(), 'application/zip', Path(reports.TRANSFER_ZIP).name)
+        elif route == '/reports/download/post-pr25-handover.txt':
+            self.send_download((CORE / 'handover' / reports.POST_PR25_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.POST_PR25_NOTE)
+        elif route == '/reports/download/post-pr25-transfer.zip':
+            self.send_download((CORE / 'handover' / reports.POST_PR25_ZIP).read_bytes(), 'application/zip', Path(reports.POST_PR25_ZIP).name)
         elif route == '/reports/download/auto-align.json':
             path = CORE / 'handover/AUTO_ALIGN_NEXT_SESSION.json'
             self.send_download(path.read_bytes(), 'application/json', path.name)
@@ -160,6 +242,18 @@ class Handler(BaseHTTPRequestHandler):
         elif route == '/reports/download/issues-ledger.json':
             path = CORE / 'handover/ISSUES_AND_PRS_LEDGER.json'
             self.send_download(path.read_bytes(), 'application/json', path.name)
+        elif route.startswith('/reports/screenshot/'):
+            name = route.rsplit('/', 1)[-1]
+            path = reports.SCREENSHOTS_DIR / name
+            if not reports.SCREENSHOT_NAME.fullmatch(name) or not path.is_file():
+                self.send_error(404); return
+            self.send_download(path.read_bytes(), reports.SCREENSHOT_MIME[path.suffix], name)
+        elif route == '/reports/download/network-diagram.png':
+            path = CORE / 'handover/ARCHITECTURE_DIAGRAM_2026_10_06.png'
+            self.send_download(path.read_bytes(), 'image/png', path.name)
+        elif route == '/reports/download/network-diagram.svg':
+            path = CORE / 'handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg'
+            self.send_download(path.read_bytes(), 'image/svg+xml', path.name)
         elif route in REPORTS or route in reports.REFERENCE_REPORTS:
             path = (reports.REFERENCE_REPORTS[route] if route in reports.REFERENCE_REPORTS
                     else CORE / 'handover' / REPORTS[route])

@@ -44,7 +44,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 ## 2. Contents
 
-- Indexed references: **173** (Current indexed references, not the complete historical 421 products or an exhaustive archive-content audit.)
+- Indexed references: **197** (Current indexed references, not the complete historical 421 products or an exhaustive archive-content audit.)
 - Education topics: **21** · historical catalog files: **32** unique paths (32)
 - Deduplication: Exact identity + equal source record only. Conflicts stop rebuild; similar titles, different editions or source contexts are not silently merged.
 - Ownership: education = EDU, government schemes = EDU
@@ -54,7 +54,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 | Aghor & Aghori (`/aghor/`) | chapters 14, people 7, practices 6, care 6, sources 11, timeline 6 |
 | Bhakti-Shakti (`/bhakti/`) | stories 12, avatars 10, peethas 9, recipes 3, sources 13 |
 | Roots & Pairings (no-alcohol by default) (`/pairings/`) | traditions 8, research_backlog 8, snacks 8, events 3, sources 9 |
-| Music & media (`/music/`) | agents 6, items 39, sources 27 |
+| Music & media (`/music/`) | agents 6, items 63, sources 44 |
 | Film & stage (`/film/`) | agents 6, items 27, sources 25, formats 7 |
 | Chitra Katha comics (trilingual hi/en/hinglish, past+future versions) (`/comics/`) | agents 3, items 12, formats 4, sources 6 |
 
@@ -82,21 +82,23 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 | File | Name | Schedule |
 |---|---|---|
+| `shriyantra-owner-guard.yml` | ShriYantra owner guard tests | `no schedule` |
 | `vyomaraj-ci-diagnostics.yml` | Vyomaraj CI diagnostics (readable annotations) | `no schedule` |
+| `vyomaraj-master-state.yml` | Vyomaraj Master State Verification | `no schedule` |
 | `vyomaraj-research.yml` | Vyomaraj Metadata Discovery | `15 3 * * *` |
 | `vyomaraj-sync-both.yml` | Vyomaraj PRIMARY to DR Sync | `*/30 * * * *` |
 
 ## 4. Jarvis configuration
 
 - `ops/jarvis/jarvis.env` — configuration **key names only, no values are printed or copied**: BHARAT, HANUMAN_QUALITY, JARVIS_CLOUD_HOME, JARVIS_EDGE_HOME, JARVIS_FUTURE_HOME, JARVIS_FUTURE_HOME_DESC, JARVIS_FUTURE_HOME_STATUS, JARVIS_HEARTBEAT_INTERVAL, JARVIS_HEARTBEAT_URL, JARVIS_LOCK_FILE, JARVIS_PRIMARY_DEVICE, JARVIS_PRIMARY_NUMBER, JARVIS_PRIMARY_ROLE, JARVIS_PRIMARY_STATUS, JARVIS_SECONDARY_DEVICE, JARVIS_SECONDARY_NUMBER, JARVIS_SECONDARY_STATUS, JARVIS_STATE_FILE, JARVIS_TEST, LAXMAN, RELATIONSHIP, SCALABLE_TECH, SHRI_RAM_JI, TRENDS
-- `ops/jarvis/devices.json` — 51428 bytes, primary/secondary device-number configuration. Values stay in the repository; they are not reproduced here.
+- `ops/jarvis/devices.json` — 51494 bytes, primary/secondary device-number configuration. Values stay in the repository; they are not reproduced here.
 - `ops/jarvis/jarvis-24x7-controller.sh` — controller script; not started as an unattended service in this session, and no switch/fencing URL in it was called.
 - Local roles: the two preview replicas act as the Vyomaraj and Jarvis sides of the availability rehearsal (`ops/availability/README.md`); both share one host and one queue.
 
 ## 5. Recorded verification evidence
 
-- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 23 viewer route checks, 24 gateway route checks, 12 studio-lane route checks, problems: none
-- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 19 checkpoints; current state: This record covers the 2026-10-03 and 2026-10-04 successful verify-or-sync runs through merge #24 (checkpoint #19). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 15 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Checkpoint #19 was re-read live in this session; the previous 18 rows retain their earlier full-set revalidation.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434, 111395579579, 111396668243, 111397396312, 111404791435]
+- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 38 viewer route checks, 27 gateway route checks, 38 studio-lane route checks, problems: none
+- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 20 checkpoints; current state: This record covers the 2026-10-03 and 2026-10-04 successful verify-or-sync runs through the PR #25 merge (checkpoint #20). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 16 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Two windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Checkpoint #20 was re-read live on 2026-10-06; the previous 19 rows retain their earlier full-set revalidation.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434, 111395579579, 111396668243, 111397396312, 111404791435, 111425773341]
 - **Failover drill 2026-10-03** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_03.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Failover drill 2026-10-04** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Test evidence** (`ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json`): recorded separately; see the file for per-suite counts and results

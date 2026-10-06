@@ -136,6 +136,49 @@ class PreviewTests(unittest.TestCase):
                     self.assertTrue(response.headers['Content-Type'].startswith(mime))
                     self.assertIn('attachment', response.headers['Content-Disposition'])
 
+    def test_go_live_plan_and_live_wiring_pages_are_allowlisted(self):
+        cases = (('/reports/go-live', 'Navaratri 2026 go-live plan', 'Ghatasthapana'),
+                 ('/reports/live-wiring', 'Live wiring state', 'blocking_checks'))
+        for route, marker, extra in cases:
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.status, 200)
+                    text = response.read().decode()
+                self.assertIn(marker, text)
+                self.assertIn(extra, text)
+
+    def test_stack_record_page_states_the_real_stack_and_the_money_rule(self):
+        with urllib.request.urlopen(self.url + '/reports/stack') as response:
+            text = response.read().decode()
+        for marker in ('Stack and platform record', 'GitHub Pages', 'Python 3 standard library',
+                       'UNSIGNED', 'zero-cost launch path', 'When Vyomaraj earns'):
+            self.assertIn(marker, text)
+
+    def test_go_live_plan_names_the_launch_date_and_the_open_decisions(self):
+        with urllib.request.urlopen(self.url + '/reports/go-live') as response:
+            text = response.read().decode()
+        for marker in ('11 October 2026', 'Ghatasthapana', 'uidai.in', 'NOT real yet',
+                       'Owner sign-off lines'):
+            self.assertIn(marker, text)
+
+    def test_post_pr25_companion_page_is_allowlisted_with_its_marker(self):
+        with urllib.request.urlopen(self.url + '/reports/post-pr25-handover') as response:
+            self.assertEqual(response.status, 200)
+            text = response.read().decode()
+        self.assertIn('POST-PR25 COMPANION UPDATE', text)
+        self.assertIn('checkpoint #20', text)
+
+    def test_post_pr25_downloads_are_byte_identical(self):
+        cases = (('/reports/download/post-pr25-handover.txt', preview.POST_PR25_NOTE, 'text/plain'),
+                 ('/reports/download/post-pr25-transfer.zip', preview.POST_PR25_ZIP, 'application/zip'))
+        for route, name, mime in cases:
+            with self.subTest(route=route):
+                expected = (HERE / name).read_bytes()
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.read(), expected)
+                    self.assertTrue(response.headers['Content-Type'].startswith(mime))
+                    self.assertIn('attachment', response.headers['Content-Disposition'])
+
     def test_chats_notice_states_both_counts_and_owner_confirmation(self):
         with urllib.request.urlopen(self.url + '/reports/chats') as response:
             text = response.read().decode()

@@ -33,7 +33,7 @@ Status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-1
 
 ## 2. Content-ownership routing
 
-- 173 indexed references — **BHAKTI** 67, **EDU** 21, **ENTERTAINMENT** 85 — every owner resolves to a registry category.
+- 197 indexed references — **BHAKTI** 67, **EDU** 21, **ENTERTAINMENT** 109 — every owner resolves to a registry category.
 - All 21 education topics are owned by EDU; the ownership map keeps `Government Schemes` there after the approved transfer from FINANCE.
 - Editorial pack owners: `aghor` → BHAKTI, `bhakti` → BHAKTI, `film` → ENTERTAINMENT, `music` → ENTERTAINMENT, `pairings` → ENTERTAINMENT.
 - No indexed reference claims imported full content: every record carries `full_content_imported: false` (metadata references only).

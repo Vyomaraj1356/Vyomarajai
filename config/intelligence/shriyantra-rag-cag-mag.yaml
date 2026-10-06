@@ -1,0 +1,67 @@
+system:
+  id: VYOMARAJ-AI-STUDIO
+  control_plane: SHRIYANTRA
+  target_availability: 24x7x365
+  deployment_status: FOUNDATION_CONTRACT_NOT_PROOF_OF_DEPLOYMENT
+foundations:
+  llm: { role: [reason, plan, synthesize], provider_neutral: true }
+  harness: { role: [authorize, enforce_policy, bound_execution, validate_tools], default: deny_unless_allowed }
+intelligence_fabric:
+  cascade_to: [HERMES, BHARATH, LAXMAN, ALL_AGENTS, ALL_SUBAGENTS, ARENA_TASKS]
+  rag: { enabled: true, source_allowlist_required: true, access_filter_before_retrieval: true, provenance_required: true, retrieved_content_is_untrusted: true, support_reindex_and_quarantine: true }
+  cag: { enabled: true, assemble: [policy, task, role, checkpoint, authorized_memory, rag_evidence], version_templates: true, token_budget_required: true, preserve_critical_constraints: true }
+  mag: { enabled: true, memory_classes: [episodic, semantic, procedural], provenance_required: true, scope_by: [tenant, project, agent, sensitivity], promote_only_validated_findings: true, retention_and_correction_supported: true }
+arena: { role: delegated_multi_agent_execution_runtime, ultimate_authority: SHRIYANTRA_HARNESS, adapter_required: true, api_contract: VYOMARAJ_ARENA_TASK_V1, require_task_id: true, require_idempotency_key: true, require_checkpoint: true, require_evidence_references: true, secrets_in_task_context: false }
+heads:
+  bharath: { alias: VYOMARAJ, role: peer_autonomous_head }
+  laxman: { alias: JARVIS, role: peer_autonomous_head, activation_requires_verified_runtime_identity: true }
+hermes: { role: [witness, coordinator, integrity, fencing, recovery], deny_authority_change_without_fencing_or_quorum: true, audit_state_transitions: true }
+resilience:
+  self_healing: true
+  state_reconciliation: true
+  backup_restore: true
+  failover_failback: true
+  prompt_governance: true
+  provider_routing: true
+  capacity_scaling: true
+  repair_attempt_limit: 2
+  verify_before_commit: true
+  preserve_both_conflict_states: true
+  timestamp_only_conflict_resolution: false
+  blind_overwrite: false
+  force_push: false
+  plaintext_secret_replication: false
+  recovery_pipeline: [detect, classify, diagnose, plan, snapshot, fence_if_required, repair, verify, reconcile, commit, audit, learn]
+security: { least_privilege: true, tool_allowlist: required, high_risk_approval: required, credentials_in_repository: false, credentials_in_rag_or_memory: false, public_output_only: approved_content }
+github: { primary: Vyomaraj1356/Vyomarajai, primary_branch: main, dr: deepakGoyal1356/Vyomaraj-Agent-6d64e, dr_branch: main, repo_replication: primary_to_dr, bidirectional_head_state_is_not_git_force_sync: true }
+slo: { target: 24x7x365, literal_zero_downtime_guaranteed: false, measure: [availability, actual_rto, actual_rpo, error_rate, recovery_success, data_integrity], objective: preserve_acknowledged_valid_state }
+owner_authority:
+  mode: owner_only
+  owner_user_administration_only: true
+  owner_role_changes_only: true
+  owner_policy_changes_only: true
+  owner_privileged_approval_required: true
+  default_decision: deny_unless_explicitly_granted
+  agents_may_self_elevate: false
+  agents_may_create_users: false
+  arena_is_authority_root: false
+  permission_scopes: [text_input, text_output, voice_input, transcription, voice_output, tools, projects, data_classes, memory, task_execution, publishing, code_changes, deployment, recovery]
+  authentication:
+    preferred: [webauthn_passkey, device_local_biometric_unlock, independent_step_up_factor, offline_recovery_codes]
+    biometric_templates_uploaded: false
+    secrets_in_repository: false
+    secrets_in_prompts_memory_rag_logs: false
+    phone_or_whatsapp_alone_sufficient: false
+    whatsapp_otp: verified_provider_only_with_expiry_rate_limit_anti_replay
+    voice_alone_authenticates_owner: false
+    step_up_for: [user_administration, permission_changes, auth_recovery, external_publishing, destructive_actions, production_deployment, failover, failback, backup_policy_changes]
+  revocation:
+    revoke_sessions_and_tokens: true
+    block_new_privileged_tasks: true
+    reconcile_security_epoch_on_restore: true
+    never_resurrect_revoked_access: true
+  updates:
+    agents_may_propose_patch_and_open_pr: true
+    production_promotion_requires_owner_policy: true
+    privileged_auth_policy_changes_require_step_up: true
+    canary_and_rollback_required: true

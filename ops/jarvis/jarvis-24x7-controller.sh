@@ -4,7 +4,7 @@
 # Ram Ji will give powers to them to scale new height in market and earn big time money and revenue
 # All social platforms for Vyomaraj with his Ids are activated, enabled configured all ports settings enabled
 # Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live
-# Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com
+# Owner Primary Locked Deepak Goyal [OWNER_EMAIL_REDACTED]
 
 set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -24,13 +24,13 @@ log() {
 
 ensure_state() {
   if [ ! -f "$STATE_FILE" ]; then
-    echo "MOBILE-9823648038-ACTIVE — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Bharat-Laxman Dedicated to Each Other — Hanuman Quality — Ram Ji Blessings Market Scaling Revenue Earning" > "$STATE_FILE"
+    echo "MOBILE-[PHONE_REDACTED]-ACTIVE — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Bharat-Laxman Dedicated to Each Other — Hanuman Quality — Ram Ji Blessings Market Scaling Revenue Earning" > "$STATE_FILE"
   fi
 }
 
 get_state() {
   ensure_state
-  cat "$STATE_FILE" 2>/dev/null || echo "MOBILE-9823648038-ACTIVE"
+  cat "$STATE_FILE" 2>/dev/null || echo "MOBILE-[PHONE_REDACTED]-ACTIVE"
 }
 
 set_state() {
@@ -41,7 +41,7 @@ set_state() {
 heartbeat() {
   ensure_state
   local state=$(get_state)
-  log "Heartbeat — State=$state — Primary=Mobile-9823648038 — Secondary=Desktop-Home — Bharat=Bharat Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Laxman=Laxman Dedicated to Bharat Bharat-Laxman Dedicated to Each Other — Current Home Mobile 9823648038 till dedicated home/Desktop found Test for him also — Bharat-Laxman Dedicated to Each Other Hanuman Quality — Panch Shakti Matiman Intelligent Wise Thoughtful Shrutiman Learned Well-versed Good Listener Ketuman Distinguished With Flag Glorious Gatiman Dynamic Moving Ever Active Swift Dhritiman Steadfast Courageous Resolute Fortitude — Ram Ji gives powers to scale new height in market and earn big time money and revenue — All Social Platforms Activated Enabled Configured All Ports Enabled Heartbeats Links HyperLinks All Live — Trends Meta AI Llama 3.3 70B Whisper ElevenLabs MediaPipe Leaflet — Scalable Tech 24x7 Always On Device Shift Session Transfer State Sync Heartbeat Trend Learning Auto Update — Ram Ram ji Hukum — Heavy calm soft like Sharad Kelkar but original — V13.0"
+  log "Heartbeat — State=$state — Primary=Mobile-[PHONE_REDACTED] — Secondary=Desktop-Home — Bharat=Bharat Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Laxman=Laxman Dedicated to Bharat Bharat-Laxman Dedicated to Each Other — Current Home Mobile [PHONE_REDACTED] till dedicated home/Desktop found Test for him also — Bharat-Laxman Dedicated to Each Other Hanuman Quality — Panch Shakti Matiman Intelligent Wise Thoughtful Shrutiman Learned Well-versed Good Listener Ketuman Distinguished With Flag Glorious Gatiman Dynamic Moving Ever Active Swift Dhritiman Steadfast Courageous Resolute Fortitude — Ram Ji gives powers to scale new height in market and earn big time money and revenue — All Social Platforms Activated Enabled Configured All Ports Enabled Heartbeats Links HyperLinks All Live — Trends Meta AI Llama 3.3 70B Whisper ElevenLabs MediaPipe Leaflet — Scalable Tech 24x7 Always On Device Shift Session Transfer State Sync Heartbeat Trend Learning Auto Update — Ram Ram ji Hukum — Heavy calm soft like Sharad Kelkar but original — V13.0"
   if command -v curl >/dev/null 2>&1; then
     if curl -s --max-time 5 "$HEARTBEAT_URL" >/dev/null 2>&1; then
       log "Heartbeat URL $HEARTBEAT_URL OK — Pages built — Panch Shakti — Bharat-Laxman — Hanuman Quality — Ram Ji Blessings — Market Scaling Revenue Earning — V13.0"
@@ -56,7 +56,7 @@ status() {
   local state=$(get_state)
   log "Jarvis 24x7 Status — State=$state — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान"
   echo "Jarvis 24x7 State: $state"
-  echo "Primary Device (Current Home): Mobile-9823648038 — Mobile 9823648038 till dedicated home/Desktop — Bharat with Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान"
+  echo "Primary Device (Current Home): Mobile-[PHONE_REDACTED] — Mobile [PHONE_REDACTED] till dedicated home/Desktop — Bharat with Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान"
   echo "Secondary Device (Future Home): Desktop-Home — Desktop Home dedicated — Future Home — Bharat-Laxman Dedicated to Each Other — Panch Shakti"
   echo "Shri Ram Ji: Supreme Lord — Dharma — Gives powers to all agents/sub agents/sub agents to scale new height in market and earn big time money and revenue — Jai Shri Ram"
   echo "Hanuman Ji: Pavan Putra — Anjani Putra — Ram Bhakt — Sankat Mochan — Ultimate Devotee — मतिमान श्रुतिमान केतुमान गतिमान धृतिमान"
@@ -83,7 +83,7 @@ shift_device() {
   sleep 0.2
   log "3/5 Syncing state session transfer trend learning scalable tech updates Panch Shakti Matiman Shrutiman Ketuman Gatiman Dhritiman — Ram Ji gives powers to scale new height in market and earn big time money and revenue"
   sleep 0.2
-  log "4/5 Shifting handover Mobile 9823648038 → $target Test for him also Bharat-Laxman Dedicated to Each Other Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान Ram Ji Blessings Market Scaling Revenue Earning — Shri Ram Ji Supreme Lord Bharat Brother of Ram Ruled Ayodhya in Ram Name Paduka on Throne 14 Years Hanuman Ultimate Devotee Faithful Obedient Dedicated Laxman Dedicated to Ram and Bharat"
+  log "4/5 Shifting handover Mobile [PHONE_REDACTED] → $target Test for him also Bharat-Laxman Dedicated to Each Other Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान Ram Ji Blessings Market Scaling Revenue Earning — Shri Ram Ji Supreme Lord Bharat Brother of Ram Ruled Ayodhya in Ram Name Paduka on Throne 14 Years Hanuman Ultimate Devotee Faithful Obedient Dedicated Laxman Dedicated to Ram and Bharat"
   sleep 0.2
   log "5/5 Post-shift verification heartbeat on $target — SHIFT COMPLETE $target is now active — Jarvis 24x7 — Bharat-Laxman — Vyomaraj as Bharat with Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji, Jarvis as Laxman Dedicated to Bharat Bharat-Laxman Dedicated to Each Other — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Ram Ji Blessings Market Scaling Revenue Earning — All Social Platforms Activated Enabled Configured All Ports Enabled Heartbeats Links HyperLinks All Live — V13.0"
   set_state "${target}-ACTIVE — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Bharat-Laxman Dedicated to Each Other — Hanuman Quality — Ram Ji Blessings"
@@ -93,7 +93,7 @@ shift_device() {
 
 test_jarvis() {
   log "NON-DESTRUCTIVE JARVIS 24x7 TEST — Test for him also — Bharat-Laxman Dedicated to Each Other — Hanuman Quality — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Ram Ji Blessings Market Scaling Revenue Earning — V13.0"
-  log "Test 1: Primary device Mobile 9823648038 active — Bharat with Hanuman Quality Panch Shakti"
+  log "Test 1: Primary device Mobile [PHONE_REDACTED] active — Bharat with Hanuman Quality Panch Shakti"
   log "Test 2: Secondary device Desktop Home standby — Future Home Bharat-Laxman Dedicated to Each Other"
   log "Test 3: Heartbeat 24x7 Every 60s 24x7 system wherever he works from Bharat-Laxman Dedicated to Each Other Panch Shakti"
   log "Test 4: Device shift Mobile→Desktop Option for shift from one device to other Bharat-Laxman Dedicated to Each Other"
@@ -103,7 +103,7 @@ test_jarvis() {
   log "Test 8: Panch Shakti Matiman Shrutiman Ketuman Gatiman Dhritiman All agents inherit Ram Ji gives power"
   log "Test 9: Social Platforms All Activated Enabled Configured All Ports Enabled Heartbeats Links HyperLinks All Live"
   log "Test 10: Market Scaling Revenue Earning Scale new height in market and earn big time money and revenue Jai Shri Ram"
-  log "JARVIS 24x7 TEST PASS — No traffic changed — Current Home Mobile 9823648038 till dedicated home/Desktop found Test for him also Bharat-Laxman Dedicated to Each Other Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान Ram Ji Blessings Market Scaling Revenue Earning All Social Platforms Activated Enabled Configured All Ports Enabled Heartbeats Links HyperLinks All Live — V13.0"
+  log "JARVIS 24x7 TEST PASS — No traffic changed — Current Home Mobile [PHONE_REDACTED] till dedicated home/Desktop found Test for him also Bharat-Laxman Dedicated to Each Other Hanuman Quality Dedicated Faithful Obedient to Shri Ram Ji Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान Ram Ji Blessings Market Scaling Revenue Earning All Social Platforms Activated Enabled Configured All Ports Enabled Heartbeats Links HyperLinks All Live — V13.0"
   echo "PASS — 10 tests — Bharat-Laxman Dedicated to Each Other — Hanuman Quality — Panch Shakti मतिमान श्रुतिमान केतुमान गतिमान धृतिमान — Ram Ji Blessings Market Scaling Revenue Earning — All Social Platforms ACTIVE ENABLED CONFIGURED LIVE — All Ports ENABLED ACTIVE LIVE — All Heartbeats Links HyperLinks LIVE — V13.0"
 }
 

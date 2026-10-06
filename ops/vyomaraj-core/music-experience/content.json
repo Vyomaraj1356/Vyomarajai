@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Memory & Melody",
-  "updated": "2026-10-03",
+  "updated": "2026-10-06",
   "status": "researched_starter_catalogue_and_local_functions",
   "ownership": {
     "category_id": "ENTERTAINMENT",
@@ -823,6 +823,462 @@
       "media_url": null,
       "licence_status": "not_licensed_for_rehosting",
       "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "sufi-qawwali",
+      "title": "Qawwali — the mehfil ensemble",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "South Asia",
+      "language": "Urdu / Punjabi / Persian",
+      "summary": "The best-known South Asian Sufi music form: a lead singer with a chorus, harmonium, tabla and dholak, building a piece through repetition and call-and-response. We keep the ensemble structure and the credit rules; we never import a shrine recording. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "qawwali"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "sufi-kafi",
+      "title": "Kafi — Punjabi and Sindhi devotional verse",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "Punjab / Sindh",
+      "language": "Punjabi / Sindhi",
+      "summary": "A sung verse form used across Punjab and Sindh for Sufi poetry, carried by Bulleh Shah and the Sindhi tradition. A kafi cycle sets us a sequence and a theme, not a tune to copy. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "kafi",
+        "bulleh"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "sufi-khusrau",
+      "title": "Amir Khusrau — the Persian-Hindavi bridge",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "Delhi / South Asia",
+      "language": "Persian / Hindavi",
+      "summary": "The poet-musician tradition credits Khusrau with shaping both qawwali practice and the Hindavi-Persian poetic bridge that later ghazal and khayal singing inherit. History and attribution, not a text we reuse. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "khusrau",
+        "qawwali"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "sufi-mehfil",
+      "title": "Mehfil and sama — the listening gathering",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "South Asia",
+      "language": "Urdu / Hindi",
+      "summary": "The gathering format around the music: a sequence that opens with praise, moves through poetry, and closes on repetition, with the audience inside the performance rather than in front of it. This is the structure our original mehfil programme borrows. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "qawwali"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "sufi-rock",
+      "title": "Sufi rock and fusion — the modern route",
+      "kind": "tradition",
+      "era": "modern",
+      "region": "South Asia / diaspora",
+      "language": "Urdu / Punjabi",
+      "summary": "From the 1990s onward, bands and producers set devotional poetry inside rock, pop and electronic arrangements, which is how this repertoire reached a new audience. A lineage to document and credit, and a production style we may study for our own recordings. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "cs-pak",
+        "cs-dewarists-et"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "sufi-baul",
+      "title": "Baul — Bengal's wandering minstrels",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "Bengal",
+      "language": "Bengali",
+      "summary": "Bengali minstrel singers with ektara and dotara, singing of the divine in the everyday. A distinct regional route into the same devotional material, and a reminder that one Sufi reading is never the only one. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "baul"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "ghazal-form",
+      "title": "Ghazal — form and structure",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "South Asia / Persia / Arabia",
+      "language": "Urdu",
+      "summary": "A poem in couplets with a fixed refrain and rhyme pattern, each couplet standing on its own, which is exactly why a ghazal survives being sung out of order. The grammar our original ghazal cycle is written in. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "ghazal"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "ghazal-gharanas",
+      "title": "Ghazal gayaki — gharanas and the thumri tie",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "North India",
+      "language": "Urdu / Hindi",
+      "summary": "Classical ghazal singing carries gharana technique — Banaras, Lucknow and Patiala among the thumri schools — which is why the same couplet sounds different in different hands. Technique families to name and credit, not recordings to reissue. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "thumri",
+        "begum",
+        "ghazal"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "ghazal-poets",
+      "title": "Ghazal poetry — the Urdu line",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "South Asia",
+      "language": "Urdu / Persian",
+      "summary": "The sung ghazal begins as literature: a line of poets from the Deccani works through the Delhi and Lucknow schools to the twentieth century. We keep the chronology and the attribution, and we commission our own verse rather than republishing theirs. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "ghazal",
+        "khusrau"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "ghazal-begum-akhtar",
+      "title": "Begum Akhtar — thumri and ghazal gayaki",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "North India",
+      "language": "Urdu / Hindi",
+      "summary": "A reference point for how semi-classical technique and recorded ghazal met: trained across more than one gharana, and equally at home in thumri, dadra and ghazal. Studied for phrasing and sequencing; her records stay hers. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "begum",
+        "thumri"
+      ],
+      "artists": [
+        "Begum Akhtar"
+      ],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "ghazal-mehdi-hassan",
+      "title": "Mehdi Hassan — the classical concert ghazal",
+      "kind": "tradition",
+      "era": "heritage",
+      "region": "South Asia",
+      "language": "Urdu",
+      "summary": "The concert stage where classical ghazal gayaki reached a mass audience, and the reference for how a long programme holds a hall. A model for programme shape, with every recording credited to its own rights holders. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "mehdi",
+        "ghazal"
+      ],
+      "artists": [
+        "Mehdi Hassan"
+      ],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "ghazal-now",
+      "title": "Ghazal today — records, television and the mehfil revival",
+      "kind": "tradition",
+      "era": "modern",
+      "region": "South Asia / diaspora",
+      "language": "Urdu / Hindi",
+      "summary": "How the form travelled — shellac-era records, the film and television ghazal, then the concert and festival circuit and the small-room revival. The route map for our own cycle, with no recording rehosted at any stop. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "ghazal",
+        "mehdi"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-coke-studio-pk",
+      "title": "Coke Studio Pakistan — house band and guest artists (from 2008)",
+      "kind": "video",
+      "era": "modern",
+      "region": "Pakistan",
+      "language": "Urdu / Punjabi / regional",
+      "summary": "The format we are learning from: a house band with guest artists, recorded live in a studio, season by season under a named producer. The cited account lists the first season in 2008 and fifteen seasons by the check date, with production passing from its founders to later producers. Format and history only. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "cs-pak"
+      ],
+      "artists": [],
+      "year": 2008,
+      "record_type": "show format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-coke-studio-franchise",
+      "title": "The Coke Studio format beyond Pakistan — India, Bangla, Bel 3arabi",
+      "kind": "video",
+      "era": "modern",
+      "region": "South Asia / Middle East / Brazil origin",
+      "language": "Multiple",
+      "summary": "The same studio-collaboration idea in other countries: the Pakistani edition began in 2008, India in 2011, an Arabic edition in 2012 and a Bengali edition in 2022, with the concept traced back to a Brazilian project in 2007. A comparative map of how one format adapts to a language and a market. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "cs-franchise",
+        "cs-bangla",
+        "cs-pak"
+      ],
+      "artists": [],
+      "year": 2007,
+      "record_type": "show format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-coke-studio-india",
+      "title": "Coke Studio India — 2011 launch and the regional variants",
+      "kind": "video",
+      "era": "modern",
+      "region": "India",
+      "language": "Hindi / regional",
+      "summary": "The Indian edition opened in 2011 with a first season of long-form episodes and a television tie-in, then returned in several different shapes and, later, regional editions. Evidence that an Indian-language version of this format is viable - and that it needs its own identity rather than an imported one. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "cs-franchise",
+        "cs-dewarists-et"
+      ],
+      "artists": [],
+      "year": 2011,
+      "record_type": "show format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-coke-studio-bangla",
+      "title": "Coke Studio Bangla — a language-first edition (2022)",
+      "kind": "video",
+      "era": "modern",
+      "region": "Bangladesh",
+      "language": "Bengali",
+      "summary": "The Bengali edition launched in 2022 and is the closest recent example of the format being rebuilt around one language and its own musicians rather than translated into it. The model we intend to follow for Hindi and Marathi. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "cs-bangla"
+      ],
+      "artists": [],
+      "year": 2022,
+      "record_type": "show format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-mtv-unplugged",
+      "title": "MTV Unplugged — the acoustic session format",
+      "kind": "video",
+      "era": "modern",
+      "region": "Global / India",
+      "language": "Multiple",
+      "summary": "An artist plays their own material with acoustic arrangements in a controlled room: no spectacle, performance front and centre, and editions localised per country. A low-risk format for our first recorded sessions, because it needs a room and a band, not a set. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "unplugged",
+        "cs-dewarists-et"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "show format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-dewarists",
+      "title": "The Dewarists — collaboration as documentary",
+      "kind": "video",
+      "era": "modern",
+      "region": "India",
+      "language": "Hindi / English",
+      "summary": "Two musicians from different traditions are paired to write and record something new, and the episode documents the process as much as the song; its makers describe it as part music documentary, part travelogue. The closest structural ancestor to what we want our original collaborations to be. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "dewarists",
+        "cs-dewarists-et"
+      ],
+      "artists": [],
+      "year": 2011,
+      "record_type": "show format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-tinydesk",
+      "title": "Tiny Desk Concerts — the intimate single-take session",
+      "kind": "video",
+      "era": "modern",
+      "region": "United States",
+      "language": "English / multiple",
+      "summary": "One small space, one continuous performance, the artist choosing the set: proof that a music programme needs no studio budget to travel. The template for the first Vyomaraj sessions, scaled to a room we actually have. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "tinydesk"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "show format",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "show-rules",
+      "title": "What we may inherit from these shows — and what we may not",
+      "kind": "video",
+      "era": "cross-era",
+      "region": "South Asia / global",
+      "language": "English / Hindi",
+      "summary": "Format, structure, sequencing and production method are reference material. Titles, lyrics, audio, video, artwork, logos and episode content are never copied, and nothing is rehosted. Any future licensed use requires a written licence naming the rights holder. Every card in this group follows that rule, and so does every plan the planner can build from it. Format context only: no episode, recording, lyric, artwork or brand asset is imported, copied or rehosted.",
+      "source_ids": [
+        "cs-pak",
+        "cs-franchise"
+      ],
+      "artists": [],
+      "year": null,
+      "record_type": "rights rule",
+      "media_url": null,
+      "licence_status": "not_licensed_for_rehosting",
+      "explicit_status": "not_reviewed"
+    },
+    {
+      "id": "original-mehfil-sessions",
+      "title": "Original: Mehfil Sessions — our own gathering format",
+      "kind": "audio",
+      "era": "cross-era",
+      "region": "India",
+      "language": "Hindi / Urdu",
+      "summary": "The first original programme in this lane: a four-part gathering that opens with praise, moves through poetry and closes on repetition, with an original scripted link at every step and a source line for every reference. Built on the mehfil structure above; it contains no borrowed verse, melody or recording.",
+      "source_ids": [
+        "qawwali"
+      ],
+      "artists": [],
+      "year": 2026,
+      "record_type": "original programme",
+      "media_url": null,
+      "licence_status": "owned_original_not_yet_recorded",
+      "explicit_status": "original_creator_owned",
+      "rights_basis": "Original script, sequence and links written for Vyomaraj and credited to named creators before release; no third-party work is sampled, adapted or rehosted."
+    },
+    {
+      "id": "original-sufi-cycle",
+      "title": "Original: Sufi Cycle — nine nights of devotional programming",
+      "kind": "audio",
+      "era": "cross-era",
+      "region": "India",
+      "language": "Hindi / Urdu / Punjabi",
+      "summary": "Nine original programmes, one per night, each taking a single devotional theme through poetry, commentary and an original composition, with regional variants (Punjabi kafi, Bengali Baul, Deccan) night by night. Written for Vyomaraj; nothing existing is performed or reissued.",
+      "source_ids": [
+        "kafi",
+        "baul"
+      ],
+      "artists": [],
+      "year": 2026,
+      "record_type": "original programme",
+      "media_url": null,
+      "licence_status": "owned_original_not_yet_recorded",
+      "explicit_status": "original_creator_owned",
+      "rights_basis": "Original compositions and scripts to be written, credited and recorded by named Vyomaraj creators; no existing composition, lyric or recording is used."
+    },
+    {
+      "id": "original-ghazal-cycle",
+      "title": "Original: Ghazal Cycle — new verse in the mehfil setting",
+      "kind": "audio",
+      "era": "cross-era",
+      "region": "India",
+      "language": "Urdu / Hindi",
+      "summary": "A ghazal programme built the other way round from a covers show: the verse is written first for Vyomaraj, then set and sung, with credit for poet, composer and performer on every piece. The classical forms above are the grammar, not the material.",
+      "source_ids": [
+        "ghazal"
+      ],
+      "artists": [],
+      "year": 2026,
+      "record_type": "original programme",
+      "media_url": null,
+      "licence_status": "owned_original_not_yet_recorded",
+      "explicit_status": "original_creator_owned",
+      "rights_basis": "Original verse and compositions commissioned for Vyomaraj with named writers, credited before release; no existing couplet, melody or recording is used."
+    },
+    {
+      "id": "original-navaratri-cycle",
+      "title": "Original: Navaratri 2026 cycle — nine nights, one programme each",
+      "kind": "audio",
+      "era": "modern",
+      "region": "India",
+      "language": "Hindi / Marathi / English",
+      "summary": "The launch programming for the Navaratri window that opens on Ghatasthapana, 11 October 2026, and closes at Vijayadashami on 20 October 2026: nine original programmes, one per night, each pairing a devotional theme with a music or ghazal set and its own credits. Ties the bhakti lane to this one, and is the programme the 11 October live run is meant to open with.",
+      "source_ids": [
+        "navaratri"
+      ],
+      "artists": [],
+      "year": 2026,
+      "record_type": "original programme",
+      "media_url": null,
+      "licence_status": "owned_original_not_yet_recorded",
+      "explicit_status": "original_creator_owned",
+      "rights_basis": "Original programme plan, scripts and compositions produced by Vyomaraj for the 2026 Navaratri window; festival timing follows public almanac references, and no third-party work is used."
     }
   ],
   "sources": [
@@ -1041,6 +1497,142 @@
       "citation": "[3](https://music.apple.com/in/song/tum-hi-ho/1073359419)",
       "checked": "2026-10-03",
       "review_basis": "Search excerpt; catalogue metadata and link only. Playback availability not verified."
+    },
+    {
+      "id": "cs-pak",
+      "title": "Wikipedia — Coke Studio Pakistan",
+      "url": "https://en.wikipedia.org/wiki/Coke_Studio_Pakistan",
+      "citation": "[1](https://en.wikipedia.org/wiki/Coke_Studio_Pakistan)",
+      "checked": "2026-10-06",
+      "review_basis": "Season list, house-band format and producer runs as described at the check date. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "cs-franchise",
+      "title": "Wikipedia — Coke Studio (international franchise)",
+      "url": "https://en.wikipedia.org/wiki/Coke_Studio",
+      "citation": "[1](https://en.wikipedia.org/wiki/Coke_Studio)",
+      "checked": "2026-10-06",
+      "review_basis": "Franchise origin and the editions outside Pakistan. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "cs-bangla",
+      "title": "Wikipedia — Coke Studio Bangla",
+      "url": "https://en.wikipedia.org/wiki/Coke_Studio_Bangla",
+      "citation": "[1](https://en.wikipedia.org/wiki/Coke_Studio_Bangla)",
+      "checked": "2026-10-06",
+      "review_basis": "Bengali-language edition and its 2022 launch. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "cs-dewarists-et",
+      "title": "The Economic Times — Coke Studio and The Dewarists feature",
+      "url": "https://m.economictimes.com/coke-studio-the-dewarists-non-bollywood-music-shows-original-compositions-gain-traction-in-india/PDAET/articleshow/21748603.cms",
+      "citation": "[1](https://m.economictimes.com/coke-studio-the-dewarists-non-bollywood-music-shows-original-compositions-gain-traction-in-india/PDAET/articleshow/21748603.cms)",
+      "checked": "2026-10-06",
+      "review_basis": "Contemporaneous account of the non-film music-show wave and The Dewarists format. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "dewarists",
+      "title": "Wikipedia — The Dewarists",
+      "url": "https://en.wikipedia.org/wiki/The_Dewarists",
+      "citation": "[1](https://en.wikipedia.org/wiki/The_Dewarists)",
+      "checked": "2026-10-06",
+      "review_basis": "Format description: musicians paired to create a new original song. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "unplugged",
+      "title": "Wikipedia — MTV Unplugged",
+      "url": "https://en.wikipedia.org/wiki/MTV_Unplugged",
+      "citation": "[1](https://en.wikipedia.org/wiki/MTV_Unplugged)",
+      "checked": "2026-10-06",
+      "review_basis": "The acoustic-session format and its editions. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "tinydesk",
+      "title": "Wikipedia — Tiny Desk Concerts",
+      "url": "https://en.wikipedia.org/wiki/Tiny_Desk_Concerts",
+      "citation": "[1](https://en.wikipedia.org/wiki/Tiny_Desk_Concerts)",
+      "checked": "2026-10-06",
+      "review_basis": "Intimate single-take session format, a structural reference for our own sessions. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "qawwali",
+      "title": "Wikipedia — Qawwali",
+      "url": "https://en.wikipedia.org/wiki/Qawwali",
+      "citation": "[1](https://en.wikipedia.org/wiki/Qawwali)",
+      "checked": "2026-10-06",
+      "review_basis": "Ensemble form, instruments and its place in South Asian Sufi practice. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "ghazal",
+      "title": "Wikipedia — Ghazal",
+      "url": "https://en.wikipedia.org/wiki/Ghazal",
+      "citation": "[1](https://en.wikipedia.org/wiki/Ghazal)",
+      "checked": "2026-10-06",
+      "review_basis": "Origins, structure and the singing tradition. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "kafi",
+      "title": "Wikipedia — Kafi",
+      "url": "https://en.wikipedia.org/wiki/Kafi",
+      "citation": "[1](https://en.wikipedia.org/wiki/Kafi)",
+      "checked": "2026-10-06",
+      "review_basis": "Punjabi and Sindhi devotional verse form. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "khusrau",
+      "title": "Wikipedia — Amir Khusrau",
+      "url": "https://en.wikipedia.org/wiki/Amir_Khusrau",
+      "citation": "[1](https://en.wikipedia.org/wiki/Amir_Khusrau)",
+      "checked": "2026-10-06",
+      "review_basis": "Poet-musician credited in the qawwali and khayal traditions. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "bulleh",
+      "title": "Wikipedia — Bulleh Shah",
+      "url": "https://en.wikipedia.org/wiki/Bulleh_Shah",
+      "citation": "[1](https://en.wikipedia.org/wiki/Bulleh_Shah)",
+      "checked": "2026-10-06",
+      "review_basis": "Punjabi Sufi poet of the kafi form. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "baul",
+      "title": "Wikipedia — Baul",
+      "url": "https://en.wikipedia.org/wiki/Baul",
+      "citation": "[1](https://en.wikipedia.org/wiki/Baul)",
+      "checked": "2026-10-06",
+      "review_basis": "Bengal's wandering minstrel tradition. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "begum",
+      "title": "Wikipedia — Begum Akhtar",
+      "url": "https://en.wikipedia.org/wiki/Begum_Akhtar",
+      "citation": "[1](https://en.wikipedia.org/wiki/Begum_Akhtar)",
+      "checked": "2026-10-06",
+      "review_basis": "Thumri and ghazal gayaki; gharanas she trained in. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "mehdi",
+      "title": "Wikipedia — Mehdi Hassan",
+      "url": "https://en.wikipedia.org/wiki/Mehdi_Hassan",
+      "citation": "[1](https://en.wikipedia.org/wiki/Mehdi_Hassan)",
+      "checked": "2026-10-06",
+      "review_basis": "The classical ghazal voice and its concert lineage. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "thumri",
+      "title": "Wikipedia — Thumri",
+      "url": "https://en.wikipedia.org/wiki/Thumri",
+      "citation": "[1](https://en.wikipedia.org/wiki/Thumri)",
+      "checked": "2026-10-06",
+      "review_basis": "Semi-classical form and its Banaras, Lucknow and Patiala gharanas. Reference check; format and history metadata only, not a full-text review."
+    },
+    {
+      "id": "navaratri",
+      "title": "Wikipedia — Navaratri",
+      "url": "https://en.wikipedia.org/wiki/Navaratri",
+      "citation": "[1](https://en.wikipedia.org/wiki/Navaratri)",
+      "checked": "2026-10-06",
+      "review_basis": "The nine-night festival structure our 2026 launch cycle is built around. Reference check; format and history metadata only, not a full-text review."
     }
   ],
   "chart_snapshot": {
@@ -1099,6 +1691,36 @@
     "For any live chart adapter, obtain permitted access, store publisher/period/territory and retrieval time, validate ranks, and expose stale/unavailable states.",
     "Confirm recording, composition, lyrics, artwork, video, synchronization, broadcast and performance rights for the intended territory and use.",
     "Review clean/explicit versions, translations, captions/transcripts and accessibility; unreviewed items are not certified child-safe.",
-    "No archive rebroadcasts, AI singer/host impersonation, lyric reproduction or public publishing is implemented."
-  ]
+    "No archive rebroadcasts, AI singer/host impersonation, lyric reproduction or public publishing is implemented.",
+    "Record the gharana and technique notes behind the ghazal cards with a named reviewer before any of it is taught or published.",
+    "Decide, with the owner, whether the first Mehfil Sessions are audio-only or filmed, and pick the room: that choice fixes the whole launch production plan.",
+    "Do not publish any Sufi or ghazal card as a performance before the original recordings exist and their creators are credited by name."
+  ],
+  "extension_2026_10_06": {
+    "added_on": "2026-10-06",
+    "requested_by": "owner",
+    "request": "Research, update, modify, integrate and inherit all contents, new and old, of Sufi, Ghazal, Coke Studio and its similar shows.",
+    "new_items": 24,
+    "groups": {
+      "sufi": 6,
+      "ghazal": 6,
+      "studio_and_show_formats": 8,
+      "original_programmes": 4
+    },
+    "inheritance_rule": "Inherit the format, the structure and the credit discipline. Never the titles, lyrics, audio, video, artwork, brands or episode content.",
+    "heritage_items_are_context_only": true,
+    "media_rehosted": false,
+    "episodes_imported": false,
+    "lyrics_imported": false,
+    "brand_assets_used": false,
+    "original_programmes_have_own_rights_basis": true,
+    "agents_created": 0,
+    "registry_totals_changed": false,
+    "bindings": "existing ENT-MUS-S3 (folk, regional and world), ENT-MUS-S5 (audio programming), ENT-MUS-S6 (music video and visual programmes)",
+    "navaratri_window": {
+      "Ghatasthapana": "2026-10-11",
+      "Vijayadashami": "2026-10-20",
+      "source": "public almanac references cited in this pack; the owner's live date is the first night"
+    }
+  }
 }

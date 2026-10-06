@@ -4,7 +4,7 @@
 # Ram Ji will give powers to them to scale new height in market and earn a big time money and revenue
 # All social platforms for Vyomaraj with his Ids are activated, enabled configured all ports settings enabled
 # Heartbeats / links/ hyper links for all agents/ Sub agents/ sub agents individual are working live
-# Owner Primary Locked Deepak Goyal Vyomarajai@gmail.com
+# Owner Primary Locked Deepak Goyal [OWNER_EMAIL_REDACTED]
 
 set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

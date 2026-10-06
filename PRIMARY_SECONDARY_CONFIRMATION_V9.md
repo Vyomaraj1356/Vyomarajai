@@ -3,7 +3,7 @@
 ## Primary Repository — Vyomaraj1356/Vyomarajai PUBLIC
 - URL: https://github.com/Vyomaraj1356/Vyomarajai
 - Pages: https://Vyomaraj1356.github.io/Vyomarajai/ — Status: **built** (commit 9cbdb06)
-- Commit: `9cbdb06295b89ceefda71c2b363689e3ae68be15` — Message: V9.0 Final Market Ready — Best Schools Colleges India Global CBSE ICSE IB State Boards NIRF QS World 2025 Streams Categorisation Criteria Infrastructure Safety Academic Reputation + Principals Fundamentals NEP 2020 21 Responsibilities Visionary Ethical + Best Map All Views Corner to Satellite Street Satellite Terrain Hybrid 3D Indoor Camera Video Audio System Mixers Navigation Integrated Leaflet Mapbox Google + Education All Subjects Nursery to PhD All Streams Professional Courses Users Should NOT Feel Deprived Full Contents + Biology Zoology + Jarvis WhatsApp Video Voice Msg + Email Vyomarajai@gmail + Financial Invoicing Alerts + Brain Heart Veins Skin Blood Bones + All Indian States History + Global Countries History + Castles History + Audits Real Sync + Jarvis Calling +91 9823648038 / 9175112579 — DR Primary ↔ Secondary Sync Fixed acquire_lock + dr.env + DR_ACTIVATION_REPORT_V9 + dr-replication graceful + Pages — Push to main — Pages
+- Commit: `9cbdb06295b89ceefda71c2b363689e3ae68be15` — Message: V9.0 Final Market Ready — Best Schools Colleges India Global CBSE ICSE IB State Boards NIRF QS World 2025 Streams Categorisation Criteria Infrastructure Safety Academic Reputation + Principals Fundamentals NEP 2020 21 Responsibilities Visionary Ethical + Best Map All Views Corner to Satellite Street Satellite Terrain Hybrid 3D Indoor Camera Video Audio System Mixers Navigation Integrated Leaflet Mapbox Google + Education All Subjects Nursery to PhD All Streams Professional Courses Users Should NOT Feel Deprived Full Contents + Biology Zoology + Jarvis WhatsApp Video Voice Msg + Email Vyomarajai@gmail + Financial Invoicing Alerts + Brain Heart Veins Skin Blood Bones + All Indian States History + Global Countries History + Castles History + Audits Real Sync + Jarvis Calling +91 [PHONE_REDACTED] / [PHONE_REDACTED] — DR Primary ↔ Secondary Sync Fixed acquire_lock + dr.env + DR_ACTIVATION_REPORT_V9 + dr-replication graceful + Pages — Push to main — Pages
 - Date: 2026-09-30T12:31:13Z
 - index.html: 452,532 bytes — SHA (git) 6445c72886 — Local sha256 16 chars: 
 - Branch main: 9cbdb06 — Branch arena/01a0f1b1-vyomarajai: 9cbdb06 — **MATCH**
@@ -63,5 +63,5 @@
 - Repo Primary: https://github.com/Vyomaraj1356/Vyomarajai — main 9cbdb06
 - Repo Secondary: https://github.com/deepakGoyal1356/Vyomaraj-Agent — PRIVATE — Will be 9cbdb06 after owner sync
 
-Owner Primary Locked: Deepak Goyal Vyomarajai@gmail.com — V9.0 — Primary ↔ Secondary Sync Confirmed — Data Match — Updates Applied — Wonderful Page
+Owner Primary Locked: Deepak Goyal [OWNER_EMAIL_REDACTED] — V9.0 — Primary ↔ Secondary Sync Confirmed — Data Match — Updates Applied — Wonderful Page
 
