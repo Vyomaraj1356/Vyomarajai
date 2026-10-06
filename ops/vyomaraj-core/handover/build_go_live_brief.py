@@ -95,7 +95,10 @@ that lives in Arena's own session history, not in the repo (section 5).
    6 listening, 421 inherited); 0 running. Jarvis voice/heartbeat = records plus browser voice.
    Intelligence adapters are `metadata_only`; `switchPlatform` is BLOCKED. RAG, CAG and MAG are
    NOT_IMPLEMENTED. Arena execution has no adapter, and the heartbeat is the repository pipeline
-   only — no runtime monitor. *This is the real remaining build, and it is deliberately not faked.*
+   only — no runtime monitor. The independent probes the audit asks for (last successful check,
+   latency, consecutive failures, replication lag, last verified backup) are not built;
+   `/reports/realtime` measures per request, which is weaker than a monitor. *This is the real
+   remaining build, and it is deliberately not faked.*
 3. **The APK is unsigned** ({apk_bytes:,} bytes). It cannot be distributed through a store without
    signing, and store distribution needs a developer account. Separately, 12 phone-shaped byte
    matches inside the binary remain unexplained; an exact search for the known numbers found none.
@@ -113,6 +116,23 @@ that lives in Arena's own session history, not in the repo (section 5).
 8. **One address is still unpublished.** Both landing pages now read `[OWNER_EMAIL_REDACTED]`.
    A public site with no public contact is a choice, not a bug — but it is a choice only you can
    make. Same for the mobile numbers.
+
+## 3b · Two questions the audit raised, answered by measurement
+
+**PR #9 (ShriYantra RAG/CAG/MAG and Arena foundation) is safe to integrate, with one extra step.**
+Rehearsed on a scratch copy without merging anything: it merges into `main` with no conflicts, its
+own 7 tests pass, and the only gate impact is that `build_configuration_report.py` must be
+regenerated because a new workflow file appears in its list — after that the gate is green. What it
+does *not* do yet is written in its own code: `shriyantra-arena.py` carries TODOs for the retrieval
+store (ACLs before returning chunks) and the governed memory store. It is a foundation, not a
+running intelligence, and it should be merged as a foundation.
+
+**The DR endpoint is unreachable from the primary's own connection, but the replication is live.**
+The recorded target is `deepakGoyal1356/Vyomaraj-Agent-6d64e` — private and under another account, so
+an API call from here returns 404. That is expected and is not evidence of breakage. The evidence
+that matters: the most recent push to `main` ran the replication job and it succeeded, and the DR
+record carries 20 MATCH observations ending 2026-10-04. Independent verification still requires the
+owner's credentials — the one step no outside audit can perform.
 
 ## 4 · The platform recommendation, and why
 
