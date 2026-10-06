@@ -17,7 +17,7 @@ import socket
 from pathlib import Path
 from urllib.parse import urlparse
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 CRYPTO = ROOT / "security" / "CRYPTOGRAPHY_BASELINE.json"
 PERIMETER = ROOT / "security" / "SHRIYANTRA_SECURITY_PERIMETER.json"
 
