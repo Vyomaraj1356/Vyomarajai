@@ -1,12 +1,13 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-06 10:45 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-06 10:47 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
 
 **"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, the
-gate is 0/0, and the work of every session is on GitHub. Ready to *operate
+gate stands at 46 of 46 offline checks (11/11 Python suites,
+380 tests, 12 Node checks, 23 builders), and the work of every session is on GitHub. Ready to *operate
 itself*, no — the assistant/agent layer is records and documentation, not running services (section
 3). That is the honest line between "the shell is finished" and "the machine runs".
 
@@ -114,7 +115,7 @@ chats database and the two chat archives.
 ## 7 · Verify every claim above
 
 ```bash
-python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate, 0 checks
+python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate, 46 checks
 python3 ops/vyomaraj-core/handover/sanitize_personal_data.py --check   # privacy guard
 python3 ops/vyomaraj-core/handover/build_recovery_index.py --check     # sessions still recoverable
 python3 ops/vyomaraj-core/handover/build_go_live_brief.py --check      # this document

@@ -93,7 +93,7 @@ REPORTS = {
     '/reports/ai-handoff': 'AI_PLATFORM_HANDOFF_2026_10_06.md',
     '/reports/runbook': 'VYOMARAJ_RUNBOOK_2026_10_06.md',
     '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
-    '/reports/go-live': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
+    '/reports/go-live-gaps': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
 }
 
 

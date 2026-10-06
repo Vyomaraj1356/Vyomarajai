@@ -56,7 +56,7 @@ REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/a
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
                   '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
                   '/reports/market-readiness', '/reports/screenshots', '/reports/realtime',
-                  '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live']
+                  '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps']
 # Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
 # allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
 SCREENSHOT_ROUTES = {

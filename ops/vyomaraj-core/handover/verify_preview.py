@@ -33,7 +33,7 @@ VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports
                  '/reports/download/handover-notepad.txt',
                  '/reports/download/transfer-package.zip', '/reports/post-pr25-handover',
                  '/reports/download/post-pr25-handover.txt', '/reports/download/post-pr25-transfer.zip',
-                 '/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live',
+                 '/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps',
                  '/reports/auto-align', '/reports/platform-check',
                  '/reports/issues', '/reports/download/auto-align.json',
                  '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
@@ -71,7 +71,7 @@ CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
                    '/reports/ai-handoff': 'HANDOFF FOR ANOTHER AI PLATFORM',
                    '/reports/runbook': 'RUNBOOK: CONFIGURE',
                    '/reports/recovery-index': 'ARENA SESSION RECOVERY INDEX',
-                   '/reports/go-live': 'GO-LIVE GAPS, PLATFORM CHOICE'}
+                   '/reports/go-live-gaps': 'GO-LIVE GAPS, PLATFORM CHOICE'}
 
 
 def sha256(data):

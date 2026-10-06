@@ -32,13 +32,20 @@ def git(*args: str) -> str:
 def facts() -> dict:
     ev = json.loads(EVIDENCE.read_text(encoding="utf-8")) if EVIDENCE.is_file() else {}
     rm = json.loads(RECOVERY.read_text(encoding="utf-8")) if RECOVERY.is_file() else {}
-    suites = ev.get("suites", [])
+    suites = ev.get("python_suites", [])
+    node = ev.get("node_checks", [])
+    builders = ev.get("builders", [])
+    failures = ev.get("failures", [])
+    total = len(suites) + len(node) + len(builders)
     return {
+        "gate_total": total,
+        "gate_ok": total - len(failures),
+        "failing": len(failures),
         "suites_total": len(suites),
-        "suites_ok": sum(1 for s in suites if s.get("ok")),
-        "tests": ev.get("python_tests") or ev.get("tests") or "—",
-        "node": len(ev.get("node_checks", [])) or "—",
-        "builders": len(ev.get("builders", [])) or "—",
+        "suites_ok": sum(1 for s in suites if str(s.get("result", "")).upper().startswith("OK")),
+        "tests": ev.get("python_tests_total", "—"),
+        "node": len(node) or "—",
+        "builders": len(builders) or "—",
         "sessions": rm.get("session_branches_count", "—"),
         "archives": rm.get("archives_count", "—"),
         "unique_files": rm.get("unique_files_across_branches", "—"),
@@ -54,7 +61,8 @@ recalled from a chat. Verify any line with the commands in section 7.
 ## 1 · The short answer to the three questions
 
 **"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, the
-gate is {suites_ok}/{suites_total}, and the work of every session is on GitHub. Ready to *operate
+gate stands at {gate_ok} of {gate_total} offline checks ({suites_ok}/{suites_total} Python suites,
+{tests} tests, {node} Node checks, {builders} builders), and the work of every session is on GitHub. Ready to *operate
 itself*, no — the assistant/agent layer is records and documentation, not running services (section
 3). That is the honest line between "the shell is finished" and "the machine runs".
 
@@ -162,7 +170,7 @@ chats database and the two chat archives.
 ## 7 · Verify every claim above
 
 ```bash
-python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate, {suites_total} checks
+python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate, {gate_total} checks
 python3 ops/vyomaraj-core/handover/sanitize_personal_data.py --check   # privacy guard
 python3 ops/vyomaraj-core/handover/build_recovery_index.py --check     # sessions still recoverable
 python3 ops/vyomaraj-core/handover/build_go_live_brief.py --check      # this document
