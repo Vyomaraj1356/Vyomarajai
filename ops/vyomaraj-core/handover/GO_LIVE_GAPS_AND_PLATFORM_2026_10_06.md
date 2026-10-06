@@ -1,13 +1,14 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-06 10:47 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-06 10:48 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
 
-**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, the
-gate stands at 46 of 46 offline checks (11/11 Python suites,
-380 tests, 12 Node checks, 23 builders), and the work of every session is on GitHub. Ready to *operate
+**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, and the
+work of every session is on GitHub. The gate covers 46 offline checks — 11
+Python suites (380 tests), 12 Node checks and 23 builders — and its receipt is
+`TEST_EVIDENCE_2026_10_04.json`; run it (section 7) for the result at the moment you read this. Ready to *operate
 itself*, no — the assistant/agent layer is records and documentation, not running services (section
 3). That is the honest line between "the shell is finished" and "the machine runs".
 

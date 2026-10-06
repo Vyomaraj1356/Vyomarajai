@@ -35,14 +35,10 @@ def facts() -> dict:
     suites = ev.get("python_suites", [])
     node = ev.get("node_checks", [])
     builders = ev.get("builders", [])
-    failures = ev.get("failures", [])
     total = len(suites) + len(node) + len(builders)
     return {
         "gate_total": total,
-        "gate_ok": total - len(failures),
-        "failing": len(failures),
         "suites_total": len(suites),
-        "suites_ok": sum(1 for s in suites if str(s.get("result", "")).upper().startswith("OK")),
         "tests": ev.get("python_tests_total", "—"),
         "node": len(node) or "—",
         "builders": len(builders) or "—",
@@ -60,9 +56,10 @@ recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
 
-**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, the
-gate stands at {gate_ok} of {gate_total} offline checks ({suites_ok}/{suites_total} Python suites,
-{tests} tests, {node} Node checks, {builders} builders), and the work of every session is on GitHub. Ready to *operate
+**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, and the
+work of every session is on GitHub. The gate covers {gate_total} offline checks — {suites_total}
+Python suites ({tests} tests), {node} Node checks and {builders} builders — and its receipt is
+`TEST_EVIDENCE_2026_10_04.json`; run it (section 7) for the result at the moment you read this. Ready to *operate
 itself*, no — the assistant/agent layer is records and documentation, not running services (section
 3). That is the honest line between "the shell is finished" and "the machine runs".
 
