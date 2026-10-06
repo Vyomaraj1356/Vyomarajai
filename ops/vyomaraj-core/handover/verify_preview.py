@@ -34,10 +34,16 @@ VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports
                  '/reports/download/transfer-package.zip', '/reports/post-pr25-handover',
                  '/reports/download/post-pr25-handover.txt', '/reports/download/post-pr25-transfer.zip',
                  '/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps',
+                 '/reports/next-session-plan', '/reports/session-update',
+                 '/reports/download/next-session-plan.md', '/reports/download/next-session-plan.txt',
+                 '/reports/download/session-update.md', '/reports/download/session-update.txt',
                  '/reports/auto-align', '/reports/platform-check',
-                 '/reports/issues', '/reports/download/auto-align.json',
-                 '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
-                 '/not-an-allowlisted-route']
+                  '/reports/issues', '/reports/download/auto-align.json',
+                  '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
+                  '/reports/next-session-plan', '/reports/session-update',
+                  '/reports/download/next-session-plan.md', '/reports/download/next-session-plan.txt',
+                  '/reports/download/session-update.md', '/reports/download/session-update.txt',
+                  '/not-an-allowlisted-route']
 GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
                   '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
                   '/reports/download/post-pr25-transfer.zip',
@@ -48,6 +54,9 @@ GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/
                   '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
                   '/not-an-allowlisted-route']
 LANE_REPORT_ROUTES = ['/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index',
+                      '/reports/next-session-plan', '/reports/session-update',
+                      '/reports/download/next-session-plan.md', '/reports/download/next-session-plan.txt',
+                      '/reports/download/session-update.md', '/reports/download/session-update.txt',
                       '/reports/auto-align', '/reports/platform-check', '/reports/issues',
                       '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
                       '/reports/download/auto-align.json', '/reports/download/platform-check.md',
@@ -71,7 +80,9 @@ CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
                    '/reports/ai-handoff': 'HANDOFF FOR ANOTHER AI PLATFORM',
                    '/reports/runbook': 'RUNBOOK: CONFIGURE',
                    '/reports/recovery-index': 'ARENA SESSION RECOVERY INDEX',
-                   '/reports/go-live-gaps': 'GO-LIVE GAPS, PLATFORM CHOICE'}
+                   '/reports/go-live-gaps': 'GO-LIVE GAPS, PLATFORM CHOICE',
+                   '/reports/next-session-plan': 'NEXT-SESSION PLAN',
+                   '/reports/session-update': 'SESSION UPDATE'}
 
 
 def sha256(data):

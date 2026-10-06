@@ -53,6 +53,8 @@ REPORTS = {
     '/reports/runbook': 'VYOMARAJ_RUNBOOK_2026_10_06.md',
     '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
     '/reports/go-live-gaps': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
+    '/reports/next-session-plan': 'NEXT_SESSION_PLAN_2026_10_07.md',
+    '/reports/session-update': 'SESSION_UPDATE_2026_10_06.md',
 }
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
@@ -118,12 +120,21 @@ PAGE_NOTES = {
                            '<a href="/reports/download/ai-context-pack.json">Download the JSON context pack</a> '
                            '&middot; <a href="/reports/download/ai-handoff.zip">Download the whole package</a></p>',
     '/reports/recovery-index': '<p class="notice"><strong>Arena session recovery index</strong> - what '
-                               'survives from each of the 11 sessions and exactly how to get it back: '
+                               'survives from each session and exactly how to get it back: '
                                'every session branch, every archive with its hash, the chats record, and '
                                'the one thing that genuinely cannot be recovered. '
                                '<a href="/reports/download/recovery-index.md">Download the index</a> &middot; '
                                '<a href="/reports/download/recovery-manifest.json">Download the manifest</a></p>',
-    '/reports/go-live-gaps': '<p class="notice"><strong>Go-live gaps, platform choice, moving the work</strong> - what is still missing before go-live, which AI platform to continue on and what it costs, how the 11 sessions come across without redoing them, and the decisions only the owner can make. <a href="/reports/download/go-live-gaps.md">Download the brief</a></p>',
+    '/reports/go-live-gaps': '<p class="notice"><strong>Go-live gaps, platform choice, moving the work</strong> - what is still missing before go-live, which AI platform to continue on and what it costs, how the sessions come across without redoing them, and the decisions only the owner can make. <a href="/reports/download/go-live-gaps.md">Download the brief</a></p>',
+    '/reports/next-session-plan': '<p class="notice"><strong>Next session plan</strong> - the start-here page: '
+                                  'publish commands, verify steps, the paste-ready issue #6 comment, the build '
+                                  'order, the rules, and the artifact map. '
+                                  '<a href="/reports/download/next-session-plan.md">Download .md</a> &middot; '
+                                  '<a href="/reports/download/next-session-plan.txt">Download .txt</a></p>',
+    '/reports/session-update': '<p class="notice"><strong>Session update</strong> - what was verified, what was '
+                               'lost, and what was rebuilt, each line with its evidence. '
+                               '<a href="/reports/download/session-update.md">Download .md</a> &middot; '
+                               '<a href="/reports/download/session-update.txt">Download .txt</a></p>',
     '/reports/runbook': '<p class="notice"><strong>Runbook</strong> - the procedure: start everything, '
                         'verify, regenerate evidence, configure a new thing, integrate with a platform, '
                         'inherit content, hand over and protect. '
@@ -195,7 +206,15 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/reports/download/recovery-manifest.json':
                  ('ARENA_SESSION_RECOVERY_MANIFEST_2026_10_06.json', 'application/json'),
              '/reports/download/go-live-gaps.md':
-                 ('GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md', 'text/plain; charset=utf-8')}
+                 ('GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md', 'text/plain; charset=utf-8'),
+             '/reports/download/next-session-plan.md':
+                 ('NEXT_SESSION_PLAN_2026_10_07.md', 'text/plain; charset=utf-8'),
+             '/reports/download/next-session-plan.txt':
+                 ('NEXT_SESSION_PLAN_2026_10_07.md', 'text/plain; charset=utf-8'),
+             '/reports/download/session-update.md':
+                 ('SESSION_UPDATE_2026_10_06.md', 'text/plain; charset=utf-8'),
+             '/reports/download/session-update.txt':
+                 ('SESSION_UPDATE_2026_10_06.md', 'text/plain; charset=utf-8')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
 RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</strong> '
                   '<a href="/reports/issues">Issues and PRs ledger</a> &middot; '
@@ -340,7 +359,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/full-handover">Full handover</a><a href="/reports/ai-handoff">AI handoff</a><a href="/reports/runbook">Runbook</a><a href="/reports/recovery-index">Session recovery</a><a href="/reports/go-live-gaps">Go-live gaps</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/full-handover">Full handover</a><a href="/reports/ai-handoff">AI handoff</a><a href="/reports/runbook">Runbook</a><a href="/reports/recovery-index">Session recovery</a><a href="/reports/go-live-gaps">Go-live gaps</a><a href="/reports/next-session-plan">Next session plan</a><a href="/reports/session-update">Session update</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()

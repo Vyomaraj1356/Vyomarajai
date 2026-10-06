@@ -107,3 +107,30 @@ This is Git main-snapshot replication evidence only; it does not establish produ
 independent-site DR, runtime backup/restore or RPO/RTO. Issue #6 was re-read as OPEN. A current
 close-out comment is prepared in `ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md`; this update did not
 post a comment or close the issue.
+
+---
+
+## Sixth session update — checkpoints #21-#28 through PR #31 (2026-10-06)
+
+Read-only GitHub recheck in session `arena/6bc12929-vyomarajai`. The DR record stopped at
+PR #25 (checkpoint #20) while main had moved to PR #31. All 20 old annotations were re-read
+live with zero mismatches, and 8 new checkpoints were recorded from the #28, #27, #30 and #31
+main tips, every tree cross-checked against `git rev-parse`:
+
+| UTC | Result | Trees | Note |
+|---|---|---|---|
+| Oct 6 10:31 | write + MATCH | `aa19889f` / `aa19889f` | rollback `c0edf483`, check-run 112224787168 (PR #28; closes window B) |
+| Oct 6 10:43 · 11:11 | no-write MATCH | same trees | check-runs 112229472156, 112239413563 (schedule confirmations) |
+| Oct 6 11:35 | write + MATCH | `ec594b22` / `ec594b22` | rollback `6eef7c79`, check-run 112247203850 (PR #27) |
+| Oct 6 11:43 | no-write MATCH | same trees | check-run 112251025871 (schedule confirmation) |
+| Oct 6 11:46 | write + MATCH | `0f4a7855` / `0f4a7855` | rollback `6d4335ca`, check-run 112251697240 (PR #30) |
+| Oct 6 11:50 | write + MATCH | `bb8632f6` / `bb8632f6` | rollback `42c401d2`, check-run 112253587690 (PR #31) |
+| Oct 6 12:13 | no-write MATCH | same trees | check-run 112262665018 (schedule confirmation) |
+
+The carried record therefore has **28 MATCH checkpoints (20 replication writes)** through PR #31.
+Window B (PR #26 tip, 13 runs) is completed and closed; window C records the PR #29 squash tip
+`95b2133` as a genuine gap — its only run failed at offline-tests, verify-or-sync was skipped,
+and no schedule covered it — not a match. This is Git main-snapshot replication evidence only;
+it does not establish production traffic, independent-site DR, runtime backup/restore or RPO/RTO.
+Issue #6 was re-read as OPEN. A current close-out comment is prepared in
+`ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md`; this update did not post a comment or close the issue.

@@ -1,21 +1,21 @@
 # ARENA SESSION RECOVERY INDEX
 
-Computed 2026-10-06 11:37 UTC from this repository. The owner was told the work of 11 Arena sessions may be lost. This is what actually survives, and where.
+Computed 2026-10-06 12:39 UTC from this repository. The owner was told the work of 12 Arena sessions may be lost. This is what actually survives, and where.
 
 ## The headline
 
-- **11 Arena session branches are still on GitHub.** Each one is a session's workspace that was pushed to the repository, so the work of those sessions is present as Git history, not only as chat text.
+- **12 Arena session branches are still on GitHub.** Each one is a session's workspace that was pushed to the repository, so the work of those sessions is present as Git history, not only as chat text.
 - **42 archives** are in the repository — 26 handover zips, 15 market-ready releases, plus the combined session and chat archives.
 - **The consolidated chats record is present** with its session-by-session database.
 - **One thing is genuinely gone**, and it is named in section 4 so nobody hunts for it.
 
-## 1 · The 11 Arena session branches
+## 1 · The 12 Arena session branches
 
 | # | Session branch | Date | Tip commit | Commits ahead of main | Files unique to the branch | Content already in main |
 |---|---|---|---|---|---|---|
-| 1 | `arena/01a0f1b1-vyomarajai` | 2026-10-01 | Add Complete All Sessions All Handover Zips V16.7.22 | 0 | 2 | no |
-| 2 | `arena/01a0f634-vyomarajai` | 2026-10-02 | feat(experience): add modular plan-only studio and r | 44 | 35 | no |
-| 3 | `arena/live-preview-reconciled-20261002` | 2026-10-02 | fix(ci): keep PR check while restricting DR replicat | 7 | 28 | no |
+| 1 | `arena/01a0f1b1-vyomarajai` | 2026-10-01 | Add Complete All Sessions All Handover Zips V16.7.22 | 112 | 2 | no |
+| 2 | `arena/01a0f634-vyomarajai` | 2026-10-02 | feat(experience): add modular plan-only studio and r | 158 | 9 | no |
+| 3 | `arena/live-preview-reconciled-20261002` | 2026-10-02 | fix(ci): keep PR check while restricting DR replicat | 7 | 2 | no |
 | 4 | `arena/01a10140-vyomarajai` | 2026-10-03 | Merge pull request #8 from Vyomaraj1356/arena/01a101 | 0 | 0 | yes |
 | 5 | `arena/01a1056f-vyomarajai` | 2026-10-04 | Close the DR record at #17 with wording that does no | 0 | 0 | yes |
 | 6 | `arena/01a105bf-vyomarajai` | 2026-10-04 | Record checkpoint #14: the #19 merge verified MATCH  | 0 | 0 | yes |
@@ -23,9 +23,10 @@ Computed 2026-10-06 11:37 UTC from this repository. The owner was told the work 
 | 8 | `arena/01a10629-vyomarajai` | 2026-10-04 | Rebuild the third session's unpublished viewer work: | 0 | 0 | yes |
 | 9 | `arena/01a10655-vyomarajai` | 2026-10-04 | Refresh deep scan with follow-up DR check | 0 | 0 | yes |
 | 10 | `arena/01a106da-vyomarajai` | 2026-10-06 | fix: rebuild transfer package d9f2b0ae after index r | 0 | 0 | yes |
-| 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | resolve: integrate main's master-state work and PR # | 56 | 67 | no |
+| 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | docs(go-live): the PR backlog is cleared - record wh | 0 | 0 | yes |
+| 12 | `arena/6bc12929-vyomarajai` | 2026-10-06 | record: fill publication SHAs in the next-session pl | 2 | 3 | no |
 
-Across all branches, **132 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
+Across all branches, **16 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
 
 Examples of files that exist only on a session branch (recoverable with one `git checkout`):
 
@@ -34,12 +35,11 @@ Examples of files that exist only on a session branch (recoverable with one `git
 - `arena/01a0f634-vyomarajai` → `.gitattributes`
 - `arena/01a0f634-vyomarajai` → `.github/workflows/arena-recovery.yml`
 - `arena/01a0f634-vyomarajai` → `.github/workflows/dr-readiness.yml`
-- `arena/live-preview-reconciled-20261002` → `All-Chats-Array-From-Index.txt`
-- `arena/live-preview-reconciled-20261002` → `Git-Commits-One-Month.txt`
-- `arena/live-preview-reconciled-20261002` → `ops/integration/README.md`
-- `arena/582559e8-vyomarajai` → `.github/workflows/shriyantra-owner-guard.yml`
-- `arena/582559e8-vyomarajai` → `.github/workflows/vyomaraj-master-state.yml`
-- `arena/582559e8-vyomarajai` → `config/agents/shriyantra-agent-registry.json`
+- `arena/live-preview-reconciled-20261002` → `ops/vyomaraj-core/experience/preview_server.py`
+- `arena/live-preview-reconciled-20261002` → `ops/vyomaraj-core/experience/test_experience_orchestrator.py`
+- `arena/6bc12929-vyomarajai` → `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md`
+- `arena/6bc12929-vyomarajai` → `ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md`
+- `arena/6bc12929-vyomarajai` → `ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md`
 
 ## 2 · How to recover any of it (exact commands)
 
@@ -116,7 +116,7 @@ git status
 
 That means: the *relational* record of every session survives (what was decided, what was built, in order). The *verbatim* conversation does not, and only Arena's own session history can supply it. Anything an AI needs in order to continue the work is in sections 1–3.
 
-## 5 · The honest answer to "do we have to do the 11 sessions again?"
+## 5 · The honest answer to "do we have to do the 12 sessions again?"
 
 **No.** The work is in three places at once: the session branches (section 1), the archives (section 3), and the merged history in main. What was never in this repository is the raw chat text, which is a record of the conversation rather than of the product.
 
@@ -126,6 +126,6 @@ What is worth doing is a **consolidation pass**, not a rebuild: walk the session
 
 Paste this, so no assistant starts rebuilding what already exists:
 
-> Vyomaraj is not lost and must not be rebuilt from zero. The work of 11 Arena sessions is
+> Vyomaraj is not lost and must not be rebuilt from zero. The work of 12 Arena sessions is
 > present on GitHub as `origin/arena/*` branches, in 42 archives, and merged into `main`. Before proposing any rebuild, run `git diff --name-status main origin/arena/<branch>` and read `ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md`. The only thing genuinely missing is the raw per-chat transcript text, which lives in Arena's own history and not in the repository.
 

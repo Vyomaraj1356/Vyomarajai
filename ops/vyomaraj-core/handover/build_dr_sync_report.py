@@ -293,6 +293,17 @@ def render(root=ROOT):
                 f"- Second defect found by making the diagnostic run again: {probe.get('second_class_defect')}",
                 '',
             ]
+    extension_b = record.get('record_extension_2026_10_06_b')
+    if extension_b:
+        lines += [
+            f"## 5g. Record extension by `{extension_b.get('session')}` (2026-10-06, second pass)",
+            '',
+            f"- Finding: {extension_b.get('finding')}",
+            f"- Fix: {extension_b.get('fix')}",
+            f"- Recording rule: {extension_b.get('rule')}",
+            f"- Next checkpoint: {extension_b.get('next_checkpoint')}",
+            '',
+        ]
     lines += [
         '## 6. Scope limits — do not restate otherwise',
         '',

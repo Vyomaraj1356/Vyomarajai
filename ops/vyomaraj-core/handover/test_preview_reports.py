@@ -212,6 +212,33 @@ class PreviewTests(unittest.TestCase):
                 self.assertIn('#f59e0b', text)
                 self.assertIn('<meta name="theme-color" content="#0a1628">', text)
 
+    def test_next_session_plan_and_session_update_pages(self):
+        for route, marker in (('/reports/next-session-plan', 'NEXT-SESSION PLAN'),
+                              ('/reports/session-update', 'SESSION UPDATE')):
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.status, 200)
+                    text = response.read().decode()
+                self.assertIn(marker, text)
+                self.assertIn('href="/reports/next-session-plan"', text)
+                self.assertIn('href="/reports/session-update"', text)
+
+    def test_plan_and_update_downloads_are_byte_identical(self):
+        cases = (
+            ('/reports/download/next-session-plan.md', 'NEXT_SESSION_PLAN_2026_10_07.md'),
+            ('/reports/download/next-session-plan.txt', 'NEXT_SESSION_PLAN_2026_10_07.md'),
+            ('/reports/download/session-update.md', 'SESSION_UPDATE_2026_10_06.md'),
+            ('/reports/download/session-update.txt', 'SESSION_UPDATE_2026_10_06.md'),
+        )
+        for route, name in cases:
+            with self.subTest(route=route):
+                expected = (HERE / name).read_bytes()
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.read(), expected)
+                    self.assertTrue(response.headers['Content-Type'].startswith('text/plain'))
+                    self.assertIn('attachment', response.headers['Content-Disposition'])
+                    self.assertIn(name, response.headers['Content-Disposition'])
+
     def test_reference_pages_never_serve_unallowlisted_paths(self):
         for path in ('/reports/chats/../../README.md', '/reports/chats/../.git/config',
                      '/reports/chats/extra', '/reports/issue-6/../dr.env'):
