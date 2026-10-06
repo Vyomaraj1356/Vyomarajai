@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "system_id": "VYOMARAJ-AI-STUDIO",
+  "version": "1.1",
+  "authority": "ShriYantra",
+  "owner_control": "required_for_external_publish_or_destructive_change",
+  "source_commit": "d6f10dde04b495d19f13a50156443463986b2f03",
+  "classification_order": [
+    "VERIFIED",
+    "PRESENT",
+    "CONFIGURED",
+    "HISTORICAL",
+    "PROPOSED",
+    "MISSING",
+    "UNMAPPED"
+  ],
+  "status_definitions": {
+    "VERIFIED": "Current evidence proves the capability or state in the checked scope.",
+    "PRESENT": "Current repository contains implementation/configuration, but live operation is not proven.",
+    "CONFIGURED": "A configuration/contract exists; configuration is not evidence of live connectivity.",
+    "HISTORICAL": "Preserved prior record; not current runtime truth.",
+    "PROPOSED": "Design/plan exists but deployment or operation is not proven.",
+    "MISSING": "Required implementation/evidence was not found in the checked scope.",
+    "UNMAPPED": "A known item exists but ownership/identity/connection is unresolved."
+  },
+  "rules": [
+    "Never upgrade CONFIGURED/PRESENT to VERIFIED from filenames, screenshots, old Arena sessions or environment claims.",
+    "Never activate external providers, social publishing or monetization merely to satisfy an inventory.",
+    "Never print, commit or copy credentials/tokens.",
+    "Git snapshot replication is not application/runtime DR.",
+    "External integrations require live authenticated evidence before VERIFIED."
+  ],
+  "components": [
+    {
+      "id": "RAG",
+      "status": "PRESENT",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "repository code/search references",
+        "content indexes and source references"
+      ],
+      "next_verification": "execute retrieval query against a real indexed store and record source IDs + deterministic result"
+    },
+    {
+      "id": "CAG",
+      "status": "PRESENT",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "repository design/search references"
+      ],
+      "next_verification": "prove context/cache retrieval path with read/write/expiry test"
+    },
+    {
+      "id": "MAG",
+      "status": "PRESENT",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "multi-agent coordination code and registry"
+      ],
+      "next_verification": "execute multi-agent handoff with correlation ID and audit trail"
+    },
+    {
+      "id": "Jarvis runtime",
+      "status": "PRESENT",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/jarvis/jarvis.env",
+        "ops/jarvis/devices.json",
+        "ops/jarvis/jarvis-24x7-controller.sh"
+      ],
+      "next_verification": "start in isolated test mode; prove heartbeat, queue handoff and clean shutdown"
+    },
+    {
+      "id": "ShriYantra runtime",
+      "status": "PRESENT",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/vyomaraj-core/shriyantra-protection.js"
+      ],
+      "next_verification": "replace branding-only surface with executable policy gate and unit/integration tests"
+    },
+    {
+      "id": "AI-provider connections",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "multi-ai-coordination.js metadata surface",
+        "provider references"
+      ],
+      "next_verification": "provider-by-provider authenticated health check; no credential values stored in repo"
+    },
+    {
+      "id": "studio devices",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/jarvis/devices.json"
+      ],
+      "next_verification": "device ownership, reachability and approval-gate probe"
+    },
+    {
+      "id": "queues",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "DR/build configuration and local availability documentation"
+      ],
+      "next_verification": "queue publish/consume/ack/retry/dead-letter test"
+    },
+    {
+      "id": "external APIs",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "platform contracts and configuration-check plan"
+      ],
+      "next_verification": "authenticated contract probe per integration"
+    },
+    {
+      "id": "social-platform integrations",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "SOCIAL_PLATFORMS_CONTRACTS.json",
+        "platform registry"
+      ],
+      "next_verification": "platform-by-platform OAuth/API health + read-only account identity check"
+    },
+    {
+      "id": "analytics",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "platform/earn references and configuration plans"
+      ],
+      "next_verification": "ingest a real metrics sample and verify timestamp/source/account identity"
+    },
+    {
+      "id": "monetization",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "PLATFORM-REF-18 EARN and monetization references"
+      ],
+      "next_verification": "verify actual platform eligibility, payout configuration and ledger reconciliation"
+    },
+    {
+      "id": "24x7 operation",
+      "status": "PROPOSED",
+      "runtime_status": "NOT_RUNNING",
+      "evidence": [
+        "jarvis-24x7-controller.sh",
+        "availability drills"
+      ],
+      "next_verification": "deploy supervised service with restart policy, watchdog, alerting and measured uptime"
+    }
+  ],
+  "prohibited_live_claims": [
+    "all social accounts connected",
+    "all heartbeats actually live",
+    "all 578 links operational",
+    "production AI providers connected",
+    "automatic publishing",
+    "automatic revenue earning",
+    "independent full runtime DR",
+    "zero-RPO",
+    "zero-RTO",
+    "automatic failover",
+    "automatic failback"
+  ],
+  "dr": {
+    "status": "VERIFIED",
+    "scope": "Git main snapshot replication only",
+    "primary": "Vyomaraj1356/Vyomarajai",
+    "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+    "direction": "primary main -> secondary main",
+    "reverse_restore": "controlled human-reviewed recovery only",
+    "zero_rpo": false,
+    "zero_rto": false,
+    "runtime_dr": false
+  },
+  "content": {
+    "current_categories": 13,
+    "current_counted_slots": 128,
+    "uncounted_parent_headings": 6,
+    "historical_reported_products": 421,
+    "historical_snapshot": "AGENT_CONTENT_REGISTRY_V16_7_24.json",
+    "current_indexed_references": 173,
+    "status": "VERIFIED_AS_REPOSITORY_INVENTORY_NOT_LIVE_RUNTIME"
+  }
+}
