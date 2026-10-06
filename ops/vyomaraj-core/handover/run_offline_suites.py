@@ -27,6 +27,7 @@ SUITES = [
     'ops/vyomaraj-core/finance',
     'ops/vyomaraj-core/upgrades',
     'ops/vyomaraj-core/ledger',
+    'ops/vyomaraj-core/security',
     'tests',
 ]
 NODE_COMMANDS = [

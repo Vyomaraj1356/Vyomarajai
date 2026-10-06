@@ -17,9 +17,10 @@ import socket
 from pathlib import Path
 from urllib.parse import urlparse
 
-ROOT = Path(__file__).resolve().parents[3]
-CRYPTO = ROOT / "security" / "CRYPTOGRAPHY_BASELINE.json"
-PERIMETER = ROOT / "security" / "SHRIYANTRA_SECURITY_PERIMETER.json"
+HERE = Path(__file__).resolve().parent          # ops/vyomaraj-core/security
+ROOT = HERE.parents[2]                          # repository root
+CRYPTO = HERE / "CRYPTOGRAPHY_BASELINE.json"
+PERIMETER = HERE / "SHRIYANTRA_SECURITY_PERIMETER.json"
 
 
 def load(path: Path) -> dict:

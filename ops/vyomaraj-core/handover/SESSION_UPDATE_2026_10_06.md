@@ -121,3 +121,87 @@ refusal, server) — all green.
 generated text. The `ask()` seam is where a model would sit; that needs one
 model key supplied as an environment variable in a GitHub-connected session, an
 owner action this repository cannot fake.
+
+## 7 · Integration addendum — session `arena/23997ce2-vyomarajai` (same day, after PR #37)
+
+This session answered the owner's instruction to "talk to PR #36 and #37 and sync
+primary and secondary and DR updates with the same packages." It began from main
+tip `bf9e893` (which already contains both merges) and found primary→secondary/DR
+replication **blocked**: the `Vyomaraj PRIMARY to DR Sync` workflow's
+`verify-or-sync` job `needs: offline-tests`, and `offline-tests` was red on main
+(runs `37479102533`, `37481294499`, `37485487203` — all `failure` at the
+"Offline safety and integrity suites" step). Replication was being skipped, so the
+secondary was falling behind main. Three offline-gate failures plus two broken
+workflows traced directly to PR #36/#37; all five are fixed here.
+
+**PR #36 and PR #37 — integration status (checked, not assumed).** Both are
+`MERGED` into main: PR #36 (`f1923c9`, "Bharath/Laxman location-aware
+communication and feedback controls", 9 files) and PR #37 (`d2ed22c`, "ShriYantra
+high-assurance cryptographic security perimeter", 6 files). Their content is
+present in the tree and registered in `VYOMARAJ_MASTER_STATE.json` (19
+components). Neither PR claims live connectivity, and neither is upgraded to
+VERIFIED here: the communications/location/identity lanes stay CONFIGURED and the
+crypto perimeter stays PRESENT, each with its `next_verification` intact.
+
+**Defect 1 — `crypto_verify.py` (PR #37).** It resolved its policy files through
+`Path(__file__).resolve().parents[3]` — the *parent of the repository* — so it
+looked for `<repo-parent>/security/CRYPTOGRAPHY_BASELINE.json` and died with
+`FileNotFoundError`. That made the `ShriYantra Crypto Baseline` workflow fail on
+the PR and on main (run `37478806529`). Fixed to `parents[2]` + `HERE`; the
+verifier now exits 0 with `baseline_policy_valid: true`. 5 regression tests
+(`ops/vyomaraj-core/security/test_crypto_verify.py`) pin the path, the
+any-working-directory behaviour, the no-live-claim default, and the
+reject/UNVERIFIED probe paths.
+
+**Defect 2 — `verify_master_state.py`.** Same class of bug: `parents[2]` resolved
+to the repository's parent, so it always printed `{"ok": false, "error": "master
+state missing"}` and exited 2 — the `Vyomaraj Master State Verification` workflow
+was red on main (run `37478806559`). Fixed to read the state file beside it; it
+now reports `ok: true`, all 19 components, and `source_commit` advanced to
+`bf9e893`. 6 regression tests (`test_verify_master_state.py`) pin the read, the
+evidence-class preservation, the no-probe-without-operator-URL rule, and the
+safety block that never claims live DR.
+
+**Defect 3 — privacy regression (PR #36).** PR #36 committed a personal email
+address literally into six public files (`INTEGRATION_READINESS.md`,
+`OWNER_AND_PUBLIC_COMMUNICATION_POLICY.json`, `mailbox_worker.py`,
+`owner-mailbox.env.example`, and the master state). GitHub Pages serves this
+branch root, so that address was a live public web page — exactly what
+`sanitize_personal_data.py --check` exists to prevent, and it correctly failed the
+build. The address was redacted from all six files and the mailbox worker now
+takes it from `VYOMARAJ_OWNER_MAILBOX` (empty default, refuses to run unset)
+rather than hardcoding it.
+
+**Owner-controlled contact seam (shipped, never faked).** Rather than hardcode an
+allowlist, the fix ships the decision to the owner: `set_public_contact.py`
+writes `config/public-contact.json` with `owner_approved: true` only on
+`--email <addr> --confirm-publish`, refusing placeholders and example addresses;
+`sanitize_personal_data.py` gained `allowed_emails()`, which allowlists exactly
+that address (custom domain or gmail) and nothing else, fail-closed against a
+hand-written or unapproved config. Until the owner runs it, the tracked files stay
+redacted and the guard stays green. 14 tests (`test_public_contact.py`) cover the
+seam both ways. This is the honest form of the owner's "contact address on the
+page" 15-minute task: the tooling and instructions are here; the approval is the
+owner's.
+
+**Packages re-synced (same content everywhere).** With the gate green, all four
+handover packages were rebuilt in the documented order so primary, secondary and
+DR carry identical bytes: transfer (`8acd71f0…` note), post-PR25 companion (49
+members = 41 canonical + 8), full handover (29 members) and AI handoff (18
+members). The full/AI packages embed the regenerated `BUILD_AND_CONFIGURATION`
+report (now enumerating PR #37's `shriyantra-crypto-baseline.yml` workflow and the
+security perimeter) and the freshly re-run `LIVE_WIRING_STATE` /
+`PREVIEW_VERIFICATION`, captured with the stack live on 4174/4176/4181/4182.
+
+**Gate restored.** `run_offline_suites.py --ci`: 442 Python tests across 13
+suites, 12 Node checks, 23 builders — **48/48, 0 failures** (was 44/47 with 3
+failures on main). `verify_live_wiring.py`: blocking 0. `verify_preview.py`:
+problems none. Privacy guard: green. With `offline-tests` green, the
+`verify-or-sync` DR replication job is unblocked for the next main push.
+
+**What this is not.** No live KMS/HSM, mTLS, certificate rotation, PQC, Gmail,
+social, location or voice connectivity is claimed or verified by any of this. The
+secondary repository stays private and unreadable by this credential (HTTP 404);
+DR replication is a GitHub Actions job that runs on main, not something this
+sandbox performs. Issue #6 remains OPEN (writes still denied); its one-command
+owner path is unchanged.

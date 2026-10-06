@@ -4,7 +4,7 @@
   "version": "1.1",
   "authority": "ShriYantra",
   "owner_control": "required_for_external_publish_or_destructive_change",
-  "source_commit": "d6f10dde04b495d19f13a50156443463986b2f03",
+  "source_commit": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f",
   "classification_order": [
     "VERIFIED",
     "PRESENT",
@@ -179,7 +179,7 @@
       "evidence": [
         "ops/vyomaraj-core/communications/OWNER_AND_PUBLIC_COMMUNICATION_POLICY.json"
       ],
-      "next_verification": "authenticated mailbox read/thread/reply test for Vyomarajai@gmail.com"
+      "next_verification": "authenticated mailbox read/thread/reply test for the owner mailbox (address in deployment config, never hardcoded)"
     },
     {
       "id": "Social feedback moderation lane",
@@ -244,5 +244,5 @@
     "current_indexed_references": 173,
     "status": "VERIFIED_AS_REPOSITORY_INVENTORY_NOT_LIVE_RUNTIME"
   },
-  "last_change": "2026-10-06: inherited high-assurance cryptography baseline added: AES-256-GCM envelope encryption, KMS/HSM key isolation, TLS 1.3, mTLS, Argon2id, crypto agility/PQC migration path and private zero-trust perimeter."
+  "last_change": "2026-10-06: PR #36 (Bharath/Laxman location-aware communication + feedback controls) and PR #37 (ShriYantra high-assurance cryptographic perimeter) confirmed MERGED into main and integrated. Two path defects they introduced were fixed and regression-tested: crypto_verify.py and verify_master_state.py resolved their state files through parents[3]/parents[2] (the parent of the repository) and so always failed — the ShriYantra Crypto Baseline and Master State workflows were red on main. PR #36 also committed a personal email literally into six public files; the privacy guard correctly failed the build. The address was redacted and an owner-controlled contact seam shipped (set_public_contact.py + config/public-contact.json + allowlist-aware sanitize_personal_data.py): nothing is allowlisted until the owner publishes it with --confirm-publish. Offline gate restored to 48/48 (0 failures); primary→secondary/DR replication unblocked (it needs offline-tests to pass). No live KMS/HSM, mTLS, Gmail, social, location or voice connectivity is claimed by any of this."
 }

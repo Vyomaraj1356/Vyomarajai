@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "66d1563870a36bd111317ad2bb5483931ca643059a25b05468b5c7daf13b7fe4",
-  "package_bytes": 153356,
+  "package_sha256": "8cf33e0c0d77f393dee100243e3350dbc80cc29a09d95633a84f2b70fea3e19f",
+  "package_bytes": 153383,
   "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
@@ -77,8 +77,8 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "26bcc2d200656ad569e052702dd7665e55996e2df105edbc4fee752d7c5fc8ce",
-      "bytes": 11949
+      "sha256": "14b50728246a4e4a2b5f55c8d52e228e9c1a2dd061a0168bdbb823188677aae6",
+      "bytes": 12031
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -209,8 +209,8 @@
     {
       "archive_name": "V16.9/run_offline_suites.py",
       "source": "ops/vyomaraj-core/handover/run_offline_suites.py",
-      "sha256": "ef5ec116c973a81e924db7d5df6f02aab074fd18234a6b3335dc451b3fb4c952",
-      "bytes": 10845
+      "sha256": "ba232ef3ee80f415ea99efc5186c095295977a464075c34c5d2e34ba7934bbd9",
+      "bytes": 10879
     },
     {
       "archive_name": "V16.9/check_language_policy.py",

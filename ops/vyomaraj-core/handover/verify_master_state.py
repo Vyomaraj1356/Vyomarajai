@@ -10,8 +10,9 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
-ROOT = Path(__file__).resolve().parents[2]
-STATE = ROOT / "handover" / "VYOMARAJ_MASTER_STATE.json"
+HERE = Path(__file__).resolve().parent          # ops/vyomaraj-core/handover
+ROOT = HERE.parents[2]                          # repository root
+STATE = HERE / "VYOMARAJ_MASTER_STATE.json"
 
 REQUIRED = [
     "VYOMARAJ_MASTER_STATE.json",
