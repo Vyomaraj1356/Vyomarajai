@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "system": "VYOMARAJ-AI-STUDIO",
+  "security_root": "SHRIYANTRA",
+  "profile": "HIGH_ASSURANCE_CRYPTO_AGILITY",
+  "principles": [
+    "Encryption is defense-in-depth, not a guarantee of invisibility or invulnerability.",
+    "Cryptographic keys never live in source control, prompts, agent memory, logs, or build artifacts.",
+    "Application code requests cryptographic operations from a KMS/HSM/cryptographic service; it does not handle long-lived root keys.",
+    "Use authenticated encryption for sensitive data.",
+    "Use separate keys and scopes for separate data domains and environments.",
+    "Fail closed when key integrity, certificate validation, policy, or cryptographic health checks fail.",
+    "Maintain cryptographic agility so algorithms can be replaced without redesigning the data model."
+  ],
+  "at_rest": {
+    "data_encryption": "AES-256-GCM",
+    "envelope_encryption": true,
+    "data_encryption_key": "random_per_object_or_record",
+    "key_encryption_key": "KMS_OR_HSM_MANAGED",
+    "aad": "bind ciphertext to tenant/system/object/version/purpose metadata",
+    "key_separation": [
+      "owner_auth",
+      "agent_memory",
+      "rag",
+      "cag",
+      "mag",
+      "audit",
+      "backups",
+      "communications",
+      "provider_credentials"
+    ]
+  },
+  "in_transit": {
+    "minimum": "TLS_1.3",
+    "internal_service_identity": "mTLS",
+    "certificate_validation": "strict",
+    "certificate_rotation": "automated",
+    "legacy_tls": "disabled",
+    "plaintext_internal_transport": "forbidden"
+  },
+  "key_management": {
+    "preferred": [
+      "HSM",
+      "cloud_KMS",
+      "validated_cryptographic_module"
+    ],
+    "root_keys_exportable": false,
+    "raw_key_access_by_application": false,
+    "rotation": "automated_where_supported",
+    "compromise_response": [
+      "revoke",
+      "rotate",
+      "rewrap_or_reencrypt",
+      "verify",
+      "audit"
+    ],
+    "backup": "encrypted_key_escrow_for_encryption_keys_only_under_owner_recovery_policy",
+    "signature_keys": "non_exportable_when_supported"
+  },
+  "passwords": {
+    "algorithm": "Argon2id",
+    "passwords_are_not_reversible": true,
+    "plaintext_password_storage": false
+  },
+  "post_quantum": {
+    "strategy": "crypto_agility_and_hybrid_migration",
+    "key_establishment": "ML-KEM-768_HYBRID_WHERE_SUPPORTED",
+    "signatures": "ML-DSA-65_HYBRID_WHERE_SUPPORTED",
+    "classical_fallback": "X25519_OR_ED25519_ONLY_WHEN_POLICY_ALLOWS",
+    "rule": "Do not invent PQC support; verify the exact provider/library/build before enabling."
+  },
+  "integrity": {
+    "hash": "SHA-256_OR_SHA-384",
+    "signed_artifacts": true,
+    "release_provenance": true,
+    "audit_log_integrity": "hash_chaining_plus_signed_checkpoints"
+  },
+  "forbidden": [
+    "hardcoded_keys",
+    "keys_in_git",
+    "keys_in_container_images",
+    "keys_in_prompts",
+    "keys_in_model_context",
+    "keys_in_agent_memory",
+    "keys_in_public_logs",
+    "custom_crypto_algorithms",
+    "ECB_for_sensitive_data",
+    "unauthenticated_encryption",
+    "TLS_1_0",
+    "TLS_1_1",
+    "plaintext_internal_traffic"
+  ],
+  "verification_state": "CONFIGURED_NOT_LIVE_VERIFIED"
+}

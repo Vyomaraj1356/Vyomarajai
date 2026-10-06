@@ -1,0 +1,30 @@
+name: ShriYantra Crypto Baseline
+
+on:
+  pull_request:
+    paths:
+      - 'ops/vyomaraj-core/security/**'
+      - 'ops/vyomaraj-core/handover/VYOMARAJ_MASTER_STATE.json'
+  push:
+    branches: [main]
+    paths:
+      - 'ops/vyomaraj-core/security/**'
+      - 'ops/vyomaraj-core/handover/VYOMARAJ_MASTER_STATE.json'
+
+permissions:
+  contents: read
+
+jobs:
+  crypto-policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Python syntax
+        run: python3 -m py_compile ops/vyomaraj-core/security/crypto_verify.py
+      - name: Verify crypto policy
+        run: python3 ops/vyomaraj-core/security/crypto_verify.py
+      - name: Secret scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
