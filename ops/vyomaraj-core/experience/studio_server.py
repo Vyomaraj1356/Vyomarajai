@@ -77,6 +77,7 @@ REPORTS = {
     '/reports/handover-notepad': reports.HANDOVER_NOTE,
     '/reports/recovery': reports.RECOVERY_DOC,
     '/reports/dr-sync': reports.DR_SYNC_REPORT,
+    '/reports/post-pr25-handover': reports.POST_PR25_NOTE,
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
     '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/test-evidence': 'TEST_EVIDENCE_2026_10_04.json',
@@ -151,6 +152,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
         elif route == '/reports/download/transfer-package.zip':
             self.send_download((CORE / 'handover' / reports.TRANSFER_ZIP).read_bytes(), 'application/zip', Path(reports.TRANSFER_ZIP).name)
+        elif route == '/reports/download/post-pr25-handover.txt':
+            self.send_download((CORE / 'handover' / reports.POST_PR25_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.POST_PR25_NOTE)
+        elif route == '/reports/download/post-pr25-transfer.zip':
+            self.send_download((CORE / 'handover' / reports.POST_PR25_ZIP).read_bytes(), 'application/zip', Path(reports.POST_PR25_ZIP).name)
         elif route == '/reports/download/auto-align.json':
             path = CORE / 'handover/AUTO_ALIGN_NEXT_SESSION.json'
             self.send_download(path.read_bytes(), 'application/json', path.name)

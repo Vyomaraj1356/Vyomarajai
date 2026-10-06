@@ -1,11 +1,19 @@
 {
-  "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "6be799e66983e4008fccf66d11cf7d45117b04673674635da8bd1f91cc016025",
-  "package_bytes": 138250,
-  "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-  "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
-  "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
-  "check_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py --check",
+  "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
+  "package_sha256": "81d4b2b5a6b65047611351f5a5aaa3bebda7b07a88e8b5582425ace337503b31",
+  "package_bytes": 173854,
+  "note": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
+  "note_sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad",
+  "note_bytes": 22268,
+  "note_byte_identical_download": "/reports/download/post-pr25-handover.txt serves the note unchanged",
+  "members_total": 49,
+  "canonical_members_total": 41,
+  "additions_total": 8,
+  "superset_of_canonical": true,
+  "canonical_package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
+  "canonical_package_sha256_rebuilt_from_source": "6be799e66983e4008fccf66d11cf7d45117b04673674635da8bd1f91cc016025",
+  "rebuild_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py",
+  "check_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py --check",
   "determinism": "fixed member timestamps and permissions; same-Python/zlib rebuilds are byte-identical",
   "members": [
     {
@@ -253,6 +261,54 @@
       "source": "GITHUB_TRIAGE_2026_10_04.md",
       "sha256": "a8b9ed7fb8dd1286e60f4da27cc959c353cabfb903bedba20344174f44946bae",
       "bytes": 3059
+    },
+    {
+      "archive_name": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
+      "sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad",
+      "bytes": 22268
+    },
+    {
+      "archive_name": "post-pr25/DEEP_PRIMARY_SECONDARY_CONFIGURATION_SCAN_2026_10_04.md",
+      "source": "ops/vyomaraj-core/handover/DEEP_PRIMARY_SECONDARY_CONFIGURATION_SCAN_2026_10_04.md",
+      "sha256": "3c10aad6761c064752496cd21f43898416894ef8d6b95c63761d4c12cbd2c856",
+      "bytes": 65216
+    },
+    {
+      "archive_name": "post-pr25/AUTO_ALIGN_STATE_2026_10_04.json",
+      "source": "ops/vyomaraj-core/handover/AUTO_ALIGN_STATE_2026_10_04.json",
+      "sha256": "adfdaffd9d95e8f1c3a5618e6c4ff531b2b8c963bdccbaf57307a077d568d72a",
+      "bytes": 24789
+    },
+    {
+      "archive_name": "post-pr25/DR_POLICY.json",
+      "source": "ops/dr/DR_POLICY.json",
+      "sha256": "6090042dc9e05fa1273ba0f0345a6821d633e28c755cac6be806712e7ee222df",
+      "bytes": 2600
+    },
+    {
+      "archive_name": "post-pr25/DR_FOLLOWUP_2026_10_03.json",
+      "source": "ops/dr/DR_FOLLOWUP_2026_10_03.json",
+      "sha256": "ad01009cb02cf032500859dcfd785c6a85cbd8a1dce8f1c59fd5b02ad9f21e7d",
+      "bytes": 1258
+    },
+    {
+      "archive_name": "post-pr25/ACTIONS_PROBE_EVIDENCE_2026_10_03.json",
+      "source": "ops/dr/ACTIONS_PROBE_EVIDENCE_2026_10_03.json",
+      "sha256": "1a65f0efc4a9890c04ffaad4618efdaa673293878e40625aee2d8634c1de4b58",
+      "bytes": 1475
+    },
+    {
+      "archive_name": "post-pr25/dr_diagnostics.py",
+      "source": "ops/dr/dr_diagnostics.py",
+      "sha256": "46cbeaf2f3346b93fdbffb3c5320e42432c35b581c7455b080b0918ca955976a",
+      "bytes": 3751
+    },
+    {
+      "archive_name": "post-pr25/ci_diagnostics.py",
+      "source": "ops/ci/ci_diagnostics.py",
+      "sha256": "3e2a4afd29bc19a213479058a0ea633bc61b65ccf1b1ea67aec3ae51cba93631",
+      "bytes": 2370
     }
   ]
 }

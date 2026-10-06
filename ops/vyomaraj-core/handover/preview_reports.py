@@ -13,6 +13,8 @@ HANDOVER_NOTE = 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
 RECOVERY_DOC = 'RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md'
 DR_SYNC_REPORT = 'DR_SYNC_RESULTS_2026_10_04.md'
 TRANSFER_ZIP = 'transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip'
+POST_PR25_NOTE = 'NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt'
+POST_PR25_ZIP = 'transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip'
 REPORTS = {
     '/sovereign/': 'SOVEREIGN_POLICY_2026_10_03.md',
     '/contracts/': 'ENTERTAINMENT_CONTRACTS_2026_10_03.md',
@@ -33,6 +35,7 @@ REPORTS = {
     '/reports/handover-notepad': HANDOVER_NOTE,
     '/reports/recovery': RECOVERY_DOC,
     '/reports/dr-sync': DR_SYNC_REPORT,
+    '/reports/post-pr25-handover': POST_PR25_NOTE,
     '/reports/architecture': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/build': 'BUILD_AND_CONFIGURATION_2026_10_04.md',
     '/reports/test-evidence': 'TEST_EVIDENCE_2026_10_04.json',
@@ -58,6 +61,11 @@ PAGE_NOTES = {
     '/reports/test-evidence': '<p class="notice"><strong>Recorded test evidence</strong> — the counts '
                               'are those actually executed at the recorded time, not a standing '
                               'promise about later runs.</p>',
+    '/reports/post-pr25-handover': '<p class="notice"><strong>Post-PR25 companion</strong> — created on '
+                                   '2026-10-06 after this file was found to be missing from the '
+                                   'repository; it records checkpoint #20 and the two windows in which '
+                                   'verify-or-sync did not execute. Read its section 0 before quoting '
+                                   'any earlier claim about it.</p>',
 }
 # route -> (file relative to this directory, exact content type)
 DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8'),
@@ -66,6 +74,8 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/reports/download/next-session.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
              '/reports/download/handover-notepad.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
              '/reports/download/transfer-package.zip': (TRANSFER_ZIP, 'application/zip'),
+             '/reports/download/post-pr25-handover.txt': (POST_PR25_NOTE, 'text/plain; charset=utf-8'),
+             '/reports/download/post-pr25-transfer.zip': (POST_PR25_ZIP, 'application/zip'),
              '/reports/download/auto-align.json': ('AUTO_ALIGN_NEXT_SESSION.json', 'application/json'),
              '/reports/download/platform-check.md': ('PLATFORM_CONFIGURATION_CHECK_2026_10_04.md', 'text/plain; charset=utf-8'),
              '/reports/download/issues-ledger.json': ('ISSUES_AND_PRS_LEDGER.json', 'application/json')}
@@ -77,7 +87,9 @@ RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</
                   '<a href="/reports/next-session">Next session handover</a> &middot; '
                   '<a href="/reports/download/next-session.txt">Download Notepad .txt</a> &middot; '
                   '<a href="/reports/dr-sync">DR sync results</a> &middot; '
-                  '<a href="/reports/download/transfer-package.zip">Download transfer package .zip</a></div>')
+                  '<a href="/reports/download/transfer-package.zip">Download transfer package .zip</a> &middot; '
+                  '<a href="/reports/post-pr25-handover">Post-PR25 companion</a> &middot; '
+                  '<a href="/reports/download/post-pr25-transfer.zip">Download post-PR25 package .zip</a></div>')
 STYLE = '''body{margin:0;background:#0a1628;color:#e9eff7;font:16px/1.65 system-ui,sans-serif}
 main{max-width:1100px;margin:32px auto;padding:32px;background:#0e2138;border:1px solid #23405f;border-radius:16px}
 nav{display:flex;gap:18px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid #23405f}
@@ -168,7 +180,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()

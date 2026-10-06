@@ -247,6 +247,41 @@ def render(root=ROOT):
             'authorized reader/writer for the private secondary, and a sandbox 404 is not evidence about the secondary.',
             '',
         ]
+    windows = record.get('unverified_windows') or []
+    if windows:
+        lines += [
+            f'## 5e. Windows in which verify-or-sync did not execute ({len(windows)})',
+            '',
+            'A window is a period in which the workflow ran but the verify-or-sync job never executed, so',
+            '**no** checkpoint exists for it — no match, no mismatch and no write was observed. Windows are',
+            'recorded here rather than in section 3 precisely because they are not checkpoints: counting them',
+            'as matches would overstate coverage, and counting them as mismatches would overstate damage.',
+            '',
+        ]
+        for index, window in enumerate(windows, start=1):
+            runs = ', '.join(f'`{run}`' for run in window.get('runs', []))
+            resumed = window.get('resumed_by')
+            lines += [
+                f'### {index}. {window.get("window")}',
+                '',
+                f'- Head SHA at the time: `{window.get("head_sha")}`',
+                f'- Runs involved: {runs}',
+                f'- Observation: {window.get("observation")}',
+                f'- Cause recorded: {window.get("cause_recorded")}',
+                f'- Effect: {window.get("effect")}',
+                f"- Resumed by: {'run `' + str(resumed) + '`' if resumed else 'open at record time — the next checkpoint closes it'}",
+                '',
+            ]
+    extension = record.get('record_extension_2026_10_06')
+    if extension:
+        lines += [
+            f"## 5f. Record extension by `{extension.get('session')}` (2026-10-06)",
+            '',
+            f"- Finding: {extension.get('finding')}",
+            f"- Fix: {extension.get('fix')}",
+            f"- Next checkpoint: {extension.get('next_checkpoint')}",
+            '',
+        ]
     lines += [
         '## 6. Scope limits — do not restate otherwise',
         '',

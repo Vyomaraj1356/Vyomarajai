@@ -23,16 +23,23 @@ PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_TRANSFER_2026_10_04.zip'
 AUTO_ALIGN_JSON = HERE / 'AUTO_ALIGN_NEXT_SESSION.json'
 PLATFORM_CHECK = HERE / 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md'
 ISSUES_LEDGER = HERE / 'ISSUES_AND_PRS_LEDGER.json'
+POST_PR25_NOTE = HERE / 'NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt'
+POST_PR25_PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip'
+POST_PR25_MANIFEST = HERE / 'POST_PR25_MANIFEST_2026_10_04.json'
 VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports/build', '/reports/architecture',
                  '/reports/next-session', '/reports/handover-notepad', '/reports/dr-sync',
                  '/reports/recovery', '/reports/chats', '/reports/issue-6', '/reports/test-evidence',
                  '/reports/download/next-session.txt',
                  '/reports/download/handover-notepad.txt',
-                 '/reports/download/transfer-package.zip', '/reports/auto-align', '/reports/platform-check',
+                 '/reports/download/transfer-package.zip', '/reports/post-pr25-handover',
+                 '/reports/download/post-pr25-handover.txt', '/reports/download/post-pr25-transfer.zip',
+                 '/reports/auto-align', '/reports/platform-check',
                  '/reports/issues', '/reports/download/auto-align.json',
                  '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
                  '/not-an-allowlisted-route']
 GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
+                  '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
+                  '/reports/download/post-pr25-transfer.zip',
                   '/reports/dr-sync', '/reports/recovery', '/reports/chats', '/reports/issue-6',
                   '/reports/test-evidence', '/reports/download/handover-notepad.txt',
                   '/reports/agents', '/sovereign/', '/contracts/', '/reports/auto-align',
@@ -40,10 +47,12 @@ GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/
                   '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
                   '/not-an-allowlisted-route']
 LANE_REPORT_ROUTES = ['/reports/auto-align', '/reports/platform-check', '/reports/issues',
+                      '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
                       '/reports/download/auto-align.json', '/reports/download/platform-check.md',
                       '/reports/download/issues-ledger.json']
 # A 200 alone is not enough for the three reference pages: require a known content marker too.
 CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
+                   '/reports/post-pr25-handover': 'POST-PR25 COMPANION UPDATE',
                    '/reports/issue-6': 'Issue #6 resolution statement',
                    '/reports/test-evidence': 'python_tests_total',
                    '/reports/auto-align': 'AUTO-ALIGN EXECUTION PLAN',
@@ -129,13 +138,21 @@ def main():
     for label, path, route in (
             ('auto_align_json', AUTO_ALIGN_JSON, '/reports/download/auto-align.json'),
             ('platform_check', PLATFORM_CHECK, '/reports/download/platform-check.md'),
-            ('issues_ledger_json', ISSUES_LEDGER, '/reports/download/issues-ledger.json')):
+            ('issues_ledger_json', ISSUES_LEDGER, '/reports/download/issues-ledger.json'),
+            ('post_pr25_note', POST_PR25_NOTE, '/reports/download/post-pr25-handover.txt'),
+            ('post_pr25_package', POST_PR25_PACKAGE, '/reports/download/post-pr25-transfer.zip')):
         expected_bytes = path.read_bytes()
         for name, base in (('viewer', viewer), ('gateway', gateway)):
             result = fetch(base + route)
             if result['body'] != expected_bytes:
                 problems.append(f'{name} {label} download is not byte-identical to its source')
             extra_download_hashes[f'{name}_{label}_download_sha256'] = result['sha256']
+
+    post_pr25_manifest = json.loads(POST_PR25_MANIFEST.read_text())
+    if sha256(POST_PR25_PACKAGE.read_bytes()) != post_pr25_manifest['package_sha256']:
+        problems.append('post-PR25 package differs from POST_PR25_MANIFEST package_sha256')
+    if sha256(POST_PR25_NOTE.read_bytes()) != post_pr25_manifest['note_sha256']:
+        problems.append('post-PR25 note differs from POST_PR25_MANIFEST note_sha256')
 
     try:
         availability = json.loads(fetch(gateway + '/api/availability')['body'])

@@ -1,0 +1,302 @@
+VYOMARAJ — POST-PR25 COMPANION UPDATE — 2026-10-06
+================================================================================
+STATUS: WRITTEN AND VERIFIED IN A NEW SANDBOX ON 2026-10-06 BY SESSION
+        arena/582559e8-vyomarajai. The live GitHub evidence cited below was re-read
+        through the API in this session; nothing in this file is carried over on trust.
+Scope: repository Vyomaraj1356/Vyomarajai, the Git main snapshot replicated to
+       deepakGoyal1356/Vyomaraj-Agent-6d64e, the transfer packages in
+       ops/vyomaraj-core/handover/transfer/, and the local preview stack.
+This is NOT a production disaster-recovery approval, NOT an independent-site DR test, and
+NOT a claim about runtime databases, live media sessions, provider accounts, secrets,
+revenue or production traffic. Read section 6 before repeating anything from this file.
+
+0. PROVENANCE — READ BEFORE QUOTING THIS FILE OR ITS URLS
+This companion file did not exist in the repository before 2026-10-06. It was reported as an
+already-published artifact in a handover message ("Post-PR25 Companion, 49-member, 26K,
+SHA 20c828b0…"), together with two zips (41-member NEXT_SESSION_TRANSFER_2026_10_04.zip,
+49-member NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip) and four preview download routes.
+This session checked all of those claims against the repository and the GitHub API and found:
+
+  CLAIM                                              RESULT OF THE CHECK IN THIS SESSION
+  Post-PR25 note at ops/vyomaraj-core/handover/…     ABSENT. `gh api …/contents/…` returns
+  NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt     404; `curl` of the raw URL returns
+                                                     `404: Not Found`; the string POST_PR25
+                                                     appears nowhere in the working tree or
+                                                     in any commit of this repository.
+  49-member zip NEXT_SESSION_UPDATE_POST_PR25_        ABSENT. No such archive in
+  2026_10_04.zip (184K)                              ops/vyomaraj-core/handover/transfer/.
+  Preview routes /reports/post-pr25-handover,        ABSENT. preview_reports.py allowed
+  …/download/post-pr25-handover.txt,                 neither route; the server returns 404.
+  …/download/post-pr25-transfer.zip
+  Canonical note, 41-member package,                 PRESENT AND CONFIRMED. The canonical
+  checkpoints #1-#20, SHA 8acd71f0…, PR #25          note is byte-identical to what the
+  merge 0671fc5 = tree 88f681aa                      message quoted, and checkpoint #20 was
+                                                     re-read live (section 2).
+
+The honest reading: the previous session's DR verification work (checkpoints #1-#20) is real
+and is recorded in Git; the post-PR25 *artifacts* listed with it were never committed to this
+repository, so no public URL could ever have served them. The byte count "26K" and the SHA
+"20c828b0…" in that message describe bytes that no longer exist anywhere this session can
+reach; they are NOT reproduced by this file, and this file does not claim them. What this
+session did instead is build the missing artifacts for real, from the current sources, with
+their own builders and tests (sections 4 and 5), and record their actual measured SHA256
+values in POST_PR25_MANIFEST_2026_10_04.json.
+
+Two further corrections belong in the same breath, because they change how the earlier
+message should be read:
+
+  1. Every preview link in that message (the 4174-… e2b.app host) belongs to a sandbox that
+     no longer exists. A sandbox link is not an artifact: it dies with its sandbox, as the
+     4190 and 4174 links from the sessions before it already did. The repository copy is the
+     one that lasts, and that is why this file lives in Git.
+  2. The public raw/Pages URLs in that message only serve files that have been merged to
+     main. A file committed on a session branch is not reachable at a main URL until its pull
+     request is merged. Section 7 states exactly which URLs become real after this branch is
+     merged, and which pages need a token because the preview itself is not public.
+
+0b. WHAT IS VERIFIABLY TRUE FROM THE PREVIOUS SESSION
+Stated plainly, so that the corrections above are not read as a blanket disavowal:
+  * PR #25 was merged to main as 0671fc590a8778e5984f89ca66eb65e38d6ec734 at
+    2026-10-04T11:25:20Z, from branch arena/01a10655-vyomarajai. Its tree is
+    88f681aae8441eb0bf3b176f8222eeb68d5ba602 — the "0671fc5 = 88f681aa" pairing in the
+    earlier message is exactly right.
+  * That merge was verified by the repository's own workflow: push run 37198689808,
+    verify-or-sync check-run 111425773341, completed 2026-10-04T11:26:52Z, annotation
+    `status=MATCH; … primary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602;
+    secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602;
+    rollback_commit=307d0383e2b46c064332e35025e25d97614c709d; data_match=true`. It carried a
+    replication write, so it is checkpoint #20 with the previous secondary tip 307d0383… kept
+    as the rollback parent.
+  * The canonical note's bytes are unchanged and its SHA256 is still
+    8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2 at 30,728 bytes. This
+    session did not rewrite it; the companion is a separate file precisely so that a
+    published SHA256 stays meaningful.
+
+1. WHAT PR #25 ACTUALLY PUT ON MAIN
+Read from `git diff --name-status 0671fc59^1 0671fc59` in this checkout. The merge added the
+V16.9 planning and governance layer and refreshed the evidence it depends on:
+  * New documents/plans: DEEP_PRIMARY_SECONDARY_CONFIGURATION_SCAN_2026_10_04.md,
+    AUTO_ALIGN_NEXT_SESSION.json, AUTO_ALIGN_NEXT_SESSION_2026_10_04.md,
+    AUTO_ALIGN_STATE_2026_10_04.json, PLATFORM_CONFIGURATION_CHECK_2026_10_04.md,
+    PLATFORM_OPEN_ITEMS_2026_10_04.json, ISSUES_AND_PRS_LEDGER.json,
+    ISSUES_AND_PRS_LEDGER_2026_10_04.md, ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md.
+  * New builders and tests: auto_align.py, build_issue_ledger.py, build_platform_check.py,
+    run_offline_suites.py, check_language_policy.py, test_auto_align.py,
+    test_build_platform_check.py, and the ledger suite test_issue_ledger.py.
+  * Refreshed: build_configuration_report.py, build_transfer_package.py, preview_reports.py,
+    verify_preview.py, studio_server.py, rebuild_contents.py, DR_SYNC_RESULTS_2026_10_04.md,
+    DEPLOYED_MATCH_2026_10_04.json, TEST_EVIDENCE_2026_10_04.json, TRANSFER_MANIFEST_2026_10_04.json,
+    BUILD_AND_CONFIGURATION_2026_10_04.md, README.md, GITHUB_TRIAGE_2026_10_04.md,
+    ops/ci/ci_diagnostics.py, the sync workflow, and the 41-member transfer package itself.
+
+2. LIVE DR STATE AT THE TIME THIS FILE WAS WRITTEN
+Re-read from the GitHub API in this session, not transcribed from the earlier message:
+  * Checkpoints recorded: 20 MATCH. Replication writes: 16. The record closes at checkpoint
+    #20 (PR #25) because that is the last full-set re-read.
+  * The main tip at the time of writing is f735f92b00be903384c18fdcfa2a7a264ba3e09a,
+    tree 4064ba289bd5…, two commits past the last checkpoint. It has NO verify-or-sync
+    checkpoint (section 3).
+  * Two windows exist in which verify-or-sync did not execute at all. They are not
+    checkpoints: no match, no mismatch and no write was observed for them. Both are recorded
+    in DR_SYNC_RESULTS_2026_10_04.md section 5e with their run ids and evidence:
+      - Window A, 2026-10-05 19:13Z-21:25Z. Five consecutive scheduled runs concluded failure
+        with the offline-tests job CANCELLED after a uniform 15m02s each (no test output);
+        the same commit's next run at 21:43Z completed the identical suite in 21 seconds.
+        Cause recorded as a platform-side cancellation; no repository defect is claimed or
+        ruled out beyond that evidence. Runs 37361831782, 37365244096, 37368125663,
+        37371579909, 37374236163; resumed by run 37377733744.
+      - Window B, 2026-10-06 05:29Z onwards. Four runs failed at offline-tests so
+        verify-or-sync was skipped every time (runs 37418230309, 37418814411, 37418836991,
+        37419872626). Cause: the repository regression in section 3. This window is open at
+        the time of writing.
+
+3. THE 2026-10-06 REGRESSION, ITS CAUSE AND THE FIX ON THIS BRANCH
+What happened. Commits 4935ec8d ("fix: rebuild transfer package d9f2b0ae after index
+restore") and f735f92 ("Publish: Vyomaraj sovereign restore — original one-month design
+live") restored the transfer archive and TRANSFER_MANIFEST_2026_10_04.json from an older tree
+while the five member sources on disk stayed current. The result was a package that no longer
+matched its own sources.
+
+Measured, not guessed. `python3 ops/vyomaraj-core/handover/build_transfer_package.py --check`
+reported exactly five members differing from source, and the unit tests reported the same
+five through two failures:
+    DR_SYNC_RESULTS_2026_10_04.md   15372 bytes in the archive vs 15129 on disk
+    preview_reports.py              15195 vs 13055
+    BUILD_AND_CONFIGURATION_2026_10_04.md  11056 vs 11042
+    DEPLOYED_MATCH_2026_10_04.json  26309 vs 25330
+    studio_server.py                19292 vs 18013
+Why it mattered beyond a red check. The offline-tests job is the gate that verify-or-sync
+`needs:`. When it failed, replication never ran — and it failed silently as far as the DR
+record was concerned, because a run that never starts writes no annotation. The secondary
+therefore still holds the PR #25 snapshot (0671fc59, tree 88f681aa) and has not received
+4935ec8d or f735f92. That is a real Git-snapshot replication gap, stated here as a gap and not
+as a mismatch: no mismatch was observed either.
+
+The fix on this branch. The archive and its manifest were rebuilt from the current sources with
+their own builder. The strongest evidence that the defect was an artifact restore and not a
+content problem: rebuilt that way, the archive came out at 133,941 bytes, sha256
+8125959942d3d293f4971d3f52f46a9047868a3b5f113ee6d2b80efee2240a67 — byte-for-byte the value
+that PR #25's own PREVIEW_VERIFICATION_2026_10_04.json had recorded for the verified package.
+No source file was edited to make a test pass; the stale artifact was regenerated. The package
+has since been rebuilt again because this session also changed documents it carries (the DR
+report). Its current size and SHA256 are quoted in exactly one place,
+TRANSFER_MANIFEST_2026_10_04.json, and are deliberately not restated from memory here.
+
+Second defect found and fixed on this branch. The sync workflow pinned a single, long-expired
+session branch: `push.branches: [main, arena/01a10140-vyomarajai]` and the read-only PAT
+diagnostic job's condition `github.ref == 'refs/heads/arena/01a10140-vyomarajai'`. No live
+session has that name any more, so the diagnostic job was skipped in every run, including the
+successful ones (it is recorded as `skipped` in the check-run lists above). The workflow now
+triggers on `main` and `arena/**`, and the diagnostic condition is
+`startsWith(github.ref, 'refs/heads/arena/')`, so the offline gate and the read-only PAT
+diagnostic run on whichever branch a session actually pushes. Replication itself stays
+main-only: the verify-or-sync job still requires `refs/heads/main`.
+
+4. THE COMPANION PACKAGE (49 members)
+In repository: ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip
+Manifest     : ops/vyomaraj-core/handover/POST_PR25_MANIFEST_2026_10_04.json
+Built by     : python3 ops/vyomaraj-core/handover/build_post_pr25_package.py
+Checked by   : python3 ops/vyomaraj-core/handover/build_post_pr25_package.py --check
+Shape        : the canonical package's 41 members, as its leading block, with identical bytes,
+               plus 8 post-PR25 members — 49 in total. The builder refuses to build if any
+               canonical archive name is missing, if archive names or source paths collide, or
+               if a secret-like name, a local .env file or a missing source is present.
+The 8 post-PR25 members are:
+    NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt   this companion note
+    post-pr25/DEEP_PRIMARY_SECONDARY_CONFIGURATION_SCAN_2026_10_04.md
+    post-pr25/AUTO_ALIGN_STATE_2026_10_04.json
+    post-pr25/DR_POLICY.json
+    post-pr25/DR_FOLLOWUP_2026_10_03.json
+    post-pr25/ACTIONS_PROBE_EVIDENCE_2026_10_03.json
+    post-pr25/dr_diagnostics.py
+    post-pr25/ci_diagnostics.py
+Deliberately NOT members: TEST_EVIDENCE_2026_10_04.json and
+PREVIEW_VERIFICATION_2026_10_04.json. Both are rewritten every time the suites or the preview
+verifier run, so packaging them would make the archive stale on every subsequent run — the
+same trap that produced the regression in section 3. They are referenced by path from the
+manifest and served from the repository instead. No secrets, tokens, PATs or private
+configuration are packaged; DR_POLICY.json is the checked-in, owner-reviewed policy document.
+Determinism: fixed member timestamps (2026-10-04 00:00:00) and permission bits (0644), so the
+same Python/zlib rebuilds the archive byte-for-byte; the manifest records the package SHA256,
+the byte count, and a per-member SHA256 and size for all 49 members.
+The canonical 41-member package is unchanged by this companion in membership, path and purpose:
+it is still ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip, built by
+its own builder with fixed timestamps, with its own manifest and its own test file. Its current
+size and SHA256 are recorded in TRANSFER_MANIFEST_2026_10_04.json — read them there rather than
+from any hand-written copy.
+
+4b. MEMBER INVENTORY (49) — READ THE ARCHIVE WITHOUT UNZIPPING IT
+Members 1–41 are the canonical package, in its recorded order. Members 42–49 are the post-PR25
+additions. SHA256 and byte counts for every line below are in
+POST_PR25_MANIFEST_2026_10_04.json; the archive name order is asserted by the builder's check
+and by test_post_pr25_package.py, so a reordering cannot pass unnoticed.
+    1  NEXT_SESSION_HANDOVER_2026_10_04.txt        canonical note (SHA 8acd71f0…, 30,728 bytes)
+    2  RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md recovery/navigation package
+    3  DR_SYNC_RESULTS_2026_10_04.md               generated DR report, incl. sections 5b-5f
+    4  build_dr_sync_report.py                     its builder (--check gates drift)
+    5  test_dr_sync_report.py                      its tests
+    6  HANDOVER_ALL_UPDATES_2026_10_03.txt         rebuilt 2026-10-03 handover roster
+    7  build_transfer_package.py                   canonical package builder
+    8  preview_reports.py                          report viewer (4174) and its allowlist
+    9  test_preview_reports.py                     viewer route and byte-identity tests
+   10  test_transfer_package.py                    canonical package tests
+   11  verify_preview.py                           read-only stack verifier (writes PREVIEW_VERIFICATION)
+   12  BUILD_AND_CONFIGURATION_2026_10_04.md       build/configuration evidence document
+   13  build_configuration_report.py               its builder
+   14  test_build_configuration_report.py          its tests
+   15  DEPLOYED_MATCH_2026_10_04.json              THE DR record: 20 checkpoints, 16 writes, 5e windows
+   16  studio_server.py                            replica/lane server (4181, 4182) incl. report routes
+   17  experience/rebuild_contents.py              experience contents builder
+   18  gateway.py                                  failover rehearsal gateway (4176)
+   19  test_gateway.py                             gateway tests
+   20  INHERITANCE_AUDIT_2026_10_04.md             agent inheritance audit
+   21  inheritance_audit.py                        its builder
+   22  test_inheritance_audit.py                   its tests
+   23  LOCAL_FAILOVER_DRILL_2026_10_03.json        local drill evidence
+   24  LOCAL_FAILOVER_DRILL_2026_10_04.json        local drill evidence
+   25  V16.9/AUTO_ALIGN_NEXT_SESSION.json          machine-readable next-session plan
+   26  V16.9/AUTO_ALIGN_NEXT_SESSION_2026_10_04.md human-readable plan
+   27  V16.9/PLATFORM_OPEN_ITEMS_2026_10_04.json   open platform items
+   28  V16.9/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md  completion paths per item
+   29  V16.9/ISSUES_AND_PRS_LEDGER.json            issue/PR ledger
+   30  V16.9/ISSUES_AND_PRS_LEDGER_2026_10_04.md   runbook rendering of the ledger
+   31  V16.9/build_platform_check.py               ledger/platform builders
+   32  V16.9/build_issue_ledger.py
+   33  V16.9/auto_align.py                         auto-align builder (gates coverage)
+   34  V16.9/run_offline_suites.py                 the single offline evidence runner used by CI
+   35  V16.9/check_language_policy.py              language policy check
+   36  V16.9/test_auto_align.py                    tests for the above
+   37  V16.9/test_build_platform_check.py
+   38  V16.9/test_issue_ledger.py
+   39  V16.9/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md  issue #6 close-out (prepared, not sent)
+   40  V16.9/ISSUE_6_RESOLUTION_2026_10_04.md      issue #6 resolution statement
+   41  V16.9/GITHUB_TRIAGE_2026_10_04.md           triage notes
+   42  NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt  THIS companion note
+   43  post-pr25/DEEP_PRIMARY_SECONDARY_CONFIGURATION_SCAN_2026_10_04.md  deep config/DR scan
+   44  post-pr25/AUTO_ALIGN_STATE_2026_10_04.json   recorded auto-align state
+   45  post-pr25/DR_POLICY.json                     scope flags; zero_rpo_verified=false, zero_rto_verified=false
+   46  post-pr25/DR_FOLLOWUP_2026_10_03.json        follow-up DR check evidence
+   47  post-pr25/ACTIONS_PROBE_EVIDENCE_2026_10_03.json  read-only secondary probe evidence
+   48  post-pr25/dr_diagnostics.py                  READ-ONLY diagnostics used before any sync
+   49  post-pr25/ci_diagnostics.py                  CI annotation diagnostics
+Not in the archive, by design: TEST_EVIDENCE_2026_10_04.json, PREVIEW_VERIFICATION_2026_10_04.json,
+POST_PR25_MANIFEST_2026_10_04.json, TRANSFER_MANIFEST_2026_10_04.json and this archive itself —
+each is either rewritten by a check run or describes the archive it would be inside.
+
+5. HOW THIS FILE IS SERVED — ROUTES AND BYTE IDENTITY
+Local preview stack (all binds 0.0.0.0, browser code uses relative URLs only):
+    python3 ops/vyomaraj-core/experience/studio_server.py --port 4181 --home aghor
+    python3 ops/vyomaraj-core/experience/studio_server.py --port 4182 --home aghor
+    python3 ops/availability/gateway.py --port 4176 --primary-port 4181 --secondary-port 4182
+    python3 ops/vyomaraj-core/handover/preview_reports.py --port 4174
+Report viewer (4174) and the same routes through the gateway (4176):
+    /reports/next-session          canonical note, rendered
+    /reports/handover-notepad      the same file, rendered
+    /reports/post-pr25-handover    THIS file, rendered
+    /reports/download/next-session.txt            canonical note, exact bytes, as attachment
+    /reports/download/handover-notepad.txt        the same
+    /reports/download/post-pr25-handover.txt      this file, exact bytes, as attachment
+    /reports/download/transfer-package.zip        41-member canonical package
+    /reports/download/post-pr25-transfer.zip      49-member post-PR25 companion package
+Byte identity is asserted, not assumed: test_preview_reports.py and test_post_pr25_package.py
+compare each download against the file on disk, verify_preview.py re-reads the running stack
+and records the observed status, content type, size and SHA256 of every route into
+PREVIEW_VERIFICATION_2026_10_04.json, and test_post_pr25_package.py re-checks the manifest
+against the archive member by member. Downloaded bytes are the file's bytes; the ZIP downloads
+are the archive files themselves, so a downloaded archive is byte-identical to the archive in
+the repository.
+
+6. SCOPE LIMITS — DO NOT RESTATE OTHERWISE
+  * This is a Git-snapshot replication record for one repository pair. It is not a production
+    disaster-recovery approval and says nothing about runtime databases, secret stores, live
+    media sessions or production traffic.
+  * zero_rpo_verified and zero_rto_verified are both false in DR_POLICY.json. No RPO or RTO is
+    claimed anywhere in this file, the DR record or the DR report.
+  * traffic_switched is false in every observation; no production traffic and no Git ref were
+    changed by any run.
+  * Both replicas share one host, one checkout and one queue. Losing that machine defeats both.
+    The gateway is a single point of failure and says so at /api/availability:
+    mode SINGLE_HOST_REHEARSAL_NOT_PRODUCTION_DR.
+  * The preview stack is unauthenticated and is not an approval or revenue system. It dies
+    with its sandbox; the repository is what lasts.
+  * The private secondary repository cannot be read from this sandbox at all: the API returns
+    404 for it without the Actions credential. A 404 there is a permissions boundary, not a
+    statement about the secondary, and none of the claims in this file are based on such a read.
+    Every DR statement here comes from the workflow's own public annotations.
+
+7. WHAT THE NEXT SESSION SHOULD DO
+  1. Merge this branch. The merge is what makes the public raw and Pages URLs in the earlier
+     message real, and it is what lets the workflow run verify-or-sync on the fixed tip.
+     Immediately after the merge, read the new run's annotation (commands are in
+     DR_SYNC_RESULTS_2026_10_04.md section 7). A successful run becomes checkpoint #21,
+     replicates 4935ec8d, f735f92 and the fix itself to the secondary, and closes window B.
+  2. If the offline-tests job fails again, read the ::error annotations before assuming a
+     platform problem: that is exactly how window B was created.
+  3. Re-verify before re-asserting. Every SHA256, run id and annotation in this file can be
+     re-read for free with the commands in this repository; none of them needs to be believed
+     on trust, including the ones written here.
+  4. Keep the honesty rules the tests enforce: unknown names stay UNKNOWN, view-only is not
+     operational, historical snapshots are marked NOT CURRENT, and generated files are rebuilt
+     with their builder instead of edited by hand.
+
+END OF POST-PR25 COMPANION UPDATE

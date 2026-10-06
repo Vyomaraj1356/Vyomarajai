@@ -136,6 +136,24 @@ class PreviewTests(unittest.TestCase):
                     self.assertTrue(response.headers['Content-Type'].startswith(mime))
                     self.assertIn('attachment', response.headers['Content-Disposition'])
 
+    def test_post_pr25_companion_page_is_allowlisted_with_its_marker(self):
+        with urllib.request.urlopen(self.url + '/reports/post-pr25-handover') as response:
+            self.assertEqual(response.status, 200)
+            text = response.read().decode()
+        self.assertIn('POST-PR25 COMPANION UPDATE', text)
+        self.assertIn('checkpoint #20', text)
+
+    def test_post_pr25_downloads_are_byte_identical(self):
+        cases = (('/reports/download/post-pr25-handover.txt', preview.POST_PR25_NOTE, 'text/plain'),
+                 ('/reports/download/post-pr25-transfer.zip', preview.POST_PR25_ZIP, 'application/zip'))
+        for route, name, mime in cases:
+            with self.subTest(route=route):
+                expected = (HERE / name).read_bytes()
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.read(), expected)
+                    self.assertTrue(response.headers['Content-Type'].startswith(mime))
+                    self.assertIn('attachment', response.headers['Content-Disposition'])
+
     def test_chats_notice_states_both_counts_and_owner_confirmation(self):
         with urllib.request.urlopen(self.url + '/reports/chats') as response:
             text = response.read().decode()
