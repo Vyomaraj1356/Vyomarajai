@@ -136,6 +136,24 @@ class PreviewTests(unittest.TestCase):
                     self.assertTrue(response.headers['Content-Type'].startswith(mime))
                     self.assertIn('attachment', response.headers['Content-Disposition'])
 
+    def test_go_live_plan_and_live_wiring_pages_are_allowlisted(self):
+        cases = (('/reports/go-live', 'Navaratri 2026 go-live plan', 'Ghatasthapana'),
+                 ('/reports/live-wiring', 'Live wiring state', 'blocking_checks'))
+        for route, marker, extra in cases:
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.status, 200)
+                    text = response.read().decode()
+                self.assertIn(marker, text)
+                self.assertIn(extra, text)
+
+    def test_go_live_plan_names_the_launch_date_and_the_open_decisions(self):
+        with urllib.request.urlopen(self.url + '/reports/go-live') as response:
+            text = response.read().decode()
+        for marker in ('11 October 2026', 'Ghatasthapana', 'uidai.in', 'NOT real yet',
+                       'Owner sign-off lines'):
+            self.assertIn(marker, text)
+
     def test_post_pr25_companion_page_is_allowlisted_with_its_marker(self):
         with urllib.request.urlopen(self.url + '/reports/post-pr25-handover') as response:
             self.assertEqual(response.status, 200)

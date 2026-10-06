@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
-  "package_bytes": 139350,
+  "package_sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
+  "package_bytes": 139947,
   "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
@@ -53,14 +53,14 @@
     {
       "archive_name": "preview_reports.py",
       "source": "ops/vyomaraj-core/handover/preview_reports.py",
-      "sha256": "d669020e53d279022c9d2f404ac5c44bcb105bed6770361d2916b64b57d77c88",
-      "bytes": 14196
+      "sha256": "b2c0087f057b4821d91a1156bc2b618b1e42cb9e08c1bc286f9223db6f016ae0",
+      "bytes": 15079
     },
     {
       "archive_name": "test_preview_reports.py",
       "source": "ops/vyomaraj-core/handover/test_preview_reports.py",
-      "sha256": "7b996c0b86ecd535f31aa6af91a6d470a03c4c08bd5dabb8182ba7f05dd6bbfc",
-      "bytes": 10512
+      "sha256": "388c395c316debda2ba82c8104812bcbf872ded81d989fcb5ef95ed92a61e97c",
+      "bytes": 11492
     },
     {
       "archive_name": "test_transfer_package.py",
@@ -71,13 +71,13 @@
     {
       "archive_name": "verify_preview.py",
       "source": "ops/vyomaraj-core/handover/verify_preview.py",
-      "sha256": "8964104e32b44e420ce72aa92df676cfafbcc9f02b0c1dde98228639e7aa9f81",
-      "bytes": 12182
+      "sha256": "954a6bb869ec7e21ab074e52cd55e7714974f928df90c0835a6568fc9383cec3",
+      "bytes": 12441
     },
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "418e1f1253671590bf0a275e605e1d2e631657fb83bf5b82561514c4c2a4acbb",
+      "sha256": "94cd1ae5b07e45a2ec2e3e4a8ec28a656bdad7fad88ca0d480b1fb3b96871827",
       "bytes": 11230
     },
     {
@@ -101,8 +101,8 @@
     {
       "archive_name": "studio_server.py",
       "source": "ops/vyomaraj-core/experience/studio_server.py",
-      "sha256": "21b47b55bb0ea4bb3282943898646aa24a83d64e02496e99ff214e26a4255ca4",
-      "bytes": 18489
+      "sha256": "c3e52ebf78f0f61bcf1f957517fa7e51d5cba9c8d8ef3f588e4336506aa1afb6",
+      "bytes": 18553
     },
     {
       "archive_name": "experience/rebuild_contents.py",
@@ -125,8 +125,8 @@
     {
       "archive_name": "INHERITANCE_AUDIT_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/INHERITANCE_AUDIT_2026_10_04.md",
-      "sha256": "a8aa96cf2e160964c6fb1f65cf93467c47f98cec1c76858a7ae1c4ec35609e20",
-      "bytes": 4564
+      "sha256": "932016d9c9eca75f1012f1a94815f08e30d2208311aa4f157d1a75b87da44532",
+      "bytes": 4565
     },
     {
       "archive_name": "inheritance_audit.py",

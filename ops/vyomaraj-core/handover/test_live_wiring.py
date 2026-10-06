@@ -1,0 +1,110 @@
+"""Offline checks for the live-wiring verifier.
+
+These run without any server: they lock the contract between the verifier, the report viewer's
+route allowlist and the checked-in artifacts, and they prove that a dead route is reported as a
+problem rather than passing as if the wiring worked.
+"""
+import json
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+import preview_reports as viewer
+import verify_live_wiring as wiring
+
+
+class RouteContractTests(unittest.TestCase):
+    def test_every_advertised_route_is_actually_served(self):
+        served = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS)
+        for route in wiring.VIEWER_ROUTES:
+            self.assertIn(route, served, f'{route} is checked by the verifier but not served')
+
+    def test_every_download_is_served_and_has_a_source(self):
+        for route, source in wiring.DOWNLOADS.items():
+            self.assertIn(route, viewer.DOWNLOADS, f'{route} is not in the viewer download allowlist')
+            self.assertTrue((wiring.ROOT / source).is_file(), f'{source} is missing')
+
+    def test_replica_routes_are_served_by_the_lanes(self):
+        # The replicas serve their own route table and also consult the shared renderer's
+        # allowlists, so a route counts as served if either place knows it.
+        studio = (wiring.CORE / 'experience/studio_server.py').read_text(encoding='utf-8')
+        known = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS) | set(viewer.DOWNLOADS)
+        for route in wiring.REPLICA_ROUTES:
+            with self.subTest(route=route):
+                self.assertTrue(route in studio or route in known,
+                                f'{route} is neither routed by studio_server.py nor allowlisted '
+                                f'by the shared renderer')
+
+    def test_required_artifacts_exist(self):
+        missing = [path for path in wiring.REQUIRED_FILES if not (wiring.ROOT / path).is_file()]
+        self.assertEqual(missing, [], f'required launch artifacts are missing: {missing}')
+
+
+class FailureReportingTests(unittest.TestCase):
+    def test_dead_route_is_a_problem_not_a_pass(self):
+        problems = []
+        with patch.object(wiring, 'fetch', return_value={'status': 503, 'bytes': 0, 'sha256': None,
+                                                         'seconds': 0.0, 'body': b'', 'content_type': None}):
+            wiring.check_routes('http://127.0.0.1:1', ['/'], 'viewer', problems)
+        self.assertEqual(len(problems), 1)
+        self.assertIn('returned 503', problems[0])
+
+    def test_wrong_bytes_are_a_problem_not_a_pass(self):
+        problems = []
+        with patch.object(wiring, 'fetch', return_value={'status': 200, 'bytes': 3, 'sha256': None,
+                                                         'seconds': 0.0, 'body': b'nope',
+                                                         'content_type': 'text/plain'}):
+            wiring.check_downloads('http://127.0.0.1:1', 'viewer', problems)
+        self.assertEqual(len(problems), len(wiring.DOWNLOADS))
+        for problem in problems:
+            self.assertIn('not byte-identical', problem)
+
+    def test_missing_content_marker_is_a_problem(self):
+        problems = []
+        with patch.object(wiring, 'fetch', return_value={'status': 200, 'bytes': 3, 'sha256': None,
+                                                         'seconds': 0.0, 'body': b'abc',
+                                                         'content_type': 'text/html'}):
+            wiring.check_routes('http://127.0.0.1:1', [('/reports/dr-sync', None, 'BLOCKED')],
+                                'viewer', problems)
+        self.assertEqual(len(problems), 1)
+        self.assertIn('content marker', problems[0])
+
+
+class TruthfulnessTests(unittest.TestCase):
+    def test_enrollment_is_reported_absent_until_code_exists(self):
+        state = wiring.check_enrollment()
+        if state['enrollment_capture_implementation'] == 'ABSENT':
+            self.assertEqual(state['implementation_files'], [])
+        else:
+            self.assertTrue(state['implementation_files'], 'REVIEW must name the files it found')
+        self.assertIn('uidai.in', state['identity_documents_route']['rule'])
+
+    def test_databases_are_declared_outside_git_snapshot_replication(self):
+        state = wiring.check_databases()
+        self.assertFalse(state['git_snapshot_dr_covers_runtime_databases'])
+        self.assertTrue(state['backup_required_before_launch'])
+
+    def test_unsigned_apk_is_reported_as_not_installable(self):
+        state = wiring.check_apk([])
+        if not state['present']:
+            self.fail('Vyomaraj-App.apk is missing from the repository')
+        if not state['signed']:
+            self.assertIn('NOT INSTALLABLE', state['install_claim'])
+        self.assertFalse(state['rebuildable_from_this_repository'])
+        self.assertEqual(state['bytes'], len((wiring.ROOT / state['path']).read_bytes()))
+
+    def test_state_file_records_the_route_table_it_checked(self):
+        state_path = wiring.OUTPUT
+        if not state_path.is_file():
+            self.skipTest('verifier has not been run in this checkout yet')
+        recorded = json.loads(state_path.read_text(encoding='utf-8'))
+        self.assertEqual([row['route'] for row in recorded['viewer_routes']],
+                         list(wiring.VIEWER_ROUTES))
+        self.assertEqual([row['route'] for row in recorded['gateway_routes']],
+                         list(wiring.VIEWER_ROUTES))
+        self.assertIn('limitations', recorded)
+        self.assertTrue(recorded['advisory'])
+
+
+if __name__ == '__main__':
+    unittest.main()

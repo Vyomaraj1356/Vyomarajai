@@ -44,7 +44,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 ## 2. Contents
 
-- Indexed references: **173** (Current indexed references, not the complete historical 421 products or an exhaustive archive-content audit.)
+- Indexed references: **197** (Current indexed references, not the complete historical 421 products or an exhaustive archive-content audit.)
 - Education topics: **21** · historical catalog files: **32** unique paths (32)
 - Deduplication: Exact identity + equal source record only. Conflicts stop rebuild; similar titles, different editions or source contexts are not silently merged.
 - Ownership: education = EDU, government schemes = EDU
@@ -54,7 +54,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 | Aghor & Aghori (`/aghor/`) | chapters 14, people 7, practices 6, care 6, sources 11, timeline 6 |
 | Bhakti-Shakti (`/bhakti/`) | stories 12, avatars 10, peethas 9, recipes 3, sources 13 |
 | Roots & Pairings (no-alcohol by default) (`/pairings/`) | traditions 8, research_backlog 8, snacks 8, events 3, sources 9 |
-| Music & media (`/music/`) | agents 6, items 39, sources 27 |
+| Music & media (`/music/`) | agents 6, items 63, sources 44 |
 | Film & stage (`/film/`) | agents 6, items 27, sources 25, formats 7 |
 | Chitra Katha comics (trilingual hi/en/hinglish, past+future versions) (`/comics/`) | agents 3, items 12, formats 4, sources 6 |
 
@@ -95,7 +95,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 ## 5. Recorded verification evidence
 
-- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 26 viewer route checks, 27 gateway route checks, 16 studio-lane route checks, problems: none
+- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 28 viewer route checks, 27 gateway route checks, 20 studio-lane route checks, problems: none
 - **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 20 checkpoints; current state: This record covers the 2026-10-03 and 2026-10-04 successful verify-or-sync runs through the PR #25 merge (checkpoint #20). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 16 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Two windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Checkpoint #20 was re-read live on 2026-10-06; the previous 19 rows retain their earlier full-set revalidation.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434, 111395579579, 111396668243, 111397396312, 111404791435, 111425773341]
 - **Failover drill 2026-10-03** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_03.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Failover drill 2026-10-04** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)

@@ -84,6 +84,7 @@ REPORTS = {
     '/reports/auto-align': 'AUTO_ALIGN_NEXT_SESSION_2026_10_04.md',
     '/reports/platform-check': 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md',
     '/reports/issues': 'ISSUES_AND_PRS_LEDGER_2026_10_04.md',
+    '/reports/go-live': 'NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
 }
 
 

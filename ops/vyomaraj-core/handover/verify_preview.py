@@ -33,6 +33,7 @@ VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports
                  '/reports/download/handover-notepad.txt',
                  '/reports/download/transfer-package.zip', '/reports/post-pr25-handover',
                  '/reports/download/post-pr25-handover.txt', '/reports/download/post-pr25-transfer.zip',
+                 '/reports/go-live', '/reports/live-wiring',
                  '/reports/auto-align', '/reports/platform-check',
                  '/reports/issues', '/reports/download/auto-align.json',
                  '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
@@ -46,7 +47,8 @@ GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/
                   '/reports/platform-check', '/reports/issues', '/reports/download/auto-align.json',
                   '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
                   '/not-an-allowlisted-route']
-LANE_REPORT_ROUTES = ['/reports/auto-align', '/reports/platform-check', '/reports/issues',
+LANE_REPORT_ROUTES = ['/reports/go-live', '/reports/live-wiring',
+                      '/reports/auto-align', '/reports/platform-check', '/reports/issues',
                       '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
                       '/reports/download/auto-align.json', '/reports/download/platform-check.md',
                       '/reports/download/issues-ledger.json']
@@ -57,7 +59,9 @@ CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
                    '/reports/test-evidence': 'python_tests_total',
                    '/reports/auto-align': 'AUTO-ALIGN EXECUTION PLAN',
                    '/reports/platform-check': 'How it gets configured (auto-align plan)',
-                   '/reports/issues': 'New-session runbook (in order)'}
+                   '/reports/issues': 'New-session runbook (in order)',
+                   '/reports/go-live': 'Navaratri 2026 go-live plan',
+                   '/reports/live-wiring': 'blocking_checks'}
 
 
 def sha256(data):

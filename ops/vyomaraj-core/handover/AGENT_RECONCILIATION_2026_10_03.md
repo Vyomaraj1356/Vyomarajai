@@ -51,7 +51,7 @@ Product figures above are source-history metadata, not current reallocated or de
 
 - Active hierarchy: 13 category identities, 128 counted agent identities and 6 heading identities; all unique and parent-validated.
 - Exact repeated source roster records removed: **0**. The six semantic double-counted hub positions were reclassified by the explicit approval above, not presented as byte-identical records.
-- Current content index: **173 references**, including **21 Education topics** and the selected collections in the five editorial experiences. These are references, not all 421 products or new agents.
+- Current content index: **197 references**, including **21 Education topics** and the selected collections in the five editorial experiences. These are references, not all 421 products or new agents.
 - Exact repeated indexed content records removed: **0**. Equal identities collapse only if records are equal; conflicting duplicates stop the builder.
 - All 32 historical catalogue paths are unique. No runtime/configuration bodies are imported by this reconciliation builder.
 - Multiple references to the same stable agent ID from planners, content and reports are links to one agent, not duplicate agents to delete.

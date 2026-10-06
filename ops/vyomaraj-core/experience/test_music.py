@@ -27,12 +27,17 @@ class MusicContentTests(unittest.TestCase):
 
     def test_sources_and_catalogue_ids(self):
         items = self.data['items']
-        self.assertEqual(len(items), 39)
+        self.assertEqual(len(items), 63)
         self.assertEqual(len({i['id'] for i in items}), len(items))
         refs = {s['id'] for s in self.data['sources']}
         for i in items:
             self.assertTrue(set(i['source_ids']) <= refs)
-            if i['id'] not in ('audio', 'video'):
+            if i['licence_status'] == 'owned_original_not_yet_recorded':
+                # An original programme may cite context, never material: it must state its own
+                # rights basis and must not claim any performer or writer credit it does not have.
+                self.assertTrue(i.get('rights_basis'))
+                self.assertEqual(i['artists'], [])
+            elif i['id'] not in ('audio', 'video'):
                 self.assertTrue(i['source_ids'])
         self.assertTrue(all(s['url'].startswith('https://') for s in self.data['sources']))
 
@@ -40,8 +45,41 @@ class MusicContentTests(unittest.TestCase):
         self.assertFalse(any(self.data['scope'].values()))
         for i in self.data['items']:
             self.assertIsNone(i['media_url'])
-            self.assertEqual(i['licence_status'], 'not_licensed_for_rehosting')
-            self.assertEqual(i['explicit_status'], 'not_reviewed')
+            self.assertIn(i['licence_status'],
+                          ('not_licensed_for_rehosting', 'owned_original_not_yet_recorded'))
+            self.assertIn(i['explicit_status'], ('not_reviewed', 'original_creator_owned'))
+
+    def test_sufi_ghazal_and_show_formats_are_context_only(self):
+        data = self.data
+        extension = data['extension_2026_10_06']
+        self.assertEqual(extension['new_items'], 24)
+        self.assertEqual(extension['groups'],
+                         {'sufi': 6, 'ghazal': 6, 'studio_and_show_formats': 8,
+                          'original_programmes': 4})
+        for key in ('heritage_items_are_context_only', 'original_programmes_have_own_rights_basis'):
+            self.assertTrue(extension[key])
+        for key in ('media_rehosted', 'episodes_imported', 'lyrics_imported', 'brand_assets_used',
+                    'registry_totals_changed'):
+            self.assertFalse(extension[key])
+        self.assertEqual(extension['agents_created'], 0)
+        items = {i['id']: i for i in data['items']}
+        # The cards added by this extension are exactly the ones citing a source added with it.
+        new_sources = {s['id'] for s in data['sources'] if s['checked'] == '2026-10-06'}
+        self.assertEqual(len(new_sources), 17)
+        added = [i for i in data['items'] if set(i['source_ids']) & new_sources]
+        self.assertEqual(len(added), 24)
+        for i in added:
+            if i['licence_status'] != 'owned_original_not_yet_recorded':
+                # Every inherited card must state the rule in its own words, not just in a policy file.
+                self.assertIn('imported, copied or rehosted', i['summary'], i['id'])
+        for original in ('original-mehfil-sessions', 'original-sufi-cycle', 'original-ghazal-cycle',
+                         'original-navaratri-cycle'):
+            self.assertEqual(items[original]['record_type'], 'original programme')
+            self.assertEqual(items[original]['year'], 2026)
+            self.assertNotIn('imported, copied or rehosted', items[original]['summary'])
+        self.assertEqual(items['show-coke-studio-pk']['year'], 2008)
+        self.assertEqual(extension['navaratri_window']['Ghatasthapana'], '2026-10-11')
+        self.assertEqual(extension['navaratri_window']['Vijayadashami'], '2026-10-20')
 
     def test_dated_chart_not_current(self):
         c = self.data['chart_snapshot']

@@ -1563,6 +1563,318 @@
       "full_content_imported": false
     },
     {
+      "id": "music:items:sufi-qawwali",
+      "title": "Qawwali — the mehfil ensemble",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.sufi-qawwali"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:sufi-kafi",
+      "title": "Kafi — Punjabi and Sindhi devotional verse",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.sufi-kafi"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:sufi-khusrau",
+      "title": "Amir Khusrau — the Persian-Hindavi bridge",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.sufi-khusrau"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:sufi-mehfil",
+      "title": "Mehfil and sama — the listening gathering",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.sufi-mehfil"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:sufi-rock",
+      "title": "Sufi rock and fusion — the modern route",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.sufi-rock"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:sufi-baul",
+      "title": "Baul — Bengal's wandering minstrels",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.sufi-baul"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:ghazal-form",
+      "title": "Ghazal — form and structure",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.ghazal-form"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:ghazal-gharanas",
+      "title": "Ghazal gayaki — gharanas and the thumri tie",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.ghazal-gharanas"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:ghazal-poets",
+      "title": "Ghazal poetry — the Urdu line",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.ghazal-poets"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:ghazal-begum-akhtar",
+      "title": "Begum Akhtar — thumri and ghazal gayaki",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.ghazal-begum-akhtar"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:ghazal-mehdi-hassan",
+      "title": "Mehdi Hassan — the classical concert ghazal",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.ghazal-mehdi-hassan"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:ghazal-now",
+      "title": "Ghazal today — records, television and the mehfil revival",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.ghazal-now"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-coke-studio-pk",
+      "title": "Coke Studio Pakistan — house band and guest artists (from 2008)",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-coke-studio-pk"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-coke-studio-franchise",
+      "title": "The Coke Studio format beyond Pakistan — India, Bangla, Bel 3arabi",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-coke-studio-franchise"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-coke-studio-india",
+      "title": "Coke Studio India — 2011 launch and the regional variants",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-coke-studio-india"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-coke-studio-bangla",
+      "title": "Coke Studio Bangla — a language-first edition (2022)",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-coke-studio-bangla"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-mtv-unplugged",
+      "title": "MTV Unplugged — the acoustic session format",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-mtv-unplugged"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-dewarists",
+      "title": "The Dewarists — collaboration as documentary",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-dewarists"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-tinydesk",
+      "title": "Tiny Desk Concerts — the intimate single-take session",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-tinydesk"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:show-rules",
+      "title": "What we may inherit from these shows — and what we may not",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.show-rules"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:original-mehfil-sessions",
+      "title": "Original: Mehfil Sessions — our own gathering format",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.original-mehfil-sessions"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:original-sufi-cycle",
+      "title": "Original: Sufi Cycle — nine nights of devotional programming",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.original-sufi-cycle"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:original-ghazal-cycle",
+      "title": "Original: Ghazal Cycle — new verse in the mehfil setting",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.original-ghazal-cycle"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
+      "id": "music:items:original-navaratri-cycle",
+      "title": "Original: Navaratri 2026 cycle — nine nights, one programme each",
+      "owner_category": "ENTERTAINMENT",
+      "kind": "editorial_items",
+      "source_refs": [
+        {
+          "path": "ops/vyomaraj-core/music-experience/content.json",
+          "locator": "items.original-navaratri-cycle"
+        }
+      ],
+      "full_content_imported": false
+    },
+    {
       "id": "bhakti:stories:shiv-shakti",
       "title": "Shiv–Shakti: relationship and meaning",
       "owner_category": "BHAKTI",
@@ -2252,7 +2564,7 @@
       "full_content_imported": false
     }
   ],
-  "indexed_reference_count": 173,
+  "indexed_reference_count": 197,
   "education_topic_count": 21,
   "deduplication_basis": "Exact identity + equal source record only. Conflicts stop rebuild; similar titles, different editions or source contexts are not silently merged.",
   "duplicates_removed": [],

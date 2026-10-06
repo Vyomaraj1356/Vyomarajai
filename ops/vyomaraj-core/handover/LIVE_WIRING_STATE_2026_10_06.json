@@ -1,0 +1,652 @@
+{
+  "checked_at_utc": "2026-10-06T06:12:10Z",
+  "scope": "READ_ONLY_LIVE_WIRING_CHECK \u2014 local preview stack plus checked-in packs",
+  "git": {
+    "commit": "45ef1cdb0a2520aaf6de32da8864064871b55262",
+    "branch": "arena/582559e8-vyomarajai"
+  },
+  "blocking_checks": {
+    "failures": [],
+    "passed": true
+  },
+  "viewer_routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "bytes": 25834,
+      "sha256": "e57dc0fb86f1bf60416668f3987687e66425c8bb2895e04b111211832f96eb3e",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.006
+    },
+    {
+      "route": "/reports/next-session",
+      "status": 200,
+      "bytes": 34009,
+      "sha256": "3c52a965d06a3f57d60cfbc894f5f2f9663c7bf6c155bfe8c7718ae3d5c8aed4",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt"
+    },
+    {
+      "route": "/reports/handover-notepad",
+      "status": 200,
+      "bytes": 34009,
+      "sha256": "3c52a965d06a3f57d60cfbc894f5f2f9663c7bf6c155bfe8c7718ae3d5c8aed4",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt"
+    },
+    {
+      "route": "/reports/post-pr25-handover",
+      "status": 200,
+      "bytes": 27414,
+      "sha256": "cdb21fb57e62d48c70609443ba6d482eb008f803814c9340ee0bc8d255709ac7",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt"
+    },
+    {
+      "route": "/reports/dr-sync",
+      "status": 200,
+      "bytes": 29662,
+      "sha256": "3700f1a941bbfb24e50d241d30c3c78de6b236e636dcdd51057a0ecf20f81921",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.002,
+      "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md"
+    },
+    {
+      "route": "/reports/contents",
+      "status": 200,
+      "bytes": 59211,
+      "sha256": "676e00670d431a69c9ef48ec9ae084e11f46e9bab77d1a657c3178b791d403ea",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.005,
+      "source": "ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md"
+    },
+    {
+      "route": "/reports/go-live",
+      "status": 200,
+      "bytes": 18242,
+      "sha256": "1d656d81657af845284c227295e75fc7327f4f15165a0a90af5e4af83b4a1d58",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.002,
+      "source": "ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md"
+    },
+    {
+      "route": "/reports/live-wiring",
+      "status": 200,
+      "bytes": 33042,
+      "sha256": "687edf014e8a11e877ea34f1025adac9db8ffca93927aa17a6c6270ba14ffebc",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
+    },
+    {
+      "route": "/reports/test-evidence",
+      "status": 200,
+      "bytes": 31297,
+      "sha256": "ae4de777ef3cde313b95967ef8cb55416e117926951f4101824ea67422aa601c",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json"
+    },
+    {
+      "route": "/reports/issues",
+      "status": 200,
+      "bytes": 12657,
+      "sha256": "45af61baee069970c70c0b257f5271c38ec1434df188aa95016a656f4c2787d7",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md"
+    }
+  ],
+  "gateway_routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "bytes": 5203,
+      "sha256": "22b68ec01f871ff87250dae87530bc9294e1af0f59359490077aa4b32c1a28c0",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.003
+    },
+    {
+      "route": "/reports/next-session",
+      "status": 200,
+      "bytes": 34273,
+      "sha256": "cb61608a6f7f4cad5ece4bbca4bf53bf440106e6a374b7e35bf7c1caab5367c3",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.002,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt"
+    },
+    {
+      "route": "/reports/handover-notepad",
+      "status": 200,
+      "bytes": 34273,
+      "sha256": "cb61608a6f7f4cad5ece4bbca4bf53bf440106e6a374b7e35bf7c1caab5367c3",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt"
+    },
+    {
+      "route": "/reports/post-pr25-handover",
+      "status": 200,
+      "bytes": 27678,
+      "sha256": "1eeedf1518f3710fec1dc40426b83eda3a12e2150659e8c4c1529fd8dfe0d099",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt"
+    },
+    {
+      "route": "/reports/dr-sync",
+      "status": 200,
+      "bytes": 29926,
+      "sha256": "10f50b372b4a61a7a7d5063665791ed5c7681049ee7939455b4febcb8ac24e75",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.003,
+      "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md"
+    },
+    {
+      "route": "/reports/contents",
+      "status": 200,
+      "bytes": 59475,
+      "sha256": "d9a4aaaf41382449728437e400583d8d2af98690f6fe4bf9f83306d2db53e22e",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.005,
+      "source": "ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md"
+    },
+    {
+      "route": "/reports/go-live",
+      "status": 200,
+      "bytes": 18506,
+      "sha256": "24ca20e3998e187327b430824057dcaa7026109c5f3e794e6148f15b4dbf70b8",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.003,
+      "source": "ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md"
+    },
+    {
+      "route": "/reports/live-wiring",
+      "status": 200,
+      "bytes": 33306,
+      "sha256": "061a483bf6f611adc09039e4902f0d60c3d048669c682bea3771262274c5a3d9",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.002,
+      "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
+    },
+    {
+      "route": "/reports/test-evidence",
+      "status": 200,
+      "bytes": 31561,
+      "sha256": "3f2731d35dfafe57b96c1a128dfe93091801ca6ad56e31531808f5e8517efc29",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json"
+    },
+    {
+      "route": "/reports/issues",
+      "status": 200,
+      "bytes": 12921,
+      "sha256": "30f890c746f23c1474a2bddace5587b7d4fd414710b088b2d2d91a1bd09c99ea",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.002,
+      "source": "ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md"
+    }
+  ],
+  "replica_4181_routes": [
+    {
+      "route": "/music/",
+      "status": 200,
+      "bytes": 8916,
+      "sha256": "dfe2fce2f2b283aa13d9e9a4eb71fe15fd163ce92facbcd60a6d72fcd87742ab",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/film/",
+      "status": 200,
+      "bytes": 9177,
+      "sha256": "eaed00eb7067888d496a25ee1a3f7984363cb1ae6f61916166d079d162f99632",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/bhakti/",
+      "status": 200,
+      "bytes": 9967,
+      "sha256": "add0e04a2364e80e576471a75557b5b68501e0147dc65599ca4abe7493bbd9a7",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/comics/",
+      "status": 200,
+      "bytes": 7917,
+      "sha256": "0ab31efcfc61f91db31b798f8dca9f92ad47b312554b0db4eaa13a4d65a2e1c5",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/pairings/",
+      "status": 200,
+      "bytes": 9265,
+      "sha256": "0caae9057b7d4c57fd19ef3fe304fecf8875af2f7227e63cc9621df69452e08d",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/aghor/",
+      "status": 200,
+      "bytes": 5203,
+      "sha256": "22b68ec01f871ff87250dae87530bc9294e1af0f59359490077aa4b32c1a28c0",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/research/",
+      "status": 200,
+      "bytes": 5276,
+      "sha256": "c43f659a6b968e8c6c2b00c686a63235357988dd27a12847227c5284fc70dc6f",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/agents/",
+      "status": 200,
+      "bytes": 4317,
+      "sha256": "9beca91caf5b19467080d56de7808bd20abebaaecb7c3a063a8918ef8c356fa8",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/reports/contents",
+      "status": 200,
+      "bytes": 59475,
+      "sha256": "d9a4aaaf41382449728437e400583d8d2af98690f6fe4bf9f83306d2db53e22e",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.005,
+      "source": "ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md"
+    },
+    {
+      "route": "/reports/go-live",
+      "status": 200,
+      "bytes": 18506,
+      "sha256": "24ca20e3998e187327b430824057dcaa7026109c5f3e794e6148f15b4dbf70b8",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.002,
+      "source": "ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md"
+    },
+    {
+      "route": "/reports/live-wiring",
+      "status": 200,
+      "bytes": 33306,
+      "sha256": "061a483bf6f611adc09039e4902f0d60c3d048669c682bea3771262274c5a3d9",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
+    },
+    {
+      "route": "/reports/post-pr25-handover",
+      "status": 200,
+      "bytes": 27678,
+      "sha256": "1eeedf1518f3710fec1dc40426b83eda3a12e2150659e8c4c1529fd8dfe0d099",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt"
+    }
+  ],
+  "replica_4182_routes": [
+    {
+      "route": "/music/",
+      "status": 200,
+      "bytes": 8916,
+      "sha256": "dfe2fce2f2b283aa13d9e9a4eb71fe15fd163ce92facbcd60a6d72fcd87742ab",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/film/",
+      "status": 200,
+      "bytes": 9177,
+      "sha256": "eaed00eb7067888d496a25ee1a3f7984363cb1ae6f61916166d079d162f99632",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/bhakti/",
+      "status": 200,
+      "bytes": 9967,
+      "sha256": "add0e04a2364e80e576471a75557b5b68501e0147dc65599ca4abe7493bbd9a7",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/comics/",
+      "status": 200,
+      "bytes": 7917,
+      "sha256": "0ab31efcfc61f91db31b798f8dca9f92ad47b312554b0db4eaa13a4d65a2e1c5",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/pairings/",
+      "status": 200,
+      "bytes": 9265,
+      "sha256": "0caae9057b7d4c57fd19ef3fe304fecf8875af2f7227e63cc9621df69452e08d",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/aghor/",
+      "status": 200,
+      "bytes": 5203,
+      "sha256": "22b68ec01f871ff87250dae87530bc9294e1af0f59359490077aa4b32c1a28c0",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/research/",
+      "status": 200,
+      "bytes": 5276,
+      "sha256": "c43f659a6b968e8c6c2b00c686a63235357988dd27a12847227c5284fc70dc6f",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/agents/",
+      "status": 200,
+      "bytes": 4317,
+      "sha256": "9beca91caf5b19467080d56de7808bd20abebaaecb7c3a063a8918ef8c356fa8",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001
+    },
+    {
+      "route": "/reports/contents",
+      "status": 200,
+      "bytes": 59475,
+      "sha256": "d9a4aaaf41382449728437e400583d8d2af98690f6fe4bf9f83306d2db53e22e",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.005,
+      "source": "ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md"
+    },
+    {
+      "route": "/reports/go-live",
+      "status": 200,
+      "bytes": 18506,
+      "sha256": "24ca20e3998e187327b430824057dcaa7026109c5f3e794e6148f15b4dbf70b8",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.002,
+      "source": "ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md"
+    },
+    {
+      "route": "/reports/live-wiring",
+      "status": 200,
+      "bytes": 33306,
+      "sha256": "061a483bf6f611adc09039e4902f0d60c3d048669c682bea3771262274c5a3d9",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
+    },
+    {
+      "route": "/reports/post-pr25-handover",
+      "status": 200,
+      "bytes": 27678,
+      "sha256": "1eeedf1518f3710fec1dc40426b83eda3a12e2150659e8c4c1529fd8dfe0d099",
+      "content_type": "text/html; charset=utf-8",
+      "seconds": 0.001,
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt"
+    }
+  ],
+  "viewer_downloads": [
+    {
+      "route": "/reports/download/next-session.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
+      "status": 200,
+      "bytes": 30728,
+      "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/handover-notepad.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
+      "status": 200,
+      "bytes": 30728,
+      "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/post-pr25-handover.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
+      "status": 200,
+      "bytes": 23864,
+      "sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/transfer-package.zip",
+      "source": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
+      "status": 200,
+      "bytes": 139947,
+      "sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/post-pr25-transfer.zip",
+      "source": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
+      "status": 200,
+      "bytes": 176157,
+      "sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3",
+      "byte_identical_to_source": true
+    }
+  ],
+  "gateway_downloads": [
+    {
+      "route": "/reports/download/next-session.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
+      "status": 200,
+      "bytes": 30728,
+      "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/handover-notepad.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
+      "status": 200,
+      "bytes": 30728,
+      "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/post-pr25-handover.txt",
+      "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
+      "status": 200,
+      "bytes": 23864,
+      "sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/transfer-package.zip",
+      "source": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
+      "status": 200,
+      "bytes": 139947,
+      "sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
+      "byte_identical_to_source": true
+    },
+    {
+      "route": "/reports/download/post-pr25-transfer.zip",
+      "source": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
+      "status": 200,
+      "bytes": 176157,
+      "sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3",
+      "byte_identical_to_source": true
+    }
+  ],
+  "lanes_and_packs": [
+    {
+      "lane": "music",
+      "pack": "ops/vyomaraj-core/music-experience/content.json",
+      "records": 107,
+      "sources": 44,
+      "dangling_sources": [],
+      "agent_slots": [
+        "ENT-MUS-S1",
+        "ENT-MUS-S2",
+        "ENT-MUS-S3",
+        "ENT-MUS-S4",
+        "ENT-MUS-S5",
+        "ENT-MUS-S6"
+      ],
+      "slots_absent_from_registry": [],
+      "canonical_names_unknown": 6,
+      "registered_slot_count": 0
+    },
+    {
+      "lane": "film",
+      "pack": "ops/vyomaraj-core/film-experience/content.json",
+      "records": 59,
+      "sources": 25,
+      "dangling_sources": [],
+      "agent_slots": [
+        "ENT-MOVIE-S1",
+        "ENT-MOVIE-S2",
+        "ENT-MOVIE-S3",
+        "ENT-MOVIE-S4",
+        "ENT-MOVIE-S5",
+        "ENT-MOVIE-S6"
+      ],
+      "slots_absent_from_registry": [],
+      "canonical_names_unknown": 6,
+      "registered_slot_count": 0
+    },
+    {
+      "lane": "bhakti",
+      "pack": "ops/vyomaraj-core/bhakti-experience/content.json",
+      "records": 47,
+      "sources": 13,
+      "dangling_sources": [],
+      "agent_slots": [],
+      "slots_absent_from_registry": [],
+      "canonical_names_unknown": 0,
+      "registered_slot_count": 0
+    },
+    {
+      "lane": "comics",
+      "pack": "ops/vyomaraj-core/comics-experience/content.json",
+      "records": 22,
+      "sources": 6,
+      "dangling_sources": [],
+      "agent_slots": [
+        "ENT-CARTOON-S1",
+        "ENT-CARTOON-S2",
+        "ENT-CARTOON-S3"
+      ],
+      "slots_absent_from_registry": [],
+      "canonical_names_unknown": 3,
+      "registered_slot_count": 0
+    },
+    {
+      "lane": "pairings",
+      "pack": "ops/vyomaraj-core/liquor-bar/content.json",
+      "records": 28,
+      "sources": 9,
+      "dangling_sources": [],
+      "agent_slots": [],
+      "slots_absent_from_registry": [],
+      "canonical_names_unknown": 0,
+      "registered_slot_count": 0
+    },
+    {
+      "lane": "aghor",
+      "pack": "ops/vyomaraj-core/aghor-experience/content.json",
+      "records": 44,
+      "sources": 11,
+      "dangling_sources": [],
+      "agent_slots": [],
+      "slots_absent_from_registry": [],
+      "canonical_names_unknown": 0,
+      "registered_slot_count": 0
+    }
+  ],
+  "missing_artifacts": [],
+  "apk": {
+    "path": "Vyomaraj-App.apk",
+    "present": true,
+    "bytes": 24567022,
+    "sha256": "948e60b03ed62b8b209140924611b205211e2839e8f24a0f6d7de1d2f09a6153",
+    "zip_entries": 222,
+    "android_manifest_present": true,
+    "dex_files": [
+      "classes.dex",
+      "classes2.dex",
+      "classes3.dex",
+      "classes4.dex",
+      "classes5.dex",
+      "classes6.dex",
+      "classes7.dex",
+      "classes8.dex"
+    ],
+    "signature_files": [],
+    "signed": false,
+    "install_claim": "NOT INSTALLABLE AS IS \u2014 no signature block is present, so a stock Android device rejects this package",
+    "rebuildable_from_this_repository": false,
+    "rebuild_note": "No Android project (build.gradle, AndroidManifest.xml source, Java or Kotlin) exists in this repository, so this binary cannot be rebuilt or re-signed here. A signed build needs its original project or a rebuild.",
+    "advisory": "Do not present this APK as a release build until it is rebuilt, signed and installed on a real device."
+  },
+  "enrollment": {
+    "enrollment_capture_implementation": "REVIEW",
+    "implementation_files": [
+      "ops/vyomaraj-core/handover/test_live_wiring.py"
+    ],
+    "files_merely_discussing_voice_or_biometric_terms": [],
+    "identity_documents_route": {
+      "rule": "uidai.in web only; no in-app biometric capture",
+      "reference": "https://uidai.in"
+    },
+    "required_before_shipping": [
+      "explicit consent screen with a plain-language purpose",
+      "delete-my-voice control and a stated retention period",
+      "a test that fails if a voice template is written into the repository or uploaded",
+      "legal review for any identity-document step before it is announced"
+    ]
+  },
+  "databases": {
+    "git_snapshot_dr_covers_runtime_databases": false,
+    "note": "Replication in this repository covers Git tracked files only.",
+    "stores": [
+      {
+        "label": "research discovery store",
+        "path": "ops/vyomaraj-core/research/.state",
+        "kind": "directory"
+      }
+    ],
+    "backup_required_before_launch": true
+  },
+  "web_urls": {
+    "declared_public_urls": [
+      {
+        "label": "Owner repository",
+        "url": "https://github.com/Vyomaraj1356/Vyomarajai"
+      },
+      {
+        "label": "Owner Pages",
+        "url": "https://Vyomaraj1356.github.io/Vyomarajai/"
+      },
+      {
+        "label": "Identity-documents route (web only)",
+        "url": "https://uidai.in"
+      }
+    ],
+    "production_url": "NOT SET \u2014 no launch domain is recorded in this repository yet",
+    "note": "A preview link dies with its sandbox and cannot be the launch address."
+  },
+  "advisory": [
+    "APK build, signature and device behaviour are unverified.",
+    "Voice/biometric enrollment has no implementation in this repository yet.",
+    "Runtime databases are outside Git-snapshot replication and need a tested backup.",
+    "No production URL is recorded; preview links die with their sandbox.",
+    "No independent-site DR and no zero-RPO/RTO claim: zero_rpo_verified=false, zero_rto_verified=false in ops/dr/DR_POLICY.json."
+  ],
+  "limitations": [
+    "Only responses observed at the recorded time are asserted.",
+    "A green result means the wiring works, not that the product is live or paid.",
+    "The preview stack is unauthenticated and runs on one host."
+  ]
+}

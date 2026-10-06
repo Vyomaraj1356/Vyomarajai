@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-06T06:04:54+00:00",
+  "verified_at_utc": "2026-10-06T06:12:11+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/582559e8-vyomarajai",
-    "commit": "3d84c1b82c1676f97e74c54785d5ca7730018873"
+    "commit": "45ef1cdb0a2520aaf6de32da8864064871b55262"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
@@ -12,16 +12,16 @@
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
-    "bytes": 139350
+    "sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
+    "bytes": 139947
   },
   "byte_identity": {
     "viewer_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "viewer_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-    "viewer_transfer_package_download_sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
-    "gateway_transfer_package_download_sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
+    "viewer_transfer_package_download_sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
+    "gateway_transfer_package_download_sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
     "viewer_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "gateway_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "viewer_platform_check_download_sha256": "55d3e64017ff0f46645b9c9cbedc68d83c4481216ad1898ec5a4cd4e28912433",
@@ -30,8 +30,8 @@
     "gateway_issues_ledger_json_download_sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345",
     "viewer_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
     "gateway_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
-    "viewer_post_pr25_package_download_sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760",
-    "gateway_post_pr25_package_download_sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760"
+    "viewer_post_pr25_package_download_sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3",
+    "gateway_post_pr25_package_download_sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3"
   },
   "viewer_routes": [
     {
@@ -41,7 +41,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 25834,
-      "sha256": "7fb9931b29c8a6f9ec7a3849c47b02ffcf60c0ca8e519064b5a6e07b0f8860b9"
+      "sha256": "e57dc0fb86f1bf60416668f3987687e66425c8bb2895e04b111211832f96eb3e"
     },
     {
       "route": "/sovereign/",
@@ -68,7 +68,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 24306,
-      "sha256": "025cb00c3f6285735258a44a5f76e4d29b70f2a3f04c7bc4586568d5c547c7f6"
+      "sha256": "41cc60fd8d2e6e674c1dd1aa3c809c8fa021e5f05aa71b76af2801f043200522"
     },
     {
       "route": "/reports/build",
@@ -77,7 +77,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 16908,
-      "sha256": "d6d9585064bff379b1c5dea7a48a3d40c683d8bec308ef4ed22659ee2b5605ab"
+      "sha256": "3cc42f92e4129791c2dd3414e8baef49225f5ac2768d1f433a800cef37780076"
     },
     {
       "route": "/reports/architecture",
@@ -148,8 +148,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 31298,
-      "sha256": "d45107e57d33fcb93953f000867c4224e06b340ae411e124d5a387dcc24c1a83"
+      "bytes": 31297,
+      "sha256": "ae4de777ef3cde313b95967ef8cb55416e117926951f4101824ea67422aa601c"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -175,8 +175,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 139350,
-      "sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4"
+      "bytes": 139947,
+      "sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb"
     },
     {
       "route": "/reports/post-pr25-handover",
@@ -202,8 +202,26 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 175560,
-      "sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760"
+      "bytes": 176157,
+      "sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3"
+    },
+    {
+      "route": "/reports/go-live",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 18242,
+      "sha256": "1d656d81657af845284c227295e75fc7327f4f15165a0a90af5e4af83b4a1d58"
+    },
+    {
+      "route": "/reports/live-wiring",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 33042,
+      "sha256": "c668bf2120868bf72e667ec399162c88f944fa4c77430a2536db58906023f9c0"
     },
     {
       "route": "/reports/auto-align",
@@ -322,7 +340,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 17172,
-      "sha256": "2905a9a8e6785f6c5bbdecfaf441d6ae671bea4ecf10fe44d33ef5bfeb8b795a"
+      "sha256": "8730fa58d1e5c512ebba9f3d7bb6838d8ee545a698903dcba9539fc2a243feb9"
     },
     {
       "route": "/reports/next-session",
@@ -366,8 +384,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 175560,
-      "sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760"
+      "bytes": 176157,
+      "sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3"
     },
     {
       "route": "/reports/dr-sync",
@@ -411,8 +429,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 31562,
-      "sha256": "d7951cd17b42fe22d5baa46e30c646a7a97c661f4672014c6a7c63c014615b2e"
+      "bytes": 31561,
+      "sha256": "3f2731d35dfafe57b96c1a128dfe93091801ca6ad56e31531808f5e8517efc29"
     },
     {
       "route": "/reports/download/handover-notepad.txt",
@@ -430,7 +448,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 24570,
-      "sha256": "487ea76ab2496b68484c83c45b89eb9ad46ef7d03f878a6f2454f43496df8530"
+      "sha256": "b04906a32645654ca475b70c005d98dca479ad0c4369390830c21d8ac162802e"
     },
     {
       "route": "/sovereign/",
@@ -517,6 +535,24 @@
   "studio_lanes": {
     "4181": [
       {
+        "route": "/reports/go-live",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 18506,
+        "sha256": "24ca20e3998e187327b430824057dcaa7026109c5f3e794e6148f15b4dbf70b8"
+      },
+      {
+        "route": "/reports/live-wiring",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 33306,
+        "sha256": "00732b305db8d60dd937c0ab73bba653ea3260721781488bc7f21bde3fc023ec"
+      },
+      {
         "route": "/reports/auto-align",
         "expected_status": 200,
         "status": 200,
@@ -590,6 +626,24 @@
       }
     ],
     "4182": [
+      {
+        "route": "/reports/go-live",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 18506,
+        "sha256": "24ca20e3998e187327b430824057dcaa7026109c5f3e794e6148f15b4dbf70b8"
+      },
+      {
+        "route": "/reports/live-wiring",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 33306,
+        "sha256": "00732b305db8d60dd937c0ab73bba653ea3260721781488bc7f21bde3fc023ec"
+      },
       {
         "route": "/reports/auto-align",
         "expected_status": 200,
@@ -682,7 +736,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 246,
+      "primary_responses": 202,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0
