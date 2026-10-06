@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-06T06:26:04+00:00",
+  "verified_at_utc": "2026-10-06T09:23:31+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/582559e8-vyomarajai",
-    "commit": "f18418728716e531ff725060c2899679af4024f7"
+    "commit": "654a4df0c8f1e364146966e9bf353c6d652de956"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
@@ -148,8 +148,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 31297,
-      "sha256": "ae4de777ef3cde313b95967ef8cb55416e117926951f4101824ea67422aa601c"
+      "bytes": 32154,
+      "sha256": "b0c8abd8d9ef1ea52a7fbe1377d451bc8feace104df37142a1f2eabe52f47755"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -221,7 +221,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 35091,
-      "sha256": "7afe9d9a5913bc835931fe0a318d9a632933d532b54d7697eb6b72ffe86bc74b"
+      "sha256": "f877128232d9dfbbc1af6208b52b22fbf2a9edd157d793a55c666cbd0b9baf59"
     },
     {
       "route": "/reports/stack",
@@ -438,8 +438,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 31561,
-      "sha256": "3f2731d35dfafe57b96c1a128dfe93091801ca6ad56e31531808f5e8517efc29"
+      "bytes": 32418,
+      "sha256": "af64fa96ed51e7cbcc331d7c473b712f95a6498fa17992f8b84444790815dcec"
     },
     {
       "route": "/reports/download/handover-notepad.txt",
@@ -559,7 +559,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 35355,
-        "sha256": "f8b74a18c8ffcff5a7244aa634b1c88747fe80b3824dc6586e140d3a43e2e98c"
+        "sha256": "c043561d5041c39f5c9dafa6f38d73ff661f74a282dde0b6a148153a55ad01be"
       },
       {
         "route": "/reports/stack",
@@ -660,7 +660,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 35355,
-        "sha256": "f8b74a18c8ffcff5a7244aa634b1c88747fe80b3824dc6586e140d3a43e2e98c"
+        "sha256": "c043561d5041c39f5c9dafa6f38d73ff661f74a282dde0b6a148153a55ad01be"
       },
       {
         "route": "/reports/stack",
@@ -763,7 +763,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 88,
+      "primary_responses": 91,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0
