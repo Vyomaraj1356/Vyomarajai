@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "authority": "SHRIYANTRA",
+  "security_model": "ZERO_TRUST_PRIVATE_CONTROL_PLANE",
+  "public_private_boundary": {
+    "public_surface": [
+      "approved_content",
+      "approved_comments",
+      "likes",
+      "subscriptions",
+      "public_profile_outputs"
+    ],
+    "private_surface": [
+      "shriyantra",
+      "vyomaraj",
+      "jarvis",
+      "hermes",
+      "agent_registry",
+      "provider_registry",
+      "tool_broker",
+      "mcp_registry",
+      "rag",
+      "cag",
+      "mag",
+      "memory",
+      "queues",
+      "databases",
+      "secrets",
+      "audit",
+      "internal_health",
+      "deployment_control"
+    ],
+    "public_access_to_private_control_plane": false
+  },
+  "network": {
+    "default_deny_ingress": true,
+    "default_deny_egress": true,
+    "egress_allowlist_required": true,
+    "internal_mtls_required": true,
+    "tls_minimum": "1.3",
+    "public_admin_interfaces": false,
+    "public_databases": false,
+    "public_mcp_servers": false,
+    "public_internal_health_endpoints": false
+  },
+  "identity": {
+    "every_service_has_unique_identity": true,
+    "service_to_service_authentication": "mTLS_OR_WORKLOAD_IDENTITY",
+    "authorization": "policy_engine_before_tool_broker",
+    "model_output_is_authorization": false
+  },
+  "tool_security": {
+    "least_privilege": true,
+    "per_tool_scopes": true,
+    "short_lived_credentials": true,
+    "destructive_actions": "owner_approval_required",
+    "financial_actions": "owner_approval_required",
+    "credential_changes": "owner_approval_required",
+    "public_publish": "owner_approval_required_unless_explicitly_policy_enabled",
+    "shell": "brokered_not_unrestricted"
+  },
+  "supply_chain": {
+    "dependencies_pinned": true,
+    "lockfiles_required": true,
+    "artifact_signing": true,
+    "provenance_required": true,
+    "untrusted_files_quarantine": true,
+    "malware_scan_before_agent_ingest": true
+  },
+  "incident_response": {
+    "compromise": [
+      "isolate_component",
+      "revoke_credentials",
+      "fence_traffic",
+      "preserve_audit_evidence",
+      "activate_clean_recovery_path",
+      "verify_state",
+      "patch_and_test",
+      "controlled_reintegration"
+    ],
+    "blind_overwrite": false,
+    "force_push": false
+  },
+  "state": "CONFIGURED_NOT_LIVE_VERIFIED"
+}
