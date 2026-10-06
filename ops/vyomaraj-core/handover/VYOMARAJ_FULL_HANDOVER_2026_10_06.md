@@ -1,6 +1,6 @@
 # VYOMARAJ — FULL HANDOVER, ALL DETAILS
 
-Generated 2026-10-06 10:37 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
+Generated 2026-10-06 11:26 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
 
 **One command rebuilds this document and its archive:** `python3 ops/vyomaraj-core/handover/build_full_handover.py` — `--check` verifies the checked-in copy still matches the repository and the probes.
 
@@ -249,7 +249,7 @@ Found and fixed while researching this handover:
 
 | File | Bytes |
 |---|---|
-| `ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md` | 17,637 |
+| `ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md` | 17,615 |
 | `Vyomaraj-All-Chats-Database-One-Month.md` | 16,879 |
 | `VYOMARAJ_REPOSITORY_MAP.md` | 1,723 |
 | `REAL_VYOMARAJ_INVESTIGATION.md` | 12,822 |
@@ -258,22 +258,22 @@ Found and fixed while researching this handover:
 | `ops/vyomaraj-core/handover/INHERITANCE_AUDIT_2026_10_04.md` | 4,565 |
 | `ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md` | 13,312 |
 | `ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json` | 16,963 |
-| `ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md` | 12,176 |
+| `ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md` | 12,166 |
 | `ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md` | 13,508 |
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png` | 589,897 |
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg` | 19,995 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md` | 8,321 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | 11,255 |
-| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 36,280 |
-| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 35,574 |
-| `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 29,010 |
+| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 37,418 |
+| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 35,868 |
+| `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 30,292 |
 | `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 20,763 |
 | `ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json` | 893 |
 | `ops/vyomaraj-core/experience/CONTENT_EXTENSIONS.json` | 4,188 |
 | `ops/jarvis/devices.json` | 51,494 |
 | `ops/jarvis/jarvis.env.example` | 3,800 |
 | `ops/hanuman/ports.json` | 4,540 |
-| `ops/hanuman/social-platforms.json` | 12,887 |
+| `ops/hanuman/social-platforms.json` | 14,239 |
 | `ops/vyomaraj-core/handover/screenshots/SCREENSHOT_CAPTURE_RAW.json` | 5,643 |
 | `ops/vyomaraj-core/handover/screenshots/product-page.jpg` | 83,747 |
 | `ops/vyomaraj-core/handover/screenshots/lane-music.jpg` | 112,856 |

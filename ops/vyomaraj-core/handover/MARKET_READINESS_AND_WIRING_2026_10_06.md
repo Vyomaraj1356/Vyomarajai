@@ -1,6 +1,6 @@
 # VYOMARAJ — MARKET READINESS, CONFIGURATION & WIRING
 
-Generated 2026-10-06 10:28 UTC from the running system, not from memory. Owner's question: publish now, or is technical support needed for a heartbeat and for real earning?
+Generated 2026-10-06 11:26 UTC from the running system, not from memory. Owner's question: publish now, or is technical support needed for a heartbeat and for real earning?
 
 ---
 
@@ -33,11 +33,11 @@ A headless browser (HeadlessChrome/153.0.8010.0) opened every page below and pho
 | Product page | `index.html` (2,738 B), `landing.html` (22,846 B), `flow-diagram.html` — static, no framework |
 | Palette | Shani Blue `#0a1628`, Kuber Gold `#f59e0b`, defined once per server and inherited by every page |
 | Live host | GitHub Pages from `main` — free, HTTPS, no build step |
-| `viewer` server | port 4174 — **DOWN**, Python 3 standard library, binds `0.0.0.0` |
-| `gateway` server | port 4176 — **DOWN**, Python 3 standard library, binds `0.0.0.0` |
-| `replica-a` server | port 4181 — **DOWN**, Python 3 standard library, binds `0.0.0.0` |
-| `replica-b` server | port 4182 — **DOWN**, Python 3 standard library, binds `0.0.0.0` |
-| `product` server | port 3000 — **DOWN**, Python 3 standard library, binds `0.0.0.0` |
+| `viewer` server | port 4174 — **up**, Python 3 standard library, binds `0.0.0.0` |
+| `gateway` server | port 4176 — **up**, Python 3 standard library, binds `0.0.0.0` |
+| `replica-a` server | port 4181 — **up**, Python 3 standard library, binds `0.0.0.0` |
+| `replica-b` server | port 4182 — **up**, Python 3 standard library, binds `0.0.0.0` |
+| `product` server | port 3000 — **up**, Python 3 standard library, binds `0.0.0.0` |
 | Content stores | SQLite + JSON on disk; no database server anywhere |
 | Gates | offline suites (tests, `node --check`, builders), DR verify-or-sync, read-only diagnostics |
 | Secrets | none in the repository; identity documents never captured in-app (`uidai.in` web only) |

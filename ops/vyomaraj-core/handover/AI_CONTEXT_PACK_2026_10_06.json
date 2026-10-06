@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-ai-context-pack/1",
-  "generated_at_utc": "2026-10-06 10:37 UTC",
+  "generated_at_utc": "2026-10-06 11:26 UTC",
   "purpose": "Self-contained context so another AI platform can help with Vyomaraj without inventing progress. Every field is read from this repository or probed live.",
   "identity": {
     "name": "Vyomaraj",
@@ -57,11 +57,11 @@
     },
     "evidence": {
       "blocking_problems": 0,
-      "python_tests_total": 380,
+      "python_tests_total": 387,
       "node_checks": 12,
-      "builders": 22,
+      "builders": 23,
       "preview_problems": 0,
-      "viewer_routes_checked": 37
+      "viewer_routes_checked": 38
     }
   },
   "agents": {

@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
-  "package_sha256": "f7168bb8371c5cfbdf9fed0a7e567b5629a84c55ae562de3b481a399f4f8a4c3",
-  "package_bytes": 180898,
+  "package_sha256": "fc2d0b7f3fec21994393b3915eacb5bbc00666e2204017e28e84a96d2317ff4b",
+  "package_bytes": 180954,
   "note": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
   "note_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
   "note_bytes": 23864,
@@ -11,7 +11,7 @@
   "additions_total": 8,
   "superset_of_canonical": true,
   "canonical_package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "canonical_package_sha256_rebuilt_from_source": "d01fe25a6d7d2fb0a5fa7b73bf54992110b1813a16190187d246625338a70330",
+  "canonical_package_sha256_rebuilt_from_source": "affab73f04b7481c3945108ce87a404a44dd79ff307a280b15e12cd159b2ff28",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py --check",
   "determinism": "fixed member timestamps and permissions; same-Python/zlib rebuilds are byte-identical",
@@ -85,8 +85,8 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "0700ab0272e19e6c3cf746c7699c8bfcc88860f25fe3c049de48599fa9459d90",
-      "bytes": 11230
+      "sha256": "1316b5c89cb1322b67e5c6906d00fb8a244b27904b891f6a6ab42f56c0d1bbd6",
+      "bytes": 11395
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -217,8 +217,8 @@
     {
       "archive_name": "V16.9/run_offline_suites.py",
       "source": "ops/vyomaraj-core/handover/run_offline_suites.py",
-      "sha256": "4f48bea4d3c132300b5651c58285f5f29b48a79e01f452c58a3d04cbbf7f58b4",
-      "bytes": 10832
+      "sha256": "ef5ec116c973a81e924db7d5df6f02aab074fd18234a6b3335dc451b3fb4c952",
+      "bytes": 10845
     },
     {
       "archive_name": "V16.9/check_language_policy.py",

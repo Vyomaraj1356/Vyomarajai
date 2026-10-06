@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-arena-recovery/1",
-  "generated_at_utc": "2026-10-06 10:37 UTC",
+  "generated_at_utc": "2026-10-06 11:27 UTC",
   "session_branches_count": 11,
   "session_branches": [
     {
@@ -8,7 +8,7 @@
       "tip": "3a59454e7594e8180ac16720cb3af3084494c2b5",
       "date": "2026-10-01",
       "subject": "Add Complete All Sessions All Handover Zips V16.7.22 \u2014 25 zips 12.44 MB + All ",
-      "commits_ahead_of_main": 112,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 2,
       "unique_examples": [
         ".github/workflows/dr-readiness.yml",
@@ -21,7 +21,7 @@
       "tip": "b95c842898cabb4fc5d9b8477e0c16478082f46d",
       "date": "2026-10-02",
       "subject": "feat(experience): add modular plan-only studio and router",
-      "commits_ahead_of_main": 207,
+      "commits_ahead_of_main": 44,
       "files_unique_to_branch": 35,
       "unique_examples": [
         ".gitattributes",
@@ -37,7 +37,7 @@
       "tip": "7b7dd403c79266d3250e6b334a7598a5432adc17",
       "date": "2026-10-02",
       "subject": "fix(ci): keep PR check while restricting DR replication to main",
-      "commits_ahead_of_main": 181,
+      "commits_ahead_of_main": 7,
       "files_unique_to_branch": 28,
       "unique_examples": [
         "All-Chats-Array-From-Index.txt",
@@ -53,7 +53,7 @@
       "tip": "3936badc63cee2c7391149e5ab5fb41f4416d901",
       "date": "2026-10-03",
       "subject": "Merge pull request #8 from Vyomaraj1356/arena/01a10140-vyomarajai",
-      "commits_ahead_of_main": 201,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 0,
       "unique_examples": [],
       "content_in_main": true
@@ -63,7 +63,7 @@
       "tip": "37ba2c010d84da8ae7a7fb71cdceb0ef64568b78",
       "date": "2026-10-04",
       "subject": "Close the DR record at #17 with wording that does not age",
-      "commits_ahead_of_main": 217,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 0,
       "unique_examples": [],
       "content_in_main": true
@@ -73,7 +73,7 @@
       "tip": "47d0920f80b36cd850b66563d2179239ca58a71b",
       "date": "2026-10-04",
       "subject": "Record checkpoint #14: the #19 merge verified MATCH on the secondary",
-      "commits_ahead_of_main": 228,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 0,
       "unique_examples": [],
       "content_in_main": true
@@ -83,7 +83,7 @@
       "tip": "13f083215306ae7f9cf2c32189f0eb2999ced74c",
       "date": "2026-10-04",
       "subject": "Issue #6 resolution doc: final addendum through checkpoint #17",
-      "commits_ahead_of_main": 234,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 0,
       "unique_examples": [],
       "content_in_main": true
@@ -93,7 +93,7 @@
       "tip": "99225903a4f6d104107eb195fe4d6f848a396a77",
       "date": "2026-10-04",
       "subject": "Rebuild the third session's unpublished viewer work: shared theme, inheritance",
-      "commits_ahead_of_main": 237,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 0,
       "unique_examples": [],
       "content_in_main": true
@@ -103,7 +103,7 @@
       "tip": "cfc1cd8f8965faa95b8c6cc6081c2bb4b68ad093",
       "date": "2026-10-04",
       "subject": "Refresh deep scan with follow-up DR check",
-      "commits_ahead_of_main": 241,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 0,
       "unique_examples": [],
       "content_in_main": true
@@ -113,18 +113,18 @@
       "tip": "4935ec8d5a973f0146a3d96f7998402abed50a42",
       "date": "2026-10-06",
       "subject": "fix: rebuild transfer package d9f2b0ae after index restore",
-      "commits_ahead_of_main": 243,
+      "commits_ahead_of_main": 0,
       "files_unique_to_branch": 0,
       "unique_examples": [],
       "content_in_main": true
     },
     {
       "branch": "arena/582559e8-vyomarajai",
-      "tip": "f2cad719643454de668f85099163736bcccb036b",
+      "tip": "d67598af0e6c71d9d9a2e985f88c2e6970ad22c5",
       "date": "2026-10-06",
-      "subject": "security: remove personal identifiers from the published site, and prove the 1",
-      "commits_ahead_of_main": 12,
-      "files_unique_to_branch": 49,
+      "subject": "docs(go-live): record the PR #9 rehearsal and the DR verification in the brief",
+      "commits_ahead_of_main": 24,
+      "files_unique_to_branch": 51,
       "unique_examples": [
         "ops/vyomaraj-core/experience/product_server.py",
         "ops/vyomaraj-core/experience/test_voice_enrollment.py",
@@ -410,5 +410,5 @@
     "raw_transcripts_exported": false,
     "why_not": null
   },
-  "unique_files_across_branches": 114
+  "unique_files_across_branches": 116
 }

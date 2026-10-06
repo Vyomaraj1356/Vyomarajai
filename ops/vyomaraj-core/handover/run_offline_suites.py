@@ -27,6 +27,7 @@ SUITES = [
     'ops/vyomaraj-core/finance',
     'ops/vyomaraj-core/upgrades',
     'ops/vyomaraj-core/ledger',
+    'tests',
 ]
 NODE_COMMANDS = [
     ['node', '--test', 'ops/vyomaraj-core/test_safe_metadata.cjs'],

@@ -1,6 +1,6 @@
 # ARENA SESSION RECOVERY INDEX
 
-Computed 2026-10-06 10:37 UTC from this repository. The owner was told the work of 11 Arena sessions may be lost. This is what actually survives, and where.
+Computed 2026-10-06 11:27 UTC from this repository. The owner was told the work of 11 Arena sessions may be lost. This is what actually survives, and where.
 
 ## The headline
 
@@ -13,19 +13,19 @@ Computed 2026-10-06 10:37 UTC from this repository. The owner was told the work 
 
 | # | Session branch | Date | Tip commit | Commits ahead of main | Files unique to the branch | Content already in main |
 |---|---|---|---|---|---|---|
-| 1 | `arena/01a0f1b1-vyomarajai` | 2026-10-01 | Add Complete All Sessions All Handover Zips V16.7.22 | 112 | 2 | no |
-| 2 | `arena/01a0f634-vyomarajai` | 2026-10-02 | feat(experience): add modular plan-only studio and r | 207 | 35 | no |
-| 3 | `arena/live-preview-reconciled-20261002` | 2026-10-02 | fix(ci): keep PR check while restricting DR replicat | 181 | 28 | no |
-| 4 | `arena/01a10140-vyomarajai` | 2026-10-03 | Merge pull request #8 from Vyomaraj1356/arena/01a101 | 201 | 0 | yes |
-| 5 | `arena/01a1056f-vyomarajai` | 2026-10-04 | Close the DR record at #17 with wording that does no | 217 | 0 | yes |
-| 6 | `arena/01a105bf-vyomarajai` | 2026-10-04 | Record checkpoint #14: the #19 merge verified MATCH  | 228 | 0 | yes |
-| 7 | `arena/01a105da-vyomarajai` | 2026-10-04 | Issue #6 resolution doc: final addendum through chec | 234 | 0 | yes |
-| 8 | `arena/01a10629-vyomarajai` | 2026-10-04 | Rebuild the third session's unpublished viewer work: | 237 | 0 | yes |
-| 9 | `arena/01a10655-vyomarajai` | 2026-10-04 | Refresh deep scan with follow-up DR check | 241 | 0 | yes |
-| 10 | `arena/01a106da-vyomarajai` | 2026-10-06 | fix: rebuild transfer package d9f2b0ae after index r | 243 | 0 | yes |
-| 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | security: remove personal identifiers from the publi | 12 | 49 | no |
+| 1 | `arena/01a0f1b1-vyomarajai` | 2026-10-01 | Add Complete All Sessions All Handover Zips V16.7.22 | 0 | 2 | no |
+| 2 | `arena/01a0f634-vyomarajai` | 2026-10-02 | feat(experience): add modular plan-only studio and r | 44 | 35 | no |
+| 3 | `arena/live-preview-reconciled-20261002` | 2026-10-02 | fix(ci): keep PR check while restricting DR replicat | 7 | 28 | no |
+| 4 | `arena/01a10140-vyomarajai` | 2026-10-03 | Merge pull request #8 from Vyomaraj1356/arena/01a101 | 0 | 0 | yes |
+| 5 | `arena/01a1056f-vyomarajai` | 2026-10-04 | Close the DR record at #17 with wording that does no | 0 | 0 | yes |
+| 6 | `arena/01a105bf-vyomarajai` | 2026-10-04 | Record checkpoint #14: the #19 merge verified MATCH  | 0 | 0 | yes |
+| 7 | `arena/01a105da-vyomarajai` | 2026-10-04 | Issue #6 resolution doc: final addendum through chec | 0 | 0 | yes |
+| 8 | `arena/01a10629-vyomarajai` | 2026-10-04 | Rebuild the third session's unpublished viewer work: | 0 | 0 | yes |
+| 9 | `arena/01a10655-vyomarajai` | 2026-10-04 | Refresh deep scan with follow-up DR check | 0 | 0 | yes |
+| 10 | `arena/01a106da-vyomarajai` | 2026-10-06 | fix: rebuild transfer package d9f2b0ae after index r | 0 | 0 | yes |
+| 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | docs(go-live): record the PR #9 rehearsal and the DR | 24 | 51 | no |
 
-Across all branches, **114 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
+Across all branches, **116 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
 
 Examples of files that exist only on a session branch (recoverable with one `git checkout`):
 
