@@ -1,6 +1,6 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-06 12:36 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-06 12:39 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
@@ -18,8 +18,8 @@ repository-shaped, many-file work. Codex is the sensible second ($8–$20/mo) fo
 runs. Details and alternatives in section 4. The important part is that **the platform is now
 interchangeable** — whichever one you pick reads the same repo.
 
-**"Did I lose the 11 sessions?"** No. All 11 session branches are still on GitHub and
-42 archives are in the repository; 13 files exist on session branches that main
+**"Did I lose the 12 sessions?"** No. All 12 session branches are still on GitHub and
+42 archives are in the repository; 16 files exist on session branches that main
 does not carry. The one thing that is genuinely not recoverable from here is the raw per-chat transcripts —
 that lives in Arena's own session history, not in the repo (section 5).
 
@@ -106,7 +106,7 @@ experiments. Whichever you choose, point it at the repository and paste
 constraints, the verified-state table, and the rule that it must never emit a status the system
 cannot prove.
 
-## 5 · Moving the 11 sessions — recovery, not redoing
+## 5 · Moving the 12 sessions — recovery, not redoing
 
 The work is not in the chat, it is in Git. Each Arena session pushed its branch, so the sessions
 survive as `origin/arena/*`.
