@@ -1,6 +1,6 @@
 {
   "version": "V15.1",
-  "owner": "Deepak Goyal Vyomarajai@gmail.com",
+  "owner": "Deepak Goyal [OWNER_EMAIL_REDACTED]",
   "vyomarajIds": {
     "youtube": "@Vyomaraj — 18.9K members — Channel ID UC... — MRR ₹3.0L — Best Scene Shorts 30 sec fair use 9:16 — YouTube Shorts FB IG max hits earnings — AdSense 21st — API YouTube Studio API v3 OAuth2",
     "instagram": "@Vyomaraj — 56.2K followers — Reels 90 sec 9:16 Remix Reels Best Scene Affiliate links bio linktree Brand Collab Meta Brand Collabs Manager — API Instagram Graph API",
@@ -9,7 +9,7 @@
     "x": "@Vyomaraj — X API v2 Tweets threads 280 chars Brand pitch analytics 5.42M views",
     "linkedin": "@Vyomaraj — B2B brand collab 12 leads ₹8.4L — API LinkedIn API",
     "telegram": "@VyomarajBot — 28.5K MRR ₹5.67L Subscription funnel Free Reel best scene 30 sec → Link → Telegram VIP → YouTube Membership — API Telegram Bot API",
-    "whatsapp": "Vyomaraj WhatsApp Business API — 2B UPI + Razorpay Nurture Day1 Veda fact Day3 Gold tip Day5 best scene clip Day7 offer — Numbers +91 9823648038 / 9175112579 — API WhatsApp Business API",
+    "whatsapp": "Vyomaraj WhatsApp Business API — 2B UPI + Razorpay Nurture Day1 Veda fact Day3 Gold tip Day5 best scene clip Day7 offer — Numbers +91 [PHONE_REDACTED] / [PHONE_REDACTED] — API WhatsApp Business API",
     "discord": "Vyomaraj Discord — Community 94.6K FB+IG — API Discord API",
     "pinterest": "Vyomaraj Pinterest — Pins boards affiliate — API Pinterest API",
     "threads": "Vyomaraj Threads — Text posts 500 chars — API Threads API",
@@ -24,7 +24,7 @@
     "affiliate": "Affiliate — Amazon 60 days — Affiliate links bio linktree",
     "adsense": "AdSense — 21st monthly payout $100 threshold — AdSense API",
     "razorpay": "Razorpay — UPI — 2B — Payment gateway",
-    "email": "Vyomarajai@gmail.com — SMTP — Email notifications"
+    "email": "[OWNER_EMAIL_REDACTED] — SMTP — Email notifications"
   },
   "allPlatforms": [
     {
@@ -99,11 +99,11 @@
     },
     {
       "platform": "WhatsApp",
-      "id": "+91 9823648038 / 9175112579",
+      "id": "+91 [PHONE_REDACTED] / [PHONE_REDACTED]",
       "status": "ACTIVE ENABLED CONFIGURED",
       "port": 443,
       "heartbeat": "LIVE",
-      "link": "https://wa.me/919823648038",
+      "link": "https://wa.me/91[PHONE_REDACTED]",
       "api": "WhatsApp Business API",
       "revenue": "2B UPI Razorpay Nurture"
     },

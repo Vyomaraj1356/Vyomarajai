@@ -33,7 +33,7 @@ VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports
                  '/reports/download/handover-notepad.txt',
                  '/reports/download/transfer-package.zip', '/reports/post-pr25-handover',
                  '/reports/download/post-pr25-handover.txt', '/reports/download/post-pr25-transfer.zip',
-                 '/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook',
+                 '/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index',
                  '/reports/auto-align', '/reports/platform-check',
                  '/reports/issues', '/reports/download/auto-align.json',
                  '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
@@ -47,7 +47,7 @@ GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/
                   '/reports/platform-check', '/reports/issues', '/reports/download/auto-align.json',
                   '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
                   '/not-an-allowlisted-route']
-LANE_REPORT_ROUTES = ['/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook',
+LANE_REPORT_ROUTES = ['/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index',
                       '/reports/auto-align', '/reports/platform-check', '/reports/issues',
                       '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
                       '/reports/download/auto-align.json', '/reports/download/platform-check.md',
@@ -69,7 +69,8 @@ CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
                    '/reports/realtime': 'Live state, re-probed on every load',
                    '/reports/full-handover': 'Full handover — all details',
                    '/reports/ai-handoff': 'HANDOFF FOR ANOTHER AI PLATFORM',
-                   '/reports/runbook': 'RUNBOOK: CONFIGURE'}
+                   '/reports/runbook': 'RUNBOOK: CONFIGURE',
+                   '/reports/recovery-index': 'ARENA SESSION RECOVERY INDEX'}
 
 
 def sha256(data):

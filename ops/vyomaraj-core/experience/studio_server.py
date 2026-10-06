@@ -92,6 +92,7 @@ REPORTS = {
     '/reports/full-handover': 'VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
     '/reports/ai-handoff': 'AI_PLATFORM_HANDOFF_2026_10_06.md',
     '/reports/runbook': 'VYOMARAJ_RUNBOOK_2026_10_06.md',
+    '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
 }
 
 
@@ -176,6 +177,12 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Content-Length', str(len(body)))
             self.end_headers()
             self.wfile.write(body)
+        elif route == '/reports/download/recovery-index.md':
+            path = CORE / 'handover/ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/recovery-manifest.json':
+            path = CORE / 'handover/ARENA_SESSION_RECOVERY_MANIFEST_2026_10_06.json'
+            self.send_download(path.read_bytes(), 'application/json', path.name)
         elif route == '/reports/download/ai-handoff.md':
             path = CORE / 'handover/AI_PLATFORM_HANDOFF_2026_10_06.md'
             self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)

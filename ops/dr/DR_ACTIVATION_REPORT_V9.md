@@ -67,4 +67,4 @@ Version: V9.0 Best Schools Colleges India Global + Principals Fundamentals + Map
 - Phase14: Add live map search with Nominatim + OSRM routing + Leaflet Draw + Export to video + School College comparison table + Principal interview video library
 - Phase15: AI Principal Assistant — Meta AI Llama 3.3 70B — Auto-generates school improvement plan from data — NEP 2020 compliance checker
 
-Owner Primary Locked: Deepak Goyal Vyomarajai@gmail.com — Final Market Ready V9.0 — Wonderful Page Since First Chat — No Overwrite Integrate Missing Only
+Owner Primary Locked: Deepak Goyal [OWNER_EMAIL_REDACTED] — Final Market Ready V9.0 — Wonderful Page Since First Chat — No Overwrite Integrate Missing Only

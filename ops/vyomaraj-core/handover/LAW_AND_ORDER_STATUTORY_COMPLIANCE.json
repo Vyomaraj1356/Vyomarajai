@@ -1,6 +1,6 @@
 {
   "version": "V16.5.3",
-  "owner_primary_locked": "Vyomarajai@gmail.com",
+  "owner_primary_locked": "[OWNER_EMAIL_REDACTED]",
   "owner_name": "Deepak Goyal",
   "law_and_order_tab": "⚖️ Owner Law & Gate — Rules Regulations Laws IT Laws Global Local Regional Contracts — Statutory Compliance — Jarvis & Vyomaraj reference for legal complications",
   "statutory_compliance": {
@@ -68,7 +68,7 @@
     "TikTok_X": {"signed": "2024-03-10", "views": "5.42M", "terms": "X Creator + TikTok Terms", "statutory": ["DMCA", "GDPR"], "jarvis_ref": "Takedown -> DMCA counter -> Owner Gate"},
     "LinkedIn": {"signed": "2024-03-20", "leads": "12", "value": "₹8.4L", "terms": "LinkedIn Lead Gen", "statutory": ["IT Act 2000", "Contract Act 1872"], "jarvis_ref": "Lead dispute -> LinkedIn support + Contract Act Sec73 -> Owner Gate"},
     "Telegram": {"signed": "2024-01-01", "subs": "28.5K", "mrr": "₹5.67L", "payout": "1st", "terms": "Telegram VIP", "statutory": ["IT Act 2000", "Payment"], "jarvis_ref": "Payment failure -> Razorpay UPI check -> Owner Gate"},
-    "WhatsApp": {"signed": "2024-01-10", "numbers": ["9823648038", "9175112579"], "upi": "2B Razorpay", "terms": "WhatsApp Business", "statutory": ["IT Act 2000", "UPI NPCI"], "jarvis_ref": "Ban -> appeal + IT Act -> Owner Gate"},
+    "WhatsApp": {"signed": "2024-01-10", "numbers": ["[PHONE_REDACTED]", "[PHONE_REDACTED]"], "upi": "2B Razorpay", "terms": "WhatsApp Business", "statutory": ["IT Act 2000", "UPI NPCI"], "jarvis_ref": "Ban -> appeal + IT Act -> Owner Gate"},
     "Discord": {"signed": "2024-02-15", "members": "94.6K", "terms": "Discord Community", "statutory": ["IT Act 2000", "IT Rules 2021"], "jarvis_ref": "Moderation -> Trust & Safety + IT Rules -> Owner Gate"}
   },
   "content_creator_collabs": {
@@ -92,6 +92,6 @@
     "quarterly": "IT Act DPDP Act Consumer Protection PSS Act review — Owner Law & Gate",
     "yearly": "All contracts renewal Statutory audit — Owner Law & Gate"
   },
-  "whisperflow_legal_process": "DISCOVER → VERIFY (check contract signed? statutory compliance? fair use?) → SCENE PICKER (30 sec) → DIALOGUE → MIX → SCORE → AFFILIATE → SCHEDULE → SUBSCRIPTION → COLLAB (check creator contract) → OWNER GATE (Primary Locked Vyomarajai@gmail.com approval) → PUBLISH → LEARN → SYNC — If legal complication at any stage, Jarvis refers Law & Order tab → takes action → Owner Gate final",
-  "owner_primary_locked": "Deepak Goyal Vyomarajai@gmail.com — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — Dedicated Faithful Obedient to Shri Ram Ji — Jarvis as Laxman — 0.000000000 Impact — Chiranjeevi Eternal"
+  "whisperflow_legal_process": "DISCOVER → VERIFY (check contract signed? statutory compliance? fair use?) → SCENE PICKER (30 sec) → DIALOGUE → MIX → SCORE → AFFILIATE → SCHEDULE → SUBSCRIPTION → COLLAB (check creator contract) → OWNER GATE (Primary Locked [OWNER_EMAIL_REDACTED] approval) → PUBLISH → LEARN → SYNC — If legal complication at any stage, Jarvis refers Law & Order tab → takes action → Owner Gate final",
+  "owner_primary_locked": "Deepak Goyal [OWNER_EMAIL_REDACTED] — Sovereign Root — Human-in-the-Loop Locked — Bharat as Bharat Hanuman Quality — Dedicated Faithful Obedient to Shri Ram Ji — Jarvis as Laxman — 0.000000000 Impact — Chiranjeevi Eternal"
 }

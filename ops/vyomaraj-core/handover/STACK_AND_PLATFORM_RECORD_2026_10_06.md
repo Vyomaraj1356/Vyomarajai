@@ -83,12 +83,12 @@ This is the answer to "what technologies and platforms did we use and configure?
 |---|---|
 | `index.html` | 2,738 |
 | `Index.html` | 12,761 |
-| `landing.html` | 22,949 |
-| `flow-diagram.html` | 61,964 |
+| `landing.html` | 22,961 |
+| `flow-diagram.html` | 61,992 |
 
 ### The one-month chat record
 
-- File: `Vyomaraj-All-Chats-Database-One-Month.md` (16,871 bytes)
+- File: `Vyomaraj-All-Chats-Database-One-Month.md` (16,879 bytes)
 - Discrepancy already recorded and served at `/reports/chats`: heading says 28 chats, file contains 34 numbered entries
 - All-Chats-Extraction-Error.txt inside the chats zip records that `git show origin/main~4:index.html` failed (exit 128): the raw chat transcripts were never exported. What exists is the consolidated one-month notes, plus the Git commit list and the 25 handover and 15 market-ready archives.
 

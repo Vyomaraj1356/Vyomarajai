@@ -56,7 +56,7 @@ REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/a
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
                   '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
                   '/reports/market-readiness', '/reports/screenshots', '/reports/realtime',
-                  '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook']
+                  '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index']
 # Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
 # allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
 SCREENSHOT_ROUTES = {
@@ -76,6 +76,8 @@ DOWNLOADS = {
     '/reports/download/ai-handoff.md': 'ops/vyomaraj-core/handover/AI_PLATFORM_HANDOFF_2026_10_06.md',
     '/reports/download/ai-context-pack.json': 'ops/vyomaraj-core/handover/AI_CONTEXT_PACK_2026_10_06.json',
     '/reports/download/runbook.md': 'ops/vyomaraj-core/handover/VYOMARAJ_RUNBOOK_2026_10_06.md',
+    '/reports/download/recovery-index.md': 'ops/vyomaraj-core/handover/ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
+    '/reports/download/recovery-manifest.json': 'ops/vyomaraj-core/handover/ARENA_SESSION_RECOVERY_MANIFEST_2026_10_06.json',
     '/reports/download/ai-handoff.zip': 'ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip',
     '/reports/download/network-diagram.png': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
 
@@ -93,6 +95,9 @@ REQUIRED_FILES = [
     'ops/vyomaraj-core/handover/AI_PLATFORM_HANDOFF_2026_10_06.md',
     'ops/vyomaraj-core/handover/AI_CONTEXT_PACK_2026_10_06.json',
     'ops/vyomaraj-core/handover/VYOMARAJ_RUNBOOK_2026_10_06.md',
+    'ops/vyomaraj-core/handover/ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
+    'ops/vyomaraj-core/handover/ARENA_SESSION_RECOVERY_MANIFEST_2026_10_06.json',
+    'ops/vyomaraj-core/handover/sanitize_personal_data.py',
     'ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip',
     'ops/vyomaraj-core/music-experience/content.json',
     'ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json',

@@ -33,7 +33,7 @@ You (Owner)
 
 | Layer | What it is | Where it lives |
 |---|---|---|
-| Owner | Deepak Goyal (Vyomarajai@gmail.com), Owner primary locked | Repository owner; approvals desk |
+| Owner | Deepak Goyal ([OWNER_EMAIL_REDACTED]), Owner primary locked | Repository owner; approvals desk |
 | ShriYantra | Authority and control root; every instruction is aligned here before anything moves | Authority chain recorded in every governance module |
 | Vyomaraj/Bharath | Central intelligence: validates, routes, assembles plans | `ops/vyomaraj-core/experience/local_planner.py` (deterministic router) |
 | Jarvis/Laxman | Coordination and content movement: handoffs, review gates, routing to the owner gate | `role_handoff` in every planner; `ops/jarvis/` |
