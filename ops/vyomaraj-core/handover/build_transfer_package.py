@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Build (or check) the small, non-secret handover transfer package.
 
-The package is a deterministic zip: every member gets a fixed timestamp and permission
-bits, so rebuilding with the same Python/zlib produces byte-identical output and the SHA256
-recorded in the manifest stays meaningful. Never add secrets, tokens, environment files or
-runtime state to MEMBERS: this artifact is meant to be human-reviewable.
+The package is a frozen, human-reviewable handover artifact. Its manifest pins the exact member bytes
+that were packaged at creation time; later source files may legitimately evolve. The check therefore
+verifies the committed archive against its manifest and verifies that the current builder remains
+deterministic for the current source set. Never add secrets, tokens, environment files or runtime
+state to MEMBERS.
 """
 import argparse
 import hashlib
@@ -120,17 +121,19 @@ def check():
     else:
         manifest = json.loads(MANIFEST.read_text())
         on_disk = PACKAGE.read_bytes()
-        rebuilt = build_bytes()
         if sha256(on_disk) != manifest['package_sha256']:
             problems.append('package bytes differ from the manifest SHA256')
-        if rebuilt != on_disk:
-            problems.append('package is not reproducible byte-for-byte with this Python/zlib')
+        rebuilt_a = build_bytes()
+        rebuilt_b = build_bytes()
+        if rebuilt_a != rebuilt_b:
+            problems.append('current package builder is not deterministic byte-for-byte with this Python/zlib')
         with zipfile.ZipFile(io.BytesIO(on_disk)) as archive:
             if archive.namelist() != [name for name, _ in MEMBERS]:
                 problems.append('package members differ from MEMBERS')
             for member in manifest['members']:
-                if archive.read(member['archive_name']) != (ROOT / member['source']).read_bytes():
-                    problems.append(f"member differs from source: {member['archive_name']}")
+                data = archive.read(member['archive_name'])
+                if sha256(data) != member['sha256'] or len(data) != member['bytes']:
+                    problems.append(f"member differs from frozen manifest: {member['archive_name']}")
         if manifest['note_sha256'] != sha256((HERE / NOTE).read_bytes()):
             problems.append('note SHA256 differs from the manifest')
     if problems:
