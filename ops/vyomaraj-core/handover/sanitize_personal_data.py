@@ -24,6 +24,7 @@ listed as outstanding rather than silently "fixed".
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
@@ -38,16 +39,54 @@ PHONE_PLACEHOLDER = "[PHONE_REDACTED]"
 # hardcoding an address to redact would republish it. Everything below is generic.
 PERSONAL_EMAIL_RX = re.compile(r"[A-Za-z0-9._%+-]+@(?:gmail|yahoo|outlook|hotmail|rediffmail|"
                                r"protonmail|icloud)\.[A-Za-z]{2,}", re.I)
+# General shape, used only to validate an owner-published contact address (which may be on a custom
+# domain the guard would never flag). The allowlist must accept exactly what set_public_contact.py
+# validated, so both use this — see allowed_emails().
+CONTACT_EMAIL_RX = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+# Mirrors set_public_contact.PLACEHOLDER_TOKENS: a placeholder address is never a real decision, so
+# the guard stays fail-closed even against a hand-written config/public-contact.json.
+CONTACT_PLACEHOLDER_TOKENS = ("redacted", "example.com", "example.org", "placeholder", "changeme",
+                              "your-email", "you@", "owner@", "noreply@", "no-reply@", "test@",
+                              "@test", "tbd", "todo", "xxx", "your@", "email@")
 # Word-bounded: a 10-digit run embedded inside a hex hash or a longer token is not a phone number.
 PHONE_RX = re.compile(r"(?<![\w])(?:\+91[- ]?|91[- ]?)?[6-9]\d{9}(?![\w])")
 HASH_LINE_RX = re.compile(r"[a-f0-9]{40}|run_id|/runs/|sha256|commit|checkpoint|\bhash\b", re.I)
-# A deliberate public contact address is a decision, not an accident: allowlist it here when chosen.
-ALLOWED_EMAILS: list[str] = []
+# A deliberate public contact address is a decision, not an accident. It is never hardcoded here:
+# the owner publishes it through set_public_contact.py, which writes config/public-contact.json with
+# owner_approved:true. Only then is that exact address allowlisted. No file / no approval => nothing
+# is allowlisted and any personal email is treated as a regression. See allowed_emails() below.
+CONTACT_CONFIG = ROOT / "config" / "public-contact.json"
 ALLOWED_SUBSTRINGS = ("example.com", "REDACTED", "REDACTED_SECRET", "placeholder",
                       "test@", "@test", "9800000", "1234567890")
 
 TEXT_SUFFIXES = {".md", ".txt", ".json", ".html", ".htm", ".js", ".cjs", ".mjs", ".py", ".sh",
                  ".yml", ".yaml", ".env", ".example", ".csv", ".svg", ".css"}
+
+
+def allowed_emails() -> set[str]:
+    """The owner-approved public contact address, lowercased — or an empty set.
+
+    Reads config/public-contact.json (written only by set_public_contact.py after the owner confirms
+    publication). Anything but a configured, owner_approved, well-formed address yields no allowlist,
+    so the guard stays fail-closed: an unapproved personal email is always a regression.
+    """
+    try:
+        data = json.loads(CONTACT_CONFIG.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    if not isinstance(data, dict):
+        return set()
+    if data.get("configured") is not True or data.get("owner_approved") is not True:
+        return set()
+    address = data.get("email")
+    if not isinstance(address, str) or not CONTACT_EMAIL_RX.fullmatch(address.strip()):
+        return set()
+    low = address.strip().lower()
+    # Fail-closed against a hand-written config: a placeholder/example address is never allowlisted,
+    # matching what set_public_contact.py refuses to publish.
+    if any(tok in low for tok in CONTACT_PLACEHOLDER_TOKENS):
+        return set()
+    return {low}
 
 
 def tracked_files() -> list[Path]:
@@ -65,12 +104,13 @@ def is_text(path: Path) -> bool:
 
 
 def sanitize(text: str) -> tuple[str, int]:
-    """Replace personal identifiers, leaving an allowlisted contact address alone."""
+    """Replace personal identifiers, leaving an owner-approved contact address alone."""
     changed = 0
+    allowed = allowed_emails()
 
     def email_sub(match: re.Match) -> str:
         nonlocal changed
-        if match.group(0).lower() in {e.lower() for e in ALLOWED_EMAILS}:
+        if match.group(0).lower() in allowed:
             return match.group(0)
         changed += 1
         return EMAIL_PLACEHOLDER
@@ -126,6 +166,7 @@ def run_sanitize() -> int:
 
 def check() -> int:
     problems = []
+    allowed = allowed_emails()
     for path in tracked_files():
         if not path.is_file() or not is_text(path):
             continue
@@ -135,10 +176,12 @@ def check() -> int:
                 continue
             if HASH_LINE_RX.search(line):
                 continue   # commit SHAs, run ids and hash lines are not phone numbers
-            email = PERSONAL_EMAIL_RX.search(line)
-            if email:
+            for email in PERSONAL_EMAIL_RX.finditer(line):
+                if email.group(0).lower() in allowed:
+                    continue   # the owner published this address through set_public_contact.py
                 problems.append(f"{path.relative_to(ROOT)}:{i} personal email present: "
                                 f"{email.group(0)[:12]}...")
+                break
             phone = PHONE_RX.search(line)
             if phone and not re.search(r"\b(19|20)\d{2}\b", line[:phone.start()][-6:] or ""):
                 problems.append(f"{path.relative_to(ROOT)}:{i} phone-shaped number present: "

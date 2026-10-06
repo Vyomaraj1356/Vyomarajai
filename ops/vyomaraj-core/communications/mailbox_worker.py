@@ -11,7 +11,7 @@ import os
 import re
 from email.header import decode_header
 
-OWNER = os.getenv("VYOMARAJ_OWNER_MAILBOX", "Vyomarajai@gmail.com")
+OWNER = os.getenv("VYOMARAJ_OWNER_MAILBOX", "")   # address comes from deployment config, never hardcoded
 HOST = os.getenv("MAILBOX_IMAP_HOST", "imap.gmail.com")
 PORT = int(os.getenv("MAILBOX_IMAP_PORT", "993"))
 USER = os.getenv("MAILBOX_USERNAME", OWNER)
@@ -42,6 +42,9 @@ def decode_subject(value):
     return "".join(parts)
 
 def run_once():
+    if not OWNER:
+        raise RuntimeError("Owner mailbox is not configured: set VYOMARAJ_OWNER_MAILBOX from "
+                           "config/public-contact.json (owner_approved); it is never hardcoded")
     if not PASSWORD:
         raise RuntimeError("Mailbox password/app-password is not configured in the runtime secret store")
     with imaplib.IMAP4_SSL(HOST, PORT) as box:

@@ -1,6 +1,7 @@
 {
   "schema_version":"1.0",
-  "owner_mailbox":"Vyomarajai@gmail.com",
+  "owner_mailbox":"[OWNER_EMAIL_REDACTED]",
+  "owner_mailbox_source":"config/public-contact.json (owner_approved) or env VYOMARAJ_OWNER_MAILBOX; never hardcoded in a public file",
   "identities":{"Vyomaraj":"Bharath","Jarvis":"Laxman"},
   "email":{
     "enabled_by_contract":true,

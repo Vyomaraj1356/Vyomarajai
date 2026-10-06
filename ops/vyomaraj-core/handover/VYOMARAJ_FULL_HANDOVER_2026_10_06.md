@@ -1,6 +1,6 @@
 # VYOMARAJ — FULL HANDOVER, ALL DETAILS
 
-Generated 2026-10-06 11:36 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
+Generated 2026-10-06 15:42 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
 
 **One command rebuilds this document and its archive:** `python3 ops/vyomaraj-core/handover/build_full_handover.py` — `--check` verifies the checked-in copy still matches the repository and the probes.
 
@@ -10,7 +10,7 @@ Generated 2026-10-06 11:36 UTC from this repository and from live probes of the 
 
 | Port | Service | Live now |
 |---|---|---|
-| 3000 | product page (static http.server) | **open** |
+| 3000 | product page (static http.server) | **closed** |
 | 4174 | reports viewer | **open** |
 | 4176 | availability gateway | **open** |
 | 4181 | lane studio A | **open** |
@@ -143,7 +143,7 @@ The module's own health function returns `mode: metadata_only`, `operational: fa
 
 | Port | Claimed service | Declared status | Live now |
 |---|---|---|---|
-| 3000 | Website V15.1 Preview http.server | ENABLED ACTIVE LIVE | **open** |
+| 3000 | Website V15.1 Preview http.server | ENABLED ACTIVE LIVE | **closed** |
 | 443 | HTTPS — All Social Platforms YouTube Instagram Facebook Ti | ENABLED ACTIVE LIVE | **closed** |
 | 80 | HTTP Redirect to HTTPS | ENABLED ACTIVE LIVE | **closed** |
 | 5432 | PostgreSQL — jarvis_phones platforms tables — CRUD API POS | ENABLED ACTIVE LIVE | **closed** |
@@ -196,7 +196,7 @@ The follower counts, view counts and revenue figures in that row set — and in 
 | Public address | `https://vyomaraj1356.github.io/Vyomarajai/` — GitHub Pages from `main`, free |
 | Palette | Shani Blue `#0a1628`, Kuber Gold `#f59e0b` |
 | Product pages | `index.html`, `landing.html`, `flow-diagram.html` — static, no framework |
-| Port 3000 | product page (static http.server) — **up** |
+| Port 3000 | product page (static http.server) — **down** |
 | Port 4174 | reports viewer — **up** |
 | Port 4176 | availability gateway — **up** |
 | Port 4181 | lane studio A — **up** |
@@ -249,7 +249,7 @@ Found and fixed while researching this handover:
 
 | File | Bytes |
 |---|---|
-| `ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md` | 17,615 |
+| `ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md` | 17,621 |
 | `Vyomaraj-All-Chats-Database-One-Month.md` | 16,879 |
 | `VYOMARAJ_REPOSITORY_MAP.md` | 1,723 |
 | `REAL_VYOMARAJ_INVESTIGATION.md` | 12,822 |
@@ -264,10 +264,10 @@ Found and fixed while researching this handover:
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg` | 19,995 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md` | 8,321 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | 11,255 |
-| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 37,418 |
-| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 35,868 |
-| `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 30,157 |
-| `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 20,763 |
+| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 42,572 |
+| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 44,272 |
+| `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 30,090 |
+| `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 29,710 |
 | `ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json` | 893 |
 | `ops/vyomaraj-core/experience/CONTENT_EXTENSIONS.json` | 4,188 |
 | `ops/jarvis/devices.json` | 51,494 |
