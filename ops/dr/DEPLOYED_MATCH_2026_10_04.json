@@ -3,7 +3,7 @@
   "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
   "primary": "Vyomaraj1356/Vyomarajai",
   "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-  "primary_main_tip_checked": "d46d8b3705a7161938096bfc953b0cd4fd440b8c",
+  "primary_main_tip_checked": "1c13650ce19e18cdc80fe6f8e9ded4fe8c3e6a99",
   "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
   "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
   "observations": [
@@ -427,6 +427,21 @@
       "head_commit_subject": "Merge pull request #31 from Vyomaraj1356/arena/582559e8-vyomarajai",
       "merge_pr": 31,
       "workflow_run_id": 37461681369
+    },
+    {
+      "check_run_id": 112274342282,
+      "completed_at_utc": "2026-10-06T12:43:24Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=c2f20ec8ad7ee9d532de2eaf59ca99d3841ec0fa; secondary_tree=c2f20ec8ad7ee9d532de2eaf59ca99d3841ec0fa; rollback_commit=8af782dbe364a5c8bd4528bbc5e761bca69c391a; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "c2f20ec8ad7ee9d532de2eaf59ca99d3841ec0fa",
+      "secondary_tree": "c2f20ec8ad7ee9d532de2eaf59ca99d3841ec0fa",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "8af782dbe364a5c8bd4528bbc5e761bca69c391a",
+      "head_sha": "1c13650ce19e18cdc80fe6f8e9ded4fe8c3e6a99",
+      "head_commit_subject": "Merge pull request #32 from Vyomaraj1356/arena/6bc12929-vyomarajai",
+      "merge_pr": 32,
+      "workflow_run_id": 37465147285
     }
   ],
   "writes_to_secondary_observed": [
@@ -449,9 +464,10 @@
     112224787168,
     112247203850,
     112251697240,
-    112253587690
+    112253587690,
+    112274342282
   ],
-  "current_state": "This record covers the 2026-10-03 to 2026-10-06 successful verify-or-sync runs through the PR #31 merge (checkpoint #28). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 20 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Three windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Window B (PR #26 tip, 13 runs) was closed by checkpoint #21; window C (PR #29 tip) remains a documented gap. All 28 rows were re-read live on 2026-10-06 with zero mismatches.",
+  "current_state": "This record covers the 2026-10-03 to 2026-10-06 successful verify-or-sync runs through the PR #32 merge (checkpoint #29). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 21 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Three windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Window B (PR #26 tip, 13 runs) was closed by checkpoint #21; window C (PR #29 tip) remains a documented gap. All 29 rows were re-read live on 2026-10-06 with zero mismatches.",
   "branch_scope_warning": "This evidence covers primary main only. Two earlier commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) were not on main at the time they were first reported and therefore were not in the DR snapshot then; the branch was subsequently merged through PRs #10-#18 and is now covered by the checkpoints above. Unmerged branch tips are never part of the DR snapshot.",
   "local_verification_attempt": {
     "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -462,15 +478,15 @@
   "traffic_switched": false,
   "runtime_or_site_dr_verified": false,
   "zero_rpo_or_rto_claimed": false,
-  "revalidated_at_utc": "2026-10-06T12:33:02Z",
+  "revalidated_at_utc": "2026-10-06T12:44:15Z",
   "revalidation": {
     "by": "arena/6bc12929-vyomarajai session (2026-10-06)",
-    "method": "All 20 previously recorded annotations re-read live from the GitHub API in one pass (zero mismatches), plus 8 new verify-or-sync annotations for the #28/#27/#30/#31 main tips re-read live; every annotation tree cross-checked against git rev-parse of its head SHA. Skipped check-runs on f735f92 (11) and 95b2133 (1) confirm the two windows hold no checkpoint.",
-    "result": "28 MATCH checkpoints (20 replication writes) through the PR #31 merge; window B completed and closed by checkpoint #21; window C (PR #29 tip) recorded as a gap."
+    "method": "All 20 previously recorded annotations re-read live from the GitHub API in one pass (zero mismatches), plus 8 new verify-or-sync annotations for the #28/#27/#30/#31 main tips re-read live; every annotation tree cross-checked against git rev-parse of its head SHA. Skipped check-runs on f735f92 (11) and 95b2133 (1) confirm the two windows hold no checkpoint. Checkpoint #29 (PR #32 merge) was re-read live after it landed and its trees cross-checked the same way.",
+    "result": "28 MATCH checkpoints (20 replication writes) through the PR #31 merge; window B completed and closed by checkpoint #21; window C (PR #29 tip) recorded as a gap. Checkpoint #29 (PR #32 merge) recorded from its live annotation; its trees match git rev-parse of 1c13650."
   },
-  "checkpoints_total": 28,
-  "replication_writes_total": 20,
-  "session_record": "Extended in arena/6bc12929-vyomarajai: checkpoints #21-#28 recorded from live annotation re-reads through the PR #31 merge; window B completed; window C added.",
+  "checkpoints_total": 29,
+  "replication_writes_total": 21,
+  "session_record": "Extended in arena/6bc12929-vyomarajai: checkpoints #21-#28 recorded from live annotation re-reads through the PR #31 merge; window B completed; window C added. Checkpoint #29 (PR #32 merge) recorded from its live annotation.",
   "blocked_runs": [
     {
       "check_run_id": 111376415924,
@@ -580,6 +596,7 @@
     "finding": "The record stopped at PR #25 while main had moved to PR #31; the #26 tip (f735f92) was an open gap (window B, then listing 4 of its 13 runs) and the #29 tip (95b2133) was never verified at all.",
     "fix": "Re-read every verify-or-sync annotation live: all 20 old rows match byte-for-byte, and 8 new checkpoints (#21-#28, 4 writes) were recorded from the #28/#27/#30/#31 main tips plus schedule confirmations. Every annotation tree was cross-checked against git rev-parse of its head SHA. Window B is completed (13 runs) and closed by checkpoint #21; window C documents the #29 tip as a gap.",
     "rule": "One checkpoint row per distinct new main tip plus the latest schedule confirmation on the final tip; the complete per-tip check-run sets were enumerated with per_page=100, so no successful verify-or-sync run on these tips is missing.",
-    "next_checkpoint": "The merge carrying this extension is verified by the same workflow immediately after it lands; that run becomes checkpoint #29 per the trailing rule (section 5c)."
+    "next_checkpoint": "The merge carrying this extension is verified by the same workflow immediately after it lands; that run becomes checkpoint #29 per the trailing rule (section 5c).",
+    "fulfilled_by": "run 37465147285 (checkpoint #29, 2026-10-06T12:43:24Z): the PR #32 merge verified write + MATCH, trees c2f20ec8, rollback 8af782db retained."
   }
 }

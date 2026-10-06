@@ -1,6 +1,6 @@
 # ARENA SESSION RECOVERY INDEX
 
-Computed 2026-10-06 12:39 UTC from this repository. The owner was told the work of 12 Arena sessions may be lost. This is what actually survives, and where.
+Computed 2026-10-06 12:46 UTC from this repository. The owner was told the work of 12 Arena sessions may be lost. This is what actually survives, and where.
 
 ## The headline
 
@@ -24,9 +24,9 @@ Computed 2026-10-06 12:39 UTC from this repository. The owner was told the work 
 | 9 | `arena/01a10655-vyomarajai` | 2026-10-04 | Refresh deep scan with follow-up DR check | 0 | 0 | yes |
 | 10 | `arena/01a106da-vyomarajai` | 2026-10-06 | fix: rebuild transfer package d9f2b0ae after index r | 0 | 0 | yes |
 | 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | docs(go-live): the PR backlog is cleared - record wh | 0 | 0 | yes |
-| 12 | `arena/6bc12929-vyomarajai` | 2026-10-06 | record: fill publication SHAs in the next-session pl | 2 | 3 | no |
+| 12 | `arena/6bc12929-vyomarajai` | 2026-10-06 | follow-up: checkpoint #29, correct the issues-write  | 1 | 0 | yes |
 
-Across all branches, **16 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
+Across all branches, **13 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
 
 Examples of files that exist only on a session branch (recoverable with one `git checkout`):
 
@@ -37,9 +37,6 @@ Examples of files that exist only on a session branch (recoverable with one `git
 - `arena/01a0f634-vyomarajai` → `.github/workflows/dr-readiness.yml`
 - `arena/live-preview-reconciled-20261002` → `ops/vyomaraj-core/experience/preview_server.py`
 - `arena/live-preview-reconciled-20261002` → `ops/vyomaraj-core/experience/test_experience_orchestrator.py`
-- `arena/6bc12929-vyomarajai` → `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md`
-- `arena/6bc12929-vyomarajai` → `ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md`
-- `arena/6bc12929-vyomarajai` → `ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md`
 
 ## 2 · How to recover any of it (exact commands)
 
