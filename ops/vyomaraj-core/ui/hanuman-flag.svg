@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Hanuman flag with Jai Shree Ram in Hindi">
+  <rect width="800" height="500" fill="#f59e0b"/>
+  <path d="M60 70 L740 70 L620 250 L740 430 L60 430 Z" fill="#ffffff" opacity=".94"/>
+  <text x="400" y="285" text-anchor="middle" font-family="Noto Sans Devanagari, Mangal, sans-serif" font-size="74" font-weight="700" fill="#0a1628">जय श्री राम</text>
+  <text x="400" y="360" text-anchor="middle" font-family="sans-serif" font-size="30" fill="#0a1628">VYOMARAJ • BHARATH • JARVIS • LAXMAN</text>
+</svg>
