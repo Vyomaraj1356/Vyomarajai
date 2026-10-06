@@ -35,6 +35,15 @@ class RouteContractTests(unittest.TestCase):
                                 f'{route} is neither routed by studio_server.py nor allowlisted '
                                 f'by the shared renderer')
 
+    def test_stack_record_and_enrollment_artifacts_are_registered(self):
+        for path in ('ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md',
+                     'ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json',
+                     'ops/vyomaraj-core/experience/voice_enrollment.py',
+                     'ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json'):
+            with self.subTest(path=path):
+                self.assertTrue((wiring.ROOT / path).is_file())
+                self.assertIn(path, wiring.REQUIRED_FILES)
+
     def test_required_artifacts_exist(self):
         missing = [path for path in wiring.REQUIRED_FILES if not (wiring.ROOT / path).is_file()]
         self.assertEqual(missing, [], f'required launch artifacts are missing: {missing}')

@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-06T06:12:11+00:00",
+  "verified_at_utc": "2026-10-06T06:26:04+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/582559e8-vyomarajai",
-    "commit": "45ef1cdb0a2520aaf6de32da8864064871b55262"
+    "commit": "f18418728716e531ff725060c2899679af4024f7"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
@@ -12,16 +12,16 @@
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
-    "bytes": 139947
+    "sha256": "28a4bf2ec2783418acd3c182248c5b3ffd8e61d4717a3eab3ceb6937d9c31915",
+    "bytes": 140281
   },
   "byte_identity": {
     "viewer_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "viewer_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-    "viewer_transfer_package_download_sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
-    "gateway_transfer_package_download_sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb",
+    "viewer_transfer_package_download_sha256": "28a4bf2ec2783418acd3c182248c5b3ffd8e61d4717a3eab3ceb6937d9c31915",
+    "gateway_transfer_package_download_sha256": "28a4bf2ec2783418acd3c182248c5b3ffd8e61d4717a3eab3ceb6937d9c31915",
     "viewer_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "gateway_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "viewer_platform_check_download_sha256": "55d3e64017ff0f46645b9c9cbedc68d83c4481216ad1898ec5a4cd4e28912433",
@@ -30,8 +30,8 @@
     "gateway_issues_ledger_json_download_sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345",
     "viewer_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
     "gateway_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
-    "viewer_post_pr25_package_download_sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3",
-    "gateway_post_pr25_package_download_sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3"
+    "viewer_post_pr25_package_download_sha256": "4ab7a9b462df2bc4b478c8ceb6ce634cfd9e5373612ab9458d192cd823a41a34",
+    "gateway_post_pr25_package_download_sha256": "4ab7a9b462df2bc4b478c8ceb6ce634cfd9e5373612ab9458d192cd823a41a34"
   },
   "viewer_routes": [
     {
@@ -77,7 +77,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 16908,
-      "sha256": "3cc42f92e4129791c2dd3414e8baef49225f5ac2768d1f433a800cef37780076"
+      "sha256": "a22735301b64edb6ff316b6fc5d116daa08aea029213484ceb5742d685b193a9"
     },
     {
       "route": "/reports/architecture",
@@ -175,8 +175,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 139947,
-      "sha256": "7a97c81239c54a822e1259bc4ea680d96950968c31a0b309bc571bbbb5f0c7eb"
+      "bytes": 140281,
+      "sha256": "28a4bf2ec2783418acd3c182248c5b3ffd8e61d4717a3eab3ceb6937d9c31915"
     },
     {
       "route": "/reports/post-pr25-handover",
@@ -202,8 +202,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 176157,
-      "sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3"
+      "bytes": 176491,
+      "sha256": "4ab7a9b462df2bc4b478c8ceb6ce634cfd9e5373612ab9458d192cd823a41a34"
     },
     {
       "route": "/reports/go-live",
@@ -211,8 +211,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 18242,
-      "sha256": "1d656d81657af845284c227295e75fc7327f4f15165a0a90af5e4af83b4a1d58"
+      "bytes": 19789,
+      "sha256": "0240f8baf8488dfaca5b6640ba78ab067325a9ec03067205d0bb130037cc90c3"
     },
     {
       "route": "/reports/live-wiring",
@@ -220,8 +220,17 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 33042,
-      "sha256": "c668bf2120868bf72e667ec399162c88f944fa4c77430a2536db58906023f9c0"
+      "bytes": 35091,
+      "sha256": "7afe9d9a5913bc835931fe0a318d9a632933d532b54d7697eb6b72ffe86bc74b"
+    },
+    {
+      "route": "/reports/stack",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 21582,
+      "sha256": "511e5ee025e8e817578263f2d1dbf9ab1124123f67721904d5db49c96b41f590"
     },
     {
       "route": "/reports/auto-align",
@@ -340,7 +349,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 17172,
-      "sha256": "8730fa58d1e5c512ebba9f3d7bb6838d8ee545a698903dcba9539fc2a243feb9"
+      "sha256": "a2411cc756fa0a507aa48013bd5a3a2c3c859a6ed3111532ce8929befb5ff01e"
     },
     {
       "route": "/reports/next-session",
@@ -384,8 +393,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 176157,
-      "sha256": "da4248f46a7adb9cb87d87e021742f0dacfece1452a02b68bd52253ad7d14ea3"
+      "bytes": 176491,
+      "sha256": "4ab7a9b462df2bc4b478c8ceb6ce634cfd9e5373612ab9458d192cd823a41a34"
     },
     {
       "route": "/reports/dr-sync",
@@ -540,8 +549,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 18506,
-        "sha256": "24ca20e3998e187327b430824057dcaa7026109c5f3e794e6148f15b4dbf70b8"
+        "bytes": 20053,
+        "sha256": "762e79f0972ca81098437335888349a6da0ff37261a3d612957940cd8453024b"
       },
       {
         "route": "/reports/live-wiring",
@@ -549,8 +558,17 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 33306,
-        "sha256": "00732b305db8d60dd937c0ab73bba653ea3260721781488bc7f21bde3fc023ec"
+        "bytes": 35355,
+        "sha256": "f8b74a18c8ffcff5a7244aa634b1c88747fe80b3824dc6586e140d3a43e2e98c"
+      },
+      {
+        "route": "/reports/stack",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 21846,
+        "sha256": "6c4d1168fb23e0e35afbebea00af4497162d420fb34521cf01f4ccc81746f1ab"
       },
       {
         "route": "/reports/auto-align",
@@ -632,8 +650,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 18506,
-        "sha256": "24ca20e3998e187327b430824057dcaa7026109c5f3e794e6148f15b4dbf70b8"
+        "bytes": 20053,
+        "sha256": "762e79f0972ca81098437335888349a6da0ff37261a3d612957940cd8453024b"
       },
       {
         "route": "/reports/live-wiring",
@@ -641,8 +659,17 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 33306,
-        "sha256": "00732b305db8d60dd937c0ab73bba653ea3260721781488bc7f21bde3fc023ec"
+        "bytes": 35355,
+        "sha256": "f8b74a18c8ffcff5a7244aa634b1c88747fe80b3824dc6586e140d3a43e2e98c"
+      },
+      {
+        "route": "/reports/stack",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 21846,
+        "sha256": "6c4d1168fb23e0e35afbebea00af4497162d420fb34521cf01f4ccc81746f1ab"
       },
       {
         "route": "/reports/auto-align",
@@ -736,7 +763,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 202,
+      "primary_responses": 88,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0

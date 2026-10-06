@@ -48,6 +48,8 @@ BUILDER_COMMANDS = [
     ['python3', 'ops/vyomaraj-core/handover/build_dr_sync_report.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_transfer_package.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_post_pr25_package.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/handover/build_stack_record.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/experience/voice_enrollment.py', '--audit'],
     ['python3', 'ops/vyomaraj-core/handover/build_configuration_report.py', '--check'],
     ['python3', 'ops/vyomaraj-core/experience/rebuild_contents.py', '--check'],
     ['python3', 'ops/vyomaraj-core/agents/inheritance_audit.py', '--check'],

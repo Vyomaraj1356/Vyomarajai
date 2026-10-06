@@ -85,6 +85,7 @@ REPORTS = {
     '/reports/platform-check': 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md',
     '/reports/issues': 'ISSUES_AND_PRS_LEDGER_2026_10_04.md',
     '/reports/go-live': 'NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
+    '/reports/stack': 'STACK_AND_PLATFORM_RECORD_2026_10_06.md',
 }
 
 

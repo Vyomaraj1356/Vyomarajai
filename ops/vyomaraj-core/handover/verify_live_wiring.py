@@ -47,13 +47,14 @@ VIEWER_ROUTES = {
     '/reports/dr-sync': ('ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md', 'BLOCKED'),
     '/reports/contents': ('ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md', 'All Experience Contents'),
     '/reports/go-live': ('ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md', 'Navaratri 2026 go-live plan'),
+    '/reports/stack': ('ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md', 'Stack and platform record'),
     '/reports/live-wiring': ('ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json', 'blocking_checks'),
     '/reports/test-evidence': ('ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json', 'python_tests_total'),
     '/reports/issues': ('ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md', 'New-session runbook (in order)'),
 }
 REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/aghor/', '/research/',
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
-                  '/reports/post-pr25-handover']
+                  '/reports/stack', '/reports/post-pr25-handover']
 # route -> repository path whose bytes the download must be identical to
 DOWNLOADS = {
     '/reports/download/next-session.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt',
@@ -68,6 +69,10 @@ REQUIRED_FILES = [
     'ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json',
     'ops/vyomaraj-core/agents/CONTENT_INDEX_CURRENT.json',
     'ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md',
+    'ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md',
+    'ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json',
+    'ops/vyomaraj-core/experience/voice_enrollment.py',
+    'ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json',
     'ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md',
     'ops/dr/DEPLOYED_MATCH_2026_10_04.json',
     'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip',

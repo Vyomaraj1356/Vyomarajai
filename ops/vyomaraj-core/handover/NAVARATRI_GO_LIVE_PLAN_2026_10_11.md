@@ -38,30 +38,36 @@ six lane packs resolve to the current agent registry. Read it yourself at `/repo
 
 | Item | Actual state | Consequence for 11 October |
 |---|---|---|
-| Production host | Everything runs in one sandbox; the stack dies with it | A preview link cannot be the launch you announce |
+| Production host | **Already solved, free**: GitHub Pages serves the product from `main` (status built). The Python stack is for local dry runs only | The launch address is the Pages URL, not a sandbox link — see §2.6 |
 | Independent DR | Not verified (`zero_rpo_verified=false`, `zero_rto_verified=false`) | One machine losing its disk loses both replicas |
 | APK | Inspected today: `Vyomaraj-App.apk`, 24,567,022 bytes, sha256 `948e60b0…`, 222 zip entries, 8 dex files, `AndroidManifest.xml` present — and **no signature block**, so a stock Android device rejects it. No Android project (Gradle, manifest source, Java/Kotlin) exists in this repository, so it cannot be rebuilt or re-signed here | Must be rebuilt and signed from its original project, then installed on real devices, before it appears on the launch page |
-| Voice / biometric enrollment | **No enrollment code exists in this repository** | Must be built or bought in the next two days, or the feature does not ship |
+| Voice / biometric enrollment | **On-device path now implemented** (`voice_enrollment.py` + policy + 14 tests): consent text, delete-my-voice, no upload path, guard that fails the build if a template ever lands in the repo | Free, no vendor, no contract. Capture UI wires into the lanes on Day 2 |
 | Content media | No recording, episode, lyric, artwork or brand asset is hosted — by design | Launch programming must be our own produced material |
 | Publications/domains | Not registered here; DNS and TLS are outside this repo | Register and point before 11 October |
 
 ---
 
-## 2. Decisions only the owner can make (blocking, needed today)
+## 2. Decisions only the owner can make
 
-1. **Voice enrollment route** — on-device only (no cloud, no template leaves the phone) **or** a
-   provider with a signed data-processing agreement? On-device is the only option that needs no
-   third-party contract before 11 October.
-2. **Identity / KYC-** — the repository will reference **`uidai.in` (web) only**. In-app Aadhaar
-   biometric capture requires licensed AUA/KUA status and a legal review; neither exists. If
-   enrollment means "verify a person", the gate stays: legal review first, no exception for
-   launch dates.
-3. **Domains and DNS** — which domain is the launch address, and who holds the registrar account?
-4. **APK distribution** — signed release keystore (owner-held) and Play Console, or direct APK?
-5. **The nine opening programmes** — which four of the new originals record first, in which order,
-   and who signs them off (content proof must be trilingual: Hindi, English, Hinglish).
-6. **Production host** — approve a real host separate from this sandbox, or accept that the
-   launch runs on a single machine that is not disaster-recovered.
+**Budget rule for this launch: nothing is bought.** No host, no domain, no vendor, no gateway. The
+free stack is already working (Pages + Actions + the local servers). Purchases wait until Vyomaraj
+earns — the order to buy in is in `STACK_AND_PLATFORM_RECORD_2026_10_06.md` section 5.
+
+Blocks the launch if unanswered:
+1. **The nine opening programmes** — which four of the new originals record first, in which order,
+   and who signs them off (trilingual proof: Hindi, English, Hinglish).
+2. **The APK** — sign the existing binary with a key you hold (`keytool`, free) and publish it as a
+   direct download, **or** leave it off the launch page until its project is recovered. Self-signed
+   means an "unknown source" warning on the phone; that is acceptable, an unsigned file is not.
+3. **Launch address** — confirm `https://vyomaraj1356.github.io/Vyomarajai/` as the 11 October
+   address (free, already built). A bought domain can replace it later without changing anything
+   else.
+
+Answered by default unless the owner objects:
+4. **Voice enrollment** — on-device only, as implemented. No cloud vendor, no cloning of anyone
+   else's voice, no identity-document capture.
+5. **Identity / KYC** — `uidai.in` **web only**. In-app Aadhaar capture needs AUA/KUA licensing and
+   legal review; that is a post-earnings purchase, not a launch blocker.
 
 ---
 
@@ -79,25 +85,26 @@ six lane packs resolve to the current agent registry. Read it yourself at `/repo
 - Run the **live-wiring verifier** (`python3 ops/vyomaraj-core/handover/verify_live_wiring.py`)
   against the running stack; fix every reported problem, then re-run until clean. This is the
   "agents and contents linked" gate: routes, byte identity, pack-to-registry bindings, downloads.
-- Register the domain; point DNS; terminate TLS. Record the exact production URL in this document
-  when it is live.
+- Confirm the **Pages build** for the launch commit and open the Pages URL on a real phone. The
+  Pages address is the launch address; nothing needs registering or paying for.
 - **APK QA:** the committed binary is unsigned and unrebuildable from this repository (§1), so
   today the work is: recover or recreate the Android project, set a version name and version
   code, sign with the owner-held keystore, install on two real devices (one low-end Android, one
   current), and record the build metadata here. If that cannot be done by Day 1, the APK does not
   go on the launch page — an unsigned binary is worse than no binary.
-- **Voice enrollment, part 1:** if the answer to §2.1 is on-device, implement capture locally:
-  explicit consent screen, a spoken passphrase set, on-device storage, a delete-my-voice control,
-  and a hard rule that no template or recording leaves the device. If the answer is a provider,
-  that contract cannot be signed today — plan the feature for after the festival and say so.
+- **Voice enrollment:** the policy, consent text, withdrawal control and the repository guard are
+  already implemented and tested (`ops/vyomaraj-core/experience/voice_enrollment.py`,
+  `VOICE_ENROLLMENT_POLICY.json`, 14 tests). Day 1 adds the capture screen to the product page:
+  read three phrases, keep the template in browser storage, show the delete button beside it.
 - Content: freeze the nine-night programme outline; commission the first four originals; put the
   credit line (poet, composer, performer, source) on every piece before recording.
 
 ### Day 2 — Thursday 8 October · build day
 - Implement and land the enrollment work from Day 1 behind the consent gate, with tests that fail
   if a voice template is ever written to a repository path or a server upload.
-- Build the production web stack: same four processes, real host, supervisor that restarts them,
-  and a health check the owner can read from a phone. **Do not** claim DR: this is one host.
+- Build the launch web stack on the free route: the static product on Pages, and the four local
+  processes only for dry runs. Add a page the owner can open on a phone to see the wiring state
+  (`/reports/live-wiring`). **Do not** claim DR: Pages is hosting, not disaster recovery.
 - Database: confirm where runtime state lives (the research store and queue), take a backup of it,
   and record the restore steps. Git-snapshot DR does not cover runtime databases.
 - **Full test run #1** with all configurations: web routes, app flows, music/film/bhakti/comics
@@ -140,17 +147,23 @@ six lane packs resolve to the current agent registry. Read it yourself at `/repo
 
 ## 5. Risks, in order of what actually kills a launch
 
-1. **The sandbox is not a host.** If the launch address is a sandbox preview link, it dies with
-   the sandbox and takes the festival opening with it. Fix: real host by Day 2 (decision §2.6).
+1. **A sandbox link is not a host.** If the launch address is a preview link it dies with its
+   sandbox and takes the festival opening with it. Fix: Pages is the launch address (free, already
+   built); sandbox links are for dry runs only and are labelled as such.
 2. **No disaster recovery.** One disk, both replicas. Fix: at minimum, runtime database backups
    with a tested restore (Day 2-3) plus the Git-snapshot replication that already runs.
-3. **Unverified APK.** Fix: rebuild and sign, or drop it from the launch page (§3, Day 1).
+3. **Unverified APK.** Fix: sign it with a key the owner holds (free) and test on real devices, or
+   drop it from the launch page (§3, Day 1).
 4. **Identity documents.** Aadhaar work stays on `uidai.in` web; no in-app biometric capture
    without the paperwork. Fix: legal review scheduled, feature not promised for the 11th.
 5. **Content rights.** The new Sufi/ghazal/show cards are context only; the launch needs our own
    recordings. Fix: commission and record the four originals first, credit them properly.
 6. **Notifications and payments.** The approvals, finance and upgrade desks draft only; they send
-   nothing. Do not announce them as working channels on the 11th.
+   nothing, and with no gateway there is no payment rail. Do not announce either on the 11th.
+7. **The money trap.** A document in this repository claims PostgreSQL, Redis, FastAPI, Flask,
+   live social APIs and revenue figures. None of it runs here (section 3 of
+   `STACK_AND_PLATFORM_RECORD_2026_10_06.md`). Quoting those numbers to a partner or a buyer would
+   be the fastest way to lose the room.
 
 ---
 
@@ -167,14 +180,15 @@ six lane packs resolve to the current agent registry. Read it yourself at `/repo
 | DR sync results (20 checkpoints, open window) | `/reports/dr-sync` | viewer + replicas | live |
 | This plan | `/reports/go-live` | viewer + replicas | added with this document |
 | Live wiring state (generated) | `/reports/live-wiring` | viewer + replicas | added with this document |
+| Stack, platforms and archive record | `/reports/stack` | viewer + replicas | added 6 October — answers "what did we build on" |
 
 ---
 
 ## 7. Owner sign-off lines
 
 - [ ] Day 0 — PR #27 merged and checkpoint #21 recorded
-- [ ] Day 1 — domain live, DNS/TLS done, APK decision made, enrollment route chosen
-- [ ] Day 2 — production host up, database backup + restore recorded, test run #1 complete
+- [ ] Day 1 — Pages URL confirmed on a phone as the launch address, APK decision made, enrollment capture screen added
+- [ ] Day 2 — launch stack confirmed on the free route, runtime backup + restore recorded, test run #1 complete
 - [ ] Day 3 — dry run #2 complete, content proofed trilingually, rollback rehearsed
 - [ ] Day 4 — freeze, evidence snapshot committed, runbook printed
 - [ ] Day 5 — go live inside the Ghatasthapana window

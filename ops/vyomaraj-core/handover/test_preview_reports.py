@@ -147,6 +147,13 @@ class PreviewTests(unittest.TestCase):
                 self.assertIn(marker, text)
                 self.assertIn(extra, text)
 
+    def test_stack_record_page_states_the_real_stack_and_the_money_rule(self):
+        with urllib.request.urlopen(self.url + '/reports/stack') as response:
+            text = response.read().decode()
+        for marker in ('Stack and platform record', 'GitHub Pages', 'Python 3 standard library',
+                       'UNSIGNED', 'zero-cost launch path', 'When Vyomaraj earns'):
+            self.assertIn(marker, text)
+
     def test_go_live_plan_names_the_launch_date_and_the_open_decisions(self):
         with urllib.request.urlopen(self.url + '/reports/go-live') as response:
             text = response.read().decode()

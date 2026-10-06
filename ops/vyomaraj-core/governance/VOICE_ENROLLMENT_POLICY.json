@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "mode": "on_device_only_no_vendor",
+  "vendor_used": null,
+  "uploads_enabled": false,
+  "storage": "device_only",
+  "purpose": "Speak authored Vyomaraj and Jarvis lines in the owner household's own voices; no other use is permitted",
+  "retention": "until the owner deletes the profile; deletion removes the template immediately",
+  "min_sample_seconds": 6,
+  "max_sample_seconds": 30,
+  "min_phrases": 3,
+  "consent_required": true,
+  "withdrawal_supported": true,
+  "clones_other_people_voices": false,
+  "captures_identity_documents": false,
+  "identity_documents_route": {
+    "rule": "web only, official site",
+    "url": "uidai.in"
+  },
+  "templates_in_repository": false,
+  "network_calls": 0,
+  "engine": "browser Web Speech API for playback plus local capture; Python standard library for the policy and the guard. No SDK, no SDK key, no cloud service."
+}
