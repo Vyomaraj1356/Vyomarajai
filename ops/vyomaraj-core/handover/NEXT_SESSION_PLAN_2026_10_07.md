@@ -25,9 +25,9 @@ PUBLICATION RECORD (filled by the writing session before pushing):
 
 - Branch: `arena/6bc12929-vyomarajai`
 - Base: `main` at `d46d8b3705a7161938096bfc953b0cd4fd440b8c`
-- Content commit: `FILL_BEFORE_PUSH_1` (rebuild: plan, update, routes, tests, DR extension, regenerated chain)
-- Record commit: `FILL_BEFORE_PUSH_2` (this section filled in + AI handoff archive rebuilt)
-- Recovery-index commit: `FILL_AFTER_PUSH` (12-session index + go-live brief, after the branch exists on origin)
+- Content commit: `1ecf59b7150f0dea4b1d8a785d2000052bcdfbd5` (rebuild: plan, update, routes, tests, DR extension, regenerated chain)
+- Record commit: this commit (fills the content SHA above + rebuilds the AI handoff archive)
+- Recovery-index commit: filled after the first push (12-session index + go-live brief, after the branch exists on origin)
 
 Primary path — run from the repository root on this branch:
 

@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-10-06T12:38:11Z",
+  "checked_at_utc": "2026-10-06T12:39:15Z",
   "scope": "READ_ONLY_LIVE_WIRING_CHECK \u2014 local preview stack plus checked-in packs",
   "git": {
-    "commit": "d46d8b3705a7161938096bfc953b0cd4fd440b8c",
+    "commit": "1ecf59b7150f0dea4b1d8a785d2000052bcdfbd5",
     "branch": "arena/6bc12929-vyomarajai"
   },
   "blocking_checks": {
@@ -16,7 +16,7 @@
       "bytes": 26384,
       "sha256": "3fb9fa5be333e466f9403173944944f6b88fd6a83ed9420a077d7af70793163a",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.005
+      "seconds": 0.007
     },
     {
       "route": "/reports/next-session",
@@ -51,7 +51,7 @@
       "bytes": 35617,
       "sha256": "9a533046801a0e7525d8af326532d90715a144c3dabf9b4d59df8d0d2a8c3821",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.003,
+      "seconds": 0.004,
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md"
     },
     {
@@ -69,7 +69,7 @@
       "bytes": 20339,
       "sha256": "f8eaeb7a9315dc3e9e6ab502a56b191b438f8441118dcf6ce52e2f89633241ec",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002,
+      "seconds": 0.003,
       "source": "ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md"
     },
     {
@@ -84,8 +84,8 @@
     {
       "route": "/reports/live-wiring",
       "status": 200,
-      "bytes": 53320,
-      "sha256": "b885b7d4edc5d869efbb028aa8e20101fc56f401d78dfee9de52f0232e97b30e",
+      "bytes": 60070,
+      "sha256": "e6d6bfb931bfbee837623b275a6cb161b4489283f4b856e7696ed9f76d5d4753",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.001,
       "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
@@ -93,8 +93,8 @@
     {
       "route": "/reports/test-evidence",
       "status": 200,
-      "bytes": 35305,
-      "sha256": "c8fb0903c52f4c9f1ba3beeabad3074062f9201292667781c56ff888c50f2c62",
+      "bytes": 35827,
+      "sha256": "1a85d0ea7fd53ac5cef183789ab600cf744aad95e23c429801a8fd70c8d87de5",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.001,
       "source": "ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json"
@@ -111,8 +111,8 @@
     {
       "route": "/reports/next-session-plan",
       "status": 200,
-      "bytes": 20867,
-      "sha256": "74c8730751bbe135cdc2fae462f15496f596c771c4278d8d130bc68e6c1523cf",
+      "bytes": 20878,
+      "sha256": "f982b8e59c10112238cc74505350237a8a348217896e37231869409ef060ebfb",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.002,
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md"
@@ -142,7 +142,7 @@
       "bytes": 34383,
       "sha256": "07d839fe10f242e87f9b957afbd40ac5592fc30c0012fc4280cf9d917a062fa1",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002,
+      "seconds": 0.001,
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt"
     },
     {
@@ -202,8 +202,8 @@
     {
       "route": "/reports/live-wiring",
       "status": 200,
-      "bytes": 53144,
-      "sha256": "1890bd2c7ecc7f825ffec9d2eef2cfe6d78b9ff9632ed84246373b19b8b44c59",
+      "bytes": 59894,
+      "sha256": "2e70f500688b4467c25ffd2343f27cf1e8f4fcc2aebd81fd441ea846b9cb1498",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.001,
       "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
@@ -211,8 +211,8 @@
     {
       "route": "/reports/test-evidence",
       "status": 200,
-      "bytes": 35129,
-      "sha256": "ab915681eb697472cd1324240611da20d935976e3d1e1c3bacb69a88b0fd2612",
+      "bytes": 35651,
+      "sha256": "16aa6677f8d6eec8c7df29834354138c2d6f43c49509bb21bad9f8795efa7aa4",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.001,
       "source": "ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json"
@@ -229,8 +229,8 @@
     {
       "route": "/reports/next-session-plan",
       "status": 200,
-      "bytes": 20691,
-      "sha256": "3e00dee7052a3ccf7bb62f205adf6c64be7048ae156f3987e7773348c787b10f",
+      "bytes": 20702,
+      "sha256": "ecad25e162a6b42c47f78397cff9f663d5bfd2467f0dd1590d48dbb6f7c07c61",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.002,
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md"
@@ -331,8 +331,8 @@
     {
       "route": "/reports/live-wiring",
       "status": 200,
-      "bytes": 53144,
-      "sha256": "1890bd2c7ecc7f825ffec9d2eef2cfe6d78b9ff9632ed84246373b19b8b44c59",
+      "bytes": 59894,
+      "sha256": "2e70f500688b4467c25ffd2343f27cf1e8f4fcc2aebd81fd441ea846b9cb1498",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.001,
       "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
@@ -383,7 +383,7 @@
       "route": "/reports/realtime",
       "status": 200,
       "bytes": 2566,
-      "sha256": "662559f1d478b2b40763cdae97810acfc83bd190a1b5b9df8b8e026d330bc7b4",
+      "sha256": "4db4bd68987829d8f1568b8dfb3aa10e76cd760801f91f2f5d7759056346ccd9",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.002
     },
@@ -399,7 +399,7 @@
       "route": "/api/realtime",
       "status": 200,
       "bytes": 1346,
-      "sha256": "72a97a16b995e45e979cbb70cedf87d96c6093f57e44ed7394ed32a457b86c32",
+      "sha256": "8ab957216a708063b950f468410b9f22db77ea09a64bdb12a076b68f45407cd7",
       "content_type": "application/json; charset=utf-8",
       "seconds": 0.002
     },
@@ -425,7 +425,7 @@
       "bytes": 17144,
       "sha256": "3db5d6a7dd342b4224d21adedddbb21665a406a42a55f4779c0439bc1367e276",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002
+      "seconds": 0.003
     },
     {
       "route": "/reports/go-live-gaps",
@@ -438,8 +438,8 @@
     {
       "route": "/reports/next-session-plan",
       "status": 200,
-      "bytes": 20691,
-      "sha256": "3e00dee7052a3ccf7bb62f205adf6c64be7048ae156f3987e7773348c787b10f",
+      "bytes": 20702,
+      "sha256": "ecad25e162a6b42c47f78397cff9f663d5bfd2467f0dd1590d48dbb6f7c07c61",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.002,
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md"
@@ -540,8 +540,8 @@
     {
       "route": "/reports/live-wiring",
       "status": 200,
-      "bytes": 53144,
-      "sha256": "1890bd2c7ecc7f825ffec9d2eef2cfe6d78b9ff9632ed84246373b19b8b44c59",
+      "bytes": 59894,
+      "sha256": "2e70f500688b4467c25ffd2343f27cf1e8f4fcc2aebd81fd441ea846b9cb1498",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.001,
       "source": "ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json"
@@ -552,7 +552,7 @@
       "bytes": 21956,
       "sha256": "06fee388482be75694b94d99a56a31abf6a537ceab29b615ac723cc94a6cf32a",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.003,
+      "seconds": 0.002,
       "source": "ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md"
     },
     {
@@ -592,7 +592,7 @@
       "route": "/reports/realtime",
       "status": 200,
       "bytes": 2566,
-      "sha256": "4698e5bc6b1d2ddb3d8dca528c499611c86901a1f5459311a529c3c35e68786e",
+      "sha256": "4db4bd68987829d8f1568b8dfb3aa10e76cd760801f91f2f5d7759056346ccd9",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.002
     },
@@ -608,7 +608,7 @@
       "route": "/api/realtime",
       "status": 200,
       "bytes": 1346,
-      "sha256": "397c26208173bad054deab71229ceb0808cf0694d532c8ac03d3d027d8e4ae32",
+      "sha256": "8ab957216a708063b950f468410b9f22db77ea09a64bdb12a076b68f45407cd7",
       "content_type": "application/json; charset=utf-8",
       "seconds": 0.002
     },
@@ -618,7 +618,7 @@
       "bytes": 14584,
       "sha256": "06ba3c129a510a3185e4087635b714fa021fcd4c51faeb9858a05b39262da833",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "route": "/reports/runbook",
@@ -642,13 +642,13 @@
       "bytes": 16584,
       "sha256": "606b1a1ead6959c27345763eb7f9abd5b87da36aa1eac160aab8cb9bc9102078",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "route": "/reports/next-session-plan",
       "status": 200,
-      "bytes": 20691,
-      "sha256": "3e00dee7052a3ccf7bb62f205adf6c64be7048ae156f3987e7773348c787b10f",
+      "bytes": 20702,
+      "sha256": "ecad25e162a6b42c47f78397cff9f663d5bfd2467f0dd1590d48dbb6f7c07c61",
       "content_type": "text/html; charset=utf-8",
       "seconds": 0.002,
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md"
@@ -780,8 +780,8 @@
       "route": "/reports/download/ai-handoff.zip",
       "source": "ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip",
       "status": 200,
-      "bytes": 629580,
-      "sha256": "43dc298475c5fc569afc6f6ba8ab8410e37336e38bb8e5c60235c9559bb9fb67",
+      "bytes": 629598,
+      "sha256": "e56c0fb0d503860dd30b3b35d55c33f2a2ac44cda139d1ab3b3035bdd7bcfcf4",
       "byte_identical_to_source": true
     },
     {
@@ -796,16 +796,16 @@
       "route": "/reports/download/next-session-plan.md",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md",
       "status": 200,
-      "bytes": 14129,
-      "sha256": "ca5f90d602ed279a5bd9bc1f19c8375c4e4f86755d6a41d20d34539f83725459",
+      "bytes": 14162,
+      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70",
       "byte_identical_to_source": true
     },
     {
       "route": "/reports/download/next-session-plan.txt",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md",
       "status": 200,
-      "bytes": 14129,
-      "sha256": "ca5f90d602ed279a5bd9bc1f19c8375c4e4f86755d6a41d20d34539f83725459",
+      "bytes": 14162,
+      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70",
       "byte_identical_to_source": true
     },
     {
@@ -958,8 +958,8 @@
       "route": "/reports/download/ai-handoff.zip",
       "source": "ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip",
       "status": 200,
-      "bytes": 629580,
-      "sha256": "43dc298475c5fc569afc6f6ba8ab8410e37336e38bb8e5c60235c9559bb9fb67",
+      "bytes": 629598,
+      "sha256": "e56c0fb0d503860dd30b3b35d55c33f2a2ac44cda139d1ab3b3035bdd7bcfcf4",
       "byte_identical_to_source": true
     },
     {
@@ -974,16 +974,16 @@
       "route": "/reports/download/next-session-plan.md",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md",
       "status": 200,
-      "bytes": 14129,
-      "sha256": "ca5f90d602ed279a5bd9bc1f19c8375c4e4f86755d6a41d20d34539f83725459",
+      "bytes": 14162,
+      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70",
       "byte_identical_to_source": true
     },
     {
       "route": "/reports/download/next-session-plan.txt",
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md",
       "status": 200,
-      "bytes": 14129,
-      "sha256": "ca5f90d602ed279a5bd9bc1f19c8375c4e4f86755d6a41d20d34539f83725459",
+      "bytes": 14162,
+      "sha256": "4b117a33777c13bb88a1f1a125ff5b57e8e72590632d3a847f455442f2789c70",
       "byte_identical_to_source": true
     },
     {
