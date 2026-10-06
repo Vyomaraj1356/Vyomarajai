@@ -28,6 +28,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 RECORD = HERE / 'DEPLOYED_MATCH_2026_10_04.json'
+RECHECK = HERE / 'ISSUE_6_ACCESS_RECHECK_2026_10_06.json'
 COMMENT = HERE / 'ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md'
 ISSUE = 6
 EXIT_BLOCKED_OWNER = 3
@@ -46,14 +47,19 @@ def known_check_runs(record):
     return known
 
 
-def known_ids(record):
-    """Ids the record holds anywhere: rows, blocked runs, windows, notes."""
-    return {int(value) for value in LONG_ID.findall(json.dumps(record))}
+def known_ids(record, extra_paths=(RECHECK,)):
+    """Ids the record holds anywhere: rows, blocked runs, windows, notes — plus the
+    checked-in access recheck, which holds the read-only probe evidence."""
+    blob = json.dumps(record)
+    for path in extra_paths:
+        if Path(path).is_file():
+            blob += Path(path).read_text(encoding='utf-8')
+    return {int(value) for value in LONG_ID.findall(blob)}
 
 
-def validate(comment_text, record):
-    """Every id the comment cites must exist in the record it summarizes."""
-    known = known_ids(record)
+def validate(comment_text, record, extra_paths=(RECHECK,)):
+    """Every id the comment cites must exist in the evidence it summarizes."""
+    known = known_ids(record, extra_paths)
     problems = []
     missing = [value for value in cited_ids(comment_text) if value not in known]
     if missing:
@@ -93,17 +99,21 @@ def main():
     modes.add_argument('--post', action='store_true', help='comment and close issue #6 (needs issues=write)')
     parser.add_argument('--comment', default=str(COMMENT))
     parser.add_argument('--record', default=str(RECORD))
+    parser.add_argument('--recheck', default=str(RECHECK))
     args = parser.parse_args()
 
     comment_path = Path(args.comment)
     record = json.loads(Path(args.record).read_text(encoding='utf-8'))
-    problems = validate(comment_path.read_text(encoding='utf-8'), record)
+    recheck = Path(args.recheck)
+    problems = validate(comment_path.read_text(encoding='utf-8'), record,
+                        extra_paths=(recheck,) if recheck else ())
     if problems:
         for problem in problems:
             print(f'FAIL: {problem}')
         return 1
     print(f'OK: {comment_path.name} cites {len(cited_ids(comment_path.read_text(encoding="utf-8")))} '
-          f'check-runs/runs, all present in {Path(args.record).name}.')
+          f'check-runs/runs, all present in {Path(args.record).name} or '
+          f'{Path(args.recheck).name if args.recheck else "(no recheck)"}.')
     if args.check:
         return 0
     if not args.post:

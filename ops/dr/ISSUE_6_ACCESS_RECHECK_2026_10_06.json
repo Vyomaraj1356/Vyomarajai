@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-10-06T13:43:02Z",
+  "recorded_at_utc": "2026-10-06T13:47:58Z",
   "session": "arena/05152d2a-vyomarajai",
   "issue": {
     "number": 6,
@@ -8,7 +8,7 @@
     "state_read_via": "GET /repos/Vyomaraj1356/Vyomarajai/issues/6 (the read side of the same credential that is denied writes)"
   },
   "attempted_issue_writes": {
-    "summary": "Four live attempts from this session: gh issue comment, gh issue close, REST POST /issues/6/comments, REST PATCH /issues/6 {state:closed}. Every write returned HTTP 403 'Resource not accessible by integration'; reads continue to work.",
+    "summary": "Five live attempts from this session: gh issue comment, gh issue close, REST POST /issues/6/comments, REST PATCH /issues/6 {state:closed}, and ops/dr/post_issue_closeout.py --post (comment then close). Every write returned HTTP 403 'Resource not accessible by integration'; reads continue to work.",
     "attempts": [
       {
         "form": "gh issue comment 6 --body-file ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md",
@@ -25,6 +25,10 @@
       {
         "form": "PATCH repos/Vyomaraj1356/Vyomarajai/issues/6 {state=closed}",
         "result": "403 Resource not accessible by integration"
+      },
+      {
+        "form": "python3 ops/dr/post_issue_closeout.py --post",
+        "result": "403 'Message: Resource not accessible by integration, Locations: [{Line:1 Column:49}]' (comment step; close not attempted)"
       }
     ],
     "raw_output": "### attempt 3: REST POST comment (explicit)\n{\"message\":\"Resource not accessible by integration\",\"documentation_url\":\"https://docs.github.com/rest/issues/comments#create-an-issue-comment\",\"status\":\"403\"}gh: Resource not accessible by integration (HTTP 403)\n### attempt 4: REST PATCH close\n{\"message\":\"Resource not accessible by integration\",\"documentation_url\":\"https://docs.github.com/rest/issues/issues#update-an-issue\",\"status\":\"403\"}gh: Resource not accessible by integration (HTTP 403)\n### read permission check\nopen",
@@ -49,19 +53,29 @@
   },
   "actions_credential": {
     "role": "VYOMARAJ_PAT (Actions secret) is the authorized reader/writer of the secondary; the workflow runs, not this sandbox, hold it. Its value is not readable here and must not be pasted in chat.",
-    "latest_read_only_probe": {
-      "check_run_id": 112131576824,
-      "annotation_title": "DR READ-ONLY DIAGNOSTIC",
-      "annotation": "read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=315; secondary_files=315; missing_on_secondary=0; secondary_only=0; changed_content_or_mode=3; secondary_commit=c0edf483cd786b63a149c987bce370ab81404897; secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; candidate_files=320; candidate_secondary_only=0; candidate_missing=5; candidate_changed=14",
-      "re_read_at_utc": "2026-10-06T13:43:02Z",
-      "note": "Read live again in this session. This remains the newest read-only probe annotation: the diagnose-existing-pat job has been skipped on every run since (verified on the d97122f, e9bfba0, 1c13650, d46d8b3 and ed21fe7 tips)."
-    },
     "latest_write_proof": {
       "check_run_id": 112279322282,
       "workflow_run_id": 37466613010,
       "completed_at_utc": "2026-10-06T12:54:50Z",
       "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=70b69f8e03317c64ecb379014843f026795fad69; secondary_tree=70b69f8e03317c64ecb379014843f026795fad69; rollback_commit=490880630a5a73e895982814da8d4f9a886bc493; data_match=true",
       "note": "A verify-or-sync run completed after this recheck (checkpoint #31, PR #34 tip). It proves the Actions credential still reads the secondary and writes it exactly; it does not give this sandbox read access."
+    },
+    "previous_read_only_probe": {
+      "check_run_id": 112131576824,
+      "annotation_title": "DR READ-ONLY DIAGNOSTIC",
+      "annotation": "read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=315; secondary_files=315; missing_on_secondary=0; secondary_only=0; changed_content_or_mode=3; secondary_commit=c0edf483cd786b63a149c987bce370ab81404897; secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; candidate_files=320; candidate_secondary_only=0; candidate_missing=5; candidate_changed=14",
+      "re_read_at_utc": "2026-10-06T13:43:02Z",
+      "note": "Read live again in this session. This remains the newest read-only probe annotation: the diagnose-existing-pat job has been skipped on every run since (verified on the d97122f, e9bfba0, 1c13650, d46d8b3 and ed21fe7 tips)."
+    },
+    "latest_read_only_probe": {
+      "check_run_id": 112302972786,
+      "job": "dr-read-only-diagnostic",
+      "workflow_run_id": 37473549777,
+      "annotation_title": "DR READ-ONLY DIAGNOSTIC",
+      "annotation": "read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MATCH; writes=NONE; write_permission=UNVERIFIED; secondary_commit=001d512b4b5e523132eb6e9ee34c77d566a8eee7; secondary_tree=70b69f8e03317c64ecb379014843f026795fad69; candidate_files=427; candidate_secondary_only=0; candidate_missing=7; candidate_changed=20",
+      "job_result": "success 2026-10-06T13:47:24Z",
+      "read_at_utc": "2026-10-06T13:47:58Z",
+      "note": "Ran on this session's pull request (#35) and read live here. tree=MATCH with secondary_tree=70b69f8e03317c64ecb379014843f026795fad69, which is exactly the tree of main tip d97122f (checkpoints #31/#32) \u2014 the independent read the issue asked for, still with writes=NONE on the probe itself."
     }
   },
   "owner_actions_remaining": [

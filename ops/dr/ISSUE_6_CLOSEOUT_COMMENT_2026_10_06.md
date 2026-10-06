@@ -32,9 +32,14 @@ Any row re-verifies without log access:
 `gh api repos/Vyomaraj1356/Vyomarajai/check-runs/<id>/annotations`
 -> the DR SNAPSHOT RESULT annotation carries the row verbatim.
 
+An independent read-only probe on the carrying pull request (check-run 112302972786,
+workflow run 37473549777, completed 2026-10-06T13:47:24Z) reports
+read_access=READ_ACCESS_CONFIRMED with secondary_tree=70b69f8e03317c64ecb379014843f026795fad69
+and writes=NONE — the secondary sits at exactly the tree of main tip d97122f.
+
 Status note (2026-10-06, session arena/05152d2a-vyomarajai): this text was ready
-to post, and four write attempts were made from the Arena connection in this
-session (comment and close, CLI and REST). All returned HTTP 403 "Resource not
+to post, and five write attempts were made from the Arena connection in this
+session (comment and close, CLI, REST, and the tool below). All returned HTTP 403 "Resource not
 accessible by integration" — the connection is issues=read only. The issue
 therefore stays OPEN until an owner posts this comment and closes it; the
 attempts are recorded verbatim in ops/dr/ISSUE_6_ACCESS_RECHECK_2026_10_06.json

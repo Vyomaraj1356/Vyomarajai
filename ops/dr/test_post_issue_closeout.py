@@ -30,6 +30,14 @@ class ValidateTests(unittest.TestCase):
         self.assertTrue(tool.known_check_runs(self.record))
         self.assertIn(112253587690, tool.known_check_runs(self.record))
 
+    def test_recheck_file_is_consulted_for_probe_evidence(self):
+        probe_id = 112302972786
+        self.assertIn(probe_id, tool.known_ids(self.record))
+        self.assertNotIn(probe_id, tool.known_ids(self.record, extra_paths=()))
+        text = self.comment + f'\nProbe check-run {probe_id} confirms the tree.\n'
+        self.assertEqual(tool.validate(text, self.record), [])
+        self.assertTrue(tool.validate(text, self.record, extra_paths=()))
+
     def test_unknown_check_run_is_refused(self):
         problems = tool.validate(self.comment + '\nSee check-run 999999999999.\n', self.record)
         self.assertTrue(any('999999999999' in problem for problem in problems))
