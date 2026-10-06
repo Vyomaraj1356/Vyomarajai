@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "home": {"id":"SHRIYANTRA_HOME","name":"ShriYantra","role":"system_home_and_authority_root"},
+  "center": {"id":"VYOMARAJ_CENTER","name":"Vyomaraj","alias":"Bharath"},
+  "jarvis": {
+    "id":"JARVIS_MOBILE_EXECUTION",
+    "name":"Jarvis",
+    "alias":"Laxman",
+    "location_policy":"follow_current_runtime_or_device"
+  },
+  "requirements": {
+    "location_source":"authenticated_runtime_location_provider",
+    "freshness_seconds":120,
+    "accuracy_required_meters":100,
+    "show_when_asked":true,
+    "show_current_activity_when_asked":true,
+    "never_infer_precise_location_from_coarse_context":true
+  },
+  "response_fields":["identity","current_location_label","location_accuracy","last_updated","current_activity","active_task_id","active_task_stage"],
+  "privacy": {
+    "precise_location_is_private_owner_operational_data":true,
+    "do_not_publish_precise_location":true,
+    "do_not_log_precise_location_unnecessarily":true
+  }
+}
