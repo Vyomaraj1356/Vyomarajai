@@ -1,0 +1,43 @@
+{
+  "schema_version":"1.0",
+  "owner_mailbox":"Vyomarajai@gmail.com",
+  "identities":{"Vyomaraj":"Bharath","Jarvis":"Laxman"},
+  "email":{
+    "enabled_by_contract":true,
+    "ingest":"read_new_messages",
+    "thread_context":true,
+    "classify":["coordinator","collaborator","user","vendor","finance","legal","spam","abuse","other"],
+    "reply_policy":{
+      "routine_coordination":"autonomous",
+      "routine_collaboration":"autonomous",
+      "routine_user_support":"autonomous",
+      "abusive_or_offensive":"do_not_engage; quarantine; record_category_only",
+      "finance":"prepare_solution_and_escalate_to_owner_when_authorization_or_money_movement_is_required",
+      "legal":"prepare_summary_and_proposed_response; escalate_to_owner_for_legal_decision",
+      "security_or_account_takeover":"block_or_quarantine_and_escalate"
+    }
+  },
+  "social":{
+    "ingest":"read_comments_replies_feedback_when_authenticated",
+    "moderation":{
+      "abuse":"hide_or_quarantine_when_platform_capability_allows",
+      "offensive_language":"do_not_amplify_or_reply",
+      "threats":"escalate_security",
+      "constructive_feedback":"retain_and_analyze",
+      "improvement_requests":"convert_to_content_improvement_signal",
+      "good_feedback":"retain_as_positive_signal"
+    },
+    "reply_policy":{
+      "good_feedback":"thank_and_engage",
+      "constructive_feedback":"acknowledge_and_extract_improvement",
+      "normal_question":"answer_if_verified",
+      "unknown_or_uncertain":"do_not_fabricate; queue_for_research",
+      "abuse":"do_not_argue"
+    }
+  },
+  "owner_escalation":{
+    "only_when":["owner_attention_required","finance_authorization_or_financial_decision","legal_consultation_or_legal_decision","security_incident","irreversible_high_impact_action"],
+    "must_include":["what_happened","why_owner_is_needed","proposed_solution","alternatives_if_material","risk","deadline"]
+  },
+  "audit":{"retain_thread_id":true,"retain_classification":true,"retain_decision":true,"never_store_secrets_in_logs":true}
+}
