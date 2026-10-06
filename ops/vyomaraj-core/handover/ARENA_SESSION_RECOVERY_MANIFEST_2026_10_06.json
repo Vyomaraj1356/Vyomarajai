@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-arena-recovery/1",
-  "generated_at_utc": "2026-10-06 11:27 UTC",
+  "generated_at_utc": "2026-10-06 11:37 UTC",
   "session_branches_count": 11,
   "session_branches": [
     {
@@ -120,17 +120,17 @@
     },
     {
       "branch": "arena/582559e8-vyomarajai",
-      "tip": "d67598af0e6c71d9d9a2e985f88c2e6970ad22c5",
+      "tip": "da611e19b21b1bac3a0b46f5dbeda37ad2b85daf",
       "date": "2026-10-06",
-      "subject": "docs(go-live): record the PR #9 rehearsal and the DR verification in the brief",
-      "commits_ahead_of_main": 24,
-      "files_unique_to_branch": 51,
+      "subject": "resolve: integrate main's master-state work and PR #9, gate the owner-guard te",
+      "commits_ahead_of_main": 56,
+      "files_unique_to_branch": 67,
       "unique_examples": [
-        "ops/vyomaraj-core/experience/product_server.py",
-        "ops/vyomaraj-core/experience/test_voice_enrollment.py",
-        "ops/vyomaraj-core/experience/voice_enrollment.py",
-        "ops/vyomaraj-core/governance/VOICE_ENROLLMENT_LOCAL.json",
-        "ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json"
+        ".github/workflows/shriyantra-owner-guard.yml",
+        ".github/workflows/vyomaraj-master-state.yml",
+        "config/agents/shriyantra-agent-registry.json",
+        "config/intelligence/shriyantra-rag-cag-mag.yaml",
+        "config/security/owner-authority.yaml"
       ],
       "content_in_main": false
     }
@@ -410,5 +410,5 @@
     "raw_transcripts_exported": false,
     "why_not": null
   },
-  "unique_files_across_branches": 116
+  "unique_files_across_branches": 132
 }

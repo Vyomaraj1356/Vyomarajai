@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "release": "V16.7.24",
+  "snapshot_date": "2026-10-01",
+  "status": "proposed_owner_policy_specification_not_a_deployed_filter",
+  "purpose": "Human-reviewed publishing safeguards for a multi-category entertainment, social, publishing, finance, education and platform workflow.",
+  "notices": [
+    "This file is operational guidance, not legal advice and not evidence of legal compliance.",
+    "No automated classifier, takedown service, reporting integration, or production moderation pipeline has been verified by this handover.",
+    "Apply the law of each target jurisdiction after counsel confirms the service's role, audience, hosting model and publication markets."
+  ],
+  "decision_flow": [
+    "Classify the content and intended audience before publication.",
+    "Check age-safety, privacy/consent, copyright/licensing, advertising disclosure, and jurisdiction-specific risk.",
+    "Block prohibited content from publication; send uncertain/high-impact content to a named human safety/legal reviewer.",
+    "Require a second owner/editor approval for high-risk religious, political/current-affairs, financial, health, child-safety, synthetic-media, and crisis content.",
+    "Keep a minimal moderation decision record (content ID, category, reviewer, timestamp, action, appeal/status); do not retain unlawful media merely to document a case.",
+    "Provide a complaint, appeal, correction, and takedown route with access limited to authorized reviewers.",
+    "Re-check outcomes when target countries, platform rules, monetization, or statutory commencement dates change."
+  ],
+  "categories": [
+    {
+      "id": "CHILD_SEXUAL_EXPLOITATION",
+      "action": "PROHIBIT_AND_ESCALATE",
+      "guidance": "Do not create, request, transform, upload, host, reproduce, link to, monetize, or distribute child sexual abuse or exploitation material, including sexualized depictions of minors. Stop handling the media, restrict access, and escalate immediately to the designated child-safety/legal lead for lawful reporting and evidence-preservation instructions. Never forward suspected material to a general-purpose chat or store extra copies."
+    },
+    {
+      "id": "CHILD_SAFETY",
+      "action": "RESTRICT_AND_HUMAN_REVIEW",
+      "guidance": "Age-gate or refuse age-inappropriate material; prohibit grooming, exploitation, sexual solicitation, or instructions facilitating harm. Review child-directed products, data collection, advertising, live features, and parental-consent design before launch."
+    },
+    {
+      "id": "ILLEGAL_SEXUAL_OR_NONCONSENSUAL_CONTENT",
+      "action": "PROHIBIT_OR_ESCALATE",
+      "guidance": "Block illegal sexually explicit content and non-consensual intimate imagery. Route credible reports through the applicable statutory/platform process; do not use copied intimate material as a moderation sample."
+    },
+    {
+      "id": "VIOLENCE_THREATS_AND_HARASSMENT",
+      "action": "BLOCK_OR_HUMAN_REVIEW",
+      "guidance": "Block credible threats, targeted harassment, doxxing, stalking, incitement to violence, and instructions that materially facilitate serious harm. Contextual fiction, news, history, and safety education require human review rather than automatic blanket removal."
+    },
+    {
+      "id": "RELIGION_AND_SENSITIVE_IDENTITY",
+      "action": "CONTEXTUAL_HUMAN_REVIEW",
+      "guidance": "Do not suppress lawful worship, scholarship, satire, criticism, or reporting solely because it concerns religion or identity. Escalate content that appears to target a protected group, incite enmity/violence, or intentionally provoke unlawful harm; record the jurisdiction and context reviewed."
+    },
+    {
+      "id": "PRIVACY_AND_PERSONAL_DATA",
+      "action": "MINIMIZE_AND_REVIEW",
+      "guidance": "Collect only data needed for a documented purpose; obtain valid permissions/consents where required; do not expose credentials, banking details, home addresses, private contact data, precise location, or sensitive personal information. Provide correction, deletion, complaint and access workflows as required by the applicable law."
+    },
+    {
+      "id": "COPYRIGHT_AND_RIGHTS_OF_PUBLICITY",
+      "action": "HOLD_UNTIL_RIGHTS_CLEARED",
+      "guidance": "Require provenance and a license/permission basis for music, film, images, writing, performances, logos, and voice/likeness. Fair dealing/fair use is fact- and jurisdiction-specific; do not assume a disclaimer alone grants rights."
+    },
+    {
+      "id": "SYNTHETIC_MEDIA_AND_IMPERSONATION",
+      "action": "LABEL_AND_HUMAN_REVIEW",
+      "guidance": "Identify materially synthetic or altered audio/visual content and apply the disclosure/label required by each target platform and applicable law. Do not impersonate a real person, fabricate endorsement, or present synthetic evidence as authentic. Check consent and likeness rights."
+    },
+    {
+      "id": "ADVERTISING_AND_MONETIZATION",
+      "action": "DISCLOSE_AND_REVIEW",
+      "guidance": "Clearly disclose sponsorship, affiliate relationships, gifts, and paid endorsements. Substantiate product, health, earning, and performance claims. Route securities or investment promotions to qualified legal/compliance review; never promise returns or imply registration that is not verified."
+    },
+    {
+      "id": "NEWS_DEFAMATION_AND_HIGH_IMPACT_CLAIMS",
+      "action": "HUMAN_FACT_CHECK_AND_APPROVE",
+      "guidance": "Verify sourcing, dates, identities, quotations and right of reply where appropriate. Label opinion, satire and synthetic reconstruction. Escalate allegations about identifiable people, election/crisis content, and potentially defamatory or public-order-sensitive claims before publication."
+    },
+    {
+      "id": "SUBSTANCE_AND_AGE_RESTRICTED_PROMOTION",
+      "action": "JURISDICTION_SPECIFIC_REVIEW",
+      "guidance": "Do not promote alcohol, tobacco, gambling, or other age-restricted products to minors. Check local advertising, licensing, platform and age-gating requirements before any monetized content."
+    }
+  ],
+  "minimum_release_gate": {
+    "must_have": [
+      "category and audience classification",
+      "human reviewer for high-risk cases",
+      "rights/provenance and sponsorship checks where relevant",
+      "jurisdiction and distribution-platform check",
+      "appeal/takedown contact route",
+      "approved public contact and privacy notice"
+    ],
+    "current_implementation_state": "not_verified_in_repository_or_production"
+  }
+}
