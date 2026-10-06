@@ -1,14 +1,14 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-06 11:37 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-06 11:40 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
 
-**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, and the
-work of every session is on GitHub. The gate covers 47 offline checks — 12
-Python suites (403 tests), 12 Node checks and 23 builders — and its receipt is
-`TEST_EVIDENCE_2026_10_04.json`; run it (section 7) for the result at the moment you read this. Ready to *operate
+**"Are we ready to go live?"** Ready to be *shown* and *handed over*, yes: the site is live, the
+privacy guard and recovery checks are permanent parts of the gate, and the work of every session is
+on GitHub. The gate's receipt is `TEST_EVIDENCE_2026_10_04.json`; run it (section 7) for the current
+result rather than reading a number frozen into this document. Ready to *operate
 itself*, no — the assistant/agent layer is records and documentation, not running services (section
 3). That is the honest line between "the shell is finished" and "the machine runs".
 
@@ -136,7 +136,7 @@ chats database and the two chat archives.
 ## 7 · Verify every claim above
 
 ```bash
-python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate, 47 checks
+python3 ops/vyomaraj-core/handover/run_offline_suites.py          # the gate - prints its own totals
 python3 ops/vyomaraj-core/handover/sanitize_personal_data.py --check   # privacy guard
 python3 ops/vyomaraj-core/handover/build_recovery_index.py --check     # sessions still recoverable
 python3 ops/vyomaraj-core/handover/build_go_live_brief.py --check      # this document
