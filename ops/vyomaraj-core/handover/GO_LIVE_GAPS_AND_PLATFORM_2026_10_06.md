@@ -1,6 +1,6 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-06 12:46 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-06 13:44 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
@@ -83,7 +83,7 @@ running intelligence, and it should be merged as a foundation.
 The recorded target is `deepakGoyal1356/Vyomaraj-Agent-6d64e` — private and under another account, so
 an API call from here returns 404. That is expected and is not evidence of breakage. The evidence
 that matters: the most recent push to `main` ran the replication job and it succeeded, and the DR
-record carries 29 MATCH observations (21 replication writes) ending 2026-10-06. Independent verification still requires the
+record carries 32 MATCH observations (22 replication writes) ending 2026-10-06. Independent verification still requires the
 owner's credentials — the one step no outside audit can perform.
 
 ## 4 · The platform recommendation, and why

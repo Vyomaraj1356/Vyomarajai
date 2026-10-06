@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
-  "package_sha256": "004a2c127c349ba9f385d62a462047dcaf65a50b307ad77aa5b29b900588ee19",
-  "package_bytes": 185919,
+  "package_sha256": "4b46e74990345d58de7401192a6f3d17ae82127a3213193028be6df265f50723",
+  "package_bytes": 189566,
   "note": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
   "note_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
   "note_bytes": 23864,
@@ -11,7 +11,7 @@
   "additions_total": 8,
   "superset_of_canonical": true,
   "canonical_package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "canonical_package_sha256_rebuilt_from_source": "fcdfea2835075f5aa31e8bf6c738eee1c961933954ca86884eca2a08b20bf1f3",
+  "canonical_package_sha256_rebuilt_from_source": "66d1563870a36bd111317ad2bb5483931ca643059a25b05468b5c7daf13b7fe4",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py --check",
   "determinism": "fixed member timestamps and permissions; same-Python/zlib rebuilds are byte-identical",
@@ -31,14 +31,14 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "baf261f3def78ab1294243435fc8dba3f622585dc1d9450aeac21664868276ab",
-      "bytes": 25025
+      "sha256": "1fc120098eb32c9354024a040dcf1fdc9bb6d9afc0d66230e0f116c41765364f",
+      "bytes": 29710
     },
     {
       "archive_name": "build_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/build_dr_sync_report.py",
-      "sha256": "0576fda02f967ae8b6984ef433ea1cb805a80e919c0b4924f49191818c73fcd3",
-      "bytes": 17563
+      "sha256": "29e8e6dc0ba7dc2d01112553c3615d0c6bbc3152615a7b1a62a4892af7e75f42",
+      "bytes": 20298
     },
     {
       "archive_name": "test_dr_sync_report.py",
@@ -85,8 +85,8 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "e295ad2e1fbdce0f2fe264f9fca89deaad4a0c6fb52f232448e1bf1580d74869",
-      "bytes": 11529
+      "sha256": "26bcc2d200656ad569e052702dd7665e55996e2df105edbc4fee752d7c5fc8ce",
+      "bytes": 11949
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -103,8 +103,8 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "9c48a36db7c6cc5a0019c8dca5e7cb7250eecc81ed9c98b695d1d932dedf2b20",
-      "bytes": 44271
+      "sha256": "a68251a5a0bd035a1eb829e9ece7184dac2c65ea30fb84aef0d2cbc00683faa8",
+      "bytes": 50597
     },
     {
       "archive_name": "studio_server.py",

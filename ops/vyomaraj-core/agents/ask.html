@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask the catalog — Vyomaraj</title>
+<style>
+  :root { color-scheme: dark; --ink:#e8e3d6; --dim:#a89f8a; --line:#3a352b; --accent:#e0a458; --warn:#d98b6a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#12100c; color:var(--ink); font:16px/1.5 Georgia, 'Times New Roman', serif; }
+  header { padding:28px 20px 10px; max-width:900px; margin:0 auto; }
+  h1 { margin:0 0 6px; font-size:28px; letter-spacing:.5px; }
+  .sub { color:var(--dim); font-size:14px; }
+  main { max-width:900px; margin:0 auto; padding:10px 20px 60px; }
+  form { display:flex; gap:10px; margin:18px 0 8px; }
+  input[type=search] { flex:1; padding:12px 14px; font-size:17px; background:#1b1813; color:var(--ink);
+    border:1px solid var(--line); border-radius:8px; font-family:inherit; }
+  button { padding:12px 18px; font-size:16px; background:var(--accent); color:#231a0c; border:0; border-radius:8px;
+    font-family:inherit; cursor:pointer; }
+  .hints { color:var(--dim); font-size:13px; margin:2px 0 18px; }
+  .hints button { background:none; color:var(--accent); border:0; padding:0 6px 0 0; font-size:13px; cursor:pointer; }
+  .status { color:var(--dim); font-size:14px; min-height:22px; margin:8px 0 12px; }
+  .status.empty { color:var(--warn); }
+  article { border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin:0 0 10px; background:#171410; }
+  article h3 { margin:0 0 4px; font-size:17px; }
+  .tag { display:inline-block; font:12px/1.4 ui-monospace, Menlo, Consolas, monospace; color:var(--dim);
+    border:1px solid var(--line); border-radius:99px; padding:1px 8px; margin-right:6px; }
+  .cite { font:12px/1.6 ui-monospace, Menlo, Consolas, monospace; color:var(--dim); word-break:break-all; }
+  .refs { color:var(--dim); font-size:13px; margin-top:4px; }
+  code { font:13px/1.6 ui-monospace, Menlo, Consolas, monospace; color:var(--accent); }
+  footer { color:var(--dim); font-size:12px; border-top:1px solid var(--line); margin-top:26px; padding-top:12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ask the catalog</h1>
+  <div class="sub">Vyomaraj — retrieval over the current registry and content index. Cited records, or nothing.</div>
+</header>
+<main>
+  <form id="f">
+    <input id="q" type="search" placeholder="gita, music, government schemes, film…" autocomplete="off" autofocus>
+    <button type="submit">Ask</button>
+  </form>
+  <div class="hints" id="hints"></div>
+  <div class="status" id="status"></div>
+  <section id="out"></section>
+  <footer id="foot">Loading catalog stats…</footer>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function render(data) {
+  const out = $('#out'), status = $('#status');
+  out.innerHTML = '';
+  if (!data.query_tokens.length) { status.textContent = 'Type a question.'; status.className = 'status'; return; }
+  if (!data.results.length) {
+    status.className = 'status empty';
+    status.textContent = data.note;
+    return;
+  }
+  status.className = 'status';
+  status.textContent = `${data.matches} matching records of ${data.considered} considered — showing ${data.returned}.`
+    + (Object.keys(data.aliases_applied).length ? ` Aliases: ${Object.entries(data.aliases_applied).map(([k,v]) => k + '→' + v.join('/')).join(', ')}.` : '');
+  out.innerHTML = data.results.map(r => {
+    const tags = [`<span class="tag">${esc(r.kind)}</span>`, `<span class="tag">${esc(r.category_name || r.category_id || '')}</span>`];
+    if (r.kind === 'position') tags.push(`<span class="tag">${r.counted ? 'counted slot' : 'heading'}</span>`);
+    if (r.record_kind) tags.push(`<span class="tag">${esc(r.record_kind)}</span>`);
+    const refs = (r.source_refs || []).map(x => `<div class="refs">source: <code>${esc(x.path)}</code>${x.locator ? ' · ' + esc(x.locator) : ''}</div>`).join('');
+    const name = r.named === false ? `<em>${esc(r.display)}</em>` : esc(r.display);
+    return `<article><h3>${name}</h3><div>${tags.join('')}</div>
+      <div class="cite">citation: ${esc(r.citation)}</div>${refs}</article>`;
+  }).join('');
+}
+
+async function ask(q) {
+  $('#q').value = q;
+  const status = $('#status');
+  status.className = 'status'; status.textContent = 'Searching…';
+  try {
+    const res = await fetch('/api/ask?q=' + encodeURIComponent(q));
+    render(await res.json());
+  } catch (err) { status.className = 'status empty'; status.textContent = 'Request failed: ' + err; }
+}
+
+$('#f').addEventListener('submit', e => { e.preventDefault(); ask($('#q').value); });
+
+(async () => {
+  try {
+    const s = await (await fetch('/api/stats')).json();
+    $('#foot').textContent = `${s.positions} positions (${s.named_positions} named, ${s.unnamed_positions} unnamed) · `
+      + `${s.content_references} content references · ${s.categories} categories · ${s.headings_uncounted} uncounted headings. `
+      + `Retrieval over ${s.registry_file} + ${s.index_file}; ${s.generation}.`;
+    ['gita','music','government schemes','film','aghor','cartoon'].forEach(t => {
+      const b = document.createElement('button'); b.textContent = t; b.type = 'button';
+      b.addEventListener('click', () => ask(t)); $('#hints').appendChild(b);
+    });
+  } catch (err) { $('#foot').textContent = 'Stats unavailable: ' + err; }
+})();
+</script>
+</body>
+</html>
