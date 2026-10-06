@@ -1,6 +1,6 @@
 # ARENA SESSION RECOVERY INDEX
 
-Computed 2026-10-06 10:28 UTC from this repository. The owner was told the work of 11 Arena sessions may be lost. This is what actually survives, and where.
+Computed 2026-10-06 10:37 UTC from this repository. The owner was told the work of 11 Arena sessions may be lost. This is what actually survives, and where.
 
 ## The headline
 
@@ -23,9 +23,9 @@ Computed 2026-10-06 10:28 UTC from this repository. The owner was told the work 
 | 8 | `arena/01a10629-vyomarajai` | 2026-10-04 | Rebuild the third session's unpublished viewer work: | 237 | 0 | yes |
 | 9 | `arena/01a10655-vyomarajai` | 2026-10-04 | Refresh deep scan with follow-up DR check | 241 | 0 | yes |
 | 10 | `arena/01a106da-vyomarajai` | 2026-10-06 | fix: rebuild transfer package d9f2b0ae after index r | 243 | 0 | yes |
-| 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | feat(handoff): portable package for another AI platf | 11 | 45 | no |
+| 11 | `arena/582559e8-vyomarajai` | 2026-10-06 | security: remove personal identifiers from the publi | 12 | 49 | no |
 
-Across all branches, **110 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
+Across all branches, **114 files** exist that the current main does not carry. Those are the genuinely unique artifacts; where a branch reports 0, its content is already in main and nothing needs recovering from it.
 
 Examples of files that exist only on a session branch (recoverable with one `git checkout`):
 

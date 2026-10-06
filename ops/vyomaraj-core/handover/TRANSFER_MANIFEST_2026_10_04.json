@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "2a74b66956014cd5b76143dcf860fd8e7e9034fff491508aec7e161b613fa38d",
-  "package_bytes": 144403,
+  "package_sha256": "9af359e710a5954bc7019b28bcc7af7612c4537b1fe9cd20659840514f53b1ca",
+  "package_bytes": 144457,
   "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
@@ -47,8 +47,8 @@
     {
       "archive_name": "build_transfer_package.py",
       "source": "ops/vyomaraj-core/handover/build_transfer_package.py",
-      "sha256": "a3d0d9f27dcca7e06e9f799b9cc110ccb6e1f989a9ff212c3b61a792f8590f29",
-      "bytes": 7700
+      "sha256": "228668ed895c33bdfc886b5c90c816c9dd9efb1b57f9822b1a3229fbede4e624",
+      "bytes": 7886
     },
     {
       "archive_name": "preview_reports.py",
@@ -65,8 +65,8 @@
     {
       "archive_name": "test_transfer_package.py",
       "source": "ops/vyomaraj-core/handover/test_transfer_package.py",
-      "sha256": "0bdc6861afb067b8b71ab2a88c31bd78ba70d00834f31d445190d0770b30c4d3",
-      "bytes": 2203
+      "sha256": "b714c97de1e966f3fea66185be729e3112b9ddc728fb9ce8d966b47de574f849",
+      "bytes": 2185
     },
     {
       "archive_name": "verify_preview.py",
@@ -77,7 +77,7 @@
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "2b93433523cb272ebfab4fae3908c80df52341fecfcbaab7fe78415b7febfca8",
+      "sha256": "15b4e8a5cfd1058a0d216b563a84e78566c419dee1e5bbaa1d75b7f977572c7d",
       "bytes": 11230
     },
     {

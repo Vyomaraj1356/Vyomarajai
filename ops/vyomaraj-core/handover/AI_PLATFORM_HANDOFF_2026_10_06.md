@@ -1,6 +1,6 @@
 # VYOMARAJ — HANDOFF FOR ANOTHER AI PLATFORM
 
-Generated 2026-10-06 10:28 UTC. Owner contact details are redacted in this file on purpose; nothing here is a secret, and nothing here is a guess.
+Generated 2026-10-06 10:37 UTC. Owner contact details are redacted in this file on purpose; nothing here is a secret, and nothing here is a guess.
 
 ---
 
@@ -30,18 +30,18 @@ If you need a fact that is not here, ask the owner to run one of the verificatio
 
 | Port | Service | Listening when this was generated |
 |---|---|---|
-| 3000 | Product page | **no** |
-| 4174 | Reports viewer | **no** |
-| 4176 | Availability gateway | **no** |
-| 4181 | Lane studio A | **no** |
-| 4182 | Lane studio B | **no** |
+| 3000 | Product page | **yes** |
+| 4174 | Reports viewer | **yes** |
+| 4176 | Availability gateway | **yes** |
+| 4181 | Lane studio A | **yes** |
+| 4182 | Lane studio B | **yes** |
 
 - **Hosting:** built and serving from main
 - **Runtime:** Python 3 standard library only (http.server / ThreadingHTTPServer), 0.0.0.0
 - **Database server:** none. Claimed but absent: PostgreSQL 5432, Redis 6379
 - **Web frameworks:** none. Claimed but absent: FastAPI 8000, Flask 5000
 - **APK:** 24,567,022 bytes, **unsigned** — stock Android refuses it until the owner signs it with their own key.
-- **Gates at generation:** 380 Python tests, 12 Node checks, 20 builders; blocking wiring problems: **0**; preview problems: **0** across 36 viewer routes.
+- **Gates at generation:** 380 Python tests, 12 Node checks, 22 builders; blocking wiring problems: **0**; preview problems: **0** across 37 viewer routes.
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-arena-recovery/1",
-  "generated_at_utc": "2026-10-06 10:29 UTC",
+  "generated_at_utc": "2026-10-06 10:37 UTC",
   "session_branches_count": 11,
   "session_branches": [
     {
@@ -120,11 +120,11 @@
     },
     {
       "branch": "arena/582559e8-vyomarajai",
-      "tip": "f8bf4d7ec68ff753eb5a35952d05cf2976e2b643",
+      "tip": "f2cad719643454de668f85099163736bcccb036b",
       "date": "2026-10-06",
-      "subject": "feat(handoff): portable package for another AI platform, plus the runbook",
-      "commits_ahead_of_main": 11,
-      "files_unique_to_branch": 45,
+      "subject": "security: remove personal identifiers from the published site, and prove the 1",
+      "commits_ahead_of_main": 12,
+      "files_unique_to_branch": 49,
       "unique_examples": [
         "ops/vyomaraj-core/experience/product_server.py",
         "ops/vyomaraj-core/experience/test_voice_enrollment.py",
@@ -410,5 +410,5 @@
     "raw_transcripts_exported": false,
     "why_not": null
   },
-  "unique_files_across_branches": 110
+  "unique_files_across_branches": 114
 }

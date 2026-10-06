@@ -1,6 +1,6 @@
 {
   "schema": "vyomaraj-ai-context-pack/1",
-  "generated_at_utc": "2026-10-06 10:28 UTC",
+  "generated_at_utc": "2026-10-06 10:37 UTC",
   "purpose": "Self-contained context so another AI platform can help with Vyomaraj without inventing progress. Every field is read from this repository or probed live.",
   "identity": {
     "name": "Vyomaraj",
@@ -16,27 +16,27 @@
       {
         "port": 3000,
         "service": "Product page",
-        "listening": false
+        "listening": true
       },
       {
         "port": 4174,
         "service": "Reports viewer",
-        "listening": false
+        "listening": true
       },
       {
         "port": 4176,
         "service": "Availability gateway",
-        "listening": false
+        "listening": true
       },
       {
         "port": 4181,
         "service": "Lane studio A",
-        "listening": false
+        "listening": true
       },
       {
         "port": 4182,
         "service": "Lane studio B",
-        "listening": false
+        "listening": true
       }
     ],
     "github_pages": "built and serving from main",
@@ -59,9 +59,9 @@
       "blocking_problems": 0,
       "python_tests_total": 380,
       "node_checks": 12,
-      "builders": 20,
+      "builders": 22,
       "preview_problems": 0,
-      "viewer_routes_checked": 36
+      "viewer_routes_checked": 37
     }
   },
   "agents": {
