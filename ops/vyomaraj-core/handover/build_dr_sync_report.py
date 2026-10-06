@@ -151,6 +151,19 @@ def render(root=ROOT):
         f"## 5. The correctly blocked run ({len(blocked)}) and its approved resolution",
         '',
     ]
+    unavailable = [(o['check_run_id'], o['rollback_commit_timestamp']) for o in writes
+                   if o.get('rollback_commit_timestamp')]
+    if unavailable:
+        lines += ['Rollback-commit timestamps that could not be read (recorded as failed reads, never as '
+                  'guessed values):', '']
+        for check_run_id, item in unavailable:
+            value = 'null' if item.get('value_utc') is None else item['value_utc']
+            lines.append(f"- check-run `{check_run_id}`: value_utc = {value}.")
+            lines.append(f"  - Attempt: {item.get('attempt')}")
+            lines.append(f"  - Bounded substitute: {item.get('bounded_substitute')}")
+            lines.append(f"  - Standing: {item.get('not_fabricated')}")
+        lines += ['']
+        lines += ['']
     for item in blocked:
         probe = item.get('read_only_probe', {})
         lines += [
@@ -304,6 +317,39 @@ def render(root=ROOT):
             f"- Next checkpoint: {extension_b.get('next_checkpoint')}",
             '',
         ]
+        if extension_b.get('fulfilled_by'):
+            lines += [f"- Fulfilled by: {extension_b.get('fulfilled_by')}", '']
+    extension_c = record.get('record_extension_2026_10_06_c')
+    if extension_c:
+        lines += [
+            f"## 5h. Record extension by `{extension_c.get('session')}` (2026-10-06, third pass)",
+            '',
+            f"- Finding: {extension_c.get('finding')}",
+            f"- Fix: {extension_c.get('fix')}",
+            f"- Stale-head race: {extension_c.get('stale_head_race')}",
+            f"- Rollback timestamp attempt: {extension_c.get('rollback_timestamp_attempt')}",
+            f"- Next checkpoint: {extension_c.get('next_checkpoint')}",
+            '',
+        ]
+    race = record.get('stale_head_race_note_2026_10_06')
+    if race:
+        instance = race.get('observed_instance', {})
+        lines += [
+            '## 5i. Stale-head race between a schedule run and a merge (2026-10-06)',
+            '',
+            f"- Phenomenon: {race.get('phenomenon')}",
+            f"- Observed instance: schedule run `{instance.get('schedule_run_id')}` (head "
+            f"`{short(instance.get('schedule_head_sha'))}`, check-run `{instance.get('schedule_check_run_id')}`, "
+            f"completed {instance.get('schedule_completed_at_utc')}) verified and wrote the "
+            f"`{short(instance.get('schedule_annotation_trees'))}` tree; the push run `{instance.get('push_run_id')}` "
+            f"on head `{short(instance.get('push_head_sha'))}` (check-run `{instance.get('push_check_run_id')}`, "
+            f"completed {instance.get('push_completed_at_utc')}) then found the snapshots already equal.",
+            f"- Rule for future reads: {race.get('rule_for_future_reads')}",
+            f"- Checkpoint #30 guidance: {race.get('checkpoint_30_guidance')}",
+        ]
+        if race.get('fulfilled_by'):
+            lines += [f"- Fulfilled by: {race.get('fulfilled_by')}"]
+        lines += ['']
     lines += [
         '## 6. Scope limits — do not restate otherwise',
         '',

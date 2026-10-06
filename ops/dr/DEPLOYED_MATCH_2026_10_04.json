@@ -3,7 +3,7 @@
   "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
   "primary": "Vyomaraj1356/Vyomarajai",
   "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-  "primary_main_tip_checked": "1c13650ce19e18cdc80fe6f8e9ded4fe8c3e6a99",
+  "primary_main_tip_checked": "d97122fc340febc587e5c6020e8d1c53d02b4388",
   "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
   "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
   "observations": [
@@ -442,6 +442,59 @@
       "head_commit_subject": "Merge pull request #32 from Vyomaraj1356/arena/6bc12929-vyomarajai",
       "merge_pr": 32,
       "workflow_run_id": 37465147285
+    },
+    {
+      "check_run_id": 112277370308,
+      "completed_at_utc": "2026-10-06T12:49:55Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=e7b65c5952a3b31344fc15b6294afc80f21c5791; secondary_tree=e7b65c5952a3b31344fc15b6294afc80f21c5791; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "e7b65c5952a3b31344fc15b6294afc80f21c5791",
+      "secondary_tree": "e7b65c5952a3b31344fc15b6294afc80f21c5791",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "e9bfba0efd3688e4757bfc9a9e352b14c5af006b",
+      "head_commit_subject": "Merge pull request #33 from Vyomaraj1356/arena/6bc12929-vyomarajai",
+      "merge_pr": 33,
+      "workflow_run_id": 37465870496,
+      "attribution_note": "No-op MATCH: the snapshot write for this tree was performed minutes earlier by schedule run 37465859915 (check-run 112276811314, rollback b6656066 retained), which the API files under the stale head 1c13650; see stale_head_race_note_2026_10_06."
+    },
+    {
+      "check_run_id": 112279322282,
+      "completed_at_utc": "2026-10-06T12:54:50Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=70b69f8e03317c64ecb379014843f026795fad69; secondary_tree=70b69f8e03317c64ecb379014843f026795fad69; rollback_commit=490880630a5a73e895982814da8d4f9a886bc493; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "70b69f8e03317c64ecb379014843f026795fad69",
+      "secondary_tree": "70b69f8e03317c64ecb379014843f026795fad69",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "490880630a5a73e895982814da8d4f9a886bc493",
+      "head_sha": "d97122fc340febc587e5c6020e8d1c53d02b4388",
+      "head_commit_subject": "Merge pull request #34 from Vyomaraj1356/arena/6bc12929-vyomarajai",
+      "merge_pr": 34,
+      "workflow_run_id": 37466613010,
+      "rollback_commit_timestamp": {
+        "value_utc": null,
+        "attempt": "Requested for this record; GET /repos/deepakGoyal1356/Vyomaraj-Agent-6d64e/commits/490880630a5a73e895982814da8d4f9a886bc493 through the Arena credential on 2026-10-06 returns 404: the private secondary is not readable by this integration (the documented issue #6 limitation). The same SHA is not a commit in the primary (API 422).",
+        "bounded_substitute": "The public workflow evidence for the run that created it: run 37466613010, verify-or-sync job/check-run 112279322282, step 'Verify or replicate exact main snapshot' ran 2026-10-06T12:54:21Z-12:54:47Z; rollback_commit is the previous secondary tip retained by that write and its committer timestamp lies inside that step interval.",
+        "not_fabricated": "No timestamp is asserted; the field records the failed read and the bounded public interval."
+      }
+    },
+    {
+      "check_run_id": 112287316035,
+      "completed_at_utc": "2026-10-06T13:13:06Z",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=70b69f8e03317c64ecb379014843f026795fad69; secondary_tree=70b69f8e03317c64ecb379014843f026795fad69; data_match=true",
+      "status": "MATCH",
+      "primary_tree": "70b69f8e03317c64ecb379014843f026795fad69",
+      "secondary_tree": "70b69f8e03317c64ecb379014843f026795fad69",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "d97122fc340febc587e5c6020e8d1c53d02b4388",
+      "head_commit_subject": "Merge pull request #34 from Vyomaraj1356/arena/6bc12929-vyomarajai",
+      "merge_pr": 34,
+      "workflow_run_id": 37468965584,
+      "note": "Scheduled reconciliation on the final main tip (event=schedule), recorded as the latest schedule confirmation for that tip per the 5c/5g rule; no-op MATCH, no write."
     }
   ],
   "writes_to_secondary_observed": [
@@ -465,9 +518,10 @@
     112247203850,
     112251697240,
     112253587690,
-    112274342282
+    112274342282,
+    112279322282
   ],
-  "current_state": "This record covers the 2026-10-03 to 2026-10-06 successful verify-or-sync runs through the PR #32 merge (checkpoint #29). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 21 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Three windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Window B (PR #26 tip, 13 runs) was closed by checkpoint #21; window C (PR #29 tip) remains a documented gap. All 29 rows were re-read live on 2026-10-06 with zero mismatches.",
+  "current_state": "This record covers the 2026-10-03 to 2026-10-06 successful verify-or-sync runs through the PR #34 merge (checkpoints #30-#31) plus the schedule confirmation on that final tip (checkpoint #32). Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 22 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op, not a failure. One further replication write was observed without becoming a row: schedule run 37465859915 (check-run 112276811314) wrote the e7b65c59 tree for tip e9bfba0 while filed under the stale head 1c13650; it is documented in stale_head_race_note_2026_10_06 and is not counted here because its head filing belongs to an already-recorded tip. The correctly BLOCKED run (#11) is documented separately and is excluded from MATCH counts. Three windows in which verify-or-sync did not execute at all are recorded in section 5e and are NOT checkpoints: no match, no mismatch and no write was observed for them. Window B (PR #26 tip, 13 runs) was closed by checkpoint #21; window C (PR #29 tip) remains a documented gap. All 32 rows were re-read live on 2026-10-06 with zero mismatches.",
   "branch_scope_warning": "This evidence covers primary main only. Two earlier commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) were not on main at the time they were first reported and therefore were not in the DR snapshot then; the branch was subsequently merged through PRs #10-#18 and is now covered by the checkpoints above. Unmerged branch tips are never part of the DR snapshot.",
   "local_verification_attempt": {
     "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -478,15 +532,15 @@
   "traffic_switched": false,
   "runtime_or_site_dr_verified": false,
   "zero_rpo_or_rto_claimed": false,
-  "revalidated_at_utc": "2026-10-06T12:44:15Z",
+  "revalidated_at_utc": "2026-10-06T13:40:38Z",
   "revalidation": {
-    "by": "arena/6bc12929-vyomarajai session (2026-10-06)",
-    "method": "All 20 previously recorded annotations re-read live from the GitHub API in one pass (zero mismatches), plus 8 new verify-or-sync annotations for the #28/#27/#30/#31 main tips re-read live; every annotation tree cross-checked against git rev-parse of its head SHA. Skipped check-runs on f735f92 (11) and 95b2133 (1) confirm the two windows hold no checkpoint. Checkpoint #29 (PR #32 merge) was re-read live after it landed and its trees cross-checked the same way.",
-    "result": "28 MATCH checkpoints (20 replication writes) through the PR #31 merge; window B completed and closed by checkpoint #21; window C (PR #29 tip) recorded as a gap. Checkpoint #29 (PR #32 merge) recorded from its live annotation; its trees match git rev-parse of 1c13650."
+    "by": "arena/05152d2a-vyomarajai session (2026-10-06)",
+    "method": "All 29 previously recorded annotations re-read live from the GitHub API in one pass (zero mismatches), plus the 3 new verify-or-sync annotations for the PR #33 merge, the PR #34 merge and the following schedule reconciliation. Every annotation tree was cross-checked against git rev-parse of its head SHA in the local clone; the PR #33 merge commit e9bfba0 is not in the shallow clone and was fetched by SHA first, then its tree matched the annotation. The rollback commit of checkpoint #31 lives in the private secondary and is not readable by this credential; that failed read and the bounded public interval are recorded in the row instead of a guessed timestamp.",
+    "result": "32 MATCH checkpoints (22 replication writes) through the PR #34 merge and the schedule confirmation on its tip; window B completed and closed by checkpoint #21; window C (PR #29 tip) recorded as a gap; the stale-head race write is documented but not double-counted."
   },
-  "checkpoints_total": 29,
-  "replication_writes_total": 21,
-  "session_record": "Extended in arena/6bc12929-vyomarajai: checkpoints #21-#28 recorded from live annotation re-reads through the PR #31 merge; window B completed; window C added. Checkpoint #29 (PR #32 merge) recorded from its live annotation.",
+  "checkpoints_total": 32,
+  "replication_writes_total": 22,
+  "session_record": "Extended in arena/05152d2a-vyomarajai: checkpoints #30 (PR #33 merge, no-op MATCH - the write was the schedule-run write documented in the race note), #31 (PR #34 merge, write + MATCH, rollback 49088063) and #32 (schedule confirmation on the PR #34 tip) recorded from live annotation re-reads; rollback timestamp recorded as an explicit failed read, not as a value.",
   "blocked_runs": [
     {
       "check_run_id": 111376415924,
@@ -615,6 +669,15 @@
       "push_annotation": "no-op MATCH, trees e7b65c59, no rollback (snapshots already equal)"
     },
     "rule_for_future_reads": "When a verify-or-sync annotation trees do not match git rev-parse of its head SHA, list sibling workflow runs before flagging a mismatch: a schedule/push race is the expected cause. The push run filed under the new tip remains the canonical checkpoint row for that tip.",
-    "checkpoint_30_guidance": "Record push-run check 112277370308 (no-op MATCH, trees e7b65c59) as the row for tip e9bfba0 with replication_write_in_this_run=false, and note the snapshot write was performed minutes earlier by schedule run 37465859915 (filed under 1c13650, rollback b6656066 retained)."
+    "checkpoint_30_guidance": "Record push-run check 112277370308 (no-op MATCH, trees e7b65c59) as the row for tip e9bfba0 with replication_write_in_this_run=false, and note the snapshot write was performed minutes earlier by schedule run 37465859915 (filed under 1c13650, rollback b6656066 retained).",
+    "fulfilled_by": "checkpoint #30 (check-run 112277370308, 2026-10-06T12:49:55Z): recorded as the canonical no-op row for tip e9bfba0 with the schedule write attributed to run 37465859915 in its row note."
+  },
+  "record_extension_2026_10_06_c": {
+    "session": "arena/05152d2a-vyomarajai",
+    "finding": "The record stopped at checkpoint #29 (PR #32 tip). The PR #33 and PR #34 merges were verified live (no-op MATCH and write + MATCH) and the final tip also received a schedule confirmation; none of the three was recorded.",
+    "fix": "The three live annotations were parsed (not transcribed) into rows #30-#32, the write list and both totals were recomputed from the rows, and the trailing-checkpoint rule of section 5c now closes at the final tip.",
+    "stale_head_race": "Checkpoint #30 remains a deliberate no-op row: the write for its tree came from schedule run 37465859915, filed under the older head 1c13650. Attribution follows annotation trees, per stale_head_race_note_2026_10_06, so the write is not double-counted.",
+    "rollback_timestamp_attempt": "GET of the checkpoint #31 rollback commit 49088063 against the private secondary returned 404 through the Arena credential and 422 against the primary. Recorded as a failed read with the public step interval 12:54:21Z-12:54:47Z as the bounded substitute; this is the same owner-side access limitation tracked by issue #6.",
+    "next_checkpoint": "The merge carrying this extension is verified by the same workflow immediately after it lands; that run becomes checkpoint #33 and is recorded in the next update."
   }
 }

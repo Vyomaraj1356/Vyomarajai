@@ -1,6 +1,6 @@
 # Current Vyomaraj hierarchy / Education reconciliation
 
-**Later Aghor addition:** `BHAKTI-AGHOR-S1` is a new user-requested slot. Active total is now 128 (BHAKTI 3, named 42, unnamed 86); the earlier 127-slot reconciliation and 180-test results below describe the preceding baseline. Current evidence: `/reports/resilience`. The active index now contains 173 references across Education and five editorial packs, including 33 Aghor chapter/profile/practice/care records.
+**Later Aghor addition:** `BHAKTI-AGHOR-S1` is a new user-requested slot. Active total is now 128 (BHAKTI 3, named 42, unnamed 86); the earlier 127-slot reconciliation and 180-test results below describe the preceding baseline. Current evidence: `/reports/resilience`. The active index now contains 197 references across Education and the five editorial packs (21 Education + 109 Entertainment + 67 Bhakti, including the 33 Aghor chapter/profile/practice/care records) — the 173 quoted in the 2026-10-03/04 documents is that date's earlier count, kept there as a dated snapshot.
 
 The user explicitly approved **all Government Schemes under Education** and **Comedy, Cartoon, Music, Movie, Wit and Shayari as parent headings, not extra counted agents**.
 
@@ -9,7 +9,7 @@ The user explicitly approved **all Government Schemes under Education** and **Co
 - `AGENT_REGISTRY_CURRENT.json`: 13 categories, **128 counted positions**, six uncounted headings; **Education 16, Finance 7, Entertainment 32**. Bhakti-Shakti now has 3 after the newly requested Aghor addition; other category counts are unchanged.
 - `RECONCILIATION_RULES.json`: owner-approved transformation from the pinned historical registry. The active builder is deterministic and refuses conflicting duplicate identities.
 - `CONTENT_OWNERSHIP_CURRENT.json`: 21 Education topic references, including all Government Schemes. Source-backed single-slot mappings are retained; shared Grantha positions remain unmapped.
-- `CONTENT_INDEX_CURRENT.json`: 173 indexed references (21 Education + 152 selected references from five editorial packs). **Not** all 421 products or an exhaustive archive-content inventory.
+- `CONTENT_INDEX_CURRENT.json`: 197 indexed references (21 Education + 176 selected references from the five editorial packs and the Aghor addition). **Not** all 421 products or an exhaustive archive-content inventory.
 - The V16.7.24 historical registry still reports 133. It is preserved byte-for-byte, not the current hierarchy. The previous full report is preserved byte-for-byte as `handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md`.
 
 Unnamed agents have `name: null`, `name_status: UNKNOWN`. The viewer displays only their serial unless audit IDs are explicitly enabled. Serials are **new display positions**, not recovered source slot mappings. The PLATFORM unnamed position is not falsely assigned a historical S20. Existing Music/Movie/Liquor/Bar IDs remain stable; the local planner and discovery enqueue validate them against the active registry. Named creative functions in the earlier editorial packs remain **proposals**, not assigned agent names.
@@ -28,6 +28,22 @@ The current editorial packs did not contain a misplaced Education pack. The Educ
 - Historical sovereign roles remain separate cross-cutting references, not extra children in the current total. No unverified third-level roster has been invented.
 
 There are 42 supplied/approved individual names and 86 unnamed positions. Source-reported product numbers remain historical metadata; **current product ownership/counts are unreconciled**, particularly after the Government Schemes transfer. The complete 421-title list is unavailable, so no fabricated “all products deduplicated” claim is made.
+
+## Ask the catalog (retrieval over these two files)
+
+`ask_catalog.py` selects rows from `AGENT_REGISTRY_CURRENT.json` and
+`CONTENT_INDEX_CURRENT.json` and cites them; `ask_server.py` serves it with `ask.html`.
+
+```bash
+python3 ops/vyomaraj-core/agents/ask_server.py --port 4190   # open http://localhost:4190
+python3 -m unittest discover -s ops/vyomaraj-core/agents -p 'test_*.py'
+```
+
+- `GET /api/ask?q=gita&limit=10` → ranked records with `citation` (`file#/record-id`), matched terms and score.
+- `GET /api/stats` → counts read from the files (128 positions, 197 references, 13 categories, 6 headings).
+- Unnamed positions are returned as serial-only slots; nothing is named on their behalf.
+- A query whose words do not all match returns **no results and says so** — no nearest guess.
+- **Retrieval, not generation.** There is no model call and no model key; a generated answer would sit behind the same `ask()` seam once a key is configured. Do not describe this as AI answering.
 
 ## Viewer and commands
 

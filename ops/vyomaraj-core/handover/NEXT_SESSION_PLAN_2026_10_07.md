@@ -107,8 +107,7 @@ token's repository permissions do not extend to issues writes — the same
 limitation as earlier sessions. The owner pastes the text and closes, per the
 procedure below.
 
-Comment text (paste-ready; also checked in at
-`ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md`):
+Comment text at plan time (superseded — see the note after the block):
 
 ```text
 Issue #6 close-out — evidence re-read live through the PR #31 merge (2026-10-06)
@@ -143,6 +142,17 @@ This closes the tracked Git main-snapshot verification criteria through PR #31.
 It does NOT claim independent-site disaster recovery, runtime backup/restore,
 production RPO/RTO, or switched production traffic.
 ```
+
+> **Update, later on 2026-10-06 (session `arena/05152d2a-vyomarajai`):** this
+> text closed at checkpoint #28. The record now holds 32 MATCH checkpoints / 22
+> replication writes through the PR #34 merge, and
+> `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md` was refreshed to match it —
+> **use that file, not the block above, as the paste source.** Five posting
+> attempts were made in that session (CLI, REST, and via the new
+> `ops/dr/post_issue_closeout.py`); every one returned 403 (issues=read only).
+> The attempts and the owner's remaining actions are recorded in
+> `ops/dr/ISSUE_6_ACCESS_RECHECK_2026_10_06.json`. Execution result: see
+> `SESSION_UPDATE_2026_10_06.md` section 6.
 
 Close procedure:
 
@@ -243,3 +253,30 @@ All page and download routes answer on all four backends: viewer 4174, gateway
   tree cross-checked with `git rev-parse`. Window C (PR #29 tip, never verified)
   is recorded as a gap. See `DEPLOYED_MATCH_2026_10_04.json`,
   `record_extension_2026_10_06_b`.
+
+## 8 · Execution result (session `arena/05152d2a-vyomarajai`, 2026-10-06)
+
+Sections 1-3 above were executed by the session this plan was written for. The
+short version is in `SESSION_UPDATE_2026_10_06.md` section 6; the record-level
+evidence is in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`
+(`record_extension_2026_10_06_c`).
+
+- **DR record:** checkpoints #30 (PR #33 tip, no-op MATCH), #31 (PR #34 tip,
+  write + MATCH, rollback `49088063…`) and #32 (schedule confirmation on the
+  PR #34 tip) recorded from live annotation re-reads; 32 checkpoints / 22
+  writes. The requested rollback-commit timestamp could not be read (private
+  secondary, HTTP 404 by this credential) and is recorded as a failed read with
+  the public step interval `12:54:21Z-12:54:47Z` as the bounded substitute.
+- **Issue #6:** comment + close attempted five times; all 403. Still OPEN by
+  necessity, not by choice. `ops/dr/post_issue_closeout.py --post` now performs
+  comment-then-close in one validated step for a credential that has the
+  permission.
+- **Recovered/absent:** the previous session's `3ed47b3` and its
+  `ask_server.py`, `test_ask_server.py` and handover note were verified absent
+  from every ref, from the GitHub API (422) and from the checked-in archives.
+  The ask slice was therefore **rebuilt** as new work (not recovered), tested
+  and shipped on this branch.
+- **Product:** `ask_server.py` on port 4190 answers from the 128 positions and
+  197 content references with citations and refuses to invent; see section 6 of
+  the session update for the honest scope (retrieval, not generation — the
+  model key is an owner action).

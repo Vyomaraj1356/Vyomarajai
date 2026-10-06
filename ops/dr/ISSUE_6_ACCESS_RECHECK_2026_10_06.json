@@ -1,0 +1,80 @@
+{
+  "recorded_at_utc": "2026-10-06T13:43:02Z",
+  "session": "arena/05152d2a-vyomarajai",
+  "issue": {
+    "number": 6,
+    "title": "[P0] Unblock private DR access and confirm the authoritative secondary before synchronization",
+    "state_at_recheck": "open",
+    "state_read_via": "GET /repos/Vyomaraj1356/Vyomarajai/issues/6 (the read side of the same credential that is denied writes)"
+  },
+  "attempted_issue_writes": {
+    "summary": "Four live attempts from this session: gh issue comment, gh issue close, REST POST /issues/6/comments, REST PATCH /issues/6 {state:closed}. Every write returned HTTP 403 'Resource not accessible by integration'; reads continue to work.",
+    "attempts": [
+      {
+        "form": "gh issue comment 6 --body-file ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md",
+        "result": "403 Resource not accessible by integration"
+      },
+      {
+        "form": "gh issue close 6",
+        "result": "403 Resource not accessible by integration"
+      },
+      {
+        "form": "POST repos/Vyomaraj1356/Vyomarajai/issues/6/comments",
+        "result": "403 Resource not accessible by integration"
+      },
+      {
+        "form": "PATCH repos/Vyomaraj1356/Vyomarajai/issues/6 {state=closed}",
+        "result": "403 Resource not accessible by integration"
+      }
+    ],
+    "raw_output": "### attempt 3: REST POST comment (explicit)\n{\"message\":\"Resource not accessible by integration\",\"documentation_url\":\"https://docs.github.com/rest/issues/comments#create-an-issue-comment\",\"status\":\"403\"}gh: Resource not accessible by integration (HTTP 403)\n### attempt 4: REST PATCH close\n{\"message\":\"Resource not accessible by integration\",\"documentation_url\":\"https://docs.github.com/rest/issues/issues#update-an-issue\",\"status\":\"403\"}gh: Resource not accessible by integration (HTTP 403)\n### read permission check\nopen",
+    "conclusion": "The Arena GitHub connection in this sandbox has issues=read only. Closing the issue or posting the close-out comment is an owner action; the repository cannot force it. Retried in this session as instructed, with the same 403 as the earlier sessions."
+  },
+  "arena_credential_reads": {
+    "identity": "Vyomaraj1356 (GH_TOKEN)",
+    "repositories_visible_to_this_credential": [
+      "Vyomaraj1356/Vyomarajai"
+    ],
+    "secondary_repository_get": {
+      "path": "repos/deepakGoyal1356/Vyomaraj-Agent-6d64e",
+      "result": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}gh: Not Found (HTTP 404)",
+      "git_ls_remote": "fatal: repository 'https://github.com/deepakGoyal1356/Vyomaraj-Agent-6d64e/' not found",
+      "interpretation": "HTTP 404 for a private repository means unreadable, not nonexistent. This is the same limitation issue #6 records; it is unchanged in this session."
+    },
+    "secondary_rollback_commit_get": {
+      "sha": "490880630a5a73e895982814da8d4f9a886bc493",
+      "result": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/commits/commits#get-a-commit\",\"status\":\"404\"}gh: Not Found (HTTP 404)",
+      "consequence": "The rollback-commit timestamp requested for checkpoint #31 could not be read; the DR record stores the failed read and a bounded public step interval instead of a value."
+    }
+  },
+  "actions_credential": {
+    "role": "VYOMARAJ_PAT (Actions secret) is the authorized reader/writer of the secondary; the workflow runs, not this sandbox, hold it. Its value is not readable here and must not be pasted in chat.",
+    "latest_read_only_probe": {
+      "check_run_id": 112131576824,
+      "annotation_title": "DR READ-ONLY DIAGNOSTIC",
+      "annotation": "read_access=READ_ACCESS_CONFIRMED; identity=READABLE; primary_repository=READABLE; primary_main=READABLE; secondary_repository=READABLE; secondary_main=READABLE; tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED; primary_files=315; secondary_files=315; missing_on_secondary=0; secondary_only=0; changed_content_or_mode=3; secondary_commit=c0edf483cd786b63a149c987bce370ab81404897; secondary_tree=88f681aae8441eb0bf3b176f8222eeb68d5ba602; candidate_files=320; candidate_secondary_only=0; candidate_missing=5; candidate_changed=14",
+      "re_read_at_utc": "2026-10-06T13:43:02Z",
+      "note": "Read live again in this session. This remains the newest read-only probe annotation: the diagnose-existing-pat job has been skipped on every run since (verified on the d97122f, e9bfba0, 1c13650, d46d8b3 and ed21fe7 tips)."
+    },
+    "latest_write_proof": {
+      "check_run_id": 112279322282,
+      "workflow_run_id": 37466613010,
+      "completed_at_utc": "2026-10-06T12:54:50Z",
+      "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=70b69f8e03317c64ecb379014843f026795fad69; secondary_tree=70b69f8e03317c64ecb379014843f026795fad69; rollback_commit=490880630a5a73e895982814da8d4f9a886bc493; data_match=true",
+      "note": "A verify-or-sync run completed after this recheck (checkpoint #31, PR #34 tip). It proves the Actions credential still reads the secondary and writes it exactly; it does not give this sandbox read access."
+    }
+  },
+  "owner_actions_remaining": [
+    "Reconnect GitHub in Arena with the secondary repository selected so the Arena connection itself can read it (optional for DR, required if Arena should ever verify the secondary directly).",
+    "Post the close-out comment and close issue #6, or grant the Arena GitHub connection issues=write. The prepared text is ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md; the repo-side tool ops/dr/post_issue_closeout.py --post performs both steps for a credential that already has that permission.",
+    "Grant workflow-dispatch permission if a manual run of the sync workflow from this connection is wanted (currently 403; the schedule and push triggers already run it).",
+    "Keep VYOMARAJ_PAT configured as an Actions secret; do not paste it anywhere."
+  ],
+  "repo_side_state": {
+    "offline_gate": "green in this session (see ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json after the run)",
+    "checkpoints_recorded": 32,
+    "replication_writes_recorded": 22,
+    "acceptance_criteria_status": "All five acceptance criteria of issue #6 are met by live evidence recorded in ops/dr/DEPLOYED_MATCH_2026_10_04.json and ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md; the only remaining items are the owner-side writes above."
+  },
+  "closing_rule": "This file records a refused write, not a closed issue. Issue #6 stays OPEN until an owner acts; no session may claim it closed without a successful API write."
+}
