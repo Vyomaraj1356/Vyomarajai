@@ -1,9 +1,9 @@
 {
-  "verified_at_utc": "2026-10-06T06:02:55+00:00",
+  "verified_at_utc": "2026-10-06T06:04:54+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
     "branch": "arena/582559e8-vyomarajai",
-    "commit": "d2bf6d631b73f6af8215b13a6caaa217e3793257"
+    "commit": "3d84c1b82c1676f97e74c54785d5ca7730018873"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
@@ -12,26 +12,26 @@
   },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "6be799e66983e4008fccf66d11cf7d45117b04673674635da8bd1f91cc016025",
-    "bytes": 138250
+    "sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
+    "bytes": 139350
   },
   "byte_identity": {
     "viewer_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "viewer_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-    "viewer_transfer_package_download_sha256": "6be799e66983e4008fccf66d11cf7d45117b04673674635da8bd1f91cc016025",
-    "gateway_transfer_package_download_sha256": "6be799e66983e4008fccf66d11cf7d45117b04673674635da8bd1f91cc016025",
+    "viewer_transfer_package_download_sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
+    "gateway_transfer_package_download_sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4",
     "viewer_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "gateway_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "viewer_platform_check_download_sha256": "55d3e64017ff0f46645b9c9cbedc68d83c4481216ad1898ec5a4cd4e28912433",
     "gateway_platform_check_download_sha256": "55d3e64017ff0f46645b9c9cbedc68d83c4481216ad1898ec5a4cd4e28912433",
     "viewer_issues_ledger_json_download_sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345",
     "gateway_issues_ledger_json_download_sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345",
-    "viewer_post_pr25_note_download_sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad",
-    "gateway_post_pr25_note_download_sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad",
-    "viewer_post_pr25_package_download_sha256": "81d4b2b5a6b65047611351f5a5aaa3bebda7b07a88e8b5582425ace337503b31",
-    "gateway_post_pr25_package_download_sha256": "81d4b2b5a6b65047611351f5a5aaa3bebda7b07a88e8b5582425ace337503b31"
+    "viewer_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
+    "gateway_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
+    "viewer_post_pr25_package_download_sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760",
+    "gateway_post_pr25_package_download_sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760"
   },
   "viewer_routes": [
     {
@@ -112,8 +112,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 28036,
-      "sha256": "b8f91537bf76501a546b4a9d5d9d5c6abd7bdeb8e6240afc20af006c63e23043"
+      "bytes": 29662,
+      "sha256": "3700f1a941bbfb24e50d241d30c3c78de6b236e636dcdd51057a0ecf20f81921"
     },
     {
       "route": "/reports/recovery",
@@ -149,7 +149,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 31298,
-      "sha256": "c74dea4f05774af9d13ab7dc4473068436e28cacadf0b8f06a7a3949747e4423"
+      "sha256": "d45107e57d33fcb93953f000867c4224e06b340ae411e124d5a387dcc24c1a83"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -175,8 +175,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 138250,
-      "sha256": "6be799e66983e4008fccf66d11cf7d45117b04673674635da8bd1f91cc016025"
+      "bytes": 139350,
+      "sha256": "5f87c9218d7018df25b27fe2f324ee7a1ba9a17302ef284f6dd1fe15afa511c4"
     },
     {
       "route": "/reports/post-pr25-handover",
@@ -184,8 +184,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 25803,
-      "sha256": "63bba17f2d0348628831965a620f3a51fdb681e5ee651da0b11eca2451b13c02"
+      "bytes": 27414,
+      "sha256": "cdb21fb57e62d48c70609443ba6d482eb008f803814c9340ee0bc8d255709ac7"
     },
     {
       "route": "/reports/download/post-pr25-handover.txt",
@@ -193,8 +193,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt\"",
-      "bytes": 22268,
-      "sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad"
+      "bytes": 23864,
+      "sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda"
     },
     {
       "route": "/reports/download/post-pr25-transfer.zip",
@@ -202,8 +202,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 173854,
-      "sha256": "81d4b2b5a6b65047611351f5a5aaa3bebda7b07a88e8b5582425ace337503b31"
+      "bytes": 175560,
+      "sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760"
     },
     {
       "route": "/reports/auto-align",
@@ -348,8 +348,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 26067,
-      "sha256": "b38fbb2e450dfb2cc9798a782742cc3b7a5fb2e79f42be8e26a5e18c332df3cd"
+      "bytes": 27678,
+      "sha256": "1eeedf1518f3710fec1dc40426b83eda3a12e2150659e8c4c1529fd8dfe0d099"
     },
     {
       "route": "/reports/download/post-pr25-handover.txt",
@@ -357,8 +357,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt\"",
-      "bytes": 22268,
-      "sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad"
+      "bytes": 23864,
+      "sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda"
     },
     {
       "route": "/reports/download/post-pr25-transfer.zip",
@@ -366,8 +366,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 173854,
-      "sha256": "81d4b2b5a6b65047611351f5a5aaa3bebda7b07a88e8b5582425ace337503b31"
+      "bytes": 175560,
+      "sha256": "8ce66abac9e3d99e57d6e86f0abc71ba4281afb3b501f4383892770550aaa760"
     },
     {
       "route": "/reports/dr-sync",
@@ -375,8 +375,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 28300,
-      "sha256": "14d4563a391c50b6c7b338324dfe0bbced71c8c103f8d9fa791df87db871af39"
+      "bytes": 29926,
+      "sha256": "10f50b372b4a61a7a7d5063665791ed5c7681049ee7939455b4febcb8ac24e75"
     },
     {
       "route": "/reports/recovery",
@@ -412,7 +412,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 31562,
-      "sha256": "7cd45a019e606a05fd50f267bd1208e80bc1855dce809e8cdbf6e251828cd0e2"
+      "sha256": "d7951cd17b42fe22d5baa46e30c646a7a97c661f4672014c6a7c63c014615b2e"
     },
     {
       "route": "/reports/download/handover-notepad.txt",
@@ -549,8 +549,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 26067,
-        "sha256": "b38fbb2e450dfb2cc9798a782742cc3b7a5fb2e79f42be8e26a5e18c332df3cd"
+        "bytes": 27678,
+        "sha256": "1eeedf1518f3710fec1dc40426b83eda3a12e2150659e8c4c1529fd8dfe0d099"
       },
       {
         "route": "/reports/download/post-pr25-handover.txt",
@@ -558,8 +558,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt\"",
-        "bytes": 22268,
-        "sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad"
+        "bytes": 23864,
+        "sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda"
       },
       {
         "route": "/reports/download/auto-align.json",
@@ -623,8 +623,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 26067,
-        "sha256": "b38fbb2e450dfb2cc9798a782742cc3b7a5fb2e79f42be8e26a5e18c332df3cd"
+        "bytes": 27678,
+        "sha256": "1eeedf1518f3710fec1dc40426b83eda3a12e2150659e8c4c1529fd8dfe0d099"
       },
       {
         "route": "/reports/download/post-pr25-handover.txt",
@@ -632,8 +632,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt\"",
-        "bytes": 22268,
-        "sha256": "e2978e270d40bb00fd957c7355b4f390cfed0dd06e9f3a6f3f580b207ee2e0ad"
+        "bytes": 23864,
+        "sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda"
       },
       {
         "route": "/reports/download/auto-align.json",
@@ -682,7 +682,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 211,
+      "primary_responses": 246,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0
