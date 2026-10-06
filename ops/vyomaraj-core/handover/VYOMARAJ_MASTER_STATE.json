@@ -153,6 +153,51 @@
         "availability drills"
       ],
       "next_verification": "deploy supervised service with restart policy, watchdog, alerting and measured uptime"
+    },
+    {
+      "id": "Bharath/Laxman identity aliases",
+      "status": "PRESENT",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/vyomaraj-core/identity/BHARATH_LAXMAN_IDENTITY_CONTRACT.json"
+      ],
+      "next_verification": "voice/text alias resolution test through policy gate"
+    },
+    {
+      "id": "Jarvis current-location reporting",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/vyomaraj-core/location/VYOMARAJ_LOCATION_CONTRACT.json"
+      ],
+      "next_verification": "authenticated device location probe and current-activity correlation test"
+    },
+    {
+      "id": "Owner email communication lane",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/vyomaraj-core/communications/OWNER_AND_PUBLIC_COMMUNICATION_POLICY.json"
+      ],
+      "next_verification": "authenticated mailbox read/thread/reply test for Vyomarajai@gmail.com"
+    },
+    {
+      "id": "Social feedback moderation lane",
+      "status": "CONFIGURED",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/vyomaraj-core/communications/OWNER_AND_PUBLIC_COMMUNICATION_POLICY.json"
+      ],
+      "next_verification": "platform-by-platform authenticated comment read/moderation/reply test"
+    },
+    {
+      "id": "Hanuman flag UI",
+      "status": "PRESENT",
+      "runtime_status": "UNVERIFIED",
+      "evidence": [
+        "ops/vyomaraj-core/ui/hanuman-flag.svg"
+      ],
+      "next_verification": "render asset in the live center/status surface"
     }
   ],
   "prohibited_live_claims": [
@@ -187,5 +232,6 @@
     "historical_snapshot": "AGENT_CONTENT_REGISTRY_V16_7_24.json",
     "current_indexed_references": 173,
     "status": "VERIFIED_AS_REPOSITORY_INVENTORY_NOT_LIVE_RUNTIME"
-  }
+  },
+  "last_change": "2026-10-06: Bharath/Laxman identity, location, owner communication, social feedback moderation and Hanuman flag contracts added on review branch."
 }

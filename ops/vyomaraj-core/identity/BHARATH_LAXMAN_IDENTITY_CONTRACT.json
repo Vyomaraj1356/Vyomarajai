@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "system_id": "VYOMARAJ-AI-STUDIO",
+  "authority_root": "ShriYantra",
+  "home": "ShriYantra",
+  "center": "Vyomaraj",
+  "identities": {
+    "VYOMARAJ": {
+      "alias": "BHARATH",
+      "role": "central_intelligence",
+      "capabilities": ["READ","WRITE","HEAR","REASON","ORCHESTRATE"],
+      "addressable_names": ["Vyomaraj","Bharath"]
+    },
+    "JARVIS": {
+      "alias": "LAXMAN",
+      "role": "execution_coordination",
+      "capabilities": ["EXECUTE","ACT","COORDINATE","MONITOR","RECOVER"],
+      "addressable_names": ["Jarvis","Laxman"]
+    },
+    "HERMES": {
+      "role": "security_integrity_recovery",
+      "capabilities": ["PROTECT","VERIFY","RECONCILE","RECOVER"]
+    }
+  },
+  "command_resolution": {
+    "Vyomaraj": "VYOMARAJ",
+    "Bharath": "VYOMARAJ",
+    "Jarvis": "JARVIS",
+    "Laxman": "JARVIS"
+  },
+  "governance": {
+    "all_commands_pass_through": ["ShriYantra","Hermes","PolicyEngine"],
+    "model_output_is_not_authorization": true,
+    "high_impact_actions_require_owner_authorization": true
+  }
+}
