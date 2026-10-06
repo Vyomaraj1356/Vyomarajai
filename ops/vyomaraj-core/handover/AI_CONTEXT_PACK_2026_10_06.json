@@ -1,0 +1,145 @@
+{
+  "schema": "vyomaraj-ai-context-pack/1",
+  "generated_at_utc": "2026-10-06 10:07 UTC",
+  "purpose": "Self-contained context so another AI platform can help with Vyomaraj without inventing progress. Every field is read from this repository or probed live.",
+  "identity": {
+    "name": "Vyomaraj",
+    "meaning": "The King of Sky",
+    "owner": "Deepak Goyal <[OWNER_EMAIL_REDACTED]>",
+    "owner_authority": "owner-locked, human-in-the-loop; the owner approves every publication",
+    "public_address": "https://vyomaraj1356.github.io/Vyomarajai/",
+    "repository": "https://github.com/Vyomaraj1356/Vyomarajai",
+    "interpreter": "Jarvis (also written JARVIS / LAXMAN in older documents)"
+  },
+  "verified_state": {
+    "services_probed_live": [
+      {
+        "port": 3000,
+        "service": "Product page",
+        "listening": true
+      },
+      {
+        "port": 4174,
+        "service": "Reports viewer",
+        "listening": true
+      },
+      {
+        "port": 4176,
+        "service": "Availability gateway",
+        "listening": true
+      },
+      {
+        "port": 4181,
+        "service": "Lane studio A",
+        "listening": true
+      },
+      {
+        "port": 4182,
+        "service": "Lane studio B",
+        "listening": true
+      }
+    ],
+    "github_pages": "built and serving from main",
+    "runtime": "Python 3 standard library only (http.server / ThreadingHTTPServer), 0.0.0.0",
+    "database_server": null,
+    "database_servers_claimed_but_absent": [
+      "PostgreSQL 5432",
+      "Redis 6379"
+    ],
+    "frameworks_claimed_but_absent": [
+      "FastAPI 8000",
+      "Flask 5000"
+    ],
+    "apk": {
+      "path": "Vyomaraj-App.apk",
+      "bytes": 24567022,
+      "signed": false
+    },
+    "evidence": {
+      "blocking_problems": 0,
+      "python_tests_total": 380,
+      "node_checks": 12,
+      "builders": 20,
+      "preview_problems": 0,
+      "viewer_routes_checked": 36
+    }
+  },
+  "agents": {
+    "main_agents": 13,
+    "sub_agents": 128,
+    "named_sub_agents": 42,
+    "unnamed_numbered_sub_agents": 86,
+    "approved_third_tier_hubs": 6,
+    "products": 421,
+    "products_caveat": "421 is a historical aggregate, not a verified deduplicated/current owner-assigned product inventory.",
+    "hierarchy_policy": "Only the six explicitly approved hubs acquire child edges. Other missing sub-sub-agent mappings remain UNMAPPED; do not invent a third tier.",
+    "display_policy": "Show unnamed entries by serial only; null names remain unassigned. Display serials are not recovered slot identities.",
+    "runtime_status": "registry entries are records, not running AI agents"
+  },
+  "platforms": {
+    "coordination_module_verdict": {
+      "mode": "metadata_only",
+      "operational": false,
+      "confidence": "UNVERIFIED",
+      "switch_platform": "BLOCKED - no provider/session-transfer executor is configured"
+    },
+    "connected": [
+      "GitHub (repo, Pages, Actions)",
+      "local servers on this host"
+    ],
+    "not_connected": [
+      "YouTube",
+      "Instagram",
+      "Facebook",
+      "X",
+      "LinkedIn",
+      "TikTok",
+      "Telegram",
+      "WhatsApp",
+      "Discord",
+      "Pinterest",
+      "Threads",
+      "Snapchat",
+      "Reddit",
+      "Twitch",
+      "Vimeo",
+      "Tumblr",
+      "Mastodon",
+      "payment gateways",
+      "analytics",
+      "email/SMS sending",
+      "OpenAI/Anthropic/Google AI providers"
+    ],
+    "counts_from_code_scan": {
+      "social_api_calls": 0,
+      "oauth_token_handling": 0,
+      "payment_gateways": 0,
+      "analytics": 0,
+      "ai_provider_calls": 0
+    }
+  },
+  "constraints_the_helping_ai_must_respect": [
+    "Never print a LIVE / ACTIVE / synced status that the system cannot measure. This project already removed fabricated LIVE values from two modules; do not reintroduce them.",
+    "Never invent third-tier agent names; only the six approved hubs have children.",
+    "Historic follower, view and revenue figures are unverified: do not repeat them to a partner, bank or platform reviewer.",
+    "Zero budget until the project earns: propose only free options first.",
+    "Inherit format and credit discipline from Sufi, ghazal and studio-show formats; never copy titles, lyrics, audio, video, artwork or brands.",
+    "Identity documents: reference uidai.in only; no in-app Aadhaar or biometric capture.",
+    "Voice enrollment is on-device only, with explicit consent and a delete-my-voice path.",
+    "Never ask for or store tokens, passwords or OTPs; nothing secret belongs in the repo.",
+    "Report an unverified window as a window, never as a match."
+  ],
+  "next_actions_for_the_helping_ai": [
+    "Sign the Android APK with an owner-held keytool key, or advise leaving it off the page.",
+    "Draft the one-line contact block the owner can paste on the public page.",
+    "Advise the cheapest free analytics option and where its snippet goes.",
+    "Help plan the first original episode slate using inherited formats only.",
+    "Draft the YouTube Partner Program application timing note (apply before 1 Feb 2027)."
+  ],
+  "how_to_verify_anything": [
+    "python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci",
+    "python3 ops/vyomaraj-core/handover/verify_live_wiring.py",
+    "python3 ops/vyomaraj-core/handover/verify_preview.py",
+    "python3 ops/vyomaraj-core/handover/realtime_status.py"
+  ]
+}

@@ -90,6 +90,8 @@ REPORTS = {
     '/reports/network-diagram': 'ARCHITECTURE_V16_8_2026_10_04.md',
     '/reports/market-readiness': 'MARKET_READINESS_AND_WIRING_2026_10_06.md',
     '/reports/full-handover': 'VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
+    '/reports/ai-handoff': 'AI_PLATFORM_HANDOFF_2026_10_06.md',
+    '/reports/runbook': 'VYOMARAJ_RUNBOOK_2026_10_06.md',
 }
 
 
@@ -174,6 +176,18 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Content-Length', str(len(body)))
             self.end_headers()
             self.wfile.write(body)
+        elif route == '/reports/download/ai-handoff.md':
+            path = CORE / 'handover/AI_PLATFORM_HANDOFF_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/ai-context-pack.json':
+            path = CORE / 'handover/AI_CONTEXT_PACK_2026_10_06.json'
+            self.send_download(path.read_bytes(), 'application/json', path.name)
+        elif route == '/reports/download/runbook.md':
+            path = CORE / 'handover/VYOMARAJ_RUNBOOK_2026_10_06.md'
+            self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)
+        elif route == '/reports/download/ai-handoff.zip':
+            path = CORE / 'handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip'
+            self.send_download(path.read_bytes(), 'application/zip', path.name)
         elif route == '/reports/download/full-handover.md':
             path = CORE / 'handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md'
             self.send_download(path.read_bytes(), 'text/plain; charset=utf-8', path.name)

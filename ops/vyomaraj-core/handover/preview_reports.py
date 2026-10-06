@@ -49,6 +49,8 @@ REPORTS = {
     '/reports/market-readiness': 'MARKET_READINESS_AND_WIRING_2026_10_06.md',
     '/reports/full-handover': 'VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
     '/reports/realtime': 'REALTIME_STATUS.md',
+    '/reports/ai-handoff': 'AI_PLATFORM_HANDOFF_2026_10_06.md',
+    '/reports/runbook': 'VYOMARAJ_RUNBOOK_2026_10_06.md',
 }
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
@@ -105,6 +107,18 @@ PAGE_NOTES = {
                         'run-up to Ghatasthapana, Sunday 11 October 2026: day-by-day plan, the '
                         'owner decisions that block it, the gates, and the risks in the order they '
                         'can stop a launch.</p>',
+    '/reports/ai-handoff': '<p class="notice"><strong>Handoff for another AI platform</strong> - a '
+                           'self-contained brief a different assistant can read to help without being '
+                           'misled: the verified state, the agent structure, the platform truth and the '
+                           'rules it must respect. Safe to share: owner contact details are redacted and '
+                           'no secret is present. '
+                           '<a href="/reports/download/ai-handoff.md">Download the brief</a> &middot; '
+                           '<a href="/reports/download/ai-context-pack.json">Download the JSON context pack</a> '
+                           '&middot; <a href="/reports/download/ai-handoff.zip">Download the whole package</a></p>',
+    '/reports/runbook': '<p class="notice"><strong>Runbook</strong> - the procedure: start everything, '
+                        'verify, regenerate evidence, configure a new thing, integrate with a platform, '
+                        'inherit content, hand over and protect. '
+                        '<a href="/reports/download/runbook.md">Download the runbook</a></p>',
     '/reports/realtime': '<p class="notice"><strong>Live status</strong> - measured on this request, never cached. '
                          'JSON at <a href="/api/realtime">/api/realtime</a>.</p>',
     '/reports/screenshots': '<p class="notice"><strong>Real captures of the running pages</strong> - taken with a '
@@ -158,7 +172,15 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/reports/download/full-handover.zip':
                  ('transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip', 'application/zip'),
              '/reports/download/full-handover.md':
-                 ('VYOMARAJ_FULL_HANDOVER_2026_10_06.md', 'text/plain; charset=utf-8')}
+                 ('VYOMARAJ_FULL_HANDOVER_2026_10_06.md', 'text/plain; charset=utf-8'),
+             '/reports/download/ai-handoff.md':
+                 ('AI_PLATFORM_HANDOFF_2026_10_06.md', 'text/plain; charset=utf-8'),
+             '/reports/download/ai-context-pack.json':
+                 ('AI_CONTEXT_PACK_2026_10_06.json', 'application/json'),
+             '/reports/download/runbook.md':
+                 ('VYOMARAJ_RUNBOOK_2026_10_06.md', 'text/plain; charset=utf-8'),
+             '/reports/download/ai-handoff.zip':
+                 ('transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip', 'application/zip')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
 RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</strong> '
                   '<a href="/reports/issues">Issues and PRs ledger</a> &middot; '
@@ -303,7 +325,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/full-handover">Full handover</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/full-handover">Full handover</a><a href="/reports/ai-handoff">AI handoff</a><a href="/reports/runbook">Runbook</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()
