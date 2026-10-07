@@ -26,7 +26,7 @@ class CurrentRegistryTests(unittest.TestCase):
         i=json.loads(self.get('/agents/CONTENT_INDEX_CURRENT.json'));self.assertEqual(i['education_topic_count'],21)
         o=json.loads(self.get('/agents/CONTENT_OWNERSHIP_CURRENT.json'));self.assertTrue(all(t['owner_category']=='EDU' for t in o['education_topics']))
     def test_reports_current_vs_historical(self):
-        self.assertIn(b'154 counted',self.get('/reports/'))
+        self.assertIn(b'15 categories',self.get('/reports/'))
         self.assertIn(b'Government Schemes',self.get('/reports/agents'))
         self.assertIn(b'133',self.get('/reports/history'))
     def test_rules_builder_and_private_paths_not_served(self):
