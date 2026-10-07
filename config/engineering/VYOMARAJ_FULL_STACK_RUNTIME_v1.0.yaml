@@ -1,6 +1,6 @@
 schema_version: 1
 system_id: VYOMARAJ-AI-STUDIO
-release: VYOMARAJ_AI_AGENT_OS_v1.2_ENGINEERING_BASELINE
+release: VYOMARAJ_AI_AGENT_OS_v2.0_FINAL_ENGINEERING_BASELINE
 status: BUILD_AND_INTEGRATION_BASELINE
 
 architecture:
@@ -71,7 +71,7 @@ ai_fabric:
   sandbox: required_for_untrusted_tools
 
 data:
-  current_registry: "15 categories / 154 counted sub-agent slots / 152 named / 2 unnamed"
+  current_registry: "15 categories / 168 counted sub-agent slots / 166 named / 2 legacy unnamed / 6 uncounted hubs / 48 nested entertainment sub-agents"
   historical_products: 421
   database: "provider-neutral adapter; persistent production DB deployment requires environment provisioning"
   memory_knowledge: ShriYantra_shared
