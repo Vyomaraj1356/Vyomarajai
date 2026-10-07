@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the 2026 engineering foundation without claiming external deployment.
-
-This checks dependency availability, configuration invariants, and protocol/runtime
-contracts. It does not connect to production providers or execute agent tools.
-"""
+"""Verify the 2026 engineering foundation without claiming external deployment."""
 from __future__ import annotations
 
 import importlib.util
@@ -12,7 +8,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 REQ = ROOT / "ops/engineering/requirements-2026.txt"
-CFG = ROOT / "config/engineering/ENGINEERING_2026_BASELINE.yaml"\nGEO = ROOT / "config/engineering/GEOSPATIAL_AND_DAILY_STARTUP.yaml"
+CFG = ROOT / "config/engineering/ENGINEERING_2026_BASELINE.yaml"
+GEO = ROOT / "config/engineering/GEOSPATIAL_AND_DAILY_STARTUP.yaml"
 
 REQUIRED_MODULES = {
     "cryptography": "security",
@@ -45,12 +42,14 @@ def main() -> int:
         errors.append(f"missing dependency manifest: {REQ}")
     if not CFG.is_file():
         errors.append(f"missing engineering config: {CFG}")
+    if not GEO.is_file():
+        errors.append(f"missing geospatial/startup config: {GEO}")
 
     for module, purpose in REQUIRED_MODULES.items():
         if importlib.util.find_spec(module) is None:
             errors.append(f"missing Python module: {module} ({purpose})")
 
-    if not GEO.is_file():\n        errors.append(f"missing geospatial/startup config: {GEO}")\n\n    if CFG.is_file():
+    if CFG.is_file():
         text = CFG.read_text(encoding="utf-8")
         for needle in REQUIRED_TEXT:
             if needle not in text:
