@@ -1,11 +1,13 @@
 # VYOMARAJ AGENT ALIGNMENT WORKING MATRIX
 
+> **Superseded for active alignment by `docs/architecture/AGENT_CONTENT_PROCESS_REVENUE_ALIGNMENT_v1.0.md` (2026-10-07). Historical evidence and unresolved-slot rules remain valid here.
+
 > Working document only. No unnamed historical identity is silently renamed. Proposed names are candidates pending owner approval and source/content recovery.
 
 ## Current registry finding
 - Counted entries: **153**
-- Named counted entries: **72**
-- Unnamed counted entries: **81**
+- Named counted entries after requested alignment: **140**
+- Unnamed counted entries after requested alignment: **13**
 - Entertainment additionally has 6 uncounted hubs with 48 nested sub-agents.
 
 ## Alignment rule
@@ -90,7 +92,7 @@
 | ENT-MOVIE-S6 | ENTERTAINMENT | UNKNOWN | Movie Legacy 6 | OWNER REVIEW |
 | ENT-MUS-S1 | ENTERTAINMENT | UNKNOWN | Music Legacy 1 | OWNER REVIEW |
 | ENT-MUS-S2 | ENTERTAINMENT | UNKNOWN | Music Legacy 2 | OWNER REVIEW |
-| ENT-MUS-S3 | ENTERTAINMENT | UNKNOWN | Music Legacy 2 | OWNER REVIEW |
+| ENT-MUS-S3 | ENTERTAINMENT | UNKNOWN | Music Legacy 3 | OWNER REVIEW |
 | ENT-MUS-S4 | ENTERTAINMENT | UNKNOWN | Music Legacy 4 | OWNER REVIEW |
 | ENT-MUS-S5 | ENTERTAINMENT | UNKNOWN | Music Legacy 5 | OWNER REVIEW |
 | ENT-MUS-S6 | ENTERTAINMENT | UNKNOWN | Music Legacy 6 | OWNER REVIEW |
