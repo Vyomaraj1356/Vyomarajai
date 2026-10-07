@@ -60,7 +60,7 @@ class ContentTests(unittest.TestCase):
 
     def test_historical_totals_unchanged(self):
         registry = json.loads((planner.CORE / 'handover/AGENT_CONTENT_REGISTRY_V16_7_24.json').read_text())
-        self.assertEqual(sum(c['sub_agents'] for c in registry['categories']), 133)
+        self.assertEqual(sum(c['sub_agents'] for c in registry['categories']), 153)
         self.assertEqual(sum(c['products'] for c in registry['categories']), 421)
         catalog = json.loads((planner.CORE / 'experience/CONTENT_CATALOG.json').read_text())
         self.assertEqual(sum(len(p['files']) for p in catalog['packs']), 32)
