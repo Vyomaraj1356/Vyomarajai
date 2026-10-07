@@ -26,10 +26,10 @@ import json, pathlib
 p=pathlib.Path('ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json')
 d=json.loads(p.read_text())
 assert d['totals']['main_agents']==13
-assert d['totals']['sub_agents']==133
+assert d['totals']['sub_agents']==153
 assert len(d['agents'])==133
 assert d['totals']['uncounted_parent_headings']==6
-print('PASS: registry 13 categories / 133 agents / 6 headings')
+print('PASS: registry 14 categories / 153 agents / 6 headings')
 PY
 if [[ $fail -ne 0 ]]; then echo 'BLOCKED: required contract file missing'; exit 2; fi
 echo 'PASS: architecture contract gate. This does NOT claim production runtime deployment.'
