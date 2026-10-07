@@ -351,7 +351,7 @@ class Handler(BaseHTTPRequestHandler):
         else:
             body = PAGE_NOTES.get(route, '') + render_document(path)
             if route == '/reports/history':
-                body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT CURRENT.</strong> Current total: 128 counted slots and six uncounted headings. See the current inventory and agent reconciliation.</p>' + body
+                body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT CURRENT.</strong> Current total is registry-derived; see the current inventory and agent reconciliation. See the current inventory and agent reconciliation.</p>' + body
             if route == '/reports/recovery':
                 body = RECOVERY_LINKS + body
             content = ('<!doctype html><html lang="en"><meta charset="utf-8">'
