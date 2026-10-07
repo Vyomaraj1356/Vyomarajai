@@ -1,0 +1,116 @@
+schema_version: 1
+system_id: VYOMARAJ-AI-STUDIO
+release: VYOMARAJ_AI_AGENT_OS_v2.0_FINAL_ENGINEERING_BASELINE
+status: BUILD_AND_INTEGRATION_BASELINE
+
+architecture:
+  control_chain: OWNER_ROOT -> SHRIYANTRA -> VYOMARAJ_BHARATH <-> JARVIS_LAXMAN -> HARNESS_POLICY -> EXECUTION -> VERIFY -> AUDIT -> RECOVERY
+  peer_cores:
+    vyomaraj_bharath: [owner_control, policy, permissions, orchestration, routing, global_state, publication_control, audit]
+    jarvis_laxman: [observe, reason, plan, route, execute, verify, measure, learn, monitor, recover, self_heal]
+  shared_foundation:
+    - llm
+    - harness
+    - rag
+    - cag
+    - mag
+    - memory
+    - knowledge
+    - evaluation
+    - policy
+    - tool_runtime
+    - event_engine
+    - task_engine
+    - security
+    - audit
+    - resilience
+    - durable_execution
+    - observability
+    - identity
+
+frontend:
+  web:
+    artifact: landing.html
+    supporting_routes: [index.html, flow-diagram.html, experience-studio.html]
+    theme: "Shani Blue #0a1628 + Kuber Gold #f59e0b"
+    api_keys_in_browser: false
+  android:
+    architecture: "Kotlin / Jetpack Compose / MVVM / offline-first"
+    biometric: PENDING
+    passcode: PENDING
+  macos:
+    architecture: "SwiftUI / universal Intel + Apple Silicon"
+    biometric: PENDING
+    passcode: PENDING
+
+backend:
+  runtime: "Python 3.12"
+  operational_modules:
+    - ops/vyomaraj-core/experience/studio_server.py
+    - ops/vyomaraj-core/experience/local_planner.py
+    - ops/vyomaraj-core/research/discovery.py
+    - ops/vyomaraj-core/agents
+    - ops/vyomaraj-core/approvals
+    - ops/vyomaraj-core/finance
+    - ops/vyomaraj-core/ledger
+    - ops/vyomaraj-core/security
+    - ops/vyomaraj-core/upgrades
+    - ops/dr
+  secrets: server_side_only
+  auth: owner_controlled
+  high_risk_actions: step_up_required
+
+ai_fabric:
+  routing: provider_neutral
+  providers: [OpenAI, Anthropic, Google_Gemini, Arena_AI, local_models, open_source_models]
+  protocol_layers:
+    mcp: dependency_installed
+    a2a: dependency_installed
+  durable_execution: Temporal_dependency_installed
+  observability: OpenTelemetry_dependency_installed
+  sandbox: required_for_untrusted_tools
+
+data:
+  current_registry: "15 categories / 168 counted sub-agent slots / 166 named / 2 legacy unnamed / 6 uncounted hubs / 48 nested entertainment sub-agents"
+  historical_products: 421
+  database: "provider-neutral adapter; persistent production DB deployment requires environment provisioning"
+  memory_knowledge: ShriYantra_shared
+  audit: immutable_append_only_target
+  backup: primary_to_dr
+
+automation:
+  workflow_engine: n8n
+  voice_input: Wispr_Flow
+  durable_workflow: Temporal
+  status: configured_in_repository
+
+resilience:
+  primary_repo: Vyomaraj1356/Vyomarajai
+  dr_repo: deepakGoyal1356/Vyomaraj-Agent-6d64e
+  sync: "PRIMARY main -> DR main"
+  split_brain_fencing: required
+  restore_verification: required
+  application_dr: "requires DR repository credential/access and target runtime"
+  git_snapshot_ci: enabled
+
+external_integrations:
+  provider_accounts: owner_credentials_required
+  social_accounts: owner_credentials_required
+  media_tts: owner_credentials_required
+  render_cloudflare_vercel: owner_credentials_required
+  geospatial: configured_server_side_owner_consent_required
+
+verification_policy:
+  VERIFIED: "runtime evidence exists"
+  IMPLEMENTED_NOT_VERIFIED: "repository implementation exists but runtime evidence is absent"
+  CONFIGURED_NOT_CONNECTED: "configuration exists but external account/service is not connected"
+  BLOCKED: "external credential, account, device permission, or infrastructure is required"
+  PENDING_ONLY:
+    - biometric
+    - passcode
+
+release_gate:
+  intended_final_pending_items:
+    - biometric
+    - passcode
+  note: "No credential or external service may be falsely marked connected. CI/build readiness is separate from live provider/account deployment."
