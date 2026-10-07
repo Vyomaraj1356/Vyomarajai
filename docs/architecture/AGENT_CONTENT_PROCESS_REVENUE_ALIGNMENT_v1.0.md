@@ -14,8 +14,8 @@
 
 ## Alignment status
 - Current counted slots: **153**
-- Named after this alignment: **140**
-- Remaining unresolved: **13**
+- Named after this alignment: **151**
+- Remaining unnamed active slots: **0**; `EDU-S11` and `EDU-S12` remain preserved legacy IDs merged into `EDU-S10`.
 - Historical source snapshot `V16.7.24` remains preserved; these functional names do not rewrite it.
 
 ## 1. Finance — aligned
@@ -165,7 +165,7 @@ Every aligned sub-agent follows the same control spine. Content cannot jump dire
 
 For a non-performing lane: `REVENUE HEALTH CHECK → ROOT-CAUSE → HISTORY/TREND/FUTURE RESEARCH → VYOMARAJ/JARVIS STRATEGY MEETING → KUBER COST/ROI/RISK REVIEW → APPROVED STRATEGY → CREATE → VERIFY → PUBLISH → MEASURE → EARN → KUBER RECONCILE → LEARN`.
 
-## 9. Remaining unresolved slots after this pass
+## 9. Remaining recovery/legacy status
 - `FOOD-REF-01`
 - `FOOD-REF-02`
 - `FOOD-REF-03`
@@ -180,7 +180,30 @@ For a non-performing lane: `REVENUE HEALTH CHECK → ROOT-CAUSE → HISTORY/TREN
 - `TOUR-REF-03`
 - `TOUR-REF-04`
 
-These are intentionally unresolved rather than guessed. Next recovery pass should focus on FOOD 3, Education 4 legacy slots, Bhakti 1, Platform 1 and Tour 4.
+All active counted positions are now aligned. `EDU-S11` and `EDU-S12` are intentionally retained as historical merged references under `EDU-S10`; their source identities are preserved and their content must remain re-indexed under the surviving target.
 
 ## Evidence rule
 `HISTORICAL_CONTENT_ALIGNED` = repository content supports the functional alignment, but it is not a claim that the historical owner used the exact new display name. `OWNER_ALIGNED_FUNCTIONAL` = owner-directed taxonomy where historical individual identity was not recoverable. Historical snapshots remain immutable.
+
+
+## 10. Permanent maintenance automation
+
+The hierarchy now has a standing maintenance capability:
+
+- Policy: `config/maintenance/CONTENT_ALIGNMENT_CLEANING_POLICY_v1.0.yaml`
+- Scanner: `ops/vyomaraj/maintenance/content_alignment_cleaner.py`
+- Launcher: `ops/vyomaraj/maintenance/run-content-alignment.sh`
+- Voice/text command contract: `config/maintenance/VOICE_CONTENT_ALIGNMENT_COMMANDS_v1.0.yaml`
+- Schedule: `.github/workflows/vyomaraj-content-alignment.yml`
+- Operating procedure: `docs/process/VYOMARAJ_AUTOMATED_CONTENT_ALIGNMENT_AND_CLEANING_v1.0.md`
+
+The scheduled job is deliberately read-only. Exact duplicate mutation requires the owner-authenticated change path. Possible duplicates never auto-delete.
+
+## 11. Wit / Hasya expansion
+
+`ENT-WIT-S1` now covers wit, wordplay, satire, irony, parody, literary humour, stage/screen/radio/TV, regional and world humour, digital/meme humour and future formats.
+
+`ENT-HASYA-S1` now has a dedicated Hasya Kavi Sammelan and humour-literature model covering history, Kavi Sammelan, Hasya Kavita, Vyangya, poet biographies, published literature, books/collections, magazines/newspapers, radio/TV, live stage, digital era, Indian languages, world traditions, diaspora and future formats.
+
+Repository model: `config/entertainment/WIT_HASYA_CONTENT_MODEL_v1.0.md`.
+
