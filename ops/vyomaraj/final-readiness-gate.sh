@@ -19,6 +19,7 @@ require ops/engineering/bootstrap-2026.sh
 require ops/engineering/verify_2026_stack.py
 require ops/vyomaraj/AUTONOMOUS_EXECUTION_PLAN_v1.0.json
 require ops/vyomaraj/media_capability_inheritance.py
+require ops/vyomaraj/media-capability-gate.sh
 require ops/vyomaraj/process-control.sh
 require ops/vyomaraj/publish-gate.sh
 require ops/vyomaraj/daily_start.py
