@@ -148,7 +148,7 @@ def validate(data):
         require(sorted(a['serial'] for a in children)==list(range(1,len(children)+1)),'Serial gap or duplicate')
         names=[a['name'].strip().casefold() for a in children if a['name']]
         require(len(names)==len(set(names)),'Repeated named agent in category requires review')
-    require(sum(c['sub_agents'] for c in cats.values())==data['totals']['sub_agents']==128,'Active total mismatch')
+    require(sum(c['sub_agents'] for c in cats.values())==data['totals']['sub_agents']==133,'Active total mismatch')
     require(data['totals']['named_sub_agents']==42 and data['totals']['unnamed_numbered_sub_agents']==86,'Name arithmetic mismatch')
     require(cats['EDU']['sub_agents']==16 and cats['FINANCE']['sub_agents']==7 and cats['ENTERTAINMENT']['sub_agents']==32,'Approved reallocation mismatch')
     for h in hubs:
@@ -202,7 +202,7 @@ def render_report(data,index):
     '| Main categories | 13 | 13 |','| Counted sub-agent slots | 133 | 128 |','| Entertainment slots | 38 | 32 |','| Education slots | 15 | 16 |','| Finance slots | 8 | 7 |',
     '| Separate uncounted Entertainment headings | Not separated | 6 |','| Supplied/approved individual names | 46 | 42 |','| Unnamed numbered positions | 87 | 86 |',
     '| Reported products | 421 | Reallocation / unique total UNRECONCILED |','',
-    'The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 128. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.','',
+    'The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 133. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.','',
     '## Current main-agent inventory','', '| Category | Current display name | Counted slots | Uncounted headings | Historical reported products |','|---|---|---:|---:|---:|']
     for c in data['categories']:lines.append(f"| {c['id']} | {c['name']} | {c['sub_agents']} | {c['headings']} | {c['source_reported_products']} |")
     lines+=['','Product figures above are source-history metadata, not current reallocated or deduplicated totals. In particular, Education 68 and Finance 15 cannot be apportioned after the scheme transfer without their item-level product lists.','',
