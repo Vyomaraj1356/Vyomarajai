@@ -34,7 +34,7 @@ jobs:
       - name: Compile engineering scripts
         run: python -m compileall -q ops/engineering
 
-      - name: Verify no architecture-lock regression
+      - name: Run Vyomaraj tests\n        run: python -m pytest -q tests\n\n      - name: Verify no architecture-lock regression
         run: |
           python - <<'PY'
           from pathlib import Path
