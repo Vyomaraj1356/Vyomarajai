@@ -1,0 +1,34 @@
+system: VYOMARAJ-AI-STUDIO
+status: CONTRACT_READY_PROVIDER_CONNECTIONS_PENDING
+architecture: MCP_for_tools_resources_prompts_plus_A2A_for_agent_collaboration
+tool_domains:
+  knowledge: [web_search, research, retrieval, citation, translation, fact_check]
+  coding: [repository_read, repository_write, test, build, deploy_plan]
+  media: [image_generate, video_generate, audio_generate, voiceover, music, subtitle, edit, compositing]
+  visual: [3d_model, scene_graph, animation, rendering, map, timeline, interactive]
+  communication: [email, support_ticket, messaging, notification]
+  platform: [youtube_publish, social_publish, analytics]
+  finance: [cost_estimate, budget_check, revenue_attribution, invoice, reconciliation]
+  operations: [workflow, durable_execution, scheduling, monitoring, backup, restore]
+  collaboration: [creator_discovery, opportunity_scoring, identity_verification, rights_check, proposal, outreach, negotiation, contract_tracking, delivery_tracking, invoice_tracking, payment_tracking, roi_analysis]
+mcp:
+  role: agent_to_tool
+  server_registry_required: true
+  every_tool: [tool_id, version, owner, risk, scopes, input_schema, output_schema, timeout, budget, idempotency, audit_policy, sandbox_policy]
+  discovery: deny_by_default
+  production: owner_approved_and_tested
+  secret_rule: credentials_never_in_prompt_or_client
+  external_data: untrusted
+a2a:
+  role: agent_to_agent
+  agent_card_registry_required: true
+  every_agent: [agent_id, version, skills, endpoint, auth, input_types, output_types, policy_scope]
+  allowlisted_agents_only: true
+  signed_task_envelope: true
+  provenance_required: true
+  result_untrusted_until_validated: true
+routing:
+  decision_engine: VYOMARAJ_JARVIS_CAPABILITY_ROUTER
+  choose_by: [task_capability, quality, latency, cost, policy, rights, availability, language, format]
+  provider_failure: reroute_without_identity_or_memory_loss
+production_agent_requirements: [identity, role, capability_contract, tool_contract, memory_policy, prompt_contract, policy_scope, authentication, authorization, sandbox, timeout, retry, idempotency, observability, audit, evaluation, failure_recovery, cost_control, owner_gate, deployment_manifest, rollback_plan]

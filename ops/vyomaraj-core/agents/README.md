@@ -1,12 +1,12 @@
 # Current Vyomaraj hierarchy / Education reconciliation
 
-**Later Aghor addition:** `BHAKTI-AGHOR-S1` is a new user-requested slot. Active total is now 128 (BHAKTI 3, named 42, unnamed 86); the earlier 127-slot reconciliation and 180-test results below describe the preceding baseline. Current evidence: `/reports/resilience`. The active index now contains 197 references across Education and the five editorial packs (21 Education + 109 Entertainment + 67 Bhakti, including the 33 Aghor chapter/profile/practice/care records) — the 173 quoted in the 2026-10-03/04 documents is that date's earlier count, kept there as a dated snapshot.
+**Later Aghor addition:** `BHAKTI-AGHOR-S1` is a new user-requested slot. Active total is now 133 (BHAKTI 3, named 42, unnamed 86); the earlier 127-slot reconciliation and 180-test results below describe the preceding baseline. Current evidence: `/reports/resilience`. The active index now contains 197 references across Education and the five editorial packs (21 Education + 109 Entertainment + 67 Bhakti, including the 33 Aghor chapter/profile/practice/care records) — the 173 quoted in the 2026-10-03/04 documents is that date's earlier count, kept there as a dated snapshot.
 
 The user explicitly approved **all Government Schemes under Education** and **Comedy, Cartoon, Music, Movie, Wit and Shayari as parent headings, not extra counted agents**.
 
 ## Current source of truth
 
-- `AGENT_REGISTRY_CURRENT.json`: 13 categories, **128 counted positions**, six uncounted headings; **Education 16, Finance 7, Entertainment 32**. Bhakti-Shakti now has 3 after the newly requested Aghor addition; other category counts are unchanged.
+- `AGENT_REGISTRY_CURRENT.json`: 14 categories, **153 counted positions**, six uncounted headings; **Education 16, Finance 7, Entertainment 32**. Bhakti-Shakti now has 3 after the newly requested Aghor addition; other category counts are unchanged.
 - `RECONCILIATION_RULES.json`: owner-approved transformation from the pinned historical registry. The active builder is deterministic and refuses conflicting duplicate identities.
 - `CONTENT_OWNERSHIP_CURRENT.json`: 21 Education topic references, including all Government Schemes. Source-backed single-slot mappings are retained; shared Grantha positions remain unmapped.
 - `CONTENT_INDEX_CURRENT.json`: 197 indexed references (21 Education + 176 selected references from the five editorial packs and the Aghor addition). **Not** all 421 products or an exhaustive archive-content inventory.
@@ -40,7 +40,7 @@ python3 -m unittest discover -s ops/vyomaraj-core/agents -p 'test_*.py'
 ```
 
 - `GET /api/ask?q=gita&limit=10` → ranked records with `citation` (`file#/record-id`), matched terms and score.
-- `GET /api/stats` → counts read from the files (128 positions, 197 references, 13 categories, 6 headings).
+- `GET /api/stats` → counts read from the files (153 positions, 197 references, 14 categories, 6 headings).
 - Unnamed positions are returned as serial-only slots; nothing is named on their behalf.
 - A query whose words do not all match returns **no results and says so** — no nearest guess.
 - **Retrieval, not generation.** There is no model call and no model key; a generated answer would sit behind the same `ask()` seam once a key is configured. Do not describe this as AI answering.
@@ -55,7 +55,7 @@ python ops/vyomaraj-core/experience/studio_server.py --home agents --port 4176
 ```
 
 - `/agents/`: complete serial-first active roster and reference index.
-- `/education/`: Education default filter, all 16 positions and 21 topic references.
+- `/education/`: Education default filter, all current Education positions and 21 topic references.
 - `/reports/agents`, `/reports/`: current reconciliation and full inventory.
 - `/reports/history`: historical audit with an explicit supersession banner.
 - Existing Film, Music, Bhakti, Pairings and Research views all link to the current directory/Education.

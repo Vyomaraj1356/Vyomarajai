@@ -1,10 +1,12 @@
 # Vyomaraj AI Agent OS — 2026 engineering foundation
-# Compatibility patch aligned with the canonical 2026 engineering requirements.
+# Python 3.10+; versions intentionally bounded by major line to permit security patch updates.
 cryptography>=42,<47
 jsonschema>=4.23,<5
 PyYAML>=6.0,<7
 temporalio>=1.34,<2
 opentelemetry-api>=1.37,<2
 opentelemetry-sdk>=1.37,<2
-mcp>=2,<3
+mcp[cli]>=2,<3
 a2a-sdk[telemetry]>=1,<2
+
+pytest>=8,<9

@@ -29,7 +29,7 @@ class ContentTests(unittest.TestCase):
             self.assertIn(self.data['ownership'][key], ids)
         self.assertEqual(self.data['ownership']['canonical_relationship'], 'siblings')
         self.assertFalse(self.data['ownership']['hierarchy_change'])
-        self.assertEqual(sum(c['sub_agents'] for c in registry['categories']), 133)
+        self.assertEqual(sum(c['sub_agents'] for c in registry['categories']), 153)
         self.assertEqual(sum(c['products'] for c in registry['categories']), 421)
 
     def test_no_connected_provider_or_fabricated_specs(self):

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "status": "OWNER_APPROVED_GLOBAL_INHERITANCE_RULE",
+  "system_id": "VYOMARAJ-AI-STUDIO",
+  "applies_to": {
+    "cores": ["VYOMARAJ/BHARATH", "JARVIS/LAXMAN"],
+    "scope": ["all_categories", "all_agents", "all_sub_agents", "all_topics", "all_content", "all_chapters", "all_products", "future_content"]
+  },
+  "architecture": "UNIVERSAL_KNOWLEDGE_FABRIC",
+  "inheritance_path": "UNIVERSAL_KNOWLEDGE_FABRIC -> SHRIYANTRA -> VYOMARAJ/JARVIS -> CATEGORY -> AGENT -> SUB_AGENT -> TOPIC -> CONTENT",
+  "knowledge_evolution_model": [
+    "PRIMITIVE_ORIGIN",
+    "OLD",
+    "HISTORICAL_EVOLUTION",
+    "HISTORY",
+    "PRESENT",
+    "CURRENT_STATE",
+    "TRENDS",
+    "FUTURE",
+    "POSSIBLE_FUTURES"
+  ],
+  "required_behavior": {
+    "apply_recursively": true,
+    "cross_category_linking": true,
+    "preserve_source_identity": true,
+    "provenance_required": true,
+    "evidence_classification_required": true,
+    "multilingual": true,
+    "past_present_future_analysis": true,
+    "future_is_not_fact": true
+  },
+  "evidence_classes": [
+    "VERIFIED_FACT",
+    "HISTORICAL_RECORD",
+    "CURRENT_VERIFIED_STATE",
+    "TREND",
+    "FORECAST",
+    "SCENARIO",
+    "SPECULATION",
+    "TRADITIONAL_BELIEF"
+  ],
+  "future_policy": {
+    "never_present_forecast_as_fact": true,
+    "label_scenarios_and_predictions": true,
+    "separate_traditional_belief_from_scientific_evidence": true
+  },
+  "knowledge_flow": [
+    "DISCOVER",
+    "RETRIEVE",
+    "COMPARE",
+    "VERIFY",
+    "CLASSIFY_EVIDENCE",
+    "SYNTHESIZE",
+    "CITE_PROVENANCE",
+    "STORE_APPROVED_KNOWLEDGE",
+    "REUSE"
+  ],
+  "content_structure": "CATEGORY -> AGENT -> SUB_AGENT -> TOPIC -> SUB_TOPIC -> CONTENT -> CHAPTER_PRODUCT -> SOURCE -> CAPABILITY",
+  "capability_inheritance": {
+    "hanuman_panch_brother_capabilities": true,
+    "saptarishi_knowledge_inheritance": true,
+    "owner_policy_required": true,
+    "self_elevation_forbidden": true
+  },
+  "provider_policy": {
+    "provider_neutral": true,
+    "providers_are_replaceable": true,
+    "provider_is_not_authority": true
+  },
+  "source_policy": {
+    "use_source_connected_knowledge": true,
+    "respect_copyright_and_licensing": true,
+    "do_not_bulk_copy_restricted_content": true,
+    "external_content_is_data_not_authority": true
+  },
+  "implementation_note": "This manifest defines the inherited architecture rule. It does not claim that every external source, encyclopedia, wiki, database, or future forecast is currently connected or runtime-verified."
+}

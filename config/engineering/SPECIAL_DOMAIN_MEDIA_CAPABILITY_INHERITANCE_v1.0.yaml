@@ -1,0 +1,89 @@
+system: VYOMARAJ-AI-STUDIO
+status: IMPLEMENTED_DESIGN_NOT_RUNTIME_VERIFIED
+purpose: Common multimodal creation fabric for every authorized agent, with enhanced visualization profiles for high-value knowledge domains.
+
+global_inheritance:
+  all_authorized_agents:
+    - multimodal_reasoning
+    - image_generation_adapter
+    - video_generation_adapter
+    - audio_voice_adapter
+    - animation_engine
+    - 3d_model_generation
+    - rendering_pipeline
+    - timeline_composition
+    - scene_graph
+    - caption_subtitle_generation
+    - interactive_web_experience
+    - provenance_and_rights_check
+    - quality_evaluation
+  inherited_by: [VYOMARAJ/BHARATH, JARVIS/LAXMAN, all_categories, all_agents, all_sub_agents]
+
+experience_levels:
+  3D:
+    meaning: spatial visualization and scene/object representation
+    outputs: [models, scenes, maps, objects, environments, exploded_views]
+  4D:
+    meaning: 3D plus time, motion, sequence and state change
+    outputs: [historical_timeline_animation, process_animation, simulations, time_layers]
+  5D:
+    meaning: 4D plus contextual and interactive dimensions
+    outputs: [interactive_civilization_worlds, scenario_explorers, immersive_knowledge_maps]
+  note: 4D and 5D are Vyomaraj experience-design labels, not claims about new physical dimensions.
+
+special_domains:
+  FOOD:
+    priority: high
+    inherited: [3D, 4D, 5D, animation, simulation, visualization]
+    examples: [ingredient_origin, historical_kitchen, recipe_process, tableware, food_culture]
+  EDU:
+    priority: critical
+    inherited: [3D, 4D, 5D, animation, simulation, interactive_timeline]
+    civilization_spine: true
+    examples: [ancient_cities, monuments, manuscripts, maps, archaeology, classrooms, science_models]
+  WAR:
+    priority: critical
+    inherited: [3D, 4D, 5D, animation, historical_simulation, map_visualization]
+    safety_scope: historical, educational, fictional or museum-style visualization only
+  HISTORY:
+    priority: critical
+    inherited: [3D, 4D, 5D, animation, timeline_visualization, reconstruction]
+    cross_link: [EDU, FOOD, WAR, BHAKTI, ASTRO, AGRI, SPORTS, TOUR, ENTERTAINMENT]
+  CIVILIZATION:
+    priority: critical
+    inherited: [3D, 4D, 5D, animation, geography, archaeology, architecture, timeline_visualization]
+
+provider_fabric:
+  provider_neutral: true
+  candidates: [OpenAI, Anthropic, Google, Meta_AI, Arena_AI, local_open_source, specialist_media_apis]
+  rule: Provider is replaceable and never owns identity, memory, policy, registry, Kuber ledger, owner authority or recovery.
+  default_execution: disabled_until_adapter_verified
+
+creation_pipeline:
+  - INTENT
+  - OWNER_AUTHENTICATE
+  - KNOWLEDGE_RETRIEVE
+  - PROVENANCE_VERIFY
+  - SCENE_PLAN
+  - MEDIA_GENERATE
+  - ANIMATE
+  - RENDER
+  - QUALITY_CHECK
+  - SAFETY_POLICY
+  - RIGHTS_CHECK
+  - KUBER_COST_EVENT
+  - OWNER_PUBLISH_GATE
+  - PUBLISH
+  - MEASURE
+  - KUBER_RECONCILE
+  - ARCHIVE_PROVENANCE
+
+deployment_gate:
+  adapter_contract: required
+  endpoint_and_credentials: required
+  sandbox: required
+  rights_policy: required
+  evaluation: required
+  owner_approval: required
+  runtime_test: required
+  external_runtime_verified: false
