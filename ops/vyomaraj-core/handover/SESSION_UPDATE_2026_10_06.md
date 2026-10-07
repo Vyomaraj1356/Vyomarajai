@@ -205,3 +205,67 @@ secondary repository stays private and unreadable by this credential (HTTP 404);
 DR replication is a GitHub Actions job that runs on main, not something this
 sandbox performs. Issue #6 remains OPEN (writes still denied); its one-command
 owner path is unchanged.
+
+## 8 · DR replication completed — session `arena/a83291a3-vyomarajai` (2026-10-07)
+
+The note stopped at the prior section's "verify-or-sync ... unblocked for the next
+main push." That described the green gate, not the replication that subsequently
+ran. This update closes that gap from live GitHub check-run annotations; it does
+not treat PR #36 or PR #37 as matches.
+
+**Live checkpoint trail.** The 34 rows already in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`
+were re-read from the GitHub API and compared byte-for-byte with their recorded
+`DR SNAPSHOT RESULT` annotations: **34 checked, zero mismatches**. The previously
+backfilled #33 is retained. The newly verified rows are:
+
+- **#34 — PR #38 merge:** run `37503452400`, check-run `112406218563`, completed
+  `2026-10-06T17:27:22Z`; `MATCH`, `data_match=true`, tree
+  `b44ecb67eb432834a90cc946f06ee64a50d7b7c4` on both repositories; this run
+  wrote the snapshot and retained rollback parent `1a1932f6f763d09d3227dd51dab87f63a1976062`.
+- **#35 — PR #40 merge push:** run `37508575180`, check-run `112423653494`,
+  completed `2026-10-06T18:06:32Z`; `MATCH`, `data_match=true`, tree
+  `8ca45112086b93a2ca8150be39cf5010d11009e4` on both repositories; write,
+  rollback parent `3731bc5ed232f5f39cd8b04b2292708e5f0ee767`.
+- **#36 — latest schedule confirmation on the PR #40 main tip:** run
+  `37563336298`, check-run `112605459778`, completed `2026-10-07T02:44:07Z`;
+  `MATCH`, `data_match=true`, the same `8ca45112086b93a2ca8150be39cf5010d11009e4`
+  tree on both repositories; no write (the snapshots were already equal).
+
+The record now contains **36 MATCH checkpoints / 25 replication writes**. The
+PR #40 merge commit is `8e9a67aa559579c1e0079d3e90e8134fecfe6c44`; its local Git
+tree is the same `8ca45112…` tree in the live annotations. Primary/secondary tree
+equality proves the tracked snapshot—including the versioned handover packages—is
+byte-identical at that checkpoint. It does not prove runtime or independent-site
+DR.
+
+**The PR #36/#37 window stays honestly classified.** Their merges and the trigger
+commit had red `offline-tests`, so `verify-or-sync` was skipped and they produced
+no checkpoints. They are **not** counted as matches. Checkpoint #34 (PR #38)
+replicated the full current main tree and closed that unverified window.
+
+**Gate and local checks, re-run in this checkout.** `run_offline_suites.py --ci`
+passed **48/48**: 443 Python tests across 13 suites, 12 Node checks, 23 builders,
+zero failures. `sanitize_personal_data.py --check` passed; `verify_master_state.py`
+reported `ok=true`; `crypto_verify.py` exited 0 with the baseline valid. The live
+preview checks returned 200 for `/reports/session-update`, `/reports/handover-notepad`
+and `/reports/dr-sync`; the handover-notepad download was byte-identical to this
+session update. `verify_preview.py` reported no problems and
+`verify_live_wiring.py` had zero blocking checks. External cryptographic
+connectivity remains `UNVERIFIED`—no live security capability is claimed.
+
+**PR #39 — live read, no guess.** GitHub reports PR #39 still **OPEN / DRAFT**:
+"Finalize shared-core architecture for Web, Android and macOS," from
+`final-shared-core-architecture-2026-10-06` at head
+`afe02edfa65c64a9da08ecf0eeab5008e78848a3`, targeting `main`. It was not merged
+or changed by this update; its status is independent of the DR checkpoints above.
+
+**Recovery note.** This sandbox actually arrived as a clean shallow clone at
+`8e9a67a` (PR #40), with no local branch diff. Neither `git cat-file` nor a live
+GitHub commit lookup finds the reported local commit `f446a86`; the session branch
+also had no remote ref. This section is therefore a reconstruction from the live
+annotations and tracked evidence, **not** a claim that the original `f446a86`
+object was recovered or pushed.
+
+The merge that publishes this update will create another verify-or-sync result;
+that trailing checkpoint is deliberately not pre-counted here and belongs in the
+next update under the existing section 5c rule.

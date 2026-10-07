@@ -75,7 +75,7 @@ REPORTS = {
     '/reports/music': 'MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md',
     '/reports/dr': 'DR_RESOLUTION_2026_10_03.md',
     '/reports/next-session': reports.HANDOVER_NOTE,
-    '/reports/handover-notepad': reports.HANDOVER_NOTE,
+    '/reports/handover-notepad': reports.SESSION_UPDATE,
     '/reports/recovery': reports.RECOVERY_DOC,
     '/reports/dr-sync': reports.DR_SYNC_REPORT,
     '/reports/post-pr25-handover': reports.POST_PR25_NOTE,
@@ -95,7 +95,7 @@ REPORTS = {
     '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
     '/reports/go-live-gaps': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
     '/reports/next-session-plan': 'NEXT_SESSION_PLAN_2026_10_07.md',
-    '/reports/session-update': 'SESSION_UPDATE_2026_10_06.md',
+    '/reports/session-update': reports.SESSION_UPDATE,
 }
 
 
@@ -234,7 +234,7 @@ class Handler(BaseHTTPRequestHandler):
         elif route == '/reports/download/next-session.txt':
             self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
         elif route == '/reports/download/handover-notepad.txt':
-            self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
+            self.send_download((CORE / 'handover' / reports.SESSION_UPDATE).read_bytes(), 'text/plain; charset=utf-8', reports.SESSION_UPDATE)
         elif route == '/reports/download/transfer-package.zip':
             self.send_download((CORE / 'handover' / reports.TRANSFER_ZIP).read_bytes(), 'application/zip', Path(reports.TRANSFER_ZIP).name)
         elif route == '/reports/download/post-pr25-handover.txt':

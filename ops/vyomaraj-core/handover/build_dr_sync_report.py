@@ -350,6 +350,22 @@ def render(root=ROOT):
         if race.get('fulfilled_by'):
             lines += [f"- Fulfilled by: {race.get('fulfilled_by')}"]
         lines += ['']
+    extension_d = record.get('record_extension_2026_10_07')
+    if extension_d:
+        audit = extension_d.get('annotation_audit', {})
+        lines += [
+            f"## 5j. Record extension by `{extension_d.get('session')}` (2026-10-07)",
+            '',
+            f"- Finding: {extension_d.get('finding')}",
+            f"- Fix: {extension_d.get('fix')}",
+            f"- Live annotation audit: {audit.get('previous_checkpoints_re_read')} previous rows re-read; "
+            f"mismatches: {audit.get('mismatches')}; new check-runs: "
+            f"{', '.join(str(value) for value in audit.get('new_check_runs', []))}; "
+            f"completed at {audit.get('completed_at_utc')}.",
+            f"- PR #39 status: {extension_d.get('pr_39_live_status')}",
+            f"- Next checkpoint: {extension_d.get('next_checkpoint')}",
+            '',
+        ]
     lines += [
         '## 6. Scope limits — do not restate otherwise',
         '',

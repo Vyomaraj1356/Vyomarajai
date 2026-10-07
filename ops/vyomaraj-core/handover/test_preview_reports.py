@@ -67,16 +67,17 @@ class PreviewTests(unittest.TestCase):
                          'href="/reports/download/transfer-package.zip"'):
             self.assertIn(fragment, text)
 
-    def test_handover_notepad_page_and_download_alias_the_note(self):
-        note = (HERE / preview.HANDOVER_NOTE).read_bytes()
+    def test_handover_notepad_page_and_download_show_the_current_update(self):
+        update = (HERE / preview.SESSION_UPDATE).read_bytes()
         with urllib.request.urlopen(self.url + '/reports/handover-notepad') as response:
             page = response.read().decode()
-        self.assertIn('<pre>', page)
-        self.assertIn('href="/reports/handover-notepad"', page)
-        self.assertIn('href="/reports/dr-sync"', page)
+        self.assertIn('DR replication completed', page)
+        self.assertIn('href="/reports/next-session"', page)
+        self.assertIn('href="/reports/download/handover-notepad.txt"', page)
         with urllib.request.urlopen(self.url + '/reports/download/handover-notepad.txt') as response:
-            self.assertEqual(response.read(), note)
+            self.assertEqual(response.read(), update)
             self.assertIn('attachment', response.headers['Content-Disposition'])
+            self.assertIn(preview.SESSION_UPDATE, response.headers['Content-Disposition'])
 
     def test_dr_sync_report_page_is_generated_from_evidence(self):
         with urllib.request.urlopen(self.url + '/reports/dr-sync') as response:

@@ -58,6 +58,16 @@ class DrSyncReportTests(unittest.TestCase):
             self.assertIn(path.relative_to(dr.ROOT).as_posix(), self.text)
             self.assertIn(dr.digest(path), self.text)
 
+    def test_current_extension_renders_the_live_checkpoint_audit_and_pr_39_status(self):
+        extension = self.record['record_extension_2026_10_07']
+        self.assertEqual(extension['annotation_audit']['previous_checkpoints_re_read'], 34)
+        self.assertEqual(extension['annotation_audit']['mismatches'], 0)
+        self.assertIn('## 5j. Record extension', self.text)
+        self.assertIn('112423653494', self.text)
+        self.assertIn('112605459778', self.text)
+        self.assertIn('PR #39 is OPEN and DRAFT', self.text)
+        self.assertIn('36 MATCH checkpoints (25 replication writes)', self.text)
+
     def test_publication_status_section_reports_the_record_not_a_wish(self):
         publication = self.record['publication_status']
         self.assertFalse(publication['pushed_at_record_time'])

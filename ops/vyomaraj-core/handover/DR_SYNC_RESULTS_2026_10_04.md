@@ -5,7 +5,7 @@
 ## 1. Scope — what this record does and does not assert
 
 Primary repository: `Vyomaraj1356/Vyomarajai`. Secondary repository: `deepakGoyal1356/Vyomaraj-Agent-6d64e`.
-Main tip covered by this record: `641174272019ea8b1a6c0164d826aa671db1585c`.
+Main tip covered by this record: `8e9a67aa559579c1e0079d3e90e8134fecfe6c44`.
 Workflow: `.github/workflows/vyomaraj-sync-both.yml` — triggers: push, pull_request, workflow_dispatch, schedule; schedule: `*/30 * * * *` (UTC).
 Recorded scope: Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR.
 
@@ -15,15 +15,15 @@ This is a Git-snapshot replication record. It is **not** a production disaster-r
 
 | Source | SHA256 | What it contributes |
 |---|---|---|
-| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `c865ab1fd58c33e8675f5aaef3e59294c4a74387d7f37029146bd5968bd91ccd` | 34 MATCH checkpoints, 24 replication writes, 1 blocked run, 1 read-only probe |
+| `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `06ddce36235f62cb6ffc422a0cdfce6e35fd622a8fcc8074a2c7cf93553a896f` | 36 MATCH checkpoints, 25 replication writes, 1 blocked run, 1 read-only probe |
 | `ops/dr/DR_POLICY.json` | `6090042dc9e05fa1273ba0f0345a6821d633e28c755cac6be806712e7ee222df` | scope flags and the time-boxed one-snapshot removal approval |
 | `.github/workflows/vyomaraj-sync-both.yml` | `299ff016ebd02919252a56de396c60b63b0c2246f74190923b24eb8216206681` | triggers and schedule |
 
-Method: All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.
+Method: Record one successful verify-or-sync checkpoint for each newly observed main tip, plus the latest scheduled confirmation on the final tip per section 5c. Read the public DR SNAPSHOT RESULT annotation; compare status, tree SHAs, data_match and rollback_commit exactly. A rollback_commit marks a write; absent means an idempotent no-op.
 
-Re-validation: All 34 recorded annotations re-read live from the GitHub API in one pass (zero mismatches), including the two new checkpoints: the PR #35 merge (run 37473895892, check-run 112304360057) and the PR #38 merge (run 37503452400, check-run 112406218563). Every annotation tree was compared to the value stored in the record; the PR #38 merge commit 6411742 is the local HEAD and its tree was cross-checked with git rev-parse. The rollback commits of the two new writes live in the private secondary and are not readable by this credential (404); each failed read and its bounded public step interval is recorded in the row instead of a guessed timestamp. Result: 34 MATCH checkpoints (24 replication writes) through the PR #38 merge (main tip 6411742). The PR #36 and PR #37 merges and the trigger commit produced NO checkpoint: their offline-tests job was red (the crypto_verify/verify_master_state path defects), so verify-or-sync was skipped by its needs-guard - recorded as an unverified window, not as matches. Checkpoint #34 is the first verify-or-sync to run on main after the gate was restored green by PR #38.
+Re-validation: All 34 annotations already recorded through checkpoint #34 were re-read live from the GitHub API and compared byte-for-byte with the stored DR SNAPSHOT RESULT messages: zero mismatches. The PR #40 push annotation (check-run 112423653494) and the latest successful schedule annotation (check-run 112605459778) were also read live and matched their recorded rows. Checkpoint #33 (PR #35, previously backfilled) and checkpoint #34 (PR #38) remain in the re-read set. The PR #40 main commit 8e9a67a has tree 8ca45112086b93a2ca8150be39cf5010d11009e4, matching both new annotations. Result: 36 MATCH checkpoints (25 replication writes) through the PR #40 main tip and its latest successful scheduled confirmation. The PR #36/#37 merges and the trigger commit remain an unverified window, not matches; checkpoint #34 (PR #38) closed that replication gap by syncing the full current main tree.
 
-## 3. Verification checkpoints (34)
+## 3. Verification checkpoints (36)
 
 A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commit` present means the run replicated (wrote) the snapshot to the secondary; absent means the two snapshots were already identical and the run changed nothing. Trees are shown shortened from the full 40-character values in the record; every row ended `data_match=true`.
 
@@ -63,10 +63,12 @@ A checkpoint is a successful `verify-or-sync` run on a main tip. `rollback_commi
 | 32 | 2026-10-06T13:13:06Z | `d97122fc340f` | #34 | `37468965584` | `112287316035` | MATCH | `70b69f8e0331` | `70b69f8e0331` | no |
 | 33 | 2026-10-06T13:51:16Z | `9cb81f44f040` | #35 | `37473895892` | `112304360057` | MATCH | `d8c0e80a57fa` | `d8c0e80a57fa` | yes (`001d512b4b5e`) |
 | 34 | 2026-10-06T17:27:22Z | `641174272019` | #38 | `37503452400` | `112406218563` | MATCH | `b44ecb67eb43` | `b44ecb67eb43` | yes (`1a1932f6f763`) |
+| 35 | 2026-10-06T18:06:32Z | `8e9a67aa5595` | #40 | `37508575180` | `112423653494` | MATCH | `8ca45112086b` | `8ca45112086b` | yes (`3731bc5ed232`) |
+| 36 | 2026-10-07T02:44:07Z | `8e9a67aa5595` | #40 | `37563336298` | `112605459778` | MATCH | `8ca45112086b` | `8ca45112086b` | no |
 
-All 34 rows were re-read from the GitHub API at 2026-10-06T17:27:22Z and matched the values stored in the record.
+All 36 rows were re-read from the GitHub API at 2026-10-07T03:02:10Z and matched the values stored in the record.
 
-## 4. Replication writes (24)
+## 4. Replication writes (25)
 
 | merge | PR | run | check-run | rollback commit (previous secondary tip, retained) |
 |---|---|---|---|---|
@@ -94,6 +96,7 @@ All 34 rows were re-read from the GitHub API at 2026-10-06T17:27:22Z and matched
 | `d97122fc340f` | #34 | `37466613010` | `112279322282` | `490880630a5a73e895982814da8d4f9a886bc493` |
 | `9cb81f44f040` | #35 | `37473895892` | `112304360057` | `001d512b4b5e523132eb6e9ee34c77d566a8eee7` |
 | `641174272019` | #38 | `37503452400` | `112406218563` | `1a1932f6f763d09d3227dd51dab87f63a1976062` |
+| `8e9a67aa5595` | #40 | `37508575180` | `112423653494` | `3731bc5ed232f5f39cd8b04b2292708e5f0ee767` |
 
 A write replaces the secondary snapshot with the primary snapshot and keeps the previous secondary commit as the rollback parent; no force-push and no history deletion is used.
 
@@ -113,6 +116,10 @@ Rollback-commit timestamps that could not be read (recorded as failed reads, nev
   - Attempt: Requested for this record; GET /repos/deepakGoyal1356/Vyomaraj-Agent-6d64e/commits/1a1932f6f763d09d3227dd51dab87f63a1976062 through the Arena credential on 2026-10-06 returns 404: the private secondary is not readable by this integration (the documented issue #6 limitation). The same SHA is not a commit in the primary.
   - Bounded substitute: The public workflow evidence for the run that created it: run 37503452400, verify-or-sync job/check-run 112406218563, step 'Verify or replicate exact main snapshot' ran 2026-10-06T17:26:16Z-17:27:19Z; rollback_commit is the previous secondary tip retained by that write and its committer timestamp lies inside that step interval.
   - Standing: No timestamp is asserted; the field records the failed read and the bounded public interval.
+- check-run `112423653494`: value_utc = null.
+  - Attempt: GET /repos/deepakGoyal1356/Vyomaraj-Agent-6d64e/commits/3731bc5ed232f5f39cd8b04b2292708e5f0ee767 through the Arena gh credential returned HTTP 404; the private secondary is not readable by this credential. The SHA is not a commit on the primary.
+  - Bounded substitute: Public Actions evidence: run 37508575180, verify-or-sync check-run 112423653494, step 'Verify or replicate exact main snapshot' ran 2026-10-06T18:05:54Z-18:06:29Z; the rollback parent was created during this interval.
+  - Standing: No rollback-commit timestamp is asserted; the failed read and bounded public step interval are recorded instead.
 
 
 One run in this session did **not** match and is deliberately excluded from the checkpoint count:
@@ -254,6 +261,14 @@ as matches would overstate coverage, and counting them as mismatches would overs
 - Rule for future reads: When a verify-or-sync annotation trees do not match git rev-parse of its head SHA, list sibling workflow runs before flagging a mismatch: a schedule/push race is the expected cause. The push run filed under the new tip remains the canonical checkpoint row for that tip.
 - Checkpoint #30 guidance: Record push-run check 112277370308 (no-op MATCH, trees e7b65c59) as the row for tip e9bfba0 with replication_write_in_this_run=false, and note the snapshot write was performed minutes earlier by schedule run 37465859915 (filed under 1c13650, rollback b6656066 retained).
 - Fulfilled by: checkpoint #30 (check-run 112277370308, 2026-10-06T12:49:55Z): recorded as the canonical no-op row for tip e9bfba0 with the schedule write attributed to run 37465859915 in its row note.
+
+## 5j. Record extension by `arena/a83291a3-vyomarajai` (2026-10-07)
+
+- Finding: Main already contained PR #40, but the DR record stopped at checkpoint #34 (PR #38). The historical 34 annotations, including the backfilled #33, were re-read live with zero mismatches.
+- Fix: Appended checkpoint #35 from the PR #40 push run (write + MATCH) and checkpoint #36 from the latest successful scheduled confirmation on the same main tip (no-op MATCH), following the per-tip plus latest-schedule rule in section 5c.
+- Live annotation audit: 34 previous rows re-read; mismatches: 0; new check-runs: 112423653494, 112605459778; completed at 2026-10-07T03:02:10Z.
+- PR #39 status: Read live on 2026-10-07: PR #39 is OPEN and DRAFT, titled "Finalize shared-core architecture for Web, Android and macOS", head branch final-shared-core-architecture-2026-10-06, head afe02edfa65c64a9da08ecf0eeab5008e78848a3, base main; untouched by this session.
+- Next checkpoint: The merge carrying this update will produce its own verify-or-sync result. Do not pre-count it; record it in the following update under section 5c.
 
 ## 6. Scope limits — do not restate otherwise
 

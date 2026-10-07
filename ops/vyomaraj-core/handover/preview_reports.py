@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 HANDOVER_NOTE = 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
+SESSION_UPDATE = 'SESSION_UPDATE_2026_10_06.md'
 RECOVERY_DOC = 'RECOVERY_AND_HANDOVER_PACKAGE_2026_10_04.md'
 DR_SYNC_REPORT = 'DR_SYNC_RESULTS_2026_10_04.md'
 TRANSFER_ZIP = 'transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip'
@@ -33,7 +34,7 @@ REPORTS = {
     '/reports/bhakti': 'BHAKTI_FEATURE_UPDATE_2026_10_03.md',
     '/handover': 'HANDOVER_ALL_UPDATES_2026_10_03.txt',
     '/reports/next-session': HANDOVER_NOTE,
-    '/reports/handover-notepad': HANDOVER_NOTE,
+    '/reports/handover-notepad': SESSION_UPDATE,
     '/reports/recovery': RECOVERY_DOC,
     '/reports/dr-sync': DR_SYNC_REPORT,
     '/reports/post-pr25-handover': POST_PR25_NOTE,
@@ -54,7 +55,7 @@ REPORTS = {
     '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
     '/reports/go-live-gaps': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
     '/reports/next-session-plan': 'NEXT_SESSION_PLAN_2026_10_07.md',
-    '/reports/session-update': 'SESSION_UPDATE_2026_10_06.md',
+    '/reports/session-update': SESSION_UPDATE,
 }
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
@@ -131,6 +132,10 @@ PAGE_NOTES = {
                                   'order, the rules, and the artifact map. '
                                   '<a href="/reports/download/next-session-plan.md">Download .md</a> &middot; '
                                   '<a href="/reports/download/next-session-plan.txt">Download .txt</a></p>',
+    '/reports/handover-notepad': '<p class="notice"><strong>Current handover notepad</strong> - the sectioned session '
+                                  'update with the latest verified DR replication entry. The preserved full next-session '
+                                  'handover remains available at <a href="/reports/next-session">/reports/next-session</a>. '
+                                  '<a href="/reports/download/handover-notepad.txt">Download this update</a>.</p>',
     '/reports/session-update': '<p class="notice"><strong>Session update</strong> - what was verified, what was '
                                'lost, and what was rebuilt, each line with its evidence. '
                                '<a href="/reports/download/session-update.md">Download .md</a> &middot; '
@@ -178,7 +183,7 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/download/dr-status.md': (REPORTS['/dr-status'], 'text/plain; charset=utf-8'),
              '/download/handover.txt': (REPORTS['/handover'], 'text/plain; charset=utf-8'),
              '/reports/download/next-session.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
-             '/reports/download/handover-notepad.txt': (HANDOVER_NOTE, 'text/plain; charset=utf-8'),
+             '/reports/download/handover-notepad.txt': (SESSION_UPDATE, 'text/plain; charset=utf-8'),
              '/reports/download/transfer-package.zip': (TRANSFER_ZIP, 'application/zip'),
              '/reports/download/post-pr25-handover.txt': (POST_PR25_NOTE, 'text/plain; charset=utf-8'),
              '/reports/download/post-pr25-transfer.zip': (POST_PR25_ZIP, 'application/zip'),
@@ -212,9 +217,9 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/reports/download/next-session-plan.txt':
                  ('NEXT_SESSION_PLAN_2026_10_07.md', 'text/plain; charset=utf-8'),
              '/reports/download/session-update.md':
-                 ('SESSION_UPDATE_2026_10_06.md', 'text/plain; charset=utf-8'),
+                 (SESSION_UPDATE, 'text/plain; charset=utf-8'),
              '/reports/download/session-update.txt':
-                 ('SESSION_UPDATE_2026_10_06.md', 'text/plain; charset=utf-8')}
+                 (SESSION_UPDATE, 'text/plain; charset=utf-8')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
 RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</strong> '
                   '<a href="/reports/issues">Issues and PRs ledger</a> &middot; '

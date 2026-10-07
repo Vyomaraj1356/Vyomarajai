@@ -42,7 +42,7 @@ PACK_DIRS = {'music': 'music-experience', 'film': 'film-experience',
 VIEWER_ROUTES = {
     '/': (None, 'Vyomaraj'),
     '/reports/next-session': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt', None),
-    '/reports/handover-notepad': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt', None),
+    '/reports/handover-notepad': ('ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md', 'DR replication completed'),
     '/reports/post-pr25-handover': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt', 'POST-PR25 COMPANION UPDATE'),
     '/reports/dr-sync': ('ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md', 'BLOCKED'),
     '/reports/contents': ('ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md', 'All Experience Contents'),
@@ -59,7 +59,7 @@ REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/a
                   '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
                   '/reports/market-readiness', '/reports/screenshots', '/reports/realtime',
                   '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps',
-                  '/reports/next-session-plan', '/reports/session-update']
+                  '/reports/next-session-plan', '/reports/session-update', '/reports/handover-notepad']
 # Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
 # allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
 SCREENSHOT_ROUTES = {
@@ -69,7 +69,7 @@ SCREENSHOT_ROUTES = {
 # route -> repository path whose bytes the download must be identical to
 DOWNLOADS = {
     '/reports/download/next-session.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt',
-    '/reports/download/handover-notepad.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt',
+    '/reports/download/handover-notepad.txt': 'ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md',
     '/reports/download/post-pr25-handover.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt',
     '/reports/download/transfer-package.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip',
     '/reports/download/post-pr25-transfer.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip',

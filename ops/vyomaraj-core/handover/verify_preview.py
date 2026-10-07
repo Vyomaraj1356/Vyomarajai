@@ -19,6 +19,7 @@ ROOT = HERE.parents[2]
 REPORT = HERE / 'PREVIEW_VERIFICATION_2026_10_04.json'
 MANIFEST = HERE / 'TRANSFER_MANIFEST_2026_10_04.json'
 NOTE = HERE / 'NEXT_SESSION_HANDOVER_2026_10_04.txt'
+SESSION_UPDATE = HERE / 'SESSION_UPDATE_2026_10_06.md'
 PACKAGE = HERE / 'transfer' / 'NEXT_SESSION_TRANSFER_2026_10_04.zip'
 AUTO_ALIGN_JSON = HERE / 'AUTO_ALIGN_NEXT_SESSION.json'
 PLATFORM_CHECK = HERE / 'PLATFORM_CONFIGURATION_CHECK_2026_10_04.md'
@@ -44,17 +45,18 @@ VIEWER_ROUTES = ['/', '/sovereign/', '/contracts/', '/reports/agents', '/reports
                   '/reports/download/next-session-plan.md', '/reports/download/next-session-plan.txt',
                   '/reports/download/session-update.md', '/reports/download/session-update.txt',
                   '/not-an-allowlisted-route']
-GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/', '/reports/build', '/reports/next-session', '/reports/handover-notepad',
+GATEWAY_ROUTES = ['/aghor/', '/comics/', '/approvals/', '/finance/', '/upgrades/', '/reports/build', '/reports/next-session', '/reports/handover-notepad', '/reports/session-update',
                   '/reports/post-pr25-handover', '/reports/download/post-pr25-handover.txt',
                   '/reports/download/post-pr25-transfer.zip',
                   '/reports/dr-sync', '/reports/recovery', '/reports/chats', '/reports/issue-6',
                   '/reports/test-evidence', '/reports/download/handover-notepad.txt',
+                  '/reports/download/session-update.md', '/reports/download/session-update.txt',
                   '/reports/agents', '/sovereign/', '/contracts/', '/reports/auto-align',
                   '/reports/platform-check', '/reports/issues', '/reports/download/auto-align.json',
                   '/reports/download/platform-check.md', '/reports/download/issues-ledger.json',
                   '/not-an-allowlisted-route']
 LANE_REPORT_ROUTES = ['/reports/go-live', '/reports/live-wiring', '/reports/stack', '/reports/network-diagram', '/reports/market-readiness', '/reports/screenshots', '/reports/realtime', '/reports/full-handover', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index',
-                      '/reports/next-session-plan', '/reports/session-update',
+                      '/reports/next-session-plan', '/reports/session-update', '/reports/handover-notepad',
                       '/reports/download/next-session-plan.md', '/reports/download/next-session-plan.txt',
                       '/reports/download/session-update.md', '/reports/download/session-update.txt',
                       '/reports/auto-align', '/reports/platform-check', '/reports/issues',
@@ -82,7 +84,8 @@ CONTENT_MARKERS = {'/reports/chats': 'All Chats from Arena Database',
                    '/reports/recovery-index': 'ARENA SESSION RECOVERY INDEX',
                    '/reports/go-live-gaps': 'GO-LIVE GAPS, PLATFORM CHOICE',
                    '/reports/next-session-plan': 'NEXT-SESSION PLAN',
-                   '/reports/session-update': 'SESSION UPDATE'}
+                   '/reports/session-update': 'SESSION UPDATE',
+                   '/reports/handover-notepad': 'DR replication completed'}
 
 
 def sha256(data):
@@ -136,6 +139,7 @@ def main():
     problems += p + p2 + p3 + p4
 
     note_bytes = NOTE.read_bytes()
+    handover_notepad_bytes = SESSION_UPDATE.read_bytes()
     package_bytes = PACKAGE.read_bytes()
     manifest = json.loads(MANIFEST.read_text())
     note_download = fetch(viewer + '/reports/download/next-session.txt')
@@ -148,10 +152,10 @@ def main():
         problems.append('viewer next-session download is not byte-identical to the canonical note')
     if gateway_note_download['body'] != note_bytes:
         problems.append('gateway next-session download is not byte-identical to the canonical note')
-    if notepad_download['body'] != note_bytes:
-        problems.append('viewer handover-notepad download is not byte-identical to the canonical note')
-    if gateway_notepad_download['body'] != note_bytes:
-        problems.append('gateway handover-notepad download is not byte-identical to the canonical note')
+    if notepad_download['body'] != handover_notepad_bytes:
+        problems.append('viewer handover-notepad download is not byte-identical to the current session update')
+    if gateway_notepad_download['body'] != handover_notepad_bytes:
+        problems.append('gateway handover-notepad download is not byte-identical to the current session update')
     if package_download['body'] != package_bytes:
         problems.append('viewer transfer-package download is not byte-identical to the packaged artifact')
     if gateway_package_download['body'] != package_bytes:
@@ -198,6 +202,9 @@ def main():
         'git': {'branch': git('rev-parse', '--abbrev-ref', 'HEAD'), 'commit': git('rev-parse', 'HEAD')},
         'canonical_note': {'path': NOTE.relative_to(ROOT).as_posix(), 'sha256': sha256(note_bytes),
                            'bytes': len(note_bytes)},
+        'handover_notepad': {'path': SESSION_UPDATE.relative_to(ROOT).as_posix(),
+                             'sha256': sha256(handover_notepad_bytes),
+                             'bytes': len(handover_notepad_bytes)},
         'transfer_package': {'path': PACKAGE.relative_to(ROOT).as_posix(), 'sha256': sha256(package_bytes),
                              'bytes': len(package_bytes)},
         'byte_identity': {
