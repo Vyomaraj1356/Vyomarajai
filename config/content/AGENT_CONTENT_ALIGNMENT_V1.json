@@ -128,6 +128,45 @@
         }
       ],
       "reason": "Owner approved separation of major historical domains into dedicated Education sub-agents; existing EDU-S9 scope/data retained and cross-linked."
+    },
+    {
+      "target": "ENTERTAINMENT",
+      "action": "ADD_NESTED_SUB_AGENTS",
+      "reason": "Owner approved six major Entertainment content holders as parent hubs because each is a large content domain.",
+      "hubs": [
+        {
+          "id": "ENT-HUB-COM",
+          "name": "Comedy",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-CARTOON",
+          "name": "Cartoon",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-MUS",
+          "name": "Music",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-MOVIE",
+          "name": "Movie",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-WIT",
+          "name": "Wit",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-SHAYARI",
+          "name": "Shayari",
+          "nested_count": 8
+        }
+      ],
+      "nested_total": 48,
+      "canonical_top_level_sub_agent_count_unchanged": 133
     }
   ],
   "universal_inheritance": {
