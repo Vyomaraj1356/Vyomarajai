@@ -7,7 +7,10 @@ python3 - <<'PY'
 import json, pathlib, sys
 root=pathlib.Path(".")
 required=[
-"docs/architecture/VYOMARAJ_FINAL_MASTER_ARCHITECTURE_v1.5.md",
+"docs/architecture/VYOMARAJ_FINAL_MASTER_ARCHITECTURE_v2.0.md",
+"docs/architecture/VYOMARAJ_FINAL_SYSTEM_DIAGRAM_v2.0.md",
+"config/company/VYOMARAJ_COMPANY_FEDERATION_v1.0.yaml",
+"ops/vyomaraj/vyomaraj.sh",
 "config/ai/VYOMARAJ_JARVIS_VOICE_IDENTITY_v1.0.yaml",
 "config/ai/CREATIVE_AUTONOMY_AND_IDENTITY_POLICY_v1.0.yaml",
 "config/ai/CREATIVE_CHARACTER_VOICE_REGISTRY_v1.0.yaml",
@@ -19,13 +22,16 @@ required=[
 "config/engineering/GEOSPATIAL_AND_DAILY_STARTUP.yaml",
 "ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json",
 "ops/vyomaraj/production_agent_gate.py",
-"ops/engineering/requirements-2026.txt"
+"ops/engineering/requirements-2026.txt",
+"ops/engineering/requirements-2026-lock.txt"
 ]
 missing=[p for p in required if not (root/p).exists()]
 reg=json.loads((root/"ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json").read_text())
 print("CONTRACT_FILES:", "PASS" if not missing else "FAIL")
 if missing: print("MISSING:", *missing, sep="\n  ")
 print("REGISTRY:", reg.get("totals"))
+if reg.get("totals",{}).get("sub_agents") != 168: raise SystemExit("registry count is not 168")
+if reg.get("totals",{}).get("named_sub_agents") != 166: raise SystemExit("named registry count is not 166")
 print("VOICE_DESIGN:", "PASS")
 print("MCP_A2A_CONTRACT:", "PRESENT")
 print("MEDIA_RUNTIME:", "NOT_VERIFIED")
