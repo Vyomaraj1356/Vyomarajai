@@ -1,6 +1,6 @@
 # VYOMARAJ — FULL HANDOVER, ALL DETAILS
 
-Generated 2026-10-06 17:58 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
+Generated 2026-10-07 03:07 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
 
 **One command rebuilds this document and its archive:** `python3 ops/vyomaraj-core/handover/build_full_handover.py` — `--check` verifies the checked-in copy still matches the repository and the probes.
 
@@ -258,16 +258,16 @@ Found and fixed while researching this handover:
 | `ops/vyomaraj-core/handover/INHERITANCE_AUDIT_2026_10_04.md` | 4,565 |
 | `ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md` | 13,312 |
 | `ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json` | 16,963 |
-| `ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md` | 12,166 |
+| `ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md` | 12,168 |
 | `ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md` | 13,508 |
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png` | 589,897 |
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg` | 19,995 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md` | 8,321 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | 11,255 |
-| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 42,572 |
-| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 44,272 |
+| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 43,200 |
+| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 46,115 |
 | `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 30,090 |
-| `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 33,678 |
+| `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 35,757 |
 | `ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json` | 893 |
 | `ops/vyomaraj-core/experience/CONTENT_EXTENSIONS.json` | 4,188 |
 | `ops/jarvis/devices.json` | 51,494 |

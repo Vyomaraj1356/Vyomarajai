@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "package_sha256": "5b285c2f5a73765113c0d09f4e3368a79b76328346900d3964ddf0d1a827c901",
-  "package_bytes": 155193,
+  "package_sha256": "ade914ff602aa5ad90236c35654394c63cae05ebca2e04db55c7aba79dd09e17",
+  "package_bytes": 157270,
   "note_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
   "note_byte_identical_download": "/reports/download/next-session.txt serves the note file unchanged",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_transfer_package.py",
@@ -23,20 +23,20 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "53eb5d328f8e0344088fd4a7dea31fd7c0d5b35546f0829b1e41095693bdb961",
-      "bytes": 33678
+      "sha256": "03787bef5acd6da9fe851364fdbe5bde063a1a41fb43847c8f1e9eaba593b9b7",
+      "bytes": 35757
     },
     {
       "archive_name": "build_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/build_dr_sync_report.py",
-      "sha256": "29e8e6dc0ba7dc2d01112553c3615d0c6bbc3152615a7b1a62a4892af7e75f42",
-      "bytes": 20298
+      "sha256": "f4000de35e0713c675d052afe8f78c134eb3b6e120189fbe155b7249f4697812",
+      "bytes": 21157
     },
     {
       "archive_name": "test_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/test_dr_sync_report.py",
-      "sha256": "7b9c735b7f1f576687add0eaa6374001b3c0294e0910a2e7b8c592a5481b53b7",
-      "bytes": 4872
+      "sha256": "ffe25cfdbb742aeea21bea5b8b40e599aa50872311ee629d098c82eeae902367",
+      "bytes": 5490
     },
     {
       "archive_name": "HANDOVER_ALL_UPDATES_2026_10_03.txt",
@@ -53,14 +53,14 @@
     {
       "archive_name": "preview_reports.py",
       "source": "ops/vyomaraj-core/handover/preview_reports.py",
-      "sha256": "93c7bee4f241832010b1547ddea1a85676a208eb3d06f81ab280de9c77624b91",
-      "bytes": 27891
+      "sha256": "d3c54e645ee3a3b8bd3c4815a25d28fbdbecb45dd50f95b7fc59d8e0b03b27fb",
+      "bytes": 28378
     },
     {
       "archive_name": "test_preview_reports.py",
       "source": "ops/vyomaraj-core/handover/test_preview_reports.py",
-      "sha256": "013048c9dd277144ff33fe5e4217df5471db8183e03e5222b30cf73792e6b637",
-      "bytes": 13541
+      "sha256": "5e80b7e51389a7229376c51cbf715f5e413ad89970cbe65a382dc2d7103bdaf3",
+      "bytes": 13683
     },
     {
       "archive_name": "test_transfer_package.py",
@@ -71,14 +71,14 @@
     {
       "archive_name": "verify_preview.py",
       "source": "ops/vyomaraj-core/handover/verify_preview.py",
-      "sha256": "7a5fa1fa5ecf6ff00e02a6deb5edbb35a66dcc2014b39674531b3bbdb71e3473",
-      "bytes": 14628
+      "sha256": "de4fed682e806a002e09586cfc757c1ae05dd881ee52c1a50e5ecf19cfd9f38e",
+      "bytes": 15230
     },
     {
       "archive_name": "BUILD_AND_CONFIGURATION_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/BUILD_AND_CONFIGURATION_2026_10_04.md",
-      "sha256": "751ec388db5ff2270f0c230cca1aaee5f5791d3b3a17e74e5374e21fafa09a2b",
-      "bytes": 11531
+      "sha256": "54bcdbfc8b23058570a2297e464d32bab8c36ee350eecd7ed6c08b97a021c81b",
+      "bytes": 11521
     },
     {
       "archive_name": "build_configuration_report.py",
@@ -95,14 +95,14 @@
     {
       "archive_name": "DEPLOYED_MATCH_2026_10_04.json",
       "source": "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
-      "sha256": "c865ab1fd58c33e8675f5aaef3e59294c4a74387d7f37029146bd5968bd91ccd",
-      "bytes": 56622
+      "sha256": "06ddce36235f62cb6ffc422a0cdfce6e35fd622a8fcc8074a2c7cf93553a896f",
+      "bytes": 60555
     },
     {
       "archive_name": "studio_server.py",
       "source": "ops/vyomaraj-core/experience/studio_server.py",
-      "sha256": "416e5fa27d8917f5567a7f95c56dfb739a96d85908380545b08f92205758d526",
-      "bytes": 24829
+      "sha256": "8e3fe710467705f30ab6f25f8df35d4d9f405e7d3f18009d7ab3ee3d4f982859",
+      "bytes": 24824
     },
     {
       "archive_name": "experience/rebuild_contents.py",

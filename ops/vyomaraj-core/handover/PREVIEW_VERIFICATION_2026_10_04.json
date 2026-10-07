@@ -1,27 +1,32 @@
 {
-  "verified_at_utc": "2026-10-06T15:32:24+00:00",
+  "verified_at_utc": "2026-10-07T03:06:26+00:00",
   "scope": "READ_ONLY_LOCAL_PREVIEW_CHECK",
   "git": {
-    "branch": "arena/23997ce2-vyomarajai",
-    "commit": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f"
+    "branch": "arena/a83291a3-vyomarajai",
+    "commit": "ff85ccc1cd45b90181166f4aa01561fe8845e90e"
   },
   "canonical_note": {
     "path": "ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt",
     "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "bytes": 30728
   },
+  "handover_notepad": {
+    "path": "ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md",
+    "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267",
+    "bytes": 16679
+  },
   "transfer_package": {
     "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-    "sha256": "8cf33e0c0d77f393dee100243e3350dbc80cc29a09d95633a84f2b70fea3e19f",
-    "bytes": 153383
+    "sha256": "ade914ff602aa5ad90236c35654394c63cae05ebca2e04db55c7aba79dd09e17",
+    "bytes": 157270
   },
   "byte_identity": {
     "viewer_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
     "gateway_next_session_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-    "viewer_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-    "gateway_handover_notepad_download_sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2",
-    "viewer_transfer_package_download_sha256": "8cf33e0c0d77f393dee100243e3350dbc80cc29a09d95633a84f2b70fea3e19f",
-    "gateway_transfer_package_download_sha256": "8cf33e0c0d77f393dee100243e3350dbc80cc29a09d95633a84f2b70fea3e19f",
+    "viewer_handover_notepad_download_sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267",
+    "gateway_handover_notepad_download_sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267",
+    "viewer_transfer_package_download_sha256": "ade914ff602aa5ad90236c35654394c63cae05ebca2e04db55c7aba79dd09e17",
+    "gateway_transfer_package_download_sha256": "ade914ff602aa5ad90236c35654394c63cae05ebca2e04db55c7aba79dd09e17",
     "viewer_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "gateway_auto_align_json_download_sha256": "2a09b53a508a98a22b01f4488ce0d291b5b0f1a3682862bebd10ea5b5834ef4e",
     "viewer_platform_check_download_sha256": "55d3e64017ff0f46645b9c9cbedc68d83c4481216ad1898ec5a4cd4e28912433",
@@ -30,8 +35,8 @@
     "gateway_issues_ledger_json_download_sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345",
     "viewer_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
     "gateway_post_pr25_note_download_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
-    "viewer_post_pr25_package_download_sha256": "42824a18e53a0a57333328e5357142327257ecbf6375fc52be0861e8dc5d424f",
-    "gateway_post_pr25_package_download_sha256": "42824a18e53a0a57333328e5357142327257ecbf6375fc52be0861e8dc5d424f"
+    "viewer_post_pr25_package_download_sha256": "054bafcffa36a85bdd04f8697d8fee20783a0dccfb3c5a53793650603dce8786",
+    "gateway_post_pr25_package_download_sha256": "054bafcffa36a85bdd04f8697d8fee20783a0dccfb3c5a53793650603dce8786"
   },
   "viewer_routes": [
     {
@@ -76,8 +81,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 18403,
-      "sha256": "c04773ee1d7292647b1b94c5b384ea915cb3f907c6d8983cbce5f5956db46fa8"
+      "bytes": 17893,
+      "sha256": "67f544d620454dae2cb52a51ee7da8492ff3850dab1916f6db6567b119af7697"
     },
     {
       "route": "/reports/architecture",
@@ -103,8 +108,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 34559,
-      "sha256": "2f64e70a7f7f35b8deedcee8a7a1e5a51932d0b0e8f47a2e38877860efc00ba4"
+      "bytes": 24827,
+      "sha256": "e5efac80ab6035192fc28f88074068f4680b0fe0364e2879ef17cb8fc364a5e5"
     },
     {
       "route": "/reports/dr-sync",
@@ -112,8 +117,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 41715,
-      "sha256": "bd121c5556442bd46f51dc2afce14c4129c26d4ca1cddcc85386d2c5c185573e"
+      "bytes": 48972,
+      "sha256": "24a6fcb1185f9aa9e9866ff0428ec6bfac0d0816228c1e4fd7aa660e1bafbd07"
     },
     {
       "route": "/reports/recovery",
@@ -148,8 +153,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 37566,
-      "sha256": "aa74a7c8a3080cdde64193e06de6572e100f0fd252a563c113c5b789b541f87e"
+      "bytes": 37567,
+      "sha256": "082a242dbc1dced8ed22fa3bcc0999bfa0e8f000fb481e8826d0522f067fd461"
     },
     {
       "route": "/reports/download/next-session.txt",
@@ -165,9 +170,9 @@
       "expected_status": 200,
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
-      "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 30728,
-      "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2"
+      "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
     },
     {
       "route": "/reports/download/transfer-package.zip",
@@ -175,8 +180,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_TRANSFER_2026_10_04.zip\"",
-      "bytes": 153383,
-      "sha256": "8cf33e0c0d77f393dee100243e3350dbc80cc29a09d95633a84f2b70fea3e19f"
+      "bytes": 157270,
+      "sha256": "ade914ff602aa5ad90236c35654394c63cae05ebca2e04db55c7aba79dd09e17"
     },
     {
       "route": "/reports/post-pr25-handover",
@@ -202,8 +207,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 189593,
-      "sha256": "42824a18e53a0a57333328e5357142327257ecbf6375fc52be0861e8dc5d424f"
+      "bytes": 193480,
+      "sha256": "054bafcffa36a85bdd04f8697d8fee20783a0dccfb3c5a53793650603dce8786"
     },
     {
       "route": "/reports/go-live",
@@ -220,8 +225,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 60074,
-      "sha256": "c238db899ad105e96688a1133a3d481fbd61108ac04261be4743871b38db1f1c"
+      "bytes": 60928,
+      "sha256": "216f0179c7d1cf16beefe0df05137f5d923d7ae21e68f1c529ca446a38651681"
     },
     {
       "route": "/reports/stack",
@@ -247,8 +252,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 20574,
-      "sha256": "fc801ececca99a0fc027ba0054d8b2f3db881f09446df218fe23438c4b6b5785"
+      "bytes": 20576,
+      "sha256": "8bd2297c4e459591ec2a59d1ebb07f24be5fcb4ebf6d2ab1c4760517b530bfac"
     },
     {
       "route": "/reports/screenshots",
@@ -266,7 +271,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 2566,
-      "sha256": "cf4040ec1f978770f447e1a5d488fcfcb3bd75c9a15c949cc538c8a51f07c449"
+      "sha256": "789d64cc1ed3a72e36dce6995c3a843357dd0f3ca2aa90ca8c76eae62a522fc2"
     },
     {
       "route": "/reports/full-handover",
@@ -274,8 +279,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 29958,
-      "sha256": "e44f4312166e96b1514258ee8c3ea4f9bc83d7de19101cd50bb18f35f95b13ac"
+      "bytes": 29942,
+      "sha256": "03f7d26cdd9cd8aa3d0cc45ffaa8ac84b9f10a042fa61e8fd70eb949dabe13b6"
     },
     {
       "route": "/reports/ai-handoff",
@@ -283,8 +288,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 14755,
-      "sha256": "75ba8d17e4a64eaea6797d5d670ecf37bb964e366b4509fd43390d3cd77107ef"
+      "bytes": 14759,
+      "sha256": "29aed65a00bb28d65a838b28759ea45f53395e53fdf374ccfac86e8906219e4c"
     },
     {
       "route": "/reports/runbook",
@@ -293,7 +298,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 11598,
-      "sha256": "b73f6a21bd1c91ec79491f920c439cf3841f7aa572e7baecb09fc7f9f9161f08"
+      "sha256": "8d6f635a92c0d482ea195c39f5a902df6ec5cf7afc0e8a41a72082cb5bf99745"
     },
     {
       "route": "/reports/recovery-index",
@@ -311,7 +316,7 @@
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
       "bytes": 16760,
-      "sha256": "b2ed649a99e879f1196bb82c54b80137ab5832f22641d597495890617e6915bd"
+      "sha256": "dc0c08afc18ffc7816794642370dd97040fde89f5a6af316920eabc7e4e2f48b"
     },
     {
       "route": "/reports/next-session-plan",
@@ -328,8 +333,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 12745,
-      "sha256": "4cc0e80f48dc57c3e10e24f141c528d5d6d8ccbb441cf9c72e99b1d98f06d173"
+      "bytes": 24767,
+      "sha256": "6d08f872038729c55e63ad2a4ff71cc648070c76ed602958c5e2ed3761392735"
     },
     {
       "route": "/reports/download/next-session-plan.md",
@@ -355,8 +360,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 7134,
-      "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
     },
     {
       "route": "/reports/download/session-update.txt",
@@ -364,8 +369,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 7134,
-      "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
     },
     {
       "route": "/reports/auto-align",
@@ -436,8 +441,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 12745,
-      "sha256": "4cc0e80f48dc57c3e10e24f141c528d5d6d8ccbb441cf9c72e99b1d98f06d173"
+      "bytes": 24767,
+      "sha256": "6d08f872038729c55e63ad2a4ff71cc648070c76ed602958c5e2ed3761392735"
     },
     {
       "route": "/reports/download/next-session-plan.md",
@@ -463,8 +468,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 7134,
-      "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
     },
     {
       "route": "/reports/download/session-update.txt",
@@ -472,8 +477,8 @@
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
       "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-      "bytes": 7134,
-      "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
     },
     {
       "route": "/not-an-allowlisted-route",
@@ -537,8 +542,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 18227,
-      "sha256": "d5e7b2e765c46db2a3c361f0f813504a879d97e51d3697b5b2914faef751a523"
+      "bytes": 17717,
+      "sha256": "6efc01e21aee7342a7ed1721023c7cc2bea3f4b9e7a28bc74e2f148657da6ceb"
     },
     {
       "route": "/reports/next-session",
@@ -555,8 +560,17 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 34383,
-      "sha256": "07d839fe10f242e87f9b957afbd40ac5592fc30c0012fc4280cf9d917a062fa1"
+      "bytes": 24651,
+      "sha256": "ca5ec303a5cc65a65c20e7aa43f52aa0fa6293d5e361b29cd57c3ed9c56c4f2d"
+    },
+    {
+      "route": "/reports/session-update",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": null,
+      "bytes": 24591,
+      "sha256": "4421f491d30519479a9452d67541c22ed5bafc7a93399301342a7a68d204b059"
     },
     {
       "route": "/reports/post-pr25-handover",
@@ -582,8 +596,8 @@
       "status": 200,
       "content_type": "application/zip",
       "content_disposition": "attachment; filename=\"NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip\"",
-      "bytes": 189593,
-      "sha256": "42824a18e53a0a57333328e5357142327257ecbf6375fc52be0861e8dc5d424f"
+      "bytes": 193480,
+      "sha256": "054bafcffa36a85bdd04f8697d8fee20783a0dccfb3c5a53793650603dce8786"
     },
     {
       "route": "/reports/dr-sync",
@@ -591,8 +605,8 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 41539,
-      "sha256": "5750b94322da213b01789dec6b5b67ea45a18c9ceeb4032f036a89accbfd8069"
+      "bytes": 48796,
+      "sha256": "74d031c7ed8c6d86dc23bf4e0a0f54d06aa4f9d8e31f4611b8293d941843d926"
     },
     {
       "route": "/reports/recovery",
@@ -627,17 +641,35 @@
       "status": 200,
       "content_type": "text/html; charset=utf-8",
       "content_disposition": null,
-      "bytes": 37390,
-      "sha256": "241d7605bccb9e608e65ee631bfa8e2a1b07c6271f1616d285932fc31e55fb01"
+      "bytes": 37391,
+      "sha256": "662833d9a958be762d99979139b2d7826697758429fb95e87807487dd3cc6b01"
     },
     {
       "route": "/reports/download/handover-notepad.txt",
       "expected_status": 200,
       "status": 200,
       "content_type": "text/plain; charset=utf-8",
-      "content_disposition": "attachment; filename=\"NEXT_SESSION_HANDOVER_2026_10_04.txt\"",
-      "bytes": 30728,
-      "sha256": "8acd71f0de31b6577961196e04594b40d5bc980f3c68cca8d05500115f1e93e2"
+      "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
+    },
+    {
+      "route": "/reports/download/session-update.md",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
+    },
+    {
+      "route": "/reports/download/session-update.txt",
+      "expected_status": 200,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
+      "bytes": 16679,
+      "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
     },
     {
       "route": "/reports/agents",
@@ -747,8 +779,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 59898,
-        "sha256": "8b202bd6402f0234297322a2de034cbe28073308dff524bd3a9f76421764b6e2"
+        "bytes": 60752,
+        "sha256": "37e2606021f083df2f6a3d57164ac7c9899258f4c8b17797a620555ac5416ee7"
       },
       {
         "route": "/reports/stack",
@@ -774,8 +806,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 20398,
-        "sha256": "1fd410693bc7a36ac8bd666f5ec93031b459d8a80c0111cd3036fb6bb903cf50"
+        "bytes": 20400,
+        "sha256": "c28523f6c5634ed50b87642f32c217a26286b11a50bf21334aa4af7a98cf6bc1"
       },
       {
         "route": "/reports/screenshots",
@@ -793,7 +825,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 2566,
-        "sha256": "7d4aa408077df49453748d9c83f56bb8285e665d33799822d2cda0752669f9f1"
+        "sha256": "789d64cc1ed3a72e36dce6995c3a843357dd0f3ca2aa90ca8c76eae62a522fc2"
       },
       {
         "route": "/reports/full-handover",
@@ -801,8 +833,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 29782,
-        "sha256": "e43a6fb9c5508d70375e724079d9dfb6f2f35861b2b7e9b0ed83be4e88da87f6"
+        "bytes": 29766,
+        "sha256": "8f88cea8c43ded95d47df544febd298d66b78a5d0e9682590bc71046ef3482a1"
       },
       {
         "route": "/reports/ai-handoff",
@@ -810,8 +842,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 14579,
-        "sha256": "3a09013e3ea4b6a78dad591ff44f66f710197549e86fdecdc26f632c51bf4130"
+        "bytes": 14583,
+        "sha256": "4b4a803bb310b05969f7974e6169917a93312c4233661986f8637a4700acf09c"
       },
       {
         "route": "/reports/runbook",
@@ -820,7 +852,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 11422,
-        "sha256": "9d279c6eff3646dcff5e20e4b571cb8fe645851ae9c5d754cc4cc20d0e125132"
+        "sha256": "ad3c1ac1fab79430cf1dca673f35cee3416cd0c11151974139dcf4ab3e675768"
       },
       {
         "route": "/reports/recovery-index",
@@ -846,8 +878,17 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 12569,
-        "sha256": "14f697495baa652098f2d680e123db7ecf5c55db17a7e7d8e7fe33b9384d3e12"
+        "bytes": 24591,
+        "sha256": "4421f491d30519479a9452d67541c22ed5bafc7a93399301342a7a68d204b059"
+      },
+      {
+        "route": "/reports/handover-notepad",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 24651,
+        "sha256": "ca5ec303a5cc65a65c20e7aa43f52aa0fa6293d5e361b29cd57c3ed9c56c4f2d"
       },
       {
         "route": "/reports/download/next-session-plan.md",
@@ -873,8 +914,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 7134,
-        "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+        "bytes": 16679,
+        "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
       },
       {
         "route": "/reports/download/session-update.txt",
@@ -882,8 +923,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 7134,
-        "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+        "bytes": 16679,
+        "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
       },
       {
         "route": "/reports/auto-align",
@@ -974,8 +1015,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 59898,
-        "sha256": "8b202bd6402f0234297322a2de034cbe28073308dff524bd3a9f76421764b6e2"
+        "bytes": 60752,
+        "sha256": "37e2606021f083df2f6a3d57164ac7c9899258f4c8b17797a620555ac5416ee7"
       },
       {
         "route": "/reports/stack",
@@ -1001,8 +1042,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 20398,
-        "sha256": "1fd410693bc7a36ac8bd666f5ec93031b459d8a80c0111cd3036fb6bb903cf50"
+        "bytes": 20400,
+        "sha256": "c28523f6c5634ed50b87642f32c217a26286b11a50bf21334aa4af7a98cf6bc1"
       },
       {
         "route": "/reports/screenshots",
@@ -1020,7 +1061,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 2566,
-        "sha256": "7d4aa408077df49453748d9c83f56bb8285e665d33799822d2cda0752669f9f1"
+        "sha256": "789d64cc1ed3a72e36dce6995c3a843357dd0f3ca2aa90ca8c76eae62a522fc2"
       },
       {
         "route": "/reports/full-handover",
@@ -1028,8 +1069,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 29782,
-        "sha256": "e43a6fb9c5508d70375e724079d9dfb6f2f35861b2b7e9b0ed83be4e88da87f6"
+        "bytes": 29766,
+        "sha256": "8f88cea8c43ded95d47df544febd298d66b78a5d0e9682590bc71046ef3482a1"
       },
       {
         "route": "/reports/ai-handoff",
@@ -1037,8 +1078,8 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 14579,
-        "sha256": "3a09013e3ea4b6a78dad591ff44f66f710197549e86fdecdc26f632c51bf4130"
+        "bytes": 14583,
+        "sha256": "4b4a803bb310b05969f7974e6169917a93312c4233661986f8637a4700acf09c"
       },
       {
         "route": "/reports/runbook",
@@ -1047,7 +1088,7 @@
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
         "bytes": 11422,
-        "sha256": "9d279c6eff3646dcff5e20e4b571cb8fe645851ae9c5d754cc4cc20d0e125132"
+        "sha256": "ad3c1ac1fab79430cf1dca673f35cee3416cd0c11151974139dcf4ab3e675768"
       },
       {
         "route": "/reports/recovery-index",
@@ -1073,8 +1114,17 @@
         "status": 200,
         "content_type": "text/html; charset=utf-8",
         "content_disposition": null,
-        "bytes": 12569,
-        "sha256": "14f697495baa652098f2d680e123db7ecf5c55db17a7e7d8e7fe33b9384d3e12"
+        "bytes": 24591,
+        "sha256": "4421f491d30519479a9452d67541c22ed5bafc7a93399301342a7a68d204b059"
+      },
+      {
+        "route": "/reports/handover-notepad",
+        "expected_status": 200,
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "content_disposition": null,
+        "bytes": 24651,
+        "sha256": "ca5ec303a5cc65a65c20e7aa43f52aa0fa6293d5e361b29cd57c3ed9c56c4f2d"
       },
       {
         "route": "/reports/download/next-session-plan.md",
@@ -1100,8 +1150,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 7134,
-        "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+        "bytes": 16679,
+        "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
       },
       {
         "route": "/reports/download/session-update.txt",
@@ -1109,8 +1159,8 @@
         "status": 200,
         "content_type": "text/plain; charset=utf-8",
         "content_disposition": "attachment; filename=\"SESSION_UPDATE_2026_10_06.md\"",
-        "bytes": 7134,
-        "sha256": "f180d4da8a93afae8240bde9fcc780c5dadd2455131cdd41fb9ae4b45ff77937"
+        "bytes": 16679,
+        "sha256": "09246fbc65d99494e19ab554e7223010111e976a521e4e5e87be5394cf68b267"
       },
       {
         "route": "/reports/auto-align",
@@ -1204,7 +1254,7 @@
     ],
     "write_policy": "POST is sent once, never replayed after an ambiguous failure",
     "counters": {
-      "primary_responses": 73,
+      "primary_responses": 149,
       "secondary_responses": 0,
       "ambiguous_post_failures": 0,
       "unavailable_responses": 0

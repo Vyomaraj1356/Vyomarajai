@@ -1,6 +1,6 @@
 # VYOMARAJ — MARKET READINESS, CONFIGURATION & WIRING
 
-Generated 2026-10-06 11:36 UTC from the running system, not from memory. Owner's question: publish now, or is technical support needed for a heartbeat and for real earning?
+Generated 2026-10-07 03:06 UTC from the running system, not from memory. Owner's question: publish now, or is technical support needed for a heartbeat and for real earning?
 
 ---
 
@@ -37,7 +37,7 @@ A headless browser (HeadlessChrome/153.0.8010.0) opened every page below and pho
 | `gateway` server | port 4176 — **up**, Python 3 standard library, binds `0.0.0.0` |
 | `replica-a` server | port 4181 — **up**, Python 3 standard library, binds `0.0.0.0` |
 | `replica-b` server | port 4182 — **up**, Python 3 standard library, binds `0.0.0.0` |
-| `product` server | port 3000 — **up**, Python 3 standard library, binds `0.0.0.0` |
+| `product` server | port 3000 — **DOWN**, Python 3 standard library, binds `0.0.0.0` |
 | Content stores | SQLite + JSON on disk; no database server anywhere |
 | Gates | offline suites (tests, `node --check`, builders), DR verify-or-sync, read-only diagnostics |
 | Secrets | none in the repository; identity documents never captured in-app (`uidai.in` web only) |
