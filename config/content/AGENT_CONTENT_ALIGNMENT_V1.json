@@ -77,12 +77,54 @@
     },
     {
       "target": "FOOD",
-      "action": "MOVE_SUB_AGENTS",
+      "action": "MOVE_AND_STRUCTURE_SUB_AGENTS",
       "sources": [
         "ENT-LIQUOR-S1",
         "ENT-BAR-S1"
       ],
-      "reason": "beverage/food culture and hospitality belong under Food & Culinary"
+      "reason": "Owner approved detailed Beverage Culture & Hospitality hierarchy covering prehistoric-to-future beverage knowledge, beer, wine, fermented beverages, spirits, service, vessels, bottles, styles and cultural history.",
+      "sub_agent_structure": [
+        {
+          "id": "ENT-LIQUOR-S1",
+          "name": "Fermented Beverages, Beer & Wine Heritage",
+          "scope": [
+            "prehistoric and ancient fermented beverages",
+            "beer families/styles/history",
+            "wine, grapes and wine families",
+            "cider, mead, sake and traditional fermented beverages",
+            "ingredients and raw materials",
+            "fermentation science and historical production methods",
+            "brewing/winemaking technology evolution",
+            "vessels, amphorae, jars and storage",
+            "bottles, closures, labels and packaging history",
+            "glassware and serving traditions",
+            "sensory/style classification",
+            "hospitality, food pairing and cultural history",
+            "present industry and future fermented/non-alcoholic innovation"
+          ]
+        },
+        {
+          "id": "ENT-BAR-S1",
+          "name": "Spirits, Bar Culture, Service & Beverage Heritage",
+          "scope": [
+            "distilled beverage history and categories",
+            "whisky/whiskey, rum, brandy, vodka, gin and regional spirits",
+            "historical distillation knowledge",
+            "liqueurs, aperitifs and digestifs",
+            "cocktail/mixed-drink history",
+            "bar/tavern/pub/hospitality history",
+            "bar tools, vessels, glassware and serving styles",
+            "bottle forms, closures, labels and packaging history",
+            "beverage presentation/service traditions",
+            "regional drinking cultures",
+            "classification, styles and sensory vocabulary",
+            "regulation, taxation and prohibition history",
+            "modern industry/craft movements",
+            "non-alcoholic alternatives and future beverage/service technology"
+          ]
+        }
+      ],
+      "safety_boundary": "Informational, historical, scientific, culinary and cultural knowledge only; no promotion, procurement facilitation, sales optimization, or unsafe production instructions."
     },
     {
       "target": "EDU-S14",
@@ -173,7 +215,19 @@
     "knowledge_evolution": true,
     "panch_brother_capabilities": true,
     "saptarishi_knowledge_where_applicable": true,
-    "evidence_labels": true
+    "evidence_labels": true,
+    "structure": "Category → Named legacy agent → specialized sub-agent → topic/content → products/media",
+    "evolution_sequence": [
+      "Origin",
+      "Old",
+      "Historical Evolution",
+      "History",
+      "Present",
+      "Current State",
+      "Trends",
+      "Future",
+      "Possible Futures"
+    ]
   },
   "updated": "2026-10-07"
 }
