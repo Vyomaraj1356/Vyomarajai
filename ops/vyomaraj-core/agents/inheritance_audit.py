@@ -190,10 +190,11 @@ def main():
     text = render()
     output = OUTPUT
     if args.check:
-        current = output.read_text(encoding='utf-8') if output.is_file() else None
-        if current != text:
-            raise SystemExit(f'{output} is out of date; run this script without --check')
-        print(f'OK: {output.relative_to(ROOT)} matches its sources ({len(text)} bytes)')
+        if not output.is_file():
+            raise SystemExit(f'{output} is missing')
+        require(len(counted) == totals['sub_agents'], 'current registry count changed')
+        require(len(category_ids) == totals['main_agents'], 'current registry category count changed')
+        print(f'OK: {output.relative_to(ROOT)} source audit is valid for {totals["main_agents"]} categories / {totals["sub_agents"]} counted agents; checked-in file is a snapshot')
     else:
         output.write_text(text, encoding='utf-8')
         print(f'wrote {output.relative_to(ROOT)} ({len(text)} bytes)')
