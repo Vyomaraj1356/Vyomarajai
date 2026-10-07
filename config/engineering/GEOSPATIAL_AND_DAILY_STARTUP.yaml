@@ -1,0 +1,75 @@
+system:
+  name: Vyomaraj Geo + Daily Auspicious Start
+  status: ARCHITECTURE_CONFIGURED_NOT_RUNTIME_VERIFIED
+
+daily_start:
+  enabled: true
+  cores: [bharath_vyomaraj, laxman_jarvis]
+  sequence:
+    - system_health_check
+    - owner_authority_check
+    - recite_ganesha_mantra
+    - core_sync
+    - daily_briefing
+  mantra:
+    tradition: Hindu
+    purpose: auspicious_beginning_and_removal_of_obstacles
+    text_sanskrit: "ॐ गं गणपतये नमः"
+    transliteration: "Om Gam Ganapataye Namah"
+    user_configurable: true
+    audio_required: false
+
+geospatial:
+  purpose:
+    - history_geography_research
+    - earth_observation
+    - content_grounding
+    - route_and_place_context
+    - disaster_environmental_context
+  providers:
+    - ISRO_BHUVAN
+    - NASA_WORLDVIEW
+    - OPENSTREETMAP
+    - GOOGLE_MAPS_PLATFORM
+  modes:
+    map: true
+    satellite_imagery: true
+    historical_layers: true
+    terrain: true
+    earth_observation: true
+    point_measurement: true
+  planet_scope:
+    earth: full
+    universe: research_metadata_only
+  provenance_required: true
+  imagery_is_data_not_authority: true
+  provider_credentials_server_side_only: true
+
+location_services:
+  allowed:
+    - owner_devices
+    - explicitly_consented_devices
+    - enterprise_managed_devices_with_authorized_policy
+  prohibited:
+    - locating_arbitrary_person_by_phone_number_without_consent
+    - covert_tracking
+    - bypassing_device_security_or_carrier_controls
+  authorization:
+    owner_controlled: true
+    explicit_device_consent: true
+    revocable: true
+    audit_required: true
+  sources:
+    - device_gnss
+    - wifi_positioning
+    - cellular_positioning_when_lawfully_available
+  accuracy:
+    report_source_and_estimated_accuracy: true
+    never_claim_satellite_precision_when_source_is_cell_or_wifi: true
+
+satellite:
+  note: "Satellites provide Earth observation imagery and positioning signals; they do not provide unrestricted live location of any arbitrary phone number."
+  deep_view:
+    lawful_imagery_only: true
+    historical_imagery: true
+    commercial_high_resolution_sources_optional: true
