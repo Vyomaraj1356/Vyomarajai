@@ -1,0 +1,62 @@
+system_id: VYOMARAJ-AI-STUDIO
+contract: SURYA_PRESENCE_EXECUTION_FABRIC
+version: "1.0"
+status: CONTRACTED
+purpose:
+  - clarity_presence_energy_and_continuous_execution
+  - operationalize_authorized_capabilities
+  - provider_neutral_execution_contract
+identity:
+  Surya:
+    role: "clarity, brilliance, energy, presence, leadership, visibility, readiness"
+    engineering_interpretation: "execution-readiness and operational visibility capability"
+    security_principal: false
+    root_authority: false
+  note: "Capability identity/metaphor only; not a separate root or authorization authority."
+placement:
+  owner_root: "ultimate authority"
+  foundation: "SHRIYANTRA"
+  capability_fabric: "SURYA_PRESENCE_EXECUTION_FABRIC"
+  peers: [VYOMARAJ_BHARATH, JARVIS_LAXMAN]
+  execution_chain: [intent, authentication, authorization, policy, plan, capability_resolution, provider_or_local_execution, verification, audit, measurement, recovery]
+execution_scope:
+  applies_to: [ai_models, agents, sub_agents, mcp, a2a, browser, coding, search, data, media, voice, workflows, content, education, civilization_knowledge, agriculture, living_world, finance, commerce, collaboration, social_distribution, analytics, infrastructure, backup, disaster_recovery]
+  rule: "all capabilities use the same governed execution contract"
+runtime_states: [DISCOVERED, CONFIGURED, AUTHENTICATED, READY, EXECUTING, VERIFYING, COMPLETED, DEGRADED, BLOCKED, RECOVERING, FAILED]
+provider_strategy:
+  model: PROVIDER_NEUTRAL
+  preferred_execution: [healthy_local, healthy_primary_provider, healthy_secondary_provider, approved_fallback]
+  isolation:
+    provider_never_owns_root: true
+    provider_never_owns_memory: true
+    provider_never_owns_policy: true
+    provider_never_owns_audit: true
+    provider_failure_must_not_equal_platform_failure: true
+peer_core_contract:
+  Vyomaraj_Bharath: {may_execute: true, may_verify: true, may_recover: true}
+  Jarvis_Laxman: {may_execute: true, may_verify: true, may_recover: true}
+  mutual_recovery: true
+  owner_remains_root: true
+execution_guards: [owner_authentication, least_privilege, capability_scope, policy_check, risk_classification, approval_gate_when_required, idempotency, timeout, retry_with_backoff, circuit_breaker, rate_limit, transaction_or_compensation, output_validation, postcondition_verification, immutable_audit_event, rollback_or_recovery_plan]
+high_risk:
+  requires_step_up: true
+  examples: [financial_commitment, destructive_change, credential_change, public_publication, production_deployment, new_provider, new_voice_identity, access_grant, data_export, regulated_action]
+observability:
+  required: [correlation_id, execution_id, actor, core, agent, capability, provider, start_time, end_time, status, latency, retries, cost, verification_result, audit_reference]
+  telemetry: [metrics, structured_logs, distributed_traces, health_checks, readiness_checks]
+resilience:
+  active_active_peer_cores: true
+  provider_failover: true
+  workflow_resume: true
+  durable_state: true
+  anti_split_brain: true
+  backup_before_destructive_change: true
+  restore_test_required: true
+  read_after_write_required: true
+  failback_verification_required: true
+truth_model:
+  config_only_is_not_runtime: true
+  connected_is_not_verified: true
+  verified_requires_evidence: true
+  external_dependency_states: [UNCONFIGURED, CONFIGURED, CONNECTED, VERIFIED, DEGRADED, FAILED]
+success_definition: [request_authenticated, policy_authorized, capability_available, execution_observed, postcondition_verified, audit_written, result_returned, recovery_path_known]
