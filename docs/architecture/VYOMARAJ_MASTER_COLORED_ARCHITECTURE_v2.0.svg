@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+<defs>
+  <radialGradient id="bg"><stop offset="0" stop-color="#14294a"/><stop offset="1" stop-color="#050b16"/></radialGradient>
+  <linearGradient id="gold" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#ffd166"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1800" height="1200" fill="url(#bg)"/>
+<text x="900" y="55" text-anchor="middle" fill="#ffd166" font-size="34" font-family="Arial" font-weight="700">VYOMARAJ — THE KING OF THE SKY</text>
+<text x="900" y="88" text-anchor="middle" fill="#dbeafe" font-size="18" font-family="Arial">FINAL MASTER ARCHITECTURE • SHRIYANTRA • PEER CORES • SURYA PRESENCE • FEDERATION • RESILIENCE</text>
+
+<!-- Shri Yantra background: visible, center bindu deliberately unobstructed -->
+<g transform="translate(900 610)" opacity=".42" stroke="#f59e0b" fill="none" stroke-width="3">
+ <rect x="-455" y="-455" width="910" height="910" rx="8"/>
+ <rect x="-420" y="-420" width="840" height="840"/>
+ <circle r="390"/><circle r="320"/><circle r="250"/>
+ <g stroke-width="2">
+  <polygon points="0,-340 294,170 -294,170"/>
+  <polygon points="0,340 294,-170 -294,-170"/>
+  <polygon points="0,-285 247,143 -247,143"/>
+  <polygon points="0,285 247,-143 -247,-143"/>
+  <polygon points="0,-225 195,113 -195,113"/>
+  <polygon points="0,225 195,-113 -195,-113"/>
+  <polygon points="0,-165 143,83 -143,83"/>
+  <polygon points="0,165 143,-83 -143,-83"/>
+  <polygon points="0,-105 91,53 -91,53"/>
+ </g>
+</g>
+<!-- bindu emphasis -->
+<circle cx="900" cy="610" r="13" fill="#fff4c2" stroke="#f59e0b" stroke-width="4" filter="url(#glow)"/>
+<text x="900" y="646" text-anchor="middle" fill="#ffe7a3" font-size="17" font-family="Arial" font-weight="700">SHRIYANTRA BINDU — KEPT CLEAR</text>
+
+<!-- Owner / foundation -->
+<g font-family="Arial" text-anchor="middle">
+ <rect x="650" y="115" width="500" height="70" rx="18" fill="#111827" stroke="#f59e0b" stroke-width="3"/>
+ <text x="900" y="145" fill="#ffd166" font-size="22" font-weight="700">OWNER ROOT • AUTHENTICATION</text>
+ <text x="900" y="170" fill="#dbeafe" font-size="15">Web • Android • macOS • Voice • Secure Recovery</text>
+ <path d="M900 185 L900 225" stroke="#f59e0b" stroke-width="4" marker-end="url(#x)"/>
+ <rect x="560" y="220" width="680" height="90" rx="20" fill="#0b1730" stroke="#38bdf8" stroke-width="3"/>
+ <text x="900" y="252" fill="#7dd3fc" font-size="23" font-weight="700">SHRIYANTRA PRIVATE FOUNDATION</text>
+ <text x="900" y="279" fill="#dbeafe" font-size="15">LLM • Harness • RAG • CAG • MAG • Memory • Knowledge • Policy • Security • Audit • Resilience</text>
+</g>
+
+<!-- Vyomaraj elevated above bindu, not covering it -->
+<g font-family="Arial" text-anchor="middle">
+ <path d="M900 390 L900 300" stroke="#f59e0b" stroke-width="4"/>
+ <rect x="690" y="335" width="420" height="105" rx="28" fill="#0a1628" stroke="url(#gold)" stroke-width="6" filter="url(#glow)"/>
+ <circle cx="735" cy="387" r="32" fill="#f59e0b"/>
+ <text x="735" y="398" fill="#0a1628" font-size="34" font-weight="900">V</text>
+ <text x="930" y="378" fill="#ffd166" font-size="25" font-weight="700">VYOMARAJ / BHARATH</text>
+ <text x="930" y="407" fill="#dbeafe" font-size="16">CONTROL • ORCHESTRATION • GLOBAL STATE • PUBLICATION</text>
+ <text x="900" y="470" fill="#ffd166" font-size="15">ELEVATED — DOES NOT TOUCH OR HIDE THE BINDU</text>
+</g>
+
+<!-- Jarvis orbit -->
+<ellipse cx="900" cy="610" rx="260" ry="185" fill="none" stroke="#fb923c" stroke-width="4" stroke-dasharray="14 10"/>
+<g transform="translate(1145 610)" font-family="Arial" text-anchor="middle">
+ <circle r="62" fill="#7c2d12" stroke="#fb923c" stroke-width="5"/>
+ <text y="-5" fill="#fff7ed" font-size="22" font-weight="700">JARVIS</text>
+ <text y="20" fill="#fed7aa" font-size="14">LAXMAN</text>
+ <path d="M0 70 L0 150" stroke="#fb923c" stroke-width="4"/>
+ <text y="180" fill="#ffd166" font-size="18" font-weight="700">🚩 जय श्री राम</text>
+ <text y="205" fill="#dbeafe" font-size="14">REAL-TIME POSITION / TASK / AGENT STATE</text>
+</g>
+<!-- orbit arrow -->
+<path d="M1160 450 C1280 500 1280 720 1140 770" fill="none" stroke="#fb923c" stroke-width="4"/>
+
+<!-- Federation layer -->
+<g font-family="Arial" text-anchor="middle">
+ <rect x="155" y="900" width="1490" height="190" rx="28" fill="#08111f" fill-opacity=".94" stroke="#38bdf8" stroke-width="3"/>
+ <text x="900" y="932" fill="#7dd3fc" font-size="22" font-weight="700">FEDERATION + EXECUTION FABRIC</text>
+ <text x="900" y="962" fill="#dbeafe" font-size="15">Ganesh • Saraswati • Shakti • Hanuman/Panch • Laxmi • Kuber FC • AI Providers • Agents • MCP/A2A • Tools • Media • Partners • Channels</text>
+ <text x="900" y="994" fill="#dbeafe" font-size="15">Education &amp; Civilization • Agriculture &amp; Living World • Universal Knowledge • Commerce • Social Distribution</text>
+ <text x="900" y="1026" fill="#ffd166" font-size="16" font-weight="700">EXECUTE → VERIFY → AUDIT → MEASURE → LEARN → RECOVER</text>
+ <text x="900" y="1058" fill="#fca5a5" font-size="14">External runtime is VERIFIED only with real credentials, connectivity, postconditions and evidence.</text>
+</g>
+<text x="900" y="1145" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Arial">Visual baseline • Shani Blue #0a1628 • Kuber Gold #f59e0b • Surya/Execution gold • Jarvis Kesari • bindu intentionally unobstructed</text>
+</svg>
