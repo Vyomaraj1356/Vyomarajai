@@ -1,0 +1,82 @@
+version: "2.0"
+system_id: VYOMARAJ-AI-STUDIO
+domain: BHAKTI_SHAKTI
+title: "Bhakti-Shakti Divine Knowledge & Devotional Federation"
+inheritance:
+  foundation: SHRIYANTRA
+  peer_cores: [VYOMARAJ_BHARATH, JARVIS_LAXMAN]
+  capabilities: [GANESH, SARASWATI, SHAKTI, HANUMAN_PANCH, LAXMI, KUBER]
+divine_scope:
+  tridev: [Brahma, Vishnu_Narayan, Shiva_Mahadev]
+  tridevi: [Saraswati, Lakshmi, Parvati_Shakti]
+  traditional_deity_scale:
+    label: "33 koti / 33 crore tradition"
+    handling: "Traditional/scriptural classification; not presented as a single literal historical census."
+  narayan_vishnu:
+    dashavatara: [Matsya, Kurma, Varaha, Narasimha, Vamana, Parashurama, Rama, Krishna, Buddha_or_Balarama_variant_labeled, Kalki]
+    note: "Lists vary by scripture/tradition; preserve provenance."
+  shiva:
+    coverage: "Shiva, Mahadev, Rudra and major scriptural avatar/form traditions, Jyotirlinga traditions and Shaiva schools."
+  durga_shakti:
+    dashamahavidya: [Kali, Tara, Tripura_Sundari, Bhuvaneshvari, Bhairavi, Chhinnamasta, Dhumavati, Bagalamukhi, Matangi, Kamala]
+  vidya:
+    name: "Saptashri Vidya"
+    handling: "Owner-requested knowledge family; map teachings/text lineages only with source evidence."
+  sacred_texts:
+    coverage: [Veda, Upanishad, Ramayana, Mahabharata, Bhagavad_Gita, Puranas, Itihasa, Agama, Tantra, Stotra, Chalisa, Kavacha, Sahasranama, Shastra, regional_sacred_literature]
+content_federation:
+  divine_history: true
+  temples_pilgrimage: true
+  saints_rishis_gurus: true
+  festivals_vrats_parvas: true
+  shloka_mantra_stotra: true
+  bhajan_kirtan: true
+  devotional_music: true
+  aarti_chalisa: true
+  stories_katha_purana: true
+  philosophy_darshana: true
+  sacred_art_iconography: true
+  regional_local_deities: true
+  diaspora_traditions: true
+  audio_video_podcast: true
+  educational_content: true
+  creative_content: true
+  rights_provenance: true
+sub_agents:
+  - BHAKTI-TRIDEV-S1
+  - BHAKTI-TRIDEVI-S1
+  - BHAKTI-33-KOTI-DEVATA-S1
+  - BHAKTI-NARAYAN-DASHAVATARA-S1
+  - BHAKTI-SHIVA-AVATARA-S1
+  - BHAKTI-DURGA-DASHAMAHAVIDYA-S1
+  - BHAKTI-SAPTASHRI-VIDYA-S1
+  - BHAKTI-VEDA-UPANISHAD-S1
+  - BHAKTI-ITIHASA-PURANA-S1
+  - BHAKTI-RAMAYANA-S1
+  - BHAKTI-MAHABHARATA-GITA-S1
+  - BHAKTI-SHLOKA-STOTRA-S1
+  - BHAKTI-MANTRA-AARTI-CHALISA-S1
+  - BHAKTI-BHAJAN-KIRTAN-S1
+  - BHAKTI-DEVOTIONAL-MUSIC-S1
+  - BHAKTI-DIVINE-HISTORY-S1
+  - BHAKTI-SAINT-RISHI-GURU-S1
+  - BHAKTI-TEMPLE-PILGRIMAGE-S1
+  - BHAKTI-FESTIVAL-VRAT-PARVA-S1
+  - BHAKTI-SHAKTA-SHAIVA-VAISHNAVA-S1
+  - BHAKTI-REGIONAL-DEITIES-S1
+  - BHAKTI-SACRED-ART-ICONOGRAPHY-S1
+  - BHAKTI-DHARMA-PHILOSOPHY-DARSHANA-S1
+  - BHAKTI-DEVOTIONAL-AUDIO-VIDEO-S1
+  - BHAKTI-CONTENT-RESEARCH-PROVENANCE-S1
+  - BHAKTI-CREATIVE-PUBLISHING-S1
+runtime:
+  research_before_assertion: true
+  evidence_labels: [VERIFIED_FACT, HISTORICAL_RECORD, CURRENT_VERIFIED_STATE, TREND, FORECAST, SCENARIO, SPECULATION, TRADITIONAL_BELIEF]
+  sacred_claims: "Label scripture/tradition separately from historical evidence."
+  rights_provenance_required: true
+  harmful_ritual_instructions: blocked
+  coercion: blocked
+owner_controls:
+  root: OWNER
+  add_remove_subagents: OWNER
+  public_publish: OWNER_POLICY_GATE
