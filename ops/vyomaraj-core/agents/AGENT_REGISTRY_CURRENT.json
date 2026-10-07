@@ -2830,71 +2830,101 @@
       "id": "PLATFORM-UNMAPPED",
       "category_id": "PLATFORM",
       "parent_id": "PLATFORM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Cross-Platform Distribution, Analytics & Revenue Operations",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 20,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "19 supplied platform lanes plus one unmapped position; functional cross-platform control lane without claiming historical source name",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "TOUR-REF-01",
       "category_id": "TOUR",
       "parent_id": "TOUR",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Travel Destinations, Geography & Heritage",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "TOUR category + tourism experience routing + historical/heritage travel content",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "TOUR-REF-02",
       "category_id": "TOUR",
       "parent_id": "TOUR",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Tour Planning, Itineraries & Travel Operations",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "TOUR category + planning/itinerary functional taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "TOUR-REF-03",
       "category_id": "TOUR",
       "parent_id": "TOUR",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Tourism History, Culture & Heritage",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 3,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "TOUR category + temple/heritage and cultural tourism cross-links",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "TOUR-REF-04",
       "category_id": "TOUR",
       "parent_id": "TOUR",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Hospitality, Travel Business & Future Tourism",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 4,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "TOUR category + hotel/FOOD composites + future tourism/business scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "WAR-REF-01",
@@ -3557,8 +3587,8 @@
     "main_agents": 14,
     "sub_agents": 153,
     "uncounted_parent_headings": 6,
-    "named_sub_agents": 146,
-    "unnamed_numbered_sub_agents": 7,
+    "named_sub_agents": 151,
+    "unnamed_numbered_sub_agents": 2,
     "active_products": null,
     "historical_reported_products": 421,
     "uncounted_nested_sub_agents": 48,
@@ -4274,18 +4304,18 @@
       "ENTERTAINMENT"
     ],
     "aligned_counted_slots": 68,
-    "remaining_unresolved_counted_slots": 7,
+    "remaining_unresolved_counted_slots": 2,
     "remaining_unresolved_ids": [
       "EDU-S11",
-      "EDU-S12",
-      "PLATFORM-UNMAPPED",
-      "TOUR-REF-01",
-      "TOUR-REF-02",
-      "TOUR-REF-03",
-      "TOUR-REF-04"
+      "EDU-S12"
     ],
-    "note": "Names marked HISTORICAL_CONTENT_ALIGNED are functional alignments supported by repository content, not claims that the historical source originally used that exact title. OWNER_ALIGNED_FUNCTIONAL names are owner-directed functional taxonomy where historical slot identity was not recoverable.",
+    "note": "All currently active counted slots have functional or recovered display names. EDU-S11/S12 remain source identities retained as merged legacy references under EDU-S10; they are intentionally not deleted or renamed.",
     "education_recovery": "EDU-S8 aligned to Metals, Numismatics, Stamps & Collectibles from recovered Finance S4 + Education philately evidence; EDU-S11/S12 remain historical merged references under EDU-S10; EDU-S13 aligned to Ancient Scripts, Epigraphy & Knowledge Transmission from Education topic evidence.",
-    "entertainment_expansion": "Wit expanded; Hasya elevated to dedicated Kavi Sammelan + humour-literature model with historical, bibliographic, Indian/world and contemporary coverage."
+    "entertainment_expansion": "Wit expanded; Hasya elevated to dedicated Kavi Sammelan + humour-literature model with historical, bibliographic, Indian/world and contemporary coverage.",
+    "active_unresolved_slots": 0,
+    "legacy_merged_slots": [
+      "EDU-S11",
+      "EDU-S12"
+    ]
   }
 }
