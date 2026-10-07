@@ -14,6 +14,13 @@ ACTIVE=HERE/'AGENT_REGISTRY_CURRENT.json'
 INDEX=HERE/'CONTENT_INDEX_CURRENT.json'
 REPORT=CORE/'handover/AGENT_RECONCILIATION_2026_10_03.md'
 INVENTORY=CORE/'handover/FULL_SYSTEM_INVENTORY_2026_10_03.md'
+ROOT=CORE.parents[1]
+KNOWLEDGE_POLICY=ROOT/'config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json'
+KNOWLEDGE_POLICY_REF='config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json'
+CAPABILITY_MODEL=ROOT/'config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml'
+CAPABILITY_MODEL_REF='config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml'
+SHRIYANTRA_REGISTRY=ROOT/'config/agents/shriyantra-agent-registry.json'
+SHRIYANTRA_REGISTRY_REF='config/agents/shriyantra-agent-registry.json'
 PACKS={'aghor':('aghor-experience',('chapters','people','practices','care')), 'film':('film-experience',('items',)), 'music':('music-experience',('items',)),
        'bhakti':('bhakti-experience',('stories','avatars','peethas','recipes')),
        'pairings':('liquor-bar',('traditions','snacks','events'))}
@@ -21,6 +28,92 @@ PACKS={'aghor':('aghor-experience',('chapters','people','practices','care')), 'f
 
 def require(ok,message):
     if not ok:raise ValueError(message)
+
+
+def shared_knowledge_inheritance(category_count, agent_count):
+    """Attach one canonical policy reference to the whole registry, never per-agent copies."""
+    try:
+        policy=json.loads(KNOWLEDGE_POLICY.read_text(encoding='utf-8'))
+        inheritance=policy['inheritance']
+        policy_id=policy['policy_id'];version=policy['policy_version']
+        owner=policy['owner'];status=policy['implementation_status']
+    except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise ValueError('Universal Knowledge Evolution policy is missing or invalid') from exc
+    require(policy_id=='UNIVERSAL_KNOWLEDGE_EVOLUTION_V1' and version==1,'Unexpected shared knowledge policy identity')
+    require(inheritance.get('mode')=='shared_policy_reference','Agent hierarchy must inherit the shared knowledge policy by reference')
+    require(inheritance.get('policy_ref')==KNOWLEDGE_POLICY_REF,'Shared knowledge policy ref must remain canonical')
+    require(inheritance.get('future_entities_inherit_by_default') is True,'Future agent/content entities must inherit by default')
+    require(inheritance.get('per_entity_copy_required') is False,'Per-agent knowledge policy copies are prohibited')
+    return {'policy_id':policy_id,'policy_version':version,'owner':owner,
+            'policy_ref':KNOWLEDGE_POLICY_REF,'inheritance_mode':'shared_policy_reference',
+            'entity_types':inheritance['entity_types'],'future_entities_inherit_by_default':True,
+            'per_entity_copy_required':False,
+            'current_coverage':{'category_count':category_count,'agent_count':agent_count,
+                                'mode':'all_current_registry_entries_inherit_by_reference'},
+            'runtime_status':status}
+
+
+def shared_capability_inheritance(category_count, agent_count):
+    """Record the five behavioral domains once; never copy them into agent rows."""
+    try:
+        model=json.loads(CAPABILITY_MODEL.read_text(encoding='utf-8'))
+        policy=json.loads(KNOWLEDGE_POLICY.read_text(encoding='utf-8'))
+        shriyantra=json.loads(SHRIYANTRA_REGISTRY.read_text(encoding='utf-8'))
+        domains=model['domains'];inheritance=model['inheritance'];boundary=model['authority_boundary']
+        policy_inheritance=policy['inheritance']
+        configured=[row for row in shriyantra['shared_capabilities']
+                    if row.get('id')=='HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL']
+    except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise ValueError('Panch-Brother capability model or shared knowledge policy is missing or invalid') from exc
+    domain_ids=[row.get('id') for row in domains if isinstance(row,dict)]
+    require(domain_ids==['MATIMAN','SHRUTIMAN','KETUMAN','GATIMAN','DHRITIMAN'],
+            'Panch-Brother capability domain identities/order mismatch')
+    require(inheritance.get('mode')=='shared_policy_reference'
+            and inheritance.get('owner')=='SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC'
+            and inheritance.get('knowledge_policy_ref')==KNOWLEDGE_POLICY_REF
+            and inheritance.get('entity_types')==['category','agent','sub_agent','topic','content','chapter','product']
+            and inheritance.get('all_current_and_future_entities_inherit_by_default') is True
+            and inheritance.get('per_entity_copy_required') is False,
+            'Capability inheritance must use the canonical ShriYantra/Universal Knowledge Fabric reference')
+    require(policy_inheritance.get('policy_ref')==KNOWLEDGE_POLICY_REF
+            and policy_inheritance.get('future_entities_inherit_by_default') is True
+            and policy_inheritance.get('per_entity_copy_required') is False,
+            'Universal Knowledge Fabric inheritance contract is inconsistent')
+    require(len(configured)==1
+            and configured[0].get('owner')=='SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC'
+            and configured[0].get('policy_ref')==CAPABILITY_MODEL_REF
+            and configured[0].get('knowledge_policy_ref')==KNOWLEDGE_POLICY_REF
+            and configured[0].get('inheritance_mode')=='shared_policy_reference'
+            and configured[0].get('future_entities_inherit_by_default') is True
+            and configured[0].get('per_entity_copy_required') is False
+            and configured[0].get('permission_grants_inherited') is False
+            and configured[0].get('root_owner_authority_inherited') is False,
+            'ShriYantra shared capability registry reference is missing or unsafe')
+    require(boundary.get('capability_domains_are_permissions') is False
+            and boundary.get('permission_grants_inherited') is False
+            and boundary.get('default_decision')=='DENY_UNLESS_EXPLICITLY_GRANTED_BY_OWNER'
+            and boundary.get('agent_self_elevation_allowed') is False
+            and boundary.get('root_owner_authority_inherited') is False
+            and boundary.get('root_owner_authority_delegable_to_peers') is False,
+            'Capability inheritance must never grant permissions or root-owner authority')
+    return {
+        'model_id':model['model_id'],
+        'model_ref':CAPABILITY_MODEL_REF,
+        'shriyantra_registry_ref':SHRIYANTRA_REGISTRY_REF,
+        'owner':inheritance['owner'],
+        'policy_ref':KNOWLEDGE_POLICY_REF,
+        'inheritance_mode':'shared_policy_reference',
+        'capability_domain_ids':domain_ids,
+        'entity_types':inheritance['entity_types'],
+        'future_entities_inherit_by_default':True,
+        'per_entity_copy_required':False,
+        'permission_grants_inherited':False,
+        'root_owner_authority_inherited':False,
+        'current_coverage':{'category_count':category_count,'agent_count':agent_count,
+                            'mode':'all_current_registry_entries_resolve_one_shared_reference'},
+        'runtime_status':model['runtime_status'],
+        'production_enforcement_status':model['production_enforcement_status']
+    }
 
 
 def unique(records,key,audit,scope):
@@ -112,9 +205,11 @@ def build(source,rules):
         category['sub_agents']=sum(a['category_id']==cid for a in agents)
         category['headings']=sum(h['category_id']==cid for h in hubs)
     agents=unique(agents,lambda a:a['id'],audit,'active_agents')
-    result={'schema_version':2,'status':'CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory','updated':'2026-10-03',
+    result={'schema_version':2,'status':'CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory','updated':'2026-10-07',
             'source_snapshot':'handover/AGENT_CONTENT_REGISTRY_V16_7_24.json','historical_totals':source['totals'],
             'categories':categories,'headings':hubs,'agents':agents,
+            'shared_knowledge_inheritance':shared_knowledge_inheritance(len(categories),len(agents)),
+            'shared_capability_inheritance':shared_capability_inheritance(len(categories),len(agents)),
             'count_reconciliation':{'six_hubs_reclassified_not_deleted':retired,'government_schemes_transfer':rules['government_schemes'],
                                     'exact_duplicate_records_removed':audit},
             'totals':{'main_agents':len(categories),'sub_agents':len(agents),'uncounted_parent_headings':len(hubs),
@@ -131,6 +226,35 @@ def build(source,rules):
 
 
 def validate(data):
+    shared=data.get('shared_knowledge_inheritance',{})
+    require(shared.get('policy_id')=='UNIVERSAL_KNOWLEDGE_EVOLUTION_V1'
+            and shared.get('policy_ref')==KNOWLEDGE_POLICY_REF
+            and shared.get('inheritance_mode')=='shared_policy_reference',
+            'Missing canonical shared knowledge inheritance')
+    require(shared.get('future_entities_inherit_by_default') is True
+            and shared.get('per_entity_copy_required') is False,
+            'Unsafe or duplicated knowledge inheritance configuration')
+    require(shared.get('current_coverage',{}).get('category_count')==len(data['categories'])
+            and shared.get('current_coverage',{}).get('agent_count')==len(data['agents']),
+            'Shared knowledge inheritance coverage does not match the active registry')
+    require(all('shared_knowledge_inheritance' not in a for a in data['agents']),
+            'Do not copy shared knowledge policy onto individual agent records')
+    capability=data.get('shared_capability_inheritance',{})
+    require(capability.get('model_ref')==CAPABILITY_MODEL_REF
+            and capability.get('shriyantra_registry_ref')==SHRIYANTRA_REGISTRY_REF
+            and capability.get('policy_ref')==KNOWLEDGE_POLICY_REF
+            and capability.get('inheritance_mode')=='shared_policy_reference'
+            and capability.get('permission_grants_inherited') is False
+            and capability.get('root_owner_authority_inherited') is False
+            and capability.get('future_entities_inherit_by_default') is True
+            and capability.get('per_entity_copy_required') is False,
+            'Missing or unsafe shared capability inheritance reference')
+    require(capability.get('current_coverage',{}).get('category_count')==len(data['categories'])
+            and capability.get('current_coverage',{}).get('agent_count')==len(data['agents']),
+            'Shared capability inheritance coverage does not match the active registry')
+    require(all('shared_capability_inheritance' not in a and 'capability_domains' not in a
+                and 'capabilities' not in a for a in data['agents']),
+            'Per-agent capability copies or permissions are prohibited')
     cats={c['id']:c for c in data['categories']};hubs={h['id']:h for h in data['headings']};agents={a['id']:a for a in data['agents']}
     all_ids=[*cats,*hubs,*agents]
     require(len(all_ids)==len(set(all_ids)),'Duplicate identity across hierarchy levels')
@@ -181,7 +305,14 @@ def content_index(ownership,registry):
     paths=[p['path']+'/'+f for p in catalog['packs'] for f in p['files']]
     require(len(paths)==len(set(paths))==32,'Historical catalog path duplication')
     require(sum(r['id']=='EDU-TOPIC-government-schemes' for r in records)==1,'Scheme topic must have one owner')
+    shared_knowledge=copy.deepcopy(registry['shared_knowledge_inheritance'])
+    shared_knowledge['current_coverage']['indexed_content_reference_count']=len(records)
+    shared_knowledge['current_coverage']['content_inheritance_mode']='inherited_by_shared_reference'
+    shared_capability=copy.deepcopy(registry['shared_capability_inheritance'])
+    shared_capability['current_coverage']['indexed_content_reference_count']=len(records)
     return {'schema_version':1,'scope':'Current indexed references, not the complete historical 421 products or an exhaustive archive-content audit.',
+            'shared_knowledge_inheritance':shared_knowledge,
+            'shared_capability_inheritance':shared_capability,
             'records':records,'indexed_reference_count':len(records),'education_topic_count':len(topics),
             'deduplication_basis':'Exact identity + equal source record only. Conflicts stop rebuild; similar titles, different editions or source contexts are not silently merged.',
             'duplicates_removed':audit,'historical_catalog_files':len(paths),'historical_catalog_unique_paths':len(set(paths)),
@@ -190,7 +321,7 @@ def content_index(ownership,registry):
 
 
 def render_report(data,index):
-    t=data['totals'];lines=['# Vyomaraj — Current Agent Reconciliation','', '**3 October 2026 · owner-approved structure · not a deployment claim**','',
+    t=data['totals'];lines=['# Vyomaraj — Current Agent Reconciliation','', '**7 October 2026 additive metadata alignment · owner-approved structure · not a deployment claim**','',
     '## Applied decisions','',
     '- A later explicit user request adds **Aghor & Aghori** (`BHAKTI-AGHOR-S1`) under BHAKTI / Bhakti-Shakti. BHAKTI now has 3 counted positions; its earlier two unnamed positions are retained.',
     '- EDU is now displayed as **Education**. All Government Schemes are owned by Education, not Finance or Entertainment.',
@@ -203,6 +334,14 @@ def render_report(data,index):
     '| Separate uncounted Entertainment headings | Not separated | 6 |','| Supplied/approved individual names | 46 | 42 |','| Unnamed numbered positions | 87 | 86 |',
     '| Reported products | 421 | Reallocation / unique total UNRECONCILED |','',
     'The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 128. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.','',
+    '## Universal Knowledge Evolution inheritance','',
+    f"- The active registry attaches one shared policy reference (`{data['shared_knowledge_inheritance']['policy_ref']}`) to all **{t['main_agents']} categories** and **{t['sub_agents']} counted agents**; it is not copied into individual agent records.",
+    f"- The bounded content index applies the same reference to **{index['indexed_reference_count']} indexed references**. Topics, content, chapters, products, and future entities inherit by the policy default rather than manual per-agent edits.",
+    f"- Policy status: `{data['shared_knowledge_inheritance']['runtime_status']}`. This is not evidence of production runtime enforcement or a live shared Vyomaraj/Jarvis store.", '',
+    '## Panch-Brother capability inheritance','',
+    f"- The five shared behavioral domains resolve by reference from `{data['shared_capability_inheritance']['model_ref']}` through ShriYantra's Universal Knowledge Fabric; no individual agent copies are maintained.",
+    '- Domains describe behavior, not permissions. Grants remain owner-approved and deny-by-default; root-owner authority, self-elevation, provider access, publishing, spending, failover, and deployment authority are never inherited.',
+    '- `ops/vyomaraj/capability_fabric.py` is a read-only local metadata resolver. It does not run agents or enforce production permissions; runtime enforcement remains NOT VERIFIED.','',
     '## Current main-agent inventory','', '| Category | Current display name | Counted slots | Uncounted headings | Historical reported products |','|---|---|---:|---:|---:|']
     for c in data['categories']:lines.append(f"| {c['id']} | {c['name']} | {c['sub_agents']} | {c['headings']} | {c['source_reported_products']} |")
     lines+=['','Product figures above are source-history metadata, not current reallocated or deduplicated totals. In particular, Education 68 and Finance 15 cannot be apportioned after the scheme transfer without their item-level product lists.','',
@@ -258,7 +397,7 @@ def outputs():
     ownership=json.loads((HERE/'CONTENT_OWNERSHIP_CURRENT.json').read_text())
     active=build(source,rules);active['source_snapshot_sha256']=hashlib.sha256(raw).hexdigest()
     index=content_index(ownership,active);report=render_report(active,index)
-    current='# Vyomaraj / Jarvis — Current System Inventory\n\n**Current structure: 13 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**\n\nThis is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.\n\n'
+    current='# Vyomaraj / Jarvis — Current System Inventory\n\n**Current structure: 13 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**\n\n**7 October 2026 metadata alignment:** shared capability policy reference added; taxonomy counts and historical product aggregate are unchanged.\n\nThis is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.\n\n'
     current+='## Integrated viewers\n\n| Area | Viewer / report |\n|---|---|\n| Sovereign policy / draft contracts | /sovereign/ · /contracts/ · /reports/policy |\n| Current hierarchy | /agents/ · /reports/agents |\n| Aghor & Aghori | /aghor/ · /reports/aghor |\n| Latest DR / Aghor update | /reports/resilience |\n| Education and all Government Schemes | /education/ |\n| All experience content | /reports/contents |\n| Research Desk | /research/ · /reports/research |\n| Film, stage and ads | /film/ · /reports/film |\n| Music | /music/ · /reports/music |\n| Bhakti-Shakti | /bhakti/ · /reports/bhakti |\n| Roots & Pairings | /pairings/ |\n| Earlier DR audit (latest status above) | /reports/dr |\n| Historical source audit | /reports/history |\n\n'
     current+=report.replace('# Vyomaraj — Current Agent Reconciliation','# Current Agent Reconciliation',1)
     return {ACTIVE:json.dumps(active,ensure_ascii=False,indent=2)+'\n',INDEX:json.dumps(index,ensure_ascii=False,indent=2)+'\n',REPORT:report,INVENTORY:current}

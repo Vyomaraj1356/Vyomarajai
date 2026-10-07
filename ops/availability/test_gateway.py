@@ -1,8 +1,14 @@
 import json
 import unittest
-from gateway import Router,UpstreamUnavailable
+from gateway import Router,UpstreamUnavailable,validate_loopback_host
 
 class Tests(unittest.TestCase):
+    def test_gateway_bind_policy_is_loopback_only(self):
+        self.assertEqual(validate_loopback_host('127.0.0.1'),'127.0.0.1')
+        for host in ('0.0.0.0','192.0.2.1','::1','localhost'):
+            with self.subTest(host=host),self.assertRaises(ValueError):
+                validate_loopback_host(host)
+
     def test_get_fallback(self):
         calls=[]
         def fake(p,*args,**kwargs):

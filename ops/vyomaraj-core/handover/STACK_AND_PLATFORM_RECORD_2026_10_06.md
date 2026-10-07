@@ -1,28 +1,36 @@
-# Vyomaraj — stack and platform record — 6 October 2026
+# Vyomaraj — stack and platform record — 7 October 2026
 
 **Generated file — do not edit by hand.** Rebuild with `python3 ops/vyomaraj-core/handover/build_stack_record.py`; `--check` verifies this copy.
 
-This is the answer to "what technologies and platforms did we use and configure?" written from evidence in this checkout, not from memory. It separates what is **verified by code here** from what a historical document **claimed** and nothing runs. Read section 3 before repeating any figure from the earlier market-ready README.
+This is the answer to "what technologies and platforms did we use and configure?" written from evidence in this checkout, not from memory. It separates what is **implemented by code here** from what a historical document **claimed**; a local listener or probe does not prove production readiness. Read section 3 before repeating any figure from the earlier market-ready README.
 
 ## 1. What the product is actually made of
 
 | Area | Technology | Evidence | Note |
 |---|---|---|---|
-| Product page | Static HTML + CSS + vanilla JavaScript single page | `index.html, landing.html, flow-diagram.html; no bundler, no framework` | Pages-servable as-is |
-| Product palette | Shani Blue #0a1628 + Kuber Gold #f59e0b, Arial | `preview_reports.STYLE, styles.css` | same palette on every page of both servers |
-| Local servers | Python 3 standard library http.server / ThreadingHTTPServer | `ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, ops/vyomaraj-core/handover/preview_reports.py` | no Flask, no FastAPI, no Django |
-| Bindings | 0.0.0.0 on every server | `verified by verify_preview.py and verify_live_wiring.py` | required by the sandbox preview proxy |
-| Public hosting | GitHub Pages from main (static) | `Pages status built, source main` | https://vyomaraj1356.github.io/Vyomarajai/ |
-| Automation | GitHub Actions, Python 3.12 and Node 20/24 runners | `vyomaraj-sync-both.yml, vyomaraj-ci-diagnostics.yml, vyomaraj-research.yml` | offline gate, DR verify-or-sync, read-only PAT diagnostic |
-| DR mechanism | Git-snapshot replication between two repositories, rollback parent retained | `ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, workflow annotations` | covers Git tracked files only, not runtime state |
-| Tests in CI | Python unittest + node --check + node --test | `ops/vyomaraj-core/handover/run_offline_suites.py` | counts are recorded in TEST_EVIDENCE, not here |
-| State stores | SQLite and JSON files on disk (no database server) | `ops/vyomaraj-core/research/discovery.py, ops/vyomaraj-core/ledger` | outside Git-snapshot replication; needs its own backup |
+| Public launch page and planner demo | Static HTML + CSS + vanilla JavaScript; no bundler or framework | `index.html, launch.css, launch.js, demo.html/demo.css/demo.js; landing.html redirects to the evidence-based page` | GitHub Pages serves static files; the sandbox root opens demo.html and /index.html keeps the brand shell; GET /api/catalog and POST /api/plan exist only on the sandbox server and are not deployed to Pages |
+| Installable web shell | Web App Manifest + service worker + local PNG/SVG icons | `manifest.webmanifest, sw.js, offline.html, assets/vyomaraj-icon-*` | offline cache includes only the public landing shell; not a native Android or macOS client |
+| Product palette | Launch shell: #091323 + gold; experience previews retain Shani Blue #0a1628 + Kuber Gold #f59e0b | `launch.css, preview_reports.STYLE, styles.css` | two documented surfaces; no external font/CDN dependency on the launch page |
+| Local servers | Python 3 standard library http.server / ThreadingHTTPServer | `ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, ops/vyomaraj-core/handover/preview_reports.py, public_landing_server.py` | studio/gateway enforce loopback-only binds; public preview serves an exact asset allowlist, read-only GET /api/catalog over curated Bhakti-Shakti and Roots & Pairings content, and bounded ephemeral POST /api/plan; no privileged writers, provider calls or persistence; no Flask/FastAPI/Django |
+| One-shot local service monitor | Manual loopback probes with a read-only latest-snapshot page | `ops/vyomaraj-core/handover/probes.py and /reports/monitor` | JSONL + latest local snapshot; no scheduler, alerting or production/DR claim |
+| Jarvis reachability monitor | Python standard-library bounded GET probe with private local state | `ops/jarvis/heartbeat_monitor.py, heartbeat-config.example.json` | reports reachability only; no authenticated mutual heartbeat, failover or production health |
+| Shared peer architecture and heartbeat target | Vyomaraj/Jarvis common identity, policy and capability contract; fail-closed heartbeat plan | `PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md, ops/jarvis/heartbeat_monitor.py` | design + local read-only probe only; no production interlink, inherited root authority, quorum or failover |
+| LLM draft harness | Optional no-tools OpenAI-compatible chat client with explicit invocation | `ops/jarvis/llm_harness.py, ops/jarvis/LLM_HARNESS.md` | no provider is configured by the repository; no tool execution or autonomous actions |
+| Panch capability metadata | Five-name mapping validator with no runtime/heartbeat claim | `ops/hanuman/capability_status.py, ops/hanuman/test_capability_status.py` | checks metadata only; capability execution and platform connections remain unimplemented |
+| Local owner-approval slice | Ed25519 exact-action verification + private transactional SQLite queue and local hash chain | `ops/shriyantra/owner_guard.py, ops/vyomaraj-core/approvals/approval_store.py, experience/studio_server.py` | issuer/key/owner/security epoch are not configured; local single-host control slice only; no agent handoff or publishing |
+| Bindings | Server-specific: studio and availability gateway enforce IPv4 loopback; public sandbox preview binds for session access | `studio_server.py and gateway.py validate_loopback_host; public_landing_server.py serves exact assets, GET /api/catalog, and POST /api/plan` | catalog is curated/read-only for two fixed packs; the planner accepts only two fixed experiences, performs no persistence/provider calls, and is not a privileged writer; never network-bind the local studio/gateway |
+| Public hosting | GitHub Pages from main (static) | `Live read 2026-10-07: Pages API build 04b7ae60, source main` | the current feature branch is not deployed there; the URL serves main only |
+| Automation | GitHub Actions workflow definitions, Python 3.12 and Node 20/24 runners | `vyomaraj-sync-both.yml, vyomaraj-ci-diagnostics.yml, vyomaraj-research.yml` | scheduled run 37605789908 reports a tracked-tree match; Actions variable may override fallback and settings API access is 403 |
+| DR mechanism | Git-snapshot replication workflow with scheduled tracked-tree match evidence | `ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, live read-only annotations recorded in ISSUES_AND_PRS_LEDGER.json` | scheduled check 2026-10-07T10:13:11Z reports equal tracked Git trees (986288ee2cc4ec4d89400320150ea893f7a7a2de); canonical target identity and runtime DR are unverified |
+| Tests and preview release gate | Python unittest + node syntax/tests + builder checks; verification only | `ops/vyomaraj-core/handover/run_offline_suites.py, ops/vyomaraj/publish-gate.sh` | a preview PASS does not change the separate production status; the gate never deploys |
+| State stores | SQLite and JSON files on disk (no database server) | `ops/vyomaraj-core/research/discovery.py, approvals/approval_store.py, ops/vyomaraj-core/ledger` | research/approval state is single-host and outside Git-snapshot replication; approval DB is owner-only, but both need independent backup/restore evidence |
 | Browser voice | Web Speech API (speechSynthesis) where the page uses it | `product HTML/JS voice controls` | microphone capture needs device permission |
 | Browser media | WebRTC getUserMedia + MediaRecorder + Web Audio API | `camera/video/audio mixer lanes in the product page` | no upload; files stay in the tab |
 | Maps | Leaflet 1.9.4 with OpenStreetMap tiles | `map lane in the product page` | tiles load from the OSM service at view time |
-| Charts/plans | Deterministic local planners (no AI call) | `local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py` | every plan states ai_calls_made=false |
+| Plans and content | Deterministic local planners by default; optional explicit no-tools LLM draft stage | `local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py, ops/jarvis/llm_harness.py` | provider calls require explicit local configuration and invocation; plans do not publish |
 | Registry | JSON registry + content index + ownership map, pinned and test-guarded | `ops/vyomaraj-core/agents/*.json, test_registry.py` | 13 categories / 128 counted slots / 6 headings |
-| Android app | APK binary committed (24,567,022 bytes) — UNSIGNED, no project in repo | `Vyomaraj-App.apk: 222 entries, 8 dex files, no META-INF signature block` | a stock Android device rejects it until it is signed |
+| Android app | APK binary committed (24,567,022 bytes); v2 signing-block entry detected, but cryptographic validity, signer provenance and device installation are UNVERIFIED; no project source in repo | `Vyomaraj-App.apk: 222 entries, 8 dex files; verify_live_wiring.py parses ZIP signing-block structure (scheme ID 0x7109871a)` | not a verified release; keep off downloads until apksigner verification, signer review and a real-device install pass |
+| macOS native app | No macOS source project or signed application archive in this checkout | `repository file inventory` | not available as a native release |
 
 ## 2. The month's archive (all of it, in this repository)
 
@@ -81,10 +89,18 @@ This is the answer to "what technologies and platforms did we use and configure?
 
 | File | Bytes |
 |---|---|
-| `index.html` | 2,738 |
+| `index.html` | 12,906 |
 | `Index.html` | 12,761 |
-| `landing.html` | 22,961 |
+| `landing.html` | 691 |
 | `flow-diagram.html` | 61,992 |
+| `demo.html` | 6,354 |
+| `launch.css` | 11,337 |
+| `launch.js` | 1,841 |
+| `demo.css` | 7,077 |
+| `demo.js` | 11,660 |
+| `manifest.webmanifest` | 740 |
+| `sw.js` | 1,708 |
+| `offline.html` | 1,107 |
 
 ### The one-month chat record
 
@@ -106,33 +122,35 @@ This is the answer to "what technologies and platforms did we use and configure?
 | Flask API on 5000 | README_MARKET_READY.md V15.1 ports registry |
 | HTTPS 443 / HTTP 80 listeners | README_MARKET_READY.md V15.1 ports registry |
 | Social platform APIs configured (YouTube, Instagram, Facebook, X, Telegram, WhatsApp, Discord, Pinterest, Threads, Snapchat, Reddit, Twitch, Vimeo, Tumblr, Mastodon) | README_MARKET_READY.md V15.1 social registry |
+| Panch-Shakti metadata labels/rosters stating ACTIVE or all agents LIVE | ops/hanuman/hanuman-panch-shakti.json, devices.json, and ports.json; these are declarations, not runtime probes |
 | Revenue, follower and MRR figures (₹3.0L, 56.2K, ₹1,29,000, 5.42M views, ₹8.4L, ₹5.67L, 2B UPI, 94.6K) | README_MARKET_READY.md V15.1 social registry |
 | ElevenLabs voice cloning, Twilio calling, Whisper captions, 4K60 video synthesis | REAL_VYOMARAJ_INVESTIGATION.md V10.0 plan and README_MARKET_READY.md |
 | MediaPipe Face Mesh / face generation | REAL_VYOMARAJ_INVESTIGATION.md V9-V10 notes |
 | Multi-AI provider coordination as a live bus | ops/vyomaraj-core/multi-ai-coordination.js states in its own header that it is metadata-only and that historical versions fabricated LIVE values |
 | SearXNG + Ollama research runtime | ops/vyomaraj-core/research/ — discovery is local; the provider runtime is not active |
 
-Everything in section 1 is the real stack: static pages, Python standard-library servers, GitHub Pages, GitHub Actions, Git-snapshot replication, local planners, browser APIs. That stack is free to run and it is what the product actually is today.
+Everything in section 1 is the implemented repository stack: static pages, Python standard-library servers, GitHub Pages, GitHub Actions workflow definitions, a Git-snapshot replication mechanism, local planners, and browser APIs. The scheduled Actions check at `2026-10-07T10:13:11Z` (run `37605789908` / check `112741170924`) reports `status=MATCH`, `data_match=True`, equal tracked trees `986288ee2cc4ec4d89400320150ea893f7a7a2de` / `986288ee2cc4ec4d89400320150ea893f7a7a2de`, and traffic `NONE`. The workflow-selected target identity `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here` is not independently confirmed (Actions settings API 403; candidate paths 404 are ambiguous). This does not prove runtime/app equality, site failover, RPO or RTO; issue #6 stays OPEN/P0.
 
 ## 4. Links: what lasts and what dies
 
 | Class | Example | Status | Note |
 |---|---|---|---|
 | GitHub repository | `https://github.com/Vyomaraj1356/Vyomarajai` | **WORKING** | Durable; every artifact in this record lives here. |
-| GitHub Pages | `https://vyomaraj1356.github.io/Vyomarajai/` | **WORKING** | Last recorded Pages build: main f735f92b, status built. Rebuilds on every push to main. |
+| GitHub Pages | `https://vyomaraj1356.github.io/Vyomarajai/` | **WORKING (main only)** | Live read 2026-10-07: Pages source is `main:/` at 04b7ae60; the current feature branch is not deployed there. |
 | Raw file URLs | `https://raw.githubusercontent.com/Vyomaraj1356/Vyomarajai/main/<path>` | **WORKING** | Serve any committed file on main. A file is only reachable after its pull request is merged. |
 | Arena session links | `https://arena.ai/agent/<session-id>` | **SESSION-SCOPED / DIES** | REAL_VYOMARAJ_INVESTIGATION.md records earlier session links returning "Something went wrong". They are not storage; the repository is. |
 | Sandbox preview links | `https://<port>-<sandbox>.e2b.app` | **SESSION-SCOPED / DIES** | Every preview host from every session so far has died with its sandbox (4190, 4174-...). Never announce one as the launch address. |
-| Local preview ports | `0.0.0.0:4174 / 4176 / 4181 / 4182` | **LOCAL ONLY** | Reachable from the sandbox proxy while the sandbox lives, and from the owner's machine only if the same processes are started there. |
+| Local studio/gateway rehearsal ports | `127.0.0.1:4176 / 4181 / 4182 (defaults; loopback policy enforced)` | **LOCAL-ONLY / NOT RUNNING** | Studio/gateway refuse non-loopback binds; privileged writer actions require request-scoped owner tokens; do not expose through public ingress. |
+| Allowlisted sandbox landing + planner demo | `0.0.0.0:5310` | **SESSION-SCOPED / READ-ONLY CATALOG + PLANNER / RUNNING IN SANDBOX** | Exact asset allowlist plus GET /api/catalog for curated entries from two local packs and ephemeral POST /api/plan; no provider calls, visitor-data persistence, privileged writers or private paths. This is not a public deployment or production health signal. |
 
 ## 5. The zero-cost launch path (no money spent)
 
 | Need | Free route | Cost | Limit to state honestly |
 |---|---|---|---|
-| Public address | GitHub Pages from `main` | ₹0 | Static files only; no server-side runtime |
-| Automation + DR | GitHub Actions + the two-repository snapshot sync | ₹0 | Scheduled jobs on the free minutes; the DR is Git-snapshot, not a live site |
-| App distribution | Self-signed APK (`keytool`), direct download link | ₹0 | Not installable until it is signed; "unknown source" warning on the phone; not on Play |
-| Local dry runs | This repository's four Python servers | ₹0 | Reachable only while the sandbox or the owner's machine runs them |
+| Public address | GitHub Pages from `main:/` at `04b7ae60` | ₹0 | This feature branch is not deployed; static files only, no server-side runtime |
+| Automation + DR | Scheduled run `37605789908` reports equal tracked Git trees | ₹0 | Effective target identity `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here` remains unconfirmed; runtime/failover/RPO/RTO are not proven |
+| App distribution | Existing APK v2 signing-block entry; signature validity not established | ₹0 tooling | Run `apksigner verify`, confirm signer provenance, then test installation on a real device before distributing; never treat block presence alone as proof |
+| Local dry runs | Five legacy Python preview services plus the allowlisted static :5310 preview are defined | ₹0 | Listener snapshot: `{'3000': False, '4174': False, '4176': False, '4181': False, '4182': False, '5310': True}`; session-only rehearsal, not production |
 | Voice enrollment | On-device only, consent screen + delete control | ₹0 | No cloud vendor, no cloning, no identity-document capture in the app |
 | Payments | None until revenue exists | ₹0 | No gateway, no UPI integration; do not advertise payments |
 
@@ -146,6 +164,6 @@ Everything in section 1 is the real stack: static pages, Python standard-library
 6. **Play Console (one-time)** — signed release builds and store listing.
 7. **CDN / media hosting** — only when there is licensed or owned media to serve.
 
-Every step above is a purchase decision for the owner, and none of it is required for the Ghatasthapana launch on 11 October 2026.
+Every step above is a purchase decision for the owner and is not assumed here. The 11 October 2026 date remains a target; owner-approved DR access, branch review/deployment and release checks are separate gates.
 
 END OF STACK AND PLATFORM RECORD

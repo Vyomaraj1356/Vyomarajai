@@ -123,6 +123,12 @@ class PlannerTests(unittest.TestCase):
 
 
 class ServerTests(unittest.TestCase):
+    def test_studio_bind_policy_rejects_any_network_address(self):
+        self.assertEqual(studio.validate_loopback_host('127.0.0.1'), '127.0.0.1')
+        for host in ('0.0.0.0', '192.0.2.1', '::1', 'localhost'):
+            with self.subTest(host=host), self.assertRaises(ValueError):
+                studio.validate_loopback_host(host)
+
     @classmethod
     def setUpClass(cls):
         cls.server = ThreadingHTTPServer(('127.0.0.1', 0), studio.Handler)
@@ -168,6 +174,18 @@ class ServerTests(unittest.TestCase):
                 self.assertIn('href="/reports/auto-align"', text)
                 self.assertIn('href="/reports/platform-check"', text)
                 self.assertIn('href="/reports/issues"', text)
+
+    def test_lane_local_monitor_route_is_read_only_and_navigable(self):
+        with patch.object(studio.reports, 'render_monitor_fragment',
+                          return_value='<h1>Local service monitor</h1><p>snapshot only</p>') as render:
+            with urllib.request.urlopen(self.url + '/reports/monitor') as response:
+                self.assertEqual(response.status, 200)
+                self.assertIn('no-store', response.headers.get('Cache-Control', ''))
+                page = response.read().decode()
+        render.assert_called_once_with()
+        self.assertIn('Local monitor, read-only view', page)
+        self.assertIn('snapshot only', page)
+        self.assertIn('href="/reports/monitor">Local monitor</a>', page)
 
     def test_lane_downloads_new_plan_ledger_and_platform_report(self):
         cases = (

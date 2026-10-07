@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Live status for Vyomaraj — real probes, no cached values, no invention.
+"""Separate live local port probes from timestamped GitHub and monitor evidence.
 
-Every value this module returns is measured at the moment it is asked for. That is the whole point:
-the previous status surface on the landing page polled a route that never existed and displayed a
-fabricated "6 sub-agents syncing together". This one probes the host and reports what it finds.
+Local listeners are measured at request time. DR results and the local peer-monitor snapshot keep
+their own timestamps and scope; neither is silently upgraded into current production health.
 
 Used by the reports viewer (page + JSON) and the lane studios (JSON).
 """
@@ -22,6 +21,7 @@ LIVE_PORTS = [
     (4176, "Availability gateway", "primary/secondary rehearsal"),
     (4181, "Lane studio A", "music, film, bhakti, comics, pairings, aghor"),
     (4182, "Lane studio B", "mirror of the same lanes"),
+    (5310, "Allowlisted sandbox planner preview", "sandbox-only, bounded deterministic local planner; no persistence or privileged writers"),
 ]
 
 EVIDENCE = [
@@ -29,7 +29,11 @@ EVIDENCE = [
     ("live wiring", "LIVE_WIRING_STATE_2026_10_06.json"),
     ("test evidence", "TEST_EVIDENCE_2026_10_04.json"),
     ("full handover", "VYOMARAJ_FULL_HANDOVER_2026_10_06.md"),
+    ("integration audit", "INTEGRATION_ALIGNMENT_AND_RELEASE_AUDIT_2026_10_07.md"),
+    ("peer architecture", "PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md"),
 ]
+ISSUES_LEDGER = HERE / "ISSUES_AND_PRS_LEDGER.json"
+HEARTBEAT_STATE = Path.home() / ".local/state/vyomaraj/jarvis-heartbeats.json"
 
 
 def port_state(port: int, host: str = "127.0.0.1") -> bool:
@@ -39,7 +43,7 @@ def port_state(port: int, host: str = "127.0.0.1") -> bool:
 
 
 def realtime_facts() -> dict:
-    """Measure now. Nothing here is stored between calls."""
+    """Probe listeners now; attach timestamped records without relabeling them as live health."""
     facts = {
         "schema": "vyomaraj-realtime/1",
         "checked_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
@@ -56,6 +60,37 @@ def realtime_facts() -> dict:
         },
         "not_probed": [80, 443],
         "not_probed_reason": "nothing in this repository binds privileged ports",
+    }
+    try:
+        ledger = json.loads(ISSUES_LEDGER.read_text(encoding="utf-8"))
+        current = ledger.get("current_live_recheck_2026_10_07", {})
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        current = {}
+    dr = current.get("dr_snapshot", {})
+    target = current.get("dr_target_resolution", {})
+    facts["sync"]["latest_scheduled_checkpoint"] = {
+        "status": dr.get("status", "UNVERIFIED"),
+        "workflow_run_id": dr.get("workflow_run_id"),
+        "check_run_id": dr.get("check_run_id"),
+        "completed_at_utc": dr.get("completed_at_utc"),
+        "data_match": dr.get("data_match"),
+        "primary_tree": dr.get("primary_tree"),
+        "secondary_tree": dr.get("secondary_tree"),
+        "traffic_switched": dr.get("traffic_switched"),
+        "scope_limit": "tracked Git tree only; not runtime/app equality, failover, RPO or RTO",
+    }
+    facts["sync"]["effective_target_identity"] = target.get("effective_target_identity", "UNCONFIRMED")
+    try:
+        heartbeat = json.loads(HEARTBEAT_STATE.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        heartbeat = {"summary": "not_checked", "checked_at_utc": None}
+    facts["local_peer_monitor"] = {
+        "summary": heartbeat.get("summary", "not_checked"),
+        "checked_at_utc": heartbeat.get("checked_at_utc"),
+        "heartbeat_authenticated": False,
+        "production_peer_health_verified": False,
+        "production_dr_verified": False,
+        "failover_enabled": False,
     }
     for label, name in EVIDENCE:
         path = HERE / name
@@ -95,17 +130,41 @@ def realtime_page() -> str:
     blocking = f.get("blocking_problems")
     blocking_line = (f"<p>Blocking problems recorded in the last wiring run: "
                      f"<strong>{blocking}</strong></p>") if blocking is not None else ""
+    checkpoint = f["sync"].get("latest_scheduled_checkpoint", {})
+    dr_html = (
+        f"<p>Scheduled GitHub run <code>{_html.escape(str(checkpoint.get('workflow_run_id')))}</code> / "
+        f"check <code>{_html.escape(str(checkpoint.get('check_run_id')))}</code> at "
+        f"<code>{_html.escape(str(checkpoint.get('completed_at_utc')))}</code>: "
+        f"status <strong>{_html.escape(str(checkpoint.get('status')))}</strong>, "
+        f"<code>data_match={str(checkpoint.get('data_match')).lower()}</code>, "
+        f"primary tree <code>{_html.escape(str(checkpoint.get('primary_tree')))}</code>, "
+        f"secondary tree <code>{_html.escape(str(checkpoint.get('secondary_tree')))}</code>, "
+        f"traffic switched <code>{_html.escape(str(checkpoint.get('traffic_switched')))}</code>. "
+        f"Scope: {_html.escape(str(checkpoint.get('scope_limit')))}. "
+        f"Effective target identity: <code>{_html.escape(str(f['sync'].get('effective_target_identity')))}</code>.</p>"
+    )
+    peer = f.get("local_peer_monitor", {})
+    peer_html = (
+        f"<p>Local monitor summary <code>{_html.escape(str(peer.get('summary')))}</code> "
+        f"at <code>{_html.escape(str(peer.get('checked_at_utc')))}</code>; "
+        "authenticated heartbeat: <strong>false</strong>; production peer/DR verified: "
+        "<strong>false</strong>; failover enabled: <strong>false</strong>.</p>"
+    )
     return (
         '<meta http-equiv="refresh" content="10">'
-        '<p class="notice"><strong>Live state, re-probed on every load.</strong> This page refreshes '
-        "itself every 10 seconds, and nothing on it is cached, remembered or estimated — each line is "
-        f'measured when you load it. Checked at <strong>{f["checked_at_utc"]}</strong>.</p>'
+        '<p class="notice"><strong>Local port state is re-probed on every load.</strong> This page refreshes '
+        "itself every 10 seconds. The DR checkpoint and peer-monitor snapshot below are timestamped records, "
+        f'not live production health. Port probe checked at <strong>{f["checked_at_utc"]}</strong>.</p>'
         f'<h2>Services — {f["services_listening"]} of {f["services_total"]} listening</h2>'
         '<div class="table"><table><tbody><tr><th>Port</th><th>Service</th><th>What it serves</th>'
         f'<th>State right now</th></tr>{"".join(rows)}</tbody></table></div>'
         "<h2>Replication — what is actually running</h2>"
         f'<p>Live sync process running: <strong>{f["sync"]["live_sync_process_running"]}</strong> · '
         f'mode: <code>{f["sync"]["mode"]}</code><br>{_html.escape(f["sync"]["detail"])}</p>'
+        "<h2>Latest scheduled DR checkpoint (timestamped, tracked-tree scope)</h2>"
+        f"{dr_html}"
+        "<h2>Local peer monitor (read-only snapshot)</h2>"
+        f"{peer_html}"
         "<h2>Evidence on disk in this checkout</h2>"
         f"<ul>{evidence}</ul>"
         f"{blocking_line}"

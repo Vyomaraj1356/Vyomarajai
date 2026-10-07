@@ -19,6 +19,8 @@ Full commercial films/plays/adverts are not bundled. Provider, archive and open-
 python ops/vyomaraj-core/experience/studio_server.py --port 4176 --home film
 ```
 
+Studio binds to `127.0.0.1` only and rejects public/network bind addresses. Privileged research and owner-decision routes require action-bound owner tokens; no token issuer is configured in this checkout.
+
 Routes: `/film/`, `/reports/film`, `/reports/contents`, `/reports/`, plus the existing `/music/`, `/bhakti/` and `/pairings/` experiences.
 
 Local planner example:

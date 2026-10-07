@@ -65,3 +65,9 @@ The builder reads only the pinned metadata registry, explicit rules/ownership, t
 **Earlier baseline validation: 180 automated checks PASS** (DR 29, handover 13, Pairings 9, integrated experience/HTTP 62, research 36, active registry 28, Node 3). All **five real Chromium suites PASS**, including serial-only display, unique hierarchy identities, Education ownership, current versus historical reports and existing media/planner flows. Both rebuild checks, six app-script syntax checks, YAML syntax and diff checks pass. Previous inventory preserved byte-for-byte; canonical source hashes unchanged. No external AI/production/DR success is claimed.
 
 Directory serials run within each category; the Music/Movie experience widgets number their six local positions. These are presentation numbers, not different agent identities; the internal IDs are unchanged.
+
+## Shared capability reference (7 October 2026)
+
+The shared Panch-Brother behavior model is centralized at `config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml`, referenced through ShriYantra / Universal Knowledge Fabric, and resolved locally by `ops/vyomaraj/capability_fabric.py`. It adds no per-agent copies and grants no permissions or root authority. `python3 ops/vyomaraj/capability_fabric.py check` validates metadata only; runtime execution and production enforcement remain unimplemented/unverified.
+
+The requested 14-category / 153-slot target (six FOOD additions, five EDU additions, and fourteen Real Estate slots) is recorded in `docs/vyomaraj/context/00_MASTER_CONTEXT.md`. The current registry remains 13 / 128 / 421 until the exact supplied IDs/names are reconciled across the source, builder, tests, viewers, gates, and current documents. Historical snapshots and archives remain intact.

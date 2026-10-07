@@ -23,32 +23,35 @@ class PostPr25PackageTests(unittest.TestCase):
         self.manifest = json.loads(companion.MANIFEST.read_text())
         self.payload = companion.PACKAGE.read_bytes()
 
-    def test_package_matches_manifest_and_member_sources(self):
+    def test_package_matches_immutable_manifest_snapshot(self):
         self.assertEqual(hashlib.sha256(self.payload).hexdigest(), self.manifest['package_sha256'])
         self.assertEqual(len(self.payload), self.manifest['package_bytes'])
         with zipfile.ZipFile(io.BytesIO(self.payload)) as archive:
-            self.assertEqual(archive.namelist(), [name for name, _ in companion.MEMBERS])
-            for member in self.manifest['members']:
-                self.assertEqual(archive.read(member['archive_name']),
-                                 (companion.ROOT / member['source']).read_bytes())
+            rows = self.manifest['members']
+            self.assertEqual(archive.namelist(), [member['archive_name'] for member in rows])
+            for member in rows:
+                data = archive.read(member['archive_name'])
+                self.assertEqual(hashlib.sha256(data).hexdigest(), member['sha256'])
+                self.assertEqual(len(data), member['bytes'])
 
     def test_companion_is_a_superset_of_the_canonical_package(self):
-        with zipfile.ZipFile(io.BytesIO(self.payload)) as archive:
-            canonical_names = [name for name, _ in canonical.MEMBERS]
+        with zipfile.ZipFile(io.BytesIO(self.payload)) as archive, zipfile.ZipFile(canonical.PACKAGE) as frozen_canonical:
+            canonical_names = frozen_canonical.namelist()
             names = archive.namelist()
             self.assertEqual(names[:len(canonical_names)], canonical_names,
                              'canonical members must be the leading block of the companion')
             self.assertEqual(len(names), len(canonical_names) + len(companion.ADDITIONS))
-            for name, source in canonical.MEMBERS:
-                self.assertEqual(archive.read(name), source.read_bytes(),
-                                 f'{name} differs from the canonical package member')
+            for name in canonical_names:
+                self.assertEqual(archive.read(name), frozen_canonical.read(name),
+                                 f'{name} differs from the frozen canonical package member')
 
-    def test_rebuild_has_identical_members(self):
-        with zipfile.ZipFile(io.BytesIO(companion.build_bytes())) as rebuilt, \
-                zipfile.ZipFile(io.BytesIO(self.payload)) as committed:
-            self.assertEqual(rebuilt.namelist(), committed.namelist())
-            for name in rebuilt.namelist():
-                self.assertEqual(rebuilt.read(name), committed.read(name))
+    def test_builder_refuses_to_overwrite_the_frozen_archive(self):
+        before_package = companion.PACKAGE.read_bytes()
+        before_manifest = companion.MANIFEST.read_bytes()
+        with self.assertRaisesRegex(SystemExit, 'frozen'):
+            companion.write()
+        self.assertEqual(companion.PACKAGE.read_bytes(), before_package)
+        self.assertEqual(companion.MANIFEST.read_bytes(), before_manifest)
 
     def test_note_member_is_the_companion_note_and_not_the_canonical_note(self):
         with zipfile.ZipFile(io.BytesIO(self.payload)) as archive:

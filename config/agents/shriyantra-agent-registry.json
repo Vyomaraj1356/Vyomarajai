@@ -18,6 +18,48 @@
     "CAPACITY_AUTOSCALER",
     "AUDIT_LEARNING"
   ],
+  "shared_capabilities": [
+    {
+      "id": "UNIVERSAL_KNOWLEDGE_EVOLUTION",
+      "owner": "SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC",
+      "policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
+      "inheritance_mode": "shared_policy_reference",
+      "applies_to": [
+        "all current and future categories",
+        "all current and future agent families",
+        "all current and future sub-agents",
+        "all topics",
+        "all content items",
+        "all chapters",
+        "all products"
+      ],
+      "future_entities_inherit_by_default": true,
+      "per_entity_copy_required": false,
+      "runtime_status": "reference_contract_not_deployed"
+    },
+    {
+      "id": "HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL",
+      "owner": "SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC",
+      "policy_ref": "config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml",
+      "knowledge_policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
+      "inheritance_mode": "shared_policy_reference",
+      "applies_to": [
+        "all current and future categories",
+        "all current and future agent families",
+        "all current and future sub-agents",
+        "all topics",
+        "all content items",
+        "all chapters",
+        "all products"
+      ],
+      "future_entities_inherit_by_default": true,
+      "per_entity_copy_required": false,
+      "permission_grants_inherited": false,
+      "root_owner_authority_inherited": false,
+      "runtime_status": "local_metadata_resolver_only",
+      "production_enforcement_status": "NOT_VERIFIED"
+    }
+  ],
   "heads": [
     {
       "id": "BHARATH",
@@ -117,7 +159,15 @@
     "ENTERTAINMENT",
     "PLATFORM_SOCIAL_EARN",
     "TOUR",
-    "WAR_ROOM"
+    "WAR_ROOM",
+    "PODCAST"
+  ],
+  "planned_domains": [
+    {
+      "id": "REAL_ESTATE",
+      "status": "PENDING_EXACT_ROSTER_RECONCILIATION",
+      "note": "Master-script target only; not counted as a current registry category until its supplied IDs/names are reconciled."
+    }
   ],
   "enforcement": "Every agent uses shared Harness policy, RAG access filters, CAG context contract, MAG scope rules, Hermes integrity checks, checkpoints and audit."
 }

@@ -11,6 +11,19 @@ intelligence_fabric:
   rag: { enabled: true, source_allowlist_required: true, access_filter_before_retrieval: true, provenance_required: true, retrieved_content_is_untrusted: true, support_reindex_and_quarantine: true }
   cag: { enabled: true, assemble: [policy, task, role, checkpoint, authorized_memory, rag_evidence], version_templates: true, token_budget_required: true, preserve_critical_constraints: true }
   mag: { enabled: true, memory_classes: [episodic, semantic, procedural], provenance_required: true, scope_by: [tenant, project, agent, sensitivity], promote_only_validated_findings: true, retention_and_correction_supported: true }
+  temporal_knowledge:
+    policy_id: UNIVERSAL_KNOWLEDGE_EVOLUTION_V1
+    policy_ref: config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json
+    owner: SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC
+    inheritance_mode: shared_policy_reference
+    cascade_to: [ALL_CATEGORIES, ALL_AGENTS, ALL_SUBAGENTS, ALL_TOPICS, ALL_CONTENT, ALL_CHAPTERS, ALL_PRODUCTS, FUTURE_ENTITIES]
+    per_entity_copy_required: false
+    future_entities_inherit_by_default: true
+    required_layers: [primitive_origin, old, historical_evolution, history, present, current_state, trends, future, possible_futures]
+    evidence_classes: [FACT, HISTORICAL_RECORD, CURRENT_VERIFIED_STATE, TREND, FORECAST, SCENARIO, SPECULATION, UNKNOWN_UNVERIFIED]
+    provenance_required_at_claim_level: true
+    future_layer_factual_classes_forbidden: [FACT, HISTORICAL_RECORD, CURRENT_VERIFIED_STATE, TREND]
+    runtime_status: reference_contract_not_deployed
 arena: { role: delegated_multi_agent_execution_runtime, ultimate_authority: SHRIYANTRA_HARNESS, adapter_required: true, api_contract: VYOMARAJ_ARENA_TASK_V1, require_task_id: true, require_idempotency_key: true, require_checkpoint: true, require_evidence_references: true, secrets_in_task_context: false }
 heads:
   bharath: { alias: VYOMARAJ, role: peer_autonomous_head }

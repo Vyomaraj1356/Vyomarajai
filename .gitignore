@@ -1,7 +1,8 @@
-# Generated Python files and local validation outputs
+# Generated Python files, local validation environments, and local validation outputs
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.venv/
 dr-evidence.json
 
 # New private/local configuration (legacy tracked files need separate review)

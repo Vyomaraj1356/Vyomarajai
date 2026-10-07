@@ -15,7 +15,7 @@ import verify_live_wiring as wiring
 
 class RouteContractTests(unittest.TestCase):
     def test_every_advertised_route_is_actually_served(self):
-        served = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS)
+        served = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS) | set(viewer.DYNAMIC_REPORTS)
         for route in wiring.VIEWER_ROUTES:
             self.assertIn(route, served, f'{route} is checked by the verifier but not served')
 
@@ -40,7 +40,8 @@ class RouteContractTests(unittest.TestCase):
         # The replicas serve their own route table and also consult the shared renderer's
         # allowlists, so a route counts as served if either place knows it.
         studio = (wiring.CORE / 'experience/studio_server.py').read_text(encoding='utf-8')
-        known = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS) | set(viewer.DOWNLOADS)
+        known = (set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS) |
+                 set(viewer.DYNAMIC_REPORTS) | set(viewer.DOWNLOADS))
         for route in wiring.REPLICA_ROUTES:
             with self.subTest(route=route):
                 self.assertTrue(route in studio or route in known,
@@ -92,6 +93,45 @@ class FailureReportingTests(unittest.TestCase):
         self.assertIn('content marker', problems[0])
 
 
+class ApkSigningBlockTests(unittest.TestCase):
+    @staticmethod
+    def make_apk_region(pair_ids):
+        import struct
+        pairs = b''.join(struct.pack('<Q', 4) + struct.pack('<I', pair_id)
+                         for pair_id in pair_ids)
+        size = len(pairs) + 24  # pair data + repeated size + 16-byte magic
+        block = struct.pack('<Q', size) + pairs + struct.pack('<Q', size) + wiring.APK_SIGNING_MAGIC
+        prefix = b'zip-local-file-data'
+        data = prefix + block + b'central-directory'
+        return data, len(prefix) + len(block)
+
+    def test_v2_signature_pair_is_detected_without_claiming_verification(self):
+        data, offset = self.make_apk_region([0x7109871A, 0x42726577])
+        result = wiring.parse_apk_signing_block(data, offset)
+        self.assertTrue(result['present'])
+        self.assertTrue(result['structure_valid'])
+        self.assertEqual(result['signature_schemes'], ['v2'])
+        self.assertIn('0x42726577', result['pair_ids'])
+
+    def test_malformed_pair_is_not_treated_as_a_valid_signature_block(self):
+        import struct
+        data, offset = self.make_apk_region([0x7109871A])
+        mutable = bytearray(data)
+        block_start = offset - struct.unpack_from('<Q', data, offset - 24)[0] - 8
+        struct.pack_into('<Q', mutable, block_start + 8, 0xFFFFFFFF)
+        result = wiring.parse_apk_signing_block(mutable, offset)
+        self.assertTrue(result['present'])
+        self.assertFalse(result['structure_valid'])
+        self.assertEqual(result['error'], 'invalid_pair_length')
+        self.assertEqual(result['signature_schemes'], [])
+
+    def test_missing_signing_block_is_reported_as_absent(self):
+        data = b'ordinary zip data with no signing footer'
+        result = wiring.parse_apk_signing_block(data, len(data))
+        self.assertFalse(result['present'])
+        self.assertFalse(result['structure_valid'])
+
+
 class TruthfulnessTests(unittest.TestCase):
     def test_enrollment_is_reported_absent_until_code_exists(self):
         state = wiring.check_enrollment()
@@ -106,12 +146,16 @@ class TruthfulnessTests(unittest.TestCase):
         self.assertFalse(state['git_snapshot_dr_covers_runtime_databases'])
         self.assertTrue(state['backup_required_before_launch'])
 
-    def test_unsigned_apk_is_reported_as_not_installable(self):
+    def test_apk_v2_material_is_not_misreported_as_unsigned_or_verified(self):
         state = wiring.check_apk([])
         if not state['present']:
             self.fail('Vyomaraj-App.apk is missing from the repository')
-        if not state['signed']:
-            self.assertIn('NOT INSTALLABLE', state['install_claim'])
+        self.assertTrue(state['apk_signing_block']['present'])
+        self.assertTrue(state['apk_signing_block']['structure_valid'])
+        self.assertIn('v2', state['apk_signing_block']['signature_schemes'])
+        self.assertTrue(state['signature_material_present'])
+        self.assertFalse(state['signature_cryptographically_verified'])
+        self.assertIn('INSTALLATION UNVERIFIED', state['install_claim'])
         self.assertFalse(state['rebuildable_from_this_repository'])
         self.assertEqual(state['bytes'], len((wiring.ROOT / state['path']).read_bytes()))
 
@@ -120,10 +164,16 @@ class TruthfulnessTests(unittest.TestCase):
         if not state_path.is_file():
             self.skipTest('verifier has not been run in this checkout yet')
         recorded = json.loads(state_path.read_text(encoding='utf-8'))
-        self.assertEqual([row['route'] for row in recorded['viewer_routes']],
-                         list(wiring.VIEWER_ROUTES))
-        self.assertEqual([row['route'] for row in recorded['gateway_routes']],
-                         list(wiring.VIEWER_ROUTES))
+        # This JSON is the timestamped 06:11 route snapshot, so newly added 7 October routes must
+        # not be backfilled into its historical result. Verify its original routes remain allowlisted
+        # and ordered; current additions are independently covered by RouteContractTests above.
+        for key in ('viewer_routes', 'gateway_routes'):
+            recorded_routes = [row['route'] for row in recorded[key]]
+            self.assertTrue(recorded_routes)
+            self.assertEqual(recorded_routes,
+                             [route for route in wiring.VIEWER_ROUTES if route in set(recorded_routes)])
+        self.assertIn('/reports/integration-audit', wiring.VIEWER_ROUTES)
+        self.assertIn('/reports/peer-architecture', wiring.VIEWER_ROUTES)
         self.assertIn('limitations', recorded)
         self.assertTrue(recorded['advisory'])
 

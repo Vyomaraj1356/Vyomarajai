@@ -1,6 +1,6 @@
 # Vyomaraj / Jarvis Research Desk
 
-Metadata discovery and local human review, **not media downloading, autonomous publishing or a production AI service**. Standard-library Python; no pip dependencies. Uses existing Music/Movie slots as **proposed** functions, canonical names **UNKNOWN**. No canonical registry or editorial-pack writes.
+Metadata discovery and local human review, **not media downloading, autonomous publishing or a production AI service**. Discovery itself uses standard-library Python; cryptographic verification of privileged owner tokens requires the declared `cryptography` dependency. Uses existing Music/Movie slots as **proposed** functions, canonical names **UNKNOWN**. No canonical registry or editorial-pack writes.
 
 ## Run
 
@@ -15,7 +15,7 @@ python ops/vyomaraj-core/research/discovery.py export --output research-candidat
 python -m unittest discover -s ops/vyomaraj-core/research -p 'test_*.py' -v
 ```
 
-The preview's daemon worker consumes queued jobs while that process is running. It does **not** enqueue daily searches itself. CLI `run` enqueues and drains pending jobs; status/export do not call external providers. Exit code **2** means a requested/processed job is partial, blocked, failed or still queued/running elsewhere, not an all-provider success. Reusing an earlier blocked job never becomes a false zero-work success. Local database: ignored `.state/discovery.sqlite3`. Export is metadata-only JSON; neither an encoded video nor licensed media. Do not serve the repository directory with a generic file server.
+The studio binds to **127.0.0.1 only** and rejects network/public binds. Its research worker is **not** started by default; queued jobs are processed only when an operator explicitly adds `--enable-research-worker`. A worker can fetch provider metadata, so enable it only after reviewing the fixed profiles, source terms, and owner-auth configuration. Research enqueue/review writes require short-lived action-bound owner tokens; this checkout has no trusted token issuer configured, so those routes fail closed. CLI `run` enqueues and drains pending jobs; status/export do not call external providers. Exit code **2** means a requested/processed job is partial, blocked, failed or still queued/running elsewhere, not an all-provider success. Reusing an earlier blocked job never becomes a false zero-work success. Local database: ignored `.state/discovery.sqlite3`. Export is metadata-only JSON; neither an encoded video nor licensed media. Do not serve the repository directory with a generic file server.
 
 ## Configured adapters and actual observations, 3 October 2026
 
@@ -67,7 +67,7 @@ export VYOMARAJ_OLLAMA_URL=http://127.0.0.1:11434
 export VYOMARAJ_OLLAMA_MODEL='<operator-approved-installed-model>'
 ```
 
-Use the real model tag in place of the placeholder. Restart the studio after changing its process environment. Local endpoints are allowlisted to loopback or the corresponding Compose service hostname, on ports 8080/11434; arbitrary remote endpoints, credentials in URLs and redirects are refused. Browser requests remain same-origin `/api/research/...`; these loopback addresses are **server-side only**. No cloud-provider keys are requested or configured. Never expose these unauthenticated services directly through public ingress.
+Use the real model tag in place of the placeholder. Restart the studio after changing its process environment. Local endpoints are allowlisted to loopback or the corresponding Compose service hostname, on ports 8080/11434; arbitrary remote endpoints, credentials in URLs and redirects are refused. Browser requests remain same-origin `/api/research/...`; these loopback addresses are **server-side only**. No cloud-provider keys are requested or configured. The studio itself rejects non-loopback binds; do not weaken this control or expose writer routes through public ingress. Start the worker only by explicitly adding `--enable-research-worker` after its authorization and provider configuration have been independently reviewed.
 
 Ollama can produce **one** capped advisory note per job, from title/date/source URL, with structured JSON and no tools. Metadata is untrusted prompt content. Parsing is strict, extra action fields are rejected, displayed text is escaped, and a note cannot approve rights, change a canonical agent, publish or execute code. This reduces consequences of prompt injection; it does not make AI output factually trustworthy. A configured model or URL is not a successful connection.
 
@@ -85,7 +85,7 @@ Provider + stable-record-ID de-duplication preserves different editions and sour
 
 `pending_review → accepted_metadata_only / rejected` affects only this queue. Every record retains `rights_status=UNKNOWN`, `availability=NOT_VERIFIED`, `media_url=null`. Acceptance never adds a record to published editorial packs. Sources and dates are claims; reviewers must confirm originals, editions, countries, item licences, third-party rights and provider metadata-use terms. No whole movie, recording, play text or paywall bypass exists.
 
-Same-origin JSON POSTs, closed fields, server-owned profiles, bounded requests and SQLite placeholders protect the local API. Review events are timestamped but **not authenticated/signed decisions**; do not treat the public preview as a multi-user production approval system. API responses and exports are plaintext-safe metadata; no legacy environment, device, Hanuman/runtime or `.git` files are read/served. Queue DB, operator `.env` and result exports stay out of Git.
+Same-origin JSON POSTs, closed fields, server-owned profiles and bounded requests protect the local API. `/api/research/run` and `/api/research/review` require Ed25519 owner approvals bound to the exact action and JSON payload; requests use a request-scoped bearer token, never a process-wide token. The replay directory must be persistent/shared for more than one worker. The separate approvals desk consumes its JTI in the same private SQLite transaction as the status change and appends a locally verifiable hash-chained audit event. No owner identity provider, owner key, security epoch or replay directory is provisioned in this checkout, so privileged calls fail closed. This is a single-host local control slice—not a production/multi-host approval system. API responses and exports are metadata-only; no legacy environment, device, Hanuman/runtime or `.git` files are read/served. Queue DB, owner key material, operator `.env` and result exports stay out of Git.
 
 ## Validation on 3 October 2026
 

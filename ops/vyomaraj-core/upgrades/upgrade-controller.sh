@@ -6,8 +6,8 @@
 # and continues on the current version if any verification fails.
 #
 # This script never contains secrets, never pushes, never restarts a live service and never
-# deletes history. Every stage is logged; the permission gate is a file the owner writes by
-# hand (APPROVED or REJECTED). Run with --dry-run (default) to see the plan only.
+# deletes history. The text-file gate is not authenticated and is not accepted. --execute is
+# intentionally blocked until a verified owner-token and transactional deployment adapter exist.
 set -euo pipefail
 
 MODE="${1:---dry-run}"
@@ -21,35 +21,28 @@ log() { printf '%s | %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" | tee -a "$LOG_
 stage() { log "STAGE $1: $2"; }
 
 require_owner_permission() {
-  if [[ ! -f "$GATE_FILE" ]]; then
-    log "GATE: $GATE_FILE absent — change stays PENDING_OWNER_PERMISSION. Nothing is applied."
-    exit 0
-  fi
-  if grep -q '^APPROVED by Deepak Goyal' "$GATE_FILE"; then
-    log "GATE: owner permission APPROVED found."
-  elif grep -q '^REJECTED' "$GATE_FILE"; then
-    log "GATE: owner REJECTED the change. Current version continues; nothing is applied."
-    exit 0
-  else
-    log "GATE: $GATE_FILE must contain 'APPROVED by Deepak Goyal' or 'REJECTED'. Nothing is applied."
-    exit 1
-  fi
+  log "BLOCKED: plaintext files are not owner authentication; no signed approval was accepted."
+  exit 4
 }
 
 engage_backup_plan() {
   log "FAILURE at stage: $1"
-  log "BACKUP PLAN ENGAGED: roll back to the snapshot; continue with the current version."
-  log "Current version keeps serving. Version control retains the full history."
+  log "ROLLBACK NOT EXECUTED: this plan-only script has no authenticated process adapter."
+  log "Current service health and business impact are UNKNOWN; operator verification is required."
   exit 2
 }
 
 [[ "$MODE" == "--execute" || "$MODE" == "--dry-run" ]] || { echo "usage: $0 [--dry-run|--execute]" >&2; exit 64; }
-[[ "$MODE" == "--dry-run" ]] && log "DRY-RUN: stages are printed; nothing is applied."
+if [[ "$MODE" == "--execute" ]]; then
+  echo "BLOCKED: authenticated owner approval, transactional execution, and real rollback adapters are not configured. No snapshot, test, service, or repository mutation was performed." >&2
+  exit 4
+fi
+log "DRY-RUN: stages are proposals only; no owner approval, branch, test, service action, or rollback is performed."
 
-stage 1 "intake — owner instruction only (authority: ShriYantra)"
-stage 2 "alignment — Vyomaraj/Bharath and Jarvis/Laxman align with ShriYantra"
-stage 3 "coordination — inform every affected agent; no silent behaviour changes"
-stage 4 "version control — change rides a dedicated branch; no history deleted"
+stage 1 "intake — local instruction proposal; owner identity is not inferred"
+stage 2 "alignment — a trusted ShriYantra owner approval would be required"
+stage 3 "coordination — affected agents are proposed for review; none are contacted"
+stage 4 "version control — proposed branch only; no branch is created and no history is changed"
 
 if [[ "$MODE" == "--execute" ]]; then
   stage 5 "backup first — snapshot the current running version"
@@ -72,10 +65,10 @@ if [[ "$MODE" == "--execute" ]]; then
   log "NOTE: the actual application step is executed by the deployment owner; this controller stops at the gate."
   stage 8 "post-upgrade verification — any failure engages the backup plan"
 else
-  stage 5 "separate testing — (dry-run) offline suites would run here"
-  stage 6 "permission gate — (dry-run) $GATE_FILE would be checked here"
-  stage 7 "upgrade — (dry-run) snapshot first, apply, verify health"
-  stage 8 "post-upgrade verification — (dry-run) backup plan is rollback-ready"
+  stage 5 "separate testing — not run by this dry-run"
+  stage 6 "permission gate — requires a signed request-scoped owner approval; plaintext gate files are not accepted"
+  stage 7 "upgrade — blocked; no transactional deployment adapter or snapshot/restore integration exists"
+  stage 8 "post-upgrade verification — no runtime change occurred; rollback is not executed or verified"
 fi
 
-log "DONE: change lifecycle completed without touching the running business."
+log "DONE: plan printed only; no owner decision, tests, deployment, notification, or rollback occurred."

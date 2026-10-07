@@ -6,7 +6,7 @@ Scope: what the repository's own current metadata records about **inheritance** 
 
 ## 1. Structural inheritance — agent registry
 
-Status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-03). Source snapshot: `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json`.
+Status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-07). Source snapshot: `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json`.
 
 | Category | Counted sub-agents | Named | Name UNKNOWN | Source-reported (historical) | Products (historical) |
 |---|---|---|---|---|---|

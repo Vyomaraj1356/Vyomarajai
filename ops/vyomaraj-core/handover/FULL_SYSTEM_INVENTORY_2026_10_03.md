@@ -2,6 +2,8 @@
 
 **Current structure: 13 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**
 
+**7 October 2026 metadata alignment:** shared capability policy reference added; taxonomy counts and historical product aggregate are unchanged.
+
 This is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.
 
 ## Integrated viewers
@@ -24,7 +26,7 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 
 # Current Agent Reconciliation
 
-**3 October 2026 · owner-approved structure · not a deployment claim**
+**7 October 2026 additive metadata alignment · owner-approved structure · not a deployment claim**
 
 ## Applied decisions
 
@@ -50,6 +52,18 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 | Reported products | 421 | Reallocation / unique total UNRECONCILED |
 
 The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 128. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.
+
+## Universal Knowledge Evolution inheritance
+
+- The active registry attaches one shared policy reference (`config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json`) to all **13 categories** and **128 counted agents**; it is not copied into individual agent records.
+- The bounded content index applies the same reference to **197 indexed references**. Topics, content, chapters, products, and future entities inherit by the policy default rather than manual per-agent edits.
+- Policy status: `reference_contract_not_deployed`. This is not evidence of production runtime enforcement or a live shared Vyomaraj/Jarvis store.
+
+## Panch-Brother capability inheritance
+
+- The five shared behavioral domains resolve by reference from `config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml` through ShriYantra's Universal Knowledge Fabric; no individual agent copies are maintained.
+- Domains describe behavior, not permissions. Grants remain owner-approved and deny-by-default; root-owner authority, self-elevation, provider access, publishing, spending, failover, and deployment authority are never inherited.
+- `ops/vyomaraj/capability_fabric.py` is a read-only local metadata resolver. It does not run agents or enforce production permissions; runtime enforcement remains NOT VERIFIED.
 
 ## Current main-agent inventory
 

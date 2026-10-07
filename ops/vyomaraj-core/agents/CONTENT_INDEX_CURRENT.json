@@ -1,6 +1,68 @@
 {
   "schema_version": 1,
   "scope": "Current indexed references, not the complete historical 421 products or an exhaustive archive-content audit.",
+  "shared_knowledge_inheritance": {
+    "policy_id": "UNIVERSAL_KNOWLEDGE_EVOLUTION_V1",
+    "policy_version": 1,
+    "owner": "SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC",
+    "policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
+    "inheritance_mode": "shared_policy_reference",
+    "entity_types": [
+      "category",
+      "agent",
+      "sub_agent",
+      "topic",
+      "content",
+      "chapter",
+      "product"
+    ],
+    "future_entities_inherit_by_default": true,
+    "per_entity_copy_required": false,
+    "current_coverage": {
+      "category_count": 13,
+      "agent_count": 128,
+      "mode": "all_current_registry_entries_inherit_by_reference",
+      "indexed_content_reference_count": 197,
+      "content_inheritance_mode": "inherited_by_shared_reference"
+    },
+    "runtime_status": "reference_contract_not_deployed"
+  },
+  "shared_capability_inheritance": {
+    "model_id": "HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL",
+    "model_ref": "config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml",
+    "shriyantra_registry_ref": "config/agents/shriyantra-agent-registry.json",
+    "owner": "SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC",
+    "policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
+    "inheritance_mode": "shared_policy_reference",
+    "capability_domain_ids": [
+      "MATIMAN",
+      "SHRUTIMAN",
+      "KETUMAN",
+      "GATIMAN",
+      "DHRITIMAN"
+    ],
+    "entity_types": [
+      "category",
+      "agent",
+      "sub_agent",
+      "topic",
+      "content",
+      "chapter",
+      "product"
+    ],
+    "future_entities_inherit_by_default": true,
+    "per_entity_copy_required": false,
+    "permission_grants_inherited": false,
+    "root_owner_authority_inherited": false,
+    "current_coverage": {
+      "category_count": 13,
+      "agent_count": 128,
+      "mode": "all_current_registry_entries_resolve_one_shared_reference",
+      "indexed_content_reference_count": 197
+    },
+    "runtime_status": "LOCAL_READ_ONLY_METADATA_RESOLVER_ONLY",
+    "production_enforcement_status": "NOT_VERIFIED"
+  },
   "records": [
     {
       "id": "EDU-TOPIC-government-schemes",

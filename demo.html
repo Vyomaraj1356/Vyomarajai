@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091323">
+  <meta name="description" content="A bounded deterministic Vyomaraj planner demo. No AI call, network search, save, notification, or publishing.">
+  <title>Local Planner Demo · Vyomaraj</title>
+  <link rel="stylesheet" href="./launch.css">
+  <link rel="stylesheet" href="./demo.css">
+  <script src="./demo.js" defer></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="./index.html" aria-label="Vyomaraj home">
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span><strong>VYOMARAJ</strong><small>The King of the Sky</small></span>
+    </a>
+    <nav aria-label="Primary"><a href="./">Home</a><a href="#content-library">Content library</a><a href="#planner">Planner demo</a></nav>
+  </header>
+  <main class="wrap demo-main">
+    <section class="demo-heading">
+      <p class="eyebrow">LIVE SANDBOX DEMO · NOT PRODUCTION</p>
+      <h1>Plan locally.<br><em>Keep the gates.</em></h1>
+      <p>Browse real entries from the checked-in Bhakti-Shakti and Roots &amp; Pairings packs, then build a local plan with sources and review gates. This session-scoped preview is not a production deployment.</p>
+      <div class="demo-badges"><span>No model / AI call</span><span>No automatic external calls</span><span>No saving or publishing</span><span>No owner data</span></div>
+    </section>
+
+    <section id="content-library" class="demo-card" aria-labelledby="library-title">
+      <div class="section-heading">
+        <p class="eyebrow">REAL CHECKED-IN CONTENT DATA</p>
+        <h2 id="library-title">Browse the local library</h2>
+        <p>These cards load from the two repository content packs and show their current review/source state. Source websites open only if you choose a citation link; this page makes no automatic external calls.</p>
+        <p class="catalog-origin">Local data files: <code>ops/vyomaraj-core/bhakti-experience/content.json</code> and <code>ops/vyomaraj-core/liquor-bar/content.json</code>.</p>
+      </div>
+      <div class="library-controls">
+        <label>Content pack
+          <select id="catalog-experience">
+            <option value="bhakti">Bhakti-Shakti</option>
+            <option value="liquor-bar">Roots &amp; Pairings</option>
+          </select>
+        </label>
+        <label>Filter entries
+          <input id="catalog-search" type="search" maxlength="100" autocomplete="off" placeholder="Search titles, regions or ingredients">
+        </label>
+      </div>
+      <p id="catalog-status" role="status" aria-live="polite">Loading the checked-in content pack…</p>
+      <div id="catalog-meta" class="catalog-meta"></div>
+      <div id="catalog-grid" class="content-grid"></div>
+      <ul id="catalog-gates" class="catalog-gates"></ul>
+    </section>
+
+    <section id="planner" class="demo-card" aria-labelledby="planner-title">
+      <div class="section-heading">
+        <p class="eyebrow">DETERMINISTIC LOCAL PLANNER</p>
+        <h2 id="planner-title">Create a local plan</h2>
+        <p>Choose from the fixed local experiences. Use a known topic ID or <code>overview</code>. Do not enter names, contact details, secrets, health data, or other sensitive information.</p>
+      </div>
+      <form id="plan-form">
+        <label>Experience
+          <select id="experience" name="experience">
+            <option value="bhakti">Bhakti-Shakti</option>
+            <option value="liquor-bar">Roots &amp; Pairings</option>
+          </select>
+        </label>
+        <label>Topic ID
+          <input id="topic-id" name="topic_id" value="overview" maxlength="100" autocomplete="off" required>
+          <small>Examples: overview, sati-daksha, kamakhya, tadi-local</small>
+        </label>
+        <label>Optional recipe
+          <select id="recipe-id" name="recipe_id"><option value="">No recipe</option></select>
+        </label>
+        <div class="demo-fields">
+          <label>Mode
+            <select id="mode" name="mode"><option>3d</option><option>4d</option><option>5d</option></select>
+          </label>
+          <label>Diet
+            <select id="diet" name="diet">
+              <option value="all">No diet filter</option><option value="plant-based">Plant-based</option>
+              <option value="vegetarian">Vegetarian</option><option value="pescatarian">Pescatarian</option>
+            </select>
+          </label>
+        </div>
+        <button id="plan-button" class="button button-primary" type="submit">Build local plan</button>
+      </form>
+      <p id="plan-status" role="status" aria-live="polite">Ready. The request stays on this same-origin preview. Neither the request nor the result is stored.</p>
+    </section>
+
+    <section id="result" class="result-card" hidden aria-labelledby="result-title">
+      <div class="result-header"><div><p class="eyebrow">LOCAL OUTPUT · NO EXTERNAL ACTION</p><h2 id="result-title">Plan result</h2></div><button id="copy-json" class="button button-secondary" type="button">Copy JSON</button></div>
+      <div id="plan-summary" class="plan-summary"></div>
+      <div class="result-columns"><section><h3>Evidence references</h3><ul id="sources"></ul></section><section><h3>Review gates</h3><ul id="gates"></ul></section></div>
+      <details><summary>Full deterministic response</summary><pre id="plan-json"></pre></details>
+    </section>
+
+    <aside class="demo-notice" aria-label="Scope notice">
+      <strong>What this is:</strong> an implemented local rule-based planner and HTTP route.
+      <strong>What it is not:</strong> an AI model, autonomous agent, provider connection, live content search, approved owner identity, notification, database-backed queue, publication, or production deployment.
+      Every plan remains unapproved and its category/agent mappings retain their repository status.
+    </aside>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-row"><a class="brand footer-brand" href="./index.html"><span class="brand-mark" aria-hidden="true">V</span><span><strong>VYOMARAJ</strong><small>The King of the Sky</small></span></a><p>Local deterministic planner · no AI or production activity</p><span class="footer-note">Sandbox demo only</span></div></footer>
+</body>
+</html>

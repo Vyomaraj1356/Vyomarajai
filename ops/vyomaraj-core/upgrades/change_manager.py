@@ -49,19 +49,23 @@ def plan_change(instruction, path=CONTENT_PATH):
         'change_id': f'CHG-{slug[:40]}',
         'instruction': text, 'kind': kind,
         'authority_chain': {
-            'owner': 'Deepak Goyal — Owner (authority: ShriYantra)',
-            'alignment': 'Vyomaraj/Bharath and Jarvis/Laxman align with ShriYantra before planning',
+            'owner': 'Configured owner identity — not inferred from this local plan',
+            'alignment': 'A trusted ShriYantra owner approval is required before a privileged action',
             'arena_role': 'executes approved tasks; not the owner and not the authority root',
-            'shriyantra_aligned': True},
+            'shriyantra_aligned': False,
+            'owner_approval_verified': False},
         'coordination': {
             'coordinators': ['Vyomaraj/Bharath (central intelligence)', 'Jarvis/Laxman (coordination)'],
-            'affected_agents': agents or ['all agents are informed of the change'],
-            'affected_lanes': lanes or ['lane owners confirm scope'],
-            'agents_coordinated': True},
+            'affected_agents': agents or ['all agents are proposed for review'],
+            'affected_lanes': lanes or ['lane owners proposed for scope review'],
+            'agents_coordinated': False,
+            'notifications_sent': False},
         'version_control': {
             'branch': f'upgrade/{slug[:30]}',
+            'branch_status': 'proposed_name_not_created',
             'rule': data['policy']['version_control'],
-            'commits_required': 'each change is committed on the branch with a reviewable history',
+            'commits_required': 'future changes require reviewed commits on an owner-approved branch',
+            'branch_created': False,
             'history_deleted': False},
         'testing_plan': [{'stage': s['stage'], 'name': s['name'], 'rule': s['rule'],
                           'result': 'pending_separate_execution'}
@@ -84,42 +88,55 @@ def plan_change(instruction, path=CONTENT_PATH):
     return record
 
 
-def apply_permission(record, decision, path=CONTENT_PATH):
-    """The owner decides on a planned change. Nothing is applied by this function."""
+def apply_permission(record, decision, *, decided_by, path=CONTENT_PATH):
+    """Record the verified owner's planning decision; no branch, schedule or runtime changes."""
     if not isinstance(record, dict) or record.get('status') != 'change_planned_awaiting_owner_permission':
         raise InvalidChange('Only a planned change awaiting permission can be decided.')
+    if not isinstance(decided_by, str) or not decided_by.strip() or len(decided_by) > 200:
+        raise InvalidChange('A verified owner subject is required.')
     if decision == 'approve':
-        return {**record, 'status': 'upgrade_scheduled_with_rollback_ready',
+        return {**record, 'status': 'owner_approved_change_plan_not_applied',
                 'permission_gate': {**record['permission_gate'],
-                                    'status': 'OWNER_APPROVED',
-                                    'decided_by': 'Deepak Goyal — Owner (authority: ShriYantra)'},
+                                    'status': 'OWNER_APPROVED_PLAN_ONLY',
+                                    'decided_by': decided_by.strip(),
+                                    'authentication': 'verified_owner_subject_via_ShriYantra'},
+                'authority_chain': {**record['authority_chain'],
+                                    'shriyantra_aligned': True,
+                                    'owner_approval_verified': True},
+                'scheduling_status': 'NOT_SCHEDULED_RUNTIME_ADAPTER_UNAVAILABLE',
                 'applied': False, 'live_system_touched': False,
                 'decided_at_utc': datetime.now(timezone.utc).isoformat()}
     if decision == 'reject':
-        return {**record, 'status': 'not_applied_current_version_continues',
+        return {**record, 'status': 'owner_rejected_change_plan_not_applied',
                 'permission_gate': {**record['permission_gate'],
                                     'status': 'OWNER_REJECTED',
-                                    'decided_by': 'Deepak Goyal — Owner (authority: ShriYantra)'},
+                                    'decided_by': decided_by.strip(),
+                                    'authentication': 'verified_owner_subject_via_ShriYantra'},
+                'authority_chain': {**record['authority_chain'],
+                                    'shriyantra_aligned': True,
+                                    'owner_approval_verified': True},
                 'applied': False, 'rolled_back': False, 'live_system_touched': False,
                 'decided_at_utc': datetime.now(timezone.utc).isoformat()}
     raise InvalidChange('Decision must be approve or reject.')
 
 
 def report_failure(record, stage, path=CONTENT_PATH):
-    """A post-upgrade verification failed: the backup plan engages and the current version continues."""
-    if not isinstance(record, dict) or record.get('status') != 'upgrade_scheduled_with_rollback_ready':
-        raise InvalidChange('Only a scheduled upgrade can report a failure.')
-    if not isinstance(stage, str) or not stage:
-        raise InvalidChange('State the failing stage.')
+    """Prepare a rollback recommendation. This planner cannot execute a rollback."""
+    if not isinstance(record, dict) or record.get('status') != 'owner_approved_change_plan_not_applied':
+        raise InvalidChange('Only an owner-approved planning record can prepare a rollback recommendation.')
+    if not isinstance(stage, str) or not 1 <= len(stage) <= 200:
+        raise InvalidChange('State the failing stage in 1–200 characters.')
     data = _load(path)
     return {
-        'schema_version': 1, 'status': 'backup_plan_engaged_rolled_back',
+        'schema_version': 1, 'status': 'rollback_plan_prepared_not_executed',
         'change_id': record['change_id'], 'failed_stage': stage,
-        'action': 'rollback to the snapshotted previous version; continue with the current version',
-        'rollback_plan': {**data['rollback_plan'], 'engaged': True},
-        'business_impact': 'none claimed by planning alone — the current version keeps serving while the change is repaired',
-        'history': 'version control retains the full history; no commit is deleted',
-        'owner_notified': {'policy': 'Vyomaraj and Jarvis always notify the owner', 'sent': False},
+        'action': 'No service action was taken. An operator must verify the live version and execute an approved rollback procedure.',
+        'rollback_plan': {**data['rollback_plan'], 'engaged': False,
+                          'execution_status': 'NOT_EXECUTED'},
+        'business_impact': 'UNKNOWN_NOT_CHECKED_BY_THIS_PLANNER',
+        'history': 'No repository history was changed by this planner.',
+        'rolled_back': False,
+        'owner_notified': {'policy': 'Notifications are not configured in this local planner.', 'sent': False},
         'reported_at_utc': datetime.now(timezone.utc).isoformat(),
     }
 

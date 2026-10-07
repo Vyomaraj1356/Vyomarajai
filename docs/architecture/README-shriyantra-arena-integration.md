@@ -2,7 +2,12 @@
 
 ## Included
 - `docs/architecture/shriyantra-rag-cag-mag-arena.md`: shared architecture and safety contract.
-- `config/intelligence/shriyantra-rag-cag-mag.yaml`: cascading RAG/CAG/MAG and resilience configuration.
+- `docs/architecture/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE.md`: global temporal-knowledge, evidence-classification, provenance, and inheritance contract.
+- `docs/architecture/HANUMAN_PANCH_BROTHER_INTEGRATION.md`: five shared behavioral domains and their non-authority boundary.
+- `config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml` and `ops/vyomaraj/capability_fabric.py`: shared reference model plus a local read-only resolver; neither grants permission nor proves runtime enforcement.
+- `config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json`: canonical machine-readable policy shared by reference, not copied per agent.
+- `ops/shriyantra/knowledge_evolution.py`: offline reference resolver and structured-record guard; not a production runtime integration.
+- `config/intelligence/shriyantra-rag-cag-mag.yaml`: cascading RAG/CAG/MAG, temporal knowledge, and resilience configuration.
 - `config/agents/shriyantra-agent-registry.json`: shared services, peer heads, agent families and domain mesh.
 - `ops/shriyantra/shriyantra-arena.py`: runnable safe reference CLI for health, checkpoints and task-envelope generation.
 
@@ -34,10 +39,16 @@ The trusted ShriYantra control plane must issue a short-lived EdDSA-signed JWT a
 - `VYOMARAJ_AUTH_ISSUER` and `VYOMARAJ_AUTH_AUDIENCE`: exact trusted issuer and audience.
 - `VYOMARAJ_SECURITY_EPOCH`: current revocation/security epoch; increment it when invalidating outstanding approvals.
 - `VYOMARAJ_AUTHZ_REPLAY_DIR`: persistent shared directory with atomic create semantics to prevent approval reuse across workers.
-- `VYOMARAJ_AUTHZ_TOKEN`: short-lived, exact-action approval token injected securely by the control plane; never print or log it.
+- `VYOMARAJ_AUTHZ_TOKEN`: retained only for trusted command-line callers. HTTP handlers must not read this process-wide token; they require a request-scoped `Authorization: Bearer …` header.
 - `VYOMARAJ_ARENA_ADAPTER` and `VYOMARAJ_ARENA_ADAPTER_SHA256`: reviewed adapter path and its pinned SHA-256 digest.
 
-Approval claims must include `sub`, `iss`, `aud`, `iat`, `exp`, unique `jti`, exact `action=arena.execute`, the SHA-256 target hash for the exact task/head/risk tuple, `scope` containing `arena.execute`, current `security_epoch`, `authn=webauthn` or `passkey`, and `step_up=true` for HIGH risk. The runner consumes the `jti` once. A per-machine replay directory is not sufficient for a multi-worker deployment; use shared atomic storage or a central consume-once API.
+### Local studio owner-gate slice
+
+`ops/vyomaraj-core/experience/studio_server.py` now defaults to `127.0.0.1`, rejects non-loopback binds, and does not start the research worker unless `--enable-research-worker` is explicitly supplied. Research enqueue/review, owner approval decisions, and change-plan approval/failure endpoints require a short-lived Ed25519 owner token bound to the exact action and canonical JSON payload. `approval.decide`, `upgrade.approve`, and `upgrade.report_failure` require step-up. Browser calls never fall back to an environment token.
+
+The approvals desk uses `VYOMARAJ_APPROVALS_DB` if set; otherwise it stores private state under `~/.local/state/vyomaraj/approvals.sqlite3`. The containing state directory must be mode 0700 and the database mode 0600. Approval JTI consumption, queue update, decision record and hash-chained audit event are committed in one SQLite transaction. This is single-host storage, not multi-host replay protection or a signed external audit anchor. Research-route JTI consumption still requires `VYOMARAJ_AUTHZ_REPLAY_DIR`. The trusted issuer, key, owner subject and security epoch are **not provisioned in this checkout**, so privileged HTTP calls currently fail closed. No signing private key is stored here.
+
+Arena approval claims must include `sub`, `iss`, `aud`, `iat`, `exp`, unique `jti`, exact `action=arena.execute`, the SHA-256 target hash for the exact task/head/risk tuple, `scope` containing `arena.execute`, current `security_epoch`, `authn=webauthn` or `passkey`, and `step_up=true` for HIGH risk. Studio API approvals use the endpoint action name and `canonical_action_target(action, complete_request_json)` as the target; the scope must match the route's required capability. The `jti` is consumed once. A per-machine replay directory is not sufficient for a multi-worker deployment; use shared atomic storage or a central consume-once API. The approval desk's local SQLite JTI table only protects workers sharing that same database.
 
 The reviewed adapter receives one JSON envelope on stdin via `--envelope-stdin`, without a shell. It must return one JSON object on stdout containing an allowed `status`, the matching `task_id`, and matching `checkpoint_id`. Non-zero exit, timeout, invalid schema, mismatched IDs or adapter digest mismatch fail closed. Review and test the adapter in a sandbox before pinning it. These controls are a reference enforcement layer, not a substitute for production identity-provider integration, protected branch rules, least-privilege runtime isolation, monitoring, and recovery testing.
 

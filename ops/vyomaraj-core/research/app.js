@@ -3,7 +3,8 @@ const $=id=>document.getElementById(id);
 const el=(tag,value,cls)=>{const n=document.createElement(tag);if(value!==undefined)n.textContent=value;if(cls)n.className=cls;return n;};
 let status=null,records=[],offset=0,timer=null,busy=false;
 const labels={catalog:'Existing editorial catalogue',musicbrainz:'MusicBrainz',loc:'Library of Congress',openlibrary:'Open Library',searxng:'SearXNG',ollama:'Ollama · optional AI'};
-async function api(path,data){const r=await fetch('/api/research/'+path,data?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}:{});const body=await r.json();if(!r.ok)throw new Error(body.error||'request_failed');return body;}
+async function api(path,data,ownerToken){const headers={'Content-Type':'application/json'};if(ownerToken)headers.Authorization='Bearer '+ownerToken;const r=await fetch('/api/research/'+path,data?{method:'POST',headers,body:JSON.stringify(data)}:{});const body=await r.json();if(!r.ok){const required=body.required;throw new Error(required?`No work was changed. Obtain a one-time owner token for ${required.action}, scope ${required.scope}, target ${required.target}. The trusted issuer must be configured out of band.`:(body.detail||body.error||'request_failed'));}return body;}
+function takeOwnerToken(){const input=$('owner-approval-token');const token=input.value.trim();input.value='';return token;}
 function route(){const p=status?.profiles.find(x=>x.id===$('profile').value);$('route').textContent=p?`${p.slot} · proposed functional route · canonical name UNKNOWN · sources: ${p.providers.map(x=>labels[x]).join(', ')}`:'';}
 function renderRecords(){
  $('records').replaceChildren();const visible=records.filter(r=>$('filter').value==='all'||r.review_status===$('filter').value);
@@ -18,7 +19,7 @@ function renderRecords(){
   const actions=el('div',undefined,'actions');
   for(const [decision,label] of [['accepted_metadata_only','Accept metadata'],['rejected','Reject'],['pending_review','Reset review']]){
    const button=el('button',label,decision==='accepted_metadata_only'?'':'quiet');button.disabled=!$('ack').checked||r.review_status===decision;
-   button.addEventListener('click',async()=>{button.disabled=true;try{await api('review',{record_id:r.id,decision,acknowledge_metadata_only:$('ack').checked});$('message').textContent='Local review saved. Rights remain UNKNOWN; no content was published.';await refresh();}catch(e){$('message').textContent='Review not saved: '+e.message;renderRecords();}});actions.append(button);
+   button.addEventListener('click',async()=>{button.disabled=true;try{await api('review',{record_id:r.id,decision,acknowledge_metadata_only:$('ack').checked},takeOwnerToken());$('message').textContent='Owner-authorized local review saved. Rights remain UNKNOWN; no content was published.';await refresh();}catch(e){$('message').textContent='Review not saved: '+e.message;renderRecords();}});actions.append(button);
   }card.append(actions);$('records').append(card);
  }
  $('count').textContent=`${status?.total_records||0} leads`;$('page').textContent=`Records ${records.length?offset+1:0}–${offset+records.length}`;
@@ -45,7 +46,7 @@ function renderStatus(){
  }
 }
 async function refresh(){clearTimeout(timer);try{const [s,r]=await Promise.all([api('status'),api('records?offset='+offset)]);status=s;records=r.records;renderStatus();renderRecords();if(status.jobs.some(j=>['queued','running'].includes(j.state)))timer=setTimeout(refresh,3000);}catch(e){$('message').textContent='Local service unavailable: '+e.message;$('run').disabled=true;}}
-$('run').addEventListener('click',async()=>{busy=true;$('run').disabled=true;try{const job=await api('run',{profile:$('profile').value});$('message').textContent=job.reused?'Existing pass reused. Queue de-duplication and cache prevent repeated provider requests.':'Research queued. Follow each source result below; a blocked source is not a successful search.';await refresh();}catch(e){$('message').textContent='Research not queued: '+e.message;}finally{busy=false;$('run').disabled=!status;}});
+$('run').addEventListener('click',async()=>{busy=true;$('run').disabled=true;try{const job=await api('run',{profile:$('profile').value},takeOwnerToken());$('message').textContent=job.reused?'Existing pass reused. Queue de-duplication and cache prevent repeated provider requests.':'Research queued. Follow each source result below; a blocked source is not a successful search.';await refresh();}catch(e){$('message').textContent='Research not queued: '+e.message;}finally{busy=false;$('run').disabled=!status;}});
 $('profile').addEventListener('change',route);$('ack').addEventListener('change',renderRecords);$('filter').addEventListener('change',renderRecords);$('refresh').addEventListener('click',refresh);
 $('previous').addEventListener('click',()=>{offset=Math.max(0,offset-100);refresh();});$('next').addEventListener('click',()=>{offset+=100;refresh();});
 refresh().then(()=>{if(status)$('message').textContent='Local queue ready. Provider connections are reported separately below.';});

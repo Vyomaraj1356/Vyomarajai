@@ -8,11 +8,31 @@
     "issue_6_state": "OPEN",
     "issue_6_url": "https://github.com/Vyomaraj1356/Vyomarajai/issues/6",
     "pull_requests": {
-      "2": {"state": "OPEN", "head": "6c80252fb3b3f249aef1900073f7e7a1de97dd1c", "draft": false},
-      "3": {"state": "OPEN", "head": "7b7dd403c79266d3250e6b334a7598a5432adc17", "draft": false},
-      "4": {"state": "OPEN", "head": "888b408b69d75249b94716e7e704bccbc16aa3ab", "draft": false},
-      "7": {"state": "OPEN", "head": "d909ce0f4d27a943d13389cf9b63de7f811a4c2e", "draft": false},
-      "9": {"state": "OPEN", "head": "831dd77a50f2d71289b8cab2d46e92669a0b15b1", "draft": true}
+      "2": {
+        "state": "OPEN",
+        "head": "6c80252fb3b3f249aef1900073f7e7a1de97dd1c",
+        "draft": false
+      },
+      "3": {
+        "state": "OPEN",
+        "head": "7b7dd403c79266d3250e6b334a7598a5432adc17",
+        "draft": false
+      },
+      "4": {
+        "state": "OPEN",
+        "head": "888b408b69d75249b94716e7e704bccbc16aa3ab",
+        "draft": false
+      },
+      "7": {
+        "state": "OPEN",
+        "head": "d909ce0f4d27a943d13389cf9b63de7f811a4c2e",
+        "draft": false
+      },
+      "9": {
+        "state": "OPEN",
+        "head": "831dd77a50f2d71289b8cab2d46e92669a0b15b1",
+        "draft": true
+      }
     },
     "merge_checkpoint": {
       "pull_request": 24,
@@ -33,10 +53,16 @@
       "type": "issue",
       "reference": "#6",
       "title": "Unblock private DR access and confirm the authoritative secondary before synchronization",
-      "status": "READY_TO_CLOSE",
-      "summary": "Issue acceptance evidence is current through the PR #24 merge. The issue is still OPEN; no comment or close action has been performed.",
-      "next_action": "Re-read the recorded checkpoint rows live, then use the prepared comment and close-out command only after owner confirmation.",
-      "evidence": ["ops/dr/DEPLOYED_MATCH_2026_10_04.json", "ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md", "check-run 111404791435"]
+      "status": "OWNER_ACTION_REQUIRED",
+      "summary": "Issue #6 remains OPEN/P0. The latest scheduled workflow at 10:13 UTC reports equal primary/secondary tracked Git trees, but the Arena connection can list only the primary; candidate-path 404 and Actions-settings 403 access blockers remain as captured in the 08:28 full audit. The workflow variable may override the in-repo fallback, so the effective target identity and owner-reviewed target-only data remain unconfirmed. Runtime/failover is not proven.",
+      "next_action": "Owner/admin must confirm the effective target and Actions authorization privately, review current target-only data before any further sync, then authorize independent read-after-write verification. Keep #6 open until every live acceptance criterion is satisfied; do not post its historical close-out.",
+      "evidence": [
+        "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
+        "ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md",
+        "check-run 111404791435",
+        "check-run 112730920825",
+        "check-run 112741170924"
+      ]
     },
     {
       "id": "pr-2",
@@ -46,7 +72,10 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply selected content as a fresh reviewed change if the owner wants it.",
       "next_action": "Owner selects whether any specific file or behavior should be freshly re-applied.",
-      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head 6c80252fb3b3f249aef1900073f7e7a1de97dd1c"]
+      "evidence": [
+        "GITHUB_TRIAGE_2026_10_04.md",
+        "live PR head 6c80252fb3b3f249aef1900073f7e7a1de97dd1c"
+      ]
     },
     {
       "id": "pr-3",
@@ -56,7 +85,10 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply only owner-selected changes on a fresh branch.",
       "next_action": "Owner identifies any specific change to re-apply; leave the PR open and untouched meanwhile.",
-      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head 7b7dd403c79266d3250e6b334a7598a5432adc17"]
+      "evidence": [
+        "GITHUB_TRIAGE_2026_10_04.md",
+        "live PR head 7b7dd403c79266d3250e6b334a7598a5432adc17"
+      ]
     },
     {
       "id": "pr-4",
@@ -66,7 +98,10 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply selected content as a fresh reviewed change if the owner wants it.",
       "next_action": "Owner selects whether any specific file or behavior should be freshly re-applied.",
-      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head 888b408b69d75249aef1900073f7e7a1de97dd1c"]
+      "evidence": [
+        "GITHUB_TRIAGE_2026_10_04.md",
+        "live PR head 888b408b69d75249aef1900073f7e7a1de97dd1c"
+      ]
     },
     {
       "id": "pr-7",
@@ -76,7 +111,10 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "OPEN; reported no merge base with main. Do not merge this branch. Re-apply owner-selected content as a new change if desired.",
       "next_action": "Owner selects whether any specific resilience behavior should be freshly re-applied.",
-      "evidence": ["GITHUB_TRIAGE_2026_10_04.md", "live PR head d909ce0f4d27a943d13389cf9b63de7f811a4c2e"]
+      "evidence": [
+        "GITHUB_TRIAGE_2026_10_04.md",
+        "live PR head d909ce0f4d27a943d13389cf9b63de7f811a4c2e"
+      ]
     },
     {
       "id": "pr-9",
@@ -86,17 +124,22 @@
       "status": "WATCH",
       "summary": "OPEN draft from another session. It was not reviewed, edited or closed as part of this recovery.",
       "next_action": "Continue read-only watch; do not merge, close or modify without an explicit owner decision.",
-      "evidence": ["live PR head 831dd77a50f2d71289b8cab2d46e92669a0b15b1"]
+      "evidence": [
+        "live PR head 831dd77a50f2d71289b8cab2d46e92669a0b15b1"
+      ]
     },
     {
       "id": "merge-chain-10-24",
       "type": "merged_pull_requests",
-      "reference": "#10–#24",
+      "reference": "#10\u2013#24",
       "title": "Published merge chain",
       "status": "RESOLVED_DOCUMENTED",
-      "summary": "The PR #10–#24 merge chain is recorded in main and the DR verification record; PR #24 is the current main tip in this checkout.",
+      "summary": "The PR #10\u2013#24 merge chain is recorded in main and the DR verification record; PR #24 is the current main tip in this checkout.",
       "next_action": "Keep the merge/checkpoint mapping in the generated DR report; no action required on these merged PRs.",
-      "evidence": ["ops/dr/DEPLOYED_MATCH_2026_10_04.json", "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md"]
+      "evidence": [
+        "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
+        "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md"
+      ]
     },
     {
       "id": "chats-count-conflict",
@@ -106,7 +149,10 @@
       "status": "FIX_APPLIED_OFFLINE",
       "summary": "The source file is preserved unchanged. The viewer notice states both counts and asks the owner to confirm; neither count is silently rewritten.",
       "next_action": "Owner confirms the canonical count; then update the source with a dated correction while preserving its history.",
-      "evidence": ["Vyomaraj-All-Chats-Database-One-Month.md", "ops/vyomaraj-core/handover/preview_reports.py"]
+      "evidence": [
+        "Vyomaraj-All-Chats-Database-One-Month.md",
+        "ops/vyomaraj-core/handover/preview_reports.py"
+      ]
     },
     {
       "id": "contract-status-conflict",
@@ -116,7 +162,10 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "The conflict is documented; this ledger does not guess which record governs or erase historical text.",
       "next_action": "Owner identifies the governing record; retain a superseded-by pointer on the other record.",
-      "evidence": ["ops/vyomaraj-core/governance/PUBLIC_POLICY.json", "AUTO_ALIGN_EVIDENCE/o02-contract-authority.json"]
+      "evidence": [
+        "ops/vyomaraj-core/governance/PUBLIC_POLICY.json",
+        "AUTO_ALIGN_EVIDENCE/o02-contract-authority.json"
+      ]
     },
     {
       "id": "secret-manager",
@@ -126,7 +175,9 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "No secret manager is configured by this plan and no secret value belongs in the repository.",
       "next_action": "Follow auto-align step o01-secret-manager.",
-      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"]
+      "evidence": [
+        "ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"
+      ]
     },
     {
       "id": "tool-accounts-plans",
@@ -136,7 +187,9 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "Required accounts and owner-selected plans have not been inferred or activated here.",
       "next_action": "Follow auto-align step o03-tool-accounts.",
-      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"]
+      "evidence": [
+        "ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"
+      ]
     },
     {
       "id": "posilki",
@@ -146,27 +199,35 @@
       "status": "OWNER_DECISION_REQUIRED",
       "summary": "The term remains unidentified; no tool or service was inferred from it.",
       "next_action": "Follow auto-align step o04-posilki.",
-      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"]
+      "evidence": [
+        "ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json"
+      ]
     },
     {
       "id": "provider-readiness",
       "type": "platform_readiness",
-      "reference": "Provider items P-01–P-15",
+      "reference": "Provider items P-01\u2013P-15",
       "title": "Research, media, publishing, scheduling and analytics providers",
       "status": "OWNER_ACTION_REQUIRED",
       "summary": "Provider setup paths are mapped; connection and operational readiness remain unverified.",
       "next_action": "Follow auto-align steps p01-research-drafting through p04-review-gates after owner decisions.",
-      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json", "ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md"]
+      "evidence": [
+        "ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json",
+        "ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md"
+      ]
     },
     {
       "id": "runtime-and-dr-readiness",
       "type": "platform_readiness",
-      "reference": "Studio/services S-01–S-14; DR/ops D-01–D-08",
+      "reference": "Studio/services S-01\u2013S-14; DR/ops D-01\u2013D-08",
       "title": "Studio, services, independent DR and operations",
       "status": "OWNER_ACTION_REQUIRED",
       "summary": "Local preview and Git snapshot evidence do not establish an installed studio, independent DR, runtime restore or 24x7 operations.",
       "next_action": "Follow auto-align steps s01-studio-install through d04-intelligence-learning in order.",
-      "evidence": ["ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json", "ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md"]
+      "evidence": [
+        "ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json",
+        "ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md"
+      ]
     }
   ],
   "issue_6_closeout": {
@@ -179,11 +240,237 @@
     "closeout_file": "ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md",
     "prepared_but_not_sent": true,
     "runbook": [
-      "Before any GitHub write, use the 19 check_run_id values in DEPLOYED_MATCH_2026_10_04.json to re-read every check-run annotation via gh api repos/Vyomaraj1356/Vyomarajai/check-runs/{id}/annotations; compare status, primary_tree, secondary_tree, data_match and rollback_commit row by row. Specifically confirm check-run 111404791435 (PR #24) is MATCH with equal e8c66bd4 trees. Stop if any row is missing or differs.",
-      "Run python3 ops/vyomaraj-core/handover/build_dr_sync_report.py --check and inspect checkpoint #19 in ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md.",
-      "After owner approval, post the prepared statement with gh issue comment 6 --repo Vyomaraj1356/Vyomarajai --body-file ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_04.md.",
-      "After the comment succeeds and issue #6 is still OPEN, close with gh issue close 6 --repo Vyomaraj1356/Vyomarajai --reason completed --comment \"19 MATCH checkpoints (15 replication writes) through merge #24\".",
-      "If the integration returns 403, do not retry with another credential; preserve the prepared file and report that owner-side permission is required."
-    ]
+      "Keep issue #6 OPEN. Do not post the historical close-out text or run a close command; its #19/#24 checkpoint evidence is stale relative to the current owner-blocked criteria.",
+      "Owner/admin confirms the exact existing private DR repository by its canonical owner/name and the intended trust boundary. Do not infer nonexistence from a 404 returned by this connection.",
+      "Owner/admin authorizes the Arena GitHub connection for the minimum read and required Actions access to that existing target. Do not request or transmit secret values in chat.",
+      "Re-run a read-only repository/Actions permission probe and inspect the current configured target through the authorized connection. Stop on 403/404 or any mismatch; make no workflow dispatch or write.",
+      "After access is confirmed, obtain owner approval for a safe replication run and verify a fresh primary/secondary tree match plus rollback evidence. Only then reassess issue #6 against its actual current acceptance criteria; do not auto-close."
+    ],
+    "historical_snapshot_only": true,
+    "do_not_post_or_close": true,
+    "current_live_state": "OPEN/P0",
+    "current_live_read_date": "2026-10-07",
+    "current_blocker": "The connected identity cannot identify/verify the authoritative existing secondary or inspect required Actions configuration; secondary path probes returned 404 and Actions variables/secrets returned 403."
+  },
+  "current_live_recheck_2026_10_07": {
+    "source": "Read-only GitHub/Pages audit completed 2026-10-07 08:24\u201308:28 UTC; no GitHub writes or workflow dispatch by this session. Scheduled Actions results are reported separately from this read-only audit.",
+    "issue_6": {
+      "state": "OPEN",
+      "priority": "P0",
+      "closeout_authorized": false,
+      "title": "[P0] Unblock private DR access and confirm the authoritative secondary before synchronization",
+      "updated_at": "2026-10-03T10:38:24Z",
+      "acceptance_still_open": [
+        "owner/admin-confirmed canonical secondary identity and authenticated metadata/main ref",
+        "review of target-only data before exact snapshot writes",
+        "authorized read/write access and independent read-after-write verification"
+      ]
+    },
+    "primary_repository": "Vyomaraj1356/Vyomarajai",
+    "visible_repositories": [
+      "Vyomaraj1356/Vyomarajai"
+    ],
+    "secondary_path_probes": {
+      "deepakGoyal1356/Vyomaraj-Agent": "404",
+      "deepakGoyal1356/Vyomaraj-Agent-6d64": "404",
+      "deepakGoyal1356/Vyomaraj-Agent-6d64e": "404",
+      "deepakGoyal1356/Vyomraj-Agent-6d64": "404",
+      "interpretation": "These responses do not prove that no private secondary repository exists."
+    },
+    "actions_variables_api": "403 Resource not accessible by integration",
+    "actions_secrets_api": "403 Resource not accessible by integration",
+    "dr_target_resolution": {
+      "workflow_variable": "VYOMARAJ_DR_REPO",
+      "workflow_variable_read_result": "403 Resource not accessible by integration",
+      "in_repo_fallback": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+      "effective_target_identity": "UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here",
+      "owner_admin_confirmation_and_current_target_only_review": "PENDING"
+    },
+    "pull_requests": {
+      "41": {
+        "state": "OPEN",
+        "draft": false,
+        "note": "Combines DR checkpoint and launch-preview scope; verify-or-sync is skipped for pull requests. Head is based on 8e9a67a while current main is two commits ahead at 04b7ae60; owner review required. No merge or deployment performed.",
+        "updated_at": "2026-10-07T05:15:38Z",
+        "head_sha": "5a77756b5a353915221fc6a790e30e070f9aad90",
+        "head_ref": "arena/a83291a3-vyomarajai",
+        "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+        "base_ref": "main",
+        "mergeable": true
+      },
+      "39": {
+        "state": "OPEN",
+        "draft": true,
+        "updated_at": "2026-10-06T16:06:13Z",
+        "head_sha": "afe02edfa65c64a9da08ecf0eeab5008e78848a3",
+        "head_ref": "final-shared-core-architecture-2026-10-06",
+        "base_sha": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f",
+        "base_ref": "main",
+        "note": "Left untouched."
+      },
+      "42": {
+        "state": "OPEN",
+        "draft": true,
+        "updated_at": "2026-10-07T05:14:56Z",
+        "head_sha": "7a6699159324afe3a7a4067b75e0eb001fe2adf6",
+        "head_ref": "feat/vyomaraj-engineering-2026-baseline",
+        "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+        "base_ref": "main",
+        "mergeable": false
+      }
+    },
+    "pages": {
+      "source": "main:/",
+      "build_commit": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "feature_branch_deployed": false,
+      "status": "built",
+      "last_build_created_at": "2026-10-07T03:45:29Z",
+      "last_build_updated_at": "2026-10-07T03:46:37Z"
+    },
+    "main": {
+      "sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "tree_sha": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "message": "feat: add auspicious startup and governed geospatial architecture",
+      "parent": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+      "session_base": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+      "session_base_compare": {
+        "status": "ahead",
+        "ahead_by": 2,
+        "behind_by": 0,
+        "merge_base": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44"
+      }
+    },
+    "dr_snapshot": {
+      "workflow": "Vyomaraj PRIMARY to DR Sync",
+      "workflow_file": ".github/workflows/vyomaraj-sync-both.yml",
+      "event": "schedule",
+      "workflow_run_id": 37605789908,
+      "check_run_id": 112741170924,
+      "status": "MATCH",
+      "conclusion": "success",
+      "completed_at_utc": "2026-10-07T10:13:11Z",
+      "head_branch": "main",
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "data_match": true,
+      "traffic_switched": "NONE",
+      "replication_write_in_this_run": false,
+      "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true",
+      "scope": "Equal tracked Git trees only; does not prove deployed application/runtime equality, service availability, mobile installation, failover, RPO or RTO.",
+      "run_created_at_utc": "2026-10-07T10:11:56Z"
+    },
+    "observed_main_replication_writes": {
+      "count_since_previous_recorded_checkpoint": 2,
+      "writes": [
+        {
+          "workflow_run_id": 37567565649,
+          "check_run_id": 112618764790,
+          "head_sha": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+          "rollback_commit": "8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7",
+          "completed_at_utc": "2026-10-07T03:37:53Z"
+        },
+        {
+          "workflow_run_id": 37568236297,
+          "check_run_id": 112620862227,
+          "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+          "rollback_commit": "41325bcd09bb0549e5ab5c9942fb65d3257dba90",
+          "completed_at_utc": "2026-10-07T03:46:21Z"
+        }
+      ],
+      "note": "These were automatic verify-or-sync writes observed in public Actions annotations, not writes initiated by this session. The later 10:13 scheduled confirmation (run 37605789908) was a no-op."
+    },
+    "tracked_apk_in_main_tree": {
+      "path": "Vyomaraj-App.apk",
+      "git_blob_sha": "9c95df15c8cb1787bf85b7d44f9445ff9376f1f2",
+      "size_bytes": 24567022,
+      "same_blob_in_secondary_inferred_from_equal_git_tree": true,
+      "signature_validity": "UNVERIFIED",
+      "signer_provenance": "UNVERIFIED",
+      "real_device_installation": "UNVERIFIED"
+    },
+    "native_build_environment": {
+      "local_source_projects_found": [],
+      "android_sdk_tools_available": false,
+      "macos_xcode_tools_available": false,
+      "java_gradle_flutter_available": false,
+      "local_apk_signature_verification_available": false
+    },
+    "main_branch_protection_api": "protected=false at 2026-10-07T08:22Z; organization/repository rulesets were not checked",
+    "local_preview_at_audit": "No listener on 3000, 4174, 4176, 4181 or 4182 at 08:22:42Z; a separate allowlisted static preview may be started after this audit.",
+    "checked_at_utc": "2026-10-07T08:28:20Z",
+    "audit_mutations": "None by this session; no comment, issue/PR change, merge, push, workflow dispatch, secret write, or production deployment."
+  },
+  "current_github_metadata_followup_2026_10_07": {
+    "observed_at_utc": "2026-10-07T10:06:21Z",
+    "scope": "Read-only metadata recheck of issue #6, PRs #39/#41/#42, main ref, Pages source metadata, and the latest scheduled workflow run list. No issue/PR/Pages/workflow mutation. Candidate secondary 404s and Actions settings 403s were not re-queried in this narrower follow-up; the full access audit remains timestamped 08:28 UTC.",
+    "issue_6": {
+      "state": "OPEN",
+      "priority": "P0",
+      "title": "[P0] Unblock private DR access and confirm the authoritative secondary before synchronization",
+      "updated_at": "2026-10-03T10:38:24Z"
+    },
+    "pull_requests": {
+      "39": {
+        "state": "OPEN",
+        "draft": true,
+        "head_ref": "final-shared-core-architecture-2026-10-06",
+        "base_ref": "main",
+        "head_sha": "afe02edfa65c64a9da08ecf0eeab5008e78848a3",
+        "base_sha": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f",
+        "note": "Read-only recheck; left untouched."
+      },
+      "41": {
+        "state": "OPEN",
+        "draft": false,
+        "head_ref": "arena/a83291a3-vyomarajai",
+        "base_ref": "main",
+        "head_sha": "5a77756b5a353915221fc6a790e30e070f9aad90",
+        "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+        "note": "Read-only recheck; not merged or deployed."
+      },
+      "42": {
+        "state": "OPEN",
+        "draft": true,
+        "head_ref": "feat/vyomaraj-engineering-2026-baseline",
+        "base_ref": "main",
+        "head_sha": "f8e413944bcf80a5a8d5607f922321703b10a7c5",
+        "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+        "note": "Read-only recheck; left unchanged."
+      }
+    },
+    "main_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+    "pages": {
+      "html_url": "https://vyomaraj1356.github.io/Vyomarajai/",
+      "source_branch": "main",
+      "source_path": "/",
+      "build_type": "legacy"
+    },
+    "latest_scheduled_workflow_run": {
+      "workflow_run_id": 37602725866,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at_utc": "2026-10-07T09:44:53Z",
+      "updated_at_utc": "2026-10-07T09:45:43Z",
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "check_run_id": 112730920825,
+      "check_conclusion": "success"
+    }
+  },
+  "current_dr_annotation_followup_2026_10_07": {
+    "run_created_at_utc": "2026-10-07T10:11:56Z",
+    "run_completed_at_utc": "2026-10-07T10:13:11Z",
+    "workflow_run_id": 37605789908,
+    "check_run_id": 112741170924,
+    "status": "MATCH",
+    "data_match": true,
+    "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+    "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+    "traffic_switched": "NONE",
+    "replication_write_in_this_run": false,
+    "http": "UNAVAILABLE",
+    "failed_api_operation": "NONE_OR_UNCLASSIFIED",
+    "previous_checkpoints_reread": 0,
+    "scope": "Only this new annotation was checked; the previous 40 annotations were not reread. The separate full historical annotation audit remains timestamped 08:28 UTC."
   }
 }

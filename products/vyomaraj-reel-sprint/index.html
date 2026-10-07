@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1324">
+  <meta name="description" content="A private, local-first planner for four original short-video campaign briefs.">
+  <title>Vyomaraj Reel Sprint — Campaign Planner</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#campaign-form">Skip to campaign brief</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Vyomaraj Reel Sprint home">
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span>VYOMARAJ <span class="brand-light">REEL SPRINT</span></span>
+    </a>
+    <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Local-first MVP</span>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">A focused first product · made for small businesses</p>
+        <h1 id="page-title">Turn one clear offer into a <span>4-Reel plan.</span></h1>
+        <p class="hero-text">Build a practical short-video brief for a café, restaurant or local experience: hooks, shot lists, captions and a one-week calendar.</p>
+      </div>
+      <aside class="truth-card" aria-label="Privacy and product status">
+        <div class="truth-icon" aria-hidden="true">◎</div>
+        <div>
+          <strong>Your brief stays in this browser.</strong>
+          <p>No account, tracking, network call, AI provider, payment or auto-publishing is connected. This version uses transparent templates—not an AI claim generator.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="workspace" aria-label="Campaign planner">
+      <div class="panel form-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Step 1</p>
+            <h2>Campaign brief</h2>
+          </div>
+          <span class="small-tag">~3 min</span>
+        </div>
+        <form id="campaign-form">
+          <div class="demo-launch">
+            <div><strong>See the format first</strong><span>Load a clearly fictional café example.</span></div>
+            <button class="button button-secondary" id="sample-button" type="button">Load sample</button>
+          </div>
+          <label for="business-name">Business or venue name <span class="required">*</span></label>
+          <input id="business-name" name="businessName" autocomplete="organization" maxlength="80" required placeholder="e.g. Aundh Corner Café">
+
+          <div class="field-row">
+            <div>
+              <label for="business-type">Type</label>
+              <select id="business-type" name="businessType">
+                <option value="café">Café</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="local experience">Local experience</option>
+                <option value="independent business">Other small business</option>
+              </select>
+            </div>
+            <div>
+              <label for="area">Neighbourhood <span class="optional">optional</span></label>
+              <input id="area" name="area" maxlength="60" placeholder="e.g. Aundh">
+            </div>
+          </div>
+
+          <label for="audience">Who is this for? <span class="required">*</span></label>
+          <input id="audience" name="audience" maxlength="120" required placeholder="e.g. people looking for a relaxed coffee break">
+
+          <label for="offer">What exactly are you promoting? <span class="required">*</span></label>
+          <textarea id="offer" name="offer" rows="3" maxlength="280" required placeholder="Describe the menu item, service, event or experience. Use only details you can stand behind."></textarea>
+
+          <div class="field-row">
+            <div>
+              <label for="goal">Campaign goal</label>
+              <select id="goal" name="goal">
+                <option value="visits">Encourage visits</option>
+                <option value="bookings">Invite bookings</option>
+                <option value="enquiries">Start enquiries</option>
+                <option value="awareness">Build awareness</option>
+              </select>
+            </div>
+            <div>
+              <label for="tone">Voice</label>
+              <select id="tone" name="tone">
+                <option value="warm and welcoming">Warm</option>
+                <option value="clear and practical">Practical</option>
+                <option value="playful but respectful">Playful</option>
+                <option value="calm and premium">Calm</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="cta">Call to action</label>
+          <input id="cta" name="cta" maxlength="100" value="Plan a visit and see if it suits you">
+
+          <details class="evidence-details">
+            <summary>Add approved facts and source notes <span class="optional">optional</span></summary>
+            <label for="facts">Facts you are prepared to stand behind</label>
+            <textarea id="facts" name="facts" rows="3" maxlength="500" placeholder="Only enter approved details. The tool cannot verify them."></textarea>
+            <label for="sources">Where can a reviewer check them?</label>
+            <textarea id="sources" name="sources" rows="2" maxlength="400" placeholder="Paste public links or name the approved source. Do not paste private customer data."></textarea>
+          </details>
+
+          <p class="form-note"><span class="required">*</span> Required. Avoid private details, health/financial promises, superlatives and claims you cannot substantiate.</p>
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">Build my 4-Reel plan <span aria-hidden="true">→</span></button>
+            <button class="button button-quiet" id="clear-button" type="button">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <section class="panel results-panel" aria-labelledby="results-title">
+        <div class="panel-heading results-heading">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h2 id="results-title">Your campaign plan</h2>
+          </div>
+          <div class="export-actions" id="export-actions" hidden>
+            <button class="button button-secondary" id="download-button" type="button">Download .txt</button>
+            <button class="button button-secondary print-button" id="print-button" type="button">Print / PDF</button>
+          </div>
+        </div>
+        <div class="empty-state" id="empty-state">
+          <div class="empty-mark" aria-hidden="true">✳</div>
+          <h3>Your draft will appear here</h3>
+          <p>Start with one real offer. The planner creates four different angles and marks where a human should check claims before publishing.</p>
+          <ul>
+            <li>Original story angles—not copied scenes</li>
+            <li>Shot prompts that need no special gear</li>
+            <li>Claim and rights checks before release</li>
+          </ul>
+        </div>
+        <div id="campaign-output" aria-live="polite" aria-atomic="false"></div>
+        <p class="review-note" id="review-note" hidden><strong>Human review required.</strong> These are editable planning drafts. Supplied facts and sources have not been independently verified. Get the owner's and client's approval before recording or publishing.</p>
+      </section>
+    </section>
+
+    <section class="bottom-strip" aria-label="What's included in the pilot offer">
+      <div><span class="bottom-number">01</span><strong>Four distinct concepts</strong><p>Showcase · behind-the-scenes · FAQ · invitation</p></div>
+      <div><span class="bottom-number">02</span><strong>Ready to hand off</strong><p>Shot list · caption · CTA · weekly calendar</p></div>
+      <div><span class="bottom-number">03</span><strong>Owner stays in control</strong><p>No automatic posting, spending or customer-data upload</p></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Vyomaraj Reel Sprint · MVP</span>
+    <span>English templates · no external services · no earnings or reach guarantee</span>
+  </footer>
+</body>
+</html>

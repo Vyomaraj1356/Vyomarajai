@@ -1,59 +1,101 @@
 {
-  "recorded_at_utc": "2026-10-06",
+  "recorded_at_utc": "2026-10-07",
   "verified_stack": [
     {
-      "area": "Product page",
-      "technology": "Static HTML + CSS + vanilla JavaScript single page",
-      "evidence": "index.html, landing.html, flow-diagram.html; no bundler, no framework",
-      "note": "Pages-servable as-is"
+      "area": "Public launch page and planner demo",
+      "technology": "Static HTML + CSS + vanilla JavaScript; no bundler or framework",
+      "evidence": "index.html, launch.css, launch.js, demo.html/demo.css/demo.js; landing.html redirects to the evidence-based page",
+      "note": "GitHub Pages serves static files; the sandbox root opens demo.html and /index.html keeps the brand shell; GET /api/catalog and POST /api/plan exist only on the sandbox server and are not deployed to Pages"
+    },
+    {
+      "area": "Installable web shell",
+      "technology": "Web App Manifest + service worker + local PNG/SVG icons",
+      "evidence": "manifest.webmanifest, sw.js, offline.html, assets/vyomaraj-icon-*",
+      "note": "offline cache includes only the public landing shell; not a native Android or macOS client"
     },
     {
       "area": "Product palette",
-      "technology": "Shani Blue #0a1628 + Kuber Gold #f59e0b, Arial",
-      "evidence": "preview_reports.STYLE, styles.css",
-      "note": "same palette on every page of both servers"
+      "technology": "Launch shell: #091323 + gold; experience previews retain Shani Blue #0a1628 + Kuber Gold #f59e0b",
+      "evidence": "launch.css, preview_reports.STYLE, styles.css",
+      "note": "two documented surfaces; no external font/CDN dependency on the launch page"
     },
     {
       "area": "Local servers",
       "technology": "Python 3 standard library http.server / ThreadingHTTPServer",
-      "evidence": "ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, ops/vyomaraj-core/handover/preview_reports.py",
-      "note": "no Flask, no FastAPI, no Django"
+      "evidence": "ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, ops/vyomaraj-core/handover/preview_reports.py, public_landing_server.py",
+      "note": "studio/gateway enforce loopback-only binds; public preview serves an exact asset allowlist, read-only GET /api/catalog over curated Bhakti-Shakti and Roots & Pairings content, and bounded ephemeral POST /api/plan; no privileged writers, provider calls or persistence; no Flask/FastAPI/Django"
+    },
+    {
+      "area": "One-shot local service monitor",
+      "technology": "Manual loopback probes with a read-only latest-snapshot page",
+      "evidence": "ops/vyomaraj-core/handover/probes.py and /reports/monitor",
+      "note": "JSONL + latest local snapshot; no scheduler, alerting or production/DR claim"
+    },
+    {
+      "area": "Jarvis reachability monitor",
+      "technology": "Python standard-library bounded GET probe with private local state",
+      "evidence": "ops/jarvis/heartbeat_monitor.py, heartbeat-config.example.json",
+      "note": "reports reachability only; no authenticated mutual heartbeat, failover or production health"
+    },
+    {
+      "area": "Shared peer architecture and heartbeat target",
+      "technology": "Vyomaraj/Jarvis common identity, policy and capability contract; fail-closed heartbeat plan",
+      "evidence": "PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md, ops/jarvis/heartbeat_monitor.py",
+      "note": "design + local read-only probe only; no production interlink, inherited root authority, quorum or failover"
+    },
+    {
+      "area": "LLM draft harness",
+      "technology": "Optional no-tools OpenAI-compatible chat client with explicit invocation",
+      "evidence": "ops/jarvis/llm_harness.py, ops/jarvis/LLM_HARNESS.md",
+      "note": "no provider is configured by the repository; no tool execution or autonomous actions"
+    },
+    {
+      "area": "Panch capability metadata",
+      "technology": "Five-name mapping validator with no runtime/heartbeat claim",
+      "evidence": "ops/hanuman/capability_status.py, ops/hanuman/test_capability_status.py",
+      "note": "checks metadata only; capability execution and platform connections remain unimplemented"
+    },
+    {
+      "area": "Local owner-approval slice",
+      "technology": "Ed25519 exact-action verification + private transactional SQLite queue and local hash chain",
+      "evidence": "ops/shriyantra/owner_guard.py, ops/vyomaraj-core/approvals/approval_store.py, experience/studio_server.py",
+      "note": "issuer/key/owner/security epoch are not configured; local single-host control slice only; no agent handoff or publishing"
     },
     {
       "area": "Bindings",
-      "technology": "0.0.0.0 on every server",
-      "evidence": "verified by verify_preview.py and verify_live_wiring.py",
-      "note": "required by the sandbox preview proxy"
+      "technology": "Server-specific: studio and availability gateway enforce IPv4 loopback; public sandbox preview binds for session access",
+      "evidence": "studio_server.py and gateway.py validate_loopback_host; public_landing_server.py serves exact assets, GET /api/catalog, and POST /api/plan",
+      "note": "catalog is curated/read-only for two fixed packs; the planner accepts only two fixed experiences, performs no persistence/provider calls, and is not a privileged writer; never network-bind the local studio/gateway"
     },
     {
       "area": "Public hosting",
       "technology": "GitHub Pages from main (static)",
-      "evidence": "Pages status built, source main",
-      "note": "https://vyomaraj1356.github.io/Vyomarajai/"
+      "evidence": "Live read 2026-10-07: Pages API build 04b7ae60, source main",
+      "note": "the current feature branch is not deployed there; the URL serves main only"
     },
     {
       "area": "Automation",
-      "technology": "GitHub Actions, Python 3.12 and Node 20/24 runners",
+      "technology": "GitHub Actions workflow definitions, Python 3.12 and Node 20/24 runners",
       "evidence": "vyomaraj-sync-both.yml, vyomaraj-ci-diagnostics.yml, vyomaraj-research.yml",
-      "note": "offline gate, DR verify-or-sync, read-only PAT diagnostic"
+      "note": "scheduled run 37605789908 reports a tracked-tree match; Actions variable may override fallback and settings API access is 403"
     },
     {
       "area": "DR mechanism",
-      "technology": "Git-snapshot replication between two repositories, rollback parent retained",
-      "evidence": "ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, workflow annotations",
-      "note": "covers Git tracked files only, not runtime state"
+      "technology": "Git-snapshot replication workflow with scheduled tracked-tree match evidence",
+      "evidence": "ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, live read-only annotations recorded in ISSUES_AND_PRS_LEDGER.json",
+      "note": "scheduled check 2026-10-07T10:13:11Z reports equal tracked Git trees (986288ee2cc4ec4d89400320150ea893f7a7a2de); canonical target identity and runtime DR are unverified"
     },
     {
-      "area": "Tests in CI",
-      "technology": "Python unittest + node --check + node --test",
-      "evidence": "ops/vyomaraj-core/handover/run_offline_suites.py",
-      "note": "counts are recorded in TEST_EVIDENCE, not here"
+      "area": "Tests and preview release gate",
+      "technology": "Python unittest + node syntax/tests + builder checks; verification only",
+      "evidence": "ops/vyomaraj-core/handover/run_offline_suites.py, ops/vyomaraj/publish-gate.sh",
+      "note": "a preview PASS does not change the separate production status; the gate never deploys"
     },
     {
       "area": "State stores",
       "technology": "SQLite and JSON files on disk (no database server)",
-      "evidence": "ops/vyomaraj-core/research/discovery.py, ops/vyomaraj-core/ledger",
-      "note": "outside Git-snapshot replication; needs its own backup"
+      "evidence": "ops/vyomaraj-core/research/discovery.py, approvals/approval_store.py, ops/vyomaraj-core/ledger",
+      "note": "research/approval state is single-host and outside Git-snapshot replication; approval DB is owner-only, but both need independent backup/restore evidence"
     },
     {
       "area": "Browser voice",
@@ -74,10 +116,10 @@
       "note": "tiles load from the OSM service at view time"
     },
     {
-      "area": "Charts/plans",
-      "technology": "Deterministic local planners (no AI call)",
-      "evidence": "local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py",
-      "note": "every plan states ai_calls_made=false"
+      "area": "Plans and content",
+      "technology": "Deterministic local planners by default; optional explicit no-tools LLM draft stage",
+      "evidence": "local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py, ops/jarvis/llm_harness.py",
+      "note": "provider calls require explicit local configuration and invocation; plans do not publish"
     },
     {
       "area": "Registry",
@@ -87,9 +129,15 @@
     },
     {
       "area": "Android app",
-      "technology": "APK binary committed (24,567,022 bytes) \u2014 UNSIGNED, no project in repo",
-      "evidence": "Vyomaraj-App.apk: 222 entries, 8 dex files, no META-INF signature block",
-      "note": "a stock Android device rejects it until it is signed"
+      "technology": "APK binary committed (24,567,022 bytes); v2 signing-block entry detected, but cryptographic validity, signer provenance and device installation are UNVERIFIED; no project source in repo",
+      "evidence": "Vyomaraj-App.apk: 222 entries, 8 dex files; verify_live_wiring.py parses ZIP signing-block structure (scheme ID 0x7109871a)",
+      "note": "not a verified release; keep off downloads until apksigner verification, signer review and a real-device install pass"
+    },
+    {
+      "area": "macOS native app",
+      "technology": "No macOS source project or signed application archive in this checkout",
+      "evidence": "repository file inventory",
+      "note": "not available as a native release"
     }
   ],
   "claimed_only": [
@@ -116,6 +164,10 @@
     {
       "claim": "Social platform APIs configured (YouTube, Instagram, Facebook, X, Telegram, WhatsApp, Discord, Pinterest, Threads, Snapchat, Reddit, Twitch, Vimeo, Tumblr, Mastodon)",
       "source": "README_MARKET_READY.md V15.1 social registry"
+    },
+    {
+      "claim": "Panch-Shakti metadata labels/rosters stating ACTIVE or all agents LIVE",
+      "source": "ops/hanuman/hanuman-panch-shakti.json, devices.json, and ports.json; these are declarations, not runtime probes"
     },
     {
       "claim": "Revenue, follower and MRR figures (\u20b93.0L, 56.2K, \u20b91,29,000, 5.42M views, \u20b98.4L, \u20b95.67L, 2B UPI, 94.6K)",
@@ -148,8 +200,8 @@
     {
       "class": "GitHub Pages",
       "example": "https://vyomaraj1356.github.io/Vyomarajai/",
-      "status": "WORKING",
-      "note": "Last recorded Pages build: main f735f92b, status built. Rebuilds on every push to main."
+      "status": "WORKING (main only)",
+      "note": "Live read 2026-10-07: Pages source is `main:/` at 04b7ae60; the current feature branch is not deployed there."
     },
     {
       "class": "Raw file URLs",
@@ -170,12 +222,84 @@
       "note": "Every preview host from every session so far has died with its sandbox (4190, 4174-...). Never announce one as the launch address."
     },
     {
-      "class": "Local preview ports",
-      "example": "0.0.0.0:4174 / 4176 / 4181 / 4182",
-      "status": "LOCAL ONLY",
-      "note": "Reachable from the sandbox proxy while the sandbox lives, and from the owner's machine only if the same processes are started there."
+      "class": "Local studio/gateway rehearsal ports",
+      "example": "127.0.0.1:4176 / 4181 / 4182 (defaults; loopback policy enforced)",
+      "status": "LOCAL-ONLY / NOT RUNNING",
+      "note": "Studio/gateway refuse non-loopback binds; privileged writer actions require request-scoped owner tokens; do not expose through public ingress."
+    },
+    {
+      "class": "Allowlisted sandbox landing + planner demo",
+      "example": "0.0.0.0:5310",
+      "status": "SESSION-SCOPED / READ-ONLY CATALOG + PLANNER / RUNNING IN SANDBOX",
+      "note": "Exact asset allowlist plus GET /api/catalog for curated entries from two local packs and ephemeral POST /api/plan; no provider calls, visitor-data persistence, privileged writers or private paths. This is not a public deployment or production health signal."
     }
   ],
+  "current_external_snapshot": {
+    "pages": {
+      "source": "main:/",
+      "build_commit": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "feature_branch_deployed": false,
+      "status": "built",
+      "last_build_created_at": "2026-10-07T03:45:29Z",
+      "last_build_updated_at": "2026-10-07T03:46:37Z"
+    },
+    "scheduled_dr_snapshot": {
+      "workflow": "Vyomaraj PRIMARY to DR Sync",
+      "workflow_file": ".github/workflows/vyomaraj-sync-both.yml",
+      "event": "schedule",
+      "workflow_run_id": 37605789908,
+      "check_run_id": 112741170924,
+      "status": "MATCH",
+      "conclusion": "success",
+      "completed_at_utc": "2026-10-07T10:13:11Z",
+      "head_branch": "main",
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "data_match": true,
+      "traffic_switched": "NONE",
+      "replication_write_in_this_run": false,
+      "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true",
+      "scope": "Equal tracked Git trees only; does not prove deployed application/runtime equality, service availability, mobile installation, failover, RPO or RTO.",
+      "run_created_at_utc": "2026-10-07T10:11:56Z"
+    },
+    "dr_target_resolution": {
+      "workflow_variable": "VYOMARAJ_DR_REPO",
+      "workflow_variable_read_result": "403 Resource not accessible by integration",
+      "in_repo_fallback": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+      "effective_target_identity": "UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here",
+      "owner_admin_confirmation_and_current_target_only_review": "PENDING"
+    },
+    "observed_main_replication_writes": {
+      "count_since_previous_recorded_checkpoint": 2,
+      "writes": [
+        {
+          "workflow_run_id": 37567565649,
+          "check_run_id": 112618764790,
+          "head_sha": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+          "rollback_commit": "8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7",
+          "completed_at_utc": "2026-10-07T03:37:53Z"
+        },
+        {
+          "workflow_run_id": 37568236297,
+          "check_run_id": 112620862227,
+          "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+          "rollback_commit": "41325bcd09bb0549e5ab5c9942fb65d3257dba90",
+          "completed_at_utc": "2026-10-07T03:46:21Z"
+        }
+      ],
+      "note": "These were automatic verify-or-sync writes observed in public Actions annotations, not writes initiated by this session. The later 10:13 scheduled confirmation (run 37605789908) was a no-op."
+    },
+    "local_preview_ports_listening_at_generation": {
+      "3000": false,
+      "4174": false,
+      "4176": false,
+      "4181": false,
+      "4182": false,
+      "5310": true
+    },
+    "scope_limit": "tracked Git-tree equality does not prove runtime, deployed app, failover, RPO or RTO"
+  },
   "archives": [
     {
       "name": "Vyomaraj-Handover-V16.5.3-v167.zip",
@@ -446,7 +570,7 @@
   "product_surface": [
     {
       "name": "index.html",
-      "bytes": 2738
+      "bytes": 12906
     },
     {
       "name": "Index.html",
@@ -454,11 +578,43 @@
     },
     {
       "name": "landing.html",
-      "bytes": 22961
+      "bytes": 691
     },
     {
       "name": "flow-diagram.html",
       "bytes": 61992
+    },
+    {
+      "name": "demo.html",
+      "bytes": 6354
+    },
+    {
+      "name": "launch.css",
+      "bytes": 11337
+    },
+    {
+      "name": "launch.js",
+      "bytes": 1841
+    },
+    {
+      "name": "demo.css",
+      "bytes": 7077
+    },
+    {
+      "name": "demo.js",
+      "bytes": 11660
+    },
+    {
+      "name": "manifest.webmanifest",
+      "bytes": 740
+    },
+    {
+      "name": "sw.js",
+      "bytes": 1708
+    },
+    {
+      "name": "offline.html",
+      "bytes": 1107
     }
   ],
   "chats": {

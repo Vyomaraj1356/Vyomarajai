@@ -42,7 +42,7 @@ Sources are recorded per item in `content.json`, including original search citat
 python ops/vyomaraj-core/experience/studio_server.py --port 4176
 ```
 
-Use the Arena preview; server binds to `0.0.0.0` and uses same-origin URLs:
+The studio binds to `127.0.0.1` only and uses same-origin URLs; open `http://127.0.0.1:4176/bhakti/` on the same machine. It is not exposed through public ingress.
 
 - `/bhakti/` — new experience.
 - `/pairings/` — existing Liquor/Bar prototype with optional local handoff.

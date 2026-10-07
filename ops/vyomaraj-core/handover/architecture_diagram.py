@@ -17,15 +17,34 @@ it existed when it does not.
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = Path(__file__).resolve().parent
 SVG_PATH = OUT / "ARCHITECTURE_DIAGRAM_2026_10_06.svg"
 PNG_PATH = OUT / "ARCHITECTURE_DIAGRAM_2026_10_06.png"
+LIVE_LEDGER = OUT / "ISSUES_AND_PRS_LEDGER.json"
+
+
+def current_evidence() -> dict:
+    """Read timestamped external/test evidence; never infer runtime health from prose."""
+    try:
+        ledger = json.loads(LIVE_LEDGER.read_text(encoding="utf-8"))
+        live = ledger.get("current_live_recheck_2026_10_07", {})
+        dr = live.get("dr_snapshot", {})
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        live, dr = {}, {}
+    try:
+        tests = json.loads((OUT / "TEST_EVIDENCE_2026_10_04.json").read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        tests = {}
+    return {"live": live, "dr": dr, "tests": tests}
+
 
 W, H = 1720, 1720
 MAIN_X, MAIN_W = 40, 1300          # left column: the system, band by band
@@ -95,9 +114,22 @@ def build_layout():
     c_main = MAIN_X + MAIN_W / 2          # 690 — centre of the system column
     flow = c_main - 300                   # 390 — the vertical flow spine, clear of most boxes
 
-    texts.append((W / 2, 58, "VYOMARAJ — NETWORK & ARCHITECTURE", 40, GOLD, True, "middle"))
-    texts.append((W / 2, 90, "as it actually runs, verified from this repository on 6 October 2026   ·   "
-                             "live launch 11 October (Ghatasthapana)   ·   zero budget", 17, GOLD_SOFT, False, "middle"))
+    evidence = current_evidence()
+    live, dr, tests = evidence["live"], evidence["dr"], evidence["tests"]
+    check_total = len(tests.get("python_suites", [])) + len(tests.get("node_checks", [])) + len(tests.get("builders", []))
+    check_failures = len(tests.get("failures", []))
+    check_summary = (f"{tests.get('python_tests_total', '—')} Python · "
+                     f"{check_total - check_failures}/{check_total} gates · {check_failures} failures"
+                     if check_total else "offline gate not recorded")
+    main_sha = live.get("main", {}).get("sha", dr.get("head_sha", "unknown"))[:8]
+    tree = dr.get("primary_tree", "unknown")[:12]
+    dr_time = dr.get("completed_at_utc", "unknown")
+    dr_time_label = dr_time[11:16] if len(dr_time) >= 16 else "unknown"
+    dr_check = dr.get("check_run_id", "unknown")
+    issue_state = f"{live.get('issue_6', {}).get('state', 'unknown')}/{live.get('issue_6', {}).get('priority', 'unknown')}"
+    generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    texts.append((W / 2, 58, "VYOMARAJ + JARVIS — SHARED PEER ARCHITECTURE", 38, GOLD, True, "middle"))
+    texts.append((W / 2, 90, f"generated {generated} · Pages main {main_sha} · scheduled DR tree MATCH {dr_time[11:16]} UTC · {issue_state} · branch not deployed", 16, GOLD_SOFT, False, "middle"))
 
     # 1 ─ people -----------------------------------------------------------
     band(118, 186, "1 · PEOPLE & DEVICES", "the only entry points that exist today")
@@ -107,14 +139,14 @@ def build_layout():
     cap(c_main, 292, "no login · no payment · no personal data held")
 
     # 2 ─ live delivery ----------------------------------------------------
-    band(336, 238, "2 · LIVE DELIVERY — FREE, ALREADY BUILT",
-         "GitHub Pages serves the product today; nothing to buy, nothing to renew", wide=False)
-    box(60, 410, 450, 94, "live", "GitHub Pages — LIVE",
-        "vyomaraj1356.github.io/Vyomarajai · HTTP", fs=21, subfs=14)
-    box(530, 410, 420, 94, "live", "index · landing · flow", "static files · no framework", fs=19, subfs=13)
-    box(970, 410, 350, 94, "local", "APK download", "24,567,022 B · UNSIGNED", fs=19, subfs=13)
-    cap(1145, 528, "unsigned — a free keytool key fixes this")
-    cap(c_main, 550, "launch address for 11 October is the Pages URL above — free forever on this repo")
+    band(336, 238, "2 · PUBLISHED HOSTING — MAIN ONLY",
+         "Pages serves main at 04b7ae60; this launch-preview branch is not deployed", wide=False)
+    box(60, 410, 450, 94, "live", "GitHub Pages — MAIN",
+        "vyomaraj1356.github.io/Vyomarajai · 04b7ae60", fs=21, subfs=14)
+    box(530, 410, 420, 94, "local", "Feature-branch shell", "static files · pending owner review", fs=19, subfs=13)
+    box(970, 410, 350, 94, "local", "APK artifact", "24,567,022 B · v2 block detected", fs=19, subfs=13)
+    cap(1145, 528, "signature validity, signer and device install unverified")
+    cap(c_main, 550, "11 October is a target; public deployment requires owner review, merge and a new Pages build")
 
     # 3 ─ browser runtime --------------------------------------------------
     band(596, 246, "3 · BROWSER RUNTIME — ON THE VISITOR'S DEVICE",
@@ -128,29 +160,30 @@ def build_layout():
     box(900, 752, 420, 46, "device", "Identity documents stay on uidai.in", fs=15)
     cap(c_main, 822, "no template and no identity document ever leaves the device or enters this repository")
 
-    # 4 ─ control plane ----------------------------------------------------
-    band(870, 236, "4 · CONTROL PLANE — LOCAL REHEARSAL (session-scoped, not production)",
-         "Python 3 standard library · binds 0.0.0.0 · no framework, no database server", wide=False)
-    box(60, 944, 400, 58, "local", "Viewer :4174", "reports + downloads", fs=17, subfs=12)
-    box(480, 944, 400, 58, "local", "Gateway :4176", "failover rehearsal", fs=17, subfs=12)
-    box(900, 944, 420, 58, "local", "Replica A :4181 · B :4182", "home lane · mirrors", fs=17, subfs=12)
-    box(60, 1014, 400, 50, "local", "Lanes: music 63 · film 59 · bhakti 47", fs=14)
-    box(480, 1014, 400, 50, "local", "comics 22 · pairings 28 · aghor 44", fs=14)
-    box(900, 1014, 420, 50, "local", "Agents + content index · 13 categories", fs=14)
-    cap(c_main, 1088, "deterministic planners state ai_calls_made=false — there are no hidden AI calls")
+    # 4 ─ peer topology and control plane ----------------------------------
+    band(870, 236, "4 · SHARED PEER TOPOLOGY — SAME CONTRACT, NO PROD PEER DAEMONS",
+         "Vyomaraj/Bharath ↔ Jarvis/Laxman is the target design; the sandbox has one bounded local planner, not a peer/control plane", wide=False)
+    box(60, 944, 400, 58, "local", "Sandbox preview :5310", "allowlisted assets · ephemeral plan only · no writers", fs=17, subfs=12)
+    box(480, 944, 400, 58, "claim", "Gateway :4176 · STOPPED", "no authenticated control plane", fs=17, subfs=12)
+    box(900, 944, 420, 58, "claim", "Studios :4181 / :4182 · STOPPED", "writer endpoints disabled", fs=17, subfs=12)
+    box(60, 1014, 400, 50, "device", "Vyomaraj / Bharath", "local deterministic planning only", fs=14, subfs=12)
+    box(480, 1014, 400, 50, "auto", "Shared ShriYantra policy", "least privilege · audit · owner step-up", fs=14, subfs=12)
+    box(900, 1014, 420, 50, "local", "Jarvis / Laxman", "guarded harness · no live agent runtime", fs=14, subfs=12)
+    cap(c_main, 1088, "local read-only monitor: peer URLs blank · not_configured · no authenticated heartbeat, quorum or failover")
 
     # 5 ─ automation -------------------------------------------------------
-    band(1134, 168, "5 · AUTOMATION & ASSURANCE — GITHUB ACTIONS", "runs on every push · free on this repository")
-    box(60, 1208, 470, 78, "auto", "Offline gate — 39/39 green", "361 unit tests · 12 node checks · 14 builders", fs=18, subfs=13)
-    box(550, 1208, 380, 78, "auto", "DR verify-or-sync", "primary → secondary · never force-push", fs=18, subfs=13)
-    box(950, 1208, 370, 78, "auto", "Read-only diagnostics", "readable never \"replicated\"", fs=18, subfs=13)
+    band(1134, 168, "5 · AUTOMATION & ASSURANCE — CHECKS ARE NOT PRODUCTION",
+         "main has a scheduled tracked-tree match; issue #6 target identity/access and target-only review remain open")
+    box(60, 1208, 470, 78, "auto", "Offline gate", check_summary, fs=18, subfs=13)
+    box(550, 1208, 380, 78, "dr", "DR verify-or-sync", f"{dr_time_label} UTC · equal tracked Git tree", fs=18, subfs=13)
+    box(950, 1208, 370, 78, "claim", "Actions settings", "403 · effective target override unknown", fs=18, subfs=13)
 
     # 6 ─ DR ---------------------------------------------------------------
-    band(1330, 152, "6 · BACKUP & DR — GIT SNAPSHOT, NOT RUNTIME STATE",
-         "tracked files only · the prior secondary commit is the rollback parent")
-    box(60, 1404, 470, 68, "dr", "Secondary repo (private)", "deepakGoyal1356/Vyomaraj-Agent", fs=17, subfs=13)
-    box(550, 1404, 380, 68, "dr", "History = rollback", "no force-push · no target-only delete", fs=17, subfs=13)
-    box(950, 1404, 370, 68, "dr", "Archive of record", "44 archives · 25 handovers · 15 releases", fs=17, subfs=13)
+    band(1330, 152, "6 · DR — TRACKED GIT TREE MATCH; APP / RUNTIME FAILOVER UNVERIFIED",
+         f"issue #6 {issue_state} · check-run {dr_check} · same tree {tree} · traffic switched NONE")
+    box(60, 1404, 470, 68, "dr", "Primary ↔ secondary tree", "MATCH on main · tracked files only", fs=17, subfs=13)
+    box(550, 1404, 380, 68, "claim", "Target identity/access", "Actions override unreadable · owner review pending", fs=16, subfs=12)
+    box(950, 1404, 370, 68, "claim", "Not verified by this match", "deployment · runtime · RPO/RTO · failover", fs=16, subfs=12)
 
     # 7 ─ not owned --------------------------------------------------------
     band(1502, 168, "7 · NOT OWNED — BUY IN THIS ORDER WHEN VYOMARAJ EARNS",
@@ -169,7 +202,7 @@ def build_layout():
     texts.append((PANEL_X + PANEL_W / 2, 398, "nothing running behind it", 13, "#fecaca", False, "middle"))
     entries = ["PostgreSQL 5432", "Redis 6379", "FastAPI 8000", "Flask 5000", "HTTPS / HTTP listeners",
                "15 social platform APIs", "every ₹ / follower figure", "ElevenLabs · Twilio",
-               "Whisper · 4K60 synthesis", "MediaPipe Face Mesh", "multi-AI \"live\" bus", "SearXNG + Ollama"]
+               "Whisper · 4K60 synthesis", "MediaPipe Face Mesh", "multi-AI \"live\" bus", "Native Android/macOS apps"]
     for i, line in enumerate(entries):
         texts.append((PANEL_X + PANEL_W / 2, 432 + i * 32, line, 15, "#fecaca", False, "middle"))
     texts.append((PANEL_X + PANEL_W / 2, 432 + 12 * 32 + 8, "all of it from README_MARKET_READY.md", 12, GREY_DIM, False, "middle"))
@@ -194,7 +227,7 @@ def build_layout():
     panel(890, 400, "SECURE — TODAY vs NOT YET",
           ["HTTPS on Pages", "no PII collected or held", "no secrets in this repo",
            "voice stays on device", "report routes allowlisted"],
-          ["product has no login or 2FA", "APK is unsigned right now", "preview links are session-only",
+          ["product has no login or 2FA", "APK signing validity/device install unverified", "preview links are session-only",
            "DR verifies files, not runtime"],
           "holding now", "still open")
     panel(1316, 350, "SCALABLE — TODAY vs NOT YET",
@@ -207,9 +240,9 @@ def build_layout():
     # ── the spine: how a request actually reaches the page ──────────────
     arrow(flow, 306, 332, colour="#4ade80", label="HTTPS")
     arrow(flow, 576, 592, colour="#60a5fa", label="static files only")
-    arrow(flow, 844, 866, colour="#fbbf24", label="same page, both mirrors")
-    arrow(flow, 1108, 1130, colour="#a78bfa", label="push = verification")
-    arrow(flow, 1304, 1326, colour="#818cf8", label="every push")
+    arrow(flow, 844, 866, colour="#fbbf24", label="preview-only; writer services stopped")
+    arrow(flow, 1108, 1130, colour="#a78bfa", label="PR checks ≠ deployment")
+    arrow(flow, 1304, 1326, colour="#818cf8", label="Git-tree match ≠ runtime failover")
 
 
 # ---------------------------------------------------------------- renderers
@@ -288,13 +321,23 @@ def facts() -> list[str]:
         ok = p.is_file() and needle in p.read_text(errors="ignore")
         checks.append(f"{'OK  ' if ok else 'FAIL'} {label}")
 
-    expect("index.html", "The King of Sky", "the Pages page is the product entry point")
-    expect("ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md", "GitHub Pages",
-           "the stack record names GitHub Pages as the live free host")
+    expect("index.html", "The King of the Sky", "the Pages page is the product entry point")
+    expect("ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md", "04b7ae60",
+           "the stack record states the current Pages build and branch non-deployment")
     expect("ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json", "on_device_only_no_vendor",
            "voice enrollment policy is on-device only")
     checks.append(f"{'OK  ' if (ROOT / 'Vyomaraj-App.apk').is_file() else 'FAIL'} "
-                  f"the APK is present (and still unsigned)")
+                  f"the APK is present; a v2 signing-block entry was detected, but cryptographic "
+                  f"verification and device installation remain unverified")
+    dr = current_evidence()["dr"]
+    matched = (dr.get("status") == "MATCH" and dr.get("data_match") is True
+               and dr.get("primary_tree") == dr.get("secondary_tree")
+               and dr.get("traffic_switched") == "NONE")
+    checks.append(f"{'OK  ' if matched else 'FAIL'} latest recorded scheduled DR annotation reports an equal tracked Git tree without traffic switch")
+    tests = current_evidence()["tests"]
+    gate_total = len(tests.get("python_suites", [])) + len(tests.get("node_checks", [])) + len(tests.get("builders", []))
+    gate_failures = len(tests.get("failures", []))
+    checks.append(f"{'OK  ' if gate_total and 0 <= gate_failures <= gate_total else 'FAIL'} diagram gate summary comes from recorded offline evidence ({tests.get('python_tests_total', 0)} Python tests; {gate_total - gate_failures}/{gate_total} gates; {gate_failures} failures)")
     return checks
 
 
@@ -307,8 +350,11 @@ def check() -> int:
     if SVG_PATH.is_file():
         svg = SVG_PATH.read_text()
         # The SVG escapes "&", so markers must be chosen to survive escaping.
-        for marker in ("NETWORK", "GitHub Pages — LIVE", "CLAIMED ONLY",
-                       "NOT OWNED", "UNSIGNED", "uidai.in", "never force-push"):
+        for marker in ("SHARED PEER ARCHITECTURE", "GitHub Pages — MAIN", "CLAIMED ONLY",
+                       "NOT OWNED", "v2 block detected", "unverified", "uidai.in", "04b7ae60",
+                       "issue #6 OPEN/P0", "Sandbox preview :5310", "not_configured",
+                       "TRACKED GIT TREE MATCH", "986288ee2cc4", "traffic switched NONE",
+                       "RPO/RTO", "Native Android/macOS apps"):
             if marker not in svg:
                 problems.append(f"svg lost marker: {marker}")
     problems += [line for line in facts() if line.startswith("FAIL")]
@@ -317,8 +363,9 @@ def check() -> int:
         for p in problems:
             print("  -", p)
         return 1
-    print(f"OK: architecture diagram matches the running system "
-          f"(svg {SVG_PATH.stat().st_size} B, png {PNG_PATH.stat().st_size} B, {len(shapes)} shapes)")
+    print(f"OK: architecture diagram matches the latest recorded tracked-tree result, "
+          f"peer/preview limits and repository facts (svg {SVG_PATH.stat().st_size} B, "
+          f"png {PNG_PATH.stat().st_size} B)")
     return 0
 
 

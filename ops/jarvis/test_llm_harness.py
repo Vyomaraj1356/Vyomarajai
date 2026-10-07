@@ -75,6 +75,16 @@ class HarnessTests(unittest.TestCase):
         redirected = handler.redirect_request(None, None, 302, "redirect", {}, "https://other.example/")
         self.assertIsNone(redirected)
 
+    def test_role_prompts_encode_owner_authority_languages_and_truthful_health(self):
+        vyomaraj = llm_harness.ROLE_PROMPTS["vyomaraj"]
+        jarvis = llm_harness.ROLE_PROMPTS["jarvis"]
+        self.assertIn("English, Hindi, or Hinglish", vyomaraj)
+        self.assertIn("capability inheritance never grants root", vyomaraj)
+        self.assertIn("devotional ritual", vyomaraj)
+        self.assertIn("English, Hindi, or Hinglish", jarvis)
+        self.assertIn("HTTP response proves neither authenticated peer health", jarvis)
+        self.assertIn("cannot execute", jarvis)
+
     def test_success_posts_only_messages_without_tools(self):
         provider_body = json.dumps(
             {"choices": [{"message": {"content": "Verified answer."}}]}

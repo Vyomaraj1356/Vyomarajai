@@ -50,7 +50,12 @@ Canonical names remain **UNKNOWN**. These are new functional proposals, not reco
 
 ```sh
 python ops/vyomaraj-core/experience/studio_server.py --port 4176 --home music
-# Open /music/ in the Arena preview; reports are at /reports/music.
+# Open http://127.0.0.1:4176/music/ on the same machine; reports are at /reports/music.
+```
+
+The studio is loopback-only by default and rejects non-loopback bind addresses. Research/approval writers additionally require action-bound owner tokens; do not proxy the local control routes to public ingress.
+
+```sh
 python -m unittest discover -s ops/vyomaraj-core/experience -p 'test_*.py' -v
 node --check ops/vyomaraj-core/music-experience/app.js
 # Optional, with Playwright/Chromium installed and the preview running:

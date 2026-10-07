@@ -6,6 +6,16 @@
     "jarvis": "Prepare a deterministic handoff with source references, unresolved mappings and review gates."
   },
   "endpoint": "/api/plan",
+  "local_runtime_security": {
+    "studio_default_bind": "127.0.0.1",
+    "network_bind_allowed": false,
+    "research_worker_startup": "opt_in_flag_required",
+    "privileged_http_mutations": "require_action_bound_owner_token",
+    "approval_decisions": "private_local_sqlite_transaction_and_hash_chain",
+    "owner_token_issuer_configured_in_checkout": false,
+    "runtime_configuration_verified": false,
+    "production_deployed": false
+  },
   "experiences": [
     "bhakti",
     "liquor-bar",

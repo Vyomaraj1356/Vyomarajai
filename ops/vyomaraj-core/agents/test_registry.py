@@ -13,6 +13,30 @@ class RegistryTests(unittest.TestCase):
     def test_current_totals(self):
         self.assertEqual(self.data['totals']['sub_agents'],128);self.assertEqual(self.data['totals']['main_agents'],13)
         self.assertEqual(self.data['totals']['uncounted_parent_headings'],6)
+    def test_all_active_entities_inherit_one_shared_knowledge_reference(self):
+        shared=self.data['shared_knowledge_inheritance']
+        self.assertEqual(shared['policy_id'],'UNIVERSAL_KNOWLEDGE_EVOLUTION_V1')
+        self.assertEqual(shared['inheritance_mode'],'shared_policy_reference')
+        self.assertEqual(shared['current_coverage']['category_count'],13)
+        self.assertEqual(shared['current_coverage']['agent_count'],128)
+        self.assertTrue(shared['future_entities_inherit_by_default'])
+        self.assertFalse(shared['per_entity_copy_required'])
+        self.assertTrue(all('shared_knowledge_inheritance' not in agent for agent in self.data['agents']))
+    def test_five_shared_capability_domains_are_reference_only(self):
+        shared=self.data['shared_capability_inheritance']
+        self.assertEqual(shared['model_id'],'HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL')
+        self.assertEqual(shared['policy_ref'],r.KNOWLEDGE_POLICY_REF)
+        self.assertEqual(shared['inheritance_mode'],'shared_policy_reference')
+        self.assertEqual(shared['capability_domain_ids'],['MATIMAN','SHRUTIMAN','KETUMAN','GATIMAN','DHRITIMAN'])
+        self.assertEqual(shared['current_coverage']['category_count'],13)
+        self.assertEqual(shared['current_coverage']['agent_count'],128)
+        self.assertFalse(shared['permission_grants_inherited'])
+        self.assertFalse(shared['root_owner_authority_inherited'])
+        self.assertTrue(shared['future_entities_inherit_by_default'])
+        self.assertFalse(shared['per_entity_copy_required'])
+        self.assertTrue(all('shared_capability_inheritance' not in agent
+                            and 'capability_domains' not in agent and 'capabilities' not in agent
+                            for agent in self.data['agents']))
     def test_education_finance_transfer(self):
         cats={c['id']:c for c in self.data['categories']}
         self.assertEqual((cats['EDU']['name'],cats['EDU']['sub_agents'],cats['FINANCE']['sub_agents']),('Education',16,7))
@@ -86,6 +110,10 @@ class RegistryTests(unittest.TestCase):
     def test_topic_owner_and_no_duplicates(self):
         ownership=json.loads((r.HERE/'CONTENT_OWNERSHIP_CURRENT.json').read_text());index=r.content_index(ownership,self.data)
         edu=[a for a in index['records'] if a['owner_category']=='EDU'];self.assertEqual(len(edu),21)
+        self.assertEqual(index['shared_knowledge_inheritance']['policy_id'],'UNIVERSAL_KNOWLEDGE_EVOLUTION_V1')
+        self.assertEqual(index['shared_knowledge_inheritance']['current_coverage']['indexed_content_reference_count'],index['indexed_reference_count'])
+        self.assertEqual(index['shared_capability_inheritance']['current_coverage']['indexed_content_reference_count'],index['indexed_reference_count'])
+        self.assertEqual(index['shared_capability_inheritance']['policy_ref'],r.KNOWLEDGE_POLICY_REF)
         self.assertEqual(len({a['id'] for a in index['records']}),len(index['records']))
         self.assertEqual(sum(a['id']=='EDU-TOPIC-government-schemes' for a in edu),1)
     def test_wrong_education_owner_refused(self):
@@ -98,7 +126,7 @@ class RegistryTests(unittest.TestCase):
         self.assertNotEqual(r.SNAPSHOT,r.ACTIVE);self.assertEqual(self.source['totals']['sub_agents'],133)
     def test_privacy_metadata_only_reads(self):
         original=Path.read_text;paths=[]
-        allowed={r.HERE/'RECONCILIATION_RULES.json',r.HERE/'CONTENT_OWNERSHIP_CURRENT.json',r.CORE/'experience/CONTENT_CATALOG.json'}
+        allowed={r.HERE/'RECONCILIATION_RULES.json',r.HERE/'CONTENT_OWNERSHIP_CURRENT.json',r.CORE/'experience/CONTENT_CATALOG.json',r.KNOWLEDGE_POLICY,r.CAPABILITY_MODEL,r.SHRIYANTRA_REGISTRY}
         allowed|={r.CORE/directory/'content.json' for directory,keys in r.PACKS.values()}
         def guarded(path,*args,**kwargs):
             self.assertIn(path,allowed);paths.append(path);return original(path,*args,**kwargs)

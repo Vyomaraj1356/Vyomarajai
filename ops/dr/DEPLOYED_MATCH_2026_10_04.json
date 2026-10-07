@@ -3,9 +3,9 @@
   "scope": "Git main tracked-file snapshot verified by the primary repository Actions workflow; not runtime/site DR",
   "primary": "Vyomaraj1356/Vyomarajai",
   "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
-  "primary_main_tip_checked": "641174272019ea8b1a6c0164d826aa671db1585c",
-  "source": "GitHub check-run annotations (closed vocabulary) read through the Arena gh credential; run logs and artifacts still return EOF in this sandbox, so they are not cited.",
-  "method": "All successful verify-or-sync check-runs on the main tip were enumerated and their public annotations parsed. A run that replicated carries rollback_commit; an idempotent no-op does not.",
+  "primary_main_tip_checked": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+  "source": "GitHub Actions check-run annotations (closed vocabulary) re-read live through gh; run logs/artifacts and the private secondary are not relied on for this record.",
+  "method": "Record one successful verify-or-sync checkpoint for each newly observed main tip, plus the latest scheduled confirmation on the final tip per section 5c. Read the public DR SNAPSHOT RESULT annotation; compare status, tree SHAs, data_match and rollback_commit exactly. A rollback_commit marks a write; absent means an idempotent no-op.",
   "observations": [
     {
       "check_run_id": 111212722666,
@@ -539,6 +539,141 @@
         "bounded_substitute": "The public workflow evidence for the run that created it: run 37503452400, verify-or-sync job/check-run 112406218563, step 'Verify or replicate exact main snapshot' ran 2026-10-06T17:26:16Z-17:27:19Z; rollback_commit is the previous secondary tip retained by that write and its committer timestamp lies inside that step interval.",
         "not_fabricated": "No timestamp is asserted; the field records the failed read and the bounded public interval."
       }
+    },
+    {
+      "check_run_id": 112423653494,
+      "completed_at_utc": "2026-10-06T18:06:32Z",
+      "status": "MATCH",
+      "primary_tree": "8ca45112086b93a2ca8150be39cf5010d11009e4",
+      "secondary_tree": "8ca45112086b93a2ca8150be39cf5010d11009e4",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "3731bc5ed232f5f39cd8b04b2292708e5f0ee767",
+      "head_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+      "merge_pr": 40,
+      "workflow_run_id": 37508575180,
+      "note": "PR #40 merge push run. Live annotation reports MATCH and data_match=true at the PR #40 main tree; this run wrote the exact snapshot and retained the previous secondary tip as rollback parent.",
+      "head_commit_subject": "Merge pull request #40 from Vyomaraj1356/arena/23997ce2-vyomarajai",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=8ca45112086b93a2ca8150be39cf5010d11009e4; secondary_tree=8ca45112086b93a2ca8150be39cf5010d11009e4; rollback_commit=3731bc5ed232f5f39cd8b04b2292708e5f0ee767; data_match=true",
+      "rollback_commit_timestamp": {
+        "value_utc": null,
+        "attempt": "GET /repos/deepakGoyal1356/Vyomaraj-Agent-6d64e/commits/3731bc5ed232f5f39cd8b04b2292708e5f0ee767 through the Arena gh credential returned HTTP 404; the private secondary is not readable by this credential. The SHA is not a commit on the primary.",
+        "bounded_substitute": "Public Actions evidence: run 37508575180, verify-or-sync check-run 112423653494, step 'Verify or replicate exact main snapshot' ran 2026-10-06T18:05:54Z-18:06:29Z; the rollback parent was created during this interval.",
+        "not_fabricated": "No rollback-commit timestamp is asserted; the failed read and bounded public step interval are recorded instead."
+      }
+    },
+    {
+      "check_run_id": 112605459778,
+      "completed_at_utc": "2026-10-07T02:44:07Z",
+      "status": "MATCH",
+      "primary_tree": "8ca45112086b93a2ca8150be39cf5010d11009e4",
+      "secondary_tree": "8ca45112086b93a2ca8150be39cf5010d11009e4",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+      "merge_pr": 40,
+      "workflow_run_id": 37563336298,
+      "note": "Latest successful scheduled confirmation on the PR #40 main tip, selected under the section 5c trailing-checkpoint rule. No-op MATCH: the PR #40 push run had already made the trees identical.",
+      "head_commit_subject": "Merge pull request #40 from Vyomaraj1356/arena/23997ce2-vyomarajai",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=8ca45112086b93a2ca8150be39cf5010d11009e4; secondary_tree=8ca45112086b93a2ca8150be39cf5010d11009e4; data_match=true"
+    },
+    {
+      "check_run_id": 112618764790,
+      "completed_at_utc": "2026-10-07T03:37:53Z",
+      "status": "MATCH",
+      "primary_tree": "f2dd7662e3ec0c86bae40c83464eee47442bf229",
+      "secondary_tree": "f2dd7662e3ec0c86bae40c83464eee47442bf229",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7",
+      "rollback_commit_timestamp": {
+        "value_utc": null,
+        "attempt": "GET /repos/deepakGoyal1356/Vyomaraj-Agent-6d64e/commits/8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7 through the Arena gh credential returned HTTP 404; the private secondary is not readable by this credential. The SHA is not a commit on the primary.",
+        "bounded_substitute": "Public Actions evidence: run 37567565649, verify-or-sync check-run 112618764790, step 'Verify or replicate exact main snapshot' ran 2026-10-07T03:37:29Z-03:37:49Z; the rollback parent was created during this interval.",
+        "not_fabricated": "No rollback-commit timestamp is asserted; the failed read and bounded public step interval are recorded instead."
+      },
+      "head_sha": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+      "merge_pr": null,
+      "workflow_run_id": 37567565649,
+      "workflow_event": "push",
+      "note": "Direct push to main titled 'test: align current 2026 dependency lines'. No associated pull request was returned by the commit/pulls API. The successful verify-or-sync annotation reports MATCH and data_match=true; rollback_commit records an automated replication write.",
+      "head_commit_subject": "test: align current 2026 dependency lines",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=f2dd7662e3ec0c86bae40c83464eee47442bf229; secondary_tree=f2dd7662e3ec0c86bae40c83464eee47442bf229; rollback_commit=8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7; data_match=true"
+    },
+    {
+      "check_run_id": 112620862227,
+      "completed_at_utc": "2026-10-07T03:46:21Z",
+      "status": "MATCH",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "data_match": true,
+      "replication_write_in_this_run": true,
+      "rollback_commit": "41325bcd09bb0549e5ab5c9942fb65d3257dba90",
+      "rollback_commit_timestamp": {
+        "value_utc": null,
+        "attempt": "GET /repos/deepakGoyal1356/Vyomaraj-Agent-6d64e/commits/41325bcd09bb0549e5ab5c9942fb65d3257dba90 through the Arena gh credential returned HTTP 404; the private secondary is not readable by this credential. The SHA is not a commit on the primary.",
+        "bounded_substitute": "Public Actions evidence: run 37568236297, verify-or-sync check-run 112620862227, step 'Verify or replicate exact main snapshot' ran 2026-10-07T03:46:02Z-03:46:17Z; the rollback parent was created during this interval.",
+        "not_fabricated": "No rollback-commit timestamp is asserted; the failed read and bounded public step interval are recorded instead."
+      },
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "merge_pr": null,
+      "workflow_run_id": 37568236297,
+      "workflow_event": "push",
+      "note": "Direct push to main titled 'feat: add auspicious startup and governed geospatial architecture'. No associated pull request was returned by the commit/pulls API. The successful verify-or-sync annotation reports MATCH and data_match=true; rollback_commit records an automated replication write.",
+      "head_commit_subject": "feat: add auspicious startup and governed geospatial architecture",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; rollback_commit=41325bcd09bb0549e5ab5c9942fb65d3257dba90; data_match=true"
+    },
+    {
+      "check_run_id": 112696426971,
+      "completed_at_utc": "2026-10-07T08:13:18Z",
+      "status": "MATCH",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "merge_pr": null,
+      "workflow_run_id": 37592245803,
+      "workflow_event": "schedule",
+      "note": "Latest successful scheduled verify-or-sync confirmation at the 2026-10-07 audit. Main commit 04b7ae60... has the same tracked Git tree in primary and the configured secondary. No rollback_commit is present, so this selected checkpoint was an idempotent no-op; traffic_switched=NONE. It does not verify deployed app binaries, runtime services, failover, RPO or RTO.",
+      "head_commit_subject": "feat: add auspicious startup and governed geospatial architecture",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true"
+    },
+    {
+      "check_run_id": 112730920825,
+      "completed_at_utc": "2026-10-07T09:45:42Z",
+      "status": "MATCH",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "merge_pr": null,
+      "workflow_run_id": 37602725866,
+      "workflow_event": "schedule",
+      "note": "Latest successful scheduled verify-or-sync confirmation re-read live on 2026-10-07. The same tracked Git tree was present at primary and workflow-selected secondary; no rollback_commit was present, so this was an idempotent no-op and traffic_switched=NONE. The annotation reports http=UNAVAILABLE; this does not prove deployed application/runtime equality, service health, failover, RPO or RTO.",
+      "head_commit_subject": "feat: add auspicious startup and governed geospatial architecture",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true"
+    },
+    {
+      "check_run_id": 112741170924,
+      "completed_at_utc": "2026-10-07T10:13:11Z",
+      "status": "MATCH",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "data_match": true,
+      "replication_write_in_this_run": false,
+      "rollback_commit": null,
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "merge_pr": null,
+      "workflow_run_id": 37605789908,
+      "workflow_event": "schedule",
+      "note": "Latest successful scheduled verify-or-sync confirmation re-read from GitHub Actions. The annotation reports the same tracked Git tree at primary and workflow-selected secondary; no rollback_commit was present, so this was an idempotent no-op and traffic_switched=NONE. The annotation reports http=UNAVAILABLE; this does not prove deployed application/runtime equality, service health, failover, RPO or RTO.",
+      "head_commit_subject": "feat: add auspicious startup and governed geospatial architecture",
+      "public_annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true"
     }
   ],
   "writes_to_secondary_observed": [
@@ -563,10 +698,15 @@
     112251697240,
     112253587690,
     112274342282,
-    112279322282
+    112279322282,
+    112304360057,
+    112406218563,
+    112423653494,
+    112618764790,
+    112620862227
   ],
-  "current_state": "Primary and secondary main snapshots are identical at tree b44ecb67eb432834a90cc946f06ee64a50d7b7c4 (checkpoint #34, the PR #38 merge, data_match=true, replication write with rollback parent 1a1932f6 retained). This record covers the successful verify-or-sync runs from 2026-10-03 through the PR #38 merge on 2026-10-06. Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 24 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op MATCH (no write). The PR #36/#37/trigger merges are NOT checkpoints: their offline-tests gate was red so verify-or-sync never executed (see unverified_windows).",
-  "branch_scope_warning": "This evidence covers primary main only. Two earlier commits on arena/01a1056f-vyomarajai (6e2cfc6, 0c73706) were not on main at the time they were first reported and therefore were not in the DR snapshot then; the branch was subsequently merged through PRs #10-#18 and is now covered by the checkpoints above. Unmerged branch tips are never part of the DR snapshot.",
+  "current_state": "Primary main and the workflow-selected secondary reported identical tracked Git trees at the latest scheduled checkpoint #41 (2026-10-07 10:13:11Z): 986288ee2cc4ec4d89400320150ea893f7a7a2de for main commit 04b7ae60ce2855b1d48043d80f790488e894ee79; run 37605789908/check-run 112741170924 reports status=MATCH, data_match=true, traffic_switched=NONE and http=UNAVAILABLE. Checkpoints #37 (main push at 7bd544c) and #38 (main push at 04b7ae60) each recorded an automated replication write; #39, #40 and #41 were scheduled no-op confirmations. The repository tree includes the tracked Vyomaraj-App.apk blob, so the Git-snapshot evidence implies the same repository APK bytes at the secondary; signature validity, signer provenance and real-device installation remain unverified. This is not deployed-runtime/app equality, failover, RPO or RTO evidence. Issue #6 remains OPEN/P0 because owner-confirmed secondary identity/access and target-only data review are still outstanding.",
+  "branch_scope_warning": "This record covers primary main only; unmerged branches are never part of the DR snapshot. The local session/PR #41 base 8e9a67aa559579c1e0079d3e90e8134fecfe6c44 is an ancestor of current main 04b7ae60ce2855b1d48043d80f790488e894ee79 by two main commits (7bd544c and 04b7ae6), as checked on 2026-10-07. PR #41's separate unmerged head 5a77756b5a353915221fc6a790e30e070f9aad90 and all local uncommitted changes are excluded. Earlier branch-coverage history is preserved in prior record extensions.",
   "local_verification_attempt": {
     "command": "python3 ops/dr/dr_sync.py --target deepakGoyal1356/Vyomaraj-Agent-6d64e",
     "result": "BLOCKED (HTTP 404 hidden by permissions)",
@@ -576,15 +716,15 @@
   "traffic_switched": false,
   "runtime_or_site_dr_verified": false,
   "zero_rpo_or_rto_claimed": false,
-  "revalidated_at_utc": "2026-10-06T17:27:22Z",
+  "revalidated_at_utc": "2026-10-07T08:28:20Z",
   "revalidation": {
-    "by": "arena/23997ce2-vyomarajai session (2026-10-06)",
-    "method": "All 34 recorded annotations re-read live from the GitHub API in one pass (zero mismatches), including the two new checkpoints: the PR #35 merge (run 37473895892, check-run 112304360057) and the PR #38 merge (run 37503452400, check-run 112406218563). Every annotation tree was compared to the value stored in the record; the PR #38 merge commit 6411742 is the local HEAD and its tree was cross-checked with git rev-parse. The rollback commits of the two new writes live in the private secondary and are not readable by this credential (404); each failed read and its bounded public step interval is recorded in the row instead of a guessed timestamp.",
-    "result": "34 MATCH checkpoints (24 replication writes) through the PR #38 merge (main tip 6411742). The PR #36 and PR #37 merges and the trigger commit produced NO checkpoint: their offline-tests job was red (the crypto_verify/verify_master_state path defects), so verify-or-sync was skipped by its needs-guard - recorded as an unverified window, not as matches. Checkpoint #34 is the first verify-or-sync to run on main after the gate was restored green by PR #38."
+    "by": "arena/a83291a3-vyomarajai session (2026-10-07)",
+    "method": "Re-read all 36 previously stored DR SNAPSHOT RESULT annotations byte-for-byte through the GitHub API (zero mismatches). Then reviewed all 13 successful primary-main verify-or-sync runs after checkpoint #36 through 08:13Z, including the two new main-tip push runs and intervening schedules (all 13 annotations matched recorded status/tree/data fields; only the two selected push runs contained rollback_commit). Added one push checkpoint per new main tip and the latest successful scheduled confirmation on final tip 04b7ae60; the other 10 duplicate/older no-write annotations are listed in the 2026-10-07 extension. Reconfirmed issue #6 OPEN/P0, PR states, Pages build, secondary candidate 404s and Actions settings 403s. No GitHub mutation or workflow dispatch was performed by this audit.",
+    "result": "39 selected MATCH checkpoints and 27 recorded replication writes through main 04b7ae60 plus its latest scheduled no-op confirmation; all 39 selected annotations matched live reads. Current point-in-time primary/secondary tracked Git-tree equality is evidenced at 08:13:18Z. The issue #6 owner identity/access and target-only-data acceptance gates remain open. No runtime/site DR, package signature, device install, failover, zero-RPO or zero-RTO claim is made."
   },
-  "checkpoints_total": 34,
-  "replication_writes_total": 24,
-  "session_record": "Extended in arena/05152d2a-vyomarajai: checkpoints #30 (PR #33 merge, no-op MATCH - the write was the schedule-run write documented in the race note), #31 (PR #34 merge, write + MATCH, rollback 49088063) and #32 (schedule confirmation on the PR #34 tip) recorded from live annotation re-reads; rollback timestamp recorded as an explicit failed read, not as a value. Extended in arena/23997ce2-vyomarajai: checkpoints #33 (PR #35 merge, write + MATCH, rollback 001d512b - verified but never appended by the prior session) and #34 (PR #38 merge, write + MATCH, rollback 1a1932f6) recorded from a live re-read of all 34 annotations (zero mismatches); the two rollback timestamps are recorded as explicit failed reads against the private secondary, not as values. The PR #36/#37/trigger merges produced no checkpoint (offline-tests red, verify-or-sync skipped) and are documented as a fourth unverified window closed by checkpoint #34.",
+  "checkpoints_total": 41,
+  "replication_writes_total": 27,
+  "session_record": "Extended in arena/05152d2a-vyomarajai: checkpoints #30-#32 recorded from live annotations, with the stale-head race and failed rollback timestamp read explicit. Extended in arena/23997ce2-vyomarajai: #33 (PR #35, write + MATCH, backfilled) and #34 (PR #38, write + MATCH); all 34 annotations were re-read with zero mismatches. The PR #36/#37/trigger merges were not checkpoints because offline-tests failed; checkpoint #34 closed their unverified window. Extended in arena/a83291a3-vyomarajai: re-read all 34 earlier annotations with zero mismatches; added #35 (PR #40 push, write + MATCH, rollback 3731bc5) and #36 (latest schedule on the same tip, no-op MATCH). Both new annotations report primary_tree == secondary_tree == 8ca45112086b93a2ca8150be39cf5010d11009e4 and data_match=true.",
   "blocked_runs": [
     {
       "check_run_id": 111376415924,
@@ -610,10 +750,10 @@
     "recorded_by_session": "arena/01a10655-vyomarajai (current recovery session)",
     "session_branch_base": "d9147fffc5884702d7fcbc38fd666d62622f3b8c (PR #24 merge; checkpoint #19)",
     "published_as": "pending at record time: the V16.9 auto-align and issue-ledger reconstruction is local on arena/01a10655-vyomarajai; no push or PR has been made by this update",
-    "comics_and_architecture_coverage": "the comics lane, the V16.8 architecture and the governance desks remain part of the replicated snapshot verified by checkpoints #16-#18 — they were published by the third session and nothing of them is lost",
+    "comics_and_architecture_coverage": "the comics lane, the V16.8 architecture and the governance desks remain part of the replicated snapshot verified by checkpoints #16-#18 \u2014 they were published by the third session and nothing of them is lost",
     "branch_tip_at_record": "base d9147fffc5884702d7fcbc38fd666d62622f3b8c plus the current uncommitted recovery changes",
     "pushed_at_record_time": false,
-    "publish_path": "review changes on arena/01a10655-vyomarajai → push only this branch → pull request → merge to main after owner review → read the verify-or-sync checkpoint; do not merge automatically",
+    "publish_path": "review changes on arena/01a10655-vyomarajai \u2192 push only this branch \u2192 pull request \u2192 merge to main after owner review \u2192 read the verify-or-sync checkpoint; do not merge automatically",
     "dr_coverage_of_this_merge": "PR #24 is covered by checkpoint #19; a later merge carrying this record will create its own verify-or-sync checkpoint",
     "local_sync_possible_from_this_sandbox": false,
     "rebuilt_from_lost_local_commits": {
@@ -743,5 +883,168 @@
     "stale_head_race": "Checkpoint #30 remains a deliberate no-op row: the write for its tree came from schedule run 37465859915, filed under the older head 1c13650. Attribution follows annotation trees, per stale_head_race_note_2026_10_06, so the write is not double-counted.",
     "rollback_timestamp_attempt": "GET of the checkpoint #31 rollback commit 49088063 against the private secondary returned 404 through the Arena credential and 422 against the primary. Recorded as a failed read with the public step interval 12:54:21Z-12:54:47Z as the bounded substitute; this is the same owner-side access limitation tracked by issue #6.",
     "next_checkpoint": "The merge carrying this extension is verified by the same workflow immediately after it lands; that run becomes checkpoint #33 and is recorded in the next update."
+  },
+  "record_extension_2026_10_07": {
+    "session": "arena/a83291a3-vyomarajai",
+    "finding": "Main already contained PR #40, but the DR record stopped at checkpoint #34 (PR #38). The historical 34 annotations, including the backfilled #33, were re-read live with zero mismatches.",
+    "fix": "Appended checkpoint #35 from the PR #40 push run (write + MATCH) and checkpoint #36 from the latest successful scheduled confirmation on the same main tip (no-op MATCH), following the per-tip plus latest-schedule rule in section 5c.",
+    "annotation_audit": {
+      "previous_checkpoints_re_read": 34,
+      "mismatches": 0,
+      "new_check_runs": [
+        112423653494,
+        112605459778
+      ],
+      "completed_at_utc": "2026-10-07T03:02:10Z"
+    },
+    "pr_39_live_status": "Read live on 2026-10-07: PR #39 is OPEN and DRAFT, titled \"Finalize shared-core architecture for Web, Android and macOS\", head branch final-shared-core-architecture-2026-10-06, head afe02edfa65c64a9da08ecf0eeab5008e78848a3, base main; untouched by this session.",
+    "next_checkpoint": "The merge carrying this update will produce its own verify-or-sync result. Do not pre-count it; record it in the following update under section 5c."
+  },
+  "record_extension_2026_10_07_b": {
+    "session": "arena/a83291a3-vyomarajai",
+    "finding": "Since the 08:13 checkpoint in the previous record, primary main had advanced from 8e9a67a through 7bd544c to 04b7ae60. GitHub Pages was built from main at 04b7ae60. Latest scheduled verify-or-sync run 37592245803/check-run 112696426971 reports MATCH with identical primary/secondary tree 986288ee2cc4ec4d89400320150ea893f7a7a2de, data_match=true and traffic_switched=NONE. The prior checkpoint record had stopped at 8e9a67a.",
+    "fix": "Appended checkpoints #37 and #38 for the successful main-push runs that verified each new main tip and performed an automated replication write, plus #39 for the latest scheduled no-op MATCH on the final tip. All 36 earlier stored annotations were re-read with zero mismatches; all 13 successful main verify-or-sync annotations after checkpoint #36 were inspected, and 10 intervening older/duplicate no-write runs are retained in the audit list rather than counted as extra selected checkpoints.",
+    "annotation_audit": {
+      "previous_checkpoints_re_read": 36,
+      "previous_mismatches": 0,
+      "new_successful_main_annotations_re_read": 13,
+      "new_selected_check_runs": [
+        112618764790,
+        112620862227,
+        112696426971
+      ],
+      "additional_no_write_check_runs_re_read": [
+        112612410142,
+        112620588640,
+        112627053341,
+        112635869857,
+        112642176874,
+        112650353194,
+        112658177228,
+        112668598448,
+        112675946912,
+        112686573112
+      ],
+      "new_mismatches": 0,
+      "completed_at_utc": "2026-10-07T08:28:20Z"
+    },
+    "new_main_tips": [
+      {
+        "sha": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+        "tree": "f2dd7662e3ec0c86bae40c83464eee47442bf229",
+        "workflow_run_id": 37567565649,
+        "check_run_id": 112618764790,
+        "workflow_event": "push",
+        "replication_write": true
+      },
+      {
+        "sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+        "tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+        "workflow_run_id": 37568236297,
+        "check_run_id": 112620862227,
+        "workflow_event": "push",
+        "replication_write": true
+      }
+    ],
+    "latest_scheduled_match": {
+      "workflow_run_id": 37592245803,
+      "check_run_id": 112696426971,
+      "completed_at_utc": "2026-10-07T08:13:18Z",
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "data_match": true,
+      "traffic_switched": "NONE",
+      "replication_write_in_this_run": false
+    },
+    "artifact_alignment": {
+      "path": "Vyomaraj-App.apk",
+      "git_blob_sha": "9c95df15c8cb1787bf85b7d44f9445ff9376f1f2",
+      "size_bytes": 24567022,
+      "primary_commit_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "same_blob_in_secondary_inferred_from_equal_git_tree": true,
+      "signature_validity": "UNVERIFIED",
+      "signer_provenance": "UNVERIFIED",
+      "real_device_installation": "UNVERIFIED"
+    },
+    "current_main_vs_session_base": {
+      "session_base": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+      "main": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "merge_base": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+      "pr_41_state": "OPEN",
+      "pr_41_draft": false,
+      "pr_41_head": "5a77756b5a353915221fc6a790e30e070f9aad90",
+      "pr_41_base": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44"
+    },
+    "pr_39_live_status": "Read again at 2026-10-07T08:28:20Z: PR #39 remains OPEN and DRAFT, head branch final-shared-core-architecture-2026-10-06, head afe02edfa65c64a9da08ecf0eeab5008e78848a3, base main; PR #39 was not modified.",
+    "pr_41_live_status": "Read again at 2026-10-07T08:28:20Z: PR #41 remains OPEN/non-draft, head 5a77756b5a353915221fc6a790e30e070f9aad90 on arena/a83291a3-vyomarajai, base SHA 8e9a67aa559579c1e0079d3e90e8134fecfe6c44; current main is two commits ahead of its base. Do not merge or deploy automatically.",
+    "pages_build": {
+      "source": "main:/",
+      "commit": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "status": "built",
+      "created_at": "2026-10-07T03:45:29Z",
+      "updated_at": "2026-10-07T03:46:37Z"
+    },
+    "issue_6": "Remains OPEN/P0. Equal tracked Git trees at the scheduled checkpoint do not finish its acceptance: an authorized owner/admin must confirm the authoritative secondary identity/access and review target-only data. Keep it open; do not post the historical close-out or dispatch a write from this session.",
+    "next_checkpoint": "After this record is reviewed and merged through an owner-approved path, re-read the subsequent verify-or-sync result; never pre-count a future merge or schedule run."
+  },
+  "record_extension_2026_10_07_c": {
+    "session": "arena/a83291a3-vyomarajai",
+    "recorded_at_utc": "2026-10-07T09:45:42Z",
+    "finding": "A later successful scheduled verify-or-sync run on unchanged main was completed at 09:45:42Z. Its live DR SNAPSHOT RESULT annotation reports MATCH, data_match=true, identical tracked trees 986288ee2cc4ec4d89400320150ea893f7a7a2de and traffic_switched=NONE; the annotation also reports http=UNAVAILABLE.",
+    "fix": "Appended checkpoint #40 as a no-write scheduled confirmation after #39. This pass re-read the new annotation only; it did not re-read the prior 39 annotations. The 08:28 audit remains the last full historical-annotation audit.",
+    "annotation_audit": {
+      "previous_checkpoints_reread": 0,
+      "new_check_run_id": 112730920825,
+      "new_mismatches": 0,
+      "scope_note": "Only the new scheduled annotation was checked in this addendum; no new claim about rereading prior rows."
+    },
+    "latest_scheduled_match": {
+      "workflow_run_id": 37602725866,
+      "check_run_id": 112730920825,
+      "created_at_utc": "2026-10-07T09:44:53Z",
+      "completed_at_utc": "2026-10-07T09:45:42Z",
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "status": "MATCH",
+      "data_match": true,
+      "traffic_switched": "NONE",
+      "replication_write_in_this_run": false,
+      "http": "UNAVAILABLE",
+      "failed_api_operation": "NONE_OR_UNCLASSIFIED"
+    },
+    "limits": "Tracked Git trees only. The workflow-selected secondary identity remains unconfirmed; no runtime/app equality, production heartbeat, failover, RPO or RTO is established."
+  },
+  "record_extension_2026_10_07_d": {
+    "session": "arena/a83291a3-vyomarajai",
+    "recorded_at_utc": "2026-10-07T10:13:11Z",
+    "finding": "A later successful scheduled verify-or-sync run on unchanged main completed at 10:13:11Z. Its live DR SNAPSHOT RESULT annotation reports MATCH, data_match=true, identical tracked trees 986288ee2cc4ec4d89400320150ea893f7a7a2de, traffic_switched=NONE, and http=UNAVAILABLE.",
+    "fix": "Appended checkpoint #41 as a no-write scheduled confirmation after #40. The new annotation was checked; the prior 40 checkpoint annotations were not re-read in this addendum. The last full historical annotation audit remains the separately recorded 08:28 UTC audit.",
+    "annotation_audit": {
+      "previous_checkpoints_reread": 0,
+      "new_check_run_id": 112741170924,
+      "new_mismatches": 0,
+      "scope_note": "Only the new scheduled annotation was checked in this addendum; no new claim about rereading prior rows."
+    },
+    "latest_scheduled_match": {
+      "workflow_run_id": 37605789908,
+      "check_run_id": 112741170924,
+      "created_at_utc": "2026-10-07T10:11:56Z",
+      "completed_at_utc": "2026-10-07T10:13:11Z",
+      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "status": "MATCH",
+      "data_match": true,
+      "traffic_switched": "NONE",
+      "replication_write_in_this_run": false,
+      "http": "UNAVAILABLE",
+      "failed_api_operation": "NONE_OR_UNCLASSIFIED"
+    },
+    "limits": "Tracked Git trees only. The workflow-selected secondary identity remains unconfirmed; no runtime/app equality, production heartbeat, failover, RPO or RTO is established."
   }
 }

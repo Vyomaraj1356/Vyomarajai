@@ -3,6 +3,7 @@
 import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
+import ipaddress
 import json
 import re
 import threading
@@ -11,6 +12,7 @@ from urllib.parse import urlsplit, parse_qs
 
 from local_planner import build_plan, InvalidPlan
 
+ROOT = Path(__file__).resolve().parents[3]
 CORE_ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -21,6 +23,18 @@ def _load_governance_module(name):
     return module
 
 CORE = Path(__file__).resolve().parent.parent
+
+
+def validate_loopback_host(host):
+    try:
+        address = ipaddress.ip_address(host)
+    except ValueError as exc:
+        raise ValueError('host must be a numeric IPv4 loopback IP') from exc
+    if not isinstance(address, ipaddress.IPv4Address) or not address.is_loopback:
+        raise ValueError('network/public binds are disabled; use an IPv4 loopback IP')
+    return str(address)
+
+
 spec = importlib.util.spec_from_file_location('report_renderer', CORE / 'handover/preview_reports.py')
 reports = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(reports)
@@ -35,13 +49,41 @@ for module_name, file_name in (('approvals', 'approval_queue.py'),
     GOVERNANCE[module_name] = importlib.util.module_from_spec(_spec)
     _spec.loader.exec_module(GOVERNANCE[module_name])
 
+_store_spec = importlib.util.spec_from_file_location(
+    'vyomaraj_approval_store', CORE / 'approvals/approval_store.py'
+)
+APPROVAL_STORE_MODULE = importlib.util.module_from_spec(_store_spec)
+_store_spec.loader.exec_module(APPROVAL_STORE_MODULE)
+_guard_spec = importlib.util.spec_from_file_location(
+    'vyomaraj_owner_guard', ROOT / 'ops/shriyantra/owner_guard.py'
+)
+OWNER_GUARD = importlib.util.module_from_spec(_guard_spec)
+_guard_spec.loader.exec_module(OWNER_GUARD)
+
 RESEARCH_STORE = None
+APPROVAL_STORE = None
 
 def research_store():
     global RESEARCH_STORE
     if RESEARCH_STORE is None:
         RESEARCH_STORE = discovery.Store()
     return RESEARCH_STORE
+
+
+def approval_store():
+    global APPROVAL_STORE
+    if APPROVAL_STORE is None:
+        APPROVAL_STORE = APPROVAL_STORE_MODULE.ApprovalStore()
+    return APPROVAL_STORE
+
+
+class OwnerApprovalRequired(Exception):
+    def __init__(self, action, scope, target):
+        super().__init__('owner_approval_required')
+        self.action = action
+        self.scope = scope
+        self.target = target
+
 
 ASSETS = {'/policy.json': (CORE / 'governance/PUBLIC_POLICY.json', 'application/json')}
 for prefix, directory in [('/aghor/', 'aghor-experience'), ('/bhakti/', 'bhakti-experience'), ('/pairings/', 'liquor-bar'), ('/music/', 'music-experience'), ('/film/', 'film-experience'), ('/comics/', 'comics-experience'), ('/approvals/', 'approvals'), ('/finance/', 'finance'), ('/upgrades/', 'upgrades')]:
@@ -75,7 +117,7 @@ REPORTS = {
     '/reports/music': 'MUSIC_AUDIO_VIDEO_UPDATE_2026_10_03.md',
     '/reports/dr': 'DR_RESOLUTION_2026_10_03.md',
     '/reports/next-session': reports.HANDOVER_NOTE,
-    '/reports/handover-notepad': reports.HANDOVER_NOTE,
+    '/reports/handover-notepad': reports.SESSION_UPDATE,
     '/reports/recovery': reports.RECOVERY_DOC,
     '/reports/dr-sync': reports.DR_SYNC_REPORT,
     '/reports/post-pr25-handover': reports.POST_PR25_NOTE,
@@ -95,7 +137,7 @@ REPORTS = {
     '/reports/recovery-index': 'ARENA_SESSION_RECOVERY_INDEX_2026_10_06.md',
     '/reports/go-live-gaps': 'GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
     '/reports/next-session-plan': 'NEXT_SESSION_PLAN_2026_10_07.md',
-    '/reports/session-update': 'SESSION_UPDATE_2026_10_06.md',
+    '/reports/session-update': reports.SESSION_UPDATE,
 }
 
 
@@ -152,6 +194,24 @@ class Handler(BaseHTTPRequestHandler):
 
     def json_response(self, data, code=200):
         self.send_bytes(json.dumps(data, ensure_ascii=False).encode(), 'application/json', code)
+
+    def owner_approval(self, action, scope, payload, *, consume_replay=True):
+        target = OWNER_GUARD.canonical_action_target(action, payload)
+        header = self.headers.get('Authorization', '')
+        if not header:
+            raise OwnerApprovalRequired(action, scope, target)
+        parts = header.split(' ', 1)
+        if len(parts) != 2 or parts[0] != 'Bearer' or not parts[1] or any(c.isspace() for c in parts[1]):
+            raise OWNER_GUARD.AuthorizationDenied('Authorization must use one Bearer token.')
+        if consume_replay:
+            claims = OWNER_GUARD.require_owner_approval(
+                action=action, target=target, required_scope=scope, token=parts[1],
+            )
+        else:
+            claims = OWNER_GUARD.verify_owner_approval(
+                parts[1], action=action, target=target, required_scope=scope,
+            )
+        return claims, target
 
     def do_GET(self):
         route = urlsplit(self.path).path
@@ -215,6 +275,21 @@ class Handler(BaseHTTPRequestHandler):
             self.send_download(path.read_bytes(), 'application/zip', path.name)
         elif route == '/api/sync/status':
             self.json_response(sync_status())
+        elif route == '/api/approvals/queue':
+            try:
+                self.json_response(approval_store().queue())
+            except APPROVAL_STORE_MODULE.ApprovalStoreError as exc:
+                self.json_response({'error': 'approval_store_unavailable', 'detail': str(exc)}, 503); return
+        elif route.startswith('/api/approvals/review/'):
+            item_id = route.removeprefix('/api/approvals/review/')
+            if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,100}', item_id):
+                self.json_response({'error': 'invalid_item_id'}, 400); return
+            try:
+                self.json_response(approval_store().open_review(item_id))
+            except APPROVAL_STORE_MODULE.InvalidApproval as exc:
+                self.json_response({'error': str(exc)}, 409); return
+            except APPROVAL_STORE_MODULE.ApprovalStoreError as exc:
+                self.json_response({'error': 'approval_store_unavailable', 'detail': str(exc)}, 503); return
         elif route == '/api/research/status':
             self.json_response(research_store().status())
         elif route == '/api/research/records':
@@ -234,7 +309,7 @@ class Handler(BaseHTTPRequestHandler):
         elif route == '/reports/download/next-session.txt':
             self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
         elif route == '/reports/download/handover-notepad.txt':
-            self.send_download((CORE / 'handover' / reports.HANDOVER_NOTE).read_bytes(), 'text/plain; charset=utf-8', reports.HANDOVER_NOTE)
+            self.send_download((CORE / 'handover' / reports.SESSION_UPDATE).read_bytes(), 'text/plain; charset=utf-8', reports.SESSION_UPDATE)
         elif route == '/reports/download/transfer-package.zip':
             self.send_download((CORE / 'handover' / reports.TRANSFER_ZIP).read_bytes(), 'application/zip', Path(reports.TRANSFER_ZIP).name)
         elif route == '/reports/download/post-pr25-handover.txt':
@@ -262,22 +337,25 @@ class Handler(BaseHTTPRequestHandler):
         elif route == '/reports/download/network-diagram.svg':
             path = CORE / 'handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg'
             self.send_download(path.read_bytes(), 'image/svg+xml', path.name)
-        elif route in REPORTS or route in reports.REFERENCE_REPORTS:
-            path = (reports.REFERENCE_REPORTS[route] if route in reports.REFERENCE_REPORTS
-                    else CORE / 'handover' / REPORTS[route])
-            if not path.is_file():
-                self.send_error(404); return
-            body = reports.PAGE_NOTES.get(route, '') + reports.render_document(path)
-            if route == '/reports/history':
-                body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: 128 counted slots, six uncounted headings; Education 16, Finance 7, Entertainment 32. See the current inventory or reconciliation above.</p>' + body
-            if route == '/reports/recovery':
-                body = reports.RECOVERY_LINKS + body
+        elif route in REPORTS or route in reports.REFERENCE_REPORTS or route in reports.DYNAMIC_REPORTS:
+            if route in reports.DYNAMIC_REPORTS:
+                body = reports.PAGE_NOTES.get(route, '') + reports.render_monitor_fragment()
+            else:
+                path = (reports.REFERENCE_REPORTS[route] if route in reports.REFERENCE_REPORTS
+                        else CORE / 'handover' / REPORTS[route])
+                if not path.is_file():
+                    self.send_error(404); return
+                body = reports.PAGE_NOTES.get(route, '') + reports.render_document(path)
+                if route == '/reports/history':
+                    body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: 128 counted slots, six uncounted headings; Education 16, Finance 7, Entertainment 32. See the current inventory or reconciliation above.</p>' + body
+                if route == '/reports/recovery':
+                    body = reports.RECOVERY_LINKS + body
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
                     '<meta name="viewport" content="width=device-width,initial-scale=1">'
                     '<meta name="theme-color" content="#0a1628"><title>Vyomaraj reports</title><style>' + reports.STYLE + '</style><link rel="stylesheet" href="/assets/fonts.css"><main>'
                     '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/aghor/">Aghor & Aghori</a><a href="/reports/resilience">DR & integration update</a><a href="/agents/">Current agents</a><a href="/education/">Education</a><a href="/reports/agents">Reconciliation</a><a href="/reports/history">Historical audit</a><a href="/research/">Research desk</a><a href="/reports/research">Integration report</a><a href="/film/">Film & stage</a><a href="/reports/film">Film report</a><a href="/comics/">Comics</a><a href="/reports/contents">All content</a><a href="/music/">Music & media</a><a href="/reports/music">Music report</a><a href="/bhakti/">Bhakti-Shakti</a><a href="/pairings/">Roots & Pairings</a>'
                     '<a href="/reports/">Full inventory</a><a href="/reports/bhakti">Bhakti update</a>'
-                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/next-session-plan">Next session plan</a><a href="/reports/session-update">Session update</a></nav>'
+                    '<a href="/reports/dr">DR status</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/next-session-plan">Next session plan</a><a href="/reports/session-update">Session update</a><a href="/reports/monitor">Local monitor</a></nav>'
                     '<p class="notice">Entertainment and view-only spiritual content; participation is voluntary. No hazardous rituals or cure claims. Respect for humans, animals, religions, castes and creeds. Earning is not guaranteed. Local preview and creative planning are implemented. Git snapshot match evidence is in the DR report; external AI '
                     'and runtime/site disaster recovery are not verified.</p>' + body + '</main></html>')
             self.send_bytes(page.encode(), 'text/html')
@@ -289,9 +367,11 @@ class Handler(BaseHTTPRequestHandler):
         if route not in ('/api/plan', '/api/research/run', '/api/research/review',
                          '/api/approvals/decide', '/api/finance/briefing', '/api/upgrades/plan'):
             self.send_error(404); return
-        if route.startswith('/api/research/') or route.startswith('/api/approvals/') or route.startswith('/api/finance/') or route.startswith('/api/upgrades/'):
+        if route.startswith(('/api/research/', '/api/approvals/', '/api/finance/', '/api/upgrades/')):
             origin = self.headers.get('Origin')
-            if self.headers.get('Sec-Fetch-Site') == 'cross-site' or (origin and (urlsplit(origin).scheme not in ('http', 'https') or urlsplit(origin).netloc != self.headers.get('Host'))):
+            if (self.headers.get('Sec-Fetch-Site') == 'cross-site'
+                    or (origin and (urlsplit(origin).scheme not in ('http', 'https')
+                                    or urlsplit(origin).netloc != self.headers.get('Host')))):
                 self.json_response({'error': 'cross_origin_refused'}, 403); return
         if self.headers.get_content_type() != 'application/json':
             self.json_response({'error': 'Use application/json.'}, 415); return
@@ -310,30 +390,71 @@ class Handler(BaseHTTPRequestHandler):
                 if (not isinstance(data, dict) or set(data) - {'item_id', 'decision', 'voice_instruction'}
                         or not isinstance(data.get('item_id'), str) or not isinstance(data.get('decision'), str)):
                     raise GOVERNANCE['approvals'].InvalidApproval('item_id and decision are required.')
-                plan = GOVERNANCE['approvals'].record_decision(
-                    data['item_id'], data['decision'], data.get('voice_instruction'))
+                claims, target = self.owner_approval(
+                    'approval.decide', 'approval.decide', data, consume_replay=False,
+                )
+                store = approval_store()
+                queue_view = store.queue()
+                item = store.item(data['item_id'])
+                if item is None or item.get('status') != 'awaiting_owner':
+                    raise APPROVAL_STORE_MODULE.InvalidApproval('Item is not awaiting the owner.')
+                plan = GOVERNANCE['approvals'].build_decision_record(
+                    item, data['decision'], data.get('voice_instruction'),
+                    decided_by=claims['sub'], camera=queue_view['camera'],
+                    notifications=queue_view['notifications'],
+                )
+                plan = store.persist_decision(
+                    data['item_id'], plan, jti=claims['jti'], target_sha256=target,
+                )
+                self.json_response(plan); return
             elif route == '/api/finance/briefing':
                 if not isinstance(data, dict) or set(data) != {'request'} or data['request'] != 'followup_and_briefing':
                     raise ValueError('request must be followup_and_briefing.')
+                # This endpoint renders only checked-in illustrative draft figures; it has no
+                # external data source, persistence, or notification/payout capability. The
+                # surrounding server is constrained to loopback.
                 plan = {'schema_version': 1, 'status': 'local_followup_and_briefing_drafted',
                         'followup': GOVERNANCE['finance'].build_followup(),
                         'briefing': GOVERNANCE['finance'].build_morning_briefing(),
                         'drafts_only': True, 'notifications_sent': False}
             elif route == '/api/upgrades/plan':
                 if isinstance(data, dict) and data.get('record') and data.get('decision'):
-                    plan = GOVERNANCE['upgrades'].apply_permission(data['record'], data['decision'])
+                    claims, _ = self.owner_approval('upgrade.approve', 'upgrade.approve', data)
+                    plan = GOVERNANCE['upgrades'].apply_permission(
+                        data['record'], data['decision'], decided_by=claims['sub'],
+                    )
                 elif isinstance(data, dict) and data.get('record') and data.get('failure'):
+                    self.owner_approval('upgrade.report_failure', 'upgrade.report_failure', data)
                     plan = GOVERNANCE['upgrades'].report_failure(data['record'], data['failure'])
                 else:
                     plan = GOVERNANCE['upgrades'].plan_change(data)
             elif route == '/api/research/run':
                 if not isinstance(data, dict) or set(data) != {'profile'} or not isinstance(data['profile'], str):
                     raise discovery.DiscoveryError('profile_only_request_required')
+                self.owner_approval('research.run', 'research.run', data)
                 self.json_response(research_store().enqueue(data['profile']), 202); return
             else:
-                if not isinstance(data, dict) or set(data) != {'record_id', 'decision', 'acknowledge_metadata_only'} or data['acknowledge_metadata_only'] is not True or not isinstance(data['record_id'], str) or not isinstance(data['decision'], str):
+                if (not isinstance(data, dict) or set(data) != {'record_id', 'decision', 'acknowledge_metadata_only'}
+                        or data['acknowledge_metadata_only'] is not True
+                        or not isinstance(data['record_id'], str) or not isinstance(data['decision'], str)):
                     raise discovery.DiscoveryError('metadata_only_acknowledgement_required')
+                self.owner_approval('research.review', 'research.review', data)
                 plan = research_store().review(data['record_id'], data['decision'])
+        except OwnerApprovalRequired as exc:
+            self.json_response({
+                'error': 'owner_approval_required',
+                'required': {'action': exc.action, 'scope': exc.scope, 'target': exc.target},
+                'authentication': 'short_lived_signed_owner_token_with_passkey',
+                'provider_configuration': 'not_verified_by_a_missing-token_request',
+            }, 401); return
+        except OWNER_GUARD.AuthorizationDenied as exc:
+            self.json_response({'error': 'owner_authorization_denied', 'detail': str(exc)}, 403); return
+        except APPROVAL_STORE_MODULE.ApprovalReplay as exc:
+            self.json_response({'error': str(exc)}, 409); return
+        except APPROVAL_STORE_MODULE.InvalidApproval as exc:
+            self.json_response({'error': str(exc)}, 409); return
+        except APPROVAL_STORE_MODULE.ApprovalStoreError as exc:
+            self.json_response({'error': 'approval_store_unavailable', 'detail': str(exc)}, 503); return
         except discovery.DiscoveryError as exc:
             self.json_response({'error': str(exc)}, 400); return
         except InvalidPlan as exc:
@@ -342,8 +463,8 @@ class Handler(BaseHTTPRequestHandler):
             self.json_response({'error': str(exc)}, 400); return
         except GOVERNANCE['upgrades'].InvalidChange as exc:
             self.json_response({'error': str(exc)}, 400); return
-        except (ValueError, UnicodeError, RecursionError):
-            self.json_response({'error': 'Invalid JSON.'}, 400); return
+        except (ValueError, TypeError, KeyError, UnicodeError, RecursionError):
+            self.json_response({'error': 'Invalid JSON or request.'}, 400); return
         except (TimeoutError, OSError):
             self.json_response({'error': 'Request unavailable or timed out.'}, 408); return
         self.json_response(plan)
@@ -354,10 +475,21 @@ class Handler(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--host', default='127.0.0.1', help='Loopback IP only; network exposure is disabled.')
     parser.add_argument('--port', type=int, default=4176)
+    parser.add_argument('--enable-research-worker', action='store_true',
+                        help='Explicitly allow queued local research jobs to fetch provider metadata.')
     parser.add_argument('--home', choices=('bhakti', 'music', 'pairings', 'film', 'comics', 'research', 'agents', 'education', 'aghor', 'reports'), default='bhakti')
     args = parser.parse_args()
+    try:
+        args.host = validate_loopback_host(args.host)
+    except ValueError as exc:
+        parser.error(str(exc))
+    if not 1 <= args.port <= 65535:
+        parser.error('--port must be between 1 and 65535')
     Handler.home_route = '/' + args.home + '/'
-    threading.Thread(target=discovery.worker_loop, args=(research_store(), threading.Event()), daemon=True).start()
-    print(f'Vyomaraj Experience Studio on 0.0.0.0:{args.port}', flush=True)
-    ThreadingHTTPServer(('0.0.0.0', args.port), Handler).serve_forever()
+    if args.enable_research_worker:
+        threading.Thread(target=discovery.worker_loop,
+                         args=(research_store(), threading.Event()), daemon=True).start()
+    print(f'Vyomaraj Experience Studio on {args.host}:{args.port} (loopback only)', flush=True)
+    ThreadingHTTPServer((args.host, args.port), Handler).serve_forever()
