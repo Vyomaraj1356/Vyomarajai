@@ -453,15 +453,40 @@
       "id": "EDU-S8",
       "category_id": "EDU",
       "parent_id": "EDU",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Metals, Numismatics, Stamps & Collectibles",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED_OWNER_APPROVED",
       "source_slot": "S8",
       "id_status": "source_id_preserved",
       "serial": 8,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "Finance S4 Metals/Numismatic/Stamps/Philately + Education World Stamps/Philately topic; owner directed Education ownership",
+        "aligned_on": "2026-10-07"
+      },
+      "topic_scope": [
+        "metals history",
+        "precious and industrial metals",
+        "numismatics",
+        "coins",
+        "currency history",
+        "medals",
+        "tokens",
+        "stamps",
+        "philately",
+        "postal history",
+        "collectibles",
+        "collecting culture",
+        "authentication/provenance",
+        "museums and archives",
+        "markets and valuation literacy",
+        "India and world history"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "EDU-S9",
@@ -568,15 +593,36 @@
       "id": "EDU-S13",
       "category_id": "EDU",
       "parent_id": "EDU",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Ancient Scripts, Epigraphy & Knowledge Transmission",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED_OWNER_APPROVED",
       "source_slot": "S13",
       "id_status": "source_id_preserved",
       "serial": 13,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "Education topic EDU-TOPIC-scripts: Ancient scripts and epigraphy; S13 individual historical name remains absent, so display name is owner-approved functional alignment rather than a claimed recovered historical title",
+        "aligned_on": "2026-10-07"
+      },
+      "topic_scope": [
+        "ancient scripts",
+        "epigraphy",
+        "inscriptions",
+        "manuscripts",
+        "writing systems",
+        "language history",
+        "palaeography",
+        "knowledge transmission",
+        "libraries and archives",
+        "oral-to-written traditions",
+        "Indian and world scripts",
+        "digital preservation"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "EDU-S14",
@@ -2320,7 +2366,7 @@
       "id": "ENT-WIT-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-WIT",
-      "name": "Wit, Wordplay & Intellectual Humour",
+      "name": "Wit, Wordplay, Satire & Literary Humour",
       "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-WIT-S1",
       "id_status": "source_id_preserved",
@@ -2331,16 +2377,36 @@
       "runtime_status": "NOT_VERIFIED",
       "alignment": {
         "status": "ALIGNED",
-        "basis": "OWNER_ALIGNED_FUNCTIONAL",
-        "evidence": "Entertainment source slot + wit taxonomy",
+        "basis": "OWNER_EXPANDED_CONTENT_MODEL",
+        "evidence": "Wit source slot + existing wit taxonomy + requested expansion",
         "aligned_on": "2026-10-07"
-      }
+      },
+      "topic_scope": [
+        "wit",
+        "wordplay",
+        "puns",
+        "riddles",
+        "intellectual humour",
+        "observational humour",
+        "satire",
+        "irony",
+        "parody",
+        "literary humour",
+        "prose humour",
+        "stage humour",
+        "screen humour",
+        "broadcast humour",
+        "digital humour",
+        "meme culture",
+        "cross-cultural humour",
+        "history of humour"
+      ]
     },
     {
       "id": "ENT-HASYA-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENTERTAINMENT",
-      "name": "Hasya & Humour Special",
+      "name": "Hasya Kavi Sammelan, Hasya Kavita & Indian/World Humour Literature",
       "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-HASYA-S1",
       "id_status": "source_id_preserved",
@@ -2351,10 +2417,49 @@
       "runtime_status": "NOT_VERIFIED",
       "alignment": {
         "status": "ALIGNED",
-        "basis": "OWNER_ALIGNED_FUNCTIONAL",
-        "evidence": "source slot reports 12 chapters; individual original title not recovered",
+        "basis": "OWNER_EXPANDED_CONTENT_MODEL",
+        "evidence": "Existing 12-chapter Hasya slot + owner request to expand Kavi Sammelan, poets, old/new, Indian/world and published literature",
         "aligned_on": "2026-10-07"
-      }
+      },
+      "topic_scope": [
+        "Hasya Kavi Sammelan history",
+        "Kavi Sammelan history",
+        "Hasya poetry",
+        "Hasya kavita",
+        "Vyangya",
+        "satire",
+        "humour literature",
+        "Indian humour poets",
+        "Indian satirists",
+        "regional-language humour",
+        "Urdu/Hindi humour",
+        "women humour poets",
+        "contemporary humour poets",
+        "world humour poets and literary traditions",
+        "published books and collections",
+        "magazines and newspapers",
+        "radio and television",
+        "stage performance",
+        "live events",
+        "digital/YouTube era",
+        "poet biographies",
+        "works bibliography",
+        "performance history",
+        "event archives",
+        "diaspora Kavi Sammelans",
+        "future humour formats"
+      ],
+      "content_requirements": [
+        "old-to-new historical timeline",
+        "poet-by-poet profiles",
+        "published literature bibliography",
+        "public-domain/rights-safe excerpts only",
+        "Kavi Sammelan event history",
+        "Indian and world comparison",
+        "oral/stage/radio/TV/digital evolution",
+        "regional language coverage",
+        "current and future trends"
+      ]
     },
     {
       "id": "ENT-LIQUOR-S1",
@@ -4162,6 +4267,7 @@
       "TOUR-REF-04"
     ],
     "note": "Names marked HISTORICAL_CONTENT_ALIGNED are functional alignments supported by repository content, not claims that the historical source originally used that exact title. OWNER_ALIGNED_FUNCTIONAL names are owner-directed functional taxonomy where historical slot identity was not recoverable.",
-    "education_recovery": "EDU-S11 and EDU-S12 remain legacy references merged into EDU-S10 with data preserved; S8 and S13 remain unresolved historical identities until source evidence is recovered."
+    "education_recovery": "EDU-S8 aligned to Metals, Numismatics, Stamps & Collectibles from recovered Finance S4 + Education philately evidence; EDU-S11/S12 remain historical merged references under EDU-S10; EDU-S13 aligned to Ancient Scripts, Epigraphy & Knowledge Transmission from Education topic evidence.",
+    "entertainment_expansion": "Wit expanded; Hasya elevated to dedicated Kavi Sammelan + humour-literature model with historical, bibliographic, Indian/world and contemporary coverage."
   }
 }
