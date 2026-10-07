@@ -15,7 +15,7 @@ import verify_live_wiring as wiring
 
 class RouteContractTests(unittest.TestCase):
     def test_every_advertised_route_is_actually_served(self):
-        served = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS)
+        served = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS) | set(viewer.DYNAMIC_REPORTS)
         for route in wiring.VIEWER_ROUTES:
             self.assertIn(route, served, f'{route} is checked by the verifier but not served')
 
@@ -40,7 +40,8 @@ class RouteContractTests(unittest.TestCase):
         # The replicas serve their own route table and also consult the shared renderer's
         # allowlists, so a route counts as served if either place knows it.
         studio = (wiring.CORE / 'experience/studio_server.py').read_text(encoding='utf-8')
-        known = set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS) | set(viewer.DOWNLOADS)
+        known = (set(viewer.REPORTS) | set(viewer.REFERENCE_REPORTS) |
+                 set(viewer.DYNAMIC_REPORTS) | set(viewer.DOWNLOADS))
         for route in wiring.REPLICA_ROUTES:
             with self.subTest(route=route):
                 self.assertTrue(route in studio or route in known,

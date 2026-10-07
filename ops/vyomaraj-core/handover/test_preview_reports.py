@@ -4,6 +4,7 @@ import unittest
 import urllib.error
 import urllib.request
 from http.server import ThreadingHTTPServer
+from unittest.mock import patch
 
 import preview_reports as preview
 
@@ -78,6 +79,19 @@ class PreviewTests(unittest.TestCase):
             self.assertEqual(response.read(), update)
             self.assertIn('attachment', response.headers['Content-Disposition'])
             self.assertIn(preview.SESSION_UPDATE, response.headers['Content-Disposition'])
+
+    def test_monitor_route_is_allowlisted_read_only_and_navigable(self):
+        self.assertIn('/reports/monitor', preview.DYNAMIC_REPORTS)
+        with patch.object(preview, 'render_monitor_fragment',
+                          return_value='<h1>Local service monitor</h1><p>snapshot only</p>') as render:
+            with urllib.request.urlopen(self.url + '/reports/monitor') as response:
+                self.assertEqual(response.status, 200)
+                page = response.read().decode()
+        render.assert_called_once_with()
+        self.assertIn('Local monitor, read-only view', page)
+        self.assertIn('snapshot only', page)
+        self.assertIn('href="/reports/monitor">Local monitor</a>', page)
+        self.assertIn('href="/reports/handover-notepad"', page)
 
     def test_dr_sync_report_page_is_generated_from_evidence(self):
         with urllib.request.urlopen(self.url + '/reports/dr-sync') as response:
@@ -188,7 +202,7 @@ class PreviewTests(unittest.TestCase):
 
     def test_every_report_page_carries_the_three_new_nav_links(self):
         for route in ('/', '/reports/build', '/reports/chats', '/reports/issue-6',
-                      '/reports/test-evidence', '/reports/handover-notepad', '/reports/auto-align',
+                      '/reports/test-evidence', '/reports/handover-notepad', '/reports/monitor', '/reports/auto-align',
                       '/reports/platform-check', '/reports/issues'):
             with self.subTest(route=route):
                 with urllib.request.urlopen(self.url + route) as response:
@@ -196,6 +210,7 @@ class PreviewTests(unittest.TestCase):
                 for link in ('href="/reports/chats"', 'href="/reports/issue-6"',
                              'href="/reports/test-evidence"', 'href="/reports/auto-align"',
                              'href="/reports/platform-check"', 'href="/reports/issues"',
+                             'href="/reports/monitor">Local monitor</a>',
                              'New-session runbook (in order)'):
                     self.assertIn(link, text)
 

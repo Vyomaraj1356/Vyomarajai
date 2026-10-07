@@ -282,3 +282,51 @@ object was recovered or pushed.
 | `verify-or-sync` | skipped on the PR event | [job 112611855697](https://github.com/Vyomaraj1356/Vyomarajai/actions/runs/37565369828/job/112611855697) |
 
 The skipped PR-event job is **not** evidence of replication, and no checkpoint for [PR #41](https://github.com/Vyomaraj1356/Vyomarajai/pull/41) is recorded. Carry forward the [§5c trailing-checkpoint rule](DR_SYNC_RESULTS_2026_10_04.md#5c-the-trailing-checkpoint-rule-why-the-newest-merge-is-not-a-row-yet): after [PR #41](https://github.com/Vyomaraj1356/Vyomarajai/pull/41) actually merges, live-read the main `verify-or-sync` push/schedule runs, fetch each `DR SNAPSHOT RESULT` annotation, compare its full trees to the main snapshot for the recorded tip, and classify only observed writes/no-ops. If the offline gate blocks the sync job, record a gap—not a match. Append a §5c follow-up only after that evidence is available; do not infer merge or replication from green PR checks. Keep [PR #39](https://github.com/Vyomaraj1356/Vyomarajai/pull/39) untouched.
+
+## 9 · Local monitoring build and remaining work — 2026-10-07
+
+This addendum responds to the request to identify remaining work, build a safe
+code-only item, and update this notepad and its report viewer. The frozen
+canonical handover remains untouched.
+
+**Built and wired locally.** `ops/vyomaraj-core/handover/probes.py` makes one
+bounded HTTP GET to each of four configured loopback ports (defaults 4174,
+4176, 4181, 4182; numeric overrides are supported), disables proxies, refuses
+redirects, and records listener state, HTTP status, latency, last success and
+consecutive failures. It appends JSONL and atomically writes a latest JSON
+snapshot under `/tmp` by default. `/reports/monitor` is a read-only route in
+both `preview_reports.py` and `studio_server.py`; navigation and this notepad
+link to it. The plan, runbook, stack record, and go-live gaps report now describe
+the local-only scope. Opening the page starts no probe, makes no outbound
+request, and writes no snapshot. Probe state is local/ephemeral and is not
+committed.
+
+**Measured in this sandbox.** The standard ports 4174/4176/4181/4182 were
+already occupied, so those processes were left untouched. A fresh stack on
+5174 (viewer), 5176 (gateway), 5181 and 5182 (studios) ran the updated code. `probes.py --once` captured at
+`2026-10-07T03:58:39Z`: all four returned HTTP 200 and were healthy. The new
+`/reports/monitor` route returned 200 on all four fresh services;
+`verify_preview.py` reported `problems: none`, and `verify_live_wiring.py`
+reported zero blocking problems. Targeted tests passed: 10 probe tests, 25
+report-viewer tests, 13 live-wiring tests, and 20 studio integration tests.
+`run_offline_suites.py --ci` then passed all **48/48** suites/checks/builders:
+**455 Python tests across 13 suites, 12 Node checks, 23 builders, 0 failures**.
+`run_offline_suites.py --check` also accepted the regenerated evidence.
+
+**Frozen artifacts respected.** The canonical handover text and both historic
+transfer archives were not rewritten. The post-PR25 package checker/test now
+validate its immutable manifest and frozen canonical package bytes rather than
+mistakenly comparing historical code members to today's edited source; the
+existing ZIP, manifest, and companion note remain unchanged.
+
+**Still outstanding, not silently claimed complete:** (1) wire owner
+authentication into a mutating endpoint after the owner provisions and approves
+its key; (2) complete one owner-approved agent execute-once workflow; (3) rebuild
+and sign the APK with an owner-kept key and clean source; (4) choose owner-held
+publishing/analytics/monetization accounts and confirm real activity; (5) decide
+privacy/history actions; (6) production scheduling/alerts, replication-lag and
+backup monitoring, and independent-site DR. The local probe covers none of the
+latter production claims. See `NEXT_SESSION_PLAN_2026_10_07.md` sections 4–5 and
+`GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md`.
+
+**Live GitHub status and guardrails.** Re-read: [PR #39](https://github.com/Vyomaraj1356/Vyomarajai/pull/39) is OPEN/DRAFT and was not touched. [PR #41](https://github.com/Vyomaraj1356/Vyomarajai/pull/41) is OPEN/non-draft/unmerged on this session branch. Its prior skipped PR-event `verify-or-sync` job remains no replication evidence; no new DR checkpoint is claimed.

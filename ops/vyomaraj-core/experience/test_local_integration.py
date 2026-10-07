@@ -169,6 +169,18 @@ class ServerTests(unittest.TestCase):
                 self.assertIn('href="/reports/platform-check"', text)
                 self.assertIn('href="/reports/issues"', text)
 
+    def test_lane_local_monitor_route_is_read_only_and_navigable(self):
+        with patch.object(studio.reports, 'render_monitor_fragment',
+                          return_value='<h1>Local service monitor</h1><p>snapshot only</p>') as render:
+            with urllib.request.urlopen(self.url + '/reports/monitor') as response:
+                self.assertEqual(response.status, 200)
+                self.assertIn('no-store', response.headers.get('Cache-Control', ''))
+                page = response.read().decode()
+        render.assert_called_once_with()
+        self.assertIn('Local monitor, read-only view', page)
+        self.assertIn('snapshot only', page)
+        self.assertIn('href="/reports/monitor">Local monitor</a>', page)
+
     def test_lane_downloads_new_plan_ledger_and_platform_report(self):
         cases = (
             ('/reports/download/auto-align.json', studio.CORE / 'handover/AUTO_ALIGN_NEXT_SESSION.json'),

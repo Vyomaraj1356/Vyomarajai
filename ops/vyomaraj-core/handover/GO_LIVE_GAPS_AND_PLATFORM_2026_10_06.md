@@ -1,6 +1,6 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-07 03:04 UTC. Every number below was computed from this repository at that moment; nothing is
+Written 2026-10-07 03:56 UTC. Every number below was computed from this repository at that moment; nothing is
 recalled from a chat. Verify any line with the commands in section 7.
 
 ## 1 · The short answer to the three questions
@@ -44,10 +44,12 @@ that lives in Arena's own session history, not in the repo (section 5).
    6 listening, 421 inherited); 0 running. Jarvis voice/heartbeat = records plus browser voice.
    Intelligence adapters are `metadata_only`; `switchPlatform` is BLOCKED. RAG, CAG and MAG are
    NOT_IMPLEMENTED. Arena execution has no adapter, and the heartbeat is the repository pipeline
-   only — no runtime monitor. The independent probes the audit asks for (last successful check,
-   latency, consecutive failures, replication lag, last verified backup) are not built;
-   `/reports/realtime` measures per request, which is weaker than a monitor. *This is the real
-   remaining build, and it is deliberately not faked.*
+   only — no continuously running production monitor. A local one-shot probe is built in
+   `probes.py` and shown at `/reports/monitor`: it measures listener, HTTP status, latency, last
+   success, and consecutive failures for four loopback ports. It writes local JSONL/latest files,
+   but it does not schedule checks, alert, measure replication lag, verify backups, or persist across
+   sandbox restarts; `/reports/realtime` remains per-request. *Production monitoring and DR
+   indicators remain unimplemented.*
 3. **The APK is unsigned** (24,567,022 bytes). It cannot be distributed through a store without
    signing, and store distribution needs a developer account. Separately, 12 phone-shaped byte
    matches inside the binary remain unexplained; an exact search for the known numbers found none.

@@ -1,9 +1,10 @@
 # VYOMARAJ — NEXT-SESSION PLAN
 
 Written 2026-10-06 in session `arena/6bc12929-vyomarajai`, for the session of/after
-2026-10-07. This is the "start here" page. Every claim below was verified in this
-checkout or through the GitHub API in the writing session; each section says how.
-If any command in section 2 disagrees with this document, the command is right.
+2026-10-07; amended 2026-10-07 in `arena/a83291a3-vyomarajai`. This is the "start
+here" page. Every claim below was verified in this checkout or through the GitHub
+API; each section says how. If any command in section 2 disagrees with this
+document, the command is right.
 
 Marker: NEXT-SESSION PLAN (the viewer contract checks for this line).
 
@@ -75,12 +76,15 @@ python3 ops/availability/gateway.py --port 4176 --primary-port 4181 --secondary-
 
 # 4. New routes — every line must print 200 on every port (4174, 4176, 4181, 4182):
 for p in 4174 4176 4181 4182; do
-  for r in /reports/next-session-plan /reports/session-update \
+  for r in /reports/next-session-plan /reports/session-update /reports/monitor \
            /reports/download/next-session-plan.md /reports/download/next-session-plan.txt \
            /reports/download/session-update.md /reports/download/session-update.txt; do
     printf "%s %s " "$p" "$r"; curl -s -o /dev/null -w "%{http_code}\n" "http://127.0.0.1:$p$r"
   done
 done
+
+# 4b. One-shot loopback sample; report page only reads the latest snapshot.
+python3 ops/vyomaraj-core/handover/probes.py --once --state /tmp/vyomaraj-probes.jsonl
 
 # 5. Recorded verifiers — must regenerate with "problems: none" / 0 problems:
 python3 ops/vyomaraj-core/handover/verify_preview.py
@@ -165,18 +169,29 @@ gh issue view 6 --json state --jq .state                     # expect CLOSED
 
 ## 4 · Then build, in priority order
 
-Do these AFTER sections 1–3, one pull request per item. Each item states its
-first command and its done-condition. Nothing here is built yet; the plan does
-not claim otherwise.
+These are the remaining actions, in priority order, one pull request per item.
+The original sequence put them after sections 1–3; the owner has now asked us to
+proceed with buildable work, so item 1 has been implemented locally on this
+working branch. That is not publication or production monitoring. Items 2–6
+remain owner-gated or require real account/key decisions; no gate is bypassed.
 
-1. **Monitoring probes.** `/reports/realtime` measures per request, which is
-   weaker than a monitor. Build `ops/vyomaraj-core/handover/probes.py`: probes
-   each local port (listening, HTTP status, latency), appends JSONL to an
-   UNTRACKED local log, writes a latest-snapshot file, and serves it read-only
-   at `/reports/monitor` ("no probe has run yet" when absent). Tests use tmp
-   dirs. Done when: last successful check, latency, and consecutive failures
-   are readable for every port, and the gate covers the new code.
-   First command: `python3 ops/vyomaraj-core/handover/probes.py --once --state /tmp/vyomaraj-probes.jsonl`.
+1. **Monitoring probes — LOCAL BUILD COMPLETE in this working branch.**
+   `ops/vyomaraj-core/handover/probes.py` makes one bounded GET to each of four
+   configured loopback preview ports (defaults 4174/4176/4181/4182), disables
+   proxies, refuses redirects, and keeps the host hard-wired to 127.0.0.1.
+   It records listener/HTTP/latency/last-success/consecutive-failure fields,
+   appends an untracked JSONL sample, and atomically replaces the latest JSON
+   snapshot. `/reports/monitor` is in both the report viewer and studio server;
+   its GET is read-only and says no probe has run when the snapshot is absent.
+   Ten module tests cover success/failure/recovery, redirects, atomic writes,
+   escaping, and missing/corrupt state. No dependency was installed. This is a
+   manual preview probe only: not scheduled, alerting, production uptime,
+   replication-lag, backup, or independent-site DR monitoring; `/tmp` data does
+   not survive a sandbox restart. Local validation is now complete: a fresh
+   stack on 5174/5176/5181/5182 returned 200 on all four monitor routes, the
+   verifiers reported no problems, and the offline gate passed 48/48. Exact
+   scope and sample results are in `SESSION_UPDATE_2026_10_06.md` section 9.
+   Command: `python3 ops/vyomaraj-core/handover/probes.py --once --state /tmp/vyomaraj-probes.jsonl`.
 2. **Owner authentication.** `ops/shriyantra/owner_guard.py` already verifies
    Ed25519 owner approvals fail-closed, but nothing calls it. Wire it in front
    of ONE mutating endpoint first (`/api/approvals/decide` on high-risk items),
@@ -220,6 +235,7 @@ not claim otherwise.
 |---|---|---|---|
 | This plan | `ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md` | `/reports/next-session-plan` | `/reports/download/next-session-plan.md` · `.txt` |
 | Session update | `ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md` | `/reports/session-update` | `/reports/download/session-update.md` · `.txt` |
+| Local one-shot monitor | `ops/vyomaraj-core/handover/probes.py` + untracked `/tmp` snapshot | `/reports/monitor` | no download; page is read-only |
 | Handover notepad (frozen) | `ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt` | `/reports/handover-notepad` | `/reports/download/handover-notepad.txt` |
 | Post-PR25 companion (frozen) | `ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt` | `/reports/post-pr25-handover` | `/reports/download/post-pr25-handover.txt` |
 | DR sync results | `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | `/reports/dr-sync` | (page only) |

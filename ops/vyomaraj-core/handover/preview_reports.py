@@ -3,6 +3,7 @@
 import json
 import argparse
 import html
+import importlib.util
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import re
@@ -57,6 +58,8 @@ REPORTS = {
     '/reports/next-session-plan': 'NEXT_SESSION_PLAN_2026_10_07.md',
     '/reports/session-update': SESSION_UPDATE,
 }
+# Dynamic routes are literal allowlist entries but render from fixed local state, not repository files.
+DYNAMIC_REPORTS = {'/reports/monitor'}
 # Canonical documents whose checked-in copy deliberately lives outside this directory. Each entry
 # is a literal path fixed in code; no request value is ever joined to the filesystem, so the
 # exact-route allowlist stays exact.
@@ -133,9 +136,14 @@ PAGE_NOTES = {
                                   '<a href="/reports/download/next-session-plan.md">Download .md</a> &middot; '
                                   '<a href="/reports/download/next-session-plan.txt">Download .txt</a></p>',
     '/reports/handover-notepad': '<p class="notice"><strong>Current handover notepad</strong> - the sectioned session '
-                                  'update with the latest verified DR replication entry. The preserved full next-session '
-                                  'handover remains available at <a href="/reports/next-session">/reports/next-session</a>. '
+                                  'update with the latest verified DR replication entry and the remaining-work list. '
+                                  'The preserved full next-session handover remains at '
+                                  '<a href="/reports/next-session">/reports/next-session</a>. '
+                                  'Local one-shot probe status is at <a href="/reports/monitor">/reports/monitor</a>. '
                                   '<a href="/reports/download/handover-notepad.txt">Download this update</a>.</p>',
+    '/reports/monitor': '<p class="notice"><strong>Local monitor, read-only view.</strong> This page displays the latest '
+                        'manual loopback probe snapshot; it never runs probes on a page request. See the handover '
+                        'update for the remaining owner-controlled launch actions.</p>',
     '/reports/session-update': '<p class="notice"><strong>Session update</strong> - what was verified, what was '
                                'lost, and what was rebuilt, each line with its evidence. '
                                '<a href="/reports/download/session-update.md">Download .md</a> &middot; '
@@ -307,6 +315,18 @@ def _realtime():
     mod = _ilu.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
+
+def render_monitor_fragment():
+    """Render the local probe snapshot only; never perform network probes on a page request."""
+    spec = importlib.util.spec_from_file_location('vyomaraj_local_probes', HERE / 'probes.py')
+    if spec is None or spec.loader is None:
+        return '<h1>Local service monitor</h1><p>Probe renderer is unavailable.</p>'
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.render_monitor_html()
+
+
 SCREENSHOT_MIME = {'.png': 'image/png', '.jpg': 'image/jpeg'}
 
 
@@ -345,16 +365,19 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(body)
             return
         filename = REPORTS.get(route) or (DOWNLOADS.get(route) or (None,))[0]
-        if filename is None and route not in REFERENCE_REPORTS:
+        if filename is None and route not in REFERENCE_REPORTS and route not in DYNAMIC_REPORTS:
             self.send_error(404, 'Only the allowlisted reports are available'); return
-        path = REFERENCE_REPORTS[route] if route in REFERENCE_REPORTS else HERE / filename
-        if not path.is_file():
+        path = (REFERENCE_REPORTS[route] if route in REFERENCE_REPORTS else
+                HERE / filename if filename is not None else None)
+        if path is not None and not path.is_file():
             self.send_error(404, 'Report not available'); return
         if route in DOWNLOADS:
             content = path.read_bytes()
             kind = DOWNLOADS[route][1]
         else:
-            body = PAGE_NOTES.get(route, '') + render_document(path)
+            report_body = (render_monitor_fragment() if route in DYNAMIC_REPORTS
+                           else render_document(path))
+            body = PAGE_NOTES.get(route, '') + report_body
             if route == '/reports/history':
                 body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT CURRENT.</strong> Current total: 128 counted slots and six uncounted headings. See the current inventory and agent reconciliation.</p>' + body
             if route == '/reports/recovery':
@@ -364,7 +387,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/full-handover">Full handover</a><a href="/reports/ai-handoff">AI handoff</a><a href="/reports/runbook">Runbook</a><a href="/reports/recovery-index">Session recovery</a><a href="/reports/go-live-gaps">Go-live gaps</a><a href="/reports/next-session-plan">Next session plan</a><a href="/reports/session-update">Session update</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/comics/">Comics</a><a href="/approvals/">Owner approvals</a><a href="/finance/">Finance desk</a><a href="/upgrades/">Change desk</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/monitor">Local monitor</a><a href="/reports/full-handover">Full handover</a><a href="/reports/ai-handoff">AI handoff</a><a href="/reports/runbook">Runbook</a><a href="/reports/recovery-index">Session recovery</a><a href="/reports/go-live-gaps">Go-live gaps</a><a href="/reports/next-session-plan">Next session plan</a><a href="/reports/session-update">Session update</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. Git snapshot match evidence is in the DR report; runtime/site disaster recovery remains unverified.</p>'
                        + body + '</main></html>').encode()

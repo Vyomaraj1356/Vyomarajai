@@ -43,6 +43,7 @@ VIEWER_ROUTES = {
     '/': (None, 'Vyomaraj'),
     '/reports/next-session': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt', None),
     '/reports/handover-notepad': ('ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md', 'DR replication completed'),
+    '/reports/monitor': (None, 'Local service monitor'),
     '/reports/post-pr25-handover': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt', 'POST-PR25 COMPANION UPDATE'),
     '/reports/dr-sync': ('ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md', 'BLOCKED'),
     '/reports/contents': ('ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md', 'All Experience Contents'),
@@ -59,7 +60,8 @@ REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/a
                   '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
                   '/reports/market-readiness', '/reports/screenshots', '/reports/realtime',
                   '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps',
-                  '/reports/next-session-plan', '/reports/session-update', '/reports/handover-notepad']
+                  '/reports/next-session-plan', '/reports/session-update', '/reports/handover-notepad',
+                  '/reports/monitor']
 # Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
 # allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
 SCREENSHOT_ROUTES = {
@@ -100,6 +102,8 @@ REQUIRED_FILES = [
     'ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
     'ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip',
     'ops/vyomaraj-core/handover/realtime_status.py',
+    'ops/vyomaraj-core/handover/probes.py',
+    'ops/vyomaraj-core/handover/test_probes.py',
     'ops/vyomaraj-core/handover/AI_PLATFORM_HANDOFF_2026_10_06.md',
     'ops/vyomaraj-core/handover/AI_CONTEXT_PACK_2026_10_06.json',
     'ops/vyomaraj-core/handover/VYOMARAJ_RUNBOOK_2026_10_06.md',

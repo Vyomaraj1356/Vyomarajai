@@ -413,7 +413,13 @@ def build_runbook(pack: dict) -> str:
     a("python3 ops/vyomaraj-core/handover/verify_live_wiring.py       # every route on every server")
     a("python3 ops/vyomaraj-core/handover/verify_preview.py           # page contracts + packages")
     a("python3 ops/vyomaraj-core/handover/realtime_status.py          # live port probe as JSON")
+    a("python3 ops/vyomaraj-core/handover/probes.py --once             # manual, fixed-loopback snapshot")
     a("```")
+    a("")
+    a("`probes.py --once` appends to `/tmp/vyomaraj-probes.jsonl` and atomically writes "
+      "`/tmp/vyomaraj-probes.latest.json`; `/reports/monitor` reads that latest file and never "
+      "starts a probe. This is a local manual preview check, not scheduled or production monitoring, "
+      "alerting, replication-lag, backup, or independent-site DR.")
     a("")
     a("Rule learned the hard way: **restart the servers before running the verifiers**, or a route "
       "added in this session will read as 404 and look like a failure.")

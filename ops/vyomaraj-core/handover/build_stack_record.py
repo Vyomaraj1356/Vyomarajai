@@ -41,6 +41,9 @@ VERIFIED_STACK = [
     ('Local servers', 'Python 3 standard library http.server / ThreadingHTTPServer',
      'ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, '
      'ops/vyomaraj-core/handover/preview_reports.py', 'no Flask, no FastAPI, no Django'),
+    ('One-shot local monitor', 'Manual loopback probes with a read-only latest-snapshot page',
+     'ops/vyomaraj-core/handover/probes.py and /reports/monitor',
+     'JSONL + latest local snapshot; no scheduler, alerting or production/DR claim'),
     ('Bindings', '0.0.0.0 on every server',
      'verified by verify_preview.py and verify_live_wiring.py', 'required by the sandbox preview proxy'),
     ('Public hosting', 'GitHub Pages from main (static)',

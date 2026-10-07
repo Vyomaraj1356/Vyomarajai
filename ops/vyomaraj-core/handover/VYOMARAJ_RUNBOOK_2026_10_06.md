@@ -1,6 +1,6 @@
 # VYOMARAJ — RUNBOOK: CONFIGURE · INTEGRATE · INHERIT · VERIFY
 
-Generated 2026-10-07 03:36 UTC. The procedure for running this project, in the order it should be done. Copy-pasteable. Every command is run from the repository root.
+Generated 2026-10-07 04:08 UTC. The procedure for running this project, in the order it should be done. Copy-pasteable. Every command is run from the repository root.
 
 ---
 
@@ -27,7 +27,10 @@ python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci   # tests, node ch
 python3 ops/vyomaraj-core/handover/verify_live_wiring.py       # every route on every server
 python3 ops/vyomaraj-core/handover/verify_preview.py           # page contracts + packages
 python3 ops/vyomaraj-core/handover/realtime_status.py          # live port probe as JSON
+python3 ops/vyomaraj-core/handover/probes.py --once             # manual, fixed-loopback snapshot
 ```
+
+`probes.py --once` appends to `/tmp/vyomaraj-probes.jsonl` and atomically writes `/tmp/vyomaraj-probes.latest.json`; `/reports/monitor` reads that latest file and never starts a probe. This is a local manual preview check, not scheduled or production monitoring, alerting, replication-lag, backup, or independent-site DR.
 
 Rule learned the hard way: **restart the servers before running the verifiers**, or a route added in this session will read as 404 and look like a failure.
 

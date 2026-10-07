@@ -289,6 +289,10 @@ def build(L, now):
     L.append("The live view of this table is served at `/reports/realtime` on the viewer, both lane "
              "studios and the gateway — it re-probes on every load and refreshes itself every 10 "
              "seconds, so what you read there is the state at that moment, not a recording.")
+    L.append("A separate manual one-shot loopback sample is available with "
+             "`python3 ops/vyomaraj-core/handover/probes.py --once`; the viewer reads its latest "
+             "snapshot at `/reports/monitor`. It is local preview-only, has no scheduler or alerts, "
+             "and is not production, replication-lag, backup or independent-site DR monitoring.")
     L.append("")
     L.append("---")
     L.append("")

@@ -20,6 +20,12 @@
       "note": "no Flask, no FastAPI, no Django"
     },
     {
+      "area": "One-shot local monitor",
+      "technology": "Manual loopback probes with a read-only latest-snapshot page",
+      "evidence": "ops/vyomaraj-core/handover/probes.py and /reports/monitor",
+      "note": "JSONL + latest local snapshot; no scheduler, alerting or production/DR claim"
+    },
+    {
       "area": "Bindings",
       "technology": "0.0.0.0 on every server",
       "evidence": "verified by verify_preview.py and verify_live_wiring.py",

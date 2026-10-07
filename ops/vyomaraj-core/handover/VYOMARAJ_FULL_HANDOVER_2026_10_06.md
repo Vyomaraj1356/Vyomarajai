@@ -1,6 +1,6 @@
 # VYOMARAJ — FULL HANDOVER, ALL DETAILS
 
-Generated 2026-10-07 03:36 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
+Generated 2026-10-07 04:08 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
 
 **One command rebuilds this document and its archive:** `python3 ops/vyomaraj-core/handover/build_full_handover.py` — `--check` verifies the checked-in copy still matches the repository and the probes.
 
@@ -17,6 +17,7 @@ Generated 2026-10-07 03:36 UTC from this repository and from live probes of the 
 | 4182 | lane studio B | **open** |
 
 The live view of this table is served at `/reports/realtime` on the viewer, both lane studios and the gateway — it re-probes on every load and refreshes itself every 10 seconds, so what you read there is the state at that moment, not a recording.
+A separate manual one-shot loopback sample is available with `python3 ops/vyomaraj-core/handover/probes.py --once`; the viewer reads its latest snapshot at `/reports/monitor`. It is local preview-only, has no scheduler or alerts, and is not production, replication-lag, backup or independent-site DR monitoring.
 
 ---
 
@@ -249,24 +250,24 @@ Found and fixed while researching this handover:
 
 | File | Bytes |
 |---|---|
-| `ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md` | 17,621 |
+| `ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md` | 17,933 |
 | `Vyomaraj-All-Chats-Database-One-Month.md` | 16,879 |
 | `VYOMARAJ_REPOSITORY_MAP.md` | 1,723 |
 | `REAL_VYOMARAJ_INVESTIGATION.md` | 12,822 |
 | `ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json` | 61,050 |
 | `ops/vyomaraj-core/agents/CONTENT_INDEX_CURRENT.json` | 73,517 |
 | `ops/vyomaraj-core/handover/INHERITANCE_AUDIT_2026_10_04.md` | 4,565 |
-| `ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md` | 13,312 |
-| `ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json` | 16,963 |
+| `ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md` | 13,543 |
+| `ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json` | 17,272 |
 | `ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md` | 12,168 |
 | `ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md` | 13,508 |
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png` | 589,897 |
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg` | 19,995 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md` | 8,321 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | 11,255 |
-| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 43,208 |
-| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 46,115 |
-| `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 30,090 |
+| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 44,196 |
+| `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 47,303 |
+| `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 30,084 |
 | `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 55,067 |
 | `ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json` | 893 |
 | `ops/vyomaraj-core/experience/CONTENT_EXTENSIONS.json` | 4,188 |
