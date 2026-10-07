@@ -1,6 +1,6 @@
 # VYOMARAJ — FULL HANDOVER, ALL DETAILS
 
-Generated 2026-10-07 03:07 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
+Generated 2026-10-07 03:36 UTC from this repository and from live probes of the running services. Everything here is checkable: each section says where it came from, and the archive beside this file carries the sources themselves.
 
 **One command rebuilds this document and its archive:** `python3 ops/vyomaraj-core/handover/build_full_handover.py` — `--check` verifies the checked-in copy still matches the repository and the probes.
 
@@ -264,10 +264,10 @@ Found and fixed while researching this handover:
 | `ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg` | 19,995 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md` | 8,321 |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | 11,255 |
-| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 43,200 |
+| `ops/vyomaraj-core/handover/LIVE_WIRING_STATE_2026_10_06.json` | 43,208 |
 | `ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json` | 46,115 |
 | `ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json` | 30,090 |
-| `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 35,757 |
+| `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | 55,067 |
 | `ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json` | 893 |
 | `ops/vyomaraj-core/experience/CONTENT_EXTENSIONS.json` | 4,188 |
 | `ops/jarvis/devices.json` | 51,494 |

@@ -29,14 +29,21 @@ class DrSyncReportTests(unittest.TestCase):
 
     def test_every_checkpoint_appears_with_matching_trees(self):
         for o in self.record['observations']:
-            self.assertIn(str(o['check_run_id']), self.text)
-            self.assertIn(str(o.get('workflow_run_id')), self.text)
+            run_id = o['workflow_run_id']
+            check_id = o['check_run_id']
+            self.assertIn(str(check_id), self.text)
+            self.assertIn(str(run_id), self.text)
+            self.assertIn(f'[`{run_id}`]({dr.REPO_URL}/actions/runs/{run_id})', self.text)
+            self.assertIn(f'[`{check_id}`]({dr.REPO_URL}/actions/runs/{run_id}/job/{check_id})', self.text)
+            self.assertIn(f'[`{o["head_sha"][:dr.SHORT]}`]({dr.REPO_URL}/commit/{o["head_sha"]})', self.text)
+            if o.get('merge_pr'):
+                self.assertIn(f'[#{o["merge_pr"]}]({dr.REPO_URL}/pull/{o["merge_pr"]})', self.text)
             self.assertEqual(o['primary_tree'], o['secondary_tree'])
             self.assertEqual(o['status'], 'MATCH')
 
     def test_blocked_run_is_reported_as_blocked_not_as_a_match(self):
         blocked = self.record['blocked_runs'][0]
-        self.assertIn(f"check-run `{blocked['check_run_id']}`", self.text)
+        self.assertIn(f"check-run [`{blocked['check_run_id']}`]", self.text)
         self.assertIn('status=BLOCKED', self.text)
         self.assertIn(f"deliberately excluded from the checkpoint count", self.text)
         # the blocked check-run must never be counted among the MATCH rows
@@ -66,6 +73,7 @@ class DrSyncReportTests(unittest.TestCase):
         self.assertIn('112423653494', self.text)
         self.assertIn('112605459778', self.text)
         self.assertIn('PR #39 is OPEN and DRAFT', self.text)
+        self.assertIn('[live PR page](https://github.com/Vyomaraj1356/Vyomarajai/pull/39)', self.text)
         self.assertIn('36 MATCH checkpoints (25 replication writes)', self.text)
 
     def test_publication_status_section_reports_the_record_not_a_wish(self):

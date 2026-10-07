@@ -1,7 +1,7 @@
 {
   "package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
-  "package_sha256": "054bafcffa36a85bdd04f8697d8fee20783a0dccfb3c5a53793650603dce8786",
-  "package_bytes": 193480,
+  "package_sha256": "4d26d23a2c09c31500f78c01a7b3939347a4881ab054831d91c0544de9dababa",
+  "package_bytes": 195643,
   "note": "NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt",
   "note_sha256": "85fcb7a7c9ecc2a32e4aecdefb69c991f2f32bd3e9f556e64f60edc051e9bcda",
   "note_bytes": 23864,
@@ -11,7 +11,7 @@
   "additions_total": 8,
   "superset_of_canonical": true,
   "canonical_package": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
-  "canonical_package_sha256_rebuilt_from_source": "ade914ff602aa5ad90236c35654394c63cae05ebca2e04db55c7aba79dd09e17",
+  "canonical_package_sha256_rebuilt_from_source": "f6f002ca330f76fb027061da247ae649f66db5276e3f3f61f65692438612db7b",
   "rebuild_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py",
   "check_command": "python3 ops/vyomaraj-core/handover/build_post_pr25_package.py --check",
   "determinism": "fixed member timestamps and permissions; same-Python/zlib rebuilds are byte-identical",
@@ -31,20 +31,20 @@
     {
       "archive_name": "DR_SYNC_RESULTS_2026_10_04.md",
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md",
-      "sha256": "03787bef5acd6da9fe851364fdbe5bde063a1a41fb43847c8f1e9eaba593b9b7",
-      "bytes": 35757
+      "sha256": "b8724cbd696882a4d590bab0e96f98cffed56d93ed54c9b275216e9238058441",
+      "bytes": 55067
     },
     {
       "archive_name": "build_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/build_dr_sync_report.py",
-      "sha256": "f4000de35e0713c675d052afe8f78c134eb3b6e120189fbe155b7249f4697812",
-      "bytes": 21157
+      "sha256": "8fc07f1f7fc15b9e41552eae194f50c25c6cd9558478752550bbfaed4012ab84",
+      "bytes": 22214
     },
     {
       "archive_name": "test_dr_sync_report.py",
       "source": "ops/vyomaraj-core/handover/test_dr_sync_report.py",
-      "sha256": "ffe25cfdbb742aeea21bea5b8b40e599aa50872311ee629d098c82eeae902367",
-      "bytes": 5490
+      "sha256": "b31d0352cbc1cfcea44baeb661512990e0e9cfed7ce25a74c8c99a3949047080",
+      "bytes": 6094
     },
     {
       "archive_name": "HANDOVER_ALL_UPDATES_2026_10_03.txt",

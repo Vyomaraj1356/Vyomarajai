@@ -21,6 +21,7 @@ RECORD = ROOT / 'ops/dr/DEPLOYED_MATCH_2026_10_04.json'
 POLICY = ROOT / 'ops/dr/DR_POLICY.json'
 WORKFLOW = ROOT / '.github/workflows/vyomaraj-sync-both.yml'
 OUTPUT = HERE / 'DR_SYNC_RESULTS_2026_10_04.md'
+REPO_URL = 'https://github.com/Vyomaraj1356/Vyomarajai'
 SHORT = 12
 
 
@@ -50,11 +51,31 @@ def yes_no(value):
     return 'yes' if value else 'no'
 
 
+def pr_link(number):
+    return f"[#{number}]({REPO_URL}/pull/{number})"
+
+
+def run_link(run_id):
+    return f"[`{run_id}`]({REPO_URL}/actions/runs/{run_id})"
+
+
+def check_link(check_id, run_id=None):
+    if run_id:
+        url = f"{REPO_URL}/actions/runs/{run_id}/job/{check_id}"
+        return f"[`{check_id}`]({url})"
+    return f"`{check_id}`"
+
+
+def commit_link(sha):
+    return f"[`{short(sha)}`]({REPO_URL}/commit/{sha})"
+
+
 def render(root=ROOT):
     record = load(root / RECORD.relative_to(ROOT))
     policy = load(root / POLICY.relative_to(ROOT))
     workflow = (root / WORKFLOW.relative_to(ROOT)).read_text()
     observations = record['observations']
+    by_check_run = {str(o['check_run_id']): o for o in observations}
     writes = [o for o in observations if o.get('replication_write_in_this_run')]
     blocked = record.get('blocked_runs', [])
     trigger_names, cron = triggers(workflow)
@@ -123,10 +144,12 @@ def render(root=ROOT):
     ]
     for index, o in enumerate(observations, start=1):
         pr = o.get('merge_pr')
+        run_id = o.get('workflow_run_id')
+        pr_cell = pr_link(pr) if pr else 'base'
+        run_cell = run_link(run_id) if run_id else '—'
         lines.append(
-            f"| {index} | {o['completed_at_utc']} | `{short(o['head_sha'])}` | "
-            f"{'#' + str(pr) if pr else 'base'} | `{o.get('workflow_run_id', '—')}` | "
-            f"`{o['check_run_id']}` | {o['status']} | "
+            f"| {index} | {o['completed_at_utc']} | {commit_link(o['head_sha'])} | "
+            f"{pr_cell} | {run_cell} | {check_link(o['check_run_id'], run_id)} | {o['status']} | "
             f"`{short(o['primary_tree'])}` | `{short(o['secondary_tree'])}` | "
             f"{'yes (`' + short(o['rollback_commit']) + '`)' if o.get('rollback_commit') else 'no'} |")
     lines += [
@@ -141,8 +164,10 @@ def render(root=ROOT):
     ]
     for o in writes:
         pr = o.get('merge_pr')
-        lines.append(f"| `{short(o['head_sha'])}` | {'#' + str(pr) if pr else 'base'} | "
-                     f"`{o.get('workflow_run_id', '—')}` | `{o['check_run_id']}` | `{o['rollback_commit']}` |")
+        run_id = o.get('workflow_run_id')
+        lines.append(f"| {commit_link(o['head_sha'])} | {pr_link(pr) if pr else 'base'} | "
+                     f"{run_link(run_id) if run_id else '—'} | {check_link(o['check_run_id'], run_id)} | "
+                     f"`{o['rollback_commit']}` |")
     lines += [
         '',
         'A write replaces the secondary snapshot with the primary snapshot and keeps the previous '
@@ -158,7 +183,8 @@ def render(root=ROOT):
                   'guessed values):', '']
         for check_run_id, item in unavailable:
             value = 'null' if item.get('value_utc') is None else item['value_utc']
-            lines.append(f"- check-run `{check_run_id}`: value_utc = {value}.")
+            run_id = by_check_run.get(str(check_run_id), {}).get('workflow_run_id')
+            lines.append(f"- check-run {check_link(check_run_id, run_id)}: value_utc = {value}.")
             lines.append(f"  - Attempt: {item.get('attempt')}")
             lines.append(f"  - Bounded substitute: {item.get('bounded_substitute')}")
             lines.append(f"  - Standing: {item.get('not_fabricated')}")
@@ -170,8 +196,10 @@ def render(root=ROOT):
             f"One run in this session did **not** match and is deliberately excluded from the "
             f"checkpoint count:",
             '',
-            f"- Run `{item.get('workflow_run_id')}` on merge #{item.get('merge_pr')} "
-            f"(`{short(item['head_sha'])}`), check-run `{item['check_run_id']}`, "
+            f"- Run {run_link(item.get('workflow_run_id'))} on merge "
+            f"{pr_link(item.get('merge_pr'))} "
+            f"({commit_link(item['head_sha'])}), check-run "
+            f"{check_link(item['check_run_id'], item.get('workflow_run_id'))}, "
             f"completed {item['completed_at_utc']}.",
             f"- Public annotation: `{item['public_annotation']}`",
             f"- Interpretation recorded with the evidence: {item['interpretation']}",
@@ -360,9 +388,10 @@ def render(root=ROOT):
             f"- Fix: {extension_d.get('fix')}",
             f"- Live annotation audit: {audit.get('previous_checkpoints_re_read')} previous rows re-read; "
             f"mismatches: {audit.get('mismatches')}; new check-runs: "
-            f"{', '.join(str(value) for value in audit.get('new_check_runs', []))}; "
+            f"{', '.join(check_link(value, by_check_run.get(str(value), {}).get('workflow_run_id')) for value in audit.get('new_check_runs', []))}; "
             f"completed at {audit.get('completed_at_utc')}.",
-            f"- PR #39 status: {extension_d.get('pr_39_live_status')}",
+            f"- PR #39 status: [live PR page]({REPO_URL}/pull/39); "
+            f"{extension_d.get('pr_39_live_status')}",
             f"- Next checkpoint: {extension_d.get('next_checkpoint')}",
             '',
         ]
