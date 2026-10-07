@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "status": "OWNER_APPROVED_CONTENT_ALIGNMENT",
+  "purpose": "Preserve every existing agent ID/data while merging or moving subject scopes as owner directed.",
+  "no_loss_policy": true,
+  "branch": "feat/vyomaraj-engineering-2026-baseline",
+  "changes": [
+    {
+      "target": "EDU-S10",
+      "action": "MERGE_SCOPE",
+      "sources": [
+        "EDU-S1",
+        "EDU-S2",
+        "EDU-S3",
+        "EDU-S4",
+        "EDU-S11",
+        "EDU-S12"
+      ],
+      "preserve_source_ids": true
+    },
+    {
+      "target": "EDU-S9",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "Indian castles and forts",
+        "world castles and fortifications",
+        "kings",
+        "kingdoms",
+        "heirs",
+        "war",
+        "royal/civilizational life",
+        "past-present-future evolution"
+      ]
+    },
+    {
+      "target": "BHAKTI",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "Aghora",
+        "Aghori traditions"
+      ]
+    },
+    {
+      "target": "BHAKTI-REF-01",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "Rudraksha",
+        "gems",
+        "gold",
+        "silver",
+        "history",
+        "stories",
+        "functions",
+        "features",
+        "traditional uses/remedies",
+        "evidence/safety review"
+      ]
+    },
+    {
+      "target": "SPORTS",
+      "action": "EXPAND_ALL_SPORTS_SCOPE",
+      "adds": [
+        "rules",
+        "regulations",
+        "history",
+        "old/present/future"
+      ]
+    },
+    {
+      "target": "AGRI",
+      "action": "EXPAND_ALL_AGRI_SCOPE",
+      "adds": [
+        "gardening tips",
+        "home gardening",
+        "household/natural remedies with safety/evidence labels"
+      ]
+    },
+    {
+      "target": "FOOD",
+      "action": "MOVE_SUB_AGENTS",
+      "sources": [
+        "ENT-LIQUOR-S1",
+        "ENT-BAR-S1"
+      ],
+      "reason": "beverage/food culture and hospitality belong under Food & Culinary"
+    }
+  ],
+  "universal_inheritance": {
+    "knowledge_evolution": true,
+    "panch_brother_capabilities": true,
+    "saptarishi_knowledge_where_applicable": true,
+    "evidence_labels": true
+  }
+}
