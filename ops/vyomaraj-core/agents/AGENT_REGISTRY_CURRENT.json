@@ -644,281 +644,401 @@
       "id": "ASTRO-REF-01",
       "category_id": "ASTRO",
       "parent_id": "ASTRO",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Numerology, Jyotish & Traditional Knowledge",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram Astro S1 Numerology",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ASTRO-REF-02",
       "category_id": "ASTRO",
       "parent_id": "ASTRO",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Kundli, Rashi, Vastu & Traditional Astrology",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram Astro S2 Kundli/Rashi/Vastu",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ASTRO-REF-03",
       "category_id": "ASTRO",
       "parent_id": "ASTRO",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Astronomy, Astrophysics, Space & Future Science",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 3,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram Astro S3 Space/Astronomy + universal science scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FINANCE-REF-01",
       "category_id": "FINANCE",
       "parent_id": "FINANCE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Equity Markets & Market Intelligence",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html: Finance S2 Sensex/Shares",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FINANCE-REF-02",
       "category_id": "FINANCE",
       "parent_id": "FINANCE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Mutual Funds, Bonds & Liquidity",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html: Finance S3 MF/Bonds/Liquidity",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FINANCE-REF-03",
       "category_id": "FINANCE",
       "parent_id": "FINANCE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Metals, Numismatics, Stamps & Collectibles",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 3,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html: Finance S4 Metals/Numismatic/Stamps/Philately",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FINANCE-REF-04",
       "category_id": "FINANCE",
       "parent_id": "FINANCE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Revenue Intelligence, Monetization & Financial Strategy",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 4,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html: Finance S5 Revenue Tips/Forecast/Risks",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FINANCE-REF-05",
       "category_id": "FINANCE",
       "parent_id": "FINANCE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Financial Dashboard, Analytics & Performance",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 5,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html: Finance S6 Dashboard",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FINANCE-REF-06",
       "category_id": "FINANCE",
       "parent_id": "FINANCE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Banking, Credit, Tax & Compliance",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 6,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner instruction + finance scope; historical S7 identity not recovered",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FINANCE-REF-07",
       "category_id": "FINANCE",
       "parent_id": "FINANCE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Business Finance, Investment & Risk",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 7,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner instruction + finance scope; historical S8 identity not recovered",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-01",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Health & Wellness",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current LIFE scope + flow-diagram health/wellness references",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-02",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Family & Relationships",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current LIFE scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-03",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Home, Living & Traditional Architecture",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 3,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "flow-diagram Traditional Architecture/Vastu + home/living scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-04",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Fashion, Apparel & Footwear",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 4,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current LIFE scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-05",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Beauty, Grooming, Cosmetics & Perfumes",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 5,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "flow-diagram Beauty/Perfumes/Itras + LIFE scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-06",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Jewellery, Gems & Accessories",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 6,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current LIFE scope + Astro cross-link",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-07",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Career, Education & Professional Life",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 7,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current LIFE scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-08",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Travel, Leisure & Lifestyle",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 8,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current LIFE scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-09",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Consumer Products & Personal Technology",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 9,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current LIFE scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "LIFE-REF-10",
       "category_id": "LIFE",
       "parent_id": "LIFE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Lifestyle History, Culture & Future Living",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 10,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "universal temporal model + LIFE scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "BHAKTI-REF-01",
@@ -1000,8 +1120,8 @@
       "id": "SPORTS-REF-01",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Cricket",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
@@ -1023,14 +1143,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-02",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Football",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
@@ -1052,14 +1178,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-03",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Hockey",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 3,
@@ -1081,14 +1213,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-04",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Tennis",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 4,
@@ -1110,14 +1248,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-05",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Badminton",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 5,
@@ -1139,14 +1283,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-06",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Athletics",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 6,
@@ -1168,14 +1318,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-07",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Wrestling & Traditional Wrestling",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 7,
@@ -1197,14 +1353,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "Sports history + UNESCO martial/wrestling research",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-08",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Boxing & Combat Sports",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 8,
@@ -1226,14 +1388,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "existing Sports combat scope; martial-arts content branch attached",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-09",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Kabaddi",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 9,
@@ -1255,14 +1423,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-10",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Basketball",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 10,
@@ -1284,14 +1458,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-11",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Volleyball",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 11,
@@ -1313,14 +1493,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-12",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Motorsports",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 12,
@@ -1342,14 +1528,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-13",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Shooting & Precision Sports",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 13,
@@ -1371,14 +1563,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "SPORTS-REF-14",
       "category_id": "SPORTS",
       "parent_id": "SPORTS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Chess & Mind Sports",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 14,
@@ -1400,14 +1598,20 @@
         "trends",
         "future developments"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved Sports taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "AGRI-REF-01",
       "category_id": "AGRI",
       "parent_id": "AGRI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Farming, Crops & Farm-to-Table",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
@@ -1421,14 +1625,20 @@
         "gardening tips",
         "household/natural remedies with safety and evidence labels"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "flow-diagram AGRI + Farm-to-Table",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "AGRI-REF-02",
       "category_id": "AGRI",
       "parent_id": "AGRI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Horticulture, Gardening & Kitchen Gardening",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
@@ -1442,14 +1652,20 @@
         "gardening tips",
         "household/natural remedies with safety and evidence labels"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current AGRI topic_scope includes home/kitchen gardening",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "AGRI-REF-03",
       "category_id": "AGRI",
       "parent_id": "AGRI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Environment, Ecology & Sustainability",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 3,
@@ -1463,14 +1679,20 @@
         "gardening tips",
         "household/natural remedies with safety and evidence labels"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current AGRI scope + environment",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "AGRI-REF-04",
       "category_id": "AGRI",
       "parent_id": "AGRI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Agri Technology, Innovation & Traceability",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 4,
@@ -1484,14 +1706,20 @@
         "gardening tips",
         "household/natural remedies with safety and evidence labels"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "flow-diagram QR/MSP/traceability + AGRI scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "AGRI-REF-05",
       "category_id": "AGRI",
       "parent_id": "AGRI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Livestock, Dairy & Allied Agriculture",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 5,
@@ -1505,14 +1733,20 @@
         "gardening tips",
         "household/natural remedies with safety and evidence labels"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-approved AGRI functional taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "AGRI-REF-06",
       "category_id": "AGRI",
       "parent_id": "AGRI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Natural, Organic & Household Gardening Practices",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 6,
@@ -1526,7 +1760,13 @@
         "gardening tips",
         "household/natural remedies with safety and evidence labels"
       ],
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "current AGRI topic_scope: natural remedies/safety labels + gardening",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-INDICOM",
@@ -1560,393 +1800,561 @@
       "id": "ENT-AI-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENTERTAINMENT",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "AI Creative Generation & Media Synthesis",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-AI-S1",
       "id_status": "source_id_preserved",
       "serial": 3,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "flow-diagram Entertainment AI S1/S2",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-AI-S2",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENTERTAINMENT",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "AI Creative Production, Voice/Face/Dialogue & Remix",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-AI-S2",
       "id_status": "source_id_preserved",
       "serial": 4,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "flow-diagram Entertainment AI S1/S2 + Cinema/Creator routes",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-CARTOON-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-CARTOON",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Comics Heritage, Mythology & History",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-CARTOON-S1",
       "id_status": "source_id_preserved",
       "serial": 5,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "comics-experience existing-slot proposal",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-CARTOON-S2",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-CARTOON",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Humour Strips & Cartoon Panels",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-CARTOON-S2",
       "id_status": "source_id_preserved",
       "serial": 6,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "comics-experience existing-slot proposal",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-CARTOON-S3",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-CARTOON",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Original Trilingual Series & Version Lineage",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-CARTOON-S3",
       "id_status": "source_id_preserved",
       "serial": 7,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "comics-experience existing-slot proposal",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Stand-up & Live Comedy",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S1",
       "id_status": "source_id_preserved",
       "serial": 8,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S2",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Sitcom & Television Comedy",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S2",
       "id_status": "source_id_preserved",
       "serial": 9,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S3",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Sketch & Character Comedy",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S3",
       "id_status": "source_id_preserved",
       "serial": 10,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S4",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Satire & Parody",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S4",
       "id_status": "source_id_preserved",
       "serial": 11,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S5",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Comedy Writing & Storytelling",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S5",
       "id_status": "source_id_preserved",
       "serial": 12,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S6",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Comedy Film & Television",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S6",
       "id_status": "source_id_preserved",
       "serial": 13,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S7",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Indian & Regional Comedy",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S7",
       "id_status": "source_id_preserved",
       "serial": 14,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-COM-S8",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-COM",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "World Comedy, History & Evolution",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-COM-S8",
       "id_status": "source_id_preserved",
       "serial": 15,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "owner-aligned Entertainment taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MOVIE-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MOVIE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Feature Film Discovery & Development",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MOVIE-S1",
       "id_status": "source_id_preserved",
       "serial": 16,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "film-experience proposed binding + research discovery profile",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MOVIE-S2",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MOVIE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Short Films & Animation",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MOVIE-S2",
       "id_status": "source_id_preserved",
       "serial": 17,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "film-experience proposed binding",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MOVIE-S3",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MOVIE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Film Clips, Archives & Editorial Planning",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MOVIE-S3",
       "id_status": "source_id_preserved",
       "serial": 18,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "film-experience proposed binding + research discovery profile",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MOVIE-S4",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MOVIE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Marathi Theatre & Adaptations",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MOVIE-S4",
       "id_status": "source_id_preserved",
       "serial": 19,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "film-experience proposed binding + research discovery profile",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MOVIE-S5",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MOVIE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Hindi & Multilingual Theatre",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MOVIE-S5",
       "id_status": "source_id_preserved",
       "serial": 20,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "film-experience proposed binding + research discovery profile",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MOVIE-S6",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MOVIE",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Advertising Films & Original Campaigns",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MOVIE-S6",
       "id_status": "source_id_preserved",
       "serial": 21,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "film-experience proposed binding",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MUS-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MUS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Radio Memory & Music Archives",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MUS-S1",
       "id_status": "source_id_preserved",
       "serial": 22,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "music-experience proposed binding + research profile",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MUS-S2",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MUS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Artists, Albums & Recordings",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MUS-S2",
       "id_status": "source_id_preserved",
       "serial": 23,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "music-experience proposed binding + research profile",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MUS-S3",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MUS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Folk, Regional & World Music",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MUS-S3",
       "id_status": "source_id_preserved",
       "serial": 24,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "music-experience proposed binding",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MUS-S4",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MUS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Charts & Dated Music Lists",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MUS-S4",
       "id_status": "source_id_preserved",
       "serial": 25,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "music-experience proposed binding",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MUS-S5",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MUS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Audio Programming, Playlists & Spoken Audio",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MUS-S5",
       "id_status": "source_id_preserved",
       "serial": 26,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "music-experience proposed binding",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-MUS-S6",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-MUS",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Music Video & Visual Programmes",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": "ENT-MUS-S6",
       "id_status": "source_id_preserved",
       "serial": 27,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "music-experience proposed binding",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-SHAYARI-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-SHAYARI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Shayari, Ghazal & Poetry",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-SHAYARI-S1",
       "id_status": "source_id_preserved",
       "serial": 28,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "Entertainment source slot + poetry taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-WIT-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENT-HUB-WIT",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Wit, Wordplay & Intellectual Humour",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-WIT-S1",
       "id_status": "source_id_preserved",
       "serial": 29,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "Entertainment source slot + wit taxonomy",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-HASYA-S1",
       "category_id": "ENTERTAINMENT",
       "parent_id": "ENTERTAINMENT",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Hasya & Humour Special",
+      "name_status": "OWNER_ALIGNED_FUNCTIONAL",
       "source_slot": "ENT-HASYA-S1",
       "id_status": "source_id_preserved",
       "serial": 30,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": 12,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "OWNER_ALIGNED_FUNCTIONAL",
+        "evidence": "source slot reports 12 chapters; individual original title not recovered",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "ENT-LIQUOR-S1",
@@ -3020,8 +3428,8 @@
     "main_agents": 14,
     "sub_agents": 153,
     "uncounted_parent_headings": 6,
-    "named_sub_agents": 74,
-    "unnamed_numbered_sub_agents": 79,
+    "named_sub_agents": 140,
+    "unnamed_numbered_sub_agents": 13,
     "active_products": null,
     "historical_reported_products": 421,
     "uncounted_nested_sub_agents": 48,
@@ -3724,5 +4132,36 @@
     "structure": "Category → Named legacy agent → specialized sub-agent → topic/content → products/media",
     "evolution": "Origin → Old → Historical Evolution → History → Present → Current State → Trends → Future → Possible Futures",
     "note": "Alcoholic beverage material is preserved as historical, cultural, scientific and culinary knowledge with safety boundaries; future claims require evidence labels."
+  },
+  "alignment_summary": {
+    "status": "OWNER_DIRECTED_CONTENT_ALIGNMENT",
+    "aligned_categories": [
+      "FINANCE",
+      "SPORTS",
+      "LIFE",
+      "AGRI",
+      "ASTRO",
+      "EDU",
+      "ENTERTAINMENT"
+    ],
+    "aligned_counted_slots": 68,
+    "remaining_unresolved_counted_slots": 13,
+    "remaining_unresolved_ids": [
+      "FOOD-REF-01",
+      "FOOD-REF-02",
+      "FOOD-REF-03",
+      "EDU-S8",
+      "EDU-S11",
+      "EDU-S12",
+      "EDU-S13",
+      "BHAKTI-REF-02",
+      "PLATFORM-UNMAPPED",
+      "TOUR-REF-01",
+      "TOUR-REF-02",
+      "TOUR-REF-03",
+      "TOUR-REF-04"
+    ],
+    "note": "Names marked HISTORICAL_CONTENT_ALIGNED are functional alignments supported by repository content, not claims that the historical source originally used that exact title. OWNER_ALIGNED_FUNCTIONAL names are owner-directed functional taxonomy where historical slot identity was not recoverable.",
+    "education_recovery": "EDU-S11 and EDU-S12 remain legacy references merged into EDU-S10 with data preserved; S8 and S13 remain unresolved historical identities until source evidence is recovered."
   }
 }
