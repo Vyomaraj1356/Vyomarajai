@@ -40,9 +40,9 @@ class CatalogTests(unittest.TestCase):
 
     def test_stats_count_the_checked_in_files(self):
         stats = self.catalog.stats()
-        self.assertEqual(stats['positions'], 128)
+        self.assertEqual(stats['positions'], 168)
         self.assertEqual(stats['content_references'], 197)
-        self.assertEqual(stats['categories'], 13)
+        self.assertEqual(stats['categories'], 15)
         self.assertEqual(stats['headings_uncounted'], 6)
         self.assertEqual(stats['named_positions'] + stats['unnamed_positions'], 128)
         self.assertEqual(stats['generation'], 'none — retrieval only, no model call')
