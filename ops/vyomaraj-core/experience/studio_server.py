@@ -269,7 +269,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_error(404); return
             body = reports.PAGE_NOTES.get(route, '') + reports.render_document(path)
             if route == '/reports/history':
-                body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: 128 counted slots, six uncounted headings; Education 16, Finance 7, Entertainment 32. See the current inventory or reconciliation above.</p>' + body
+                body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: see the current registry and inventory for authoritative counts; Education, Finance and Entertainment are registry-derived. See the current inventory or reconciliation above.</p>' + body
             if route == '/reports/recovery':
                 body = reports.RECOVERY_LINKS + body
             page = ('<!doctype html><html lang="en"><meta charset="utf-8">'
