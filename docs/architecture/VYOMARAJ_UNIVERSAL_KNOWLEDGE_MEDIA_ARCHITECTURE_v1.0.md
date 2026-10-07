@@ -120,3 +120,16 @@ These are Vyomaraj experience-design labels, not claims about additional physica
 Current repository work can validate the inheritance contract and generate execution plans. It does not by itself prove a live renderer, animation provider, AR engine or external AI provider is deployed.
 
 Runtime VERIFIED requires adapter implementation, secure credentials, sandboxing, rights/licensing controls, safety tests, output evaluation, smoke tests and owner-visible audit evidence.
+
+## Autonomous Creative Director + Production Agent Layer
+
+Vyomaraj/Jarvis select approved characters, voices, tones, media formats and toolchains autonomously within policy. Character, voice and visual continuity is maintained through versioned creative bibles. New providers, paid tools, voice cloning, real-person likeness and other high-risk changes require Owner/step-up approval.
+
+Production contracts:
+- config/ai/CREATIVE_AUTONOMY_AND_IDENTITY_POLICY_v1.0.yaml
+- config/ai/PRODUCTION_AGENT_TOOL_REGISTRY_v1.0.yaml
+- config/ai/CREATIVE_CHARACTER_VOICE_REGISTRY_v1.0.yaml
+- docs/architecture/VYOMARAJ_MCP_A2A_PRODUCTION_AGENT_BLUEPRINT_v1.0.md
+- ops/vyomaraj/production_agent_gate.py
+
+MCP is the tool/resource/prompt integration layer; A2A is the agent-to-agent collaboration layer. Repository dependencies and contracts exist, but live MCP servers, A2A endpoints and media providers require runtime deployment and credentials before they can be marked VERIFIED.
