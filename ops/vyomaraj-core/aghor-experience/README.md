@@ -4,7 +4,7 @@ Owner correction: entertainment and viewing only, voluntary participation and no
 
 # Aghor & Aghori — Bhakti-Shakti sub-agent
 
-User-requested new agent `BHAKTI-AGHOR-S1` under BHAKTI / Bhakti-Shakti. The previous two unnamed Bhakti slots are preserved; active totals become **128 counted slots, 13 categories, six uncounted headings**, with 42 supplied/approved names and 86 still unnamed.
+User-requested new agent `BHAKTI-AGHOR-S1` under BHAKTI / Bhakti-Shakti. The previous two unnamed Bhakti slots are preserved; active totals become **154 counted slots, 13 categories, six uncounted headings**, with 152 supplied/approved names and 2 still unnamed.
 
 `/aghor/` has 14 proposed study chapters, seven selected profiles, six practice-context cards, six care-boundary cards, six timeline entries and eleven attributed sources. `/reports/aghor` records research depth, source distinctions and limitations. There is no spiritual-power ranking or invented chronology from the beginning of the universe.
 
