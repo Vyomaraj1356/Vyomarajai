@@ -83,6 +83,51 @@
         "ENT-BAR-S1"
       ],
       "reason": "beverage/food culture and hospitality belong under Food & Culinary"
+    },
+    {
+      "target": "EDU-S14",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "bicycles",
+        "motorcycles",
+        "scooters",
+        "cars",
+        "trucks and buses",
+        "electric/hybrid/autonomous vehicles",
+        "automotive engineering",
+        "vehicle history",
+        "manufacturers",
+        "safety/regulations",
+        "motorsport",
+        "future mobility"
+      ]
+    },
+    {
+      "target": "EDU",
+      "action": "ADD_SUB_AGENTS",
+      "adds": [
+        {
+          "id": "EDU-S16",
+          "name": "Kings & Kingdoms"
+        },
+        {
+          "id": "EDU-S17",
+          "name": "Castles & Fortifications"
+        },
+        {
+          "id": "EDU-S18",
+          "name": "Warfare & Military History"
+        },
+        {
+          "id": "EDU-S19",
+          "name": "Weapons History"
+        },
+        {
+          "id": "EDU-S20",
+          "name": "Civilizational Evolution"
+        }
+      ],
+      "reason": "Owner approved separation of major historical domains into dedicated Education sub-agents; existing EDU-S9 scope/data retained and cross-linked."
     }
   ],
   "universal_inheritance": {
@@ -90,5 +135,6 @@
     "panch_brother_capabilities": true,
     "saptarishi_knowledge_where_applicable": true,
     "evidence_labels": true
-  }
+  },
+  "updated": "2026-10-07"
 }
