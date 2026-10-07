@@ -32,10 +32,10 @@ echo "[5/7] Registry inheritance"
 python3 - <<'PY'
 from ops.vyomaraj.agent_capability_inheritance import validate_inheritance
 result = validate_inheritance()
-assert result["registry_agents"] == 133, result
+assert result["registry_agents"] == 153, result
 assert result["profiles"] == 133, result
 assert result["all_agents_inherit_all_domains"], result
-print("133/133 registered agents inherit all five Panch-Brother capability domains")
+print("153/153 registered agents inherit all five Panch-Brother capability domains")
 PY
 
 echo "[6/7] Universal process control"
