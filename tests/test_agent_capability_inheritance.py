@@ -6,8 +6,8 @@ from ops.vyomaraj.agent_capability_inheritance import (
 
 def test_all_current_agents_inherit_panch_brother_domains():
     result = validate_inheritance()
-    assert result["registry_agents"] == 154
-    assert result["profiles"] == 154
+    assert result["registry_agents"] == 168
+    assert result["profiles"] == 168
     assert result["all_agents_inherit_all_domains"] is True
 
 def test_inherited_capabilities_are_policy_controlled():
