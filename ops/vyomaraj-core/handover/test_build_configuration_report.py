@@ -24,7 +24,7 @@ class ReportTests(unittest.TestCase):
     def test_named_agents_are_listed(self):
         text = report.render()
         named = [a for a in self.registry['agents'] if a.get('name')]
-        self.assertEqual(len(named), 42)
+        self.assertEqual(len(named), 152)
         for agent in named:
             self.assertIn(agent['name'], text)
 
