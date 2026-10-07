@@ -14,7 +14,7 @@
   "categories": [
     {
       "id": "FOOD",
-      "name": "Food & Social Connect",
+      "name": "Food & Culinary",
       "source_reported_sub_agents": 3,
       "source_reported_products": 6,
       "active_product_count": null,
@@ -65,7 +65,7 @@
     },
     {
       "id": "BHAKTI",
-      "name": "Bhakti Mandir — Ritual, Festival & Grantha",
+      "name": "Bhakti Shakti",
       "source_reported_sub_agents": 2,
       "source_reported_products": 8,
       "active_product_count": null,
@@ -260,56 +260,64 @@
       "category_id": "EDU",
       "parent_id": "EDU",
       "name": "Veda Rishi",
-      "name_status": "SUPPLIED_OR_OWNER_APPROVED",
+      "name_status": "MERGED_INTO_EDU-S10_DATA_PRESERVED",
       "source_slot": "S1",
       "id_status": "source_id_preserved",
       "serial": 1,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "merge_target_id": "EDU-S10",
+      "data_migration_policy": "source_identity_retained_as_legacy_reference; content_must_be_reindexed_under_target"
     },
     {
       "id": "EDU-S2",
       "category_id": "EDU",
       "parent_id": "EDU",
       "name": "Upanishad Guru",
-      "name_status": "SUPPLIED_OR_OWNER_APPROVED",
+      "name_status": "MERGED_INTO_EDU-S10_DATA_PRESERVED",
       "source_slot": "S2",
       "id_status": "source_id_preserved",
       "serial": 2,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "merge_target_id": "EDU-S10",
+      "data_migration_policy": "source_identity_retained_as_legacy_reference; content_must_be_reindexed_under_target"
     },
     {
       "id": "EDU-S3",
       "category_id": "EDU",
       "parent_id": "EDU",
       "name": "Gita Acharya",
-      "name_status": "SUPPLIED_OR_OWNER_APPROVED",
+      "name_status": "MERGED_INTO_EDU-S10_DATA_PRESERVED",
       "source_slot": "S3",
       "id_status": "source_id_preserved",
       "serial": 3,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "merge_target_id": "EDU-S10",
+      "data_migration_policy": "source_identity_retained_as_legacy_reference; content_must_be_reindexed_under_target"
     },
     {
       "id": "EDU-S4",
       "category_id": "EDU",
       "parent_id": "EDU",
       "name": "Mythology & Mystery Rishi",
-      "name_status": "SUPPLIED_OR_OWNER_APPROVED",
+      "name_status": "MERGED_INTO_EDU-S10_DATA_PRESERVED",
       "source_slot": "S4",
       "id_status": "source_id_preserved",
       "serial": 4,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "merge_target_id": "EDU-S10",
+      "data_migration_policy": "source_identity_retained_as_legacy_reference; content_must_be_reindexed_under_target"
     },
     {
       "id": "EDU-S5",
@@ -371,57 +379,102 @@
       "id": "EDU-S9",
       "category_id": "EDU",
       "parent_id": "EDU",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Chanakya & Arthashastra — Kings, Kingdoms, Castles, War, Heirs & Civilizational Life",
+      "name_status": "OWNER_APPROVED_EXPANDED_SCOPE",
       "source_slot": "S9",
       "id_status": "source_id_preserved",
       "serial": 9,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "Chanakya",
+        "Arthashastra",
+        "Indian castles and forts",
+        "world castles and fortifications",
+        "kings",
+        "kingdoms",
+        "heirs",
+        "war",
+        "statecraft",
+        "military history",
+        "royal life",
+        "civilizational life",
+        "events"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "EDU-S10",
       "category_id": "EDU",
       "parent_id": "EDU",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Itihasa — Ramayana, Mahabharata, Puranic Literature, Dharma, Smriti, Philosophy & Historical Knowledge",
+      "name_status": "OWNER_APPROVED_MERGED_SCOPE",
       "source_slot": "S10",
       "id_status": "source_id_preserved",
       "serial": 10,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "merged_source_ids": [
+        "EDU-S1",
+        "EDU-S2",
+        "EDU-S3",
+        "EDU-S4",
+        "EDU-S11",
+        "EDU-S12"
+      ],
+      "topic_scope": [
+        "Ramayana",
+        "Mahabharata",
+        "Itihasa",
+        "Puranic Literature",
+        "Hindu Knowledge",
+        "Dharma",
+        "Smriti",
+        "Philosophy",
+        "Veda",
+        "Upanishads",
+        "Bhagavad Gita",
+        "Hindu Mythology & Mystery",
+        "historical knowledge"
+      ],
+      "temporal_model_inherited": true,
+      "data_migration_policy": "merge_scope_without_data_deletion"
     },
     {
       "id": "EDU-S11",
       "category_id": "EDU",
       "parent_id": "EDU",
       "name": null,
-      "name_status": "UNKNOWN",
+      "name_status": "MERGED_INTO_EDU-S10_DATA_PRESERVED",
       "source_slot": "S11",
       "id_status": "source_id_preserved",
       "serial": 11,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "merge_target_id": "EDU-S10",
+      "data_migration_policy": "source_identity_retained_as_legacy_reference; content_must_be_reindexed_under_target"
     },
     {
       "id": "EDU-S12",
       "category_id": "EDU",
       "parent_id": "EDU",
       "name": null,
-      "name_status": "UNKNOWN",
+      "name_status": "MERGED_INTO_EDU-S10_DATA_PRESERVED",
       "source_slot": "S12",
       "id_status": "source_id_preserved",
       "serial": 12,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "merge_target_id": "EDU-S10",
+      "data_migration_policy": "source_identity_retained_as_legacy_reference; content_must_be_reindexed_under_target"
     },
     {
       "id": "EDU-S13",
@@ -764,15 +817,36 @@
       "id": "BHAKTI-REF-01",
       "category_id": "BHAKTI",
       "parent_id": "BHAKTI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Devata, Mandir, Puja, Sacred Practices, Rudraksha, Gems, Gold & Silver",
+      "name_status": "OWNER_APPROVED_EXPANDED_SCOPE",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "Devata",
+        "Mandir",
+        "Puja",
+        "Sacred Practices",
+        "Rudraksha",
+        "gemstones",
+        "gems",
+        "gold",
+        "silver",
+        "history",
+        "stories",
+        "functions",
+        "features",
+        "traditional uses",
+        "traditional remedies",
+        "evidence and safety review"
+      ],
+      "aghora_included": true,
+      "temporal_model_inherited": true,
+      "safety_note": "Traditional remedy/astrological claims must be labelled as traditional belief and separated from scientific/medical evidence."
     },
     {
       "id": "BHAKTI-REF-02",
@@ -786,7 +860,19 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "Mantra",
+        "Stotra",
+        "Bhajan",
+        "Festivals",
+        "Sadhana",
+        "Aghora",
+        "Aghori traditions",
+        "Shaiva traditions"
+      ],
+      "aghora_included": true,
+      "temporal_model_inherited": true
     },
     {
       "id": "BHAKTI-AGHOR-S1",
@@ -815,7 +901,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-02",
@@ -829,7 +930,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-03",
@@ -843,7 +959,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-04",
@@ -857,7 +988,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-05",
@@ -871,7 +1017,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-06",
@@ -885,7 +1046,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-07",
@@ -899,7 +1075,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-08",
@@ -913,7 +1104,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-09",
@@ -927,7 +1133,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-10",
@@ -941,7 +1162,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-11",
@@ -955,7 +1191,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-12",
@@ -969,7 +1220,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-13",
@@ -983,7 +1249,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "SPORTS-REF-14",
@@ -997,7 +1278,22 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "sport history and origins",
+        "rules",
+        "regulations",
+        "laws and governance",
+        "equipment",
+        "techniques",
+        "players and legends",
+        "competitions",
+        "records",
+        "present state",
+        "trends",
+        "future developments"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "AGRI-REF-01",
@@ -1011,7 +1307,14 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "home gardening",
+        "kitchen gardening",
+        "gardening tips",
+        "household/natural remedies with safety and evidence labels"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "AGRI-REF-02",
@@ -1025,7 +1328,14 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "home gardening",
+        "kitchen gardening",
+        "gardening tips",
+        "household/natural remedies with safety and evidence labels"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "AGRI-REF-03",
@@ -1039,7 +1349,14 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "home gardening",
+        "kitchen gardening",
+        "gardening tips",
+        "household/natural remedies with safety and evidence labels"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "AGRI-REF-04",
@@ -1053,7 +1370,14 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "home gardening",
+        "kitchen gardening",
+        "gardening tips",
+        "household/natural remedies with safety and evidence labels"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "AGRI-REF-05",
@@ -1067,7 +1391,14 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "home gardening",
+        "kitchen gardening",
+        "gardening tips",
+        "household/natural remedies with safety and evidence labels"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "AGRI-REF-06",
@@ -1081,7 +1412,14 @@
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "home gardening",
+        "kitchen gardening",
+        "gardening tips",
+        "household/natural remedies with safety and evidence labels"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "ENT-INDICOM",
@@ -1505,31 +1843,41 @@
     },
     {
       "id": "ENT-LIQUOR-S1",
-      "category_id": "ENTERTAINMENT",
-      "parent_id": "ENTERTAINMENT",
+      "category_id": "FOOD",
+      "parent_id": "FOOD",
       "name": null,
-      "name_status": "UNKNOWN",
+      "name_status": "OWNER_APPROVED_MOVED_TO_FOOD_CULINARY",
       "source_slot": "ENT-LIQUOR-S1",
       "id_status": "source_id_preserved",
       "serial": 31,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": 12,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "previous_category_id": "ENTERTAINMENT",
+      "transfer_target": "FOOD & CULINARY",
+      "food_subdomain": "Beverage Culture & Hospitality",
+      "temporal_model_inherited": true,
+      "safety_note": "Subject-information only; no promotion, procurement facilitation, or unrestricted sales agent behavior."
     },
     {
       "id": "ENT-BAR-S1",
-      "category_id": "ENTERTAINMENT",
-      "parent_id": "ENTERTAINMENT",
+      "category_id": "FOOD",
+      "parent_id": "FOOD",
       "name": null,
-      "name_status": "UNKNOWN",
+      "name_status": "OWNER_APPROVED_MOVED_TO_FOOD_CULINARY",
       "source_slot": "ENT-BAR-S1",
       "id_status": "source_id_preserved",
       "serial": 32,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": 10,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "previous_category_id": "ENTERTAINMENT",
+      "transfer_target": "FOOD & CULINARY",
+      "food_subdomain": "Beverage Culture & Hospitality",
+      "temporal_model_inherited": true,
+      "safety_note": "Subject-information only; no promotion, procurement facilitation, or unrestricted sales agent behavior."
     },
     {
       "id": "PLATFORM-REF-01",
