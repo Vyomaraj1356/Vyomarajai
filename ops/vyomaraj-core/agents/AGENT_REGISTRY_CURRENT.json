@@ -24,7 +24,7 @@
     },
     {
       "id": "EDU",
-      "name": "Education",
+      "name": "Education & Civilization Knowledge",
       "source_reported_sub_agents": 15,
       "source_reported_products": 68,
       "active_product_count": null,
@@ -85,7 +85,7 @@
     },
     {
       "id": "AGRI",
-      "name": "Agriculture & Environment",
+      "name": "Agriculture & Living World",
       "source_reported_sub_agents": 6,
       "source_reported_products": 14,
       "active_product_count": null,
