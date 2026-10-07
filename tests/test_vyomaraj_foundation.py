@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parents[1]))
 
-from ops.vyomaraj.daily_start import MANTRA, SEQUENCE, run_daily_start
+from ops.vyomaraj.daily_start import HANUMAN_INVOCATION, MANTRA, RAM_INVOCATION, SEQUENCE, run_daily_start
 from ops.vyomaraj.location_authorization import issue_authorization, is_active, revoke
 
 def test_daily_start_contains_mantra_and_peer_sequence():
@@ -11,7 +11,9 @@ def test_daily_start_contains_mantra_and_peer_sequence():
         "owner_authority_check": lambda: True,
     })
     assert [e.step for e in events] == list(SEQUENCE)
-    assert MANTRA in events[4].message\n    assert "श्री राम" in events[2].message\n    assert "हनुमते" in events[3].message
+    assert events[2].message == RAM_INVOCATION
+    assert events[3].message == HANUMAN_INVOCATION
+    assert MANTRA in events[4].message
 
 def test_location_defaults_to_owner_authorization():
     try:
