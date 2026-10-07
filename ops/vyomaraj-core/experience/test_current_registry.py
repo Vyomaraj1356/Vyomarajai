@@ -22,7 +22,7 @@ class CurrentRegistryTests(unittest.TestCase):
         for route in ['/agents/','/education/','/agents/app.js','/agents/styles.css']:
             self.assertGreater(len(self.get(route)),100)
     def test_active_json_routes(self):
-        d=json.loads(self.get('/agents/AGENT_REGISTRY_CURRENT.json'));self.assertEqual(d['totals']['sub_agents'],154)
+        d=json.loads(self.get('/agents/AGENT_REGISTRY_CURRENT.json'));self.assertEqual(d['totals']['sub_agents'],168)
         i=json.loads(self.get('/agents/CONTENT_INDEX_CURRENT.json'));self.assertEqual(i['education_topic_count'],21)
         o=json.loads(self.get('/agents/CONTENT_OWNERSHIP_CURRENT.json'));self.assertTrue(all(t['owner_category']=='EDU' for t in o['education_topics']))
     def test_reports_current_vs_historical(self):
