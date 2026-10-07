@@ -1942,8 +1942,8 @@
       "id": "ENT-LIQUOR-S1",
       "category_id": "FOOD",
       "parent_id": "FOOD",
-      "name": null,
-      "name_status": "OWNER_APPROVED_MOVED_TO_FOOD_CULINARY",
+      "name": "Fermented Beverages, Beer & Wine Heritage",
+      "name_status": "OWNER_APPROVED_FOOD_CULINARY_ALIGNMENT",
       "source_slot": "ENT-LIQUOR-S1",
       "id_status": "source_id_preserved",
       "serial": 31,
@@ -1953,16 +1953,35 @@
       "runtime_status": "NOT_VERIFIED",
       "previous_category_id": "ENTERTAINMENT",
       "transfer_target": "FOOD & CULINARY",
-      "food_subdomain": "Beverage Culture & Hospitality",
+      "food_subdomain": "Fermented Beverages, Brewing & Viticulture",
       "temporal_model_inherited": true,
-      "safety_note": "Subject-information only; no promotion, procurement facilitation, or unrestricted sales agent behavior."
+      "safety_note": "Subject-information only; no promotion, procurement facilitation, sales optimization, or instructions intended to enable unsafe alcohol production.",
+      "topic_scope": [
+        "prehistoric and ancient fermented beverages",
+        "beer history, families and styles",
+        "wine history, grapes and wine families",
+        "cider, mead, sake and traditional fermented beverages",
+        "regional and indigenous beverage traditions",
+        "ingredients and raw-material knowledge",
+        "fermentation science and historical production methods",
+        "brewing and winemaking technology evolution",
+        "vessels, amphorae, jars and storage traditions",
+        "bottles, closures, labels and packaging history",
+        "glassware and serving traditions",
+        "sensory vocabulary, style classification and cultural context",
+        "hospitality and food-pairing history",
+        "present-day beverage categories and industry evolution",
+        "emerging and future non-alcoholic and fermented beverage innovation"
+      ],
+      "production_scope": "Informational/historical/scientific descriptions of ingredients, fermentation, processing and technology; no procurement or operational facilitation.",
+      "universal_knowledge_evolution": true
     },
     {
       "id": "ENT-BAR-S1",
       "category_id": "FOOD",
       "parent_id": "FOOD",
-      "name": null,
-      "name_status": "OWNER_APPROVED_MOVED_TO_FOOD_CULINARY",
+      "name": "Spirits, Bar Culture, Service & Beverage Heritage",
+      "name_status": "OWNER_APPROVED_FOOD_CULINARY_ALIGNMENT",
       "source_slot": "ENT-BAR-S1",
       "id_status": "source_id_preserved",
       "serial": 32,
@@ -1972,9 +1991,27 @@
       "runtime_status": "NOT_VERIFIED",
       "previous_category_id": "ENTERTAINMENT",
       "transfer_target": "FOOD & CULINARY",
-      "food_subdomain": "Beverage Culture & Hospitality",
+      "food_subdomain": "Spirits, Beverage Service & Hospitality Culture",
       "temporal_model_inherited": true,
-      "safety_note": "Subject-information only; no promotion, procurement facilitation, or unrestricted sales agent behavior."
+      "safety_note": "Subject-information only; no promotion, procurement facilitation, sales optimization, or instructions intended to enable unsafe alcohol production.",
+      "topic_scope": [
+        "distilled beverage history and categories",
+        "whisky/whiskey, rum, brandy, vodka, gin and regional spirits",
+        "traditional and historical distillation knowledge",
+        "liqueurs, aperitifs and digestifs",
+        "cocktail and mixed-drink history as cultural knowledge",
+        "bar, tavern, pub and hospitality history",
+        "bar tools, vessels, glassware and serving styles",
+        "bottle forms, closures, labels, packaging and collecting history",
+        "beverage presentation and service traditions",
+        "regional drinking cultures and social history",
+        "classification, styles, strength terminology and sensory vocabulary",
+        "regulation, taxation and prohibition history",
+        "modern beverage industry and craft movements",
+        "non-alcoholic alternatives and future beverage/service technology"
+      ],
+      "production_scope": "Informational/historical/scientific descriptions of distillation, maturation, blending and service traditions; no procurement or operational facilitation.",
+      "universal_knowledge_evolution": true
     },
     {
       "id": "PLATFORM-REF-01",
@@ -3371,5 +3408,11 @@
       "knowledge_scope": "Primitive/origin → historical evolution → present → trends → future",
       "approval_basis": "owner_request_2026-10-07"
     }
-  ]
+  ],
+  "last_alignment_update": "OWNER_APPROVED_FOOD_CULINARY_BEVERAGE_HIERARCHY",
+  "beverage_hierarchy": {
+    "structure": "Category → Named legacy agent → specialized sub-agent → topic/content → products/media",
+    "evolution": "Origin → Old → Historical Evolution → History → Present → Current State → Trends → Future → Possible Futures",
+    "note": "Alcoholic beverage material is preserved as historical, cultural, scientific and culinary knowledge with safety boundaries; future claims require evidence labels."
+  }
 }
