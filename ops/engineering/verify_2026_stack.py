@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[2]
 REQ = ROOT / "ops/engineering/requirements-2026.txt"
 CFG = ROOT / "config/engineering/ENGINEERING_2026_BASELINE.yaml"
 GEO = ROOT / "config/engineering/GEOSPATIAL_AND_DAILY_STARTUP.yaml"
+REGISTRY = ROOT / "ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json"
+INHERITANCE = ROOT / "ops/vyomaraj/agent_capability_inheritance.py"
 
 REQUIRED_MODULES = {
     "cryptography": "security",
@@ -44,6 +46,10 @@ def main() -> int:
         errors.append(f"missing engineering config: {CFG}")
     if not GEO.is_file():
         errors.append(f"missing geospatial/startup config: {GEO}")
+    if not REGISTRY.is_file():
+        errors.append(f"missing current agent registry: {REGISTRY}")
+    if not INHERITANCE.is_file():
+        errors.append(f"missing capability inheritance runtime: {INHERITANCE}")
 
     for module, purpose in REQUIRED_MODULES.items():
         if importlib.util.find_spec(module) is None:
@@ -55,9 +61,23 @@ def main() -> int:
             if needle not in text:
                 errors.append(f"missing required invariant: {needle}")
 
+    if REGISTRY.is_file() and INHERITANCE.is_file():
+        try:
+            import sys
+            sys.path.insert(0, str(ROOT))
+            from ops.vyomaraj.agent_capability_inheritance import validate_inheritance
+            inheritance = validate_inheritance(REGISTRY)
+            if inheritance["registry_agents"] != 128:
+                errors.append(f"unexpected current registry count: {inheritance['registry_agents']}")
+            if not inheritance["all_agents_inherit_all_domains"]:
+                errors.append("not every registered agent inherits the five capability domains")
+        except Exception:
+            errors.append("capability inheritance validation failed")
+
     result = {
         "baseline": "VYOMARAJ_AI_AGENT_OS_v1.2_ENGINEERING_BASELINE",
         "status": "PASS" if not errors else "FAIL",
+        "registry_capability_inheritance": "PASS" if not errors else "NOT_VERIFIED",
         "external_runtime_verified": False,
         "production_credentials_tested": False,
         "errors": errors,
