@@ -3,7 +3,7 @@
 
 The catalog is exactly two checked-in files:
 
-  * ``AGENT_REGISTRY_CURRENT.json``   — the 128 counted positions plus the 6 uncounted
+  * ``AGENT_REGISTRY_CURRENT.json``   — the 133 counted positions plus the 6 uncounted
     parent headings of the current owner-approved hierarchy.
   * ``CONTENT_INDEX_CURRENT.json``    — the 197 indexed content references.
 
@@ -309,7 +309,7 @@ class Catalog:
             result['results'].append(entry)
         result['returned'] = len(result['results'])
         if not matches:
-            result['note'] = ('no record in the 128 positions or 197 content references matches '
+            result['note'] = ('no record in the 133 positions or 197 content references matches '
                               'every word of this query — nothing is invented to fill the gap')
         elif len(matches) > limit:
             result['note'] = f'{len(matches)} matching records; showing the top {limit}'
