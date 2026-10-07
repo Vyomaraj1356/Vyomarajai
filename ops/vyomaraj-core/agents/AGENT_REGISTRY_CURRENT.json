@@ -305,43 +305,61 @@
       "id": "FOOD-REF-01",
       "category_id": "FOOD",
       "parent_id": "FOOD",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Satvik Food, Ayurveda & Traditional Food Knowledge",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 1,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html FOOD S1 Satvik + Ayurveda flora; existing Food history/nutrition scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FOOD-REF-02",
       "category_id": "FOOD",
       "parent_id": "FOOD",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Street Food, Regional & Global Food Culture",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html FOOD S2 Street + existing Food world/regional/street-food scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "FOOD-REF-03",
       "category_id": "FOOD",
       "parent_id": "FOOD",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Farm-to-Table, Food Systems & Traceability",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 3,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": null,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "flow-diagram.html FOOD S3 Farm-to-Table + seed→harvest→mandi→processing→plate traceability",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "EDU-S1",
@@ -1125,8 +1143,8 @@
       "id": "BHAKTI-REF-02",
       "category_id": "BHAKTI",
       "parent_id": "BHAKTI",
-      "name": null,
-      "name_status": "UNKNOWN",
+      "name": "Shiv Ke Sathi — Sacred Objects, Bhakts, Stories & Traditions",
+      "name_status": "HISTORICAL_CONTENT_ALIGNED",
       "source_slot": null,
       "id_status": "current_reference_id_not_recovered_slot",
       "serial": 2,
@@ -1145,7 +1163,13 @@
         "Shaiva traditions"
       ],
       "aghora_included": true,
-      "temporal_model_inherited": true
+      "temporal_model_inherited": true,
+      "alignment": {
+        "status": "ALIGNED",
+        "basis": "HISTORICAL_CONTENT_ALIGNED",
+        "evidence": "ops/bhakti-shakti/shiv-ke-sathi.json + revenue-reel-system.json explicit Shiv ke Sathi scope",
+        "aligned_on": "2026-10-07"
+      }
     },
     {
       "id": "BHAKTI-AGHOR-S1",
@@ -3533,8 +3557,8 @@
     "main_agents": 14,
     "sub_agents": 153,
     "uncounted_parent_headings": 6,
-    "named_sub_agents": 140,
-    "unnamed_numbered_sub_agents": 13,
+    "named_sub_agents": 146,
+    "unnamed_numbered_sub_agents": 7,
     "active_products": null,
     "historical_reported_products": 421,
     "uncounted_nested_sub_agents": 48,
@@ -4250,16 +4274,10 @@
       "ENTERTAINMENT"
     ],
     "aligned_counted_slots": 68,
-    "remaining_unresolved_counted_slots": 13,
+    "remaining_unresolved_counted_slots": 7,
     "remaining_unresolved_ids": [
-      "FOOD-REF-01",
-      "FOOD-REF-02",
-      "FOOD-REF-03",
-      "EDU-S8",
       "EDU-S11",
       "EDU-S12",
-      "EDU-S13",
-      "BHAKTI-REF-02",
       "PLATFORM-UNMAPPED",
       "TOUR-REF-01",
       "TOUR-REF-02",
