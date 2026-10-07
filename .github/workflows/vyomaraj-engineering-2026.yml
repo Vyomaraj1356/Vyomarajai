@@ -1,0 +1,53 @@
+name: Vyomaraj 2026 Engineering Foundation
+
+on:
+  push:
+    branches: ["main", "feat/**"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  engineering-foundation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: ops/engineering/requirements-2026.txt
+
+      - name: Install 2026 engineering stack
+        run: python -m pip install -r ops/engineering/requirements-2026.txt
+
+      - name: Verify engineering foundation
+        run: python ops/engineering/verify_2026_stack.py
+
+      - name: Compile engineering scripts
+        run: python -m compileall -q ops/engineering
+
+      - name: Verify no architecture-lock regression
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("config/engineering/ENGINEERING_2026_BASELINE.yaml").read_text()
+          required = [
+              "architecture_lock: true",
+              "mutual_backup: true",
+              "mutual_recovery: true",
+              "default: deny_unless_allowed",
+              "retrieved_content_is_untrusted: true",
+          ]
+          missing = [x for x in required if x not in p]
+          if missing:
+              raise SystemExit("Missing invariants: " + ", ".join(missing))
+          print("Architecture lock: PASS")
+          PY
