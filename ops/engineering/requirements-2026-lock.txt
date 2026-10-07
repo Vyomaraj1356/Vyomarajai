@@ -1,0 +1,9 @@
+# Exact 2026 engineering foundation versions validated against the current bounded requirements.
+cryptography==46.0.0
+jsonschema==4.26.0
+PyYAML==6.0.3
+temporalio==1.34.0
+opentelemetry-api==1.45.1
+opentelemetry-sdk==1.45.1
+mcp==2.3.0
+a2a-sdk[telemetry]==1.2.2
