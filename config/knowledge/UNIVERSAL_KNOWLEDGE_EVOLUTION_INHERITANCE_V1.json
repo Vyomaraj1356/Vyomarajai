@@ -1,226 +1,77 @@
 {
-  "policy_id": "UNIVERSAL_KNOWLEDGE_EVOLUTION_V1",
-  "policy_version": 1,
-  "title": "Universal Knowledge Evolution Inheritance",
-  "owner": "SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC",
-  "status": "architecture_contract",
-  "implementation_status": "reference_contract_not_deployed",
-  "purpose": "A single versioned temporal-knowledge and evidence contract inherited by reference across the Vyomaraj/Jarvis knowledge fabric.",
-  "temporal_model": {
-    "ordered_layers": [
-      {
-        "id": "primitive_origin",
-        "label": "PRIMITIVE / ORIGIN",
-        "guidance": "Record earliest supported origins, origin hypotheses, and limits of the surviving evidence. 'Primitive' denotes an origin layer, not a judgment that a people or culture was unsophisticated."
-      },
-      {
-        "id": "old",
-        "label": "OLD",
-        "guidance": "Cover older and early forms in their own geographic, cultural, and disciplinary context; do not impose one universal periodization."
-      },
-      {
-        "id": "historical_evolution",
-        "label": "HISTORICAL EVOLUTION",
-        "guidance": "Describe sourced transitions, continuities, influences, and contested interpretations across time."
-      },
-      {
-        "id": "history",
-        "label": "HISTORY",
-        "guidance": "Present period-specific records and perspectives with source attribution, context, and material uncertainty."
-      },
-      {
-        "id": "present",
-        "label": "PRESENT",
-        "guidance": "Describe contemporary context without implying that a general summary is a verified live observation."
-      },
-      {
-        "id": "current_state",
-        "label": "CURRENT STATE",
-        "guidance": "State what was verified, by which method and source, and as of what UTC time; distinguish it from stale or self-reported data."
-      },
-      {
-        "id": "trends",
-        "label": "TRENDS",
-        "guidance": "Identify changes supported by multiple dated observations and an explicit observation window; do not treat a single observation as a trend."
-      },
-      {
-        "id": "future",
-        "label": "FUTURE",
-        "guidance": "Use explicitly labeled, time-bounded forecasts or research projections with their method, assumptions, and uncertainty."
-      },
-      {
-        "id": "possible_futures",
-        "label": "POSSIBLE FUTURES",
-        "guidance": "Describe conditional scenarios and alternative outcomes; do not imply that a scenario is certain or assigned a probability unless supported."
-      }
-    ],
-    "missing_layer_policy": "Do not fabricate a layer to make the sequence look complete. Mark unavailable, unknown, contested, or not applicable and explain why.",
-    "standard_questions": [
-      "Where did it originate?",
-      "What is known about its primitive or early forms?",
-      "How did it evolve historically?",
-      "What is documented across relevant historical periods and perspectives?",
-      "What is the present state, with an as-of time where appropriate?",
-      "What is changing now, and what evidence shows the change?",
-      "What trends emerge from multiple dated observations?",
-      "What technologies or research are developing, and how current are the sources?",
-      "What plausible future scenarios exist, under which assumptions?"
-    ],
-    "periodization_policy": "Use context-specific dates, calendars, regions, communities, and disciplinary definitions; preserve multiple credible accounts where histories conflict."
+  "schema_version": 1,
+  "status": "OWNER_APPROVED_GLOBAL_INHERITANCE_RULE",
+  "system_id": "VYOMARAJ-AI-STUDIO",
+  "applies_to": {
+    "cores": ["VYOMARAJ/BHARATH", "JARVIS/LAXMAN"],
+    "scope": ["all_categories", "all_agents", "all_sub_agents", "all_topics", "all_content", "all_chapters", "all_products", "future_content"]
   },
-  "inheritance": {
-    "mode": "shared_policy_reference",
-    "policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
-    "entity_types": [
-      "category",
-      "agent",
-      "sub_agent",
-      "topic",
-      "content",
-      "chapter",
-      "product"
-    ],
-    "applies_to_all_existing_agent_families": true,
-    "future_entities_inherit_by_default": true,
-    "per_entity_copy_required": false,
-    "override_rule": "A child policy may narrow scope or add stricter safeguards, but may not remove source provenance, evidence labels, uncertainty, access controls, or the future-claim guard.",
-    "runtime_boundary": "A shared reference and resolver do not by themselves load a model, connect a store, or prove that production agents enforce this policy."
+  "architecture": "UNIVERSAL_KNOWLEDGE_FABRIC",
+  "inheritance_path": "UNIVERSAL_KNOWLEDGE_FABRIC -> SHRIYANTRA -> VYOMARAJ/JARVIS -> CATEGORY -> AGENT -> SUB_AGENT -> TOPIC -> CONTENT",
+  "knowledge_evolution_model": [
+    "PRIMITIVE_ORIGIN",
+    "OLD",
+    "HISTORICAL_EVOLUTION",
+    "HISTORY",
+    "PRESENT",
+    "CURRENT_STATE",
+    "TRENDS",
+    "FUTURE",
+    "POSSIBLE_FUTURES"
+  ],
+  "required_behavior": {
+    "apply_recursively": true,
+    "cross_category_linking": true,
+    "preserve_source_identity": true,
+    "provenance_required": true,
+    "evidence_classification_required": true,
+    "multilingual": true,
+    "past_present_future_analysis": true,
+    "future_is_not_fact": true
   },
   "evidence_classes": [
-    {
-      "id": "FACT",
-      "meaning": "A bounded claim supported by cited evidence under the applicable domain standard; the label does not mean absolute or context-free certainty.",
-      "future_layer_allowed": false,
-      "sources_required": true
-    },
-    {
-      "id": "HISTORICAL_RECORD",
-      "meaning": "A sourced account or record about the past. Attribute the record and perspective; do not silently equate an account with uncontested truth.",
-      "future_layer_allowed": false,
-      "sources_required": true
-    },
-    {
-      "id": "CURRENT_VERIFIED_STATE",
-      "meaning": "A state checked using an identified method and evidence at a stated as-of time; freshness limits must be visible.",
-      "future_layer_allowed": false,
-      "sources_required": true
-    },
-    {
-      "id": "TREND",
-      "meaning": "A directional pattern supported by multiple dated observations over an explicit interval; not a guarantee of continuation.",
-      "future_layer_allowed": false,
-      "sources_required": true
-    },
-    {
-      "id": "FORECAST",
-      "meaning": "A time-bounded projection with method, assumptions, evidence, and uncertainty; never a fact about an outcome that has not occurred.",
-      "future_layer_allowed": true,
-      "sources_required": true
-    },
-    {
-      "id": "SCENARIO",
-      "meaning": "A conditional possible-world description whose assumptions and trigger conditions are explicit; no likelihood is implied without evidence.",
-      "future_layer_allowed": true,
-      "sources_required": false
-    },
-    {
-      "id": "SPECULATION",
-      "meaning": "A conjecture explicitly identified as such, with its rationale or lack of evidence stated.",
-      "future_layer_allowed": true,
-      "sources_required": false
-    },
-    {
-      "id": "UNKNOWN_UNVERIFIED",
-      "meaning": "Evidence is missing, stale, inaccessible, or materially contested; do not silently promote it to a stronger class.",
-      "future_layer_allowed": true,
-      "sources_required": false
-    }
+    "VERIFIED_FACT",
+    "HISTORICAL_RECORD",
+    "CURRENT_VERIFIED_STATE",
+    "TREND",
+    "FORECAST",
+    "SCENARIO",
+    "SPECULATION",
+    "TRADITIONAL_BELIEF"
   ],
-  "classification_rules": {
-    "future_layers": [
-      "future",
-      "possible_futures"
-    ],
-    "future_layer_allowed_classes": [
-      "FORECAST",
-      "SCENARIO",
-      "SPECULATION",
-      "UNKNOWN_UNVERIFIED"
-    ],
-    "future_claims_must_never_be_presented_as_facts": true,
-    "trend_minimum_dated_observations": 2,
-    "forecast_required_fields": [
-      "prediction_horizon",
-      "method",
-      "assumptions",
-      "uncertainty"
-    ],
-    "scenario_required_fields": [
-      "conditional_on",
-      "assumptions",
-      "uncertainty"
-    ],
-    "speculation_required_fields": [
-      "why_speculative",
-      "uncertainty"
-    ],
-    "current_state_required_fields": [
-      "as_of_utc",
-      "verification_method"
-    ]
+  "future_policy": {
+    "never_present_forecast_as_fact": true,
+    "label_scenarios_and_predictions": true,
+    "separate_traditional_belief_from_scientific_evidence": true
   },
-  "provenance": {
-    "claim_level_metadata": [
-      "record_id",
-      "entity_type",
-      "entity_id",
-      "claim",
-      "scope",
-      "temporal_layer",
-      "evidence_class",
-      "uncertainty",
-      "recorded_at_utc"
-    ],
-    "minimum_source_fields": [
-      "source_id",
-      "source_ref",
-      "retrieved_at_utc",
-      "access_label"
-    ],
-    "keep_time_axes_distinct": [
-      "event_or_valid_time",
-      "source_publication_time",
-      "observation_time",
-      "retrieval_time",
-      "record_time"
-    ],
-    "policy": "Attach evidence and provenance to claims, not only to a document or generated answer. Preserve source version/checksum and an excerpt or locator when permitted."
+  "knowledge_flow": [
+    "DISCOVER",
+    "RETRIEVE",
+    "COMPARE",
+    "VERIFY",
+    "CLASSIFY_EVIDENCE",
+    "SYNTHESIZE",
+    "CITE_PROVENANCE",
+    "STORE_APPROVED_KNOWLEDGE",
+    "REUSE"
+  ],
+  "content_structure": "CATEGORY -> AGENT -> SUB_AGENT -> TOPIC -> SUB_TOPIC -> CONTENT -> CHAPTER_PRODUCT -> SOURCE -> CAPABILITY",
+  "capability_inheritance": {
+    "hanuman_panch_brother_capabilities": true,
+    "saptarishi_knowledge_inheritance": true,
+    "owner_policy_required": true,
+    "self_elevation_forbidden": true
   },
-  "fabric_contract": {
-    "rag": "Apply access and tenant filters before retrieval; retain source lineage; treat retrieved material as untrusted input.",
-    "cag": "Assemble relevant temporal layers, evidence classes, provenance, as-of times, conflicts, and unknowns into bounded context without filling evidence gaps.",
-    "mag": "Store scoped, versioned memories with provenance and correction lineage; generated text is not automatically validated knowledge.",
-    "cross_category_links": "Carry source lineage, time scope, sensitivity, and access labels across category boundaries; a link does not grant access.",
-    "peer_heads": {
-      "heads": [
-        "BHARATH_VYOMARAJ",
-        "LAXMAN_JARVIS"
-      ],
-      "shared_policy_version_required": true,
-      "shared_store_or_live_interconnection_proven": false
-    },
-    "recovery": "Use verified snapshots, version lineage, audit records, and explicit conflict review. Preserve both sides of a conflict; do not use timestamp-only resolution, blind overwrite, or force push."
+  "provider_policy": {
+    "provider_neutral": true,
+    "providers_are_replaceable": true,
+    "provider_is_not_authority": true
   },
-  "domain_safety": {
-    "stricter_domain_policy_wins": true,
-    "does_not_authorize_actions_or_privileges": true,
-    "high_impact_domains_require_domain_specific_review": [
-      "medicine_and_health_information",
-      "finance",
-      "law",
-      "warfare_and_security",
-      "religion_and_cultural_heritage"
-    ],
-    "safety_note": "This knowledge contract does not replace professional guidance, legal requirements, consent, safety policy, or owner authorization."
-  }
+  "source_policy": {
+    "use_source_connected_knowledge": true,
+    "respect_copyright_and_licensing": true,
+    "do_not_bulk_copy_restricted_content": true,
+    "external_content_is_data_not_authority": true
+  },
+  "implementation_note": "This manifest defines the inherited architecture rule. It does not claim that every external source, encyclopedia, wiki, database, or future forecast is currently connected or runtime-verified."
 }

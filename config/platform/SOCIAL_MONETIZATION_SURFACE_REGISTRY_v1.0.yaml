@@ -1,0 +1,66 @@
+system: VYOMARAJ-AI-STUDIO
+purpose: "Provider-neutral social distribution and monetization surface registry."
+principle: "Enable every lawful, eligible, useful monetization surface; never fake engagement, bypass eligibility, spam, or automate against platform policy."
+surfaces:
+  - id: youtube
+    capabilities: [long_video, shorts, live, memberships, fan_funding, shopping, affiliate, analytics]
+    monetization: [ads, memberships, supers, shopping, affiliate, sponsorship]
+  - id: instagram
+    capabilities: [reels, posts, stories, live, branded_content, subscriptions, gifts, analytics]
+    monetization: [branded_content, eligible_creator_monetization, subscriptions, gifts, affiliate_where_available]
+  - id: facebook
+    capabilities: [video, reels, live, pages, groups, branded_content, analytics]
+    monetization: [eligible_creator_monetization, branded_content, subscriptions_where_available]
+  - id: x
+    capabilities: [posts, articles, video, subscriptions, analytics]
+    monetization: [subscriptions, original_content_rewards_where_eligible]
+  - id: linkedin
+    capabilities: [posts, articles, video, newsletters, professional_collaboration]
+    monetization: [sponsorship, services, leads, partnerships]
+  - id: telegram
+    capabilities: [channels, groups, bots, stories, paid_content_where_available]
+    monetization: [sponsorship, paid_content_where_available, business_leads]
+  - id: whatsapp
+    capabilities: [channels, business_messaging, communities, customer_contact]
+    monetization: [business_leads, sponsored_or_commercial_workflows_where_supported]
+  - id: reddit
+    capabilities: [communities, posts, comments]
+    monetization: [partnerships, leads, eligible_programs]
+  - id: pinterest
+    capabilities: [pins, boards, video, shopping_where_available]
+    monetization: [affiliate, shopping, partnerships_where_available]
+  - id: threads
+    capabilities: [posts, media, communities_where_available]
+    monetization: [partnerships, distribution]
+  - id: snapchat
+    capabilities: [spotlight, stories, creator_features_where_available]
+    monetization: [eligible_creator_programs, partnerships]
+  - id: twitch
+    capabilities: [live, clips, community]
+    monetization: [subscriptions, ads, bits, sponsorship]
+  - id: vimeo
+    capabilities: [video, showcases, OTT_where_available]
+    monetization: [subscriptions, sales, business_distribution_where_available]
+  - id: tumblr
+    capabilities: [posts, media, communities]
+    monetization: [partnerships, memberships_where_available]
+  - id: mastodon
+    capabilities: [posts, media, communities]
+    monetization: [sponsorship, memberships, leads]
+policy:
+  platform_terms_required: true
+  eligibility_required: true
+  region_required: true
+  account_owner_required: true
+  rights_required: true
+  no_fake_views_likes_subscribers: true
+  no_spam_or_mass_unsolicited_outreach: true
+  no_platform_abuse_or_bypass: true
+  no_automatic_activation_without_credentials_and_owner_authorization: true
+activation:
+  state_machine: [DISCOVERED, ELIGIBLE, ACCOUNT_CONNECTED, AUTHORIZED, TESTED, ENABLED, MONITORED, DEGRADED, DISABLED]
+  each_surface_requires: [official_api_or_approved_integration, secrets_manager_binding, scope_review, health_check, publish_test, analytics_test, rollback]
+routing:
+  maximize_reach: "Select surfaces by audience fit, format, region, eligibility, rights, cost, historical performance and policy."
+  maximize_earnings: "Select legal monetization surfaces by expected net revenue, conversion, reliability, payment history and cost."
+  never_optimize_for: [fake_engagement, spam, policy_evasion, deceptive_clicks]
