@@ -118,9 +118,14 @@ def render(root=ROOT):
         '|---|---:|---:|---|---:|---:|',
     ]
     for category in registry['categories']:
-        current, previous = category['sub_agents'], historical_by_id[category['id']]
-        delta = current - previous
-        change = 'unchanged' if delta == 0 else (f'+{delta}' if delta > 0 else str(delta))
+        current = category['sub_agents']
+        previous = historical_by_id.get(category['id'])
+        if previous is None:
+            change = 'new category'
+            previous = 0
+        else:
+            delta = current - previous
+            change = 'unchanged' if delta == 0 else (f'+{delta}' if delta > 0 else str(delta))
         lines.append(f"| {category['id']} — {category.get('name', '')} | {current} | {previous} | {change} "
                      f"| {len(named[category['id']])} | {unnamed_count[category['id']]} |")
     lines += [
