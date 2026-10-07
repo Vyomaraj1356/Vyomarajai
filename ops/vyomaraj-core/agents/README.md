@@ -27,7 +27,7 @@ The current editorial packs did not contain a misplaced Education pack. The Educ
 - All 32 historical catalogue paths are already unique. Multiple files referring to one agent do not create multiple agents. Historical archives, snapshots and versions are not deleted as “duplicates.”
 - Historical sovereign roles remain separate cross-cutting references, not extra children in the current total. No unverified third-level roster has been invented.
 
-There are 42 supplied/approved individual names and 86 unnamed positions. Source-reported product numbers remain historical metadata; **current product ownership/counts are unreconciled**, particularly after the Government Schemes transfer. The complete 421-title list is unavailable, so no fabricated “all products deduplicated” claim is made.
+There are 152 supplied/approved individual names and 86 unnamed positions. Source-reported product numbers remain historical metadata; **current product ownership/counts are unreconciled**, particularly after the Government Schemes transfer. The complete 421-title list is unavailable, so no fabricated “all products deduplicated” claim is made.
 
 ## Ask the catalog (retrieval over these two files)
 
