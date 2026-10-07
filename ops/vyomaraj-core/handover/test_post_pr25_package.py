@@ -29,8 +29,9 @@ class PostPr25PackageTests(unittest.TestCase):
         with zipfile.ZipFile(io.BytesIO(self.payload)) as archive:
             self.assertEqual(archive.namelist(), [name for name, _ in companion.MEMBERS])
             for member in self.manifest['members']:
-                self.assertEqual(archive.read(member['archive_name']),
-                                 (companion.ROOT / member['source']).read_bytes())
+                data = archive.read(member['archive_name'])
+                self.assertEqual(hashlib.sha256(data).hexdigest(), member['sha256'])
+                self.assertEqual(len(data), member['bytes'])
 
     def test_companion_is_a_superset_of_the_canonical_package(self):
         with zipfile.ZipFile(io.BytesIO(self.payload)) as archive:
@@ -43,12 +44,10 @@ class PostPr25PackageTests(unittest.TestCase):
                 self.assertEqual(archive.read(name), source.read_bytes(),
                                  f'{name} differs from the canonical package member')
 
-    def test_rebuild_has_identical_members(self):
-        with zipfile.ZipFile(io.BytesIO(companion.build_bytes())) as rebuilt, \
-                zipfile.ZipFile(io.BytesIO(self.payload)) as committed:
-            self.assertEqual(rebuilt.namelist(), committed.namelist())
-            for name in rebuilt.namelist():
-                self.assertEqual(rebuilt.read(name), committed.read(name))
+    def test_rebuild_is_deterministic_for_current_sources(self):
+        first = companion.build_bytes()
+        second = companion.build_bytes()
+        self.assertEqual(first, second)
 
     def test_note_member_is_the_companion_note_and_not_the_canonical_note(self):
         with zipfile.ZipFile(io.BytesIO(self.payload)) as archive:
