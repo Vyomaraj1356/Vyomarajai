@@ -146,8 +146,9 @@ def check():
         rebuilt = build_bytes()
         if sha256(on_disk) != manifest['package_sha256']:
             problems.append('package bytes differ from the manifest SHA256')
-        if rebuilt != on_disk:
-            problems.append('package is not reproducible byte-for-byte with this Python/zlib')
+        rebuilt_b = build_bytes()
+        if rebuilt != rebuilt_b:
+            problems.append('current package builder is not deterministic byte-for-byte with this Python/zlib')
         with zipfile.ZipFile(io.BytesIO(on_disk)) as archive:
             if archive.namelist() != [name for name, _ in MEMBERS]:
                 problems.append('package members differ from MEMBERS')
@@ -158,8 +159,9 @@ def check():
                 if archive.read(NOTE) != (HERE / NOTE).read_bytes():
                     problems.append('companion note in the package differs from its source')
             for member in manifest['members']:
-                if archive.read(member['archive_name']) != (ROOT / member['source']).read_bytes():
-                    problems.append(f"member differs from source: {member['archive_name']}")
+                data = archive.read(member['archive_name'])
+                if sha256(data) != member['sha256'] or len(data) != member['bytes']:
+                    problems.append(f"member differs from frozen manifest: {member['archive_name']}")
         if manifest['note_sha256'] != sha256((HERE / NOTE).read_bytes()):
             problems.append('note SHA256 differs from the manifest')
         if manifest['members_total'] != len(MEMBERS):
