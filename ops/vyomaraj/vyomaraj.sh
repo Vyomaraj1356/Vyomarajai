@@ -3,7 +3,7 @@ set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
-usage(){ echo "Vyomaraj AI Agent OS — Company/Federation control"; echo "Usage: $0 {status|validate|test|verify|health|dr|report|future|start|stop}"; }
+usage(){ echo "Vyomaraj AI Agent OS — Company/Federation control"; echo "Usage: $0 {status|validate|test|verify|health|dr|report|future|visual|handover|start|stop}"; }
 
 status(){
   python3 - <<'PY'
@@ -71,7 +71,7 @@ test(){
 }
 
 verify(){ python3 ops/engineering/verify_2026_stack.py; ./ops/vyomaraj/final-readiness-gate.sh; ./ops/vyomaraj/final-integration.sh; }
-health(){ echo "LOCAL HEALTH"; validate; echo "EXTERNAL RUNTIME: credentials/accounts/device capabilities are not guessed; evidence is required."; }
+health(){ echo "LOCAL HEALTH"; validate; echo "EXTERNAL RUNTIME: credentials/accounts/device capabilities are not guessed; evidence is required."; }\nvisual(){ echo "VISUAL MASTER"; echo "SVG: docs/architecture/VYOMARAJ_MASTER_COLORED_ARCHITECTURE_v2.0.svg"; echo "Spec: docs/architecture/VYOMARAJ_VISUAL_RUNTIME_SPEC_v2.0.yaml"; echo "Bindu: visible/unobstructed"; echo "Vyomaraj: elevated, non-touching"; echo "Jarvis: orbit + Kesari flag + जय श्री राम + logical realtime task location"; }\nhandover(){ echo "MASTER HANDOVER: ops/vyomaraj/VYOMARAJ_MASTER_SESSION_HANDOVER_v2.0.md"; }
 dr(){ ./ops/dr/run-dr.sh status; }
 
 report(){
@@ -101,5 +101,5 @@ start(){ exec python3 ops/vyomaraj-core/experience/studio_server.py; }
 stop(){ echo "STOP is supervisor-specific; no destructive process kill is performed."; }
 
 case "${1:-}" in
- status) status;; validate) validate;; test) test;; verify) verify;; health) health;; dr) dr;; report) report;; future) future;; start) start;; stop) stop;; *) usage; exit 2;;
+ status) status;; validate) validate;; test) test;; verify) verify;; health) health;; dr) dr;; report) report;; future) future;; visual) visual;; handover) handover;; start) start;; stop) stop;; *) usage; exit 2;;
 esac
