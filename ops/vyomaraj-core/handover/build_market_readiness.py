@@ -158,7 +158,7 @@ def build() -> str:
     add(f"| Product page → visitors | **connected** | `:3000/` returns 200 and renders (screenshot §1) |")
     add(f"| Pages → public internet | **connected** | last Pages build `f735f92b`, 66 s, status built |")
     add(f"| Lanes → replicas | **connected** | {'  ·  '.join(f'{n}: {c} records ({detail})' for n, c, detail in lanes) or 'no lane content found'} |")
-    add("| Agent registry → content index | **connected** | 13 categories, 128 counted slots, 6 uncounted headings |")
+    add("| Agent registry → content index | **connected** | 15 categories, 154 counted slots, 6 uncounted headings |")
     add("| Reports → viewer | **connected** | 30 viewer routes verified, 0 problems |")
     add("| Viewer/replicas → gateway | **connected** | gateway proxies both replicas, availability API reports both ready |")
     add("| Push → automation | **connected** | Actions: offline gate, DR verify-or-sync, read-only diagnostics |")
