@@ -1,0 +1,34 @@
+system:
+  name: Vyomaraj Geo + Daily Startup
+  status: CONFIGURED_NOT_RUNTIME_VERIFIED
+daily_start:
+  enabled: true
+  cores: [bharath_vyomaraj, laxman_jarvis]
+  sequence: [system_health_check, owner_authority_check, recite_shri_ram, recite_hanuman, recite_ganesha_mantra, core_sync, daily_briefing]
+  mantras:
+    shri_ram: "श्री राम जय राम जय जय राम"
+    hanuman: "ॐ हनुमते नमः"
+    ganesha: "ॐ गं गणपतये नमः"
+  audio_required: false
+  user_configurable: true
+  emergency_recovery_must_not_block: true
+geospatial:
+  purpose: [history_geography_research, earth_observation, content_grounding, route_and_place_context]
+  providers: [ISRO_BHUVAN, NASA_WORLDVIEW, OPENSTREETMAP, GOOGLE_MAPS_PLATFORM]
+  modes: [map, satellite_imagery, historical_layers, terrain, earth_observation, point_measurement]
+  earth_scope: full
+  universe_scope: research_metadata_only
+  provenance_required: true
+  imagery_is_data_not_authority: true
+  provider_credentials_server_side_only: true
+location_services:
+  default: DENY
+  owner_controlled: true
+  explicit_device_consent: true
+  revocable: true
+  audit_required: true
+  sources: [device_gnss, wifi_positioning, cellular_positioning_when_lawfully_available]
+  mobile_operator_tracking_requires_explicit_owner_instruction: true
+  covert_tracking: false
+  carrier_or_device_security_bypass: false
+  report_source_and_estimated_accuracy: true
