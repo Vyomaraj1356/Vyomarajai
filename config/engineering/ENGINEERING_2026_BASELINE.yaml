@@ -141,3 +141,34 @@ owner_authority:
   voice_not_sole_root: true
   web_mobile_macos_fallback: true
   high_risk_step_up: true
+
+
+daily_start:
+  enabled: true
+  ritual_is_not_security: true
+  sequence: [system_health_check, owner_authority_check, recite_shri_ram, recite_hanuman, recite_ganesha_mantra, core_sync, daily_briefing]
+  mantras:
+    shri_ram: "श्री राम जय राम जय जय राम"
+    hanuman: "ॐ हनुमते नमः"
+    ganesha: "ॐ गं गणपतये नमः"
+  emergency_recovery_must_not_block: true
+
+panch_brother_capability_fabric:
+  inherited_by: [bharath_vyomaraj, laxman_jarvis, all_agents, all_sub_agents]
+  domains: [matiman, shrutiman, ketuman, gatiman, dhritiman]
+  owner_authorization_required: true
+  self_elevation_forbidden: true
+
+geospatial:
+  provider_neutral_gateway: true
+  provenance_required: true
+  imagery_is_data_not_authority: true
+  location_default: DENY
+  mobile_operator_tracking_requires_explicit_owner_authorization: true
+  lawful_provider_and_consent_required: true
+  supported_modes: [gnss, maps, satellite_imagery, historical_layers, terrain, earth_observation]
+
+publishing:
+  private_core_only: true
+  approval_gate_required: true
+  public_output_must_exclude_private_internals: true
