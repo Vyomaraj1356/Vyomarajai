@@ -33,43 +33,70 @@ OUTPUT_JSON = HERE / 'LINK_AND_ARCHIVE_LEDGER_2026_10_06.json'
 
 # Verified = code in this checkout runs it. Every entry names its own evidence.
 VERIFIED_STACK = [
-    ('Product page', 'Static HTML + CSS + vanilla JavaScript single page',
-     'index.html, landing.html, flow-diagram.html; no bundler, no framework',
-     'Pages-servable as-is'),
-    ('Product palette', 'Shani Blue #0a1628 + Kuber Gold #f59e0b, Arial',
-     'preview_reports.STYLE, styles.css', 'same palette on every page of both servers'),
+    ('Public launch page and planner demo', 'Static HTML + CSS + vanilla JavaScript; no bundler or framework',
+     'index.html, launch.css, launch.js, demo.html/demo.css/demo-plan.js/demo.js, demo-catalog.json; landing.html redirects to the evidence-based page',
+     'GitHub Pages serves a static catalog export and deterministic in-browser planner; the sandbox root opens demo.html and /index.html keeps the brand shell. Python catalog/plan APIs remain sandbox-only.'),
+    ('Installable web shell', 'Web App Manifest + service worker + local PNG/SVG icons',
+     'manifest.webmanifest, sw.js, offline.html, assets/vyomaraj-icon-*',
+     'offline cache includes only the public landing shell; not a native Android or macOS client'),
+    ('Product palette', 'Launch shell: #091323 + gold; experience previews retain Shani Blue #0a1628 + Kuber Gold #f59e0b',
+     'launch.css, preview_reports.STYLE, styles.css', 'two documented surfaces; no external font/CDN dependency on the launch page'),
     ('Local servers', 'Python 3 standard library http.server / ThreadingHTTPServer',
      'ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, '
-     'ops/vyomaraj-core/handover/preview_reports.py', 'no Flask, no FastAPI, no Django'),
-    ('Bindings', '0.0.0.0 on every server',
-     'verified by verify_preview.py and verify_live_wiring.py', 'required by the sandbox preview proxy'),
+     'ops/vyomaraj-core/handover/preview_reports.py, public_landing_server.py',
+     'studio/gateway enforce loopback-only binds; public preview serves an exact asset allowlist, read-only GET /api/catalog over curated Bhakti-Shakti and Roots & Pairings content, and bounded ephemeral POST /api/plan; no privileged writers, provider calls or persistence; no Flask/FastAPI/Django'),
+    ('One-shot local service monitor', 'Manual loopback probes with a read-only latest-snapshot page',
+     'ops/vyomaraj-core/handover/probes.py and /reports/monitor',
+     'JSONL + latest local snapshot; no scheduler, alerting or production/DR claim'),
+    ('Jarvis reachability monitor', 'Python standard-library bounded GET probe with private local state',
+     'ops/jarvis/heartbeat_monitor.py, heartbeat-config.example.json',
+     'reports reachability only; no authenticated mutual heartbeat, failover or production health'),
+    ('Shared peer architecture and heartbeat target', 'Vyomaraj/Jarvis common identity, policy and capability contract; fail-closed heartbeat plan',
+     'PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md, ops/jarvis/heartbeat_monitor.py',
+     'design + local read-only probe only; no production interlink, inherited root authority, quorum or failover'),
+    ('LLM draft harness', 'Optional no-tools OpenAI-compatible chat client with explicit invocation',
+     'ops/jarvis/llm_harness.py, ops/jarvis/LLM_HARNESS.md',
+     'no provider is configured by the repository; no tool execution or autonomous actions'),
+    ('Panch capability metadata', 'Five-name mapping validator with no runtime/heartbeat claim',
+     'ops/hanuman/capability_status.py, ops/hanuman/test_capability_status.py',
+     'checks metadata only; capability execution and platform connections remain unimplemented'),
+    ('Local owner-approval slice', 'Ed25519 exact-action verification + private transactional SQLite queue and local hash chain',
+     'ops/shriyantra/owner_guard.py, ops/vyomaraj-core/approvals/approval_store.py, experience/studio_server.py',
+     'issuer/key/owner/security epoch are not configured; local single-host control slice only; no agent handoff or publishing'),
+    ('Bindings', 'Server-specific: studio and availability gateway enforce IPv4 loopback; public sandbox preview binds for session access',
+     'studio_server.py and gateway.py validate_loopback_host; public_landing_server.py serves exact assets, GET /api/catalog, and POST /api/plan',
+     'catalog is curated/read-only for two fixed packs; the planner accepts only two fixed experiences, performs no persistence/provider calls, and is not a privileged writer; never network-bind the local studio/gateway'),
     ('Public hosting', 'GitHub Pages from main (static)',
-     'Pages status built, source main', 'https://vyomaraj1356.github.io/Vyomarajai/'),
-    ('Automation', 'GitHub Actions, Python 3.12 and Node 20/24 runners',
+     'Live read 2026-10-07: Pages API build 04b7ae60, source main',
+     'the current feature branch is not deployed there; the URL serves main only'),
+    ('Automation', 'GitHub Actions workflow definitions, Python 3.12 and Node 20/24 runners',
      'vyomaraj-sync-both.yml, vyomaraj-ci-diagnostics.yml, vyomaraj-research.yml',
-     'offline gate, DR verify-or-sync, read-only PAT diagnostic'),
-    ('DR mechanism', 'Git-snapshot replication between two repositories, rollback parent retained',
-     'ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, workflow annotations',
-     'covers Git tracked files only, not runtime state'),
-    ('Tests in CI', 'Python unittest + node --check + node --test',
-     'ops/vyomaraj-core/handover/run_offline_suites.py', 'counts are recorded in TEST_EVIDENCE, not here'),
+     'latest scheduled run is a tracked-tree check; Actions variable/settings remain unreadable to this credential'),
+    ('DR mechanism', 'Git-snapshot replication workflow with scheduled tracked-tree match evidence',
+     'ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, live read-only annotations recorded in ISSUES_AND_PRS_LEDGER.json',
+     'latest match covers tracked Git only; effective target identity, runtime, app equality, failover, RPO and RTO are unproven'),
+    ('Tests and preview release gate', 'Python unittest + node syntax/tests + builder checks; verification only',
+     'ops/vyomaraj-core/handover/run_offline_suites.py, ops/vyomaraj/publish-gate.sh',
+     'a preview PASS does not change the separate production status; the gate never deploys'),
     ('State stores', 'SQLite and JSON files on disk (no database server)',
-     'ops/vyomaraj-core/research/discovery.py, ops/vyomaraj-core/ledger',
-     'outside Git-snapshot replication; needs its own backup'),
+     'ops/vyomaraj-core/research/discovery.py, approvals/approval_store.py, ops/vyomaraj-core/ledger',
+     'research/approval state is single-host and outside Git-snapshot replication; approval DB is owner-only, but both need independent backup/restore evidence'),
     ('Browser voice', 'Web Speech API (speechSynthesis) where the page uses it',
      'product HTML/JS voice controls', 'microphone capture needs device permission'),
     ('Browser media', 'WebRTC getUserMedia + MediaRecorder + Web Audio API',
      'camera/video/audio mixer lanes in the product page', 'no upload; files stay in the tab'),
     ('Maps', 'Leaflet 1.9.4 with OpenStreetMap tiles', 'map lane in the product page',
      'tiles load from the OSM service at view time'),
-    ('Charts/plans', 'Deterministic local planners (no AI call)',
-     'local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py',
-     'every plan states ai_calls_made=false'),
+    ('Plans and content', 'Deterministic local planners by default; optional explicit no-tools LLM draft stage',
+     'local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py, ops/jarvis/llm_harness.py',
+     'provider calls require explicit local configuration and invocation; plans do not publish'),
     ('Registry', 'JSON registry + content index + ownership map, pinned and test-guarded',
      'ops/vyomaraj-core/agents/*.json, test_registry.py', '13 categories / 128 counted slots / 6 headings'),
-    ('Android app', 'APK binary committed (24,567,022 bytes) — UNSIGNED, no project in repo',
-     'Vyomaraj-App.apk: 222 entries, 8 dex files, no META-INF signature block',
-     'a stock Android device rejects it until it is signed'),
+    ('Android app', 'APK binary committed (24,567,022 bytes); v2 signing-block entry detected, but cryptographic validity, signer provenance and device installation are UNVERIFIED; no project source in repo',
+     'Vyomaraj-App.apk: 222 entries, 8 dex files; verify_live_wiring.py parses ZIP signing-block structure (scheme ID 0x7109871a)',
+     'not a verified release; keep off downloads until apksigner verification, signer review and a real-device install pass'),
+    ('macOS native app', 'No macOS source project or signed application archive in this checkout',
+     'repository file inventory', 'not available as a native release'),
 ]
 
 # Claimed = a historical document says it, nothing in this checkout runs it.
@@ -82,6 +109,8 @@ CLAIMED_ONLY = [
     ('Social platform APIs configured (YouTube, Instagram, Facebook, X, Telegram, WhatsApp, '
      'Discord, Pinterest, Threads, Snapchat, Reddit, Twitch, Vimeo, Tumblr, Mastodon)',
      'README_MARKET_READY.md V15.1 social registry'),
+    ('Panch-Shakti metadata labels/rosters stating ACTIVE or all agents LIVE',
+     'ops/hanuman/hanuman-panch-shakti.json, devices.json, and ports.json; these are declarations, not runtime probes'),
     ('Revenue, follower and MRR figures (₹3.0L, 56.2K, ₹1,29,000, 5.42M views, ₹8.4L, ₹5.67L, '
      '2B UPI, 94.6K)', 'README_MARKET_READY.md V15.1 social registry'),
     ('ElevenLabs voice cloning, Twilio calling, Whisper captions, 4K60 video synthesis',
@@ -97,8 +126,8 @@ CLAIMED_ONLY = [
 LINK_CLASSES = [
     ('GitHub repository', 'https://github.com/Vyomaraj1356/Vyomarajai', 'WORKING',
      'Durable; every artifact in this record lives here.'),
-    ('GitHub Pages', 'https://vyomaraj1356.github.io/Vyomarajai/', 'WORKING',
-     'Last recorded Pages build: main f735f92b, status built. Rebuilds on every push to main.'),
+    ('GitHub Pages', 'https://vyomaraj1356.github.io/Vyomarajai/', 'WORKING (main only)',
+     'Live read 2026-10-07: Pages source is `main:/` at 04b7ae60; the current feature branch is not deployed there.'),
     ('Raw file URLs', 'https://raw.githubusercontent.com/Vyomaraj1356/Vyomarajai/main/<path>', 'WORKING',
      'Serve any committed file on main. A file is only reachable after its pull request is merged.'),
     ('Arena session links', 'https://arena.ai/agent/<session-id>', 'SESSION-SCOPED / DIES',
@@ -107,9 +136,10 @@ LINK_CLASSES = [
     ('Sandbox preview links', 'https://<port>-<sandbox>.e2b.app', 'SESSION-SCOPED / DIES',
      'Every preview host from every session so far has died with its sandbox (4190, 4174-...). '
      'Never announce one as the launch address.'),
-    ('Local preview ports', '0.0.0.0:4174 / 4176 / 4181 / 4182', 'LOCAL ONLY',
-     'Reachable from the sandbox proxy while the sandbox lives, and from the owner\'s machine only '
-     'if the same processes are started there.'),
+    ('Local studio/gateway rehearsal ports', '127.0.0.1:4176 / 4181 / 4182 (defaults; loopback policy enforced)', 'LOCAL-ONLY / NOT RUNNING',
+     'Studio/gateway refuse non-loopback binds; privileged writer actions require request-scoped owner tokens; do not expose through public ingress.'),
+    ('Allowlisted sandbox landing + planner demo', '0.0.0.0:5310', 'SESSION-SCOPED / READ-ONLY CATALOG + PLANNER',
+     'Exact asset allowlist plus GET /api/catalog for curated entries from two local packs and ephemeral POST /api/plan; no provider calls, visitor-data persistence, privileged writers or private paths. This is not a public deployment or production health signal.'),
 ]
 
 
@@ -145,7 +175,9 @@ def archive_inventory():
 
 def product_surface():
     rows = []
-    for name in ('index.html', 'Index.html', 'landing.html', 'flow-diagram.html'):
+    for name in ('index.html', 'Index.html', 'landing.html', 'flow-diagram.html', 'demo.html',
+                 'launch.css', 'launch.js', 'demo.css', 'demo-plan.js', 'demo.js', 'demo-catalog.json',
+                 'manifest.webmanifest', 'sw.js', 'offline.html'):
         path = ROOT / name
         if path.is_file():
             rows.append({'name': name, 'bytes': path.stat().st_size})
@@ -172,16 +204,39 @@ def chats_state():
 def build():
     archives = archive_inventory()
     surface = product_surface()
+    issue_ledger = json.loads((HERE / 'ISSUES_AND_PRS_LEDGER.json').read_text(encoding='utf-8'))
+    live = issue_ledger.get('current_live_recheck_2026_10_07', {})
+    dr = live.get('dr_snapshot', {})
+    pages = live.get('pages', {})
+    verified_stack = [list(row) for row in VERIFIED_STACK]
+    for row in verified_stack:
+        if row[0] == 'Public hosting':
+            row[2] = f"Live read 2026-10-07: Pages API build {pages.get('build_commit', 'unknown')[:8]}, source main"
+        elif row[0] == 'Automation':
+            row[3] = (f"scheduled run {dr.get('workflow_run_id')} reports a tracked-tree match; "
+                      "Actions variable may override fallback and settings API access is 403")
+        elif row[0] == 'DR mechanism':
+            row[3] = (f"scheduled check {dr.get('completed_at_utc')} reports equal tracked Git trees "
+                      f"({dr.get('primary_tree')}); canonical target identity and runtime DR are unverified")
+    link_classes = [list(row) for row in LINK_CLASSES]
     handover = [row for row in archives if row['name'].startswith('Vyomaraj-Handover-')
                 and row['name'].endswith('.zip')]
     handover_tarballs = [row for row in archives if row['name'].startswith('Vyomaraj-Handover-')
                          and row['name'].endswith(('.tar.gz', '.tgz'))]
     market = [row for row in archives if '-Final-Market-Ready' in row['name']]
     ledger = {
-        'recorded_at_utc': '2026-10-06',
-        'verified_stack': [{'area': a, 'technology': t, 'evidence': e, 'note': n} for a, t, e, n in VERIFIED_STACK],
+        'recorded_at_utc': '2026-10-07',
+        'verified_stack': [{'area': a, 'technology': t, 'evidence': e, 'note': n} for a, t, e, n in verified_stack],
         'claimed_only': [{'claim': c, 'source': s} for c, s in CLAIMED_ONLY],
-        'link_classes': [{'class': c, 'example': u, 'status': s, 'note': n} for c, u, s, n in LINK_CLASSES],
+        'link_classes': [{'class': c, 'example': u, 'status': s, 'note': n} for c, u, s, n in link_classes],
+        'current_external_snapshot': {
+            'pages': pages,
+            'scheduled_dr_snapshot': dr,
+            'dr_target_resolution': live.get('dr_target_resolution', {}),
+            'observed_main_replication_writes': live.get('observed_main_replication_writes', {}),
+            'local_preview_scope': 'Port 5310 is a session-scoped preview; listener state is transient and deliberately not persisted in this generated record.',
+            'scope_limit': 'tracked Git-tree equality does not prove runtime, deployed app, failover, RPO or RTO',
+        },
         'archives': archives,
         'handover_archives': len(handover),
         'handover_tarballs': len(handover_tarballs),
@@ -193,16 +248,20 @@ def build():
 
 
 def render(ledger):
+    current = ledger.get('current_external_snapshot', {})
+    dr = current.get('scheduled_dr_snapshot', {})
+    target = current.get('dr_target_resolution', {})
+    pages = current.get('pages', {})
     lines = [
-        '# Vyomaraj — stack and platform record — 6 October 2026',
+        '# Vyomaraj — stack and platform record — 7 October 2026',
         '',
         '**Generated file — do not edit by hand.** Rebuild with '
         '`python3 ops/vyomaraj-core/handover/build_stack_record.py`; `--check` verifies this copy.',
         '',
         'This is the answer to "what technologies and platforms did we use and configure?" written '
-        'from evidence in this checkout, not from memory. It separates what is **verified by code '
-        'here** from what a historical document **claimed** and nothing runs. Read section 3 before '
-        'repeating any figure from the earlier market-ready README.',
+        'from evidence in this checkout, not from memory. It separates what is **implemented by code '
+        'here** from what a historical document **claimed**; a local listener or probe does not prove '
+        'production readiness. Read section 3 before repeating any figure from the earlier market-ready README.',
         '',
         '## 1. What the product is actually made of',
         '',
@@ -242,19 +301,25 @@ def render(ledger):
               '| Claim | Where it is claimed |', '|---|---|']
     for row in ledger['claimed_only']:
         lines.append(f"| {row['claim']} | {row['source']} |")
-    lines += ['', 'Everything in section 1 is the real stack: static pages, Python standard-library '
-              'servers, GitHub Pages, GitHub Actions, Git-snapshot replication, local planners, '
-              'browser APIs. That stack is free to run and it is what the product actually is today.', '',
+    lines += ['', 'Everything in section 1 is the implemented repository stack: static pages, Python standard-library '
+              'servers, GitHub Pages, GitHub Actions workflow definitions, a Git-snapshot replication mechanism, '
+              'local planners, and browser APIs. The scheduled Actions check at '
+              f"`{dr.get('completed_at_utc')}` (run `{dr.get('workflow_run_id')}` / check `{dr.get('check_run_id')}`) reports "
+              f"`status={dr.get('status')}`, `data_match={dr.get('data_match')}`, equal tracked trees "
+              f"`{dr.get('primary_tree')}` / `{dr.get('secondary_tree')}`, and traffic `{dr.get('traffic_switched')}`. "
+              f"The workflow-selected target identity `{target.get('effective_target_identity', 'UNCONFIRMED')}` "
+              'is not independently confirmed (Actions settings API 403; candidate paths 404 are ambiguous). '
+              'This does not prove runtime/app equality, site failover, RPO or RTO; issue #6 stays OPEN/P0.', '',
               '## 4. Links: what lasts and what dies', '',
               '| Class | Example | Status | Note |', '|---|---|---|---|']
     for row in ledger['link_classes']:
         lines.append(f"| {row['class']} | `{row['example']}` | **{row['status']}** | {row['note']} |")
     lines += ['', '## 5. The zero-cost launch path (no money spent)', '',
               '| Need | Free route | Cost | Limit to state honestly |', '|---|---|---|---|',
-              '| Public address | GitHub Pages from `main` | ₹0 | Static files only; no server-side runtime |',
-              '| Automation + DR | GitHub Actions + the two-repository snapshot sync | ₹0 | Scheduled jobs on the free minutes; the DR is Git-snapshot, not a live site |',
-              '| App distribution | Self-signed APK (`keytool`), direct download link | ₹0 | Not installable until it is signed; "unknown source" warning on the phone; not on Play |',
-              '| Local dry runs | This repository\'s four Python servers | ₹0 | Reachable only while the sandbox or the owner\'s machine runs them |',
+              f'| Public address | GitHub Pages from `main:/` at `{pages.get("build_commit", "unknown")[:8]}` | ₹0 | This feature branch is not deployed; static files only, no server-side runtime |',
+              f'| Automation + DR | Scheduled run `{dr.get("workflow_run_id")}` reports equal tracked Git trees | ₹0 | Effective target identity `{target.get("effective_target_identity", "UNCONFIRMED")}` remains unconfirmed; runtime/failover/RPO/RTO are not proven |',
+              '| App distribution | Existing APK v2 signing-block entry; signature validity not established | ₹0 tooling | Run `apksigner verify`, confirm signer provenance, then test installation on a real device before distributing; never treat block presence alone as proof |',
+              f'| Local dry runs | Five legacy Python preview services plus the allowlisted :5310 demo are defined | ₹0 | {current.get("local_preview_scope")}; session-only rehearsal, not production |',
               '| Voice enrollment | On-device only, consent screen + delete control | ₹0 | No cloud vendor, no cloning, no identity-document capture in the app |',
               '| Payments | None until revenue exists | ₹0 | No gateway, no UPI integration; do not advertise payments |', '',
               '**When Vyomaraj earns, this is the order to buy in** (cheapest first, each one '
@@ -271,8 +336,7 @@ def render(ledger):
               '6. **Play Console (one-time)** — signed release builds and store listing.',
               '7. **CDN / media hosting** — only when there is licensed or owned media to serve.',
               '',
-              'Every step above is a purchase decision for the owner, and none of it is required for '
-              'the Ghatasthapana launch on 11 October 2026.',
+              'Every step above is a purchase decision for the owner and is not assumed here. The 11 October 2026 date remains a target; owner-approved DR access, branch review/deployment and release checks are separate gates.',
               '', 'END OF STACK AND PLATFORM RECORD']
     return '\n'.join(lines) + '\n'
 

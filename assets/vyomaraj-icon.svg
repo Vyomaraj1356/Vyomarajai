@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Vyomaraj V monogram">
+  <defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe8a4"/><stop offset=".58" stop-color="#e6ad43"/><stop offset="1" stop-color="#a86b12"/></linearGradient></defs>
+  <rect width="512" height="512" rx="112" fill="#091323"/>
+  <rect x="18" y="18" width="476" height="476" rx="100" fill="none" stroke="url(#gold)" stroke-opacity=".58" stroke-width="8"/>
+  <path d="M130 142h64l62 156 62-156h64L282 372h-52z" fill="url(#gold)"/>
+  <path d="M178 118l18-46 40 33 20-54 20 54 40-33 18 46" fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round" stroke-width="15"/>
+  <circle cx="178" cy="119" r="9" fill="#ffe8a4"/><circle cx="256" cy="105" r="9" fill="#ffe8a4"/><circle cx="334" cy="119" r="9" fill="#ffe8a4"/>
+</svg>

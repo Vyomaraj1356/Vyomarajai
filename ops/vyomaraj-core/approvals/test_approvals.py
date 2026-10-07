@@ -65,38 +65,46 @@ class ApprovalQueueBehaviourTests(unittest.TestCase):
         with self.assertRaises(queue.InvalidApproval):
             queue.open_review('')
 
-    def test_all_four_decisions_are_recorded_with_owner_and_shriyantra(self):
+    def test_all_four_decision_records_require_a_verified_owner_subject(self):
         outcomes = {}
         for decision in ('approve', 'reject', 'rework', 'submit'):
-            record = queue.record_decision('comics-monsoon-post-issue', decision)
+            record = queue.record_decision(
+                'comics-monsoon-post-issue', decision, decided_by='owner-subject-test',
+            )
             outcomes[decision] = record['outcome']
             self.assertEqual(record['decision'], decision)
             self.assertEqual(record['camera']['shutter'], 'closed_on_decision')
-            self.assertIn('Owner', record['decided_by'])
-            self.assertIn('ShriYantra', record['decided_by'])
+            self.assertEqual(record['decided_by'], 'owner-subject-test')
+            self.assertEqual(record['authority'], 'verified_owner_subject_via_ShriYantra')
+            self.assertEqual(record['status'], 'owner_decision_record_prepared_not_persisted')
+            self.assertEqual(record['publication_status'], 'NOT_PUBLISHED')
             self.assertFalse(record['publishing_enabled'])
             self.assertFalse(record['notifications']['sent'])
-        self.assertEqual(outcomes['approve'], 'approved_for_publishing_gate')
+        self.assertEqual(outcomes['approve'], 'owner_approved_for_publishing_gate_not_published')
         self.assertEqual(outcomes['reject'], 'rejected_with_reason')
         self.assertEqual(outcomes['rework'], 'rework_requested_returns_to_creating_agents')
         self.assertEqual(outcomes['submit'], 'submitted_with_instructions_stays_in_cycle')
 
-    def test_rework_and_submit_repeat_the_same_cycle(self):
+    def test_rework_and_submit_store_instructions_without_auto_handoff(self):
         for decision in ('rework', 'submit'):
             record = queue.record_decision('film-monsoon-outline', decision,
-                                           voice_instruction='Make the ending quieter.')
-            self.assertIn('same camera approval cycle repeats', record['cycle'])
+                                           voice_instruction='Make the ending quieter.',
+                                           decided_by='owner-subject-test')
+            self.assertIn('No creating agent was notified automatically', record['cycle'])
             self.assertEqual(record['voice_instruction'], 'Make the ending quieter.')
+            self.assertFalse(record['notifications']['sent'])
 
     def test_invalid_decisions_and_instructions_are_refused(self):
         with self.assertRaises(queue.InvalidApproval):
-            queue.record_decision('comics-monsoon-post-issue', 'publish-anyway')
+            queue.record_decision('comics-monsoon-post-issue', 'publish-anyway', decided_by='owner-test')
         with self.assertRaises(queue.InvalidApproval):
-            queue.record_decision('comics-monsoon-post-issue', 'approve', voice_instruction='')
+            queue.record_decision('comics-monsoon-post-issue', 'approve', voice_instruction='', decided_by='owner-test')
         with self.assertRaises(queue.InvalidApproval):
-            queue.record_decision('comics-monsoon-post-issue', 'approve', voice_instruction='x' * 501)
+            queue.record_decision('comics-monsoon-post-issue', 'approve', voice_instruction='x' * 501, decided_by='owner-test')
         with self.assertRaises(queue.InvalidApproval):
-            queue.record_decision('unknown-item', 'approve')
+            queue.record_decision('unknown-item', 'approve', decided_by='owner-test')
+        with self.assertRaises(queue.InvalidApproval):
+            queue.record_decision('comics-monsoon-post-issue', 'approve', decided_by='')
 
 
 if __name__ == '__main__':

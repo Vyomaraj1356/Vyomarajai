@@ -21,6 +21,7 @@ import argparse
 import hashlib
 import json
 import re
+import struct
 import time
 import urllib.error
 import urllib.request
@@ -42,9 +43,12 @@ PACK_DIRS = {'music': 'music-experience', 'film': 'film-experience',
 VIEWER_ROUTES = {
     '/': (None, 'Vyomaraj'),
     '/reports/next-session': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt', None),
-    '/reports/handover-notepad': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt', None),
+    '/reports/handover-notepad': ('ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md', 'DR replication completed'),
+    '/reports/monitor': (None, 'Local service monitor'),
     '/reports/post-pr25-handover': ('ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt', 'POST-PR25 COMPANION UPDATE'),
     '/reports/dr-sync': ('ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md', 'BLOCKED'),
+    '/reports/integration-audit': ('ops/vyomaraj-core/handover/INTEGRATION_ALIGNMENT_AND_RELEASE_AUDIT_2026_10_07.md', 'The final offline gate passed'),
+    '/reports/peer-architecture': ('ops/vyomaraj-core/handover/PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md', 'Shared peer architecture and heartbeat plan'),
     '/reports/contents': ('ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md', 'All Experience Contents'),
     '/reports/go-live': ('ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md', 'Navaratri 2026 go-live plan'),
     '/reports/stack': ('ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md', 'Stack and platform record'),
@@ -58,8 +62,10 @@ REPLICA_ROUTES = ['/music/', '/film/', '/bhakti/', '/comics/', '/pairings/', '/a
                   '/agents/', '/reports/contents', '/reports/go-live', '/reports/live-wiring',
                   '/reports/stack', '/reports/network-diagram', '/reports/post-pr25-handover',
                   '/reports/market-readiness', '/reports/screenshots', '/reports/realtime',
+                  '/reports/integration-audit', '/reports/peer-architecture',
                   '/reports/full-handover', '/api/realtime', '/reports/ai-handoff', '/reports/runbook', '/reports/recovery-index', '/reports/go-live-gaps',
-                  '/reports/next-session-plan', '/reports/session-update']
+                  '/reports/next-session-plan', '/reports/session-update', '/reports/handover-notepad',
+                  '/reports/monitor']
 # Captured pages are served from a dedicated /reports/screenshot/<name> branch (any capture,
 # allowlisted by filename shape), not from the DOWNLOADS dictionary, so they are checked separately.
 SCREENSHOT_ROUTES = {
@@ -69,13 +75,16 @@ SCREENSHOT_ROUTES = {
 # route -> repository path whose bytes the download must be identical to
 DOWNLOADS = {
     '/reports/download/next-session.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt',
-    '/reports/download/handover-notepad.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt',
+    '/reports/download/handover-notepad.txt': 'ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md',
     '/reports/download/post-pr25-handover.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt',
     '/reports/download/transfer-package.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip',
     '/reports/download/post-pr25-transfer.zip': 'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip',
     '/reports/download/network-diagram.svg': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg',
     '/reports/download/full-handover.md': 'ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
     '/reports/download/full-handover.zip': 'ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip',
+    '/reports/download/full-handover-current.zip': 'ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_07.zip',
+    '/reports/download/integration-audit.md': 'ops/vyomaraj-core/handover/INTEGRATION_ALIGNMENT_AND_RELEASE_AUDIT_2026_10_07.md',
+    '/reports/download/peer-architecture.md': 'ops/vyomaraj-core/handover/PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md',
     '/reports/download/ai-handoff.md': 'ops/vyomaraj-core/handover/AI_PLATFORM_HANDOFF_2026_10_06.md',
     '/reports/download/ai-context-pack.json': 'ops/vyomaraj-core/handover/AI_CONTEXT_PACK_2026_10_06.json',
     '/reports/download/runbook.md': 'ops/vyomaraj-core/handover/VYOMARAJ_RUNBOOK_2026_10_06.md',
@@ -83,6 +92,7 @@ DOWNLOADS = {
     '/reports/download/recovery-manifest.json': 'ops/vyomaraj-core/handover/ARENA_SESSION_RECOVERY_MANIFEST_2026_10_06.json',
     '/reports/download/go-live-gaps.md': 'ops/vyomaraj-core/handover/GO_LIVE_GAPS_AND_PLATFORM_2026_10_06.md',
     '/reports/download/ai-handoff.zip': 'ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip',
+    '/reports/download/ai-handoff-current.zip': 'ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_07.zip',
     '/reports/download/network-diagram.png': 'ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png',
     '/reports/download/next-session-plan.md': 'ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md',
     '/reports/download/next-session-plan.txt': 'ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md',
@@ -100,6 +110,8 @@ REQUIRED_FILES = [
     'ops/vyomaraj-core/handover/VYOMARAJ_FULL_HANDOVER_2026_10_06.md',
     'ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip',
     'ops/vyomaraj-core/handover/realtime_status.py',
+    'ops/vyomaraj-core/handover/probes.py',
+    'ops/vyomaraj-core/handover/test_probes.py',
     'ops/vyomaraj-core/handover/AI_PLATFORM_HANDOFF_2026_10_06.md',
     'ops/vyomaraj-core/handover/AI_CONTEXT_PACK_2026_10_06.json',
     'ops/vyomaraj-core/handover/VYOMARAJ_RUNBOOK_2026_10_06.md',
@@ -118,6 +130,11 @@ REQUIRED_FILES = [
     'ops/vyomaraj-core/experience/voice_enrollment.py',
     'ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json',
     'ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md',
+    'ops/vyomaraj-core/handover/INTEGRATION_ALIGNMENT_AND_RELEASE_AUDIT_2026_10_07.md',
+    'ops/vyomaraj-core/handover/PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md',
+    'ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_07.zip',
+    'ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_07.zip',
+    'ops/vyomaraj-core/experience/public_landing_server.py',
     'ops/dr/DEPLOYED_MATCH_2026_10_04.json',
     'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip',
     'ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip',
@@ -222,6 +239,77 @@ def check_packs(problems):
     return lanes
 
 
+APK_SIGNING_MAGIC = b'APK Sig Block 42'
+APK_SIGNATURE_SCHEMES = {
+    0x7109871A: 'v2',
+    0xF05368C0: 'v3',
+    0x1B93AD61: 'v3.1',
+}
+
+
+def parse_apk_signing_block(data, central_directory_offset):
+    """Inspect APK v2/v3 signing-block structure without claiming cryptographic validity.
+
+    APK v2/v3 signature pairs live before the ZIP central directory, not in META-INF/.SF/.RSA
+    entries. A pair's presence is only structural evidence: verifying signer certificates and the
+    signed-content digest requires apksigner/a trusted Android SDK, and installation requires a
+    real device. This parser intentionally performs neither.
+    """
+    result = {
+        'present': False,
+        'structure_valid': False,
+        'block_size_bytes': None,
+        'pair_ids': [],
+        'signature_schemes': [],
+        'error': None,
+    }
+    if not isinstance(data, (bytes, bytearray)) or not isinstance(central_directory_offset, int):
+        result['error'] = 'invalid_input'
+        return result
+    if central_directory_offset < 24 or central_directory_offset > len(data):
+        result['error'] = 'central_directory_offset_out_of_range'
+        return result
+    if data[central_directory_offset - 16:central_directory_offset] != APK_SIGNING_MAGIC:
+        return result
+
+    result['present'] = True
+    footer_size = struct.unpack_from('<Q', data, central_directory_offset - 24)[0]
+    block_start = central_directory_offset - footer_size - 8
+    result['block_size_bytes'] = footer_size + 8
+    if footer_size < 24 or block_start < 0:
+        result['error'] = 'invalid_block_size'
+        return result
+    start_size = struct.unpack_from('<Q', data, block_start)[0]
+    if start_size != footer_size:
+        result['error'] = 'size_fields_mismatch'
+        return result
+
+    pos = block_start + 8
+    pairs_end = central_directory_offset - 24
+    while pos < pairs_end:
+        if pos + 8 > pairs_end:
+            result['error'] = 'truncated_pair_length'
+            return result
+        pair_size = struct.unpack_from('<Q', data, pos)[0]
+        pos += 8
+        if pair_size < 4 or pos + pair_size > pairs_end:
+            result['error'] = 'invalid_pair_length'
+            return result
+        pair_id = struct.unpack_from('<I', data, pos)[0]
+        result['pair_ids'].append(f'0x{pair_id:08x}')
+        pos += pair_size
+    if pos != pairs_end:
+        result['error'] = 'pair_table_boundary_mismatch'
+        return result
+
+    result['structure_valid'] = True
+    result['signature_schemes'] = [
+        APK_SIGNATURE_SCHEMES[int(pair_id, 16)]
+        for pair_id in result['pair_ids'] if int(pair_id, 16) in APK_SIGNATURE_SCHEMES
+    ]
+    return result
+
+
 def check_apk(problems):
     if not APK.is_file():
         problems.append('Vyomaraj-App.apk is missing')
@@ -233,28 +321,43 @@ def check_apk(problems):
     try:
         with zipfile.ZipFile(APK) as archive:
             names = archive.namelist()
-        signatures = [name for name in names
-                      if name.startswith('META-INF') and name.endswith(('.RSA', '.DSA', '.EC', '.SF'))]
+            central_directory_offset = archive.start_dir
+        v1_signatures = [name for name in names
+                         if name.upper().startswith('META-INF/')
+                         and name.upper().endswith(('.RSA', '.DSA', '.EC', '.SF'))]
+        signing_block = parse_apk_signing_block(data, central_directory_offset)
         dex = [name for name in names if name.endswith('.dex')]
+        signature_material = bool(v1_signatures or signing_block['signature_schemes'])
+        if signing_block['present'] and not signing_block['structure_valid']:
+            install_claim = ('UNSAFE / UNVERIFIED — an APK signing block is present but malformed; '
+                             'do not install or distribute this file.')
+        elif signature_material:
+            schemes = ', '.join(signing_block['signature_schemes']) or 'v1'
+            install_claim = (f'INSTALLATION UNVERIFIED — {schemes} signature material is present, '
+                             'but cryptographic verification and real-device installation were not run.')
+        else:
+            install_claim = ('INSTALLATION UNVERIFIED — no v1 signature entries or recognized v2/v3 '
+                             'signing scheme was detected; do not distribute as a release.')
         state.update({
             'zip_entries': len(names),
             'android_manifest_present': 'AndroidManifest.xml' in names,
             'dex_files': dex,
-            'signature_files': signatures,
-            'signed': bool(signatures),
-            'install_claim': ('NOT INSTALLABLE AS IS — no signature block is present, so a stock '
-                              'Android device rejects this package' if not signatures
-                              else 'signed; install behaviour still unverified'),
+            'v1_signature_files': v1_signatures,
+            'apk_signing_block': signing_block,
+            'signature_material_present': signature_material,
+            'signature_cryptographically_verified': False,
+            'install_claim': install_claim,
             'rebuildable_from_this_repository': False,
-            'rebuild_note': ('No Android project (build.gradle, AndroidManifest.xml source, Java or '
-                             'Kotlin) exists in this repository, so this binary cannot be rebuilt or '
-                             're-signed here. A signed build needs its original project or a rebuild.'),
+            'rebuild_note': ('No Android project (Gradle source, AndroidManifest.xml source, Java or '
+                             'Kotlin) exists in this repository, so this binary cannot be rebuilt '
+                             'here. Recover its source and confirm signer provenance before release.'),
         })
     except zipfile.BadZipFile:
         problems.append('Vyomaraj-App.apk is not a readable zip archive')
         state['readable_zip'] = False
-    state.setdefault('advisory', 'Do not present this APK as a release build until it is rebuilt, '
-                                 'signed and installed on a real device.')
+    state.setdefault('advisory', 'Do not present this APK as a release until its signing material is '
+                                 'cryptographically verified, signer provenance is reviewed, and a '
+                                 'real-device installation test succeeds.')
     return state
 
 

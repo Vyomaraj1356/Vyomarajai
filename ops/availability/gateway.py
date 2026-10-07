@@ -5,6 +5,7 @@ Fixed loopback upstreams only. GET can fall back; a POST is never replayed.
 import argparse
 import http.client
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
+import ipaddress
 import json
 import threading
 from urllib.parse import urlsplit
@@ -12,6 +13,17 @@ from urllib.parse import urlsplit
 MAX_REQUEST=16384
 MAX_RESPONSE=16*1024*1024
 HOP={'connection','keep-alive','proxy-authenticate','proxy-authorization','te','trailer','transfer-encoding','upgrade','content-length','host'}
+
+
+def validate_loopback_host(host):
+    try:
+        address=ipaddress.ip_address(host)
+    except ValueError as exc:
+        raise ValueError('host must be a numeric IPv4 loopback IP') from exc
+    if not isinstance(address,ipaddress.IPv4Address) or not address.is_loopback:
+        raise ValueError('network/public binds are disabled; use an IPv4 loopback IP')
+    return str(address)
+
 
 class UpstreamUnavailable(Exception):pass
 
@@ -93,9 +105,12 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self,*args):pass
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--port',type=int,default=4176)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--host',default='127.0.0.1',help='Loopback IP only; network exposure is disabled.')
+    p.add_argument('--port',type=int,default=4176)
     p.add_argument('--primary-port',type=int,default=4181);p.add_argument('--secondary-port',type=int,default=4182);a=p.parse_args()
+    try:a.host=validate_loopback_host(a.host)
+    except ValueError as exc:p.error(str(exc))
     if len({a.port,a.primary_port,a.secondary_port})!=3 or any(not 1024<=v<=65535 for v in (a.port,a.primary_port,a.secondary_port)):raise SystemExit('Use three distinct unprivileged ports.')
     Handler.router=Router((a.primary_port,a.secondary_port))
-    print(f'Local failover rehearsal gateway on 0.0.0.0:{a.port}; not independent-site DR',flush=True)
-    ThreadingHTTPServer(('0.0.0.0',a.port),Handler).serve_forever()
+    print(f'Local failover rehearsal gateway on {a.host}:{a.port}; not independent-site DR',flush=True)
+    ThreadingHTTPServer((a.host,a.port),Handler).serve_forever()

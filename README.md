@@ -2,6 +2,18 @@
 
 Vyomaraj is a private AI-agent orchestration and creation system.
 
+> **Current evidence (7 October 2026; full access audit at 08:28 UTC, scoped issue/PR/main/Pages metadata re-read at 10:06 UTC, and latest scheduled DR annotation separately re-read):** GitHub Pages is built from `main:/` at `04b7ae60`; this Arena branch is not deployed and main is two commits ahead of PR #41's base. Issue #6 remains OPEN/P0. PR #41 is OPEN/non-draft; PRs #39 and #42 are OPEN/DRAFT; PR #39 was left untouched. The scoped 10:06 UTC metadata read confirmed those states, main at `04b7ae60`, and Pages source `main:/`; candidate-path 404s and Actions-settings 403s remain from the 08:28 full access audit. The latest scheduled `verify-or-sync` run (`37605789908`, check-run `112741170924`, completed `10:13:11Z`) reported `MATCH`, `data_match=true`, identical primary/secondary **tracked Git trees** (`986288ee…`), `traffic_switched=NONE`, and annotation `http=UNAVAILABLE`. This latest addendum checked only the new annotation; the preceding 40 annotations were not re-read. The last full historical annotation audit remains separately recorded through 08:28 UTC. Two automatic main-push runs recorded replication writes. This is a point-in-time repository snapshot match—not an installed/deployed app, live service, authoritative-target identity, authenticated heartbeat, or DR failover; the Arena credential still gets 404 on candidate paths and 403 for Actions settings, so issue #6's owner-confirmation and target-only-data gates remain open. The tracked APK blob is present in the matched tree, but its v2 signing-block entry is not proof of signature validity; signer provenance and real-device installation remain unverified. No Android/macOS source project or production heartbeat service is present. A local read-only heartbeat monitor exists but its peer URLs default to unconfigured. See the [timestamped issue/PR/Pages ledger](ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md), [latest DR evidence](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md), [shared peer architecture and heartbeat status](ops/vyomaraj-core/handover/PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md), [integration/release audit](ops/vyomaraj-core/handover/INTEGRATION_ALIGNMENT_AND_RELEASE_AUDIT_2026_10_07.md), and [safe runbook](ops/vyomaraj-core/handover/VYOMARAJ_RUNBOOK_2026_10_06.md).
+
+## Current handover artifacts
+
+- [Integration alignment and release audit](ops/vyomaraj-core/handover/INTEGRATION_ALIGNMENT_AND_RELEASE_AUDIT_2026_10_07.md)
+- [Shared peer architecture and heartbeat plan](ops/vyomaraj-core/handover/PEER_ARCHITECTURE_AND_HEARTBEAT_2026_10_07.md)
+- [Universal Knowledge Evolution inheritance contract](docs/architecture/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE.md) · [machine-readable policy](config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json)
+- [Current 7 October full-handover archive](ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_07.zip)
+- [Current 7 October AI handoff archive](ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_07.zip)
+
+The 6 October archives are preserved alongside these additive current snapshots.
+
 ## Public experience
 
 The public surface is intentionally limited to approved creations and published experiences:
@@ -21,8 +33,8 @@ The repository contains operational material for authorized development and reco
 ## Repository roles
 
 - **Primary:** `Vyomaraj1356/Vyomarajai`
-- **DR / secondary (snapshot replication target):** `Vyomaraj1356/Vyomarajai` → `deepakGoyal1356/Vyomaraj-Agent-6d64e` — confirmed by the recorded `verify-or-sync` evidence (19 MATCH checkpoints and 15 replication writes through merge #24 in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`; checkpoint #19 was re-read live in this session, with the earlier rows carried from the prior full-set revalidation). This is Git-snapshot replication of `main` only — not runtime/site disaster recovery. See the [DR sync results](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md) and the [repository map](VYOMARAJ_REPOSITORY_MAP.md).
-- Primary-to-DR replication is authenticated, opt-in and main-only; see the [DR verification runbook](ops/dr/README.md). A 404 is not proof that a private repository does not exist.
+- **DR / secondary — latest point-in-time snapshot:** scheduled run `37605789908` / check-run `112741170924` on main `04b7ae60` reported equal primary/secondary tracked Git trees (`986288ee…`) at 10:13:11 UTC, with `traffic_switched=NONE` and annotation `http=UNAVAILABLE`; it was a no-write confirmation. Two automatic main-push sync writes were observed since the preceding recorded baseline. The Actions variable may override the in-repo fallback, and the Arena credential cannot read Actions settings or the target repo, so the owner-confirmed canonical target and target-only-data review remain unresolved. This is Git-tree equality, not runtime/site/app failover evidence; issue #6 remains OPEN/P0. See the [timestamped ledger](ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md), [DR results](ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md), [DR runbook](ops/dr/README.md) and [repository map](VYOMARAJ_REPOSITORY_MAP.md).
+- The reviewed workflow replicates only primary `main`; pull-request sync is skipped, automatic main-push/schedule writes are gated by its policy/Actions configuration, and the current Pages build is at main `04b7ae60`. The current branch is not deployed. A 404 is not proof that a private repository does not exist.
 - DR-to-primary promotion is a controlled recovery operation; no blind two-way overwrite or force-push is used.
 
 ## Verification policy
@@ -41,12 +53,11 @@ Current claims should be backed by:
 
 Use review branches and pull requests for changes. Do not push experimental Arena changes directly over `main`.
 
+> **Preview safety:** the sandbox landing server on :5310 serves an exact public-asset allowlist and a bounded deterministic `POST /api/plan` for Bhakti-Shakti and Roots & Pairings only. The plan is returned in memory; no AI/provider or external-network call, visitor-data persistence, approval queue, privileged writer, or private repository path is exposed. Start it with `python3 ops/vyomaraj-core/experience/public_landing_server.py --host 0.0.0.0 --port 5310`, then open `/demo.html` (or the home page). This session-scoped preview is not GitHub Pages, production, or an autonomous agent. Other studio/gateway services on 3000/4174/4176/4181/4182 are separate; never expose their writers on public ingress. Use an isolated test stack with disposable data and owner-approved controls.
+
 ## Architecture V16.8 (2026-10-04)
 
-The governing principle — You (Owner) → ShriYantra (authority) → Vyomaraj/Bharath + Jarvis/Laxman →
-agents and sub-agents → content creation and verification → **owner approval (central nostalgic
-camera)** → approved publishing → social platforms → analytics and monetization → learning — with
-Hermes guarding integrity end to end and Arena executing approved tasks only. Full document:
+This is the intended authority chain, not a claim that each service is currently live: You (Owner) → ShriYantra (authority) → Vyomaraj/Bharath + Jarvis/Laxman → agents and sub-agents → content creation and verification → **owner approval (central nostalgic camera)** → approved publishing → social platforms → analytics and monetization → learning — with Hermes guarding integrity end to end and Arena executing approved tasks only. Full document:
 [ARCHITECTURE_V16_8_2026_10_04.md](ops/vyomaraj-core/handover/ARCHITECTURE_V16_8_2026_10_04.md),
 interactive diagram: [flow-diagram.html](flow-diagram.html).
 
@@ -65,7 +76,7 @@ Validate it locally with `python ops/vyomaraj-core/handover/rebuild_handover.py 
 
 For the expanded agent roster, historical candidates, content-label index, platform/technology configuration, and unresolved work, see the [full system inventory](ops/vyomaraj-core/handover/FULL_SYSTEM_INVENTORY_2026_10_03.md). It distinguishes local files, remote-only implementations and unverified historical claims; private configuration values are excluded.
 
-The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records the current 404/403 access blockers, local fixes and GitHub PR/CI evidence. For readable tables, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174` and use the Arena live preview. Only an exact-route allowlist of sanitized reports is served (the viewer and the lane/gateway stack both carry it); do not replace it with unrestricted repository-root file serving.
+The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.md) records historical 404/403 access blockers, local fixes and GitHub PR/CI evidence; the current status is in the timestamped ledger above. The read-only report viewer was stopped at the 08:15 UTC probe. If it is needed for local review, run `python ops/vyomaraj-core/handover/preview_reports.py --port 4174`; this is a session-scoped viewer, not a deployment. It serves only an exact-route allowlist of sanitized reports. Do not replace it with unrestricted repository-root file serving, or start the unauthenticated gateway/studio writers on a publicly reachable preview.
 
 ## Films, theatre, clips and advertising
 
@@ -79,7 +90,7 @@ The [DR resolution report](ops/vyomaraj-core/handover/DR_RESOLUTION_2026_10_03.m
 
 The [Bhakti-Shakti feature report](ops/vyomaraj-core/handover/BHAKTI_FEATURE_UPDATE_2026_10_03.md) covers Shiv–Shakti, a 12-chapter proposed Shiva story guide, a Dashavatara overview, nine Shakti Peetha/regional starter profiles and Mahadev television context. The [content guide](ops/vyomaraj-core/bhakti-experience/README.md) explains sources and limitations.
 
-Run `python ops/vyomaraj-core/experience/studio_server.py --port 4176` for a unified preview of Bhakti, Liquor/Bar and updated reports. Its local `/api/plan` implements deterministic Vyomaraj topic routing and Jarvis review handoffs. Prasad-style food rotation, preparation sequences and preference controls are illustrative. External AI, production publishing and DR synchronization remain disabled/unverified. No canonical agent totals or old content files were overwritten.
+The integrated studio now defaults to **127.0.0.1**, refuses non-loopback binds and does not start the research worker unless `--enable-research-worker` is explicitly requested. `/api/plan` performs deterministic local topic routing and Jarvis review handoffs. Research writes and privileged approval/change decisions require request-scoped, action-bound Ed25519 owner tokens; approval decisions persist to a private local SQLite database with a hash-chained audit event. This checkout has no configured owner token issuer/key, so privileged calls fail closed. This is a single-host local service, not a production deployment; keep it off public ingress. Prasad-style food rotation, preparation sequences and preference controls remain illustrative. External AI and production publishing are unconnected. The latest scheduled DR run reported a matching tracked Git tree, but the effective secondary identity, runtime DR, failover, RPO and RTO remain unverified; issue #6 is OPEN/P0. No canonical agent totals or old content files were overwritten.
 
 ## Liquor + Bar: Roots & Pairings
 
@@ -87,11 +98,11 @@ The [Liquor/Bar content expansion](ops/vyomaraj-core/liquor-bar/README.md) adds 
 
 ## V16.9 auto-align and open-item ledger
 
-The [auto-align plan](ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION_2026_10_04.md) gives every open platform-check item a concrete completion step; the [platform check](ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md) lists those mappings, and the [issues/PRs ledger](ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md) is the new-session runbook. Validate with `python3 ops/vyomaraj-core/handover/auto_align.py --check` and `python3 ops/vyomaraj-core/handover/build_issue_ledger.py --check`. The runner is local-only: it does not install, purchase, connect providers, publish content or change GitHub state. Issue #6 close-out text is prepared but not sent.
+The [auto-align plan](ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION_2026_10_04.md) gives every open platform-check item a concrete completion step; the [platform check](ops/vyomaraj-core/handover/PLATFORM_CONFIGURATION_CHECK_2026_10_04.md) lists those mappings, and the [issues/PRs ledger](ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER_2026_10_04.md) is the new-session runbook. Validate with `python3 ops/vyomaraj-core/handover/auto_align.py --check` and `python3 ops/vyomaraj-core/handover/build_issue_ledger.py --check`. The runner is local-only: it does not install, purchase, connect providers, publish content or change GitHub state. A historical issue #6 close-out draft is preserved for provenance only; issue #6 remains OPEN/P0, and that text must not be posted or used to close it.
 
 ## Priority recovery / cleanup status
 
-The [non-destructive recovery audit](ops/vyomaraj-core/handover/PRIORITY_RECOVERY_AUDIT_2026_10_03.md) records the full available primary fetch, duplicate archive candidates and the ordered reconciliation plan. Secondary access is still blocked; see [priority issue #6](https://github.com/Vyomaraj1356/Vyomarajai/issues/6). Do not delete historical archives or enable exact-snapshot DR writes before secondary-only work has been inspected and preserved.
+The [non-destructive recovery audit](ops/vyomaraj-core/handover/PRIORITY_RECOVERY_AUDIT_2026_10_03.md) records the historical primary fetch, duplicate archive candidates and reconciliation plan. The latest scheduled run on 7 October at 10:13:11Z reports equal tracked Git trees, but the effective secondary target identity and target-only review remain unconfirmed; runtime/failover/RPO/RTO are not proven. See [priority issue #6](https://github.com/Vyomaraj1356/Vyomarajai/issues/6), which remains OPEN/P0. Do not delete historical archives or authorize another exact-snapshot DR write before the owner confirms the target and secondary-only work is inspected and preserved.
 
 ## Security
 
@@ -108,3 +119,9 @@ Never commit:
 If sensitive information is discovered in a public file, remove it and rotate the affected credential where applicable.
 
 © 2026 Vyomaraj
+
+## AI Agent OS alignment — 7 October 2026
+
+The additive execution context, verification rules, live status, decisions, blockers and next actions are indexed under [`docs/vyomaraj/context/`](docs/vyomaraj/context/README.md) and [`docs/vyomaraj/state/`](docs/vyomaraj/state/CURRENT_STATE.md). The current target architecture and final integration gap matrix are in [`docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md`](docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md) and [`docs/architecture/VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md`](docs/architecture/VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md). These are alignment records, not production verification or a replacement for the owner-supplied master script.
+
+The current checked-in registry remains 13 categories / 128 counted sub-agents / 421 historically reported products. The requested 14 / 153 / 421 target is not applied until every supplied addition is reconciled. Production peer, provider, transactional mutation, application DR, publishing, financial, Android signer/device, and macOS release evidence remains unverified.

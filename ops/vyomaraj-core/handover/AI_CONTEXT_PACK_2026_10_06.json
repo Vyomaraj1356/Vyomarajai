@@ -1,7 +1,7 @@
 {
   "schema": "vyomaraj-ai-context-pack/1",
-  "generated_at_utc": "2026-10-06 17:56 UTC",
-  "purpose": "Self-contained context so another AI platform can help with Vyomaraj without inventing progress. Every field is read from this repository or probed live.",
+  "generated_at_utc": "2026-10-07 14:10 UTC",
+  "purpose": "Self-contained context so another AI platform can help with Vyomaraj without inventing progress. Repository facts and local listener probes are separated from timestamped external GitHub/Pages audit evidence.",
   "identity": {
     "name": "Vyomaraj",
     "meaning": "The King of Sky",
@@ -15,32 +15,83 @@
     "services_probed_live": [
       {
         "port": 3000,
-        "service": "Product page",
+        "service": "Legacy product server",
         "listening": false
       },
       {
         "port": 4174,
         "service": "Reports viewer",
-        "listening": true
+        "listening": false
       },
       {
         "port": 4176,
         "service": "Availability gateway",
-        "listening": true
+        "listening": false
       },
       {
         "port": 4181,
         "service": "Lane studio A",
-        "listening": true
+        "listening": false
       },
       {
         "port": 4182,
         "service": "Lane studio B",
+        "listening": false
+      },
+      {
+        "port": 5310,
+        "service": "Allowlisted sandbox preview",
         "listening": true
       }
     ],
-    "github_pages": "built and serving from main",
-    "runtime": "Python 3 standard library only (http.server / ThreadingHTTPServer), 0.0.0.0",
+    "github_pages": "source main:/ at 04b7ae60; current feature branch not deployed",
+    "scheduled_dr_snapshot": {
+      "status": "MATCH",
+      "workflow_run_id": 37605789908,
+      "check_run_id": 112741170924,
+      "completed_at_utc": "2026-10-07T10:13:11Z",
+      "data_match": true,
+      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "traffic_switched": "NONE",
+      "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true",
+      "scope_limit": "tracked Git-tree comparison only; not runtime, deployed artifact, failover, RPO or RTO"
+    },
+    "dr_target_identity": "UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here",
+    "dr_target_variable_api": "403 Resource not accessible by integration",
+    "main_push_snapshot_writes": [
+      {
+        "workflow_run_id": 37567565649,
+        "check_run_id": 112618764790,
+        "head_sha": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+        "rollback_commit": "8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7",
+        "completed_at_utc": "2026-10-07T03:37:53Z"
+      },
+      {
+        "workflow_run_id": 37568236297,
+        "check_run_id": 112620862227,
+        "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+        "rollback_commit": "41325bcd09bb0549e5ab5c9942fb65d3257dba90",
+        "completed_at_utc": "2026-10-07T03:46:21Z"
+      }
+    ],
+    "local_heartbeat_monitor": {
+      "mode": "read_only_reachability_probe",
+      "summary": "not_checked",
+      "checked_at_utc": null,
+      "heartbeat_authenticated": false,
+      "production_peer_health_verified": false,
+      "production_dr_verified": false,
+      "failover_enabled": false
+    },
+    "native_apps": {
+      "android_source_project_present": false,
+      "macos_source_project_present": false,
+      "apk_signature_verified": false,
+      "apk_signer_provenance": "UNVERIFIED",
+      "real_device_installation": "UNVERIFIED"
+    },
+    "runtime": "Python 3 standard-library http.server; studio and availability gateway are loopback-only; sandbox preview uses an exact asset allowlist plus a bounded, ephemeral deterministic POST /api/plan for bhakti/liquor-bar only",
     "database_server": null,
     "database_servers_claimed_but_absent": [
       "PostgreSQL 5432",
@@ -53,15 +104,84 @@
     "apk": {
       "path": "Vyomaraj-App.apk",
       "bytes": 24567022,
-      "signed": false
+      "sha256": "948e60b03ed62b8b209140924611b205211e2839e8f24a0f6d7de1d2f09a6153",
+      "apk_signing_block": {
+        "present": true,
+        "structure_valid": true,
+        "block_size_bytes": 4096,
+        "pair_ids": [
+          "0x7109871a",
+          "0x42726577"
+        ],
+        "signature_schemes": [
+          "v2"
+        ],
+        "error": null
+      },
+      "signature_material_present": true,
+      "cryptographically_verified": false,
+      "signer_provenance": "UNVERIFIED",
+      "real_device_installation": "UNVERIFIED",
+      "rebuildable_from_this_repository": false
     },
     "evidence": {
       "blocking_problems": 0,
-      "python_tests_total": 442,
-      "node_checks": 12,
-      "builders": 23,
+      "live_wiring_checked_at_utc": "2026-10-07T06:11:20Z",
+      "python_tests_total": 569,
+      "node_checks": 15,
+      "builders": 30,
+      "offline_failures": 0,
+      "offline_recorded_at_utc": "2026-10-07T14:09:47+00:00",
       "preview_problems": 0,
-      "viewer_routes_checked": 50
+      "viewer_routes_checked": 51,
+      "preview_verified_at_utc": "2026-10-07T06:11:19+00:00",
+      "dr_snapshot": {
+        "workflow": "Vyomaraj PRIMARY to DR Sync",
+        "workflow_file": ".github/workflows/vyomaraj-sync-both.yml",
+        "event": "schedule",
+        "workflow_run_id": 37605789908,
+        "check_run_id": 112741170924,
+        "status": "MATCH",
+        "conclusion": "success",
+        "completed_at_utc": "2026-10-07T10:13:11Z",
+        "head_branch": "main",
+        "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+        "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+        "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+        "data_match": true,
+        "traffic_switched": "NONE",
+        "replication_write_in_this_run": false,
+        "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true",
+        "scope": "Equal tracked Git trees only; does not prove deployed application/runtime equality, service availability, mobile installation, failover, RPO or RTO.",
+        "run_created_at_utc": "2026-10-07T10:11:56Z"
+      },
+      "dr_target_resolution": {
+        "workflow_variable": "VYOMARAJ_DR_REPO",
+        "workflow_variable_read_result": "403 Resource not accessible by integration",
+        "in_repo_fallback": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+        "effective_target_identity": "UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here",
+        "owner_admin_confirmation_and_current_target_only_review": "PENDING"
+      },
+      "observed_main_replication_writes": {
+        "count_since_previous_recorded_checkpoint": 2,
+        "writes": [
+          {
+            "workflow_run_id": 37567565649,
+            "check_run_id": 112618764790,
+            "head_sha": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+            "rollback_commit": "8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7",
+            "completed_at_utc": "2026-10-07T03:37:53Z"
+          },
+          {
+            "workflow_run_id": 37568236297,
+            "check_run_id": 112620862227,
+            "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+            "rollback_commit": "41325bcd09bb0549e5ab5c9942fb65d3257dba90",
+            "completed_at_utc": "2026-10-07T03:46:21Z"
+          }
+        ],
+        "note": "These were automatic verify-or-sync writes observed in public Actions annotations, not writes initiated by this session. The later 10:13 scheduled confirmation (run 37605789908) was a no-op."
+      }
     }
   },
   "agents": {
@@ -74,6 +194,31 @@
     "products_caveat": "421 is a historical aggregate, not a verified deduplicated/current owner-assigned product inventory.",
     "hierarchy_policy": "Only the six explicitly approved hubs acquire child edges. Other missing sub-sub-agent mappings remain UNMAPPED; do not invent a third tier.",
     "display_policy": "Show unnamed entries by serial only; null names remain unassigned. Display serials are not recovered slot identities.",
+    "shared_knowledge_inheritance": {
+      "policy_id": "UNIVERSAL_KNOWLEDGE_EVOLUTION_V1",
+      "policy_version": 1,
+      "owner": "SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC",
+      "policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
+      "inheritance_mode": "shared_policy_reference",
+      "entity_types": [
+        "category",
+        "agent",
+        "sub_agent",
+        "topic",
+        "content",
+        "chapter",
+        "product"
+      ],
+      "future_entities_inherit_by_default": true,
+      "per_entity_copy_required": false,
+      "current_coverage": {
+        "category_count": 13,
+        "agent_count": 128,
+        "mode": "all_current_registry_entries_inherit_by_reference"
+      },
+      "runtime_status": "reference_contract_not_deployed"
+    },
+    "content_index_policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
     "runtime_status": "registry entries are records, not running AI agents"
   },
   "platforms": {
@@ -84,8 +229,206 @@
       "switch_platform": "BLOCKED - no provider/session-transfer executor is configured"
     },
     "connected": [
-      "GitHub (repo, Pages, Actions)",
-      "local servers on this host"
+      "read-only primary GitHub repository status",
+      "GitHub Pages main build only"
+    ],
+    "owner_blocked": [
+      "issue #6 remains OPEN/P0",
+      "effective secondary identity is not independently confirmed (Actions settings 403; candidate path 404s are ambiguous)",
+      "owner review of target-only data and independent read-after-write",
+      "production runtime/app equality and DR failover/RPO/RTO"
+    ],
+    "current_github_state": {
+      "issue_6": {
+        "state": "OPEN",
+        "priority": "P0",
+        "closeout_authorized": false,
+        "title": "[P0] Unblock private DR access and confirm the authoritative secondary before synchronization",
+        "updated_at": "2026-10-03T10:38:24Z",
+        "acceptance_still_open": [
+          "owner/admin-confirmed canonical secondary identity and authenticated metadata/main ref",
+          "review of target-only data before exact snapshot writes",
+          "authorized read/write access and independent read-after-write verification"
+        ]
+      },
+      "pull_requests": {
+        "41": {
+          "state": "OPEN",
+          "draft": false,
+          "note": "Combines DR checkpoint and launch-preview scope; verify-or-sync is skipped for pull requests. Head is based on 8e9a67a while current main is two commits ahead at 04b7ae60; owner review required. No merge or deployment performed.",
+          "updated_at": "2026-10-07T05:15:38Z",
+          "head_sha": "5a77756b5a353915221fc6a790e30e070f9aad90",
+          "head_ref": "arena/a83291a3-vyomarajai",
+          "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+          "base_ref": "main",
+          "mergeable": true
+        },
+        "39": {
+          "state": "OPEN",
+          "draft": true,
+          "updated_at": "2026-10-06T16:06:13Z",
+          "head_sha": "afe02edfa65c64a9da08ecf0eeab5008e78848a3",
+          "head_ref": "final-shared-core-architecture-2026-10-06",
+          "base_sha": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f",
+          "base_ref": "main",
+          "note": "Left untouched."
+        },
+        "42": {
+          "state": "OPEN",
+          "draft": true,
+          "updated_at": "2026-10-07T05:14:56Z",
+          "head_sha": "7a6699159324afe3a7a4067b75e0eb001fe2adf6",
+          "head_ref": "feat/vyomaraj-engineering-2026-baseline",
+          "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+          "base_ref": "main",
+          "mergeable": false
+        }
+      },
+      "pages": {
+        "source": "main:/",
+        "build_commit": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+        "feature_branch_deployed": false,
+        "status": "built",
+        "last_build_created_at": "2026-10-07T03:45:29Z",
+        "last_build_updated_at": "2026-10-07T03:46:37Z"
+      },
+      "dr_snapshot": {
+        "workflow": "Vyomaraj PRIMARY to DR Sync",
+        "workflow_file": ".github/workflows/vyomaraj-sync-both.yml",
+        "event": "schedule",
+        "workflow_run_id": 37605789908,
+        "check_run_id": 112741170924,
+        "status": "MATCH",
+        "conclusion": "success",
+        "completed_at_utc": "2026-10-07T10:13:11Z",
+        "head_branch": "main",
+        "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+        "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+        "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+        "data_match": true,
+        "traffic_switched": "NONE",
+        "replication_write_in_this_run": false,
+        "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true",
+        "scope": "Equal tracked Git trees only; does not prove deployed application/runtime equality, service availability, mobile installation, failover, RPO or RTO.",
+        "run_created_at_utc": "2026-10-07T10:11:56Z"
+      },
+      "dr_target_resolution": {
+        "workflow_variable": "VYOMARAJ_DR_REPO",
+        "workflow_variable_read_result": "403 Resource not accessible by integration",
+        "in_repo_fallback": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+        "effective_target_identity": "UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here",
+        "owner_admin_confirmation_and_current_target_only_review": "PENDING"
+      },
+      "observed_main_replication_writes": {
+        "count_since_previous_recorded_checkpoint": 2,
+        "writes": [
+          {
+            "workflow_run_id": 37567565649,
+            "check_run_id": 112618764790,
+            "head_sha": "7bd544c05f7d6e7c84f22cbf3fc6ab39a382b4f5",
+            "rollback_commit": "8d867c54bfd28f7fbebd0a7bf0d87915d401e7b7",
+            "completed_at_utc": "2026-10-07T03:37:53Z"
+          },
+          {
+            "workflow_run_id": 37568236297,
+            "check_run_id": 112620862227,
+            "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+            "rollback_commit": "41325bcd09bb0549e5ab5c9942fb65d3257dba90",
+            "completed_at_utc": "2026-10-07T03:46:21Z"
+          }
+        ],
+        "note": "These were automatic verify-or-sync writes observed in public Actions annotations, not writes initiated by this session. The later 10:13 scheduled confirmation (run 37605789908) was a no-op."
+      },
+      "secondary_path_probes": {
+        "deepakGoyal1356/Vyomaraj-Agent": "404",
+        "deepakGoyal1356/Vyomaraj-Agent-6d64": "404",
+        "deepakGoyal1356/Vyomaraj-Agent-6d64e": "404",
+        "deepakGoyal1356/Vyomraj-Agent-6d64": "404",
+        "interpretation": "These responses do not prove that no private secondary repository exists."
+      },
+      "actions_variables_api": "403 Resource not accessible by integration",
+      "actions_secrets_api": "403 Resource not accessible by integration",
+      "scoped_metadata_followup": {
+        "observed_at_utc": "2026-10-07T10:06:21Z",
+        "scope": "Read-only metadata recheck of issue #6, PRs #39/#41/#42, main ref, Pages source metadata, and the latest scheduled workflow run list. No issue/PR/Pages/workflow mutation. Candidate secondary 404s and Actions settings 403s were not re-queried in this narrower follow-up; the full access audit remains timestamped 08:28 UTC.",
+        "issue_6": {
+          "state": "OPEN",
+          "priority": "P0",
+          "title": "[P0] Unblock private DR access and confirm the authoritative secondary before synchronization",
+          "updated_at": "2026-10-03T10:38:24Z"
+        },
+        "pull_requests": {
+          "39": {
+            "state": "OPEN",
+            "draft": true,
+            "head_ref": "final-shared-core-architecture-2026-10-06",
+            "base_ref": "main",
+            "head_sha": "afe02edfa65c64a9da08ecf0eeab5008e78848a3",
+            "base_sha": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f",
+            "note": "Read-only recheck; left untouched."
+          },
+          "41": {
+            "state": "OPEN",
+            "draft": false,
+            "head_ref": "arena/a83291a3-vyomarajai",
+            "base_ref": "main",
+            "head_sha": "5a77756b5a353915221fc6a790e30e070f9aad90",
+            "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+            "note": "Read-only recheck; not merged or deployed."
+          },
+          "42": {
+            "state": "OPEN",
+            "draft": true,
+            "head_ref": "feat/vyomaraj-engineering-2026-baseline",
+            "base_ref": "main",
+            "head_sha": "f8e413944bcf80a5a8d5607f922321703b10a7c5",
+            "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
+            "note": "Read-only recheck; left unchanged."
+          }
+        },
+        "main_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+        "pages": {
+          "html_url": "https://vyomaraj1356.github.io/Vyomarajai/",
+          "source_branch": "main",
+          "source_path": "/",
+          "build_type": "legacy"
+        },
+        "latest_scheduled_workflow_run": {
+          "workflow_run_id": 37602725866,
+          "status": "completed",
+          "conclusion": "success",
+          "created_at_utc": "2026-10-07T09:44:53Z",
+          "updated_at_utc": "2026-10-07T09:45:43Z",
+          "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
+          "check_run_id": 112730920825,
+          "check_conclusion": "success"
+        }
+      },
+      "dr_annotation_followup": {
+        "run_created_at_utc": "2026-10-07T10:11:56Z",
+        "run_completed_at_utc": "2026-10-07T10:13:11Z",
+        "workflow_run_id": 37605789908,
+        "check_run_id": 112741170924,
+        "status": "MATCH",
+        "data_match": true,
+        "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+        "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+        "traffic_switched": "NONE",
+        "replication_write_in_this_run": false,
+        "http": "UNAVAILABLE",
+        "failed_api_operation": "NONE_OR_UNCLASSIFIED",
+        "previous_checkpoints_reread": 0,
+        "scope": "Only this new annotation was checked; the previous 40 annotations were not reread. The separate full historical annotation audit remains timestamped 08:28 UTC."
+      }
+    },
+    "preview_security": "Allowlisted sandbox preview :5310 is listening in the sandbox only; it serves public assets plus only a bounded deterministic local planner for two experiences (ephemeral response, no provider/persistence/privileged writer); it is not a deployment. Studio/gateway code rejects non-loopback binds and requires request-scoped owner tokens for privileged writes; no trusted owner issuer/key is provisioned, so those actions fail closed.",
+    "unverified": [
+      "workflow-selected secondary canonical identity",
+      "runtime/deployed-app equality and DR failover/RPO/RTO",
+      "APK signature validity, signer provenance and real-device installation",
+      "Android/macOS native build readiness",
+      "authenticated production peer link/heartbeat",
+      "deployment of this feature branch"
     ],
     "not_connected": [
       "YouTube",
@@ -121,16 +464,26 @@
   "constraints_the_helping_ai_must_respect": [
     "Never print a LIVE / ACTIVE / synced status that the system cannot measure. This project already removed fabricated LIVE values from two modules; do not reintroduce them.",
     "Never invent third-tier agent names; only the six approved hubs have children.",
+    "Apply the Universal Knowledge Evolution Model through its single shared policy reference; retain claim-level provenance and never present future forecasts/scenarios as facts.",
     "Historic follower, view and revenue figures are unverified: do not repeat them to a partner, bank or platform reviewer.",
     "Zero budget until the project earns: propose only free options first.",
     "Inherit format and credit discipline from Sufi, ghazal and studio-show formats; never copy titles, lyrics, audio, video, artwork or brands.",
     "Identity documents: reference uidai.in only; no in-app Aadhaar or biometric capture.",
     "Voice enrollment is on-device only, with explicit consent and a delete-my-voice path.",
-    "Never ask for or store tokens, passwords or OTPs; nothing secret belongs in the repo.",
+    "Root-owner authority cannot be delegated to agents or inherited as a capability; deny by default, least privilege, server-side checks, step-up for high-risk actions, immutable audit, and split-brain fencing.",
+    "Location stays off by default. No covert/arbitrary phone tracking or consent/legal/security bypass.",
+    "Never ask for or store tokens, passwords or OTPs; nothing secret belongs in the repo or chat.",
+    "The owner said 'Ignore versions'; do not block work on version reconciliation.",
     "Report an unverified window as a window, never as a match."
   ],
   "next_actions_for_the_helping_ai": [
-    "Sign the Android APK with an owner-held keytool key, or advise leaving it off the page.",
+    "Keep issue #6 OPEN/P0. Owner/admin must confirm the effective Actions-selected target privately, review current target-only data before any further sync, then authorize independent read-after-write. Do not post the historical close-out draft.",
+    "Do not call the latest scheduled matching tracked Git tree proof of runtime health, deployed APK equality, failover, RPO or RTO; the latest annotation reports http=UNAVAILABLE. Preserve the target-identity caveat and the v2 signing-block versus signature-validity distinction.",
+    "Review PR #41's combined DR/preview scope; leave PRs #39 and #42 untouched unless explicitly directed. No merge/deployment is authorized by a passing preview gate.",
+    "Verify the existing Android APK with apksigner, review signer provenance and install on a real device; if verification or provenance is unresolved, advise leaving it off the page and recovering/rebuilding from trusted source.",
+    "Build the web, Android and macOS surfaces only from owner-approved source; the static PWA is not a native app, and Android/macOS projects are absent from this checkout.",
+    "Use the shared Vyomaraj/Jarvis peer contract; implement authenticated heartbeat in shadow/read-only mode with replay protection and no authority inheritance before any production interlink or failover.",
+    "Integrate the Universal Knowledge Evolution policy at the trusted Harness/CAG boundary, validate claims before MAG promotion/public output, and verify runtime inheritance before describing it as live.",
     "Draft the one-line contact block the owner can paste on the public page.",
     "Advise the cheapest free analytics option and where its snippet goes.",
     "Help plan the first original episode slate using inherited formats only.",
@@ -138,8 +491,7 @@
   ],
   "how_to_verify_anything": [
     "python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci",
-    "python3 ops/vyomaraj-core/handover/verify_live_wiring.py",
-    "python3 ops/vyomaraj-core/handover/verify_preview.py",
-    "python3 ops/vyomaraj-core/handover/realtime_status.py"
-  ]
+    "python3 ops/vyomaraj-core/handover/sanitize_personal_data.py --check"
+  ],
+  "live_verification_policy": "verify_live_wiring.py, verify_preview.py and realtime_status.py require an explicitly isolated test stack; port 5310 is a sandbox preview with an exact asset allowlist and a bounded deterministic POST /api/plan for bhakti/liquor-bar only (ephemeral response; no provider calls, persistence, or privileged writers); studio/gateway bind loopback and writer actions fail closed without a request-scoped owner token; no issuer is provisioned."
 }

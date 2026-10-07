@@ -5,6 +5,7 @@ Every row and every claim in the output is read from a checked-in file:
   * ops/dr/DEPLOYED_MATCH_2026_10_04.json    (MATCH checkpoints, blocked run, read-only probe)
   * ops/dr/DR_POLICY.json                    (scope flags and the one-snapshot removal approval)
   * .github/workflows/vyomaraj-sync-both.yml (triggers and schedule)
+  * ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json (separately timestamped current access/PR/Pages recheck)
 Nothing is transcribed by hand and nothing is inferred beyond the recorded fields. If a run is
 missing from the record, the report is missing it too — the fix is to record the run, not to
 edit this output. Run without arguments to write, with --check to verify the checked-in copy.
@@ -19,8 +20,10 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 RECORD = ROOT / 'ops/dr/DEPLOYED_MATCH_2026_10_04.json'
 POLICY = ROOT / 'ops/dr/DR_POLICY.json'
+ISSUES_LEDGER = HERE / 'ISSUES_AND_PRS_LEDGER.json'
 WORKFLOW = ROOT / '.github/workflows/vyomaraj-sync-both.yml'
 OUTPUT = HERE / 'DR_SYNC_RESULTS_2026_10_04.md'
+REPO_URL = 'https://github.com/Vyomaraj1356/Vyomarajai'
 SHORT = 12
 
 
@@ -50,11 +53,39 @@ def yes_no(value):
     return 'yes' if value else 'no'
 
 
+def pr_link(number):
+    return f"[#{number}]({REPO_URL}/pull/{number})"
+
+
+def run_link(run_id):
+    return f"[`{run_id}`]({REPO_URL}/actions/runs/{run_id})"
+
+
+def check_link(check_id, run_id=None):
+    if run_id:
+        url = f"{REPO_URL}/actions/runs/{run_id}/job/{check_id}"
+        return f"[`{check_id}`]({url})"
+    return f"`{check_id}`"
+
+
+def commit_link(sha):
+    return f"[`{short(sha)}`]({REPO_URL}/commit/{sha})"
+
+
 def render(root=ROOT):
     record = load(root / RECORD.relative_to(ROOT))
     policy = load(root / POLICY.relative_to(ROOT))
+    current_ledger = load(root / ISSUES_LEDGER.relative_to(ROOT))
+    live = current_ledger.get('current_live_recheck_2026_10_07', {})
+    if not live.get('checked_at_utc'):
+        raise ValueError('current issue/PR/Pages recheck is missing its read timestamp')
+    dr_snapshot = live.get('dr_snapshot', {})
+    if dr_snapshot and (dr_snapshot.get('status') != 'MATCH' or
+                        dr_snapshot.get('primary_tree') != dr_snapshot.get('secondary_tree')):
+        raise ValueError('current scheduled DR snapshot is not a matching tracked Git tree')
     workflow = (root / WORKFLOW.relative_to(ROOT)).read_text()
     observations = record['observations']
+    by_check_run = {str(o['check_run_id']): o for o in observations}
     writes = [o for o in observations if o.get('replication_write_in_this_run')]
     blocked = record.get('blocked_runs', [])
     trigger_names, cron = triggers(workflow)
@@ -66,6 +97,32 @@ def render(root=ROOT):
     if record.get('primary_main_tip_checked') is None:
         raise ValueError('record has no checked main tip')
 
+    current_dr_sentence = (
+        f"Latest scheduled DR run {run_link(dr_snapshot['workflow_run_id'])} / check-run "
+        f"{check_link(dr_snapshot['check_run_id'], dr_snapshot['workflow_run_id'])} completed "
+        f"`{dr_snapshot['completed_at_utc']}` with `MATCH`, `data_match=true`, and identical tracked Git trees "
+        f"`{dr_snapshot['primary_tree']}`; `traffic_switched={dr_snapshot['traffic_switched']}`. "
+        "This is a tracked repository-tree match only. "
+        if dr_snapshot else 'No current scheduled tree-match evidence is recorded. '
+    )
+    main_lag = live.get('main', {}).get('session_base_compare', {}).get('ahead_by')
+    lag_sentence = f"Main is {main_lag} commits ahead of the session/PR #41 base. " if main_lag is not None else ''
+    target_resolution = live.get('dr_target_resolution', {})
+    target_resolution_sentence = (
+        f"Workflow variable `{target_resolution.get('workflow_variable', 'VYOMARAJ_DR_REPO')}` may override "
+        f"the in-repo fallback `{target_resolution.get('in_repo_fallback', 'unknown')}`; because it returned "
+        f"{target_resolution.get('workflow_variable_read_result', 'unread')}, the effective target identity is unconfirmed. "
+        if target_resolution else ''
+    )
+    pr_status_sentence = (
+        f"Current PRs: #41 {live['pull_requests']['41']['state']}/"
+        f"{'DRAFT' if live['pull_requests']['41']['draft'] else 'non-draft'}, "
+        f"#39 {live['pull_requests']['39']['state']}/"
+        f"{'DRAFT' if live['pull_requests']['39']['draft'] else 'non-draft'}, "
+        f"#42 {live['pull_requests']['42']['state']}/"
+        f"{'DRAFT' if live['pull_requests']['42']['draft'] else 'non-draft'}; PR #39 was left untouched."
+    )
+
     lines = [
         '# Vyomaraj — DR sync results — 2026-10-04',
         '',
@@ -75,17 +132,28 @@ def render(root=ROOT):
         '',
         '## 1. Scope — what this record does and does not assert',
         '',
-        f"Primary repository: `{record['primary']}`. Secondary repository: `{record['secondary']}`.",
+        f"Primary repository: `{record['primary']}`. Secondary repository named by this historical record: `{record['secondary']}`.",
         f"Main tip covered by this record: `{record['primary_main_tip_checked']}`.",
         f"Workflow: `.github/workflows/vyomaraj-sync-both.yml` — triggers: {trigger_names}; "
         f"schedule: `{cron}` (UTC).",
         f"Recorded scope: {record['scope']}.",
         '',
-        'This is a Git-snapshot replication record. It is **not** a production disaster-recovery '
-        'approval and it says nothing about runtime databases, live media sessions, provider '
-        'accounts, secrets or production traffic.',
+        'This is a timestamped Git-snapshot replication record, not a production disaster-recovery '
+        'approval. It does not prove runtime databases, app-service availability, live media sessions, '
+        'provider accounts, secrets, deployment equality or production traffic.',
+        '',
+        '## Current GitHub / DR access recheck — 7 October 2026 (read-only)',
+        '',
+        f"Checked at `{live['checked_at_utc']}`. Issue #6 remains **{live['issue_6']['state']}/{live['issue_6']['priority']}**; close-out is not authorized. "
+        f"The connection lists {len(live.get('visible_repositories', []))} repository; the four candidate secondary paths returned 404 (not proof that no private secondary exists), and Actions variables/secrets reads returned {live.get('actions_variables_api', 'unread')!r} and {live.get('actions_secrets_api', 'unread')!r}. "
+        f"{current_dr_sentence}"
+        f"{target_resolution_sentence}Current authoritative-target identity/access and target-only data review remain owner-blocked; no mutation or workflow dispatch was made by this audit. Automatic main-push replication writes are separately recorded in the checkpoint table. "
+        f"{lag_sentence}{pr_status_sentence}",
+        f"Pages API reports `{live['pages'].get('status', 'unknown')}` from `{live['pages'].get('source', 'unknown')}` at "
+        f"`{live['pages'].get('build_commit', 'unknown')[:8]}`; this feature branch is not deployed.",
         '',
         '## 2. Evidence sources (all checked in)',
+
         '',
         '| Source | SHA256 | What it contributes |',
         '|---|---|---|',
@@ -95,6 +163,7 @@ def render(root=ROOT):
         f"| `{POLICY.relative_to(ROOT).as_posix()}` | `{digest(root / POLICY.relative_to(ROOT))}` | "
         'scope flags and the time-boxed one-snapshot removal approval |',
         f"| `{WORKFLOW.relative_to(ROOT).as_posix()}` | `{digest(root / WORKFLOW.relative_to(ROOT))}` | triggers and schedule |",
+        f"| `{ISSUES_LEDGER.relative_to(ROOT).as_posix()}` | `{digest(root / ISSUES_LEDGER.relative_to(ROOT))}` | timestamped current issue/PR/Pages and DR-access recheck |",
         '',
         f"Method: {record['method']}",
         '',
@@ -118,15 +187,18 @@ def render(root=ROOT):
         'snapshots were already identical and the run changed nothing. Trees are shown shortened '
         'from the full 40-character values in the record; every row ended `data_match=true`.',
         '',
-        '| # | completed (UTC) | merge | PR | run | check-run | status | primary tree | secondary tree | replication write |',
-        '|---|---|---|---|---|---|---|---|---|---|',
+        '| # | completed (UTC) | main tip | event | PR | run | check-run | status | primary tree | secondary tree | replication write |',
+        '|---|---|---|---|---|---|---|---|---|---|---|',
     ]
     for index, o in enumerate(observations, start=1):
         pr = o.get('merge_pr')
+        run_id = o.get('workflow_run_id')
+        event = o.get('workflow_event') or ('merge/push' if pr else 'historical checkpoint')
+        pr_cell = pr_link(pr) if pr else '—'
+        run_cell = run_link(run_id) if run_id else '—'
         lines.append(
-            f"| {index} | {o['completed_at_utc']} | `{short(o['head_sha'])}` | "
-            f"{'#' + str(pr) if pr else 'base'} | `{o.get('workflow_run_id', '—')}` | "
-            f"`{o['check_run_id']}` | {o['status']} | "
+            f"| {index} | {o['completed_at_utc']} | {commit_link(o['head_sha'])} | {event} | "
+            f"{pr_cell} | {run_cell} | {check_link(o['check_run_id'], run_id)} | {o['status']} | "
             f"`{short(o['primary_tree'])}` | `{short(o['secondary_tree'])}` | "
             f"{'yes (`' + short(o['rollback_commit']) + '`)' if o.get('rollback_commit') else 'no'} |")
     lines += [
@@ -141,8 +213,10 @@ def render(root=ROOT):
     ]
     for o in writes:
         pr = o.get('merge_pr')
-        lines.append(f"| `{short(o['head_sha'])}` | {'#' + str(pr) if pr else 'base'} | "
-                     f"`{o.get('workflow_run_id', '—')}` | `{o['check_run_id']}` | `{o['rollback_commit']}` |")
+        run_id = o.get('workflow_run_id')
+        lines.append(f"| {commit_link(o['head_sha'])} | {pr_link(pr) if pr else 'base'} | "
+                     f"{run_link(run_id) if run_id else '—'} | {check_link(o['check_run_id'], run_id)} | "
+                     f"`{o['rollback_commit']}` |")
     lines += [
         '',
         'A write replaces the secondary snapshot with the primary snapshot and keeps the previous '
@@ -158,7 +232,8 @@ def render(root=ROOT):
                   'guessed values):', '']
         for check_run_id, item in unavailable:
             value = 'null' if item.get('value_utc') is None else item['value_utc']
-            lines.append(f"- check-run `{check_run_id}`: value_utc = {value}.")
+            run_id = by_check_run.get(str(check_run_id), {}).get('workflow_run_id')
+            lines.append(f"- check-run {check_link(check_run_id, run_id)}: value_utc = {value}.")
             lines.append(f"  - Attempt: {item.get('attempt')}")
             lines.append(f"  - Bounded substitute: {item.get('bounded_substitute')}")
             lines.append(f"  - Standing: {item.get('not_fabricated')}")
@@ -170,8 +245,10 @@ def render(root=ROOT):
             f"One run in this session did **not** match and is deliberately excluded from the "
             f"checkpoint count:",
             '',
-            f"- Run `{item.get('workflow_run_id')}` on merge #{item.get('merge_pr')} "
-            f"(`{short(item['head_sha'])}`), check-run `{item['check_run_id']}`, "
+            f"- Run {run_link(item.get('workflow_run_id'))} on merge "
+            f"{pr_link(item.get('merge_pr'))} "
+            f"({commit_link(item['head_sha'])}), check-run "
+            f"{check_link(item['check_run_id'], item.get('workflow_run_id'))}, "
             f"completed {item['completed_at_utc']}.",
             f"- Public annotation: `{item['public_annotation']}`",
             f"- Interpretation recorded with the evidence: {item['interpretation']}",
@@ -232,19 +309,21 @@ def render(root=ROOT):
                 lines.append(f"- {item}")
             lines.append('')
     lines += [
-        '## 5c. The trailing-checkpoint rule (why the newest merge is not a row yet)',
+        '## 5c. Checkpoint selection and the next-read rule',
         '',
-        'This record closes at the last checkpoint that was re-read live as a complete set. The merge that',
-        'publishes this very record is verified by the same workflow immediately after it lands; that',
-        'checkpoint is recorded in the next update and is visible live meanwhile:',
+        'This record includes one successful verify-or-sync checkpoint for each newly observed main tip,',
+        'plus the latest successful scheduled confirmation on the final main tip. Duplicate same-tree no-op',
+        'runs are re-read and listed in the current extension audit but are not counted as extra selected',
+        'checkpoints. Unmerged branch tips and local edits are excluded. Future main changes are not pre-counted:',
         '',
         '```',
         "gh api repos/Vyomaraj1356/Vyomarajai/commits/main/check-runs --jq '.check_runs[] | select(.name==\"verify-or-sync\") | [.id, .conclusion] | @tsv'",
         "gh api repos/Vyomaraj1356/Vyomarajai/check-runs/<check_run_id>/annotations --jq '.[] | select(.title==\"DR SNAPSHOT RESULT\") | .message'",
         '```',
         '',
-        'A checkpoint that is not yet a row here is not an unverified merge; it is a row waiting for the',
-        'next full-set re-read. No merge is ever silently skipped.',
+        'After an owner-approved merge, re-read the resulting workflow annotation in the next update; do not',
+        'merge, dispatch or pre-count that future run. A scheduled tree match is not an application deployment',
+        'or a runtime/failover test.',
         '',
         '## 5d. Local verification attempt in the recording session',
         '',
@@ -350,6 +429,97 @@ def render(root=ROOT):
         if race.get('fulfilled_by'):
             lines += [f"- Fulfilled by: {race.get('fulfilled_by')}"]
         lines += ['']
+    extension_d = record.get('record_extension_2026_10_07')
+    if extension_d:
+        audit = extension_d.get('annotation_audit', {})
+        lines += [
+            f"## 5j. Record extension by `{extension_d.get('session')}` (2026-10-07)",
+            '',
+            f"- Finding: {extension_d.get('finding')}",
+            f"- Fix: {extension_d.get('fix')}",
+            f"- Live annotation audit: {audit.get('previous_checkpoints_re_read')} previous rows re-read; "
+            f"mismatches: {audit.get('mismatches')}; new check-runs: "
+            f"{', '.join(check_link(value, by_check_run.get(str(value), {}).get('workflow_run_id')) for value in audit.get('new_check_runs', []))}; "
+            f"completed at {audit.get('completed_at_utc')}.",
+            f"- PR #39 status: [live PR page]({REPO_URL}/pull/39); "
+            f"{extension_d.get('pr_39_live_status')}",
+            f"- Next checkpoint: {extension_d.get('next_checkpoint')}",
+            '',
+        ]
+    extension_e = record.get('record_extension_2026_10_07_b')
+    if extension_e:
+        audit = extension_e.get('annotation_audit', {})
+        aligned_apk = extension_e.get('artifact_alignment', {})
+        main_cmp = extension_e.get('current_main_vs_session_base', {})
+        latest = extension_e.get('latest_scheduled_match', {})
+        lines += [
+            f"## 5k. Main-tip and scheduled-match extension by `{extension_e.get('session')}` (2026-10-07)",
+            '',
+            f"- Finding: {extension_e.get('finding')}",
+            f"- Fix/selection rule: {extension_e.get('fix')}",
+            f"- Audit: {audit.get('previous_checkpoints_re_read')} prior rows re-read, "
+            f"{audit.get('new_successful_main_annotations_re_read')} new successful main annotations re-read; "
+            f"{audit.get('previous_mismatches', 0) + audit.get('new_mismatches', 0)} mismatches. "
+            f"Selected new checks: {', '.join(check_link(value, by_check_run.get(str(value), {}).get('workflow_run_id')) for value in audit.get('new_selected_check_runs', []))}. "
+            f"Additional duplicate/older no-write checks: {', '.join(str(value) for value in audit.get('additional_no_write_check_runs_re_read', []))}. "
+            f"Completed at {audit.get('completed_at_utc')}.",
+            f"- Latest scheduled confirmation: run {run_link(latest.get('workflow_run_id'))}, "
+            f"check-run {check_link(latest.get('check_run_id'), latest.get('workflow_run_id'))}, "
+            f"completed `{latest.get('completed_at_utc')}`; equal tree `{short(latest.get('primary_tree'))}`, "
+            f"no write, traffic switch `{latest.get('traffic_switched')}`.",
+            f"- Current main comparison: main `{short(main_cmp.get('main'))}` is {main_cmp.get('ahead_by')} commits ahead of "
+            f"PR #41's base `{short(main_cmp.get('pr_41_base'))}`; PR #41 is still {main_cmp.get('pr_41_state')}. "
+            f"PR #39 remains open/draft and untouched: {extension_e.get('pr_39_live_status')}",
+            f"- Tracked APK in matched tree: `{aligned_apk.get('path')}` blob `{aligned_apk.get('git_blob_sha')}`, "
+            f"{aligned_apk.get('size_bytes')} bytes. Equal tree implies the same repository blob at the secondary; "
+            f"signature, signer provenance and real-device installation remain unverified.",
+            f"- Issue #6: {extension_e.get('issue_6')}",
+            f"- Next checkpoint: {extension_e.get('next_checkpoint')}",
+            '',
+        ]
+    extension_f = record.get('record_extension_2026_10_07_c')
+    if extension_f:
+        latest = extension_f.get('latest_scheduled_match', {})
+        audit = extension_f.get('annotation_audit', {})
+        lines += [
+            f"## 5l. Follow-up scheduled checkpoint by `{extension_f.get('session')}` (2026-10-07)",
+            '',
+            f"- Finding: {extension_f.get('finding')}",
+            f"- Fix: {extension_f.get('fix')}",
+            f"- Latest live read: run {run_link(latest.get('workflow_run_id'))}, "
+            f"check-run {check_link(latest.get('check_run_id'), latest.get('workflow_run_id'))}, "
+            f"created `{latest.get('created_at_utc')}`, completed `{latest.get('completed_at_utc')}`; "
+            f"status `{latest.get('status')}`, `data_match={str(latest.get('data_match')).lower()}`, "
+            f"equal tracked trees `{latest.get('primary_tree')}` / `{latest.get('secondary_tree')}`, "
+            f"traffic `{latest.get('traffic_switched')}`, write `{str(latest.get('replication_write_in_this_run')).lower()}`.",
+            f"- Annotation limits: `http={latest.get('http')}`, "
+            f"`failed_api_operation={latest.get('failed_api_operation')}`. This annotation is a tracked-tree result only, "
+            "not runtime, deployed-app, authenticated-heartbeat, failover, RPO or RTO evidence.",
+            f"- Audit scope: re-read only the new checkpoint annotation; prior rows reread in this addendum: "
+            f"{audit.get('previous_checkpoints_reread')}. {audit.get('scope_note')}",
+            '',
+        ]
+    extension_g = record.get('record_extension_2026_10_07_d')
+    if extension_g:
+        latest = extension_g.get('latest_scheduled_match', {})
+        audit = extension_g.get('annotation_audit', {})
+        lines += [
+            f"## 5m. Latest scheduled checkpoint follow-up by `{extension_g.get('session')}` (2026-10-07)",
+            '',
+            f"- Finding: {extension_g.get('finding')}",
+            f"- Fix: {extension_g.get('fix')}",
+            f"- Latest scheduled run {run_link(latest.get('workflow_run_id'))} / "
+            f"check-run {check_link(latest.get('check_run_id'), latest.get('workflow_run_id'))} "
+            f"completed `{latest.get('completed_at_utc')}`; status `{latest.get('status')}`, "
+            f"`data_match={str(latest.get('data_match')).lower()}`, equal trees `{latest.get('primary_tree')}` / "
+            f"`{latest.get('secondary_tree')}`, traffic `{latest.get('traffic_switched')}`, "
+            f"write `{str(latest.get('replication_write_in_this_run')).lower()}`, "
+            f"annotation `http={latest.get('http')}`.",
+            f"- Scope: prior checkpoint annotations reread in this addendum: "
+            f"{audit.get('previous_checkpoints_reread')}; {audit.get('scope_note')} "
+            f"No runtime/app, authenticated-heartbeat, failover, RPO or RTO proof is established.",
+            '',
+        ]
     lines += [
         '## 6. Scope limits — do not restate otherwise',
         '',

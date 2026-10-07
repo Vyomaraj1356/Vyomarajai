@@ -29,4 +29,13 @@ class GovernanceTests(unittest.TestCase):
         d=json.loads((server.CORE/'experience/LOCAL_INTEGRATION.json').read_text())
         self.assertIn('aghor',d['experiences']);self.assertNotIn('aghor',d['plannable_experiences'])
 
+    def test_local_runtime_security_is_fail_closed_and_not_claimed_live(self):
+        d=json.loads((server.CORE/'experience/LOCAL_INTEGRATION.json').read_text())
+        security=d['local_runtime_security']
+        self.assertEqual(security['studio_default_bind'],'127.0.0.1')
+        self.assertFalse(security['network_bind_allowed'])
+        self.assertFalse(security['owner_token_issuer_configured_in_checkout'])
+        self.assertFalse(security['runtime_configuration_verified'])
+        self.assertFalse(security['production_deployed'])
+
 if __name__=='__main__':unittest.main()

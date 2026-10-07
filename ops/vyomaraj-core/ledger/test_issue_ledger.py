@@ -1,4 +1,4 @@
-"""Tests for the owner-review issue/PR ledger and prepared close-out."""
+"""Tests for the current owner-blocked issue/PR ledger and historical close-out draft."""
 import json
 import sys
 import unittest
@@ -21,13 +21,46 @@ class IssueLedgerTests(unittest.TestCase):
         self.assertEqual(len(self.by_id), 14)
         self.assertEqual(ledger.validate(self.data), [])
 
-    def test_issue_six_is_ready_to_close_but_not_closed_or_posted(self):
+    def test_issue_six_remains_owner_blocked_and_historical_draft_is_not_for_posting(self):
         self.assertEqual(self.data['snapshot']['issue_6_state'], 'OPEN')
-        self.assertEqual(self.by_id['issue-6']['status'], 'READY_TO_CLOSE')
-        self.assertTrue(self.data['issue_6_closeout']['prepared_but_not_sent'])
-        self.assertIn('no comment or close action has been performed', self.by_id['issue-6']['summary'])
+        self.assertEqual(self.by_id['issue-6']['status'], 'OWNER_ACTION_REQUIRED')
+        issue = self.data['issue_6_closeout']
+        self.assertTrue(issue['prepared_but_not_sent'])
+        self.assertTrue(issue['historical_snapshot_only'])
+        self.assertTrue(issue['do_not_post_or_close'])
+        self.assertEqual(issue['current_live_state'], 'OPEN/P0')
+        self.assertIn('Owner/admin', self.by_id['issue-6']['next_action'])
+        self.assertIn('DO NOT POST OR CLOSE', self.text)
 
-    def test_issue_six_checkpoint_matches_the_live_snapshot_values(self):
+    def test_live_recheck_records_pr_pages_and_access_blocks(self):
+        live = self.data['current_live_recheck_2026_10_07']
+        self.assertEqual(live['issue_6']['state'], 'OPEN')
+        self.assertEqual(live['issue_6']['priority'], 'P0')
+        self.assertEqual(live['actions_variables_api'][:3], '403')
+        self.assertTrue(live['checked_at_utc'].startswith('2026-10-07T08:28'))
+        self.assertEqual(live['dr_snapshot']['status'], 'MATCH')
+        self.assertEqual(live['dr_snapshot']['primary_tree'], live['dr_snapshot']['secondary_tree'])
+        self.assertEqual(live['dr_snapshot']['traffic_switched'], 'NONE')
+        self.assertTrue(live['dr_target_resolution']['effective_target_identity'].startswith('UNCONFIRMED:'))
+        self.assertEqual(live['observed_main_replication_writes']['count_since_previous_recorded_checkpoint'], 2)
+        self.assertEqual(live['pull_requests']['41']['state'], 'OPEN')
+        self.assertTrue(live['pull_requests']['39']['draft'])
+        self.assertEqual(live['pages']['status'], 'built')
+        self.assertFalse(live['pages']['feature_branch_deployed'])
+        self.assertIn('do not prove', live['secondary_path_probes']['interpretation'])
+
+    def test_current_dr_tree_match_is_separate_from_owner_acceptance(self):
+        live = self.data['current_live_recheck_2026_10_07']
+        self.assertIn('status=MATCH', self.text)
+        self.assertIn(str(live['dr_snapshot']['check_run_id']), self.text)
+        self.assertIn(live['dr_snapshot']['primary_tree'], self.text)
+        self.assertIn('repository-tree equality only', self.text)
+        self.assertIn('target-only-data review remain owner-blocked', self.text)
+        self.assertIn('Automatic main-push replication writes observed', self.text)
+        self.assertIn('signature validity', self.text)
+        self.assertIn('UNVERIFIED', self.text)
+
+    def test_issue_six_checkpoint_is_historical_not_current_acceptance(self):
         record = self.data['snapshot']['merge_checkpoint']
         self.assertEqual(record['pull_request'], 24)
         self.assertEqual(record['check_run_id'], 111404791435)
@@ -69,16 +102,17 @@ class IssueLedgerTests(unittest.TestCase):
                 self.assertTrue(any('AUTO_ALIGN_NEXT_SESSION.json' in path
                                     for path in self.by_id[entry_id]['evidence']))
 
-    def test_runbook_is_ordered_and_contains_403_stop_rule(self):
+    def test_runbook_is_owner_read_only_and_has_403_404_stop_rule(self):
         runbook = self.data['issue_6_closeout']['runbook']
         self.assertEqual(len(runbook), 5)
-        self.assertIn('Before any GitHub write', runbook[0])
-        self.assertIn('re-read every check-run annotation', runbook[0])
-        self.assertIn('rollback_commit row by row', runbook[0])
-        self.assertIn('gh issue comment 6', runbook[2])
-        self.assertIn('gh issue close 6', runbook[3])
-        self.assertIn('403', runbook[4])
-        self.assertIn('New-session runbook (in order)', self.text)
+        self.assertIn('Keep issue #6 OPEN', runbook[0])
+        self.assertIn('canonical owner/name', runbook[1])
+        self.assertIn('Do not request or transmit secret values in chat', runbook[2])
+        self.assertIn('read-only', runbook[3])
+        self.assertIn('403 or 404', self.text)
+        self.assertNotIn('gh issue comment 6', self.text)
+        self.assertNotIn('gh issue close 6', self.text)
+        self.assertIn('Owner/admin runbook (no writes; do not run automatically)', self.text)
 
     def test_report_matches_builder_and_contains_no_secrets_or_money_claims(self):
         report = ledger.OUTPUT.read_text(encoding='utf-8')

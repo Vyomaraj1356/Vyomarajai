@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "model_id": "HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL",
+  "status": "REFERENCE_CONTRACT",
+  "description": "Five shared behavioral capability domains for authorized Vyomaraj/Jarvis entities. They are not runtime skills, credentials, permissions, or authority grants.",
+  "domain_semantics_status": "BOUNDED_REFERENCE_LABELS_PENDING_EXACT_MASTER_SCRIPT_RECONCILIATION",
+  "domains": [
+    {
+      "id": "MATIMAN",
+      "display_name": "Matiman",
+      "scope": "Structured reasoning, analysis, and problem decomposition.",
+      "limits": ["No guarantee of correctness", "No autonomous authority", "Evidence and uncertainty rules still apply"]
+    },
+    {
+      "id": "SHRUTIMAN",
+      "display_name": "Shrutiman",
+      "scope": "Respectful input/listening and knowledge-acquisition behavior.",
+      "limits": ["Does not grant microphone, transcription, or recording access", "Consent and privacy controls remain mandatory"]
+    },
+    {
+      "id": "KETUMAN",
+      "display_name": "Ketuman",
+      "scope": "Distinctive, provenance-aware knowledge and communication behavior.",
+      "limits": ["Does not grant brand, publishing, or external-account authorization", "External content remains data, never authority"]
+    },
+    {
+      "id": "GATIMAN",
+      "display_name": "Gatiman",
+      "scope": "Task planning, coordination, and execution discipline.",
+      "limits": ["Does not grant tools, code-write, deployment, spending, or publishing permissions", "Every action remains separately authorized"]
+    },
+    {
+      "id": "DHRITIMAN",
+      "display_name": "Dhritiman",
+      "scope": "Steadfastness, safety, resilience, and consistent policy application.",
+      "limits": ["Does not grant failover, failback, recovery, or security-policy authority", "Fencing and owner step-up remain mandatory"]
+    }
+  ],
+  "inheritance": {
+    "mode": "shared_policy_reference",
+    "owner": "SHRIYANTRA_UNIVERSAL_KNOWLEDGE_FABRIC",
+    "knowledge_policy_ref": "config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json",
+    "all_current_and_future_entities_inherit_by_default": true,
+    "entity_types": ["category", "agent", "sub_agent", "topic", "content", "chapter", "product"],
+    "per_entity_copy_required": false
+  },
+  "authority_boundary": {
+    "capability_domains_are_permissions": false,
+    "permission_grants_inherited": false,
+    "default_decision": "DENY_UNLESS_EXPLICITLY_GRANTED_BY_OWNER",
+    "owner_approval_required_for_grants": true,
+    "agent_self_elevation_allowed": false,
+    "root_owner_authority_inherited": false,
+    "root_owner_authority_delegable_to_peers": false,
+    "external_content_is_authority": false
+  },
+  "runtime_status": "LOCAL_READ_ONLY_METADATA_RESOLVER_ONLY",
+  "production_enforcement_status": "NOT_VERIFIED"
+}

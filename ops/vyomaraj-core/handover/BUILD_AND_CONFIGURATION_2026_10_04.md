@@ -4,7 +4,7 @@ Generated from the checked-in registry, content and configuration files by `buil
 
 ## 1. Agents — current owner-approved structure
 
-- Registry status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-03)
+- Registry status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-07)
 - Main agents: **13** · counted sub-agent slots: **128** · named: **42** · serial-only (name UNKNOWN): **86**
 - Uncounted parent headings: **6** · historical reported products: **421** (active product count: None — not reconciled, deliberately not zero)
 - Source snapshot: `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json` (sha256 `9e301bfcb1c6e8b23c1bea4fbdcf0d9d12d4c457fe62d7ef60e3161ac3a908a9`); historical arithmetic validated: True
@@ -62,7 +62,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 | Module | Route | Files |
 |---|---|---|
-| Owner approvals — central nostalgic camera (`/approvals/`) | `approvals` | approval_queue.py, test_approvals.py |
+| Owner approvals — central nostalgic camera (`/approvals/`) | `approvals` | approval_queue.py, approval_store.py, test_approval_store.py, test_approvals.py |
 | Finance & audit follow-up + morning briefing (`/finance/`) | `finance` | finance_followup.py, test_finance.py |
 | Change management with backup and rollback (`/upgrades/`) | `upgrades` | change_manager.py, test_upgrades.py |
 
@@ -75,7 +75,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 - Planning endpoint `/api/plan`; experiences bhakti, liquor-bar, music, film, aghor, comics; modes 3d, 4d, 5d
 - Flags: automatic AI calls False, automatic publishing False, legacy Jarvis env loaded False, production deployed False
 - `PUBLIC_POLICY.json` (updated 2026-10-03): spiritual content mode `view_only_not_practice_instruction`, participation `voluntary_no_pressure_no_required_belief_or_practice`
-- `DR_POLICY.json`: secondary `deepakGoyal1356/Vyomaraj-Agent-6d64e`, writer `primary_main_only`, sync approved on main `True`, automatic target-only removal `False`, reverse overwrite `False`, zero-RPO/RTO verified False/False
+- `DR_POLICY.json`: secondary `deepakGoyal1356/Vyomaraj-Agent-6d64e`, writer `primary_main_only`, sync approved on main `False`, automatic target-only removal `False`, reverse overwrite `False`, zero-RPO/RTO verified False/False
 - Scope guard: Git main snapshot only; not runtime databases, secret stores, live media sessions or production traffic
 
 ### Workflows
@@ -98,8 +98,8 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 ## 5. Recorded verification evidence
 
-- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 50 viewer route checks, 27 gateway route checks, 50 studio-lane route checks, problems: none
-- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 34 checkpoints; current state: Primary and secondary main snapshots are identical at tree b44ecb67eb432834a90cc946f06ee64a50d7b7c4 (checkpoint #34, the PR #38 merge, data_match=true, replication write with rollback parent 1a1932f6 retained). This record covers the successful verify-or-sync runs from 2026-10-03 through the PR #38 merge on 2026-10-06. Every recorded checkpoint is status=MATCH with identical primary and secondary trees; 24 carried a replication write (rollback_commit present). A run that finds snapshots already equal is an idempotent no-op MATCH (no write). The PR #36/#37/trigger merges are NOT checkpoints: their offline-tests gate was red so verify-or-sync never executed (see unverified_windows).; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434, 111395579579, 111396668243, 111397396312, 111404791435, 111425773341, 112224787168, 112247203850, 112251697240, 112253587690, 112274342282, 112279322282]
+- **Preview verification** (`ops/vyomaraj-core/handover/PREVIEW_VERIFICATION_2026_10_04.json`): 51 viewer route checks, 31 gateway route checks, 54 studio-lane route checks, problems: none
+- **Primary-secondary verification** (`ops/dr/DEPLOYED_MATCH_2026_10_04.json`): 41 checkpoints; current state: Primary main and the workflow-selected secondary reported identical tracked Git trees at the latest scheduled checkpoint #41 (2026-10-07 10:13:11Z): 986288ee2cc4ec4d89400320150ea893f7a7a2de for main commit 04b7ae60ce2855b1d48043d80f790488e894ee79; run 37605789908/check-run 112741170924 reports status=MATCH, data_match=true, traffic_switched=NONE and http=UNAVAILABLE. Checkpoints #37 (main push at 7bd544c) and #38 (main push at 04b7ae60) each recorded an automated replication write; #39, #40 and #41 were scheduled no-op confirmations. The repository tree includes the tracked Vyomaraj-App.apk blob, so the Git-snapshot evidence implies the same repository APK bytes at the secondary; signature validity, signer provenance and real-device installation remain unverified. This is not deployed-runtime/app equality, failover, RPO or RTO evidence. Issue #6 remains OPEN/P0 because owner-confirmed secondary identity/access and target-only data review are still outstanding.; replication writes observed: [111212722666, 111375777820, 111377398899, 111377861073, 111378391997, 111379204732, 111379714913, 111380439332, 111380998467, 111385960390, 111386365434, 111395579579, 111396668243, 111397396312, 111404791435, 111425773341, 112224787168, 112247203850, 112251697240, 112253587690, 112274342282, 112279322282, 112304360057, 112406218563, 112423653494, 112618764790, 112620862227]
 - **Failover drill 2026-10-03** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_03.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Failover drill 2026-10-04** (`ops/availability/LOCAL_FAILOVER_DRILL_2026_10_04.json`): 5 phases (baseline, primary_stopped, secondary_stopped, both_stopped, both_restored)
 - **Test evidence** (`ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json`): recorded separately; see the file for per-suite counts and results

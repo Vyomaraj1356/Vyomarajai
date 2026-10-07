@@ -1,5 +1,15 @@
 {
   "version": "V15.1",
+  "verification_boundary": {
+    "document_role": "historical owner-supplied capability and branding metadata",
+    "runtime_verified": false,
+    "agent_heartbeat_verified": false,
+    "social_integrations_verified": false,
+    "revenue_verified": false,
+    "descriptive_strings_are_not_runtime_evidence": true,
+    "canonical_current_registry": "ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json",
+    "do_not_infer_current_counts_or_live_status_from_legacy_inheritance_strings": true
+  },
   "owner": "Deepak Goyal [OWNER_EMAIL_REDACTED]",
   "shriRamJi": "Shri Ram Ji Supreme Lord — Dharma — Gives powers to all agents/sub agents/sub agents to scale new height in market and earn big time money and revenue — Jai Shri Ram",
   "hanumanJi": "Hanuman Ji — Pavan Putra — Anjani Putra — Ram Bhakt — Sankat Mochan — Ultimate Devotee of Shri Ram Ji",

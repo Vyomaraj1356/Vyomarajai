@@ -2,9 +2,9 @@
 
 ## Audit result
 
-The pushed Arena tree contained no runtime LLM provider client or tool-calling harness. The existing Jarvis shell controller maintains a local state file and performs a basic Pages reachability check; model/provider names in its status text are not evidence of an LLM integration. The repository also has no LLM runtime dependency manifest.
+The repository has a minimal, provider-neutral, no-tools harness at [`llm_harness.py`](llm_harness.py). It exposes two user-owned role profiles (`vyomaraj` and `jarvis`) over an OpenAI-compatible `/chat/completions` endpoint. It is also an optional, explicit text-draft stage in the plan-only experience orchestrator. The revised prompts require requested English/Hindi/Hinglish, owner/policy authority, evidence/inference separation, untrusted retrieved data, and no fabricated heartbeats or execution.
 
-A minimal, provider-neutral harness is available at [`llm_harness.py`](llm_harness.py). It exposes two user-owned role profiles (`vyomaraj` and `jarvis`) over an OpenAI-compatible `/chat/completions` endpoint. It remains a standalone CLI and is also an optional, explicit text-draft stage in the plan-only experience orchestrator; it does not silently change the existing 24x7 controller.
+The former Jarvis shell controller printed simulated device shifts and unsupported “live” states. It has been replaced by a wrapper around [`heartbeat_monitor.py`](heartbeat_monitor.py), a bounded read-only endpoint reachability probe. Empty example URLs report `not_configured`; a reachable `/healthz` endpoint still does not prove authenticated peer health, a live AI agent, or production DR. See [`README.md`](README.md) for local configuration.
 
 ## Safety and scope
 

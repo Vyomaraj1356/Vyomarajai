@@ -1,5 +1,7 @@
 import base64
+import json
 import unittest
+from pathlib import Path
 
 import dr_sync as dr
 
@@ -114,6 +116,13 @@ class DRTests(unittest.TestCase):
     def test_approval_guard(self):
         with self.assertRaisesRegex(dr.CheckError, 'explicit'):
             self.run_check(True, {**ENV, 'DR_SYNC_APPROVED': 'false'})
+        root = Path(__file__).resolve().parents[2]
+        workflow = (root / '.github/workflows/vyomaraj-sync-both.yml').read_text()
+        policy = json.loads((root / 'ops/dr/DR_POLICY.json').read_text())
+        self.assertIn('if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]', workflow)
+        self.assertIn('MODE=verify', workflow)
+        self.assertIn('test "$GITHUB_EVENT_NAME" = workflow_dispatch', workflow)
+        self.assertFalse(policy['sync_approved_on_main'])
 
     def test_missing_token_guard(self):
         with self.assertRaisesRegex(dr.CheckError, 'credentials are missing'):

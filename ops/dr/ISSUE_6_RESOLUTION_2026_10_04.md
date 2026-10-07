@@ -1,7 +1,9 @@
+> **HISTORICAL RESOLUTION CLAIM — SUPERSEDED; DO NOT POST OR CLOSE ISSUE #6.** As of the 7 October 2026 live read, issue #6 remains **OPEN/P0**. The exact authoritative secondary and current Actions access are unverified (secondary-name probes returned 404; Actions variables/secrets returned 403). This archived 4 October statement and its checkpoint evidence do not satisfy the current owner/admin access gate. Preserve the text below for provenance only.
+
 # Issue #6 resolution statement — 4 October 2026
 
 Issue: `[P0] Unblock private DR access and confirm the authoritative secondary before synchronization`
-Status: **acceptance criteria met by live evidence; ready to be pasted on GitHub and closed.**
+Status: **Historical claim at the time; not current acceptance evidence and not ready to post or close.**
 
 > Why this file exists: the GitHub connection available in this sandbox has `issues=read` only, so it
 > cannot comment on or close the issue (403 `Resource not accessible by integration`). The statement

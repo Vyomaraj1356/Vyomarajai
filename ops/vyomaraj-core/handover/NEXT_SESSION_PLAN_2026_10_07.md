@@ -1,60 +1,36 @@
 # VYOMARAJ — NEXT-SESSION PLAN
 
 Written 2026-10-06 in session `arena/6bc12929-vyomarajai`, for the session of/after
-2026-10-07. This is the "start here" page. Every claim below was verified in this
-checkout or through the GitHub API in the writing session; each section says how.
-If any command in section 2 disagrees with this document, the command is right.
+2026-10-07; amended 2026-10-07 in `arena/a83291a3-vyomarajai`. This is the "start
+here" page. Every claim below was verified in this checkout or through the GitHub
+API; each section says how. If any command in section 2 disagrees with this
+document, the command is right.
 
 Marker: NEXT-SESSION PLAN (the viewer contract checks for this line).
 
-## 0 · The state in one paragraph
+> **CURRENT-STATE OVERRIDE — read this before any dated steps below (7 October 2026).** This file
+> was authored for a prior session; its branch, PR, DR, and close-out instructions are historical.
+> Current work stays on `arena/a83291a3-vyomarajai`. Issue #6 remains OPEN/P0 and owner/admin
+> blocked; the 6 October close-out draft and all issue-write commands below are stale and **must not
+> be posted or run**. PR #41 is OPEN/non-draft with combined DR/preview scope; #39 and #42 are
+> OPEN/DRAFT. GitHub Pages serves `main` at `04b7ae60`; this branch is not deployed. See
+> `ISSUES_AND_PRS_LEDGER.json` and its 7 October live-read addendum for current status.
 
-`main` is `d46d8b3` (PR #31 merge, 2026-10-06 11:49 UTC, tree
-`bb8632f62eb978417dc4fb39265d32c305f3942f`) and the DR secondary MATCHes it —
-both verify-or-sync annotations re-read live, trees equal, one write (rollback
-`42c401d2…`), one no-op. The previous session's commits `002f5ed` + `9e241e9`
-NEVER reached GitHub (verified: `git ls-remote` shows that branch at `cce1074`,
-fully merged via PR #31; both objects are unknown to the repository), so the
-plan/routes/pack it described were rebuilt here as NEW work on branch
-`arena/6bc12929-vyomarajai`, not recovered. Publish path: section 1. Issue #6 is
-still OPEN with its close-out comment prepared: section 3.
+## 0 · The state in one paragraph (historical snapshot; superseded above)
 
-## 1 · Publish the work (exact commands)
+`main` was `d46d8b3` (PR #31 merge, 2026-10-06 11:49 UTC, tree
+`bb8632f62eb978417dc4fb39265d32c305f3942f`) and the DR secondary was recorded as MATCH at that
+point. The previous session's commits `002f5ed` + `9e241e9` NEVER reached GitHub (verified in that
+session), so its plan/routes/pack were rebuilt as new work on the then-current branch
+`arena/6bc12929-vyomarajai`. These are provenance notes, not today's branch or current DR status.
 
-PUBLICATION RECORD (filled by the writing session before pushing):
+## 1 · Publication record (historical; do not replay old branch commands)
 
-- Branch: `arena/6bc12929-vyomarajai`
-- Base: `main` at `d46d8b3705a7161938096bfc953b0cd4fd440b8c`
-- Content commit: `1ecf59b7150f0dea4b1d8a785d2000052bcdfbd5` (rebuild: plan, update, routes, tests, DR extension, regenerated chain)
-- Record commit: `4af341e7de8035e7effc8932bd60561a61a074b8` (fills the content SHA above + rebuilds the AI handoff archive)
-- Recovery-index commit: `9ce9a37025bd4c6f1fc1259370807770854c1c41` (12-session index + go-live brief)
-- PR #32 merged as `1c13650ce19e18cdc80fe6f8e9ded4fe8c3e6a99` (2026-10-06); its verify run is checkpoint #29, recorded in the follow-up commit on this branch.
-
-Primary path — run from the repository root on this branch:
-
-```bash
-git status --short                                   # expect clean except intended files
-git log --oneline -3                                 # expect the commits above, on d46d8b3
-git push origin arena/6bc12929-vyomarajai
-gh pr create --title "Rebuild next-session plan, session update, routes and DR record" \
-  --body "Recovery rebuild. The prior session's commits never reached GitHub (verified absent); this re-implements the plan, the update, the viewer routes and the DR extension from live evidence. See NEXT_SESSION_PLAN_2026_10_07.md section 7."
-gh pr checks <PR> --watch                            # wait for green; do not merge on red
-gh pr merge <PR> --merge                             # merge commit, never squash (keeps the record chain readable)
-git fetch origin main
-gh run list --workflow vyomaraj-sync-both.yml --branch main --limit 3
-```
-
-Fallback — if the next session is bound to a DIFFERENT branch name:
-
-```bash
-git fetch origin '+refs/heads/arena/*:refs/remotes/origin/arena/*'
-git log --oneline origin/arena/6bc12929-vyomarajai -5   # confirm the commits exist on origin
-git cherry-pick <content-commit>..<record-commit>      # onto the new session branch, or:
-git checkout origin/arena/6bc12929-vyomarajai -- <paths>  # re-apply file by file, then commit
-```
-
-Never force-push. Never merge with red checks. Never rewrite the frozen files
-listed in section 7.
+The prior work and PR #32 are already recorded in Git history. The historical push/PR-create/merge
+and fallback commands have been omitted here so they cannot be mistaken for current authorization.
+The current Arena session branch is fixed to `arena/a83291a3-vyomarajai`; consult live GitHub state
+and obtain explicit owner approval before any public merge or deployment. Never force-push or merge
+without owner approval. Never rewrite the frozen files listed in section 7.
 
 ## 2 · Verify the publish
 
@@ -67,26 +43,33 @@ python3 ops/vyomaraj-core/handover/sanitize_personal_data.py --check
 # 2. Full offline gate — must end "0 failures".
 python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci
 
-# 3. Live stack (four terminals or background processes, from the repo root):
-python3 ops/vyomaraj-core/handover/preview_reports.py --port 4174
-python3 ops/vyomaraj-core/experience/studio_server.py --port 4181 --home aghor
-python3 ops/vyomaraj-core/experience/studio_server.py --port 4182 --home aghor
-python3 ops/availability/gateway.py --port 4176 --primary-port 4181 --secondary-port 4182
+# 3. Safe preview posture: :5310 serves the public asset allowlist and bounded,
+# deterministic, ephemeral POST /api/plan for two local experiences only.
+# The owner-writer studio/gateway services remain separate and must not be exposed.
+# They enforce IPv4 loopback binds; privileged writes require request-scoped owner tokens,
+# but no issuer/key is configured. Research workers are opt-in.
 
-# 4. New routes — every line must print 200 on every port (4174, 4176, 4181, 4182):
+# 3a. If the sandbox preview is running, check the demo page and one local plan:
+curl -fsS http://127.0.0.1:5310/demo.html >/dev/null
+curl -fsS -H 'Content-Type: application/json' -d '{"experience":"bhakti","topic_id":"overview"}' http://127.0.0.1:5310/api/plan | python3 -c 'import json,sys; p=json.load(sys.stdin); assert p["ai_calls_made"] is False and p["publishing_enabled"] is False; print("local plan OK; no AI call or publishing")'
+
+# 4. Optional local GET checks — run only against that secured isolated test stack:
 for p in 4174 4176 4181 4182; do
-  for r in /reports/next-session-plan /reports/session-update \
+  for r in /reports/next-session-plan /reports/session-update /reports/monitor \
            /reports/download/next-session-plan.md /reports/download/next-session-plan.txt \
            /reports/download/session-update.md /reports/download/session-update.txt; do
     printf "%s %s " "$p" "$r"; curl -s -o /dev/null -w "%{http_code}\n" "http://127.0.0.1:$p$r"
   done
 done
 
-# 5. Recorded verifiers — must regenerate with "problems: none" / 0 problems:
+# 4b. One-shot loopback sample; report page only reads the latest snapshot.
+python3 ops/vyomaraj-core/handover/probes.py --once --state /tmp/vyomaraj-probes.jsonl
+
+# 5. Optional live verifiers — only against the secured, isolated test stack above:
 python3 ops/vyomaraj-core/handover/verify_preview.py
 python3 ops/vyomaraj-core/handover/verify_live_wiring.py
 
-# 6. DR sync — after the merge, the push run must show verify-or-sync success:
+# 6. Read-only DR diagnostics only after explicit owner authorization; never dispatch or write:
 gh run list --workflow vyomaraj-sync-both.yml --branch main --limit 2
 gh api repos/Vyomaraj1356/Vyomarajai/commits/<new-main-sha>/check-runs \
   --jq '.check_runs[] | select(.name=="verify-or-sync") | {id, conclusion}'
@@ -96,18 +79,24 @@ gh api repos/Vyomaraj1356/Vyomarajai/check-runs/<verify-id>/annotations \
 # Confirm locally: git rev-parse <new-main-sha>^{tree}
 ```
 
-## 3 · Issue #6: prepared comment and close
+## 3 · Issue #6: current owner/admin blocker; do not close
 
 Issue #6 (`[P0] Unblock private DR access and confirm the authoritative secondary
-before synchronization`) is OPEN. The verification below is current through the
-PR #31 merge (the PR #32 merge verified separately as checkpoint #29 — see the
-DR report). The writing session attempted to post this comment and received
-`403 Resource not accessible by integration` (verified live 2026-10-06): the
-token's repository permissions do not extend to issues writes — the same
-limitation as earlier sessions. The owner pastes the text and closes, per the
-procedure below.
+before synchronization`) remains OPEN/P0. The 6 October comment text below is
+historical and stale. A 7 October read-only audit found the connected identity
+can list only the primary repository; four secondary-name probes returned 404
+(which does not prove that a private repository does not exist), and Actions
+variables/secrets return 403. The exact authoritative target and current access
+are therefore not established. Keep the issue open; do not post a close-out
+comment or run any close command.
 
-Comment text at plan time (superseded — see the note after the block):
+Owner/admin next step: confirm the exact existing secondary repository and
+authorize the minimum required access. Then perform a fresh read-only target and
+permission check. Only after owner-approved replication and a fresh matching
+checkpoint should the acceptance criteria be reassessed. Never share secret
+values in chat.
+
+**Historical 6 October close-out text (preserved for provenance only; do not post):**
 
 ```text
 Issue #6 close-out — evidence re-read live through the PR #31 merge (2026-10-06)
@@ -143,51 +132,63 @@ It does NOT claim independent-site disaster recovery, runtime backup/restore,
 production RPO/RTO, or switched production traffic.
 ```
 
-> **Update, later on 2026-10-06 (session `arena/05152d2a-vyomarajai`):** this
-> text closed at checkpoint #28. The record now holds 32 MATCH checkpoints / 22
-> replication writes through the PR #34 merge, and
-> `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md` was refreshed to match it —
-> **use that file, not the block above, as the paste source.** Five posting
-> attempts were made in that session (CLI, REST, and via the new
-> `ops/dr/post_issue_closeout.py`); every one returned 403 (issues=read only).
-> The attempts and the owner's remaining actions are recorded in
-> `ops/dr/ISSUE_6_ACCESS_RECHECK_2026_10_06.json`. Execution result: see
-> `SESSION_UPDATE_2026_10_06.md` section 6.
+> **Historical update, 6 October 2026 (session `arena/05152d2a-vyomarajai`):** the comment file was
+> refreshed with a later checkpoint, but five comment/close attempts returned 403. The refreshed
+> file remains a historical draft. The 7 October access and target blockers supersede all prior
+> “paste this” or “ready to close” language. Preserve the attempt record at
+> `ops/dr/ISSUE_6_ACCESS_RECHECK_2026_10_06.json`; do not post either draft.
 
-Close procedure:
+There is no close procedure authorized in this plan. If an owner needs to recheck status, use a
+read-only query only and stop if access is denied; do not issue a comment, close, dispatch, or secret
+write:
 
 ```bash
-gh issue view 6 --json state --jq .state                     # expect OPEN
-gh issue comment 6 --body-file ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md
-gh issue close 6 --comment "Closed with the verification above; scope remains Git-snapshot replication only."
-gh issue view 6 --json state --jq .state                     # expect CLOSED
+gh issue view 6 --repo Vyomaraj1356/Vyomarajai --json state,labels,title
+# Expected current state: OPEN, P0. Do not follow this with gh issue comment or gh issue close.
 ```
 
 ## 4 · Then build, in priority order
 
-Do these AFTER sections 1–3, one pull request per item. Each item states its
-first command and its done-condition. Nothing here is built yet; the plan does
-not claim otherwise.
+These are the remaining actions, in priority order, one pull request per item.
+Items 1–3 now have local code/test progress on this working branch: manual
+monitoring, the loopback/authentication hardening and a persistent local approval
+slice. None is production monitoring or a deployed/verified provider-backed
+agent. Real owner issuer/key configuration, agent execution, and items 4–6 still
+require out-of-band owner decisions and evidence; no gate is bypassed.
 
-1. **Monitoring probes.** `/reports/realtime` measures per request, which is
-   weaker than a monitor. Build `ops/vyomaraj-core/handover/probes.py`: probes
-   each local port (listening, HTTP status, latency), appends JSONL to an
-   UNTRACKED local log, writes a latest-snapshot file, and serves it read-only
-   at `/reports/monitor` ("no probe has run yet" when absent). Tests use tmp
-   dirs. Done when: last successful check, latency, and consecutive failures
-   are readable for every port, and the gate covers the new code.
-   First command: `python3 ops/vyomaraj-core/handover/probes.py --once --state /tmp/vyomaraj-probes.jsonl`.
-2. **Owner authentication.** `ops/shriyantra/owner_guard.py` already verifies
-   Ed25519 owner approvals fail-closed, but nothing calls it. Wire it in front
-   of ONE mutating endpoint first (`/api/approvals/decide` on high-risk items),
-   deny-by-default, with tests proving unauthenticated calls fail closed and
-   the public viewer stays readable. The passkey/WebAuthn issuer and key
-   provisioning are owner actions — document them, do not fake them.
-   Done when: one endpoint enforces owner approval end-to-end in tests.
-3. **One real agent workflow.** Approvals desk + owner gate: propose → owner
-   step-up approve → execute once (replay-safe via consumed jti) → auditable
-   record. No new lane until this loop is real. Done when: the loop runs
-   against the local stack with green tests and a recorded audit entry.
+1. **Monitoring probes — LOCAL BUILD COMPLETE in this working branch.**
+   `ops/vyomaraj-core/handover/probes.py` makes one bounded GET to each of four
+   configured loopback preview ports (defaults 4174/4176/4181/4182), disables
+   proxies, refuses redirects, and keeps the host hard-wired to 127.0.0.1.
+   It records listener/HTTP/latency/last-success/consecutive-failure fields,
+   appends an untracked JSONL sample, and atomically replaces the latest JSON
+   snapshot. `/reports/monitor` is in both the report viewer and studio server;
+   its GET is read-only and says no probe has run when the snapshot is absent.
+   Ten module tests cover success/failure/recovery, redirects, atomic writes,
+   escaping, and missing/corrupt state. No dependency was installed. This is a
+   manual preview probe only: not scheduled, alerting, production uptime,
+   replication-lag, backup, or independent-site DR monitoring; `/tmp` data does
+   not survive a sandbox restart. Local validation is now complete: a fresh
+   stack on 5174/5176/5181/5182 returned 200 on all four monitor routes, the
+   verifiers reported no problems, and the offline gate passed 48/48. Exact
+   scope and sample results are in `SESSION_UPDATE_2026_10_06.md` section 9.
+   Command: `python3 ops/vyomaraj-core/handover/probes.py --once --state /tmp/vyomaraj-probes.jsonl`.
+2. **Owner-authenticated local slice — CODE IMPLEMENTED; TRUSTED CONFIG BLOCKED.**
+   The studio now verifies request-scoped Ed25519 owner tokens bound to the exact
+   action and canonical JSON payload. Approval/change decisions require step-up;
+   research writes use one-time replay protection. The approvals desk atomically
+   consumes JTI, updates the queue, stores the decision and appends a local hash-
+   chained audit event. Tests cover missing-token denial, target binding, replay,
+   concurrent writes, tampering and no publication. Real keys/issuer/security
+   epoch/replay configuration are not provisioned, so privileged calls currently
+   fail closed. Supply that configuration only through the owner's trusted
+   control plane; never ask for keys/tokens in chat.
+3. **One real agent workflow — PARTIAL, NO AGENT EXECUTION.** The owner decision
+   can be persisted locally when a real signed token is configured. No creating
+   agent is contacted, no message is sent, no publication/upgrade occurs, and the
+   local hash chain is not an external signed audit witness. The next step needs
+   owner-approved runtime/identity configuration plus an authenticated agent
+   adapter; do not count a queued/approved metadata record as a live agent.
 4. **APK signing.** The repository cannot sign (no key, no Android project —
    `verify_live_wiring.py` states this). Owner runs, on their own machine:
    `keytool -genkeypair -keystore vyomaraj-release.keystore -alias vyomaraj -keyalg RSA -keysize 2048 -validity 10000`
@@ -220,15 +221,22 @@ not claim otherwise.
 |---|---|---|---|
 | This plan | `ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md` | `/reports/next-session-plan` | `/reports/download/next-session-plan.md` · `.txt` |
 | Session update | `ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md` | `/reports/session-update` | `/reports/download/session-update.md` · `.txt` |
+| Local one-shot monitor | `ops/vyomaraj-core/handover/probes.py` + untracked `/tmp` snapshot | `/reports/monitor` | no download; page is read-only |
 | Handover notepad (frozen) | `ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_2026_10_04.txt` | `/reports/handover-notepad` | `/reports/download/handover-notepad.txt` |
 | Post-PR25 companion (frozen) | `ops/vyomaraj-core/handover/NEXT_SESSION_HANDOVER_POST_PR25_2026_10_04.txt` | `/reports/post-pr25-handover` | `/reports/download/post-pr25-handover.txt` |
 | DR sync results | `ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md` | `/reports/dr-sync` | (page only) |
 | Issue #6 resolution | `ops/dr/ISSUE_6_RESOLUTION_2026_10_04.md` | `/reports/issue-6` | (page only) |
-| Issue #6 close-out comment | `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md` | (file only — paste into GitHub) | — |
+| Historical issue #6 close-out draft (stale; do not post) | `ops/dr/ISSUE_6_CLOSEOUT_COMMENT_2026_10_06.md` | provenance only | — |
+| Current issue #6 status | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | `/reports/issue-6` | read-only report |
 | AI handoff pack | `ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip` | `/reports/ai-handoff` | `/reports/download/ai-handoff.zip` |
 
-All page and download routes answer on all four backends: viewer 4174, gateway
-4176, lane A 4181, lane B 4182 (section 2, step 4).
+The live-wiring snapshot at 06:11 UTC on 7 October recorded route responses from viewer
+4174, gateway 4176 and lane studios 4181/4182; this is historical evidence only. A follow-up
+port/process probe at 08:15 UTC found no listeners on 3000, 4174, 4176, 4181 or 4182. The
+studio/gateway code has since been hardened to loopback binds and fail-closed owner-token checks,
+but no trusted token issuer is configured and no writer process was started during this pass.
+Do not expose the rehearsal publicly or enable research-worker egress without owner-approved
+configuration and an isolated test plan.
 
 ## 7 · Recovery notes for this rebuild
 
@@ -267,10 +275,10 @@ evidence is in `ops/dr/DEPLOYED_MATCH_2026_10_04.json`
   writes. The requested rollback-commit timestamp could not be read (private
   secondary, HTTP 404 by this credential) and is recorded as a failed read with
   the public step interval `12:54:21Z-12:54:47Z` as the bounded substitute.
-- **Issue #6:** comment + close attempted five times; all 403. Still OPEN by
-  necessity, not by choice. `ops/dr/post_issue_closeout.py --post` now performs
-  comment-then-close in one validated step for a credential that has the
-  permission.
+- **Issue #6:** historical comment + close attempts returned 403 and left it OPEN. The 7 October
+  live audit found the exact secondary target/access still unverified and Actions variables/secrets
+  blocked (403); issue #6 remains OPEN/P0 and is not ready for comment or closure. Do not run
+  `ops/dr/post_issue_closeout.py --post`.
 - **Recovered/absent:** the previous session's `3ed47b3` and its
   `ask_server.py`, `test_ask_server.py` and handover note were verified absent
   from every ref, from the GitHub API (422) and from the checked-in archives.

@@ -121,10 +121,13 @@ jobs:
             exit 1
           fi
           MODE="${REQUEST_MODE:-verify}"
-          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ] && [ "$DR_SYNC_APPROVED" = true ]; then
-            MODE=sync
+          # Main pushes and the schedule are verification-only. Replication requires an
+          # explicit owner/admin workflow_dispatch after confirming the effective target.
+          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+            MODE=verify
           fi
           if [ "$MODE" = sync ]; then
+            test "$GITHUB_EVENT_NAME" = workflow_dispatch
             test "$GITHUB_REF" = refs/heads/main
             test "$DR_SYNC_APPROVED" = true
             test -n "$DR_REPO"

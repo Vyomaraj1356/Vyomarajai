@@ -3,6 +3,10 @@ system:
   home_plane: SHRIYANTRA
   service_model: 24x7x365
   public_surface: approved_outputs_only
+  runtime_status: NOT_CONFIGURED
+  runtime_activation_enabled: false
+  activation_requires_owner_step_up_and_end_to_end_evidence: true
+  configuration_scope: target_architecture_only
 brains:
   bharath:
     alias: VYOMARAJ
@@ -21,6 +25,8 @@ hermes:
   destructive_overwrite: DISABLED
   force_ref_update: DISABLED
 sync:
+  enabled: false
+  runtime_status: NOT_CONFIGURED
   direction: BIDIRECTIONAL
   model: EVENT_AND_VERSION_AWARE
   preserve_both_on_conflict: true
@@ -28,7 +34,9 @@ sync:
   secrets_replicated: false
   last_writer_wins: false
 failover:
-  automatic: true
+  enabled: false
+  automatic: false
+  owner_step_up_required: true
   require_peer_failure_confirmation: true
   require_fencing: true
   require_integrity_check: true
@@ -36,12 +44,16 @@ failover:
   require_business_probe: true
   require_hermes_witness: true
 failback:
-  automatic: true
+  enabled: false
+  automatic: false
+  owner_step_up_required: true
   require_reconciliation_complete: true
   require_integrity_check: true
   require_business_probe: true
   require_no_unresolved_conflicts: true
 content_pipeline:
+  execution_enabled: false
+  runtime_status: NOT_CONFIGURED
   research: true
   create: true
   verify: true

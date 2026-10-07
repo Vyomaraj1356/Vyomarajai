@@ -23,8 +23,16 @@ ShriYantra private control plane -> LLM foundation + Harness foundation -> share
 - Promote only validated findings; support correction and audit.
 - Stored model output is not automatically a verified fact.
 
+## Universal temporal knowledge and evidence contract
+
+All present and future categories, agents, sub-agents, topics, content items, chapters, and products inherit the Universal Knowledge Evolution Model by reference through ShriYantra's Universal Knowledge Fabric. The nine ordered layers are **Primitive / Origin -> Old -> Historical Evolution -> History -> Present -> Current State -> Trends -> Future -> Possible Futures**. One canonical versioned policy is referenced from the agent registry and RAG/CAG/MAG configuration; agents do not maintain separate copies.
+
+Each claim carries a temporal layer, evidence class, scope, uncertainty, record time, and claim-level provenance. The classes are `FACT`, `HISTORICAL_RECORD`, `CURRENT_VERIFIED_STATE`, `TREND`, `FORECAST`, `SCENARIO`, `SPECULATION`, and `UNKNOWN_UNVERIFIED`. Future-layer claims cannot be labeled as facts or verified historical/current records. RAG enforces access before retrieval; CAG keeps sources, as-of times, uncertainty, conflicting accounts, and missing layers visible; MAG retains scope and correction lineage. See `docs/architecture/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE.md` and `config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json` for the full contract.
+
+This is an architecture/reference rule, not proof of deployment. The local resolver validates metadata and record structure; a trusted production Harness/CAG must load and enforce the same policy before the system can claim that running agents inherit it. A common policy does not grant data access, agent authority, or a live Vyomaraj/Jarvis connection.
+
 ## Cascade contract
-authorize -> RAG retrieve -> CAG assemble -> MAG read authorized memory -> reason -> Harness policy gate -> execute -> validate evidence -> Hermes integrity check -> checkpoint/commit -> audit -> learn.
+authorize -> access-filtered RAG retrieve -> provenance-aware temporal classification -> CAG assemble -> MAG read authorized memory -> reason -> Harness policy gate -> execute -> validate evidence -> Hermes integrity check -> checkpoint/commit -> audit -> learn.
 Every head, agent, sub-agent and Arena task uses this shared contract; individual agents may have narrower permissions and memory scopes.
 
 ## Arena adapter

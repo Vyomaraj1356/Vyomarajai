@@ -36,6 +36,21 @@ def canonical_target(task: str, head: str, risk: str) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def canonical_action_target(action: str, payload: Any) -> str:
+    """Hash a complete API action and JSON payload for one-time owner approval."""
+    if not isinstance(action, str) or not action or len(action) > 120:
+        raise AuthorizationDenied("Approval action is invalid.")
+    try:
+        raw = json.dumps(
+            {"action": action, "payload": payload},
+            sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+            allow_nan=False,
+        ).encode("utf-8")
+    except (TypeError, ValueError, UnicodeError) as exc:
+        raise AuthorizationDenied("Approval target is not canonical JSON.") from exc
+    return hashlib.sha256(raw).hexdigest()
+
+
 def validate_claims(
     claims: dict[str, Any], *, action: str, target: str, required_scope: str,
     now: int | None = None,
@@ -64,8 +79,8 @@ def validate_claims(
         raise AuthorizationDenied("Approval issue time is invalid.")
     if now - claims["iat"] > 300:
         raise AuthorizationDenied("Approval is too old; request fresh owner approval.")
-    if not claims.get("jti"):
-        raise AuthorizationDenied("Approval must include a unique jti.")
+    if not isinstance(claims.get("jti"), str) or not claims["jti"] or len(claims["jti"]) > 256:
+        raise AuthorizationDenied("Approval must include a bounded unique jti.")
     if claims.get("action") != action or claims.get("target") != target:
         raise AuthorizationDenied("Approval does not match this exact action and target.")
     scopes = claims.get("scope", [])
@@ -80,6 +95,8 @@ def validate_claims(
     if action in {
         "user.create", "permission.change", "auth.recovery", "production.deploy",
         "external.publish", "data.destroy", "dr.failover", "dr.failback",
+        "agent.add", "agent.remove", "agent.rename", "agent.move", "agent.permission.change",
+        "approval.decide", "upgrade.approve", "upgrade.report_failure",
     } and claims.get("step_up") is not True:
         raise AuthorizationDenied("This privileged action requires explicit step-up approval.")
 
@@ -88,8 +105,21 @@ def verify_owner_approval(
     token: str, *, action: str, target: str, required_scope: str,
 ) -> dict[str, Any]:
     """Verify a compact EdDSA JWT using a control-plane public key; never issues tokens."""
-    if not token or token.count(".") != 2:
+    if not isinstance(token, str) or not token or len(token) > 16_384 or token.count(".") != 2:
         raise AuthorizationDenied("Missing or malformed owner approval token.")
+
+    # Report missing deployment configuration before importing crypto. This remains
+    # fail-closed and makes a misconfigured local service actionable rather than noisy.
+    owner = os.environ.get("VYOMARAJ_OWNER_SUBJECT", "")
+    issuer = os.environ.get("VYOMARAJ_AUTH_ISSUER", "")
+    epoch = os.environ.get("VYOMARAJ_SECURITY_EPOCH", "")
+    key_path = os.environ.get("VYOMARAJ_AUTH_PUBLIC_KEY", "")
+    if not owner or not issuer or not epoch:
+        raise AuthorizationDenied(
+            "Owner identity, trusted issuer, and security epoch must be configured."
+        )
+    if not key_path or not Path(key_path).is_file():
+        raise AuthorizationDenied("Trusted owner-approval public key is not configured.")
     try:
         from cryptography.hazmat.primitives import serialization
         from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
@@ -99,13 +129,15 @@ def verify_owner_approval(
         ) from exc
 
     header_part, payload_part, signature_part = token.split(".")
-    header = json.loads(_b64url_decode(header_part))
-    claims = json.loads(_b64url_decode(payload_part))
+    try:
+        header = json.loads(_b64url_decode(header_part))
+        claims = json.loads(_b64url_decode(payload_part))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise AuthorizationDenied("Malformed authorization token JSON.") from exc
+    if not isinstance(header, dict) or not isinstance(claims, dict):
+        raise AuthorizationDenied("Approval header and claims must be JSON objects.")
     if header.get("alg") != "EdDSA" or header.get("typ", "JWT") != "JWT":
         raise AuthorizationDenied("Only EdDSA-signed JWT approvals are accepted.")
-    key_path = os.environ.get("VYOMARAJ_AUTH_PUBLIC_KEY", "")
-    if not key_path or not Path(key_path).is_file():
-        raise AuthorizationDenied("Trusted owner-approval public key is not configured.")
     try:
         public_key = serialization.load_pem_public_key(Path(key_path).read_bytes())
         if not isinstance(public_key, Ed25519PublicKey):
@@ -117,8 +149,6 @@ def verify_owner_approval(
     except Exception as exc:
         raise AuthorizationDenied("Owner approval signature verification failed.") from exc
 
-    if not isinstance(claims, dict):
-        raise AuthorizationDenied("Approval claims must be a JSON object.")
     validate_claims(
         claims, action=action, target=target, required_scope=required_scope,
     )
@@ -149,11 +179,18 @@ def consume_approval_jti(claims: dict[str, Any]) -> None:
         raise AuthorizationDenied("This owner approval has already been used.") from exc
 
 
-def require_owner_approval(*, action: str, target: str, required_scope: str) -> dict[str, Any]:
-    """Verify and consume a short-lived approval; never issues owner tokens."""
+def require_owner_approval(
+    *, action: str, target: str, required_scope: str, token: str | None = None,
+) -> dict[str, Any]:
+    """Verify and consume a short-lived approval; never issues owner tokens.
+
+    ``token`` is request-scoped when used by an HTTP handler. The environment
+    fallback is retained only for trusted command-line callers; a web handler
+    must pass the bearer token explicitly and must never use a process-wide token.
+    """
+    selected_token = os.environ.get("VYOMARAJ_AUTHZ_TOKEN", "") if token is None else token
     claims = verify_owner_approval(
-        os.environ.get("VYOMARAJ_AUTHZ_TOKEN", ""),
-        action=action, target=target, required_scope=required_scope,
+        selected_token, action=action, target=target, required_scope=required_scope,
     )
     consume_approval_jti(claims)
     return claims

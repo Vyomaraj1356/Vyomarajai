@@ -35,3 +35,7 @@ Safety contract:
 - verify integrity before failover and failback
 
 The existing GitHub DR mirror remains a recovery layer. Repository-level Laxman automation must not be activated until the exact Laxman/Jarvis repository is supplied.
+
+## Current activation boundary
+
+Peer parity is the target policy: Bharath/Vyomaraj and Laxman/Jarvis share equal authorized capabilities under owner control. Neither peer inherits root-owner authority or may self-approve. The diagram above describes the intended design; no authenticated production peer link, heartbeat, failover, or failback is verified. Current resilience configuration is target-only with runtime activation and automatic recovery disabled. See the [current integration gap matrix](VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md).

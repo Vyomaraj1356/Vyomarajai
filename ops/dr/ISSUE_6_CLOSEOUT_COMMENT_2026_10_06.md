@@ -1,3 +1,5 @@
+> **HISTORICAL DRAFT — DO NOT POST OR USE TO CLOSE ISSUE #6.** As of the 7 October 2026 live read, issue #6 remains OPEN/P0. The exact authoritative secondary and current Actions access are unverified (secondary-name probes returned 404; Actions variables/secrets returned 403). This text is an old snapshot through PR #34 and does not meet the current owner/admin access gate. Preserve it for provenance only.
+
 Issue #6 close-out — evidence re-read live through the PR #34 merge (2026-10-06)
 
 The DR verification record now holds 32 MATCH checkpoints and 22 replication
