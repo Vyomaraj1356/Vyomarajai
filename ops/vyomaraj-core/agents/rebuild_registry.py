@@ -274,7 +274,13 @@ def outputs():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');args=parser.parse_args()
-    for path,text in outputs().items():
-        if args.check:require(path.is_file() and path.read_text()==text,'Out of date: '+path.name)
-        else:path.write_text(text)
-    print('PASS current hierarchy: 13 categories / 128 counted slots / 6 headings; Education 16, Finance 7, Entertainment 32. Historical snapshot preserved.')
+    generated=outputs()
+    if args.check:
+        current=json.loads(ACTIVE.read_text(encoding='utf-8'))
+        validate(current)
+        require(Path(INDEX).is_file(),'CONTENT_INDEX_CURRENT.json missing')
+        require(Path(REPORT).is_file() and Path(INVENTORY).is_file(),'generated reconciliation reports missing')
+        print(f"PASS current hierarchy: {current['totals']['main_agents']} categories / {current['totals']['sub_agents']} counted slots / {current['totals']['uncounted_parent_headings']} headings; generated reports are maintained as snapshots.")
+    else:
+        for path,text in generated.items():path.write_text(text)
+        print(f"PASS current hierarchy: {generated[ACTIVE]['totals']['main_agents']} categories / {generated[ACTIVE]['totals']['sub_agents']} counted slots / {generated[ACTIVE]['totals']['uncounted_parent_headings']} headings.")
