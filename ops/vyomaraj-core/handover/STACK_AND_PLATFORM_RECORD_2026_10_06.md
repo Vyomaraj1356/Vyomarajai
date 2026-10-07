@@ -8,7 +8,7 @@ This is the answer to "what technologies and platforms did we use and configure?
 
 | Area | Technology | Evidence | Note |
 |---|---|---|---|
-| Public launch page and planner demo | Static HTML + CSS + vanilla JavaScript; no bundler or framework | `index.html, launch.css, launch.js, demo.html/demo.css/demo.js; landing.html redirects to the evidence-based page` | GitHub Pages serves static files; the sandbox root opens demo.html and /index.html keeps the brand shell; GET /api/catalog and POST /api/plan exist only on the sandbox server and are not deployed to Pages |
+| Public launch page and planner demo | Static HTML + CSS + vanilla JavaScript; no bundler or framework | `index.html, launch.css, launch.js, demo.html/demo.css/demo-plan.js/demo.js, demo-catalog.json; landing.html redirects to the evidence-based page` | GitHub Pages serves a static catalog export and deterministic in-browser planner; the sandbox root opens demo.html and /index.html keeps the brand shell. Python catalog/plan APIs remain sandbox-only. |
 | Installable web shell | Web App Manifest + service worker + local PNG/SVG icons | `manifest.webmanifest, sw.js, offline.html, assets/vyomaraj-icon-*` | offline cache includes only the public landing shell; not a native Android or macOS client |
 | Product palette | Launch shell: #091323 + gold; experience previews retain Shani Blue #0a1628 + Kuber Gold #f59e0b | `launch.css, preview_reports.STYLE, styles.css` | two documented surfaces; no external font/CDN dependency on the launch page |
 | Local servers | Python 3 standard library http.server / ThreadingHTTPServer | `ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, ops/vyomaraj-core/handover/preview_reports.py, public_landing_server.py` | studio/gateway enforce loopback-only binds; public preview serves an exact asset allowlist, read-only GET /api/catalog over curated Bhakti-Shakti and Roots & Pairings content, and bounded ephemeral POST /api/plan; no privileged writers, provider calls or persistence; no Flask/FastAPI/Django |
@@ -93,11 +93,13 @@ This is the answer to "what technologies and platforms did we use and configure?
 | `Index.html` | 12,761 |
 | `landing.html` | 691 |
 | `flow-diagram.html` | 61,992 |
-| `demo.html` | 6,354 |
+| `demo.html` | 6,417 |
 | `launch.css` | 11,337 |
 | `launch.js` | 1,841 |
 | `demo.css` | 7,077 |
-| `demo.js` | 11,660 |
+| `demo-plan.js` | 5,033 |
+| `demo.js` | 11,971 |
+| `demo-catalog.json` | 55,677 |
 | `manifest.webmanifest` | 740 |
 | `sw.js` | 1,708 |
 | `offline.html` | 1,107 |

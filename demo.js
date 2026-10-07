@@ -16,10 +16,14 @@ function setStatus(message, state) {
 }
 function updateRecipes() {
   const select = $('recipe-id');
+  const previous = select.value;
+  const experience = $('experience').value;
+  const recipes = catalogData && catalogData.experience === experience
+    ? catalogData.items.filter(item => item.kind === 'recipe').map(item => ({id: item.id, label: `${item.title} (illustrative)`}))
+    : recipeOptions[experience] || [];
   select.replaceChildren(option('No recipe', ''));
-  for (const recipe of recipeOptions[$('experience').value] || []) {
-    select.append(option(recipe.label, recipe.id));
-  }
+  for (const recipe of recipes) select.append(option(recipe.label, recipe.id));
+  if (previous && recipes.some(recipe => recipe.id === previous)) select.value = previous;
 }
 let catalogData = null;
 let catalogRequestId = 0;
@@ -121,11 +125,14 @@ async function loadCatalog() {
   $('catalog-grid').replaceChildren(); $('catalog-meta').replaceChildren(); $('catalog-gates').replaceChildren();
   $('catalog-status').textContent = 'Loading the checked-in local content pack…';
   try {
-    const response = await fetch(`/api/catalog?experience=${encodeURIComponent(experience)}`, {cache: 'no-store'});
+    const response = await fetch('./demo-catalog.json', {cache: 'no-store'});
     const result = await response.json();
     if (requestId !== catalogRequestId) return;
-    if (!response.ok) throw new Error(result.error || 'The local catalog could not be loaded.');
-    catalogData = result;
+    if (!response.ok) throw new Error('The static content catalog could not be loaded.');
+    const pack = result.packs && result.packs[experience];
+    if (!pack || pack.experience !== experience) throw new Error('This content pack is not present in the static export.');
+    catalogData = pack;
+    updateRecipes();
     renderCatalog();
   } catch (error) {
     if (requestId !== catalogRequestId) return;
@@ -198,18 +205,14 @@ $('plan-form').addEventListener('submit', async event => {
     diet: $('diet').value,
   };
   if ($('recipe-id').value) body.recipe_id = $('recipe-id').value;
-  setStatus('Building a deterministic local plan. No provider or external service is being called…', 'info');
+  setStatus('Building a deterministic plan in this browser. No provider or external service is being called…', 'info');
   try {
-    const response = await fetch('/api/plan', {
-      method: 'POST', headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(body), cache: 'no-store',
-    });
-    let result;
-    try { result = await response.json(); }
-    catch (_) { throw new Error('This page is static-only here. Open the sandbox preview server that provides the bounded local planner API.'); }
-    if (!response.ok) throw new Error(result.error || 'Plan could not be built.');
+    if (!catalogData || catalogData.experience !== body.experience) {
+      throw new Error('Wait for the selected local content pack to finish loading.');
+    }
+    const result = window.VyomarajDemoPlanner.buildPlan(body, catalogData);
     renderPlan(result);
-    setStatus('Local plan created. It was not saved, sent to an agent, published, or deployed.', 'success');
+    setStatus('Browser-local plan created. Nothing was sent or saved; it was not published or deployed.', 'success');
   } catch (error) {
     setStatus(`Planner unavailable: ${error.message}`, 'error');
   } finally {

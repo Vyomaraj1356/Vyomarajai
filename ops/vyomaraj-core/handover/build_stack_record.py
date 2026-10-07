@@ -34,8 +34,8 @@ OUTPUT_JSON = HERE / 'LINK_AND_ARCHIVE_LEDGER_2026_10_06.json'
 # Verified = code in this checkout runs it. Every entry names its own evidence.
 VERIFIED_STACK = [
     ('Public launch page and planner demo', 'Static HTML + CSS + vanilla JavaScript; no bundler or framework',
-     'index.html, launch.css, launch.js, demo.html/demo.css/demo.js; landing.html redirects to the evidence-based page',
-     'GitHub Pages serves static files; the sandbox root opens demo.html and /index.html keeps the brand shell; GET /api/catalog and POST /api/plan exist only on the sandbox server and are not deployed to Pages'),
+     'index.html, launch.css, launch.js, demo.html/demo.css/demo-plan.js/demo.js, demo-catalog.json; landing.html redirects to the evidence-based page',
+     'GitHub Pages serves a static catalog export and deterministic in-browser planner; the sandbox root opens demo.html and /index.html keeps the brand shell. Python catalog/plan APIs remain sandbox-only.'),
     ('Installable web shell', 'Web App Manifest + service worker + local PNG/SVG icons',
      'manifest.webmanifest, sw.js, offline.html, assets/vyomaraj-icon-*',
      'offline cache includes only the public landing shell; not a native Android or macOS client'),
@@ -176,7 +176,8 @@ def archive_inventory():
 def product_surface():
     rows = []
     for name in ('index.html', 'Index.html', 'landing.html', 'flow-diagram.html', 'demo.html',
-                 'launch.css', 'launch.js', 'demo.css', 'demo.js', 'manifest.webmanifest', 'sw.js', 'offline.html'):
+                 'launch.css', 'launch.js', 'demo.css', 'demo-plan.js', 'demo.js', 'demo-catalog.json',
+                 'manifest.webmanifest', 'sw.js', 'offline.html'):
         path = ROOT / name
         if path.is_file():
             rows.append({'name': name, 'bytes': path.stat().st_size})

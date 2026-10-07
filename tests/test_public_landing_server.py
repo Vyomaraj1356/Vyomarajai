@@ -1,6 +1,7 @@
 import hashlib
 import importlib.util
 import json
+import subprocess
 import threading
 import unittest
 from html.parser import HTMLParser
@@ -82,7 +83,7 @@ class PublicLandingServerTests(unittest.TestCase):
             self.assertIn("./demo.html", public_shell)
 
     def test_demo_page_assets_are_explicitly_allowlisted_and_served_exactly(self):
-        for route in ("/demo.html", "/demo.css", "/demo.js"):
+        for route in ("/demo.html", "/demo.css", "/demo.js", "/demo-plan.js", "/demo-catalog.json"):
             with self.subTest(route=route), urllib.request.urlopen(self.url + route) as response:
                 self.assertEqual(response.status, 200)
                 self.assertEqual(response.read(), (ROOT / route.lstrip("/")).read_bytes())
@@ -92,8 +93,9 @@ class PublicLandingServerTests(unittest.TestCase):
         self.assertIn("LIVE SANDBOX DEMO · NOT PRODUCTION", html)
         self.assertIn("Browse the local library", html)
         self.assertIn("No model / AI call", html)
-        self.assertIn("Neither the request nor the result is stored.", html)
+        self.assertIn("neither the request nor the result is stored.", html)
         self._assert_catalog_exposes_real_local_entries_sources_and_review_limits()
+        self._assert_static_demo_planner_builds_local_plans()
 
     def _assert_catalog_exposes_real_local_entries_sources_and_review_limits(self):
         status, headers, bhakti = self.request_get_json("/api/catalog?experience=bhakti")
@@ -131,6 +133,31 @@ class PublicLandingServerTests(unittest.TestCase):
         self.assertTrue(event["source_references"])
         self.assertIn("upcoming", liquor["review_gates"][1])
         self.assertIn("allergens", liquor["review_gates"][-1])
+        bundle = json.loads((ROOT / "demo-catalog.json").read_text(encoding="utf-8"))
+        self.assertEqual(bundle["status"], "curated_static_content_export")
+        for experience in preview.DEMO_EXPERIENCES:
+            self.assertEqual(bundle["packs"][experience], preview._demo_catalog(experience))
+
+    def _assert_static_demo_planner_builds_local_plans(self):
+        script = r'''const assert = require('node:assert/strict');
+const {buildPlan} = require('./demo-plan.js');
+const {packs} = require('./demo-catalog.json');
+let plan = buildPlan({experience:'bhakti',topic_id:'sati-daksha',recipe_id:'fruit',mode:'4d',diet:'plant-based'}, packs.bhakti);
+assert.equal(plan.status, 'local_plan_created');
+assert.equal(plan.category_id, 'BHAKTI');
+assert.equal(plan.topic.id, 'sati-daksha');
+assert.equal(plan.recipe.id, 'fruit');
+assert.ok(plan.source_references.length);
+assert.equal(plan.ai_calls_made, false);
+assert.equal(plan.publishing_enabled, false);
+plan = buildPlan({experience:'liquor-bar',topic_id:'tadi-local',recipe_id:'chana',mode:'5d',diet:'plant-based'}, packs['liquor-bar']);
+assert.equal(plan.topic.id, 'tadi-local');
+assert.equal(plan.canonical_agent_ids.length, 2);
+assert.ok(plan.review_gates.some(gate => gate.includes('no cited source')));
+assert.throws(() => buildPlan({experience:'bhakti',topic_id:'not-real'}, packs.bhakti), /not part/);
+'''
+        result = subprocess.run(["node", "-e", script], cwd=ROOT, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def _assert_catalog_rejects_unapproved_queries_and_write_methods(self):
         for path in (

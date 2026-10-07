@@ -1,0 +1,1477 @@
+{
+  "schema_version": 1,
+  "status": "curated_static_content_export",
+  "packs": {
+    "bhakti": {
+      "schema_version": 1,
+      "status": "local_catalog_loaded",
+      "experience": "bhakti",
+      "category_id": "BHAKTI",
+      "canonical_agent_ids": [],
+      "title": "Bhakti-Shakti · Sacred Stories & Living Traditions",
+      "content_pack_status": "researched_editorial_proposal_and_local_prototype",
+      "updated": "2026-10-03",
+      "item_count": 35,
+      "source_reference_count": 13,
+      "linked_source_reference_count": 13,
+      "overview_source_references": [
+        {
+          "id": "shiva",
+          "title": "Britannica — Shiva",
+          "url": "https://www.britannica.com/topic/Shiva"
+        },
+        {
+          "id": "ardha",
+          "title": "Britannica — Ardhanarishvara",
+          "url": "https://www.britannica.com/topic/Ardhanarishvara"
+        },
+        {
+          "id": "avatars",
+          "title": "Britannica — Dashavatara",
+          "url": "https://www.britannica.com/topic/dashavatara"
+        },
+        {
+          "id": "kamakhya",
+          "title": "Incredible India — Kamakhya",
+          "url": "https://www.incredibleindia.gov.in/en/assam/guwahati/kamakhya-temple"
+        },
+        {
+          "id": "kalighat",
+          "title": "West Bengal Tourism — Kalighat",
+          "url": "https://www.wbtourism.gov.in/Heritage%20Tourism/details?template_id=1&id=63d800a0e4bbd858c20633ab"
+        },
+        {
+          "id": "tripura",
+          "title": "Tripura Tourism — Tripura Sundari",
+          "url": "https://tripuratourism.gov.in/single-tour.php?id=2"
+        },
+        {
+          "id": "ambaji",
+          "title": "Gujarat Tourism — Ambaji",
+          "url": "https://gujarattourism.com/north-zone/banaskantha/ambaji-temple.html"
+        },
+        {
+          "id": "jwala",
+          "title": "Kangra temple administration — Jawala Mata",
+          "url": "http://kangratemples.hp.gov.in/gallery/"
+        },
+        {
+          "id": "saptashrungi",
+          "title": "Nashik district — Saptashrungi",
+          "url": "https://nashik.gov.in/en/tourist-place/shree-saptshrungi-gad-vani/"
+        },
+        {
+          "id": "kolhapur",
+          "title": "Incredible India — Kolhapur",
+          "url": "https://www.incredibleindia.gov.in/en/maharashtra/kolhapur"
+        },
+        {
+          "id": "renuka",
+          "title": "Nanded district — Mahur",
+          "url": "https://nanded.gov.in/en/tourist-place/mahur-gadh/"
+        },
+        {
+          "id": "tulja",
+          "title": "Maharashtra Tourism — Dharashiv",
+          "url": "https://maharashtratourism.gov.in/districts/dharashiv/"
+        },
+        {
+          "id": "mahadev",
+          "title": "Airtel Xstream — Devon Ke Dev… Mahadev catalogue",
+          "url": "https://www.airtelxstream.in/tv-shows/devon-ke-dev-mahadev/HOTSTAR_DTH_TVSHOW_4"
+        }
+      ],
+      "items": [
+        {
+          "id": "shiv-shakti",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Shiv–Shakti: relationship and meaning",
+          "description": "Explore the relationship of Shiva and Shakti through devotional interpretations. Different traditions give different philosophical emphasis.",
+          "metadata": [
+            "Tradition: Shiv–Shakti",
+            "Evidence type: Interpretation"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "ardha",
+              "title": "Britannica — Ardhanarishvara",
+              "url": "https://www.britannica.com/topic/Ardhanarishvara"
+            },
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "ardhanarishvara",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Ardhanarishvara: a shared form",
+          "description": "The composite form joins Shiva and Parvati. Study its symbolism and artistic variations without treating one interpretation as universal.",
+          "metadata": [
+            "Tradition: Shiv–Shakti",
+            "Evidence type: Iconography"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "ardha",
+              "title": "Britannica — Ardhanarishvara",
+              "url": "https://www.britannica.com/topic/Ardhanarishvara"
+            }
+          ]
+        },
+        {
+          "id": "shiva-origins",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Names, texts and early worship",
+          "description": "Separate textual traditions and the development of worship from an invented birth date or a single chronological life story.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Historical study"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "sati-daksha",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Sati, Daksha and sacred geography",
+          "description": "A cycle of stories about Sati and Daksha is linked in devotional traditions to the Shakti Peethas. Retell with care, without graphic detail.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Traditional narrative"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            },
+            {
+              "id": "kamakhya",
+              "title": "Incredible India — Kamakhya",
+              "url": "https://www.incredibleindia.gov.in/en/assam/guwahati/kamakhya-temple"
+            }
+          ]
+        },
+        {
+          "id": "parvati",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Parvati, devotion and union",
+          "description": "Explore Parvati’s devotion and her union with Shiva as told across narrative traditions, rather than as one fixed historical sequence.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Traditional narrative"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "family",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Ganesha, Skanda and family stories",
+          "description": "Meet the household stories associated with Shiva and Parvati. Versions of origin stories differ, and retellings should name their source.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Traditional narrative"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "neelakantha",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Neelakantha and the ocean-churning story",
+          "description": "The blue-throated form is associated with Shiva containing poison during the ocean-churning narrative. It is religious storytelling, not a real-world safety practice.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Traditional narrative"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "ganga",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Gangadhara and the descent of Ganga",
+          "description": "Follow narratives of the Ganges descending through Shiva’s locks, and distinguish devotional meaning from geographical explanation.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Traditional narrative"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "moon",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "The crescent moon and sacred symbols",
+          "description": "Read the crescent moon and other attributes as iconographic themes. Connect to the existing Nandi, Vasuki, Trishul and Damru content modules for further review.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Iconography"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "nataraja",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Nataraja: dance, change and renewal",
+          "description": "Explore Shiva’s dancing form through art and religious interpretation. Do not promise that a visual model reproduces a consecrated image or ritual.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Iconography"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "forms",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Bhairava, Tripurari and the lingam",
+          "description": "Introduce distinct forms and stories as separate study paths; avoid merging regional versions or calling symbolic accounts scientific events.",
+          "metadata": [
+            "Tradition: Shiva story",
+            "Evidence type: Traditional narrative"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "living-traditions",
+          "kind": "topic",
+          "diet": null,
+          "section": "Sacred stories",
+          "title": "Temples, festivals and living traditions",
+          "description": "Connect narratives with temple-specific histories, devotional communities and festival practices. Current timings and ritual rules need local verification.",
+          "metadata": [
+            "Tradition: Living heritage",
+            "Evidence type: Research pathway"
+          ],
+          "content_status": "proposed_editorial_mapping",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "shiva",
+              "title": "Britannica — Shiva",
+              "url": "https://www.britannica.com/topic/Shiva"
+            }
+          ]
+        },
+        {
+          "id": "avatar-01",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Matsya",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Fish"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-02",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Kurma",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Tortoise"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-03",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Varaha",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Boar"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-04",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Narasimha",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Man-lion"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-05",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Vamana",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Dwarf form"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-06",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Parashurama",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Rama with an axe"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-07",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Rama",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Rama"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-08",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Krishna",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Krishna"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-09",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Buddha",
+          "description": "Selected Dashavatara sequence, not every manifestation of Vishnu. Lists vary by tradition; the existing repository combines Buddha/Balarama in one record, which is not silently overwritten.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Buddha in this selected list"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "avatar-10",
+          "kind": "topic",
+          "diet": null,
+          "section": "Avatar traditions",
+          "title": "Kalki",
+          "description": "A devotional avatar tradition, not a dated historical claim. Regional lists and interpretations may vary.",
+          "metadata": [
+            "Tradition: Narayan / Vishnu avatars",
+            "Form: Future incarnation in the tradition"
+          ],
+          "content_status": "selected_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "avatars",
+              "title": "Britannica — Dashavatara",
+              "url": "https://www.britannica.com/topic/dashavatara"
+            }
+          ]
+        },
+        {
+          "id": "kamakhya",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Kamakhya",
+          "description": "Kamakhya is identified as a Shakti Peetha on Nilachal Hills in the official tourism account. The source presents the Sati association as a religious legend, not an archaeological finding.",
+          "metadata": [
+            "Location: Guwahati, Assam",
+            "Region: East / Northeast",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "kamakhya",
+              "title": "Incredible India — Kamakhya",
+              "url": "https://www.incredibleindia.gov.in/en/assam/guwahati/kamakhya-temple"
+            }
+          ]
+        },
+        {
+          "id": "kalighat",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Kalighat",
+          "description": "West Bengal Tourism describes the Kali shrine at Kalighat and its religious setting by the Adi Ganga. The source uses a 52-Peetha framing. Retain that distinction instead of forcing it into a universal list.",
+          "metadata": [
+            "Location: Kolkata, West Bengal",
+            "Region: East / Northeast",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "kalighat",
+              "title": "West Bengal Tourism — Kalighat",
+              "url": "https://www.wbtourism.gov.in/Heritage%20Tourism/details?template_id=1&id=63d800a0e4bbd858c20633ab"
+            }
+          ]
+        },
+        {
+          "id": "tripura",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Tripura Sundari / Matabari",
+          "description": "Tripura Tourism attributes construction of the Matabari temple to Maharaja Dhanya Manikya in 1501. The construction date is a source-attributed historical statement; the sacred-origin narrative is a separate layer. This is not the similarly named temple at Banswara.",
+          "metadata": [
+            "Location: Udaipur, Tripura",
+            "Region: East / Northeast",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "tripura",
+              "title": "Tripura Tourism — Tripura Sundari",
+              "url": "https://tripuratourism.gov.in/single-tour.php?id=2"
+            }
+          ]
+        },
+        {
+          "id": "ambaji",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Ambaji",
+          "description": "Gujarat Tourism identifies Ambaji with Arasuri Amba and the surrounding Arasur/Gabbar landscape. Sacred-origin claims are attributed to local tradition. Exact antiquity and archaeological chronology need separate scrutiny.",
+          "metadata": [
+            "Location: Banaskantha, Gujarat",
+            "Region: West",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "ambaji",
+              "title": "Gujarat Tourism — Ambaji",
+              "url": "https://gujarattourism.com/north-zone/banaskantha/ambaji-temple.html"
+            }
+          ]
+        },
+        {
+          "id": "jwala",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Jwalamukhi / Jawala Mata",
+          "description": "The temple administration describes worship associated with flames at the shrine. Its account links the shrine to Sati lore. Specific body-part wording varies even within the cited page; no definitive body-part assignment is stored.",
+          "metadata": [
+            "Location: Kangra, Himachal Pradesh",
+            "Region: North",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "jwala",
+              "title": "Kangra temple administration — Jawala Mata",
+              "url": "http://kangratemples.hp.gov.in/gallery/"
+            }
+          ]
+        },
+        {
+          "id": "kolhapur",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Mahalakshmi / Ambabai",
+          "description": "The official tourism overview includes Mahalakshmi in the regional three-and-a-half Shakti Peetha tradition. Temple history, local Kolhasur lore and architectural periods require separate attribution; no miracle or prosperity guarantee is offered.",
+          "metadata": [
+            "Location: Kolhapur, Maharashtra",
+            "Region: Maharashtra",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "kolhapur",
+              "title": "Incredible India — Kolhapur",
+              "url": "https://www.incredibleindia.gov.in/en/maharashtra/kolhapur"
+            }
+          ]
+        },
+        {
+          "id": "tulja",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Tulja Bhavani",
+          "description": "Maharashtra Tourism identifies the Tuljapur temple as part of the regional three-and-a-half grouping. Regional devotional identity is preserved; it is not automatically assigned a slot in every pan-Indian list.",
+          "metadata": [
+            "Location: Tuljapur, Maharashtra",
+            "Region: Maharashtra",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "tulja",
+              "title": "Maharashtra Tourism — Dharashiv",
+              "url": "https://maharashtratourism.gov.in/districts/dharashiv/"
+            }
+          ]
+        },
+        {
+          "id": "renuka",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Renuka Devi",
+          "description": "Nanded district describes Renuka Devi’s shrine at Mahur as an important Shaktipith of Maharashtra. The source uses qualified wording for its construction history. No exact founding year is invented here.",
+          "metadata": [
+            "Location: Mahur, Maharashtra",
+            "Region: Maharashtra",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "renuka",
+              "title": "Nanded district — Mahur",
+              "url": "https://nanded.gov.in/en/tourist-place/mahur-gadh/"
+            }
+          ]
+        },
+        {
+          "id": "saptashrungi",
+          "kind": "topic",
+          "diet": null,
+          "section": "Peetha starter profiles",
+          "title": "Saptashrungi",
+          "description": "Nashik district explicitly describes Saptashrungi as an Ardha Shaktipeeth and connects its name with seven peaks. The half-Peetha classification belongs to the regional grouping; it is not a fractional product or agent count.",
+          "metadata": [
+            "Location: Vani / Nashik, Maharashtra",
+            "Region: Maharashtra",
+            "Record: source_attributed_starter_profile"
+          ],
+          "content_status": "source_attributed_starter_profile",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "saptashrungi",
+              "title": "Nashik district — Saptashrungi",
+              "url": "https://nashik.gov.in/en/tourist-place/shree-saptshrungi-gad-vani/"
+            }
+          ]
+        },
+        {
+          "id": "mahadev-tv",
+          "kind": "topic",
+          "diet": null,
+          "section": "Screen adaptation",
+          "title": "Devon Ke Dev… Mahadev",
+          "description": "A separate television-context lane for the likely intended Mahadev serial. Compare adaptations with named narrative traditions rather than treating episodes as scripture or historical proof.",
+          "metadata": [
+            "Lane: Screen adaptation",
+            "Rights: reference only; no clips or media supplied"
+          ],
+          "content_status": "No licence for clips, music, images or actor likeness supplied.",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "mahadev",
+              "title": "Airtel Xstream — Devon Ke Dev… Mahadev catalogue",
+              "url": "https://www.airtelxstream.in/tv-shows/devon-ke-dev-mahadev/HOTSTAR_DTH_TVSHOW_4"
+            }
+          ]
+        },
+        {
+          "id": "fruit",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Illustrative food concepts",
+          "title": "Seasonal fruit plate",
+          "description": "A food-design concept; check the specific temple or household tradition before treating it as an offering.",
+          "metadata": [
+            "Diet: plant-based",
+            "Origin: editorial_prasad_style_food_concept_not_ritual_instruction"
+          ],
+          "content_status": "editorial_prasad_style_food_concept_not_ritual_instruction",
+          "ingredients": [
+            "banana",
+            "apple",
+            "washed seedless grapes"
+          ],
+          "allergens": [],
+          "steps": [
+            "Wash hands, utensils and the fruit.",
+            "Peel or cut using clean equipment; adjust cuts for choking risks and individual needs.",
+            "Arrange a small portion on a clean plate.",
+            "Serve promptly and refrigerate cut-fruit leftovers promptly."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "coconut",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Illustrative food concepts",
+          "title": "Coconut & roasted chana plate",
+          "description": "Not universally prescribed for worship or fasting; this is an editorial food concept.",
+          "metadata": [
+            "Diet: plant-based",
+            "Origin: editorial_prasad_style_food_concept_not_ritual_instruction"
+          ],
+          "content_status": "editorial_prasad_style_food_concept_not_ritual_instruction",
+          "ingredients": [
+            "fresh coconut",
+            "plain roasted chana"
+          ],
+          "allergens": [],
+          "steps": [
+            "Check ingredient labels and individual allergies, including coconut and chickpea sensitivity.",
+            "Use a clean surface and safely prepared coconut pieces.",
+            "Arrange with a modest portion of roasted chana; adapt texture for children or swallowing difficulties.",
+            "Serve hygienically; keep perishables chilled when not serving."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "yogurt",
+          "kind": "recipe",
+          "diet": "vegetarian",
+          "section": "Illustrative food concepts",
+          "title": "Plain yogurt & fruit bowl",
+          "description": "Contains milk. No medical diet, fasting certification or universal ritual suitability is claimed.",
+          "metadata": [
+            "Diet: vegetarian",
+            "Origin: editorial_prasad_style_food_concept_not_ritual_instruction"
+          ],
+          "content_status": "editorial_prasad_style_food_concept_not_ritual_instruction",
+          "ingredients": [
+            "plain pasteurised yogurt",
+            "washed banana or apple"
+          ],
+          "allergens": [
+            "milk"
+          ],
+          "steps": [
+            "Keep the pasteurised yogurt refrigerated.",
+            "Wash and prepare fruit with clean utensils.",
+            "Combine a small portion shortly before serving.",
+            "Check dairy allergy and individual suitability; return leftovers promptly to refrigeration."
+          ],
+          "source_references": []
+        }
+      ],
+      "review_gates": [
+        "Stories are editorial proposals; devotional traditions and interpretations vary.",
+        "The Peetha list is a source-attributed starter, not a complete atlas.",
+        "Temple practices and food concepts require tradition-specific human review."
+      ],
+      "provider": null,
+      "ai_calls_made": false,
+      "publishing_enabled": false,
+      "production_deployed": false
+    },
+    "liquor-bar": {
+      "schema_version": 1,
+      "status": "local_catalog_loaded",
+      "experience": "liquor-bar",
+      "category_id": "ENTERTAINMENT",
+      "canonical_agent_ids": [
+        "ENT-LIQUOR-S1",
+        "ENT-BAR-S1"
+      ],
+      "title": "Roots & Pairings — Liquor + Bar",
+      "content_pack_status": "editorial_proposal_with_browser_prototype",
+      "updated": "2026-10-03",
+      "item_count": 19,
+      "source_reference_count": 9,
+      "linked_source_reference_count": 8,
+      "overview_source_references": [
+        {
+          "id": "kerala",
+          "title": "Kerala Tourism — Kumarakom toddy culture",
+          "url": "https://www.keralatourism.org/kumarakom/toddy-shops-kumarakom.php"
+        },
+        {
+          "id": "goa",
+          "title": "Ministry of Tourism — Spirit of Goa (historical 2024 edition)",
+          "url": "https://utsav.gov.in/view-event/spirit-of-goa-festival"
+        },
+        {
+          "id": "apong",
+          "title": "Incredible India — Arunachal food culture",
+          "url": "https://www.incredibleindia.gov.in/en/arunachal-pradesh/itanagar/a-culinary-journey-through-itanagar-and-arunachal-pradesh"
+        },
+        {
+          "id": "chhang",
+          "title": "Incredible India — Kargil food guide",
+          "url": "https://www.incredibleindia.gov.in/en/ladakh/kargil/kargil-travel-and-food-guide"
+        },
+        {
+          "id": "sake",
+          "title": "UNESCO — sake-making knowledge and koji",
+          "url": "https://ich.unesco.org/en/decisions/19.COM/7.B.44"
+        },
+        {
+          "id": "agave",
+          "title": "UNESCO — agave landscape and Tequila heritage",
+          "url": "https://whc.unesco.org/en/decisions/1015/"
+        },
+        {
+          "id": "oktoberfest_history",
+          "title": "Official Oktoberfest — history",
+          "url": "https://www.oktoberfest.de/en/magazine/tradition/the-history-of-oktoberfest"
+        },
+        {
+          "id": "oktoberfest_dates",
+          "title": "Official Oktoberfest — visitor FAQ",
+          "url": "https://www.oktoberfest.de/en/information/service-for-visitors/faqs-for-wiesn-visitors"
+        },
+        {
+          "id": "who",
+          "title": "WHO — alcohol and health risk",
+          "url": "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health"
+        }
+      ],
+      "items": [
+        {
+          "id": "tadi-local",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Local tadi / toddy",
+          "description": "Requested local chapter: document producer/community accounts without inventing origin dates. Fresh sap and fermented products must not be treated as interchangeable. Local naming and product differences need field review",
+          "metadata": [
+            "Region: Maharashtra & neighbouring regions",
+            "Scope: Local"
+          ],
+          "content_status": "research_candidate",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": []
+        },
+        {
+          "id": "kallu",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Kallu / Kerala toddy",
+          "description": "Kerala Tourism describes Kumarakom toddy-shop culture, palm-sap collection, clay pots and regional food. Fresh sap is described as sweet; fermentation changes its character",
+          "metadata": [
+            "Region: Kerala, India",
+            "Scope: Regional"
+          ],
+          "content_status": "source_backed_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "kerala",
+              "title": "Kerala Tourism — Kumarakom toddy culture",
+              "url": "https://www.keralatourism.org/kumarakom/toddy-shops-kumarakom.php"
+            }
+          ]
+        },
+        {
+          "id": "goa",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Feni & urak heritage",
+          "description": "The historical Spirit of Goa listing features feni, urak, local beverages, cuisine and heritage demonstrations. Distinct local names—not interchangeable specifications",
+          "metadata": [
+            "Region: Goa, India",
+            "Scope: Regional"
+          ],
+          "content_status": "source_backed_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "goa",
+              "title": "Ministry of Tourism — Spirit of Goa (historical 2024 edition)",
+              "url": "https://utsav.gov.in/view-event/spirit-of-goa-festival"
+            }
+          ]
+        },
+        {
+          "id": "apong",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Apong",
+          "description": "Incredible India describes Apong within the socio-cultural life of indigenous communities in Arunachal Pradesh. Traditional fermented rice beverage; community variations",
+          "metadata": [
+            "Region: Arunachal Pradesh, India",
+            "Scope: Regional"
+          ],
+          "content_status": "source_backed_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "apong",
+              "title": "Incredible India — Arunachal food culture",
+              "url": "https://www.incredibleindia.gov.in/en/arunachal-pradesh/itanagar/a-culinary-journey-through-itanagar-and-arunachal-pradesh"
+            }
+          ]
+        },
+        {
+          "id": "chhang",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Chhang",
+          "description": "Incredible India describes Chhang as a Ladakhi barley-based beverage associated with festivals and celebrations. Regional fermented beverage",
+          "metadata": [
+            "Region: Ladakh, India",
+            "Scope: Regional"
+          ],
+          "content_status": "source_backed_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "chhang",
+              "title": "Incredible India — Kargil food guide",
+              "url": "https://www.incredibleindia.gov.in/en/ladakh/kargil/kargil-travel-and-food-guide"
+            }
+          ]
+        },
+        {
+          "id": "sake",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Sake-making traditions",
+          "description": "UNESCO documents koji-based sake-making knowledge and its role in festivals, weddings and other social occasions. Craft knowledge; not one universal product specification",
+          "metadata": [
+            "Region: Japan",
+            "Scope: Global"
+          ],
+          "content_status": "source_backed_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "sake",
+              "title": "UNESCO — sake-making knowledge and koji",
+              "url": "https://ich.unesco.org/en/decisions/19.COM/7.B.44"
+            }
+          ]
+        },
+        {
+          "id": "agave",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Agave & Tequila heritage",
+          "description": "UNESCO describes the agave landscape and Tequila facilities as a cultural landscape connecting cultivation and production history. Landscape, agriculture and craft heritage",
+          "metadata": [
+            "Region: Jalisco, Mexico",
+            "Scope: Global"
+          ],
+          "content_status": "source_backed_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "agave",
+              "title": "UNESCO — agave landscape and Tequila heritage",
+              "url": "https://whc.unesco.org/en/decisions/1015/"
+            }
+          ]
+        },
+        {
+          "id": "bavaria",
+          "kind": "topic",
+          "diet": null,
+          "section": "Regional traditions",
+          "title": "Bavarian festival culture",
+          "description": "The official Oktoberfest history traces its origin to royal-wedding celebrations and a horse race in 1810. Festival history rather than a tasting recommendation",
+          "metadata": [
+            "Region: Munich, Germany",
+            "Scope: Global"
+          ],
+          "content_status": "source_backed_overview",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "oktoberfest_history",
+              "title": "Official Oktoberfest — history",
+              "url": "https://www.oktoberfest.de/en/magazine/tradition/the-history-of-oktoberfest"
+            }
+          ]
+        },
+        {
+          "id": "chana",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Pairing ideas",
+          "title": "Lemon & cumin chana",
+          "description": "Crisp cucumber, soft chickpeas, citrus finish. Unsweetened lime water",
+          "metadata": [
+            "Region: Maharashtra-inspired",
+            "Diet: plant-based"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "chickpeas",
+            "cucumber",
+            "tomato",
+            "lemon",
+            "cumin"
+          ],
+          "allergens": [],
+          "steps": [
+            "Cook chickpeas until tender, or rinse ready-cooked chickpeas.",
+            "Wash and chop the vegetables using clean equipment.",
+            "Combine with lemon and cumin; keep added salt modest.",
+            "Serve promptly; chill leftovers promptly."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "peanuts",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Pairing ideas",
+          "title": "Roasted peanut koshimbir",
+          "description": "Crunch with a fresh citrus contrast. Plain sparkling water",
+          "metadata": [
+            "Region: Maharashtra-inspired",
+            "Diet: plant-based"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "unsalted roasted peanuts",
+            "cucumber",
+            "coriander",
+            "lemon"
+          ],
+          "allergens": [
+            "peanut"
+          ],
+          "steps": [
+            "Wash and chop cucumber and coriander.",
+            "Add a small portion of unsalted roasted peanuts.",
+            "Dress with lemon; do not add sweet bottled dressing by default.",
+            "Check nut allergies and cross-contact before serving."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "moong",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Pairing ideas",
+          "title": "Cooked moong chaat",
+          "description": "Soft beans with bright herbs and acidity. Mint water",
+          "metadata": [
+            "Region: India-inspired",
+            "Diet: plant-based"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "cooked moong beans",
+            "tomato",
+            "onion",
+            "coriander",
+            "lemon"
+          ],
+          "allergens": [],
+          "steps": [
+            "Cook moong beans thoroughly rather than serving raw sprouts.",
+            "Wash and chop vegetables separately from raw animal foods.",
+            "Mix with herbs and lemon; add chilli to preference.",
+            "Serve fresh and refrigerate leftovers promptly."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "sundal",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Pairing ideas",
+          "title": "Chickpea sundal bowl",
+          "description": "Warm spice, gentle sweetness, tender pulses. Plain water",
+          "metadata": [
+            "Region: South India-inspired",
+            "Diet: plant-based"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "cooked chickpeas",
+            "grated coconut",
+            "curry leaves",
+            "cumin"
+          ],
+          "allergens": [],
+          "steps": [
+            "Use fully cooked chickpeas.",
+            "Warm curry leaves and cumin in a small amount of oil.",
+            "Toss with chickpeas and a little coconut.",
+            "Check every ingredient and keep cooked food at safe serving temperatures."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "tofu",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Pairing ideas",
+          "title": "Pepper & lime tofu bites",
+          "description": "Peppery, citrus-led, soft with browned edges. Unsweetened iced tea",
+          "metadata": [
+            "Region: Global-inspired",
+            "Diet: plant-based"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "firm tofu",
+            "bell pepper",
+            "lime",
+            "black pepper"
+          ],
+          "allergens": [
+            "soy"
+          ],
+          "steps": [
+            "Check the tofu label and soy allergy suitability.",
+            "Cut tofu and washed peppers into bite-sized pieces.",
+            "Bake or pan-cook with a little oil until thoroughly heated.",
+            "Finish with lime and pepper; serve with vegetables."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "paneer",
+          "kind": "recipe",
+          "diet": "vegetarian",
+          "section": "Pairing ideas",
+          "title": "Herbed paneer & peppers",
+          "description": "Creamy texture with herbs and citrus. Cucumber water",
+          "metadata": [
+            "Region: India-inspired",
+            "Diet: vegetarian"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "paneer",
+            "bell pepper",
+            "cumin",
+            "coriander",
+            "lemon"
+          ],
+          "allergens": [
+            "milk"
+          ],
+          "steps": [
+            "Check milk allergy suitability and refrigeration.",
+            "Cut paneer and washed peppers.",
+            "Cook with a little oil and the spices until thoroughly heated.",
+            "Finish with fresh herbs; include vegetables rather than only cheese."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "fish",
+          "kind": "recipe",
+          "diet": "pescatarian",
+          "section": "Pairing ideas",
+          "title": "Banana-leaf fish plate",
+          "description": "Gentle aromatics, flaky texture, lime finish. Plain water",
+          "metadata": [
+            "Region: Kerala-inspired",
+            "Diet: pescatarian"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "fish fillet",
+            "banana leaf",
+            "ginger",
+            "lime",
+            "cooked vegetables"
+          ],
+          "allergens": [
+            "fish"
+          ],
+          "steps": [
+            "Use safely sourced fish and keep it chilled before cooking.",
+            "Prepare separately from ready-to-eat vegetables.",
+            "Wrap with ginger and cook until fish reaches a verified safe internal temperature using local food-safety guidance.",
+            "Check bones and serve with cooked vegetables."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "veg",
+          "kind": "recipe",
+          "diet": "plant-based",
+          "section": "Pairing ideas",
+          "title": "Roasted vegetable crunch",
+          "description": "Roasted sweetness, crisp edges, gentle spice. Unsweetened lemon water",
+          "metadata": [
+            "Region: Global-inspired",
+            "Diet: plant-based"
+          ],
+          "content_status": "original_editorial_concept_not_authenticity_certified",
+          "ingredients": [
+            "carrot",
+            "cauliflower",
+            "bell pepper",
+            "cumin",
+            "lemon"
+          ],
+          "allergens": [],
+          "steps": [
+            "Wash the vegetables and use clean utensils.",
+            "Cut into even pieces and coat lightly with oil and cumin.",
+            "Roast until cooked; adjust texture for the diner.",
+            "Finish with lemon and serve without a heavy salty sauce."
+          ],
+          "source_references": []
+        },
+        {
+          "id": "spirit-goa",
+          "kind": "event",
+          "diet": null,
+          "section": "Recorded event listings",
+          "title": "Spirit of Goa",
+          "description": "The cited listing describes the 2024 edition. Do not advertise it as an upcoming event; later dates require organiser confirmation.",
+          "metadata": [
+            "Region: Goa, India",
+            "Dates: 2024-05-17 – 2024-05-19",
+            "Date state: historical_edition_only"
+          ],
+          "content_status": "historical_edition_only",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "goa",
+              "title": "Ministry of Tourism — Spirit of Goa (historical 2024 edition)",
+              "url": "https://utsav.gov.in/view-event/spirit-of-goa-festival"
+            }
+          ]
+        },
+        {
+          "id": "oktoberfest",
+          "kind": "event",
+          "diet": null,
+          "section": "Recorded event listings",
+          "title": "Oktoberfest",
+          "description": "Published dates from the organiser FAQ, checked 3 October 2026. Recheck changes, access and visitor rules before travel; no live availability feed.",
+          "metadata": [
+            "Region: Munich, Germany",
+            "Dates: 2026-09-19 – 2026-10-04",
+            "Date state: organiser_published_dates_checked_2026_10_03"
+          ],
+          "content_status": "organiser_published_dates_checked_2026_10_03",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": [
+            {
+              "id": "oktoberfest_dates",
+              "title": "Official Oktoberfest — visitor FAQ",
+              "url": "https://www.oktoberfest.de/en/information/service-for-visitors/faqs-for-wiesn-visitors"
+            }
+          ]
+        },
+        {
+          "id": "local-calendar",
+          "kind": "event",
+          "diet": null,
+          "section": "Recorded event listings",
+          "title": "Local tadi, harvest and community heritage events",
+          "description": "No event, date or venue invented. Add community-authorised and organiser-verified listings.",
+          "metadata": [
+            "Region: Local / regional",
+            "Date state: research_candidate"
+          ],
+          "content_status": "research_candidate",
+          "ingredients": [],
+          "allergens": [],
+          "steps": [],
+          "source_references": []
+        }
+      ],
+      "review_gates": [
+        "Tradition entries may be research candidates; producer, product strength and provenance are not certified.",
+        "Event records can be historical; do not present a past edition as upcoming.",
+        "Local legal-age and alcohol-law review is required before any alcohol-related release.",
+        "Ingredients, allergens, food handling and cross-contact require human review."
+      ],
+      "provider": null,
+      "ai_calls_made": false,
+      "publishing_enabled": false,
+      "production_deployed": false
+    }
+  }
+}

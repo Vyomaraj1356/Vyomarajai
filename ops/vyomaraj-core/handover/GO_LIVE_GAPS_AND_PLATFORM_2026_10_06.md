@@ -1,6 +1,6 @@
 # GO-LIVE GAPS, PLATFORM CHOICE, AND MOVING THE WORK
 
-Written 2026-10-07 14:58 UTC. Repository measurements are computed from this checkout; GitHub and Pages facts are
+Written 2026-10-07 15:04 UTC. Repository measurements are computed from this checkout; GitHub and Pages facts are
 from live read-only queries on 7 October 2026, not assumptions from a chat. Re-read those external
 states before acting; verify local lines with the commands in section 7.
 
@@ -33,7 +33,7 @@ that lives in Arena's own session history, not in the repo (section 5).
 ## 2 · What is genuinely live today
 
 - GitHub Pages API read at `2026-10-07T08:28:20Z` reports `built` from `main:/` at `04b7ae60` (latest build `2026-10-07T03:45:29Z`). This feature branch is not deployed; owner review/merge and a successful new Pages build are separate requirements.
-- The exact-asset allowlisted sandbox preview on :5310 is `session-scoped; check its listener live in the current sandbox`. It serves a curated read-only GET `/api/catalog` and a bounded deterministic POST `/api/plan` for Bhakti-Shakti and Roots & Pairings; plans are ephemeral and there are no provider calls, visitor-data persistence, privileged writer routes or owner-authentication claims. The separate local heartbeat snapshot reports `not_checked`; blank example URLs mean no peer was contacted. Neither local tool proves production readiness.
+- The public web preview remains on `main` until a reviewed merge. Its static demo bundle includes curated local content and a deterministic in-browser planner for Bhakti-Shakti and Roots & Pairings; the session sandbox additionally serves read-only GET `/api/catalog` and ephemeral POST `/api/plan` routes. There are no provider calls, visitor-data persistence, privileged writer routes or owner-authentication claims. The separate local heartbeat snapshot reports `not_checked`; blank example URLs mean no peer was contacted. None proves production AI peers or DR.
 - Scheduled Actions run `37605789908` / check `112741170924` completed `2026-10-07T10:13:11Z` with status `MATCH`, `data_match=true`, equal recorded trees `986288ee2cc4ec4d89400320150ea893f7a7a2de` / `986288ee2cc4ec4d89400320150ea893f7a7a2de`, and `traffic_switched=NONE`. Main-push runs `37567565649, 37568236297` recorded automatic snapshot writes. This evidence covers tracked Git only; the Actions variable may override the checked-in fallback. The effective target is `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here`; current Arena reads see 1 repository, 4 candidate secondary paths return 404 (ambiguous), and Actions variables/secrets reads returned `403 Resource not accessible by integration` / `403 Resource not accessible by integration`. Issue #6 stays OPEN/P0; no audit-session dispatch, comment, merge or deployment occurred.
 - The report chain includes the gate receipt, configuration/platform checks, issue ledger, DR sync report, integration-alignment audit, peer architecture/heartbeat plan, AI handoff, runbook and Arena session recovery index.
 - A privacy guard that fails the build if a personal email or phone number returns to any tracked

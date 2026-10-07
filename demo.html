@@ -8,6 +8,7 @@
   <title>Local Planner Demo · Vyomaraj</title>
   <link rel="stylesheet" href="./launch.css">
   <link rel="stylesheet" href="./demo.css">
+  <script src="./demo-plan.js" defer></script>
   <script src="./demo.js" defer></script>
 </head>
 <body>
@@ -83,7 +84,7 @@
         </div>
         <button id="plan-button" class="button button-primary" type="submit">Build local plan</button>
       </form>
-      <p id="plan-status" role="status" aria-live="polite">Ready. The request stays on this same-origin preview. Neither the request nor the result is stored.</p>
+      <p id="plan-status" role="status" aria-live="polite">Ready. Plan generation runs locally in this browser tab; neither the request nor the result is stored.</p>
     </section>
 
     <section id="result" class="result-card" hidden aria-labelledby="result-title">
@@ -94,7 +95,7 @@
     </section>
 
     <aside class="demo-notice" aria-label="Scope notice">
-      <strong>What this is:</strong> an implemented local rule-based planner and HTTP route.
+      <strong>What this is:</strong> a deterministic in-browser planner and a bounded sandbox HTTP route.
       <strong>What it is not:</strong> an AI model, autonomous agent, provider connection, live content search, approved owner identity, notification, database-backed queue, publication, or production deployment.
       Every plan remains unapproved and its category/agent mappings retain their repository status.
     </aside>

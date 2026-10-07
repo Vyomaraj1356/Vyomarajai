@@ -23,6 +23,8 @@ ROUTES = {
     "/demo.html": (ROOT / "demo.html", "text/html; charset=utf-8"),
     "/demo.css": (ROOT / "demo.css", "text/css; charset=utf-8"),
     "/demo.js": (ROOT / "demo.js", "text/javascript; charset=utf-8"),
+    "/demo-plan.js": (ROOT / "demo-plan.js", "text/javascript; charset=utf-8"),
+    "/demo-catalog.json": (ROOT / "demo-catalog.json", "application/json; charset=utf-8"),
     "/launch.css": (ROOT / "launch.css", "text/css; charset=utf-8"),
     "/launch.js": (ROOT / "launch.js", "text/javascript; charset=utf-8"),
     "/manifest.webmanifest": (ROOT / "manifest.webmanifest", "application/manifest+json; charset=utf-8"),
@@ -142,8 +144,9 @@ def _demo_catalog(experience: object) -> dict[str, object]:
         return references
 
     def add_item(record: dict[str, object], section: str, title: object, description: object,
-                 metadata: list[tuple[str, object]], status: object, *,
-                 ingredients: object = None, allergens: object = None, steps: object = None) -> None:
+                 metadata: list[tuple[str, object]], status: object, *, kind: str = "topic",
+                 diet: object = None, ingredients: object = None, allergens: object = None,
+                 steps: object = None) -> None:
         identity = record.get("id")
         if not isinstance(identity, str) or not TOPIC_ID.fullmatch(identity):
             return
@@ -163,6 +166,8 @@ def _demo_catalog(experience: object) -> dict[str, object]:
                        if isinstance(steps, list) else [])
         items.append({
             "id": identity,
+            "kind": kind,
+            "diet": diet if isinstance(diet, str) else None,
             "section": section[:80],
             "title": title.strip()[:240],
             "description": summary,
@@ -201,6 +206,7 @@ def _demo_catalog(experience: object) -> dict[str, object]:
             add_item(record, "Illustrative food concepts", record.get("name"), record.get("note"),
                      [("Diet", record.get("diet")), ("Origin", record.get("origin_status"))],
                      record.get("origin_status", "illustrative"),
+                     kind="recipe", diet=record.get("diet"),
                      ingredients=record.get("ingredients"), allergens=record.get("allergens"),
                      steps=record.get("procedure"))
         review_gates = [
@@ -222,6 +228,7 @@ def _demo_catalog(experience: object) -> dict[str, object]:
             add_item(record, "Pairing ideas", record.get("name"), description,
                      [("Region", record.get("region")), ("Diet", record.get("diet"))],
                      record.get("origin_status", "illustrative"),
+                     kind="recipe", diet=record.get("diet"),
                      ingredients=record.get("ingredients"), allergens=record.get("allergens"),
                      steps=record.get("procedure"))
         for record in data.get("events", []):
@@ -230,23 +237,31 @@ def _demo_catalog(experience: object) -> dict[str, object]:
             add_item(record, "Recorded event listings", record.get("name"), record.get("note"),
                      [("Region", record.get("region")), ("Dates", event_dates),
                       ("Date state", record.get("date_status"))],
-                     record.get("date_status"))
+                     record.get("date_status"), kind="event")
         review_gates = [
             "Tradition entries may be research candidates; producer, product strength and provenance are not certified.",
             "Event records can be historical; do not present a past edition as upcoming.",
             "Local legal-age and alcohol-law review is required before any alcohol-related release.",
             "Ingredients, allergens, food handling and cross-contact require human review.",
         ]
-    source_count = len({reference["id"] for item in items for reference in item["source_references"]})
+    overview_source_references = []
+    for source in data.get("sources", []):
+        if isinstance(source, dict) and isinstance(source.get("id"), str):
+            overview_source_references.extend(source_references({"source_ids": [source["id"]]}))
+    linked_source_count = len({reference["id"] for item in items for reference in item["source_references"]})
     return {
         "schema_version": 1,
         "status": "local_catalog_loaded",
         "experience": experience,
+        "category_id": "BHAKTI" if experience == "bhakti" else "ENTERTAINMENT",
+        "canonical_agent_ids": [] if experience == "bhakti" else ["ENT-LIQUOR-S1", "ENT-BAR-S1"],
         "title": str(data.get("title", experience))[:240],
         "content_pack_status": str(data.get("status", "unverified"))[:120],
         "updated": str(data.get("updated", "not recorded"))[:40],
         "item_count": len(items),
-        "source_reference_count": source_count,
+        "source_reference_count": len(overview_source_references),
+        "linked_source_reference_count": linked_source_count,
+        "overview_source_references": overview_source_references,
         "items": items,
         "review_gates": review_gates,
         "provider": None,
