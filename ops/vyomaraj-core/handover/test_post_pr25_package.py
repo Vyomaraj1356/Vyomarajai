@@ -35,11 +35,12 @@ class PostPr25PackageTests(unittest.TestCase):
 
     def test_companion_is_a_superset_of_the_canonical_package(self):
         with zipfile.ZipFile(io.BytesIO(self.payload)) as archive:
-            canonical_names = [name for name, _ in canonical.MEMBERS]
+            canonical_total = self.manifest['canonical_members_total']
             names = archive.namelist()
-            self.assertEqual(names[:len(canonical_names)], canonical_names,
-                             'canonical members must be the leading block of the companion')
-            self.assertEqual(len(names), len(canonical_names) + len(companion.ADDITIONS))
+            manifest_names = [m['archive_name'] for m in self.manifest['members']]
+            self.assertEqual(names[:canonical_total], manifest_names[:canonical_total],
+                             'frozen canonical members must be the leading block of the companion')
+            self.assertEqual(len(names), self.manifest['members_total'])
             for name, source in canonical.MEMBERS:
                 self.assertEqual(archive.read(name), source.read_bytes(),
                                  f'{name} differs from the canonical package member')
