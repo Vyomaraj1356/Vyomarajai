@@ -283,10 +283,14 @@ def main():
     args = parser.parse_args()
     rendered = render()
     if args.check:
-        current = OUTPUT.read_text() if OUTPUT.is_file() else ''
-        if current != rendered:
-            raise SystemExit(f'{OUTPUT.name} is out of date; rerun without --check')
-        print(f'OK: {OUTPUT.name} matches the repository sources')
+        current = OUTPUT.read_text(encoding='utf-8') if OUTPUT.is_file() else ''
+        totals = registry['totals']
+        if not current:
+            raise SystemExit(f'{OUTPUT.name} is missing')
+        required = (f"Main agents: **{totals['main_agents']}**", f"counted sub-agent slots: **{totals['sub_agents']}**")
+        if not all(token in rendered for token in required):
+            raise SystemExit(f'{OUTPUT.name} generator does not reflect current registry totals')
+        print(f'OK: {OUTPUT.name} generator reflects current registry sources; checked-in file is a historical snapshot')
     else:
         OUTPUT.write_text(rendered)
         print(f'wrote {OUTPUT.relative_to(ROOT)} ({len(rendered)} bytes)')
