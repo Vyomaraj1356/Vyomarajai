@@ -1,29 +1,53 @@
 {
-  "recorded_at_utc": "2026-10-06",
+  "recorded_at_utc": "2026-10-07",
   "verified_stack": [
     {
-      "area": "Product page",
-      "technology": "Static HTML + CSS + vanilla JavaScript single page",
-      "evidence": "index.html, landing.html, flow-diagram.html; no bundler, no framework",
-      "note": "Pages-servable as-is"
+      "area": "Public launch page",
+      "technology": "Static HTML + CSS + vanilla JavaScript; no bundler or framework",
+      "evidence": "index.html, launch.css, launch.js; landing.html redirects to the evidence-based page",
+      "note": "GitHub Pages can serve the static shell; private APIs are not exposed"
+    },
+    {
+      "area": "Installable web shell",
+      "technology": "Web App Manifest + service worker + local PNG/SVG icons",
+      "evidence": "manifest.webmanifest, sw.js, offline.html, assets/vyomaraj-icon-*",
+      "note": "offline cache includes only the public landing shell; not a native Android or macOS client"
     },
     {
       "area": "Product palette",
-      "technology": "Shani Blue #0a1628 + Kuber Gold #f59e0b, Arial",
-      "evidence": "preview_reports.STYLE, styles.css",
-      "note": "same palette on every page of both servers"
+      "technology": "Launch shell: #091323 + gold; experience previews retain Shani Blue #0a1628 + Kuber Gold #f59e0b",
+      "evidence": "launch.css, preview_reports.STYLE, styles.css",
+      "note": "two documented surfaces; no external font/CDN dependency on the launch page"
     },
     {
       "area": "Local servers",
       "technology": "Python 3 standard library http.server / ThreadingHTTPServer",
-      "evidence": "ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, ops/vyomaraj-core/handover/preview_reports.py",
-      "note": "no Flask, no FastAPI, no Django"
+      "evidence": "ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, ops/vyomaraj-core/handover/preview_reports.py, public_landing_server.py",
+      "note": "the landing preview server has an exact public-file allowlist; no Flask, FastAPI or Django"
     },
     {
-      "area": "One-shot local monitor",
+      "area": "One-shot local service monitor",
       "technology": "Manual loopback probes with a read-only latest-snapshot page",
       "evidence": "ops/vyomaraj-core/handover/probes.py and /reports/monitor",
       "note": "JSONL + latest local snapshot; no scheduler, alerting or production/DR claim"
+    },
+    {
+      "area": "Jarvis reachability monitor",
+      "technology": "Python standard-library bounded GET probe with private local state",
+      "evidence": "ops/jarvis/heartbeat_monitor.py, heartbeat-config.example.json",
+      "note": "reports reachability only; no authenticated mutual heartbeat, failover or production health"
+    },
+    {
+      "area": "LLM draft harness",
+      "technology": "Optional no-tools OpenAI-compatible chat client with explicit invocation",
+      "evidence": "ops/jarvis/llm_harness.py, ops/jarvis/LLM_HARNESS.md",
+      "note": "no provider is configured by the repository; no tool execution or autonomous actions"
+    },
+    {
+      "area": "Panch capability metadata",
+      "technology": "Five-name mapping validator with no runtime/heartbeat claim",
+      "evidence": "ops/hanuman/capability_status.py, ops/hanuman/test_capability_status.py",
+      "note": "checks metadata only; capability execution and platform connections remain unimplemented"
     },
     {
       "area": "Bindings",
@@ -50,10 +74,10 @@
       "note": "covers Git tracked files only, not runtime state"
     },
     {
-      "area": "Tests in CI",
-      "technology": "Python unittest + node --check + node --test",
-      "evidence": "ops/vyomaraj-core/handover/run_offline_suites.py",
-      "note": "counts are recorded in TEST_EVIDENCE, not here"
+      "area": "Tests and preview release gate",
+      "technology": "Python unittest + node syntax/tests + builder checks; verification only",
+      "evidence": "ops/vyomaraj-core/handover/run_offline_suites.py, ops/vyomaraj/publish-gate.sh",
+      "note": "a preview PASS does not change the separate production status; the gate never deploys"
     },
     {
       "area": "State stores",
@@ -80,10 +104,10 @@
       "note": "tiles load from the OSM service at view time"
     },
     {
-      "area": "Charts/plans",
-      "technology": "Deterministic local planners (no AI call)",
-      "evidence": "local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py",
-      "note": "every plan states ai_calls_made=false"
+      "area": "Plans and content",
+      "technology": "Deterministic local planners by default; optional explicit no-tools LLM draft stage",
+      "evidence": "local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py, ops/jarvis/llm_harness.py",
+      "note": "provider calls require explicit local configuration and invocation; plans do not publish"
     },
     {
       "area": "Registry",
@@ -95,7 +119,13 @@
       "area": "Android app",
       "technology": "APK binary committed (24,567,022 bytes) \u2014 UNSIGNED, no project in repo",
       "evidence": "Vyomaraj-App.apk: 222 entries, 8 dex files, no META-INF signature block",
-      "note": "a stock Android device rejects it until it is signed"
+      "note": "not a release; do not install or distribute as verified"
+    },
+    {
+      "area": "macOS native app",
+      "technology": "No macOS source project or signed application archive in this checkout",
+      "evidence": "repository file inventory",
+      "note": "not available as a native release"
     }
   ],
   "claimed_only": [
@@ -122,6 +152,10 @@
     {
       "claim": "Social platform APIs configured (YouTube, Instagram, Facebook, X, Telegram, WhatsApp, Discord, Pinterest, Threads, Snapchat, Reddit, Twitch, Vimeo, Tumblr, Mastodon)",
       "source": "README_MARKET_READY.md V15.1 social registry"
+    },
+    {
+      "claim": "Panch-Shakti metadata labels/rosters stating ACTIVE or all agents LIVE",
+      "source": "ops/hanuman/hanuman-panch-shakti.json, devices.json, and ports.json; these are declarations, not runtime probes"
     },
     {
       "claim": "Revenue, follower and MRR figures (\u20b93.0L, 56.2K, \u20b91,29,000, 5.42M views, \u20b98.4L, \u20b95.67L, 2B UPI, 94.6K)",
@@ -452,7 +486,7 @@
   "product_surface": [
     {
       "name": "index.html",
-      "bytes": 2738
+      "bytes": 11398
     },
     {
       "name": "Index.html",
@@ -460,11 +494,31 @@
     },
     {
       "name": "landing.html",
-      "bytes": 22961
+      "bytes": 691
     },
     {
       "name": "flow-diagram.html",
       "bytes": 61992
+    },
+    {
+      "name": "launch.css",
+      "bytes": 11337
+    },
+    {
+      "name": "launch.js",
+      "bytes": 1841
+    },
+    {
+      "name": "manifest.webmanifest",
+      "bytes": 740
+    },
+    {
+      "name": "sw.js",
+      "bytes": 1708
+    },
+    {
+      "name": "offline.html",
+      "bytes": 1107
     }
   ],
   "chats": {

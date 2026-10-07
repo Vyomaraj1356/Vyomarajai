@@ -288,7 +288,7 @@ def facts() -> list[str]:
         ok = p.is_file() and needle in p.read_text(errors="ignore")
         checks.append(f"{'OK  ' if ok else 'FAIL'} {label}")
 
-    expect("index.html", "The King of Sky", "the Pages page is the product entry point")
+    expect("index.html", "The King of the Sky", "the Pages page is the product entry point")
     expect("ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md", "GitHub Pages",
            "the stack record names GitHub Pages as the live free host")
     expect("ops/vyomaraj-core/governance/VOICE_ENROLLMENT_POLICY.json", "on_device_only_no_vendor",

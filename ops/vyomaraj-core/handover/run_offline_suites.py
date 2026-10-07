@@ -28,6 +28,8 @@ SUITES = [
     'ops/vyomaraj-core/upgrades',
     'ops/vyomaraj-core/ledger',
     'ops/vyomaraj-core/security',
+    'ops/jarvis',
+    'ops/hanuman',
     'tests',
 ]
 NODE_COMMANDS = [
@@ -43,6 +45,8 @@ NODE_COMMANDS = [
     ['node', '--check', 'ops/vyomaraj-core/research/app.js'],
     ['node', '--check', 'ops/vyomaraj-core/agents/app.js'],
     ['node', '--check', 'ops/vyomaraj-core/aghor-experience/app.js'],
+    ['node', '--check', 'launch.js'],
+    ['node', '--check', 'sw.js'],
 ]
 BUILDER_COMMANDS = [
     ['python3', 'ops/vyomaraj-core/handover/rebuild_handover.py', '--check'],
@@ -69,7 +73,10 @@ BUILDER_COMMANDS = [
     ['python3', 'ops/vyomaraj-core/handover/auto_align.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/check_language_policy.py', '--check'],
     ['python3', '-m', 'json.tool', 'ops/vyomaraj-core/handover/AUTO_ALIGN_NEXT_SESSION.json'],
-    ['bash', '-n', 'ops/dr/run-dr.sh', 'ops/dr/failover-controller.sh', 'ops/vyomaraj-core/upgrades/upgrade-controller.sh'],
+    ['python3', '-m', 'json.tool', 'manifest.webmanifest'],
+    ['python3', '-m', 'json.tool', 'ops/hanuman/hanuman-panch-shakti.json'],
+    ['python3', '-m', 'py_compile', 'ops/vyomaraj-core/experience/public_landing_server.py', 'ops/jarvis/heartbeat_monitor.py', 'ops/hanuman/capability_status.py'],
+    ['bash', '-n', 'ops/dr/run-dr.sh', 'ops/dr/failover-controller.sh', 'ops/vyomaraj-core/upgrades/upgrade-controller.sh', 'ops/jarvis/jarvis-24x7-controller.sh', 'ops/hanuman/hanuman-controller.sh', 'ops/vyomaraj/publish-gate.sh'],
 ]
 SECRET = re.compile(r'(ghp_[A-Za-z0-9]{16,}|github_pat_[A-Za-z0-9_]{16,}|x-access-token:[^@\s]+@'
                     r'|(?:token|secret|password|pat)[=:\s]+[A-Za-z0-9_\-\.]{12,})', re.IGNORECASE)

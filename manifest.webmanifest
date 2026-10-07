@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "Vyomaraj — Private AI Studio Preview",
+  "short_name": "Vyomaraj",
+  "description": "Public web preview for the owner-controlled Vyomaraj AI studio.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#091323",
+  "theme_color": "#091323",
+  "lang": "en",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    { "src": "./assets/vyomaraj-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/vyomaraj-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./assets/vyomaraj-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

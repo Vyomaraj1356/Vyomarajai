@@ -33,17 +33,30 @@ OUTPUT_JSON = HERE / 'LINK_AND_ARCHIVE_LEDGER_2026_10_06.json'
 
 # Verified = code in this checkout runs it. Every entry names its own evidence.
 VERIFIED_STACK = [
-    ('Product page', 'Static HTML + CSS + vanilla JavaScript single page',
-     'index.html, landing.html, flow-diagram.html; no bundler, no framework',
-     'Pages-servable as-is'),
-    ('Product palette', 'Shani Blue #0a1628 + Kuber Gold #f59e0b, Arial',
-     'preview_reports.STYLE, styles.css', 'same palette on every page of both servers'),
+    ('Public launch page', 'Static HTML + CSS + vanilla JavaScript; no bundler or framework',
+     'index.html, launch.css, launch.js; landing.html redirects to the evidence-based page',
+     'GitHub Pages can serve the static shell; private APIs are not exposed'),
+    ('Installable web shell', 'Web App Manifest + service worker + local PNG/SVG icons',
+     'manifest.webmanifest, sw.js, offline.html, assets/vyomaraj-icon-*',
+     'offline cache includes only the public landing shell; not a native Android or macOS client'),
+    ('Product palette', 'Launch shell: #091323 + gold; experience previews retain Shani Blue #0a1628 + Kuber Gold #f59e0b',
+     'launch.css, preview_reports.STYLE, styles.css', 'two documented surfaces; no external font/CDN dependency on the launch page'),
     ('Local servers', 'Python 3 standard library http.server / ThreadingHTTPServer',
      'ops/vyomaraj-core/experience/studio_server.py, ops/availability/gateway.py, '
-     'ops/vyomaraj-core/handover/preview_reports.py', 'no Flask, no FastAPI, no Django'),
-    ('One-shot local monitor', 'Manual loopback probes with a read-only latest-snapshot page',
+     'ops/vyomaraj-core/handover/preview_reports.py, public_landing_server.py',
+     'the landing preview server has an exact public-file allowlist; no Flask, FastAPI or Django'),
+    ('One-shot local service monitor', 'Manual loopback probes with a read-only latest-snapshot page',
      'ops/vyomaraj-core/handover/probes.py and /reports/monitor',
      'JSONL + latest local snapshot; no scheduler, alerting or production/DR claim'),
+    ('Jarvis reachability monitor', 'Python standard-library bounded GET probe with private local state',
+     'ops/jarvis/heartbeat_monitor.py, heartbeat-config.example.json',
+     'reports reachability only; no authenticated mutual heartbeat, failover or production health'),
+    ('LLM draft harness', 'Optional no-tools OpenAI-compatible chat client with explicit invocation',
+     'ops/jarvis/llm_harness.py, ops/jarvis/LLM_HARNESS.md',
+     'no provider is configured by the repository; no tool execution or autonomous actions'),
+    ('Panch capability metadata', 'Five-name mapping validator with no runtime/heartbeat claim',
+     'ops/hanuman/capability_status.py, ops/hanuman/test_capability_status.py',
+     'checks metadata only; capability execution and platform connections remain unimplemented'),
     ('Bindings', '0.0.0.0 on every server',
      'verified by verify_preview.py and verify_live_wiring.py', 'required by the sandbox preview proxy'),
     ('Public hosting', 'GitHub Pages from main (static)',
@@ -54,8 +67,9 @@ VERIFIED_STACK = [
     ('DR mechanism', 'Git-snapshot replication between two repositories, rollback parent retained',
      'ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, workflow annotations',
      'covers Git tracked files only, not runtime state'),
-    ('Tests in CI', 'Python unittest + node --check + node --test',
-     'ops/vyomaraj-core/handover/run_offline_suites.py', 'counts are recorded in TEST_EVIDENCE, not here'),
+    ('Tests and preview release gate', 'Python unittest + node syntax/tests + builder checks; verification only',
+     'ops/vyomaraj-core/handover/run_offline_suites.py, ops/vyomaraj/publish-gate.sh',
+     'a preview PASS does not change the separate production status; the gate never deploys'),
     ('State stores', 'SQLite and JSON files on disk (no database server)',
      'ops/vyomaraj-core/research/discovery.py, ops/vyomaraj-core/ledger',
      'outside Git-snapshot replication; needs its own backup'),
@@ -65,14 +79,16 @@ VERIFIED_STACK = [
      'camera/video/audio mixer lanes in the product page', 'no upload; files stay in the tab'),
     ('Maps', 'Leaflet 1.9.4 with OpenStreetMap tiles', 'map lane in the product page',
      'tiles load from the OSM service at view time'),
-    ('Charts/plans', 'Deterministic local planners (no AI call)',
-     'local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py',
-     'every plan states ai_calls_made=false'),
+    ('Plans and content', 'Deterministic local planners by default; optional explicit no-tools LLM draft stage',
+     'local_planner.py, music_planner.py, film_planner.py, comics_planner.py, aghor_planner.py, ops/jarvis/llm_harness.py',
+     'provider calls require explicit local configuration and invocation; plans do not publish'),
     ('Registry', 'JSON registry + content index + ownership map, pinned and test-guarded',
      'ops/vyomaraj-core/agents/*.json, test_registry.py', '13 categories / 128 counted slots / 6 headings'),
     ('Android app', 'APK binary committed (24,567,022 bytes) — UNSIGNED, no project in repo',
      'Vyomaraj-App.apk: 222 entries, 8 dex files, no META-INF signature block',
-     'a stock Android device rejects it until it is signed'),
+     'not a release; do not install or distribute as verified'),
+    ('macOS native app', 'No macOS source project or signed application archive in this checkout',
+     'repository file inventory', 'not available as a native release'),
 ]
 
 # Claimed = a historical document says it, nothing in this checkout runs it.
@@ -85,6 +101,8 @@ CLAIMED_ONLY = [
     ('Social platform APIs configured (YouTube, Instagram, Facebook, X, Telegram, WhatsApp, '
      'Discord, Pinterest, Threads, Snapchat, Reddit, Twitch, Vimeo, Tumblr, Mastodon)',
      'README_MARKET_READY.md V15.1 social registry'),
+    ('Panch-Shakti metadata labels/rosters stating ACTIVE or all agents LIVE',
+     'ops/hanuman/hanuman-panch-shakti.json, devices.json, and ports.json; these are declarations, not runtime probes'),
     ('Revenue, follower and MRR figures (₹3.0L, 56.2K, ₹1,29,000, 5.42M views, ₹8.4L, ₹5.67L, '
      '2B UPI, 94.6K)', 'README_MARKET_READY.md V15.1 social registry'),
     ('ElevenLabs voice cloning, Twilio calling, Whisper captions, 4K60 video synthesis',
@@ -148,7 +166,8 @@ def archive_inventory():
 
 def product_surface():
     rows = []
-    for name in ('index.html', 'Index.html', 'landing.html', 'flow-diagram.html'):
+    for name in ('index.html', 'Index.html', 'landing.html', 'flow-diagram.html',
+                 'launch.css', 'launch.js', 'manifest.webmanifest', 'sw.js', 'offline.html'):
         path = ROOT / name
         if path.is_file():
             rows.append({'name': name, 'bytes': path.stat().st_size})
@@ -181,7 +200,7 @@ def build():
                          and row['name'].endswith(('.tar.gz', '.tgz'))]
     market = [row for row in archives if '-Final-Market-Ready' in row['name']]
     ledger = {
-        'recorded_at_utc': '2026-10-06',
+        'recorded_at_utc': '2026-10-07',
         'verified_stack': [{'area': a, 'technology': t, 'evidence': e, 'note': n} for a, t, e, n in VERIFIED_STACK],
         'claimed_only': [{'claim': c, 'source': s} for c, s in CLAIMED_ONLY],
         'link_classes': [{'class': c, 'example': u, 'status': s, 'note': n} for c, u, s, n in LINK_CLASSES],
@@ -197,7 +216,7 @@ def build():
 
 def render(ledger):
     lines = [
-        '# Vyomaraj — stack and platform record — 6 October 2026',
+        '# Vyomaraj — stack and platform record — 7 October 2026',
         '',
         '**Generated file — do not edit by hand.** Rebuild with '
         '`python3 ops/vyomaraj-core/handover/build_stack_record.py`; `--check` verifies this copy.',

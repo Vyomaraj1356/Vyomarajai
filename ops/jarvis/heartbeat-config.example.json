@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "interval_seconds": 60,
+  "timeout_seconds": 5,
+  "state_file": "~/.local/state/vyomaraj/jarvis-heartbeats.json",
+  "peers": [
+    {
+      "id": "vyomaraj-bharath",
+      "label": "Vyomaraj / Bharath",
+      "health_url": ""
+    },
+    {
+      "id": "jarvis-laxman",
+      "label": "Jarvis / Laxman",
+      "health_url": ""
+    }
+  ]
+}

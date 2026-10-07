@@ -1,3 +1,7 @@
+> **Historical draft — not a release-status source.** This file contains legacy feature, revenue, app, social-platform and heartbeat claims that are not verified by the current runtime. Do not use it to advertise connected services or distribute apps. The current evidence-based public preview is [`index.html`](index.html); the current readiness evidence is in `ops/vyomaraj-core/handover/MARKET_READINESS_AND_WIRING_2026_10_06.md`.
+>
+> The historical text is retained below for provenance; no feature is promoted to “live” by appearing here.
+
 # Vyomaraj V15.1 Final Market Ready — All Indian Gods — Trimurti Tridevi Dashavatar Major Shakti Regional Village Gram Devta Navagraha + Shiv ke Sathi — 678 LIVE — 694 total — Bharat-Laxman Dedicated — Hanuman Quality — Pandit Avatar Dhoti Kurta Tilak Mala Pothi — Revenue Reel System Vyomaraj Creates Reel Video Stories AI Trends Publish Love Like Subscribe View Hit Reposted Republished Revenue — Final Market Ready
 
 # Vyomaraj V15.1 Final Market Ready — Hanuman Panch Shakti — Shiv ke Sathi — Trishul Rudraksh Damru Shankh Nandi Vasuki Chandra Vibhuti Ganga Bilva — 678 LIVE — 694 total — Bharat-Laxman Dedicated — Hanuman Quality — Pandit Avatar Dhoti Kurta Tilak Mala Pothi — Final Market Ready
