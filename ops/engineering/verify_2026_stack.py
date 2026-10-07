@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 REQ = ROOT / "ops/engineering/requirements-2026.txt"
-CFG = ROOT / "config/engineering/ENGINEERING_2026_BASELINE.yaml"
+CFG = ROOT / "config/engineering/ENGINEERING_2026_BASELINE.yaml"\nGEO = ROOT / "config/engineering/GEOSPATIAL_AND_DAILY_STARTUP.yaml"
 
 REQUIRED_MODULES = {
     "cryptography": "security",
@@ -50,7 +50,7 @@ def main() -> int:
         if importlib.util.find_spec(module) is None:
             errors.append(f"missing Python module: {module} ({purpose})")
 
-    if CFG.is_file():
+    if not GEO.is_file():\n        errors.append(f"missing geospatial/startup config: {GEO}")\n\n    if CFG.is_file():
         text = CFG.read_text(encoding="utf-8")
         for needle in REQUIRED_TEXT:
             if needle not in text:
