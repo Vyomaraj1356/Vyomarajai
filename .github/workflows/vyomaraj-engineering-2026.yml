@@ -31,10 +31,13 @@ jobs:
       - name: Verify engineering foundation
         run: python ops/engineering/verify_2026_stack.py
 
-      - name: Compile engineering scripts
-        run: python -m compileall -q ops/engineering
+      - name: Compile engineering and Vyomaraj scripts
+        run: python -m compileall -q ops/engineering ops/vyomaraj
 
-      - name: Run Vyomaraj tests\n        run: python -m pytest -q tests\n\n      - name: Verify no architecture-lock regression
+      - name: Run Vyomaraj tests
+        run: python -m pytest -q tests
+
+      - name: Verify no architecture-lock regression
         run: |
           python - <<'PY'
           from pathlib import Path
