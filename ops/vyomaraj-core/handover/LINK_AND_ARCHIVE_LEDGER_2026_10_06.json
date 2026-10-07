@@ -230,7 +230,7 @@
     {
       "class": "Allowlisted sandbox landing + planner demo",
       "example": "0.0.0.0:5310",
-      "status": "SESSION-SCOPED / READ-ONLY CATALOG + PLANNER / RUNNING IN SANDBOX",
+      "status": "SESSION-SCOPED / READ-ONLY CATALOG + PLANNER",
       "note": "Exact asset allowlist plus GET /api/catalog for curated entries from two local packs and ephemeral POST /api/plan; no provider calls, visitor-data persistence, privileged writers or private paths. This is not a public deployment or production health signal."
     }
   ],
@@ -290,14 +290,7 @@
       ],
       "note": "These were automatic verify-or-sync writes observed in public Actions annotations, not writes initiated by this session. The later 10:13 scheduled confirmation (run 37605789908) was a no-op."
     },
-    "local_preview_ports_listening_at_generation": {
-      "3000": false,
-      "4174": false,
-      "4176": false,
-      "4181": false,
-      "4182": false,
-      "5310": true
-    },
+    "local_preview_scope": "Port 5310 is a session-scoped preview; listener state is transient and deliberately not persisted in this generated record.",
     "scope_limit": "tracked Git-tree equality does not prove runtime, deployed app, failover, RPO or RTO"
   },
   "archives": [

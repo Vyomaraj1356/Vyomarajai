@@ -22,7 +22,6 @@ Run:  python3 ops/vyomaraj-core/handover/build_stack_record.py
 import argparse
 import hashlib
 import json
-import socket
 import subprocess
 import zipfile
 from pathlib import Path
@@ -152,12 +151,6 @@ def git(*args):
     return subprocess.run(['git', *args], cwd=ROOT, capture_output=True, text=True).stdout.strip()
 
 
-def port_open(port: int) -> bool:
-    with socket.socket() as sock:
-        sock.settimeout(0.2)
-        return sock.connect_ex(('127.0.0.1', port)) == 0
-
-
 def archive_inventory():
     rows = []
     patterns = ['Vyomaraj-Handover-*.zip', 'Vyomaraj-V*-Final-Market-Ready.zip',
@@ -225,11 +218,6 @@ def build():
             row[3] = (f"scheduled check {dr.get('completed_at_utc')} reports equal tracked Git trees "
                       f"({dr.get('primary_tree')}); canonical target identity and runtime DR are unverified")
     link_classes = [list(row) for row in LINK_CLASSES]
-    preview_state = 'RUNNING IN SANDBOX' if port_open(5310) else 'STOPPED'
-    for row in link_classes:
-        if row[0] == 'Allowlisted sandbox landing + planner demo':
-            row[2] = f"SESSION-SCOPED / READ-ONLY CATALOG + PLANNER / {preview_state}"
-    preview_ports = {str(p): port_open(p) for p in (3000, 4174, 4176, 4181, 4182, 5310)}
     handover = [row for row in archives if row['name'].startswith('Vyomaraj-Handover-')
                 and row['name'].endswith('.zip')]
     handover_tarballs = [row for row in archives if row['name'].startswith('Vyomaraj-Handover-')
@@ -245,7 +233,7 @@ def build():
             'scheduled_dr_snapshot': dr,
             'dr_target_resolution': live.get('dr_target_resolution', {}),
             'observed_main_replication_writes': live.get('observed_main_replication_writes', {}),
-            'local_preview_ports_listening_at_generation': preview_ports,
+            'local_preview_scope': 'Port 5310 is a session-scoped preview; listener state is transient and deliberately not persisted in this generated record.',
             'scope_limit': 'tracked Git-tree equality does not prove runtime, deployed app, failover, RPO or RTO',
         },
         'archives': archives,
@@ -330,7 +318,7 @@ def render(ledger):
               f'| Public address | GitHub Pages from `main:/` at `{pages.get("build_commit", "unknown")[:8]}` | ₹0 | This feature branch is not deployed; static files only, no server-side runtime |',
               f'| Automation + DR | Scheduled run `{dr.get("workflow_run_id")}` reports equal tracked Git trees | ₹0 | Effective target identity `{target.get("effective_target_identity", "UNCONFIRMED")}` remains unconfirmed; runtime/failover/RPO/RTO are not proven |',
               '| App distribution | Existing APK v2 signing-block entry; signature validity not established | ₹0 tooling | Run `apksigner verify`, confirm signer provenance, then test installation on a real device before distributing; never treat block presence alone as proof |',
-              f'| Local dry runs | Five legacy Python preview services plus the allowlisted static :5310 preview are defined | ₹0 | Listener snapshot: `{current.get("local_preview_ports_listening_at_generation")}`; session-only rehearsal, not production |',
+              f'| Local dry runs | Five legacy Python preview services plus the allowlisted :5310 demo are defined | ₹0 | {current.get("local_preview_scope")}; session-only rehearsal, not production |',
               '| Voice enrollment | On-device only, consent screen + delete control | ₹0 | No cloud vendor, no cloning, no identity-document capture in the app |',
               '| Payments | None until revenue exists | ₹0 | No gateway, no UPI integration; do not advertise payments |', '',
               '**When Vyomaraj earns, this is the order to buy in** (cheapest first, each one '

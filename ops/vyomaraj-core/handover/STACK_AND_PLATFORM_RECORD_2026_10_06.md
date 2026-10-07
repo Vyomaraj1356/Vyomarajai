@@ -141,7 +141,7 @@ Everything in section 1 is the implemented repository stack: static pages, Pytho
 | Arena session links | `https://arena.ai/agent/<session-id>` | **SESSION-SCOPED / DIES** | REAL_VYOMARAJ_INVESTIGATION.md records earlier session links returning "Something went wrong". They are not storage; the repository is. |
 | Sandbox preview links | `https://<port>-<sandbox>.e2b.app` | **SESSION-SCOPED / DIES** | Every preview host from every session so far has died with its sandbox (4190, 4174-...). Never announce one as the launch address. |
 | Local studio/gateway rehearsal ports | `127.0.0.1:4176 / 4181 / 4182 (defaults; loopback policy enforced)` | **LOCAL-ONLY / NOT RUNNING** | Studio/gateway refuse non-loopback binds; privileged writer actions require request-scoped owner tokens; do not expose through public ingress. |
-| Allowlisted sandbox landing + planner demo | `0.0.0.0:5310` | **SESSION-SCOPED / READ-ONLY CATALOG + PLANNER / RUNNING IN SANDBOX** | Exact asset allowlist plus GET /api/catalog for curated entries from two local packs and ephemeral POST /api/plan; no provider calls, visitor-data persistence, privileged writers or private paths. This is not a public deployment or production health signal. |
+| Allowlisted sandbox landing + planner demo | `0.0.0.0:5310` | **SESSION-SCOPED / READ-ONLY CATALOG + PLANNER** | Exact asset allowlist plus GET /api/catalog for curated entries from two local packs and ephemeral POST /api/plan; no provider calls, visitor-data persistence, privileged writers or private paths. This is not a public deployment or production health signal. |
 
 ## 5. The zero-cost launch path (no money spent)
 
@@ -150,7 +150,7 @@ Everything in section 1 is the implemented repository stack: static pages, Pytho
 | Public address | GitHub Pages from `main:/` at `04b7ae60` | ₹0 | This feature branch is not deployed; static files only, no server-side runtime |
 | Automation + DR | Scheduled run `37605789908` reports equal tracked Git trees | ₹0 | Effective target identity `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here` remains unconfirmed; runtime/failover/RPO/RTO are not proven |
 | App distribution | Existing APK v2 signing-block entry; signature validity not established | ₹0 tooling | Run `apksigner verify`, confirm signer provenance, then test installation on a real device before distributing; never treat block presence alone as proof |
-| Local dry runs | Five legacy Python preview services plus the allowlisted static :5310 preview are defined | ₹0 | Listener snapshot: `{'3000': False, '4174': False, '4176': False, '4181': False, '4182': False, '5310': True}`; session-only rehearsal, not production |
+| Local dry runs | Five legacy Python preview services plus the allowlisted :5310 demo are defined | ₹0 | Port 5310 is a session-scoped preview; listener state is transient and deliberately not persisted in this generated record.; session-only rehearsal, not production |
 | Voice enrollment | On-device only, consent screen + delete control | ₹0 | No cloud vendor, no cloning, no identity-document capture in the app |
 | Payments | None until revenue exists | ₹0 | No gateway, no UPI integration; do not advertise payments |
 
