@@ -67,7 +67,7 @@ def main() -> int:
             sys.path.insert(0, str(ROOT))
             from ops.vyomaraj.agent_capability_inheritance import validate_inheritance
             inheritance = validate_inheritance(REGISTRY)
-            if inheritance["registry_agents"] != 133:
+            if inheritance["registry_agents"] != 153:
                 errors.append(f"unexpected current registry count: {inheritance['registry_agents']}")
             if not inheritance["all_agents_inherit_all_domains"]:
                 errors.append("not every registered agent inherits the five capability domains")
