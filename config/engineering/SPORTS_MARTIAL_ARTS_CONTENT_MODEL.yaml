@@ -1,0 +1,125 @@
+version: "1.0"
+status: "OWNER_DIRECTED_CONTENT_BRANCH"
+category_id: "SPORTS"
+parent_sub_agent_id: "SPORTS-REF-08"
+parent_sub_agent_name: "Boxing & Combat Sports"
+branch_name: "Martial Arts & Traditional Combat Practices"
+
+purpose:
+  - "Give martial arts and related combat traditions a first-class historical and cultural research path."
+  - "Do not create another counted agent unless future volume requires promotion to a dedicated slot."
+  - "Preserve the current 153 counted-agent total."
+
+temporal_model:
+  - "Origins / primitive evidence"
+  - "Ancient"
+  - "Classical"
+  - "Medieval"
+  - "Early modern"
+  - "Colonial / contact and transformation"
+  - "Modern revival / sportification"
+  - "Present state"
+  - "Current competitions and governance where applicable"
+  - "Future preservation / evolution scenarios"
+
+topic_layers:
+  global_history:
+    - "Origins and archaeological / textual evidence"
+    - "Regional development"
+    - "Transmission systems"
+    - "Masters, schools and institutions"
+    - "Cultural, social and philosophical context"
+    - "Colonialism, nationalism and modernisation"
+    - "Sportification and international competition"
+    - "Heritage preservation and extinction risk"
+  indian_traditions:
+    - "Kalaripayattu"
+    - "Thang-Ta / Huyen Lallong"
+    - "Silambam"
+    - "Mallyuddha / traditional wrestling"
+    - "Lathi and related traditional practices"
+    - "Other Indian martial traditions discovered through verified research"
+  asian_traditions:
+    - "Karate"
+    - "Judo"
+    - "Taekwondo"
+    - "Kung fu / Chinese martial traditions"
+    - "Pencak Silat / Silat"
+    - "Arnis / Eskrima / Kali"
+    - "Other Asian traditions"
+  european_and_historical:
+    - "Historical European Martial Arts"
+    - "Fencing traditions"
+    - "Historical wrestling and combat systems"
+  middle_eastern_and_other:
+    - "Wrestling traditions"
+    - "Traditional archery"
+    - "Zoorkhaneh / Pahlevani"
+    - "Chogan and related traditions"
+    - "African, Central Asian and other documented traditions"
+
+research_fields:
+  - "name and aliases"
+  - "origin and historical evidence"
+  - "development timeline"
+  - "geographic distribution"
+  - "transmission / lineage"
+  - "rules and competition where applicable"
+  - "governing bodies / heritage institutions"
+  - "equipment as historical/cultural metadata"
+  - "sportification"
+  - "UNESCO / heritage status"
+  - "current state"
+  - "future preservation and participation"
+  - "women, youth and inclusive participation"
+  - "music, dance, ritual and cultural context where relevant"
+
+safety_boundary:
+  - "Informational, historical, cultural and sports education."
+  - "No weapon construction, modification, acquisition or tactical harm instructions."
+  - "No step-by-step instructions for harming a person."
+  - "Training or medical claims require qualified-source review."
+  - "Traditional beliefs are labelled separately from verified historical/scientific claims."
+
+evidence_sources:
+  primary:
+    - "UNESCO International Centre of Martial Arts research and publications"
+    - "National sports / heritage authorities"
+    - "International federations and recognised governing bodies"
+    - "Academic research and historical primary sources"
+  verified_examples:
+    - "UNESCO ICM World Martial Arts: Towards a Global Overview — 300 martial arts"
+    - "UNESCO ICM regional research on South Asian, Southeast Asian, Middle Eastern and Central Asian traditions"
+    - "UNESCO Intangible Cultural Heritage records where applicable"
+
+process:
+  - "DISCOVER"
+  - "VERIFY"
+  - "CLASSIFY"
+  - "HISTORICAL_TIMELINE"
+  - "CONTENT_CREATE"
+  - "QUALITY_REVIEW"
+  - "OWNER_GATE"
+  - "PUBLISH"
+  - "MEASURE"
+  - "KUBER_RECONCILE"
+  - "LEARN"
+
+revenue:
+  - "documentaries / educational series"
+  - "history and culture shorts"
+  - "sports explainers"
+  - "licensed / permitted media references"
+  - "education partnerships"
+  - "heritage and tourism content where lawful"
+  - "platform monetisation subject to owner approval and platform rules"
+
+financial_control:
+  controller: "KUBER"
+  scope: "Every cost, revenue event, invoice, receivable, settlement, fee, tax and variance."
+  authority: "Financial Controller for both Vyomaraj/Bharath and Jarvis/Laxman; not technical root."
+
+owner:
+  authority: "FINAL"
+  publishing: "OWNER_APPROVAL_REQUIRED"
+  structural_change: "OWNER_ONLY"
