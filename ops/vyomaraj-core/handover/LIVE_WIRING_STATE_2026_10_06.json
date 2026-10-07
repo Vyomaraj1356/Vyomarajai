@@ -16,7 +16,7 @@
       "bytes": 26428,
       "sha256": "7dd6aec50c42e49f45e61806f4e389c9d5bf56b2f4d3272a3e6f6cafda2cf121",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.006
+      "seconds": 0.008
     },
     {
       "route": "/reports/next-session",
@@ -59,7 +59,7 @@
       "bytes": 68348,
       "sha256": "e66a0399f31927cb6cc2de355e585715ac7cc5ade154dd079c731edfd29b102b",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.004,
+      "seconds": 0.007,
       "source": "ops/vyomaraj-core/handover/DR_SYNC_RESULTS_2026_10_04.md"
     },
     {
@@ -122,7 +122,7 @@
       "bytes": 25690,
       "sha256": "9914801fbf19ddfadfb2894c7a5584ce537b9a02f4f907a05fe2dc2fc08f605e",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002,
+      "seconds": 0.003,
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md"
     },
     {
@@ -142,7 +142,7 @@
       "bytes": 5203,
       "sha256": "22b68ec01f871ff87250dae87530bc9294e1af0f59359490077aa4b32c1a28c0",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.004
+      "seconds": 0.003
     },
     {
       "route": "/reports/next-session",
@@ -212,7 +212,7 @@
       "bytes": 24664,
       "sha256": "a7f5c96322022e64a58edbb9887f5b9bb2f9a7f9ce61421a48285f02adf7554f",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.003,
+      "seconds": 0.005,
       "source": "ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md"
     },
     {
@@ -257,7 +257,7 @@
       "bytes": 33021,
       "sha256": "b3d031a262a990d485fe1623ab45a94733e502196ea4c35852ade26e102de3aa",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002,
+      "seconds": 0.004,
       "source": "ops/vyomaraj-core/handover/SESSION_UPDATE_2026_10_06.md"
     }
   ],
@@ -341,7 +341,7 @@
       "bytes": 20722,
       "sha256": "8d84b4b84c7e043465d0eeb1f25ffbae5d8a8d4cdea7e6736272a6d6b1048769",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002,
+      "seconds": 0.003,
       "source": "ops/vyomaraj-core/handover/NAVARATRI_GO_LIVE_PLAN_2026_10_11.md"
     },
     {
@@ -558,7 +558,7 @@
       "bytes": 59629,
       "sha256": "c3cf3623b98cb9d8aa364a06045e91140023bf4f062c22953a0ec95162d8ab8d",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.005,
+      "seconds": 0.007,
       "source": "ops/vyomaraj-core/handover/EXPERIENCE_CONTENTS_2026_10_03.md"
     },
     {
@@ -683,7 +683,7 @@
       "bytes": 25514,
       "sha256": "5081f87e4a3f3faae0e91e49e0e6b0390390734f63437a61326446946e8f3dc5",
       "content_type": "text/html; charset=utf-8",
-      "seconds": 0.002,
+      "seconds": 0.003,
       "source": "ops/vyomaraj-core/handover/NEXT_SESSION_PLAN_2026_10_07.md"
     },
     {

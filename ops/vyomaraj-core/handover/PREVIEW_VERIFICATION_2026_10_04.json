@@ -781,7 +781,7 @@
     }
   ],
   "studio_lanes": {
-    "4181": [
+    "5181": [
       {
         "route": "/reports/go-live",
         "expected_status": 200,
@@ -1026,7 +1026,7 @@
         "sha256": "7a1be80d12b89a9bca28d3539b0c6f453fef2a17a4e49279bb0460c0883c8345"
       }
     ],
-    "4182": [
+    "5182": [
       {
         "route": "/reports/go-live",
         "expected_status": 200,
