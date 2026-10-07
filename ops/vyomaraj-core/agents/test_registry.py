@@ -85,7 +85,7 @@ class RegistryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'heading'):r.validate(self.data)
     def test_topic_owner_and_no_duplicates(self):
         ownership=json.loads((r.HERE/'CONTENT_OWNERSHIP_CURRENT.json').read_text());index=r.content_index(ownership,self.data)
-        edu=[a for a in index['records'] if a['owner_category']=='EDU'];self.assertEqual(len(edu),21)
+        edu=[a for a in index['records'] if a['owner_category']=='EDU'];self.assertEqual(len(edu),23)
         self.assertEqual(len({a['id'] for a in index['records']}),len(index['records']))
         self.assertEqual(sum(a['id']=='EDU-TOPIC-government-schemes' for a in edu),1)
     def test_wrong_education_owner_refused(self):
