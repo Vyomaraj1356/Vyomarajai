@@ -1,0 +1,10 @@
+# Vyomaraj AI Agent OS — 2026 engineering foundation
+# Python 3.10+; bounded major lines.
+cryptography>=42,<47
+jsonschema>=4.23,<5
+PyYAML>=6.0,<7
+temporalio>=1.34,<2
+opentelemetry-api>=1.37,<2
+opentelemetry-sdk>=1.37,<2
+mcp>=2,<3
+a2a-sdk[telemetry]>=1,<2
