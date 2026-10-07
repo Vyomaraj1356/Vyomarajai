@@ -1,76 +1,254 @@
-# Vyomaraj AI Agent OS — architecture and publish alignment v1.2
+# VYOMARAJ — ARCHITECTURE, PROCESS & REVENUE CONTROL PLAN v1.5
 
-**Date:** 7 October 2026
-**Status:** Target architecture plus repository implementation assessment. This is not a claim of connected or deployed production services.
+## Identity
+VYOMARAJ AI AGENT OS  
+Brand: Vyomaraj — The King of the Sky  
+System: VYOMARAJ-AI-STUDIO  
+Baseline: VYOMARAJ_AI_AGENT_OS_v1.2_ENGINEERING_BASELINE  
+Mode: Private owner-controlled autonomous multi-agent platform
 
-## 1. Authority and peer model
-
-```text
-Owner (ultimate authority; step-up for privileged changes)
-  └─ ShriYantra private control plane (identity, policy, secret references, approvals, audit)
-       ├─ Bharath / Vyomaraj — peer core
-       ├─ Laxman / Jarvis — peer core
-       └─ Hermes — integrity, audit, recovery witness
-            └─ authorized agent and sub-agent mesh
-                 └─ approved content/data workflows
-                      └─ owner-approved publication and financial reconciliation
+## 1. ROOT AND PEER CORES
+```
+                         OWNER / ROOT
+                              |
+             Secure Web / Android / macOS / Voice
+                              |
+          +-------------------+-------------------+
+          |                                       |
+ VYOMARAJ / BHARATH                    JARVIS / LAXMAN
+ Platform + Control Core               Operations + Intelligence Core
+          |                                       |
+          +----------- PEER CORES ----------------+
+                              |
+                        SHRIYANTRA
+                              |
+        +---------------------+----------------------+
+        |                     |                      |
+ Universal Knowledge    Capability / Media       KUBER FC
+ Fabric + Education     Fabric + 3D/4D/5D         Financial Controller
+ Civilization Spine     Animation / Rendering
+                              |
+                  Agents / Sub-agents / Topics
 ```
 
-Bharath/Vyomaraj and Laxman/Jarvis have equal **authorized** capabilities under the same control-plane policy. Neither is the root authority. Peer parity does not create self-approval, permission inheritance, root access, or permission to override the owner. Hermes may attest to integrity and state transitions but cannot approve privileged actions. Arena and all external content remain untrusted task/execution surfaces.
+Vyomaraj/Bharath and Jarvis/Laxman are peer cores with full authorized capability, mutual backup and mutual recovery. Neither may self-grant root authority. The Owner remains the ultimate authority.
 
-## 2. Shared policy and knowledge fabric
+## 2. KUBER JI — FINANCIAL CONTROLLER FOR VYOMARAJ + JARVIS
+Kuber is the Financial Controller (FC) for the complete Vyomaraj/Jarvis ecosystem, not merely a Finance sub-agent.
 
-- ShriYantra's Universal Knowledge Fabric owns the canonical Universal Knowledge Evolution policy. Current and future categories, agents, sub-agents, topics, content, chapters, and products inherit by a single reference; individual agent records do not duplicate it.
-- The nine temporal layers, evidence classes, uncertainty, source lineage, as-of times, and correction history remain visible at claim level. Forecasts, scenarios, and speculation are never reported as facts.
-- The Panch-Brother model exposes five shared behavioral domains (Matiman, Shrutiman, Ketuman, Gatiman, Dhritiman) through a local read-only metadata resolver. These labels are not tools, privileges, provider access, or runtime claims.
-- Access filters apply before retrieval. Retrieved external content is data, not authority. Context assembly preserves source conflicts and missing evidence; memory promotion requires validation and provenance.
-- The shared policy and local resolver are a reference contract. Production enforcement remains `NOT_VERIFIED` until a trusted Harness/CAG loads it on every applicable request and passes end-to-end tests.
+Kuber has financial visibility across Vyomaraj/Bharath, Jarvis/Laxman, ShriYantra, every authorized agent/sub-agent, workflow, provider/API/service, creation/publishing activity with financial impact, invoice, receivable, payable, earning, expense, fee, tax, refund and adjustment.
 
-Relevant artifacts: `config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json`, `config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml`, `ops/shriyantra/knowledge_evolution.py`, and `ops/vyomaraj/capability_fabric.py`.
+Mandate: **EVERY PENNY -> ACCOUNT -> RECONCILE -> AUDIT -> CONTROL -> REPORT -> LEARN**
 
-## 3. Agent structure and financial control
+Kuber does not replace Owner authority and cannot grant itself technical root authority.
 
-The checked-in current registry remains **13 categories / 128 counted sub-agents / 421 historical reported products**. The owner-provided target is **14 / 153 / 421** with +6 FOOD, +5 EDU, and a Real Estate category containing 14 sub-agents. Do not update the canonical counts until all exact IDs/names and provenance are reconciled across the source, rules, builders, tests, viewers, gates, and current docs. Preserve the historical registry and archives. The 421 figure remains a historical aggregate, not a current deduplicated product inventory.
+## 3. SHRIYANTRA FOUNDATION
+LLM Gateway / Model Router  
+Harness  
+RAG / CAG / MAG  
+Working / Episodic / Long-term Memory  
+Universal Knowledge + Provenance  
+Education Civilization Spine  
+Evaluation / Red Team  
+Policy-as-Code  
+Tool Runtime / Sandboxing  
+MCP / A2A  
+Durable Execution  
+Event Engine / Queue  
+Identity / Workload Identity  
+OpenTelemetry  
+Security / Audit  
+Resilience / DR / Fencing  
+Multimodal Media Fabric  
+3D / 4D / 5D Experience Layer  
+Financial event/ledger interfaces
 
-KUBER is the financial controller for both peer cores, not a technical root authority. The target trace is:
+## 4. PANCH-BROTHER CAPABILITY FABRIC
+Engineering capability mapping inspired by the Brahmanda Purana names; this is a design mapping, not a claim that scripture assigns software functions.
 
-```text
-source/content version → authorized agent/task → owner-approved release → publication ID
- → gross receipts/fees/refunds/costs → net ledger event → reconciliation → append-only audit
+Matiman -> Intelligence / Strategy  
+Shrutiman -> Knowledge / Learning  
+Ketuman -> Signals / Guidance  
+Gatiman -> Execution / Mobility  
+Dhritiman -> Resilience / Constancy
+
+Every authorized agent and sub-agent inherits these domains through ShriYantra.
+
+## 5. UNIVERSAL CIVILIZATION + EDUCATION SPINE
+Education is the **civilization and universal-knowledge spine**, not a closed school-subject silo.
+
+Inheritance:
+```
+WORLD SOURCES
+ -> GLOBAL CIVILIZATIONS
+ -> INDIA CIVILIZATIONS
+ -> STATE / REGIONAL
+ -> DISTRICT / CITY / TOWN / VILLAGE
+ -> COMMUNITY / LOCAL HERITAGE
+ -> EDUCATION
+ -> AGENT -> SUB-AGENT -> TOPIC -> CONTENT -> PRODUCT / MEDIA
 ```
 
-No live payment/accounting connection or end-to-end revenue trace is verified. The local finance/planning features do not establish a KUBER production controller.
+Every civilization topic also inherits:
+```
+ORIGIN -> ANCIENT -> CLASSICAL -> MEDIEVAL -> EARLY MODERN
+-> MODERN -> CONTEMPORARY -> CURRENT -> TRENDS -> FUTURE SCENARIOS
+```
 
-## 4. Owner-authorized change and release lifecycle
+Education covers, with provenance and evidence labels: archaeology, anthropology, languages, literature, belief systems, philosophy, governance, law, economy, trade, science, agriculture, food, architecture, art, music, clothing, education, military history, people, migration and heritage.
 
-1. Authenticate the owner through the trusted control plane; bind a fresh step-up approval to the exact action, object, scope, and target hash.
-2. Validate least-privilege grant, policy version, security epoch, freshness, replay protection, idempotency key, and dependency preconditions.
-3. Build a transaction plan with before/after state, affected routing/content/knowledge/process/financial references, peer impact, recovery point, and immutable audit event.
-4. Stage the change and validate all dependent artifacts. No self-elevation or root-owner authority is possible.
-5. Apply atomically only when the runtime store and all required update adapters are present. Coordinate peer state with fencing and conflict preservation; no timestamp-only last-writer-wins or blind overwrite.
-6. Verify post-state, hash chain, peer replication/read-after-write, health and business probes. Roll back to a verified point on any mismatch.
-7. Require a separate owner decision for production publishing, spending, deployment, failover/failback, or destructive actions.
+Existing specialist ownership is preserved. Example: food history = EDU + FOOD; war history = EDU + WAR; astronomy history = EDU + ASTRO; agriculture history = EDU + AGRI. This prevents duplicate content ownership.
 
-Current code supports a signed owner-approval validator and plan-only local change validation. The repository does **not** contain an authenticated transactional registry API, dependency updater, peer mutation protocol, production audit store, or rollback/recovery service. `agent-change.sh apply` and process/recovery mutations are blocked; this is intentional.
+## 6. UNIVERSAL MULTIMODAL / MEDIA CAPABILITY INHERITANCE
+All authorized agents inherit the common multimodal capability contract:
+- multimodal reasoning
+- image generation adapter
+- video generation adapter
+- audio/voice adapter
+- animation
+- 3D model generation
+- rendering
+- scene graphs
+- timeline composition
+- interactive web experiences
+- provenance/rights checks
+- quality evaluation
 
-## 5. Product and publication path
+Special attention profiles are mandatory for **FOOD, EDUCATION, WAR and HISTORY/HERITAGE**.
 
-The intended content workflow is research → claim/provenance validation → creation → rights/privacy/cultural review → owner approval → controlled publication → permissioned analytics → settled revenue and reconciliation → learning/correction. A preview gate verifies local repository checks only; it never deploys. No social provider, publishing account, payment gateway, audience analytics, or production AI model is verified as connected.
+### 3D / 4D / 5D
+- 3D = spatial objects, people, places, maps and environments.
+- 4D = 3D + time, motion, sequence and change.
+- 5D = 4D + contextual/interactive dimensions such as provenance, scenarios, user perspective and linked knowledge.
 
-Web, Android, and macOS are separate release targets. A static PWA is not a native Android/macOS app. Android signing-block presence is not cryptographic validation or signer provenance; native source projects and real-device install evidence are absent/unverified. Every public output must remain owner-approved and privacy-safe.
+These are experience-design labels, not claims about additional physical dimensions.
 
-Location is off by default. No arbitrary phone tracking, covert monitoring, consent bypass, or legal/security bypass is part of this architecture.
+### Special domain behavior
+**FOOD:** historical kitchens, ingredients, tools, cuisines, agriculture-to-table, festivals and food science.  
+**EDUCATION:** civilizations, monuments, archaeology, manuscripts, maps, science models, timelines and classrooms.  
+**WAR:** historical/educational maps, timelines, museum-style reconstruction and non-operational simulation.  
+**HISTORY/HERITAGE:** cross-category reconstruction and evidence-linked timelines.
 
-## 6. Resilience and DR
+Provider-neutral adapter candidates include OpenAI, Anthropic, Google, Meta AI, Arena AI, local/open-source models and specialist media APIs. No provider is treated as already connected merely because an adapter name exists.
 
-Bharath/Laxman synchronization, heartbeat, fencing, immutable audit, verified backups, restore, failover/failback, rollback, and recovery are target capabilities. Current resilience configuration has runtime activation and automatic failover/failback disabled. No authenticated production peer heartbeat, application/database replication, traffic switch, measured RPO/RTO, or production restore is verified.
+## 7. DAILY STARTUP
+1. system health check
+2. owner-authority check
+3. Shri Ram invocation
+4. Hanuman invocation
+5. Ganesha mantra: ॐ गं गणपतये नमः
+6. peer synchronization
+7. Kuber financial-control health check
+8. daily intelligence + revenue briefing
+9. operational queue
 
-The latest scheduled DR run reported matching tracked Git trees at one point in time, with no traffic switch. This is not runtime DR. Issue #6 remains OPEN/P0 pending effective target identity, authorized target-only data review, owner/admin approval, authorized verification, and read-after-write evidence.
+## 8. UNIVERSAL PROCESS CONTROL — EVERY PROCESS
+Every material process follows:
+```
+INTENT -> AUTHENTICATE -> AUTHORIZE -> DEFINE -> INVENTORY -> RESEARCH
+-> PLAN -> RISK/POLICY -> COST/FINANCIAL CHECK (KUBER)
+-> APPROVAL -> EXECUTE -> VERIFY -> RECONCILE -> AUDIT
+-> MEASURE -> REPORT -> LEARN -> IMPROVE -> CLOSE/CONTINUE
+```
 
-## 7. Publish decision
+For media:
+```
+KNOWLEDGE -> PROVENANCE -> SCENE PLAN -> GENERATE -> ANIMATE -> RENDER
+-> QUALITY -> SAFETY/RIGHTS -> KUBER COST -> OWNER GATE -> PUBLISH
+-> MEASURE -> KUBER RECONCILE -> ARCHIVE
+```
 
-- **Repository/local preview:** the public shell and bounded deterministic sandbox planner may be tested locally; the planner returns ephemeral results only and is not deployed on static GitHub Pages.
-- **Public production:** **BLOCKED / NOT VERIFIED** until identity and authorization, runtime dependencies, content/permission gates, peer/DR evidence, app release provenance, owner approval, rollback, and production end-to-end evidence pass.
-- Do not treat version labels as a gate for this task. Do not claim a product, agent, provider, heartbeat, publication, revenue event, or DR capability is live from metadata/configuration alone.
+No process is complete merely because an action succeeded.
 
-See [`VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md`](VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md), [`docs/vyomaraj/context/VERIFICATION_RULES.md`](../vyomaraj/context/VERIFICATION_RULES.md), and [`docs/vyomaraj/state/CURRENT_STATE.md`](../vyomaraj/state/CURRENT_STATE.md).
+## 9. CONTENT-TO-REVENUE TRACEABILITY
+```
+CONTENT-ID -> AGENT-ID -> SUB-AGENT-ID -> TOPIC-ID -> CREATION COST
+-> PRODUCT/MEDIA-ID -> PUBLICATION-ID -> PLATFORM -> EXPECTED REVENUE
+-> REPORTED REVENUE -> INVOICE/RECEIVABLE -> PAYMENT
+-> KUBER RECONCILIATION -> AUDIT CLOSURE
+```
+
+## 10. REVENUE INTELLIGENCE
+If a lane is weak, Vyomaraj/Jarvis audit performance, research historical/current/future opportunities, hold a strategy meeting with Kuber, evaluate cost/ROI/risk, create the approved strategy, publish, measure, earn and reconcile.
+
+## 11. PROVIDER-NEUTRAL AI FABRIC
+OpenAI / ChatGPT  
+Anthropic / Claude  
+Google / Gemini  
+Meta AI  
+Arena AI  
+local/open-source models  
+search/browser/coding/media/data agents  
+external APIs
+
+Providers are replaceable and do not own identity, root authority, core memory, financial ledger, policy, registry or DR.
+
+## 12. GEOSPATIAL INTELLIGENCE
+SHRIYANTRA -> GEO/LOCATION GATEWAY -> GNSS/GPS -> authorized device/mobile location -> maps -> satellite imagery -> historical imagery -> terrain -> Earth observation -> geography/history research.
+
+Location is deny-by-default and requires explicit owner authorization and applicable consent/legal requirements.
+
+## 13. PRIVATE-TO-PUBLIC PUBLISHING
+PRIVATE CORE -> Research -> Reason -> Create -> Capability Routing -> Quality Verify -> Safety/Policy -> Financial Check -> Owner Publication Policy -> Publish -> Measure -> Revenue Attribution -> Kuber Reconcile -> Learn -> Improve
+
+Public platforms receive only approved outputs.
+
+## 14. DISASTER RECOVERY
+Preserve code, configuration, database, storage/media, knowledge, memory, agent/capability registry, queues, workflow state, audit evidence, financial ledger and backup metadata.
+
+```
+BACKUP -> CHECKSUM -> REPLICATE -> FENCE -> FAILOVER -> VERIFY
+-> OPERATE -> RECOVER PRIMARY -> FAILBACK -> VERIFY
+```
+
+Git replication alone is not application DR.
+
+## 15. SECURITY INVARIANTS
+- owner-only root
+- deny by default
+- least privilege
+- server-side secrets
+- provider isolation
+- sandbox untrusted tools
+- retrieved content is untrusted data
+- high-risk step-up confirmation
+- immutable audit evidence
+- split-brain fencing/epoch
+- no agent self-elevation
+- voice is not sole root authentication
+- Kuber financial control cannot become technical root
+- financial records cannot be silently deleted
+- emergency recovery preserves audit evidence
+
+## 16. STRONGEST-PROCESS GATE
+VERIFIED requires definition, authorization, identified data sources, implemented execution path, failure path, rollback/recovery, security/policy, financial impact where applicable, output verification, audit evidence, monitoring/measurement and owner-visible status.
+
+Documentation alone = NOT VERIFIED.
+
+## 17. STATUS VOCABULARY
+VERIFIED  
+IMPLEMENTED / NOT VERIFIED  
+CONFIGURED / NOT CONNECTED  
+PARTIALLY VERIFIED  
+BLOCKED  
+MISSING  
+FAILED  
+RECOVERING  
+DR_ACTIVE
+
+## 18. EXECUTION ROADMAP
+VYOM-034 Universal process-control engine  
+VYOM-035 Kuber FC ledger + financial event model  
+VYOM-036 Revenue attribution and invoice control  
+VYOM-037 Revenue leakage detection  
+VYOM-038 Platform payment monitoring/escalation  
+VYOM-039 Vyomaraj/Jarvis strategy-meeting workflow  
+VYOM-040 Trend/history/future opportunity engine  
+VYOM-041 End-to-end content-to-cash verification  
+VYOM-042 Financial audit/reconciliation tests  
+VYOM-043 DR of financial ledger and audit evidence  
+VYOM-044 Production readiness and owner acceptance  
+VYOM-045 Civilization knowledge inheritance runtime  
+VYOM-046 Universal multimodal capability inheritance  
+VYOM-047 3D/4D/5D media adapter verification  
+VYOM-048 Special-domain media pipelines for Food/Education/War/History

@@ -1,0 +1,117 @@
+schema_version: 1
+system_identity:
+  legal_operating_identity: "Vyomaraj AI"
+  engineering_identity: "VYOMARAJ AI AGENT OS"
+  brand: "Vyomaraj — The King of the Sky"
+  organization_model: "private_owner_controlled_ai_company_and_federation"
+  visibility_model: "private_internal_control_plane_public_approved_outputs_only"
+
+federation:
+  purpose: "coordinate multiple AI providers, agents, channels, partners and production capabilities without surrendering owner authority"
+  control_chain: "OWNER_ROOT -> SHRIYANTRA -> VYOMARAJ_BHARATH <-> JARVIS_LAXMAN -> HARNESS_POLICY -> EXECUTION -> VERIFY -> AUDIT -> RECOVERY"
+  peer_cores:
+    - "VYOMARAJ_BHARATH"
+    - "JARVIS_LAXMAN"
+  provider_neutral: true
+  provider_failure_must_not_equal_company_failure: true
+
+members_and_partners:
+  owner_is_only_root: true
+  member_management_owner_only: true
+  partner_management_owner_only: true
+  external_party_can_grant_root: false
+  external_party_can_modify_registry: false
+  external_party_can_publish_without_gate: false
+  partner_access: "least_privilege_scoped_time_bounded_audited"
+  partner_types:
+    - ai_provider
+    - ai_agent
+    - tool_provider
+    - media_provider
+    - platform
+    - creator
+    - publisher
+    - brand
+    - commercial_partner
+    - research_partner
+    - infrastructure_provider
+
+ai_federation:
+  providers:
+    - OpenAI
+    - Anthropic
+    - Google_Gemini
+    - Arena_AI
+    - local_models
+    - open_source_models
+  protocols:
+    - MCP
+    - A2A
+  execution:
+    - Temporal
+    - n8n
+    - sandboxed_workers
+  observability:
+    - OpenTelemetry
+  rule: "providers_and_agents_are_replaceable_capabilities_not_system_authorities"
+
+channel_federation:
+  channels:
+    - web
+    - android
+    - macos
+    - voice
+    - YouTube
+    - Instagram
+    - Facebook
+    - X
+    - LinkedIn
+    - Telegram
+    - WhatsApp
+    - Discord
+    - Pinterest
+    - Threads
+    - Snapchat
+    - Reddit
+    - Twitch
+    - Vimeo
+    - Tumblr
+    - Mastodon
+  rule: "all_channels_share_one_owner_authorization_and_audited_policy_state"
+
+business_federation:
+  functions:
+    - research
+    - knowledge
+    - education
+    - civilization
+    - agriculture
+    - living_world
+    - finance
+    - creative_media
+    - collaboration
+    - publishing
+    - analytics
+    - monetization
+    - operations
+    - security
+    - resilience
+  financial_controller: "KUBER"
+  revenue_traceability: "content -> agent -> process -> platform -> expected -> reported -> receivable -> payment -> reconciliation -> audit"
+
+governance:
+  root_authority: OWNER
+  high_risk_step_up: true
+  secrets_server_side_only: true
+  external_content_is_data_not_authority: true
+  self_elevation_forbidden: true
+  immutable_audit_target: true
+  split_brain_fencing_required: true
+  git_replication_is_not_application_dr: true
+
+status_semantics:
+  VERIFIED: "runtime evidence exists"
+  IMPLEMENTED_NOT_VERIFIED: "repository implementation exists but runtime evidence is absent"
+  CONFIGURED_NOT_CONNECTED: "configuration exists but external account/service is not connected"
+  BLOCKED: "credential, device permission, infrastructure or owner action is required"
+  NOT_IMPLEMENTED: "required implementation is absent"

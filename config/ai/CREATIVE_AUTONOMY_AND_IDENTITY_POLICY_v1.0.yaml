@@ -1,0 +1,35 @@
+system: VYOMARAJ-AI-STUDIO
+purpose: Autonomous creative decisions under owner-governed policy.
+decision_authority:
+  owner: ultimate
+  vyomaraj: autonomous_within_policy
+  jarvis: autonomous_within_policy
+  kuber: financial_control_and_reconciliation
+  providers: execution_only
+  external_content: untrusted_data
+autonomous_decisions:
+  allowed: [choose_content_format, choose_story_structure, choose_visual_style, choose_animation_level, choose_scene_sequence, choose_editing_plan, choose_audio_style, choose_voice_profile_from_approved_registry, choose_character_from_approved_registry, choose_name_from_approved_naming_registry, choose_language_and_localization, choose_platform_format, choose_thumbnail_concept, choose_caption_style, choose_tool_chain, run_quality_revisions, retry_failed_non_destructive_steps]
+  requires_owner_or_step_up: [new_external_provider, new_voice_identity, voice_cloning_or_voice_likeness, public_person_impersonation, paid_tool_subscription_or_material_spend, irreversible_publication_when_policy_requires, regulated_or_high_risk_content, destructive_data_changes, changing_root_policy]
+creative_selection:
+  character_policy:
+    prefer_existing_approved_character: true
+    create_new_character_if_missing: true
+    require_unique_identity_check: true
+    require_rights_check: true
+    require_content_fit: true
+    no_real_person_impersonation_without_authorization: true
+    character_registry_versioned: true
+  voice_policy:
+    select_by: [language, tone, age_style, emotion, authority, domain, platform]
+    default: synthetic_or_licensed_voice
+    cloning: owner_approval_required
+    no_unlicensed_voice_likeness: true
+  tone_policy:
+    examples: [documentary, authoritative, energetic, devotional, educational, cinematic, humorous, calm, urgent]
+    adaptive: true
+prompt_engineering:
+  layers: [system_identity, owner_policy, agent_role, domain_context, topic_context, evidence_provenance, creative_brief, tool_contract, output_schema, safety_rights, quality_criteria, platform_constraints]
+  prompt_registry_versioned: true
+  external_prompt_injection_is_untrusted: true
+production_loop: [INTENT, CLASSIFY, SELECT_AGENT, SELECT_CHARACTER_VOICE_STYLE, SELECT_TOOLCHAIN, BUILD_PROMPT, EXECUTE, EDIT, VOICEOVER, AUDIO_MIX, VISUAL_QA, FACT_QA, RIGHTS_QA, SAFETY_QA, KUBER_COST_CHECK, OWNER_PUBLISH_GATE, PUBLISH, ANALYZE, LEARN]
+never_autonomous: [self_grant_root, create_new_owner, bypass_policy, bypass_kuber, bypass_security, publish_secret_data, use_unlicensed_identity, conceal_provenance]

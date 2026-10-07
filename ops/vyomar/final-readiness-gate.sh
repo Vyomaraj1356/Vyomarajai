@@ -5,6 +5,10 @@ fail=0
 require(){ if [[ ! -e "$ROOT/$1" ]]; then echo "MISSING: $1"; fail=1; else echo "PRESENT: $1"; fi; }
 echo 'VYOMARAJ FINAL READINESS CONTRACT GATE'
 require docs/architecture/VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md
+require docs/architecture/VYOMARAJ_FINAL_MASTER_ARCHITECTURE_v2.0.md
+require docs/architecture/VYOMARAJ_FINAL_SYSTEM_DIAGRAM_v2.0.md
+require config/company/VYOMARAJ_COMPANY_FEDERATION_v1.0.yaml
+require ops/vyomaraj/vyomaraj.sh
 require docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md
 require docs/architecture/VYOMARAJ_UNIVERSAL_KNOWLEDGE_MEDIA_ARCHITECTURE_v1.0.md
 require docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md
@@ -31,10 +35,12 @@ import json, pathlib
 p=pathlib.Path('ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json')
 d=json.loads(p.read_text())
 assert d['totals']['main_agents']==15
-assert d['totals']['sub_agents']==154
-assert len(d['agents'])==154
+assert d['totals']['sub_agents']==168
+assert d['totals']['named_sub_agents']==166
+assert d['totals']['unnamed_numbered_sub_agents']==2
+assert len(d['agents'])==168
 assert d['totals']['uncounted_parent_headings']==6
-print('PASS: registry 15 categories / 154 counted agents / 6 headings')
+print('PASS: registry 15 categories / 168 counted agents / 166 named / 2 legacy unnamed / 6 headings / 48 nested entertainment')
 PY
 if [[ $fail -ne 0 ]]; then echo 'BLOCKED: required contract file missing'; exit 2; fi
 echo 'PASS: architecture contract gate. This does NOT claim production runtime deployment.'

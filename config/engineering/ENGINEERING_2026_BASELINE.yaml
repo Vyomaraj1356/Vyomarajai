@@ -1,0 +1,174 @@
+system:
+  id: VYOMARAJ-AI-STUDIO
+  baseline: VYOMARAJ_AI_AGENT_OS_v1.2_ENGINEERING_BASELINE
+  status: FOUNDATION_INTEGRATION
+  architecture_lock: true
+
+peer_cores:
+  bharath_vyomaraj:
+    role: platform_control_core
+    peer: laxman_jarvis
+    full_authorized_capability: true
+  laxman_jarvis:
+    role: operational_intelligence_core
+    peer: bharath_vyomaraj
+    full_authorized_capability: true
+  mutual_backup: true
+  mutual_recovery: true
+  split_brain_protection: fencing_and_epoch_required
+
+shriyantra:
+  common_foundation: true
+  components:
+    - llm_gateway
+    - harness
+    - rag
+    - cag
+    - mag
+    - memory
+    - knowledge
+    - evaluation
+    - policy
+    - tool_runtime
+    - event_engine
+    - task_engine
+    - security
+    - audit
+    - resilience
+    - durable_execution
+    - observability
+    - identity
+
+protocols:
+  mcp:
+    purpose: agent_to_tool_and_data
+    sdk: mcp
+    production_rule: narrow_scoped_tools_only
+  a2a:
+    purpose: agent_to_agent
+    sdk: a2a-sdk
+    production_rule: authenticated_peer_identity_required
+  contracts:
+    schemas: [json_schema, openapi, protobuf]
+    validate_before_execute: true
+
+durable_execution:
+  abstraction: durable_workflow
+  implementation: temporal
+  required_for:
+    - long_running_agents
+    - retries
+    - human_approval_waits
+    - checkpoint_resume
+    - failover_recovery
+  provider_lock_in: false
+
+identity:
+  workload_identity: required
+  preferred: spiffe_spire_or_equivalent
+  credentials: short_lived
+  mtls_internal: true
+  least_privilege: true
+
+policy:
+  policy_as_code: true
+  decision_point_required: true
+  default: deny_unless_allowed
+  owner_root_cannot_be_agent_granted: true
+
+observability:
+  standard: opentelemetry
+  signals: [traces, metrics, logs]
+  agent_workflow_trace_required: true
+  sensitive_prompt_redaction_required: true
+
+agent_supply_chain:
+  registry_required: true
+  version_pinning: true
+  artifact_hashing: true
+  sbom_abom_required: true
+  unapproved_runtime_blocked: true
+
+execution:
+  sandbox_required_for_untrusted_tools: true
+  shell_false_by_default: true
+  idempotency_required_for_side_effects: true
+  circuit_breakers: true
+  bounded_retries: true
+  dead_letter_queue: true
+
+rag:
+  mode: hybrid
+  retrieval: [semantic, lexical, metadata_acl]
+  rerank: true
+  provenance: required
+  retrieved_content_is_untrusted: true
+
+memory:
+  tiers: [working, episodic, long_term]
+  provenance: required
+  promotion: validated_findings_only
+  owner_and_policy_scope: required
+
+scaling:
+  event_driven: true
+  queue_backpressure: true
+  horizontal_scaling_ready: true
+  kubernetes: interface_reserved
+  keda: interface_reserved
+  gpu_inference: interface_reserved
+
+dr:
+  git_replication_is_not_application_dr: true
+  preserve:
+    - code
+    - config
+    - database
+    - storage
+    - knowledge
+    - memory
+    - registry
+    - queues
+    - workflow_state
+    - audit
+    - backup_metadata
+  split_brain: fence_before_recovery
+  zero_rpo_claim: false
+  zero_rto_claim: false
+
+owner_authority:
+  owner_only_root: true
+  voice_not_sole_root: true
+  web_mobile_macos_fallback: true
+  high_risk_step_up: true
+
+
+daily_start:
+  enabled: true
+  ritual_is_not_security: true
+  sequence: [system_health_check, owner_authority_check, recite_shri_ram, recite_hanuman, recite_ganesha_mantra, core_sync, daily_briefing]
+  mantras:
+    shri_ram: "श्री राम जय राम जय जय राम"
+    hanuman: "ॐ हनुमते नमः"
+    ganesha: "ॐ गं गणपतये नमः"
+  emergency_recovery_must_not_block: true
+
+panch_brother_capability_fabric:
+  inherited_by: [bharath_vyomaraj, laxman_jarvis, all_agents, all_sub_agents]
+  domains: [matiman, shrutiman, ketuman, gatiman, dhritiman]
+  owner_authorization_required: true
+  self_elevation_forbidden: true
+
+geospatial:
+  provider_neutral_gateway: true
+  provenance_required: true
+  imagery_is_data_not_authority: true
+  location_default: DENY
+  mobile_operator_tracking_requires_explicit_owner_authorization: true
+  lawful_provider_and_consent_required: true
+  supported_modes: [gnss, maps, satellite_imagery, historical_layers, terrain, earth_observation]
+
+publishing:
+  private_core_only: true
+  approval_gate_required: true
+  public_output_must_exclude_private_internals: true
