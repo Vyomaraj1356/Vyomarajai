@@ -10,6 +10,7 @@ tool_domains:
   platform: [youtube_publish, social_publish, analytics]
   finance: [cost_estimate, budget_check, revenue_attribution, invoice, reconciliation]
   operations: [workflow, durable_execution, scheduling, monitoring, backup, restore]
+  collaboration: [creator_discovery, opportunity_scoring, identity_verification, rights_check, proposal, outreach, negotiation, contract_tracking, delivery_tracking, invoice_tracking, payment_tracking, roi_analysis]
 mcp:
   role: agent_to_tool
   server_registry_required: true
