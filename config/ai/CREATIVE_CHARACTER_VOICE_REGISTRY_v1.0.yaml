@@ -13,8 +13,9 @@ character_profiles:
   - {id: VYO_SCIENCE_EXPLORER, role: science_and_space, style: curious_explainer, domains: [ASTRO, EDUCATION]}
   - {id: VYO_SPORTS_ANALYST, role: sports_and_legends, style: energetic_authoritative, domains: [SPORTS, EDUCATION]}
 voice_profiles:
-  - {id: VOICE_DOCUMENTARY_DEEP, tone: deep_authoritative, use: [HISTORY, WAR, CIVILIZATION]}
-  - {id: VOICE_EDUCATION_CLEAR, tone: clear_confident, use: [EDUCATION, SCIENCE]}
+  - {id: VYOM_LEADER_LEGEND, persona: true_leader_legend, tone: deep_regal_warm_authoritative, pitch: low_to_mid, cadence: deliberate, use: [GENERAL, HISTORY, CIVILIZATION]}
+  - {id: JARVIS_GENERAL_COMMAND, persona: general_in_command, tone: deep_warm_disciplined_tactical, pitch: mid_low_distinct, cadence: faster_controlled, use: [GENERAL, OPERATIONS, WAR]}
+  - {id: VOICE_EDUCATION_SOFT, tone: soft_calm_engaging, use: [EDUCATION, SCIENCE]}
   - {id: VOICE_CINEMATIC_STRONG, tone: strong_cinematic, use: [FOOD, SPORTS, ENTERTAINMENT]}
   - {id: VOICE_DEVOTIONAL_RESPECTFUL, tone: respectful_devotional, use: [BHAKTI, CULTURAL]}
   - {id: VOICE_NEUTRAL_GLOBAL, tone: neutral_multilingual, use: [GENERAL, NEWS, EXPLAINER]}
@@ -30,3 +31,11 @@ continuity:
   visual_bible_required: true
   version_every_change: true
   provenance_every_asset: true
+
+voice_governance:
+  original_identity_required: true
+  actor_name_prompting: forbidden
+  voiceprint_imitation: forbidden
+  unauthorized_voice_cloning: forbidden
+  broad_style_characteristics_only: true
+  character_voice_visual_bible_required: true
