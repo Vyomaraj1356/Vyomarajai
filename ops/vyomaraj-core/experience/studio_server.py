@@ -21,6 +21,14 @@ def _load_governance_module(name):
     return module
 
 CORE = Path(__file__).resolve().parent.parent
+REGISTRY_PATH = CORE / 'agents' / 'AGENT_REGISTRY_CURRENT.json'
+def current_registry_summary():
+    data = json.loads(REGISTRY_PATH.read_text(encoding='utf-8'))
+    t = data['totals']
+    return (f"<p class=\"notice\"><strong>CURRENT REGISTRY:</strong> "
+            f"{t['main_agents']} categories · {t['sub_agents']} counted slots · "
+            f"{t['named_sub_agents']} named · {t['unnamed_numbered_sub_agents']} unnamed · "
+            f"{t['uncounted_parent_headings']} uncounted headings.</p>")
 spec = importlib.util.spec_from_file_location('report_renderer', CORE / 'handover/preview_reports.py')
 reports = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(reports)
@@ -268,6 +276,8 @@ class Handler(BaseHTTPRequestHandler):
             if not path.is_file():
                 self.send_error(404); return
             body = reports.PAGE_NOTES.get(route, '') + reports.render_document(path)
+            if route == '/reports/':
+                body = current_registry_summary() + body
             if route == '/reports/history':
                 body = '<p class="notice"><strong>HISTORICAL SNAPSHOT — NOT THE CURRENT ROSTER.</strong> Current structure: see the current registry and inventory for authoritative counts; Education, Finance and Entertainment are registry-derived. See the current inventory or reconciliation above.</p>' + body
             if route == '/reports/recovery':
