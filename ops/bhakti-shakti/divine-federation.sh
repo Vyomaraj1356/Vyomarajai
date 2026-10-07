@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+cd "$ROOT_DIR"
+echo "🕉️ VYOMARAJ BHAKTI-SHAKTI DIVINE FEDERATION v2.0"
+echo "TRIDEV • TRIDEVI • 33 KOTI/CRORE TRADITION • DASHAVATARA • SHIVA FORMS • DASHAMAHAVIDYA"
+echo "SAPTASHRI VIDYA • VEDA/UPANISHAD • ITIHASA/PURANA • RAMAYANA • MAHABHARATA/GITA"
+echo "SHLOKA • MANTRA • STOTRA • AARTI • CHALISA • BHAJAN • KIRTAN • DEVOTIONAL MUSIC"
+echo "DIVINE HISTORY • SAINTS/RISHIS/GURUS • TEMPLES • PILGRIMAGE • FESTIVALS • PHILOSOPHY • SACRED ART"
+echo "Policy: provenance + research required; tradition is not silently converted into historical fact."
