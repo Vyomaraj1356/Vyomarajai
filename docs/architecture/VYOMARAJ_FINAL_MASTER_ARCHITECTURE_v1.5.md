@@ -74,3 +74,28 @@ Owner-only root, least privilege, server-side secrets, step-up approval for high
 
 ## Deployment truth
 This architecture is implementation-ready, but external provider/account credentials, production infrastructure and third-party authorizations are runtime dependencies. The integration script must fail closed and report them as NOT_CONNECTED/NOT_VERIFIED rather than fabricate success.
+
+## Legacy architecture preservation and inheritance
+
+This v1.5 architecture is additive. The earlier ShriYantra/private-control architecture remains authoritative and is not replaced by the newer MCP/A2A/production-agent layers.
+
+**Legacy control chain:**
+OWNER ROOT → SHRIYANTRA PRIVATE FOUNDATION → VYOMARAJ/BHARATH ↔ JARVIS/LAXMAN → LLM ROUTER + HARNESS → ARENA / PROVIDER-NEUTRAL EXECUTION → AGENT/SUB-AGENT REGISTRY → DOMAIN/KNOWLEDGE/MEDIA/SOCIAL/EARNING → VERIFY/AUDIT → DR/RECOVERY.
+
+Preserved legacy responsibilities:
+- **ShriYantra:** private identity, authorization, policy, security, RAG/CAG/MAG, memory, knowledge, evaluation, tools, events, tasks, audit and resilience foundation.
+- **Arena:** authorized delegated build/execution environment; never root, identity owner, memory owner or DR authority.
+- **Hermes resilience concept:** integrity/health/conflict/recovery coordination; never a third root.
+- **Saptarishi knowledge inheritance:** knowledge/wisdom/research/teaching/civilizational context; never technical authority.
+- **Panch-Brothers:** universal capability inheritance for authorized agents.
+- **Kuber:** Financial Controller for both peer cores and ecosystem; never technical root.
+- **n8n:** workflow execution fabric beneath Vyomaraj/Jarvis decisions and ShriYantra governance.
+- **Wispr Flow:** voice/input adapter only.
+- **Geospatial:** owner-controlled, DENY-by-default location services.
+- **Daily Dharmic startup:** health → owner authority → Shri Ram → Hanuman → Ganesha → peer sync → briefing; cultural only and never an authorization mechanism.
+- **Continuous alignment:** weekly/monthly provenance, duplicate, taxonomy, content/product, financial and DR reconciliation.
+- **Primary/DR:** `Vyomaraj1356/Vyomarajai` and `deepakGoyal1356/Vyomaraj-Agent-6d64e`; application DR remains broader than Git replication.
+
+**New layers inherit this chain:** MCP is controlled agent→tool integration; A2A is controlled agent→agent delegation; the Production Agent Runtime materializes registry entries under Harness/policy; Creative Director/Media adds multimodal production; Collaboration adds lawful opportunity discovery; Social adapters add publication/analytics; Kuber closes financial traceability.
+
+**Architecture invariant:** no provider, Arena, MCP server, A2A peer, n8n workflow, media tool, social platform or external collaborator can elevate itself above Owner → ShriYantra → peer cores → Harness/policy → verification/audit/recovery.
