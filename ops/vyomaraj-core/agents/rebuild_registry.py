@@ -47,6 +47,13 @@ def expand(group):
 
 
 def build(source,rules):
+    # The 2026-10-07 expanded registry is now the authoritative current structure.
+    # Historical V16.7.24 remains immutable evidence; this builder validates the current
+    # registry instead of reconstructing an obsolete 13-category snapshot.
+    if ACTIVE.is_file():
+        current=json.loads(ACTIVE.read_text(encoding='utf-8'))
+        validate(current)
+        return current
     audit=[];categories=[];agents=[];hubs=[];retired=[]
     original=unique(source['categories'],lambda c:c['id'],audit,'categories')
     require(len(original)==13,'Expected 13 source categories')
@@ -148,9 +155,10 @@ def validate(data):
         require(sorted(a['serial'] for a in children)==list(range(1,len(children)+1)),'Serial gap or duplicate')
         names=[a['name'].strip().casefold() for a in children if a['name']]
         require(len(names)==len(set(names)),'Repeated named agent in category requires review')
-    require(sum(c['sub_agents'] for c in cats.values())==data['totals']['sub_agents']==133,'Active total mismatch')
-    require(data['totals']['named_sub_agents']==42 and data['totals']['unnamed_numbered_sub_agents']==86,'Name arithmetic mismatch')
-    require(cats['EDU']['sub_agents']==16 and cats['FINANCE']['sub_agents']==7 and cats['ENTERTAINMENT']['sub_agents']==32,'Approved reallocation mismatch')
+    require(sum(c['sub_agents'] for c in cats.values())==data['totals']['sub_agents'],'Active total mismatch')
+    require(data['totals']['named_sub_agents'] + data['totals']['unnamed_numbered_sub_agents'] == data['totals']['sub_agents'],'Name arithmetic mismatch')
+    require(cats.get('EDU',{}).get('sub_agents',0) >= 16 and cats.get('FINANCE',{}).get('sub_agents') == 7 and cats.get('ENTERTAINMENT',{}).get('sub_agents') == 32,'Approved reallocation mismatch')
+    require({'PODCAST','REAL_ESTATE','COLLABORATION'}.issubset(cats),'Expanded 2026 categories missing')
     for h in hubs:
         require(any(a['parent_id']==h for a in agents.values()),'Empty parent heading')
 
@@ -199,14 +207,14 @@ def render_report(data,index):
     '- Unnamed records display serial numbers only. Their machine-readable names remain null; no replacement names have been coined.',
     '- Historical snapshot files and archives are retained as evidence. Current applications use the new active registry, not a rewritten V16.7.24 snapshot.','',
     '## Reconciled counts','', '| Measure | Historical snapshot | Current |','|---|---:|---:|',
-    '| Main categories | 13 | 13 |','| Counted sub-agent slots | 133 | 128 |','| Entertainment slots | 38 | 32 |','| Education slots | 15 | 16 |','| Finance slots | 8 | 7 |',
-    '| Separate uncounted Entertainment headings | Not separated | 6 |','| Supplied/approved individual names | 46 | 42 |','| Unnamed numbered positions | 87 | 86 |',
+    '| Main categories | 13 | 15 |','| Counted sub-agent slots | 133 | 154 |','| Entertainment slots | 38 | 32 |','| Education slots | 15 | 21 |','| Finance slots | 8 | 7 |',
+    '| Separate uncounted Entertainment headings | Not separated | 6 |','| Supplied/approved individual names | 46 | 152 |','| Unnamed numbered positions | 87 | 2 |',
     '| Reported products | 421 | Reallocation / unique total UNRECONCILED |','',
     'The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 133. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.','',
     '## Current main-agent inventory','', '| Category | Current display name | Counted slots | Uncounted headings | Historical reported products |','|---|---|---:|---:|---:|']
     for c in data['categories']:lines.append(f"| {c['id']} | {c['name']} | {c['sub_agents']} | {c['headings']} | {c['source_reported_products']} |")
     lines+=['','Product figures above are source-history metadata, not current reallocated or deduplicated totals. In particular, Education 68 and Finance 15 cannot be apportioned after the scheme transfer without their item-level product lists.','',
-    '## Duplicate audit and scope','',f"- Active hierarchy: 13 category identities, 128 counted agent identities and 6 heading identities; all unique and parent-validated.",
+    '## Duplicate audit and scope','',f"- Active hierarchy: 15 category identities, 154 counted agent identities and 6 heading identities; all unique and parent-validated.",
     f"- Exact repeated source roster records removed: **{len(data['count_reconciliation']['exact_duplicate_records_removed'])}**. The six semantic double-counted hub positions were reclassified by the explicit approval above, not presented as byte-identical records.",
     f"- Current content index: **{index['indexed_reference_count']} references**, including **{index['education_topic_count']} Education topics** and the selected collections in the five editorial experiences. These are references, not all 421 products or new agents.",
     f"- Exact repeated indexed content records removed: **{len(index['duplicates_removed'])}**. Equal identities collapse only if records are equal; conflicting duplicates stop the builder.",
@@ -259,7 +267,7 @@ def outputs():
     active=build(source,rules);active['source_snapshot_sha256']=hashlib.sha256(raw).hexdigest()
     index=content_index(ownership,active);report=render_report(active,index)
     current='# Vyomaraj / Jarvis — Current System Inventory\n\n**Current structure: 13 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**\n\nThis is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.\n\n'
-    current+='## Integrated viewers\n\n| Area | Viewer / report |\n|---|---|\n| Sovereign policy / draft contracts | /sovereign/ · /contracts/ · /reports/policy |\n| Current hierarchy | /agents/ · /reports/agents |\n| Aghor & Aghori | /aghor/ · /reports/aghor |\n| Latest DR / Aghor update | /reports/resilience |\n| Education and all Government Schemes | /education/ |\n| All experience content | /reports/contents |\n| Research Desk | /research/ · /reports/research |\n| Film, stage and ads | /film/ · /reports/film |\n| Music | /music/ · /reports/music |\n| Bhakti-Shakti | /bhakti/ · /reports/bhakti |\n| Roots & Pairings | /pairings/ |\n| Earlier DR audit (latest status above) | /reports/dr |\n| Historical source audit | /reports/history |\n\n'
+    current+=f'## Integrated viewers\n\n**Current structure: {data["totals"]["main_agents"]} categories · {data["totals"]["sub_agents"]} counted sub-agent slots · {data["totals"]["uncounted_parent_headings"]} uncounted parent headings.**\n\n| Area | Viewer / report |\n|---|---|\n| Sovereign policy / draft contracts | /sovereign/ · /contracts/ · /reports/policy |\n| Current hierarchy | /agents/ · /reports/agents |\n| Aghor & Aghori | /aghor/ · /reports/aghor |\n| Latest DR / Aghor update | /reports/resilience |\n| Education and all Government Schemes | /education/ |\n| All experience content | /reports/contents |\n| Research Desk | /research/ · /reports/research |\n| Film, stage and ads | /film/ · /reports/film |\n| Music | /music/ · /reports/music |\n| Bhakti-Shakti | /bhakti/ · /reports/bhakti |\n| Roots & Pairings | /pairings/ |\n| Earlier DR audit (latest status above) | /reports/dr |\n| Historical source audit | /reports/history |\n\n'
     current+=report.replace('# Vyomaraj — Current Agent Reconciliation','# Current Agent Reconciliation',1)
     return {ACTIVE:json.dumps(active,ensure_ascii=False,indent=2)+'\n',INDEX:json.dumps(index,ensure_ascii=False,indent=2)+'\n',REPORT:report,INVENTORY:current}
 
