@@ -152,6 +152,16 @@
       "product_status": "OWNER_APPROVED_STRUCTURE_not_runtime_inventory",
       "sub_agents": 14,
       "headings": 0
+    },
+    {
+      "id": "COLLABORATION",
+      "name": "Collaboration & Opportunity Exchange",
+      "source_reported_sub_agents": null,
+      "source_reported_products": null,
+      "active_product_count": null,
+      "product_status": "OWNER_APPROVED_STRUCTURE_not_runtime_inventory",
+      "sub_agents": 1,
+      "headings": 0
     }
   ],
   "headings": [
@@ -3493,6 +3503,21 @@
       "source_reported_chapter_count": null,
       "runtime_status": "NOT_VERIFIED",
       "scope": "Hotels, resorts, serviced residences, heritage properties and mixed-use opportunities"
+    },
+    {
+      "id": "COLLABORATION-S1",
+      "category_id": "COLLABORATION",
+      "parent_id": "COLLABORATION",
+      "name": "Creator, Publisher, AI-Agent & Commercial Collaboration",
+      "name_status": "USER_APPROVED",
+      "source_slot": null,
+      "id_status": "current_user_approved",
+      "serial": 1,
+      "kind": "sub_agent",
+      "counted": true,
+      "source_reported_chapter_count": null,
+      "runtime_status": "NOT_VERIFIED",
+      "scope": "Discover and qualify creators, publishers, AI agents, music channels, book/narration opportunities, copywriting, social distribution, sponsorships, licensing and inbound/outbound collaboration opportunities"
     }
   ],
   "count_reconciliation": {
@@ -3584,10 +3609,10 @@
     }
   },
   "totals": {
-    "main_agents": 14,
-    "sub_agents": 153,
+    "main_agents": 15,
+    "sub_agents": 154,
     "uncounted_parent_headings": 6,
-    "named_sub_agents": 151,
+    "named_sub_agents": 152,
     "unnamed_numbered_sub_agents": 2,
     "active_products": null,
     "historical_reported_products": 421,
@@ -4286,7 +4311,7 @@
       "approval_basis": "owner_request_2026-10-07"
     }
   ],
-  "last_alignment_update": "OWNER_APPROVED_FOOD_CULINARY_BEVERAGE_HIERARCHY",
+  "last_alignment_update": "2026-10-07 Collaboration agent added",
   "beverage_hierarchy": {
     "structure": "Category → Named legacy agent → specialized sub-agent → topic/content → products/media",
     "evolution": "Origin → Old → Historical Evolution → History → Present → Current State → Trends → Future → Possible Futures",
