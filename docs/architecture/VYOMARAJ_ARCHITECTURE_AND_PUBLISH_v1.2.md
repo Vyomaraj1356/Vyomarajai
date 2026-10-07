@@ -1,4 +1,4 @@
-# VYOMARAJ — UPDATED ARCHITECTURE & PUBLISH PLAN
+# VYOMARAJ — UPDATED ARCHITECTURE & PUBLISH PLAN v1.3
 
 ## Identity
 VYOMARAJ AI AGENT OS
@@ -7,15 +7,17 @@ System: VYOMARAJ-AI-STUDIO
 Baseline: VYOMARAJ_AI_AGENT_OS_v1.2_ENGINEERING_BASELINE
 Mode: Private owner-controlled autonomous multi-agent platform
 
-## Core
+## 1. ROOT AND PEER CORES
 YOU / ROOT OWNER
   -> Secure Web / Android / macOS / Voice / device authentication
-  -> VYOMARAJ / BHARATH <== PEER ==> JARVIS / LAXMAN
+  -> VYOMARAJ / BHARATH <==== PEER CORES ==== > JARVIS / LAXMAN
   -> SHRIYANTRA COMMON FOUNDATION
+  -> PANCH-BROTHER CAPABILITY FABRIC
+  -> ALL AUTHORIZED AGENTS / SUB-AGENTS
 
-Both cores have full authorized capability, mutual backup and mutual recovery. Neither can self-grant root authority.
+Vyomaraj/Bharath and Jarvis/Laxman are peers with full authorized capability, mutual backup and mutual recovery. Neither may self-grant root authority.
 
-## ShriYantra
+## 2. SHRIYANTRA FOUNDATION
 LLM Gateway / Model Router
 Harness
 RAG / CAG / MAG
@@ -24,55 +26,50 @@ Knowledge + Provenance
 Evaluation / Red Team
 Policy-as-Code
 Tool Runtime / Sandboxing
-MCP (agent-to-tool/data)
-A2A (agent-to-agent)
+MCP / A2A
 Durable Execution
 Event Engine / Queue
-Identity / mTLS-ready workload identity
-Observability / OpenTelemetry
+Identity / workload identity
+OpenTelemetry
 Security / Audit
 Resilience / DR / Fencing
 
-## Geospatial intelligence
-SHRIYANTRA -> GEO/LOCATION GATEWAY
--> GNSS/GPS
--> authorized mobile/device location
--> Wi-Fi/cellular positioning when lawfully available
--> maps
--> satellite imagery
--> historical imagery
--> terrain
--> Earth observation
--> geographic/history research
+## 3. HANUMAN PANCH-BROTHER CAPABILITY FABRIC
+Engineering capability mapping inspired by the Brahmanda Purana names; this is a design mapping, not a claim that scripture assigns software functions.
 
-Provider-neutral sources may include ISRO Bhuvan, NASA Earth-observation services, OpenStreetMap and licensed commercial map/satellite APIs.
+Matiman   -> Intelligence / Strategy
+Shrutiman -> Knowledge / Learning
+Ketuman   -> Signals / Guidance
+Gatiman   -> Execution / Mobility
+Dhritiman -> Resilience / Constancy
 
-Geospatial data is DATA, not authority. Source, timestamp, resolution and estimated accuracy must be retained.
+Every authorized agent and sub-agent inherits capability routing through ShriYantra.
 
-## Mobile-operator tracking
-DEFAULT = OFF.
+Examples:
+Research -> Shrutiman + Matiman
+Coding -> Matiman + Gatiman + Dhritiman
+Security -> Matiman + Ketuman + Dhritiman
+Geospatial -> Shrutiman + Ketuman + Gatiman
+DR/SRE -> Ketuman + Gatiman + Dhritiman
+Content -> Shrutiman + Matiman + Gatiman
 
-A location request involving a mobile operator/provider requires:
-1. explicit owner instruction;
-2. authorization for the target/device/service;
-3. lawful provider/API availability;
-4. applicable consent/legal requirements;
-5. audit record;
-6. revocable/time-limited authorization.
+Capabilities are policy-controlled domains, not new root identities.
 
-No core, agent or provider may self-grant tracking authority. No covert tracking or carrier/device security bypass.
+## 4. DAILY DHARMIC START
+Both peer cores participate in a synchronized configurable startup:
 
-## Daily auspicious startup
-1. health check
+1. system health check
 2. owner-authority check
-3. Ganesha mantra: Om Gam Ganapataye Namah (ॐ गं गणपतये नमः)
-4. Vyomaraj <-> Jarvis synchronization
-5. daily intelligence briefing
-6. operational queue
+3. Shri Ram invocation
+4. Hanuman invocation
+5. Ganesha mantra: Om Gam Ganapataye Namah (ॐ गं गणपतये नमः)
+6. peer synchronization
+7. daily intelligence briefing
+8. operational queue
 
-This is a configurable Hindu/Dharmic auspicious-start ritual, not a security mechanism.
+The devotional sequence is an auspicious cultural/spiritual ritual. It never substitutes for authentication, authorization, evidence or safety controls and must not block emergency recovery.
 
-## Provider-neutral AI fabric
+## 5. PROVIDER-NEUTRAL AI FABRIC
 OpenAI / ChatGPT
 Anthropic / Claude
 Google / Gemini
@@ -81,32 +78,58 @@ local/open-source models
 search/browser/coding/media/data agents
 external APIs
 
-Providers are replaceable capabilities and do not own identity, root authority, core memory, policy, registry or DR.
+Providers are replaceable capabilities. They do not own identity, root authority, core memory, policy, registry or DR.
 
-## Private-to-public publishing
+## 6. GEOSPATIAL INTELLIGENCE
+SHRIYANTRA -> GEO/LOCATION GATEWAY
+-> GNSS/GPS
+-> authorized device/mobile location
+-> Wi-Fi/cellular positioning when lawfully available
+-> maps
+-> satellite imagery
+-> historical imagery
+-> terrain
+-> Earth observation
+-> geographic/history research
+
+Potential provider adapters: ISRO Bhuvan, NASA Earth-observation services, OpenStreetMap and licensed commercial APIs, subject to current API availability and licensing.
+
+Geospatial data is DATA, not authority. Preserve provider, source, timestamp, resolution and estimated accuracy.
+
+## 7. MOBILE-OPERATOR LOCATION CONTROL
+DEFAULT = OFF.
+
+Requires explicit owner instruction, target/service authorization, lawful provider/API availability, applicable consent/legal requirements, audit record and preferably time-limited authorization.
+
+No core, agent or provider may self-authorize. No covert tracking or carrier/device security bypass.
+
+## 8. PRIVATE-TO-PUBLIC PUBLISHING
 PRIVATE CORE
--> Research
--> Reason
--> Create
--> Verify
--> Safety/Policy
--> Owner/publication policy
--> Publish
--> Measure
--> Learn
+ -> Research
+ -> Reason
+ -> Create
+ -> Panch-Brother capability routing
+ -> Verify
+ -> Safety / Policy
+ -> Owner publication policy
+ -> Publish
+ -> Measure
+ -> Learn
+ -> Improve
 
 Public platforms receive only approved outputs.
 
-## Disaster recovery
+## 9. DISASTER RECOVERY
 Preserve code, configuration, database, storage, media, knowledge, memory, agent/capability registry, queues, workflow state, audit and backup metadata.
 
 BACKUP -> CHECKSUM -> REPLICATE -> FENCE -> FAILOVER -> VERIFY -> OPERATE -> RECOVER PRIMARY -> FAILBACK -> VERIFY
 
-Health states: HEALTHY / DEGRADED / WARNING / CRITICAL / FAILED / RECOVERING / DR_ACTIVE / FAILBACK_PENDING
+Health states:
+HEALTHY / DEGRADED / WARNING / CRITICAL / FAILED / RECOVERING / DR_ACTIVE / FAILBACK_PENDING
 
 Git replication alone is not application DR.
 
-## Security invariants
+## 10. SECURITY INVARIANTS
 owner-only root
 deny by default
 least privilege
@@ -120,20 +143,29 @@ auditable recovery evidence
 split-brain fencing/epoch
 no agent self-elevation
 voice is not the sole root authentication path
+devotional context never grants technical permission
 
-## Publish gate
-Nothing is labelled production-ready until code, configuration, dependency installation, tests, runtime integration, security/authorization checks and relevant DR evidence are demonstrated.
+## 11. PUBLISH / RELEASE GATE
+Production-ready requires demonstrated:
+- code and configuration
+- dependency installation
+- unit/integration tests
+- runtime integration
+- security and authorization checks
+- capability-routing checks
+- geospatial provenance checks where applicable
+- relevant DR evidence
 
 Status vocabulary:
 IMPLEMENTED / CONFIGURED / VERIFIED / NOT VERIFIED / BLOCKED / MISSING
 
-## Next implementation sequence
+## 12. EXECUTION SEQUENCE
 VYOM-020 Daily startup + mantra
-VYOM-021 Geospatial provider gateway
-VYOM-022 Authorized device location service
+VYOM-021 Panch-Brother capability fabric
+VYOM-022 Authorized location service
 VYOM-023 Map/satellite/historical layers
 VYOM-024 Location authorization/audit
-VYOM-025 Geospatial RAG/MAG integration
+VYOM-025 Geo-RAG/MAG
 VYOM-026 Publish gateway
 VYOM-027 End-to-end test
 VYOM-028 DR verification
