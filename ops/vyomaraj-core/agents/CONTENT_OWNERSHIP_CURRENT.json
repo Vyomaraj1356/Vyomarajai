@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-03",
+  "updated": "2026-10-07",
   "scope": "Current single-owner topic routing. Not a complete 421-product inventory or new chapter list.",
   "education_topics": [
     {
@@ -317,6 +317,34 @@
       "slot_mapping": "UNMAPPED_not_inferred_from_topic",
       "content_scope": "metadata_reference_not_recovered_full_text",
       "new_agent": false
+    },
+    {
+      "id": "EDU-TOPIC-metals-numismatics-stamps-collectibles",
+      "title": "Metals, Numismatics, Stamps & Collectibles",
+      "owner_category": "EDU",
+      "summary": "History, science/craft context, collecting, provenance and cultural/economic literacy across metals, coins, medals, stamps and collectibles.",
+      "ownership_basis": "owner_approved_alignment_from_FINANCE_S4_and_EDU_philately",
+      "source": {
+        "path": "flow-diagram.html",
+        "locator": "Finance S4 Metals/Numismatic/Stamps/Philately"
+      },
+      "slot_id": "EDU-S8",
+      "slot_mapping": "owner_approved_historical_content_alignment",
+      "content_scope": "metadata_and_future_content_index"
+    },
+    {
+      "id": "EDU-TOPIC-scripts-epigraphy",
+      "title": "Ancient Scripts, Epigraphy & Knowledge Transmission",
+      "owner_category": "EDU",
+      "summary": "Ancient scripts, inscriptions, manuscripts, palaeography and preservation of written knowledge.",
+      "ownership_basis": "education_topic_alignment",
+      "source": {
+        "path": "ops/vyomaraj-core/handover/HISTORICAL_SYSTEM_INVENTORY_2026_10_03.md",
+        "locator": "Historical audit section 4.1 Education"
+      },
+      "slot_id": "EDU-S13",
+      "slot_mapping": "owner_approved_functional_alignment",
+      "content_scope": "metadata_and_future_content_index"
     }
   ],
   "editorial_pack_owners": {
@@ -324,10 +352,64 @@
     "music": "ENTERTAINMENT",
     "bhakti": "BHAKTI",
     "pairings": "ENTERTAINMENT",
-    "aghor": "BHAKTI"
+    "aghor": "BHAKTI",
+    "humour": "ENTERTAINMENT"
   },
   "education_in_entertainment": "not_found_in_current_editorial_packs; education-topic ownership now explicitly EDU",
   "public_scheme_details": "No scheme benefits, eligibility, application links or current validity researched in this structural task.",
   "historical_catalog_file_count": 32,
-  "complete_product_title_count": null
+  "complete_product_title_count": null,
+  "entertainment_content_models": {
+    "ENT-WIT-S1": {
+      "title": "Wit, Wordplay, Satire & Literary Humour",
+      "topics": [
+        "wit",
+        "wordplay",
+        "puns",
+        "riddles",
+        "satire",
+        "irony",
+        "parody",
+        "observational humour",
+        "literary humour",
+        "stage/screen/broadcast humour",
+        "digital/meme humour",
+        "cross-cultural humour",
+        "history and evolution"
+      ]
+    },
+    "ENT-HASYA-S1": {
+      "title": "Hasya Kavi Sammelan, Hasya Kavita & Indian/World Humour Literature",
+      "topics": [
+        "Kavi Sammelan history",
+        "Hasya Kavi Sammelan",
+        "Hasya Kavita",
+        "Vyangya",
+        "Indian humour poets",
+        "world humour traditions",
+        "poet biographies",
+        "published works",
+        "books/collections",
+        "magazines/newspapers",
+        "radio/TV",
+        "live stage",
+        "digital/video era",
+        "diaspora events",
+        "regional-language traditions",
+        "women poets",
+        "current poets",
+        "future formats"
+      ],
+      "required_fields": [
+        "historical_timeline",
+        "poet_profile",
+        "works_bibliography",
+        "event_history",
+        "language/region",
+        "source_provenance",
+        "rights_status",
+        "current_activity_if_verified"
+      ]
+    }
+  }
 }
