@@ -1,54 +1,70 @@
-# Vyomaraj AI Agent OS — final integration gap matrix v1.0
+# VYOMARAJ FINAL INTEGRATION GAP MATRIX v1.0
 
-**Assessment date:** 7 October 2026 · **Scope:** checked-out repository and recorded read-only GitHub evidence. No production environment was accessed or changed by this matrix.
+**Purpose:** single source for remaining work required to turn the repository architecture into a verified operating system. This closes cross-cutting gaps without changing the locked architecture.
 
-`PRESENT` means an artifact exists. `LOCAL` means bounded code/test behavior in this repository. `BLOCKED` means the desired end-to-end path lacks an implementation, credential, identity, permission, or owner approval. `NOT_VERIFIED` is not a pass.
+## Locked architecture
+`OWNER ROOT → VYOMARAJ/BHARATH ↔ JARVIS/LAXMAN → SHRIYANTRA → AGENT/CAPABILITY FABRIC → PROVIDER FABRIC → TOOLS/WORKFLOWS → PUBLIC OUTPUT`
 
-| # | Capability / required chain | Repository evidence | Assessment | Minimum evidence to close |
-|---:|---|---|---|---|
-| 1 | Owner identity, roles, step-up | Ed25519 exact-action validator is now wired into studio writer routes with request-scoped tokens; `approval.decide` and upgrade decisions require step-up. Unit/integration tests verify deny-by-default, target binding and persistence boundary. No owner issuer/key/replay configuration is provisioned. | `LOCAL GATE IMPLEMENTED / TRUSTED RUNTIME CONFIG BLOCKED` | Owner-provisioned issuer/key lifecycle, subject/role source, security epoch and replay configuration; exercise a real signed token in the target runtime and test revocation across workers. |
-| 2 | Root authority and least privilege | Studio writer routes now deny missing/malformed owner tokens; API action/target/scope and step-up are checked server-side. Server bind is loopback-only. | `LOCAL API ENFORCEMENT TESTED / PRODUCTION NOT VERIFIED` | Production authorization tests proving no self-elevation/inherited root, immediate revocation, independently protected audit, and enforcement across all services. |
-| 3 | Panch-Brother capability inheritance | New local read-only resolver and one shared model reference; no per-agent copies. | `IMPLEMENTED_LOCAL / PRODUCTION NOT VERIFIED` | Trusted Harness loads the shared reference for every applicable request; prove five domains never imply permissions. |
-| 4 | Universal Knowledge Evolution | Shared versioned policy, registry reference, content-index reference, offline validator. | `REFERENCE + LOCAL VALIDATION` | Runtime RAG/CAG/MAG enforcement, claim-level provenance, future-claim guard, correction and recovery tests. |
-| 5 | Current agent registry | Deterministic owner-approved metadata builder; 13 categories / 128 agents / 421 historical products. | `LOCAL / TARGET MISMATCH BLOCKED` | Reconcile exact +6 FOOD, +5 EDU, +14 Real Estate IDs/names and all dependent tests/gates/docs to 14 / 153 / 421. Preserve the source snapshot. |
-| 6 | Agent/sub-agent add/remove | New validation and plan-only guard; `apply` explicitly blocked. | `PLAN ONLY` | Authenticated transactional runtime, exact signed approval, atomic dependency updates, peer sync, DR, hash/audit, rollback/recovery and concurrency/idempotency tests. |
-| 7 | Routing and downstream dependencies | Local deterministic planners and metadata references. | `LOCAL PROTOTYPES` | Live authorization-aware router; atomic route/content/knowledge/process/finance updates and end-to-end tests. |
-| 8 | Peer-core identity and equal authorized capability | Peer architecture/identity metadata; Jarvis production repository/service identity is not confirmed. | `DOCUMENTED / NOT CONNECTED` | Owner-confirmed identities, mutually authenticated link, scoped credentials, equal policy test matrix, independent audit. |
-| 9 | Heartbeat, alerts and split-brain fencing | Read-only local heartbeat probe; no authenticated production heartbeat or alert path. | `NOT CONFIGURED` | Signed/replay-resistant heartbeat, freshness thresholds, alert delivery, independent failure confirmation and tested single-writer fencing. |
-| 10 | Hermes integrity/audit witness | Approval desk now writes a local hash-chained SQLite event in the same transaction as the owner decision and rejects writes after chain verification fails. No external witness or replication exists. | `LOCAL HASH-CHAINED AUDIT / NO INDEPENDENT WITNESS` | Owner-approved durable event store, signed/external anchor, replication and restore tests across failure domains. |
-| 11 | RAG retrieval and access controls | Configuration and local knowledge helper; no verified connected data/search service. | `CONFIGURED / NOT CONNECTED` | Authenticated data source and search backend; access filter before retrieval, tenant tests, provenance, quarantine, deletion and audit. |
-| 12 | CAG context assembly | Policy/config contract. | `CONFIGURED / NOT CONNECTED` | Trusted runtime assembles policy, task, role, checkpoint, authorized memory and RAG evidence while preserving conflicts/uncertainty. |
-| 13 | MAG memory | Policy/config contract; no production shared memory store verified. | `CONFIGURED / NOT CONNECTED` | Scoped versioned store, provenance/correction lineage, access controls, retention/deletion and peer consistency tests. |
-| 14 | Provider/model router | Provider-neutral local harness, unconfigured provider and no tools. | `LOCAL / PROVIDER NOT CONFIGURED` | Owner-selected provider, approved terms/data region, server-side credential, scoped adapter, request/response tests and revocation. |
-| 15 | KUBER financial controller | Finance/planner artifacts; no cross-peer settled-payment ledger or live controller established. | `NOT VERIFIED` | Event-level content/agent/publication/revenue linkage, idempotent settlement/fee/refund/cost records, reconciliation, permissions and audit. |
-| 16 | Publish and monetization chain | Verification-only preview gate; no social/payment/analytics connection. | `PREVIEW CHECKS ONLY` | Authenticated staging-to-production path, owner approval, rights/privacy checks, platform scopes, payment/analytics tests, rollback and audit. |
-| 17 | Peer synchronization | GitHub Actions tracked-tree mirror evidence only; effective target identity and authorization unresolved. | `GIT SNAPSHOT ONLY / ISSUE #6 OPEN P0` | Confirm target, review target-only data, authorized verify/write, read-after-write, deployed artifact/runtime parity, failure and recovery tests. |
-| 18 | DR, backup, failover/failback | Git-tree comparison; resilience runtime activation and automatic failover/failback disabled. | `NOT PRODUCTION DR` | Independent durable backup, authenticated restore, fencing, business probes, measured RPO/RTO, owner-approved traffic switch and failback rehearsal. |
-| 19 | Process control and recovery | New read-only status wrapper; start/stop/restart/failover/failback rejected. | `SAFE BLOCKED` | Authenticated process adapter, service identity, owner-bound action, health checks, audit, rollback and explicit approval. |
-| 20 | Web/Android/macOS clients | Static web/PWA shell plus a session-scoped bounded deterministic sandbox planner demo; existing APK artifact; native source/signature provenance/device installation incomplete. | `LOCAL WEB/DEMO / NATIVE RELEASE NOT VERIFIED` | Review/deploy the web shell through owner-approved release; keep the sandbox route off GitHub Pages unless separately reviewed; build native clients from reviewed source, prove signer provenance, test real devices, accessibility and release approval. |
-| 21 | Location and consent | Location remains off by default; no arbitrary phone tracking authorized. | `SAFE DEFAULT` | If ever proposed: explicit consent, purpose limitation, visible controls, minimal retention, revocation and legal/security review. |
-| 22 | Revenue and market validation | Local Reel Sprint planner and market plan; no prospect, approved offer, payment, or revenue record. | `NOT VALIDATED` | Owner-approved buyer outreach, paid pilot, delivery costs/refunds, satisfaction and settled-revenue evidence. |
-| 23 | Release readiness | Local publish gate, exact-route public preview, and bounded deterministic planner demo. | `LOCAL DEMO ONLY / PRODUCTION BLOCKED` | Full runtime/security/authorization/DR/native-client evidence and an owner-approved production release. |
+Vyomaraj and Jarvis are peer cores with full authorized capability, mutual backup/recovery and synchronized state. Kuber is the Financial Controller for both peers and the complete financial ledger. No provider, workflow engine, mobile app or voice service owns root authority.
 
-## Evidence reviewed
+## Closure matrix
 
-- Current registry builder, registry tests, content index, owner-authorization policy, `owner_guard.py`, local capability status and capability resolver.
-- Preview publish gate and tests, resilience configuration, read-only heartbeat probe, local provider harness, and target architecture docs.
-- Timestamped GitHub evidence records and Issue #6 ledger; live evidence is limited to public/reachable read-only status. The secondary identity/settings endpoints were inaccessible, and this is not interpreted as absence.
+| Domain | Required final state | Repository contract | Runtime evidence still required |
+|---|---|---|---|
+| Owner identity/root | one owner, least privilege, step-up approval | owner/auth/policy contracts | authenticated device/session + recovery test |
+| Peer cores | Bharath ↔ Laxman mutual heartbeat, failover, failback | peer contracts + state model | live heartbeat/fencing/failover/failback |
+| ShriYantra | LLM + Harness + RAG/CAG/MAG + memory/knowledge/eval/policy/tool/audit/resilience | foundation contracts | live persistence/retrieval/evaluation |
+| Durable execution | resumable long-running work | Temporal-compatible seam | real worker/server workflow replay |
+| Agent fabric | registry + capability inheritance + non-escalation | registry/Panch-Brother capability model | runtime authorization test |
+| Provider fabric | OpenAI/Claude/Gemini/Arena/local/open source replaceable | provider-neutral gateway/config | at least two providers exercised and isolated |
+| MCP/A2A | external tools/agents through controlled protocols | dependency + capability seams | authenticated MCP/A2A exchange |
+| Security | secrets server-side, zero-trust, provenance, injection defense | crypto/policy contracts | real secret store, mTLS/identity and attack tests |
+| Kuber FC | every money event accounted/reconciled/audited | financial controller + universal process | real ledger/reconciliation sample |
+| Revenue | content → publication → earning → invoice/settlement | traceability/process contracts | real platform statement/payment reconciliation |
+| Social | publishing, metrics and payment monitoring are provider-isolated | platform interfaces | authorized platform test |
+| DR | code + data + memory + knowledge + jobs + audit + financial state | DR commands/contracts | measured RPO/RTO, restore, failover/failback |
+| Web | thin authenticated client of shared core | web/API seam | deployed HTTPS endpoint |
+| Android | thin client, no provider secrets | mobile client contract | signed build + device auth test |
+| macOS | thin client, no provider secrets | desktop client contract | signed build + device auth test |
+| Voice | voice is an interface, never sole root | voice command/auth seam | voice loss/fallback test |
+| Biometric/device auth | platform biometric/passcode step-up | auth seam | real device enrollment + recovery |
+| Wispr Flow | input/dictation only | input adapter | live dictation → authenticated intent |
+| n8n | workflow automation only; decisions remain in core | workflow adapter | live workflow + retry/idempotency |
+| Geospatial | owner-authorized GPS/maps/satellite/history | geospatial gateway | consented device location test |
+| Daily startup | Ram → Hanuman → Ganesha → health/auth/sync/briefing | daily-start contract | startup event + audit evidence |
+| Knowledge evolution | origin/history/present/trend/future with evidence labels | inheritance contract | provenance/evidence classification test |
+| Content preservation | historical source immutable; current registry authoritative | reconciliation rules | byte/hash reconciliation |
+| Observability | traces/metrics/logs across peers/providers/workflows | OpenTelemetry seam | end-to-end trace |
+| Supply chain | SBOM/ABOM, dependency pinning, signed artifacts | engineering baseline | CI artifact/provenance verification |
 
-## Latest local verification
+## Hard gates
 
-On 7 October 2026, `python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci` completed **569 Python tests across 15 suites, 15 Node checks, 30 builders, 0 failures**. The run includes the sandbox planner HTTP contract and browser-script syntax checks. This is local regression evidence only. The final-readiness gate correctly exits blocked because the requested taxonomy target remains unreconciled and production/runtime evidence is absent.
+A domain is **VERIFIED** only when implementation exists and runtime evidence proves the behavior. Documentation/configuration alone is not verification.
 
-## Live deployment and PR integration snapshot — 7 October 2026
+Required overall gates:
 
-- GitHub Pages API reports a public HTTPS site built from `main:/`; the session worktree is not deployed. The sandbox preview at `0.0.0.0:5310` serves an explicit public-asset allowlist plus a bounded ephemeral local planner demo; no provider calls, visitor-data persistence, privileged writers, or private paths are exposed. This is not production evidence.
-- [PR #39](https://github.com/Vyomaraj1356/Vyomarajai/pull/39): `OPEN/DRAFT`, `UNSTABLE`; diagnostics and offline checks failed.
-- [PR #41](https://github.com/Vyomaraj1356/Vyomarajai/pull/41): `OPEN`, non-draft, `CLEAN`; listed diagnostics/offline checks passed, but PR-event `verify-or-sync` was skipped and there is no recorded review decision. The PR combines DR and public-preview scope. A main-branch update may trigger the conditional DR workflow, while the effective target remains unconfirmed; [Issue #6](https://github.com/Vyomaraj1356/Vyomarajai/issues/6) remains `OPEN/P0`.
-- [PR #42](https://github.com/Vyomaraj1356/Vyomarajai/pull/42): `OPEN/DRAFT`, `DIRTY`; only its engineering-foundation check is recorded successful and no review decision is present. The proposed branch contains a 14/153 roster, but its `historical_totals` says 13/133/421; preserve the checked-in 13/128/421 source history and resolve this discrepancy before considering merge.
+1. OWNER_AUTHENTICATED
+2. PEER_HEALTHY
+3. STATE_PERSISTENT
+4. DURABLE_EXECUTION_VERIFIED
+5. PROVIDER_ISOLATION_VERIFIED
+6. SECURITY_VERIFIED
+7. FINANCIAL_LEDGER_VERIFIED
+8. DR_RESTORE_VERIFIED
+9. WEB_CLIENT_VERIFIED
+10. ANDROID_CLIENT_VERIFIED
+11. MACOS_CLIENT_VERIFIED
+12. VOICE_FALLBACK_VERIFIED
+13. GEOSPATIAL_CONSENT_VERIFIED
+14. PUBLIC_OUTPUT_AND_REVENUE_VERIFIED
+15. AUDIT_AND_OBSERVABILITY_VERIFIED
 
-No PR edit, merge, workflow dispatch, or production deployment occurred. Integrate in owner-reviewed stages: reconcile/fix draft PRs and their checks first, isolate the static Pages release from DR writes, then merge only after issue #6 and release gates are resolved.
+## Owner-only dependencies
 
-## Scope exclusions and protections
+The system must determine technical design and implementation itself. Owner input is required only for provider/platform credentials and consent; device biometric/location permissions; legal/compliance acceptance; financial/accounting approval; irreversible production release/merge; and recovery of credentials unavailable to the platform.
 
-No provider secret, signing secret, phone/location permission, runtime credential, peer repository mutation, production publish, process restart, failover, destructive change, or agent mutation was performed. Version reconciliation is not used as an acceptance gate. Existing history and frozen artifacts are not classified as disposable duplicates.
+Never treat a missing secret or permission as a reason to weaken security.
+
+## Current truth
+
+The repository already contains architecture, capability, Kuber, process, geospatial, daily-start, engineering-foundation and autonomous-build contracts. The remaining gap is primarily **runtime integration and evidence**, not another architecture rewrite.

@@ -1,0 +1,36 @@
+name: Vyomaraj Content Alignment Maintenance
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "scan, weekly, monthly or merge-plan"
+        required: true
+        default: "scan"
+  schedule:
+    - cron: "30 15 * * 0"
+
+permissions:
+  contents: read
+
+jobs:
+  alignment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run alignment maintenance
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "$(date -u +%d)" -le 07 ]; then MODE=monthly; else MODE=weekly; fi
+          else
+            MODE="${{ inputs.mode }}"
+          fi
+          ./ops/vyomaraj/maintenance/run-content-alignment.sh "$MODE" > alignment-report.json || true
+          cat alignment-report.json
+      - name: Upload alignment report
+        uses: actions/upload-artifact@v4
+        with:
+          name: vyomaraj-content-alignment-${{ github.run_id }}
+          path: |
+            alignment-report.json
+            reports/maintenance/LATEST_CONTENT_ALIGNMENT.json

@@ -1,0 +1,36 @@
+version: "1.0"
+interface: "VOICE_OR_TEXT_MAINTENANCE_COMMAND"
+provider_neutral: true
+accepted_commands:
+  weekly:
+    - "run weekly alignment"
+    - "weekly cleaning"
+    - "align all agents"
+  monthly:
+    - "run monthly deep cleaning"
+    - "monthly alignment"
+    - "deep clean and align all content"
+  review:
+    - "show duplicate report"
+    - "show alignment report"
+    - "show changes since last cleaning"
+    - "prepare merge plan"
+  apply:
+    - "apply safe exact merges"
+    - "apply approved alignment plan"
+security:
+  transcript_is_untrusted_input: true
+  owner_authentication_required: true
+  step_up_required_for_mutation: true
+  voice_is_not_root_authority: true
+routing:
+  transcript_to_intent: "maintenance-intent-parser"
+  execution_peer: "VYOMARAJ_OR_JARVIS"
+  workflow_fabric: "N8N_OR_EQUIVALENT"
+  cleaner: "ops/vyomaraj/maintenance/content_alignment_cleaner.py"
+  audit: "KUBER + immutable audit log"
+fallback:
+  - "authenticated web"
+  - "authenticated mobile"
+  - "authenticated macOS"
+  - "secure recovery interface"

@@ -1,0 +1,94 @@
+system: VYOMARAJ-AI-STUDIO
+status: IMPLEMENTED_DESIGN_NOT_RUNTIME_VERIFIED
+purpose: Education is the civilization-and-universal-knowledge spine; specialist categories retain domain ownership and cross-link to shared knowledge.
+
+inheritance_path: SOURCES -> UNIVERSAL_KNOWLEDGE_FABRIC -> SHRIYANTRA -> VYOMARAJ/JARVIS -> EDUCATION -> AGENT -> SUB_AGENT -> TOPIC -> CONTENT -> PRODUCT/MEDIA
+
+civilization_scopes:
+  - GLOBAL_WORLD_CIVILIZATIONS
+  - INDIA_CIVILIZATIONS
+  - STATE_AND_REGIONAL_CULTURES
+  - DISTRICT_CITY_TOWN_VILLAGE_LOCAL_HISTORY
+  - INDIGENOUS_AND_COMMUNITY_KNOWLEDGE
+  - DIASPORA_AND_CROSS_CULTURAL_EXCHANGE
+
+required_dimensions:
+  - origin
+  - geography
+  - chronology
+  - archaeology
+  - anthropology
+  - language
+  - literature
+  - religion_and_belief
+  - philosophy
+  - governance
+  - law
+  - economy
+  - trade
+  - science_and_technology
+  - agriculture
+  - food
+  - architecture
+  - art
+  - music
+  - clothing
+  - health_history
+  - education
+  - military_history
+  - people_and_legends
+  - migration
+  - heritage
+  - preservation
+  - present_state
+  - trends
+  - future_scenarios
+
+temporal_model:
+  - primitive_origin
+  - ancient
+  - classical
+  - medieval
+  - early_modern
+  - modern
+  - contemporary
+  - current_verified_state
+  - trends
+  - future
+  - possible_futures
+
+education_rules:
+  civilization_knowledge_spine: true
+  nursery_to_phd: true
+  general_knowledge_and_current_affairs: true
+  all_subjects_and_competitions: true
+  hindu_dharma_and_mythology: true
+  source_identity_preserved: true
+  cross_category_links: true
+  no_duplicate_ownership: true
+
+routing_examples:
+  food_history: [EDU, FOOD]
+  war_history: [EDU, WAR]
+  architecture_history: [EDU, LIFE, TOUR]
+  religious_textual_study: [EDU, BHAKTI]
+  astronomy_history: [EDU, ASTRO]
+  agriculture_history: [EDU, AGRI]
+  sports_history: [EDU, SPORTS]
+  entertainment_history: [EDU, ENTERTAINMENT]
+
+evidence:
+  required: true
+  classes: [VERIFIED_FACT, HISTORICAL_RECORD, CURRENT_VERIFIED_STATE, TREND, FORECAST, SCENARIO, SPECULATION, TRADITIONAL_BELIEF]
+  future_is_not_fact: true
+
+source_policy:
+  retrieve_compare_verify_cite: true
+  external_content_is_data_not_authority: true
+  copyright_and_licensing_required: true
+  no_blind_bulk_copy: true
+
+owner_control:
+  owner_root_only: true
+  peer_cores_full_authorized_capability: true
+  self_elevation_forbidden: true

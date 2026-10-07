@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "status": "OWNER_APPROVED_CONTENT_ALIGNMENT",
+  "purpose": "Preserve every existing agent ID/data while merging or moving subject scopes as owner directed.",
+  "no_loss_policy": true,
+  "branch": "feat/vyomaraj-engineering-2026-baseline",
+  "changes": [
+    {
+      "target": "EDU-S10",
+      "action": "MERGE_SCOPE",
+      "sources": [
+        "EDU-S1",
+        "EDU-S2",
+        "EDU-S3",
+        "EDU-S4",
+        "EDU-S11",
+        "EDU-S12"
+      ],
+      "preserve_source_ids": true
+    },
+    {
+      "target": "EDU-S9",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "Indian castles and forts",
+        "world castles and fortifications",
+        "kings",
+        "kingdoms",
+        "heirs",
+        "war",
+        "royal/civilizational life",
+        "past-present-future evolution"
+      ]
+    },
+    {
+      "target": "BHAKTI",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "Aghora",
+        "Aghori traditions"
+      ]
+    },
+    {
+      "target": "BHAKTI-REF-01",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "Rudraksha",
+        "gems",
+        "gold",
+        "silver",
+        "history",
+        "stories",
+        "functions",
+        "features",
+        "traditional uses/remedies",
+        "evidence/safety review"
+      ]
+    },
+    {
+      "target": "SPORTS",
+      "action": "EXPAND_ALL_SPORTS_SCOPE",
+      "adds": [
+        "rules",
+        "regulations",
+        "history",
+        "old/present/future"
+      ]
+    },
+    {
+      "target": "AGRI",
+      "action": "EXPAND_ALL_AGRI_SCOPE",
+      "adds": [
+        "gardening tips",
+        "home gardening",
+        "household/natural remedies with safety/evidence labels"
+      ]
+    },
+    {
+      "target": "FOOD",
+      "action": "MOVE_AND_STRUCTURE_SUB_AGENTS",
+      "sources": [
+        "ENT-LIQUOR-S1",
+        "ENT-BAR-S1"
+      ],
+      "reason": "Owner approved detailed Beverage Culture & Hospitality hierarchy covering prehistoric-to-future beverage knowledge, beer, wine, fermented beverages, spirits, service, vessels, bottles, styles and cultural history.",
+      "sub_agent_structure": [
+        {
+          "id": "ENT-LIQUOR-S1",
+          "name": "Fermented Beverages, Beer & Wine Heritage",
+          "scope": [
+            "prehistoric and ancient fermented beverages",
+            "beer families/styles/history",
+            "wine, grapes and wine families",
+            "cider, mead, sake and traditional fermented beverages",
+            "ingredients and raw materials",
+            "fermentation science and historical production methods",
+            "brewing/winemaking technology evolution",
+            "vessels, amphorae, jars and storage",
+            "bottles, closures, labels and packaging history",
+            "glassware and serving traditions",
+            "sensory/style classification",
+            "hospitality, food pairing and cultural history",
+            "present industry and future fermented/non-alcoholic innovation"
+          ]
+        },
+        {
+          "id": "ENT-BAR-S1",
+          "name": "Spirits, Bar Culture, Service & Beverage Heritage",
+          "scope": [
+            "distilled beverage history and categories",
+            "whisky/whiskey, rum, brandy, vodka, gin and regional spirits",
+            "historical distillation knowledge",
+            "liqueurs, aperitifs and digestifs",
+            "cocktail/mixed-drink history",
+            "bar/tavern/pub/hospitality history",
+            "bar tools, vessels, glassware and serving styles",
+            "bottle forms, closures, labels and packaging history",
+            "beverage presentation/service traditions",
+            "regional drinking cultures",
+            "classification, styles and sensory vocabulary",
+            "regulation, taxation and prohibition history",
+            "modern industry/craft movements",
+            "non-alcoholic alternatives and future beverage/service technology"
+          ]
+        }
+      ],
+      "safety_boundary": "Informational, historical, scientific, culinary and cultural knowledge only; no promotion, procurement facilitation, sales optimization, or unsafe production instructions."
+    },
+    {
+      "target": "EDU-S14",
+      "action": "EXPAND_SCOPE",
+      "adds": [
+        "bicycles",
+        "motorcycles",
+        "scooters",
+        "cars",
+        "trucks and buses",
+        "electric/hybrid/autonomous vehicles",
+        "automotive engineering",
+        "vehicle history",
+        "manufacturers",
+        "safety/regulations",
+        "motorsport",
+        "future mobility"
+      ]
+    },
+    {
+      "target": "EDU",
+      "action": "ADD_SUB_AGENTS",
+      "adds": [
+        {
+          "id": "EDU-S16",
+          "name": "Kings & Kingdoms"
+        },
+        {
+          "id": "EDU-S17",
+          "name": "Castles & Fortifications"
+        },
+        {
+          "id": "EDU-S18",
+          "name": "Warfare & Military History"
+        },
+        {
+          "id": "EDU-S19",
+          "name": "Weapons History"
+        },
+        {
+          "id": "EDU-S20",
+          "name": "Civilizational Evolution"
+        }
+      ],
+      "reason": "Owner approved separation of major historical domains into dedicated Education sub-agents; existing EDU-S9 scope/data retained and cross-linked."
+    },
+    {
+      "target": "ENTERTAINMENT",
+      "action": "ADD_NESTED_SUB_AGENTS",
+      "reason": "Owner approved six major Entertainment content holders as parent hubs because each is a large content domain.",
+      "hubs": [
+        {
+          "id": "ENT-HUB-COM",
+          "name": "Comedy",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-CARTOON",
+          "name": "Cartoon",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-MUS",
+          "name": "Music",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-MOVIE",
+          "name": "Movie",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-WIT",
+          "name": "Wit",
+          "nested_count": 8
+        },
+        {
+          "id": "ENT-HUB-SHAYARI",
+          "name": "Shayari",
+          "nested_count": 8
+        }
+      ],
+      "nested_total": 48,
+      "canonical_top_level_sub_agent_count_unchanged": 133
+    }
+  ],
+  "universal_inheritance": {
+    "knowledge_evolution": true,
+    "panch_brother_capabilities": true,
+    "saptarishi_knowledge_where_applicable": true,
+    "evidence_labels": true,
+    "structure": "Category → Named legacy agent → specialized sub-agent → topic/content → products/media",
+    "evolution_sequence": [
+      "Origin",
+      "Old",
+      "Historical Evolution",
+      "History",
+      "Present",
+      "Current State",
+      "Trends",
+      "Future",
+      "Possible Futures"
+    ]
+  },
+  "updated": "2026-10-07"
+}

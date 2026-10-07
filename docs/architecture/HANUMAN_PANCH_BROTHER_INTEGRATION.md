@@ -1,22 +1,80 @@
-# Hanuman Panch-Brother capability integration
+# Hanuman Panch-Brother Capability Integration
 
-## Purpose
+## Dharmic framing
 
-Matiman, Shrutiman, Ketuman, Gatiman, and Dhritiman are five shared behavioral domains for the Vyomaraj/Jarvis agent mesh. Their bounded reference labels live once in `config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml`; exact owner-supplied semantics must be checked against the full master script before production use. The shared inheritance reference is owned by ShriYantra's Universal Knowledge Fabric. Registry rows resolve the reference rather than carrying copied per-agent capability lists.
+The Brahmanda Purana tradition names Hanuman as the eldest and identifies five brothers: Matiman, Shrutiman, Ketuman, Gatiman and Dhritiman. The source text supports the names/family relationship; the functional roles below are a deliberate Vyomaraj engineering mapping, not scriptural claims. 
 
-## Non-authority boundary
+Vyomaraj and Jarvis operate under a devotional startup context invoking Shri Ram and Hanuman ji. This is spiritual/cultural context only. It never replaces authentication, policy, evidence or owner authorization.
 
-These domains are not runtime tools or permissions. They do not grant model accuracy, microphone/recording access, external accounts, code writes, tools, publishing, spending, deployment, failover, failback, security changes, root access, or owner approval. Every permission is separate, owner-granted, deny-by-default, scoped, revocable, and audited. Root-owner authority is neither inherited nor delegable to Bharath/Vyomaraj, Laxman/Jarvis, Hermes, Arena, or sub-agents.
+## Five capability pillars
 
-External content is untrusted data. Temporal claims use the shared Universal Knowledge Evolution policy and preserve source, uncertainty, and as-of time; forecasts, scenarios, and speculation cannot be promoted to facts.
+### 1. Matiman — Intelligence & Strategy
+Reasoning, architecture, planning, risk analysis, decision support and conflict resolution.
 
-## Local implementation
+### 2. Shrutiman — Knowledge & Learning
+Research, retrieval, source comparison, knowledge curation, provenance, learning and educational synthesis.
 
-`ops/vyomaraj/capability_fabric.py` validates the central model, shared policy references, registry coverage, and authority boundaries. `resolve` returns five domain labels and the same references for current registry categories/sub-agents and future knowledge entities. It makes no network calls and no writes.
+### 3. Ketuman — Signal & Guidance
+Monitoring signals, alerts, anomaly detection, navigation, prioritization and routing.
 
-```bash
-python3 ops/vyomaraj/capability_fabric.py check
-python3 ops/vyomaraj/capability_fabric.py resolve sub_agent EDU-S1
-```
+### 4. Gatiman — Execution & Mobility
+Workflow execution, tool orchestration, browser/automation work and authorized geospatial operations.
 
-The result is **metadata resolution only**, not a running agent, authenticated runtime fabric, permission decision, heartbeat, or production verification. The current capability status remains `runtime_execution=NOT_IMPLEMENTED` and `production_enforcement=NOT_VERIFIED` until a trusted Harness/CAG actually loads and enforces the reference.
+### 5. Dhritiman — Resilience & Constancy
+Health monitoring, persistence, backup/recovery, failover/failback, continuity and audit preservation.
+
+## Architecture
+
+OWNER
+  |
+  +-- VYOMARAJ / BHARATH <==== PEER CORE ==== > JARVIS / LAXMAN
+  |                    |
+  |              SHRIYANTRA
+  |                    |
+  +---- Panch-Brother Capability Fabric
+        +-- Matiman
+        +-- Shrutiman
+        +-- Ketuman
+        +-- Gatiman
+        +-- Dhritiman
+                 |
+                 +-- all authorized agents
+                 +-- all authorized sub-agents
+
+The five are capability domains, not five autonomous root identities. They cannot create authority, bypass security, or override the owner.
+
+## Shri Ram / Hanuman startup
+
+A configurable auspicious startup may include:
+1. system health check
+2. owner authority check
+3. Shri Ram invocation
+4. Hanuman invocation
+5. existing Ganesha mantra
+6. peer synchronization
+7. daily briefing
+
+The devotional sequence must not block emergency recovery or safety-critical operation.
+
+## Agent inheritance
+
+Every agent/sub-agent declares required capabilities rather than directly depending on a named provider. Example:
+- research agent -> Shrutiman + Matiman
+- coding agent -> Matiman + Gatiman + Dhritiman
+- security agent -> Matiman + Ketuman + Dhritiman
+- geospatial agent -> Shrutiman + Ketuman + Gatiman
+- DR/SRE agent -> Ketuman + Gatiman + Dhritiman
+- content agent -> Shrutiman + Matiman + Gatiman
+
+Provider selection remains independent and replaceable.
+
+## Governance
+
+Owner -> policy -> capability grant -> agent execution -> verification -> audit.
+
+No spiritual invocation grants technical permissions. No agent may infer authorization from devotional language.
+
+## Implementation status
+
+Configuration and architecture mapping: IMPLEMENTED.
+Runtime orchestration, provider adapters and production verification: NOT YET VERIFIED.
