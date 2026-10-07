@@ -11,7 +11,7 @@ def test_daily_start_contains_mantra_and_peer_sequence():
         "owner_authority_check": lambda: True,
     })
     assert [e.step for e in events] == list(SEQUENCE)
-    assert MANTRA in events[2].message
+    assert MANTRA in events[4].message\n    assert "श्री राम" in events[2].message\n    assert "हनुमते" in events[3].message
 
 def test_location_defaults_to_owner_authorization():
     try:
