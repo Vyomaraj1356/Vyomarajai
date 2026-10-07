@@ -41,9 +41,11 @@ class PostPr25PackageTests(unittest.TestCase):
             self.assertEqual(names[:canonical_total], manifest_names[:canonical_total],
                              'frozen canonical members must be the leading block of the companion')
             self.assertEqual(len(names), self.manifest['members_total'])
-            for name, source in canonical.MEMBERS:
-                self.assertEqual(archive.read(name), source.read_bytes(),
-                                 f'{name} differs from the canonical package member')
+            frozen = {m['archive_name']: m for m in self.manifest['members'][:self.manifest['canonical_members_total']]}
+            for name in manifest_names[:self.manifest['canonical_members_total']]:
+                data = archive.read(name)
+                self.assertEqual(hashlib.sha256(data).hexdigest(), frozen[name]['sha256'],
+                                 f'{name} differs from its frozen manifest member')
 
     def test_rebuild_is_deterministic_for_current_sources(self):
         first = companion.build_bytes()
