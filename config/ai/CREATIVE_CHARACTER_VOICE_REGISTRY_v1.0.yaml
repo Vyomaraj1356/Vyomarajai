@@ -1,0 +1,32 @@
+system: VYOMARAJ-AI-STUDIO
+status: STARTER_REGISTRY_AUTONOMOUS_SELECTION_ENABLED
+selection:
+  engine: VYOMARAJ_JARVIS_CREATIVE_DIRECTOR
+  choose_from_registry_before_creating: true
+  create_new_identity_only_when_needed: true
+  preserve_character_continuity: true
+  preserve_voice_continuity: true
+character_profiles:
+  - {id: VYO_EDU_GUIDE, role: universal_education, style: trustworthy_teacher, domains: [EDUCATION, CIVILIZATION, HISTORY]}
+  - {id: VYO_HISTORY_CHRONICLER, role: history_and_heritage, style: documentary_chronicler, domains: [HISTORY, WAR, EDUCATION]}
+  - {id: VYO_FOOD_STORYTELLER, role: food_and_culture, style: warm_cinematic, domains: [FOOD, AGRI, TOUR, EDUCATION]}
+  - {id: VYO_SCIENCE_EXPLORER, role: science_and_space, style: curious_explainer, domains: [ASTRO, EDUCATION]}
+  - {id: VYO_SPORTS_ANALYST, role: sports_and_legends, style: energetic_authoritative, domains: [SPORTS, EDUCATION]}
+voice_profiles:
+  - {id: VOICE_DOCUMENTARY_DEEP, tone: deep_authoritative, use: [HISTORY, WAR, CIVILIZATION]}
+  - {id: VOICE_EDUCATION_CLEAR, tone: clear_confident, use: [EDUCATION, SCIENCE]}
+  - {id: VOICE_CINEMATIC_STRONG, tone: strong_cinematic, use: [FOOD, SPORTS, ENTERTAINMENT]}
+  - {id: VOICE_DEVOTIONAL_RESPECTFUL, tone: respectful_devotional, use: [BHAKTI, CULTURAL]}
+  - {id: VOICE_NEUTRAL_GLOBAL, tone: neutral_multilingual, use: [GENERAL, NEWS, EXPLAINER]}
+naming:
+  namespace: VYOM
+  uniqueness_check: required
+  trademark_or_rights_check: required
+  real_person_collision_check: required
+  synthetic_presenter_default: true
+continuity:
+  character_bible_required: true
+  voice_bible_required: true
+  visual_bible_required: true
+  version_every_change: true
+  provenance_every_asset: true
