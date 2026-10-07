@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "status": "CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory",
-  "updated": "2026-10-03",
+  "updated": "2026-10-07",
   "source_snapshot": "handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
   "historical_totals": {
     "main_agents": 13,
@@ -30,7 +30,7 @@
       "active_product_count": null,
       "product_status": "UNRECONCILED_no_complete_item_level_mapping",
       "unmapped_source_group_label": "Bharat Grantha, Chanakya and the Granthas",
-      "sub_agents": 16,
+      "sub_agents": 21,
       "headings": 0
     },
     {
@@ -494,15 +494,34 @@
       "id": "EDU-S14",
       "category_id": "EDU",
       "parent_id": "EDU",
-      "name": "Care & Bikes — Bicycles & Two-Wheelers",
-      "name_status": "SUPPLIED_OR_OWNER_APPROVED",
+      "name": "Automotive, Bicycles, Bikes & Mobility",
+      "name_status": "OWNER_APPROVED_EXPANDED_SCOPE",
       "source_slot": "S14",
       "id_status": "source_id_preserved",
       "serial": 14,
       "kind": "sub_agent",
       "counted": true,
       "source_reported_chapter_count": 16,
-      "runtime_status": "NOT_VERIFIED"
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "bicycles",
+        "motorcycles",
+        "scooters",
+        "cars",
+        "trucks and buses",
+        "electric vehicles",
+        "hybrid vehicles",
+        "autonomous vehicles",
+        "engines and propulsion",
+        "automotive engineering",
+        "vehicle history",
+        "Indian and world manufacturers",
+        "classic and vintage vehicles",
+        "vehicle safety and regulations",
+        "motorsport",
+        "future mobility"
+      ],
+      "temporal_model_inherited": true
     },
     {
       "id": "EDU-S15",
@@ -2354,6 +2373,134 @@
       "counted": true,
       "source_reported_chapter_count": null,
       "runtime_status": "NOT_VERIFIED"
+    },
+    {
+      "id": "EDU-S16",
+      "category_id": "EDU",
+      "parent_id": "EDU",
+      "name": "Kings & Kingdoms",
+      "name_status": "OWNER_APPROVED_NEW_SUB_AGENT",
+      "source_slot": null,
+      "id_status": "new_owner_approved_slot",
+      "serial": 17,
+      "kind": "sub_agent",
+      "counted": true,
+      "source_reported_chapter_count": null,
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "kings",
+        "kingdoms",
+        "dynasties",
+        "heirs",
+        "royal life",
+        "statecraft",
+        "civilizational evolution"
+      ],
+      "temporal_model_inherited": true,
+      "approval_basis": "owner_request_2026-10-07"
+    },
+    {
+      "id": "EDU-S17",
+      "category_id": "EDU",
+      "parent_id": "EDU",
+      "name": "Castles & Fortifications",
+      "name_status": "OWNER_APPROVED_NEW_SUB_AGENT",
+      "source_slot": null,
+      "id_status": "new_owner_approved_slot",
+      "serial": 18,
+      "kind": "sub_agent",
+      "counted": true,
+      "source_reported_chapter_count": null,
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "Indian forts",
+        "world castles",
+        "fortifications",
+        "defensive architecture",
+        "siege history",
+        "fort history",
+        "military architecture"
+      ],
+      "temporal_model_inherited": true,
+      "approval_basis": "owner_request_2026-10-07"
+    },
+    {
+      "id": "EDU-S18",
+      "category_id": "EDU",
+      "parent_id": "EDU",
+      "name": "Warfare & Military History",
+      "name_status": "OWNER_APPROVED_NEW_SUB_AGENT",
+      "source_slot": null,
+      "id_status": "new_owner_approved_slot",
+      "serial": 19,
+      "kind": "sub_agent",
+      "counted": true,
+      "source_reported_chapter_count": null,
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "warfare",
+        "military history",
+        "campaigns",
+        "armies",
+        "strategy",
+        "tactics",
+        "military organization",
+        "historical conflicts"
+      ],
+      "temporal_model_inherited": true,
+      "approval_basis": "owner_request_2026-10-07"
+    },
+    {
+      "id": "EDU-S19",
+      "category_id": "EDU",
+      "parent_id": "EDU",
+      "name": "Weapons History",
+      "name_status": "OWNER_APPROVED_NEW_SUB_AGENT",
+      "source_slot": null,
+      "id_status": "new_owner_approved_slot",
+      "serial": 20,
+      "kind": "sub_agent",
+      "counted": true,
+      "source_reported_chapter_count": null,
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "ancient weapons",
+        "gunpowder",
+        "guns",
+        "pistols",
+        "rifles",
+        "artillery",
+        "weapon evolution",
+        "military technology history"
+      ],
+      "temporal_model_inherited": true,
+      "approval_basis": "owner_request_2026-10-07"
+    },
+    {
+      "id": "EDU-S20",
+      "category_id": "EDU",
+      "parent_id": "EDU",
+      "name": "Civilizational Evolution",
+      "name_status": "OWNER_APPROVED_NEW_SUB_AGENT",
+      "source_slot": null,
+      "id_status": "new_owner_approved_slot",
+      "serial": 21,
+      "kind": "sub_agent",
+      "counted": true,
+      "source_reported_chapter_count": null,
+      "runtime_status": "NOT_VERIFIED",
+      "topic_scope": [
+        "primitive origins",
+        "ancient civilizations",
+        "medieval civilizations",
+        "industrial evolution",
+        "modern civilization",
+        "technology evolution",
+        "social evolution",
+        "future civilization"
+      ],
+      "temporal_model_inherited": true,
+      "approval_basis": "owner_request_2026-10-07"
     }
   ],
   "count_reconciliation": {
@@ -2416,14 +2563,27 @@
       "source_basis": "Historical flow-diagram Finance S1 Govt Schemes; user approved the current ownership transfer.",
       "source_slot_identity": "Historical diagram label; canonical Finance individual mapping had been unspecified."
     },
-    "exact_duplicate_records_removed": []
+    "exact_duplicate_records_removed": [],
+    "education_domain_additions": {
+      "action": "ADD_SUB_AGENTS",
+      "count_added": 5,
+      "ids": [
+        "EDU-S16",
+        "EDU-S17",
+        "EDU-S18",
+        "EDU-S19",
+        "EDU-S20"
+      ],
+      "reason": "owner approved separation of Kings & Kingdoms, Castles & Fortifications, Warfare & Military History, Weapons History, and Civilizational Evolution from EDU-S9 topic scope",
+      "no_loss_policy": true
+    }
   },
   "totals": {
     "main_agents": 13,
-    "sub_agents": 128,
+    "sub_agents": 133,
     "uncounted_parent_headings": 6,
-    "named_sub_agents": 42,
-    "unnamed_numbered_sub_agents": 86,
+    "named_sub_agents": 50,
+    "unnamed_numbered_sub_agents": 83,
     "active_products": null,
     "historical_reported_products": 421
   },
