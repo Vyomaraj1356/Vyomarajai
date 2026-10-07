@@ -1,0 +1,65 @@
+version: "1.0"
+system_id: "VYOMARAJ-AI-STUDIO"
+capability: "CONTENT_ALIGNMENT_CLEANING"
+owners:
+  primary: "OWNER"
+  financial_controller: "KUBER"
+  execution_peers: ["VYOMARAJ/BHARATH","JARVIS/LAXMAN"]
+  voice_interface: "WISPR_FLOW_OR_EQUIVALENT"
+  workflow_fabric: "N8N_OR_EQUIVALENT"
+schedule:
+  continuous: ["integrity checks on content ingestion and agent changes"]
+  weekly: {day: "Sunday", mode: "SCAN_AND_REPORT"}
+  monthly: {day: "first Sunday", mode: "DEEP_SCAN_AND_PROPOSE"}
+  quarterly: {mode: "ARCHIVE_AND_RECOVERY_AUDIT"}
+workflow:
+  - DISCOVER
+  - SNAPSHOT
+  - NORMALIZE
+  - DETECT_EXACT_DUPLICATES
+  - DETECT_POSSIBLE_DUPLICATES
+  - RECOVER_PROVENANCE
+  - ALIGN_TOPIC_TO_SUB_AGENT
+  - ALIGN_CONTENT_TO_TOPIC
+  - ALIGN_PRODUCT_MEDIA
+  - ALIGN_PROCESS
+  - ALIGN_REVENUE
+  - KUBER_RECONCILE
+  - GENERATE_CHANGE_PLAN
+  - OWNER_AUTHENTICATION
+  - OWNER_APPROVAL
+  - APPLY_SAFE_EXACT_MERGES
+  - UPDATE_INDEX_AND_ROUTING
+  - SYNC_VYOMARAJ_JARVIS
+  - REPLICATE_TO_DR
+  - VERIFY
+  - AUDIT
+duplicate_policy:
+  exact_duplicate:
+    action: "merge records; preserve all source refs, IDs, timestamps, audit hashes and lineage; create tombstone/alias"
+    automatic: "only after owner-authenticated maintenance run"
+  possible_duplicate:
+    action: "proposal only; never auto-delete"
+  conflict:
+    action: "stop affected merge and escalate"
+merge_invariants:
+  - "no silent data deletion"
+  - "stable IDs preserved"
+  - "source provenance preserved"
+  - "financial attribution preserved"
+  - "published references preserved"
+  - "audit evidence immutable"
+  - "rollback record before mutation"
+  - "both peer cores receive identical committed state"
+  - "DR replication and integrity check after mutation"
+voice:
+  accepted_intents:
+    - "run weekly alignment scan"
+    - "run monthly deep alignment"
+    - "review duplicate report"
+    - "prepare merge plan"
+    - "apply safe exact merges"
+  security: "voice is an interface; owner authentication and step-up approval are mandatory for changes"
+financial:
+  controller: "KUBER"
+  required_trace: "CONTENT-ID -> AGENT-ID -> SUB-AGENT-ID -> TOPIC-ID -> PRODUCT/MEDIA-ID -> PROCESS-ID -> REVENUE EVENT -> KUBER LEDGER -> OWNER"
