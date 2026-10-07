@@ -1,0 +1,40 @@
+{
+  "version":"1.0",
+  "system":"VYOMARAJ-AI-STUDIO",
+  "branch":"feat/vyomaraj-engineering-2026-baseline",
+  "execution_policy":"inspect -> gap -> implement -> test -> runtime_verify -> audit -> report",
+  "phases":[
+    "baseline_inventory",
+    "core_runtime",
+    "knowledge_memory",
+    "agent_fabric",
+    "kuber_financial_control",
+    "revenue_intelligence",
+    "public_platform_control",
+    "owner_access",
+    "geospatial",
+    "security_observability",
+    "application_dr",
+    "scale",
+    "production"
+  ],
+  "hard_gates":[
+    "no_loss_content_reconciliation",
+    "owner_only_root",
+    "peer_core_mutual_recovery",
+    "durable_execution",
+    "provider_isolation",
+    "financial_event_for_every_money_impact",
+    "audit_evidence",
+    "measured_dr",
+    "runtime_e2e"
+  ],
+  "status_rule":"documentation != implementation; implementation != runtime verification; configuration != connection; git replication != application DR",
+  "owner_intervention_only_for":[
+    "secrets_and_credentials",
+    "legal_consent",
+    "financial_commitment_or_approval",
+    "device_permissions",
+    "irreversible_production_action"
+  ]
+}
