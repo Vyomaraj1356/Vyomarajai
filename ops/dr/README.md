@@ -39,7 +39,9 @@ This is a repository-integrity test, not a running-application, backup-restore, 
 
 ## Controlled replication after review/merge
 
-The single workflow is `.github/workflows/vyomaraj-sync-both.yml`. Feature pushes and PRs run offline tests only. Manual `mode=verify` supports a `diagnostic_target` for read-only checks. No untrusted input is interpolated directly into shell code.
+The single workflow is `.github/workflows/vyomaraj-sync-both.yml`. Feature pushes and PRs run offline tests only. Main pushes and the schedule are verification-only; a snapshot write now requires an explicit `workflow_dispatch` with `mode=sync`, a confirmed target, and `VYOMARAJ_DR_SYNC_ENABLED=true`. Manual `mode=verify` supports a `diagnostic_target` for read-only checks. No untrusted input is interpolated directly into shell code.
+
+The checked-in policy sets `sync_approved_on_main=false` while issue #6 remains OPEN/P0. This branch change prevents an ordinary web-release merge or scheduled run from silently writing to an unconfirmed secondary. It does not confirm the target, close issue #6, or perform a sync.
 
 For actual replication, an authorized maintainer must:
 
@@ -47,7 +49,7 @@ For actual replication, an authorized maintainer must:
 2. Confirm the intended secondary exists, already has a `main` ref, and is a dedicated snapshot mirror. Review target-only files: an exact snapshot removes them from the new tree, while preserving prior DR commit history.
 3. Set `VYOMARAJ_DR_REPO` to that confirmed destination. Configure `VYOMARAJ_PAT` securely with the necessary repository permissions (including workflow-file permissions if the mirrored tree requires them); ensure branch protections allow the approved update.
 4. Complete a read-only verification first. `diagnostic_target` is never accepted for writes.
-5. Set repository variable `VYOMARAJ_DR_SYNC_ENABLED=true` only when mirror writes are approved. With this value, primary-main pushes and the 30-minute schedule may replicate; manual `mode=sync` is also gated on this value and primary main. A manual default `mode=verify` stays read-only.
+5. Keep repository variable `VYOMARAJ_DR_SYNC_ENABLED=false` until the owner/admin resolves issue #6 and approves the reviewed target/data diff. Main pushes and the 30-minute schedule remain read-only regardless of the variable. Only then may an authorized maintainer use explicit workflow dispatch with `mode=sync`; the confirmed target, approval variable and primary-main guard are all required.
 6. Verify the uploaded sanitized evidence artifact and independently compare tree SHAs. A green job is not application failover readiness.
 
 Replication validates complete source trees and blob hashes, refuses unsupported submodules, creates an exact new tree **without base_tree** (so source deletions are reflected), checks tree equality **before** publication, preserves the existing target commit as parent, rechecks both refs and uses `force:false`. It is idempotent when trees match. Source/target movement causes a failure rather than a stale success; a target force-reset to an ancestor is outside the ordinary non-force concurrency assumption. Protect both branches against force updates. GitHub offers no cross-repository atomic transaction, so a source advance after publication can require the next approved run.

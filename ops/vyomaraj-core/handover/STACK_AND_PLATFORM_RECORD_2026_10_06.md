@@ -93,7 +93,7 @@ This is the answer to "what technologies and platforms did we use and configure?
 | `Index.html` | 12,761 |
 | `landing.html` | 691 |
 | `flow-diagram.html` | 61,992 |
-| `demo.html` | 6,417 |
+| `demo.html` | 6,427 |
 | `launch.css` | 11,337 |
 | `launch.js` | 1,841 |
 | `demo.css` | 7,077 |

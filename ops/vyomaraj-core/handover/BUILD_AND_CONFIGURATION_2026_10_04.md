@@ -75,7 +75,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 - Planning endpoint `/api/plan`; experiences bhakti, liquor-bar, music, film, aghor, comics; modes 3d, 4d, 5d
 - Flags: automatic AI calls False, automatic publishing False, legacy Jarvis env loaded False, production deployed False
 - `PUBLIC_POLICY.json` (updated 2026-10-03): spiritual content mode `view_only_not_practice_instruction`, participation `voluntary_no_pressure_no_required_belief_or_practice`
-- `DR_POLICY.json`: secondary `deepakGoyal1356/Vyomaraj-Agent-6d64e`, writer `primary_main_only`, sync approved on main `True`, automatic target-only removal `False`, reverse overwrite `False`, zero-RPO/RTO verified False/False
+- `DR_POLICY.json`: secondary `deepakGoyal1356/Vyomaraj-Agent-6d64e`, writer `primary_main_only`, sync approved on main `False`, automatic target-only removal `False`, reverse overwrite `False`, zero-RPO/RTO verified False/False
 - Scope guard: Git main snapshot only; not runtime databases, secret stores, live media sessions or production traffic
 
 ### Workflows
