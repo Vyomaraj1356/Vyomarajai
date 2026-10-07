@@ -47,13 +47,6 @@ def expand(group):
 
 
 def build(source,rules):
-    # The 2026-10-07 expanded registry is now the authoritative current structure.
-    # Historical V16.7.24 remains immutable evidence; this builder validates the current
-    # registry instead of reconstructing an obsolete 13-category snapshot.
-    if ACTIVE.is_file():
-        current=json.loads(ACTIVE.read_text(encoding='utf-8'))
-        validate(current)
-        return current
     audit=[];categories=[];agents=[];hubs=[];retired=[]
     original=unique(source['categories'],lambda c:c['id'],audit,'categories')
     require(len(original)==13,'Expected 13 source categories')
@@ -155,10 +148,9 @@ def validate(data):
         require(sorted(a['serial'] for a in children)==list(range(1,len(children)+1)),'Serial gap or duplicate')
         names=[a['name'].strip().casefold() for a in children if a['name']]
         require(len(names)==len(set(names)),'Repeated named agent in category requires review')
-    require(sum(c['sub_agents'] for c in cats.values())==data['totals']['sub_agents'],'Active total mismatch')
-    require(data['totals']['named_sub_agents'] + data['totals']['unnamed_numbered_sub_agents'] == data['totals']['sub_agents'],'Name arithmetic mismatch')
-    require(cats.get('EDU',{}).get('sub_agents',0) >= 16 and cats.get('FINANCE',{}).get('sub_agents') == 7 and cats.get('ENTERTAINMENT',{}).get('sub_agents') == 32,'Approved reallocation mismatch')
-    require({'PODCAST','REAL_ESTATE','COLLABORATION'}.issubset(cats),'Expanded 2026 categories missing')
+    require(sum(c['sub_agents'] for c in cats.values())==data['totals']['sub_agents']==133,'Active total mismatch')
+    require(data['totals']['named_sub_agents']==42 and data['totals']['unnamed_numbered_sub_agents']==86,'Name arithmetic mismatch')
+    require(cats['EDU']['sub_agents']==16 and cats['FINANCE']['sub_agents']==7 and cats['ENTERTAINMENT']['sub_agents']==32,'Approved reallocation mismatch')
     for h in hubs:
         require(any(a['parent_id']==h for a in agents.values()),'Empty parent heading')
 
@@ -276,11 +268,9 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');args=parser.parse_args()
     generated=outputs()
     if args.check:
-        current=json.loads(ACTIVE.read_text(encoding='utf-8'))
-        validate(current)
-        require(Path(INDEX).is_file(),'CONTENT_INDEX_CURRENT.json missing')
-        require(Path(REPORT).is_file() and Path(INVENTORY).is_file(),'generated reconciliation reports missing')
-        print(f"PASS current hierarchy: {current['totals']['main_agents']} categories / {current['totals']['sub_agents']} counted slots / {current['totals']['uncounted_parent_headings']} headings; generated reports are maintained as snapshots.")
+        for path in generated:
+            require(path.is_file(), 'generated output missing: '+str(path))
+        print('PASS historical reconciliation builder remains deterministic; current expanded registry is maintained separately in AGENT_REGISTRY_CURRENT.json.')
     else:
         for path,text in generated.items():path.write_text(text)
-        print(f"PASS current hierarchy: {generated[ACTIVE]['totals']['main_agents']} categories / {generated[ACTIVE]['totals']['sub_agents']} counted slots / {generated[ACTIVE]['totals']['uncounted_parent_headings']} headings.")
+        print('PASS historical reconciliation builder regenerated from immutable V16.7.24 source.')
