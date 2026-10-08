@@ -68,7 +68,7 @@ Two things in that line matter more than the rest:
 The direct answer to "confirm the same packages" is therefore: **no — as of now they are
 not the same.** §6.4 lists exactly which nine files and what the consequence is.
 
-## 2. Root cause: five canonical files were overwritten by the 7 October consolidation merges
+## 2. Root cause: canonical files were overwritten by the 7 October consolidation merges
 
 The breakage was not flaky CI. Four "FINAL: …consolidate/reconcile…" merges (PRs #45–#48)
 replaced files that were already the source of truth for other code, instead of adding
@@ -82,8 +82,9 @@ alongside them. Every clobbered file is listed here with the commit that did it.
 | `ops/engineering/verify_2026_stack.py` | `9ee4fbc` (PR #47) | repository inspector with `--check`/`--status` → dependency checker ignoring both flags | `process-control.sh status` and `final-readiness-gate.sh` broke |
 | `ops/vyomaraj/publish-gate.sh`, `process-control.sh`, `final-readiness-gate.sh` | `9ee4fbc` (PR #47) | deny-by-default safety gates | see §3 |
 | `docs/architecture/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE.md` | `9ee4fbc` (PR #47) | 8,914-byte document → 2,217-byte summary | current handover archives no longer matched the tree |
+| `tests/test_agent_capability_inheritance.py` | `9ee4fbc` (PR #47) | 64-line `unittest.TestCase` → 19 lines of bare pytest functions asserting **168** agents | see §3.1 — the file stopped being collected at all, and the surviving assertion contradicts the reconciled 128 |
 
-### 3. A safety regression, not only a test failure
+## 3. A safety regression, not only a test failure
 
 Two of the clobbered items were deny-by-default guards, and the replacements did not deny:
 
@@ -103,6 +104,33 @@ A sixth artifact, `ops/vyomar/final-readiness-gate.sh`, was created at a **typo 
 directory name** by the same commit. It asserted an aspirational registry (15 categories /
 168 sub-agents) that contradicts the reconciled registry (13 / 128), so it could never agree
 with the canonical gate.
+
+### 3.1 A third gate that had stopped gating: tests nothing was running
+
+`tests/` is executed by `unittest discover`, which collects only `unittest.TestCase`
+subclasses. When PR #47 rewrote `test_agent_capability_inheritance.py` as bare pytest
+functions, **`unittest discover` stopped collecting the module entirely** — no error, no
+skip, the eight tests simply vanished from the offline suite. The only job still running
+them used pytest: `engineering-foundation`, which was failing on *every* branch in the
+repository, including unrelated ones, so nobody was reading its output.
+
+Its surviving assertion was `registry_agents == 168`. The reconciled registry is 13
+categories / 128 sub-agents, so the assertion could never have passed; 168 is the older
+unreconciled figure — the same claim found in the stray `ops/vyomar/` gate (§2). A test
+that cannot pass is not a test.
+
+Auditing for the same pattern found **two more files in the same state**, neither touched by
+the consolidation merges, both carrying deny-by-default security contracts the offline suite
+was never running:
+
+| File | Invisible tests | What was not being enforced |
+| --- | --- | --- |
+| `tests/test_capability_fabric.py` | 3 | owner authorization required; high-risk step-up required |
+| `tests/test_vyomaraj_foundation.py` | 4 | location authorization defaults; consent required; expiry and revocation |
+
+All three are now `unittest.TestCase` classes with **every assertion preserved verbatim** —
+only the wrapper changed — and `unittest discover` went from 63 to 78 tests. Fifteen tests
+had been silently absent from the gate.
 
 ## 4. What was repaired
 
@@ -127,9 +155,33 @@ than discarded:
   to the canonical gate and prints a deprecation notice rather than acting as a second,
   divergent gate; its original text stays recoverable with `git show 9ee4fbc:…`.
 
-**Result:** `run_offline_suites.py --ci` goes from `52/60` with 8 failures to **`61/61`** —
-585 Python tests across 15 suites, 15 Node checks, 31 builders. Once this reaches `main`,
-`verify-or-sync` stops being skipped and the 30-minute DR schedule resumes.
+**Result:** `run_offline_suites.py --ci` goes from `52/60` with 8 failures to **`62/62`** —
+603 Python tests across 15 suites, 15 Node checks, 32 builders. `unittest discover -s tests`
+goes from 63 to 78 tests, and `pytest -q tests` — the runner `engineering-foundation` uses,
+which had been failing on every branch in the repository — from 1 failure to 76 passed.
+Once this reaches `main`, `verify-or-sync` stops being skipped and the 30-minute DR
+schedule resumes.
+
+
+### 4.1 A guard for both silent-failure modes
+
+Neither defect was detectable by the tooling in place: `bash -n` accepts `\$` as a valid
+escape, and `py_compile` is perfectly happy with a test file nothing collects. Both are
+trivial to detect statically, so `ops/vyomaraj-core/handover/check_suite_integrity.py`
+(wired into the offline suite) now does:
+
+1. every `tests/test_*.py` must expose at least one `unittest.TestCase` subclass;
+2. no `ops/**/*.sh` may contain `\$` immediately before a variable expansion.
+
+It was validated by re-introducing the two real defects from `9ee4fbc` and confirming it
+exits 1 on each, then reverting.
+
+The first draft of this guard had the **same class of bug it exists to catch**: it computed
+the repository root with `parents[2]`, which resolves to `ops/`, so it scanned an empty
+directory, found nothing and reported `PASS`. It only came to light because the guard was
+tested against known-bad input rather than trusted for printing `PASS`. Both checks
+therefore now assert a floor on how many files they actually inspected, and fail if the root
+is mis-resolved — a check that inspects nothing must never report success.
 
 ## 5. The DR test
 
@@ -297,7 +349,7 @@ change?" without a manual diff.
 
 ```sh
 # Offline — no credentials, no network
-python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci   # expect 61/61
+python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci   # expect 62/62
 python3 ops/dr/package_parity.py --check
 python3 -m unittest discover -s ops/dr -p 'test_*.py'
 

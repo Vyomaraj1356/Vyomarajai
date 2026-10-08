@@ -21,7 +21,7 @@
 > model, `capability_fabric.py`, `verify_2026_stack.py`, and three deny-by-default gate scripts),
 > and introduced a literal `\${BASH_SOURCE[0]}` defect that made several gates pass without
 > checking anything. Those files are restored, the superseded content is preserved additively,
-> and the offline suite is back to 61/61. Full account:
+> and the offline suite is back to 62/62. Full account:
 > [DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md](DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md).
 >
 > Package parity is now part of every DR run — see `package_parity.py` below. From Arena itself the
