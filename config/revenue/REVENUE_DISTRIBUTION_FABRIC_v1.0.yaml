@@ -1,0 +1,138 @@
+system: VYOMARAJ-AI-STUDIO
+version: "1.0"
+purpose: "Revenue-first distribution and collaboration fabric for lawful content, services, intellectual property and audience growth."
+design_rule: "Maximize useful net revenue and durable audience value without fake engagement, rights violations, spam, policy bypass or unverified earnings claims."
+
+operating_objective:
+  priority_order:
+    - owner_control
+    - rights_and_policy
+    - audience_value
+    - quality_and_trust
+    - sustainable_net_revenue
+    - learning_and_scale
+  revenue_is_first_class: true
+  private_control_plane: true
+  public_surface: "approved creations, distribution and commercial outputs only"
+
+core_roles:
+  vyomaraj_bharath:
+    role: "vision, orchestration, product/IP strategy and final system direction"
+    movement: "stable functional identity above ShriYantra Bindu"
+  jarvis_laxman:
+    role: "dynamic operations, scheduling, routing, execution coordination and measurement"
+    movement: "live operational marker moves to the active ShriYantra functional zone"
+  hermes:
+    role: "integrity, authorization boundary, checkpointing, audit and recovery"
+  kuber:
+    role: "financial controller for both peer cores"
+    duties: [cost_control, revenue_attribution, receivables, settlement_reconciliation, roi, audit]
+  owner_root:
+    role: "sole authority for members, credentials, contracts, spending, publishing, integrations, deployment and recovery"
+
+revenue_surfaces:
+  video_social:
+    platforms: [youtube, instagram, facebook, x, linkedin, telegram, whatsapp, reddit, pinterest, threads, snapchat, twitch, vimeo, tumblr, mastodon]
+    products: [shorts, long_form_video, live, posts, newsletters, memberships, subscriptions, sponsorships, affiliate_content, eligible_creator_programs]
+  audio_music:
+    platforms: [spotify, youtube_music, apple_music, amazon_music, podcast_platforms, approved_music_distributors]
+    products: [original_music, licensed_music, podcasts, audiobooks, narration, educational_audio, devotional_audio]
+    rule: "Listening or streaming does not automatically mean direct creator payment; use platform/distributor terms and actual settlement data."
+  books_literature:
+    channels: [ebook_stores, print_on_demand, audiobook_stores, publisher_partners, library_or_education_licensing, author_platforms]
+    products: [original_books, public_domain_editions, licensed_reprints, commentary, summaries, translations, study_guides, audiobooks, original_research, educational_packs]
+    rule: "Only public-domain, owner-owned, licensed or otherwise lawfully usable text/audio may be reproduced or narrated."
+  collaboration:
+    counterparties: [creators, authors, publishers, musicians, educators, brands, production_houses, ai_platforms, software_platforms, agencies]
+    products: [co_creation, commissioned_content, licensing, syndication, production, research, localization, consulting, affiliate_partnerships]
+  direct_commerce:
+    products: [digital_products, courses, templates, memberships, licensed_media, merchandise_where_legal, services]
+  knowledge:
+    products: [research_reports, educational_content, paid_knowledge_packs, workshops, translations, documentation, data_products_where_legal]
+
+opportunity_scoring:
+  weights:
+    audience_fit: 0.18
+    content_quality: 0.15
+    rights_clarity: 0.15
+    policy_eligibility: 0.12
+    expected_net_revenue: 0.15
+    production_cost: 0.08
+    payment_reliability: 0.07
+    strategic_value: 0.05
+    repeatability: 0.05
+  reject:
+    - fake_engagement
+    - spam
+    - policy_evasion
+    - deceptive_claims
+    - unclear_rights
+    - impersonation
+    - guaranteed_earnings_claim
+    - illegal_activity
+    - credential_request
+    - uneconomic_work
+
+content_to_money:
+  flow: "DISCOVER -> RESEARCH -> RIGHTS -> PLAN -> CREATE -> VERIFY -> OWNER/POLICY GATE -> DISTRIBUTE -> ANALYZE -> ATTRIBUTE -> SETTLE -> KUBER_RECONCILE -> LEARN -> SCALE"
+  attribution:
+    fields: [content_id, ip_id, agent_id, sub_agent_id, topic_id, creation_cost, publication_id, platform, campaign_id, expected_revenue, reported_revenue, fees, refunds, taxes, settlement_id, payment_status]
+  revenue_truth:
+    forecast_is_not_cash: true
+    views_are_not_revenue: true
+    settlement_required_for_realized_revenue: true
+
+dynamic_shriyantra_routing:
+  principle: "Every agent, tool and technology occupies the ShriYantra functional region matching its capability."
+  examples:
+    knowledge: [rag, cag, mag, memory, books, literature, research, source_registry]
+    reasoning: [llm, planning, fact_check, strategy, forecasting]
+    creation: [script, image, audio, video, editing, translation, podcast, audiobook]
+    verification: [quality, rights, policy, fact_check, provenance]
+    execution: [mcp, a2a, browser, coding, apis, automation]
+    distribution: [youtube, social, podcast, music, publishing, newsletters]
+    commerce: [affiliate, sponsorship, licensing, subscriptions, services, digital_products]
+    finance: [kuber, invoices, receivables, settlements, roi]
+    resilience: [backup, dr, failover, failback, health, audit]
+  jarvis_state_binding:
+    active_zone: "derived from current task/capability"
+    visible_status: [RESEARCHING, CREATING, VERIFYING, SCHEDULING, PUBLISHING, ANALYZING, RECONCILING, RECOVERING, WAITING_OWNER]
+    flag: "जय श्री राम"
+    flag_color: "KESARI"
+
+activation:
+  states: [DISCOVERED, QUALIFIED, RIGHTS_VERIFIED, ELIGIBLE, ACCOUNT_CONNECTED, AUTHORIZED, TESTED, ENABLED, MONITORED, DEGRADED, DISABLED]
+  enabled_requires:
+    - owner_authorization
+    - account_or_partner_connection
+    - credential_binding_in_secrets_manager
+    - scope_review
+    - rights_check
+    - regional_eligibility_check
+    - publish_or_delivery_test
+    - analytics_or_settlement_test
+    - rollback_path
+  never_claim_enabled_from_config_only: true
+
+collaboration_contract:
+  identity_verification: required
+  rights_verification: required
+  written_scope_for_paid_work: required
+  owner_approval_for_binding_contracts: required
+  owner_approval_for_paid_spend: required
+  owner_approval_for_sensitive_data_access: required
+  credentials_shared_with_external_parties: false
+
+platform_strategy:
+  route_by: [audience, format, region, rights, eligibility, cost, expected_net_revenue, historical_performance, payment_reliability]
+  scale_rule: "Scale proven winners; stop channels that consume more value than they create."
+  no_single_provider_or_platform_dependency: true
+
+deployment_gate:
+  source_of_truth: "GitHub main after reviewed merge"
+  pre_enable: [configuration_validation, rights_policy_validation, secret_presence_check_without_exposing_values, integration_health_check, publish_test_or_safe_sandbox_test, analytics_test, rollback_test, audit_event_test]
+  production_truth:
+    configured: false
+    connected: false
+    enabled: false
+    reason: "Account credentials, platform approvals and production integration tests must be supplied and verified before any surface becomes ENABLED."
