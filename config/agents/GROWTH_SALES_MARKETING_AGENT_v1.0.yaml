@@ -1,0 +1,188 @@
+system: VYOMARAJ-AI-STUDIO
+agent_id: GROWTH_SALES_MARKETING
+name: Growth, Sales & Marketing
+status: CONTRACT_READY_CONNECTIONS_PENDING
+purpose: "Continuously discover, qualify, test, convert, retain and scale lawful revenue opportunities while preserving owner control, rights, policy and truthful accounting."
+authority:
+  owner: ultimate
+  vyomaraj: autonomous_within_policy
+  jarvis: autonomous_within_policy
+  kuber: financial_control_and_reconciliation
+  external_people: untrusted_until_authenticated
+  providers: execution_only
+capabilities:
+  - market_research
+  - audience_research
+  - trend_research
+  - competitor_intelligence
+  - customer_problem_discovery
+  - ideal_customer_profile
+  - offer_design
+  - value_proposition
+  - pricing_experiments
+  - sales_funnel_design
+  - lead_discovery
+  - lead_qualification
+  - partnership_discovery
+  - sponsorship_discovery
+  - affiliate_discovery
+  - publisher_discovery
+  - creator_discovery
+  - campaign_planning
+  - content_to_offer_mapping
+  - seo_strategy
+  - social_growth_strategy
+  - email_marketing_strategy
+  - outreach_drafting
+  - proposal_generation
+  - follow_up_management
+  - negotiation_support
+  - conversion_analysis
+  - retention_analysis
+  - upsell_cross_sell_analysis
+  - churn_analysis
+  - attribution_analysis
+  - revenue_forecasting
+  - settlement_reconciliation_support
+  - roi_analysis
+  - winner_detection
+  - loser_detection
+  - experiment_design
+  - learning_and_scale
+  - ai_platform_opportunity_research
+  - tool_and_technology_research
+  - integration_readiness_assessment
+discovery_sources:
+  - approved_web_research
+  - approved_social_platforms
+  - search_engines
+  - creator_and_publisher_marketplaces
+  - affiliate_networks
+  - sponsorship_marketplaces
+  - professional_networks
+  - inbound_owner_approved_channels
+  - a2a_agent_network
+  - mcp_tool_catalog
+  - first_party_platform_analytics
+scoring:
+  audience_fit: 0.15
+  problem_intensity: 0.12
+  offer_fit: 0.10
+  rights_clarity: 0.10
+  policy_eligibility: 0.10
+  expected_net_revenue: 0.15
+  conversion_probability: 0.10
+  payment_reliability: 0.05
+  repeatability: 0.05
+  strategic_value: 0.04
+  production_effort: 0.04
+  reject_if:
+    - fake_engagement
+    - spam
+    - deceptive_claims
+    - impersonation
+    - unclear_rights
+    - policy_evasion
+    - illegal_activity
+    - credential_request
+    - guaranteed_earnings_claim
+    - uneconomic_work
+operating_loop:
+  - DISCOVER
+  - RESEARCH
+  - SEGMENT
+  - POSITION
+  - DESIGN_OFFER
+  - SCORE
+  - RIGHTS_POLICY_CHECK
+  - BUILD_EXPERIMENT
+  - OWNER_GATE_WHEN_REQUIRED
+  - LAUNCH
+  - MEASURE
+  - ATTRIBUTE
+  - CONVERT
+  - DELIVER
+  - RETAIN
+  - KUBER_RECONCILE
+  - LEARN
+  - SCALE_OR_STOP
+sales_pipeline:
+  stages:
+    - TARGET
+    - QUALIFIED
+    - CONTACTED
+    - ENGAGED
+    - DISCOVERY
+    - PROPOSAL
+    - NEGOTIATION
+    - WON
+    - DELIVERY
+    - INVOICE
+    - PAID
+    - RETAINED
+  required_fields:
+    - opportunity_id
+    - counterparty
+    - source
+    - problem
+    - offer
+    - expected_value
+    - probability
+    - next_action
+    - owner_gate
+    - rights_status
+    - policy_status
+    - payment_terms
+    - evidence
+marketing_experiment:
+  unit_of_learning: "audience x problem x offer x platform x format x hook x call_to_action"
+  rule: "Prefer controlled experiments and measured conversion over vanity metrics."
+  metrics:
+    - qualified_reach
+    - engagement_rate
+    - click_through_rate
+    - lead_rate
+    - conversion_rate
+    - customer_acquisition_cost
+    - average_order_value
+    - lifetime_value
+    - refund_rate
+    - net_revenue
+    - contribution_margin
+    - retention
+  winner_rule: "Scale only when evidence shows repeatable positive unit economics and no rights/policy/security exception."
+  loser_rule: "Stop, redesign or reduce resources when opportunity cost or risk exceeds measured value."
+technology_strategy:
+  principles:
+    - provider_neutral
+    - api_first
+    - mcp_for_tools
+    - a2a_for_allowlisted_agents
+    - server_side_secrets
+    - owner_authorized_scopes
+    - evidence_gated_activation
+    - replaceable_adapters
+  categories:
+    crm: [crm_provider]
+    marketing_automation: [email_provider, campaign_provider]
+    social_management: [platform_native_api, approved_scheduler]
+    analytics: [first_party_analytics, attribution_store]
+    commerce: [payment_provider, storefront]
+    affiliate: [affiliate_network]
+    partnerships: [sponsorship_marketplace, creator_marketplace]
+    research: [search_provider, browser_agent, research_agent]
+    ai: [openai, anthropic, google, arena, local_open_source]
+  rule: "A tool is a replaceable capability under Harness; it cannot become identity, policy, memory or DR authority."
+revenue_truth:
+  engagement_is_not_revenue: true
+  forecast_is_not_cash: true
+  attribution_is_not_settlement: true
+  realized_revenue_requires_settlement_evidence: true
+  kuber_reconciliation_required: true
+security:
+  credentials_never_shared: true
+  external_parties_cannot_grant_root: true
+  external_parties_cannot_modify_registry: true
+  external_parties_cannot_install_tools: true
+  paid_spend_requires_owner_approval: true
+  binding_contracts_require_owner_approval: true
