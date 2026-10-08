@@ -14,6 +14,12 @@ capabilities:
   - discover_creators
   - discover_publishers
   - discover_music_channels
+  - discover_audio_streaming_and_distribution
+  - discover_podcast_distribution
+  - discover_book_and_audiobook_distribution
+  - discover_literature_licensing
+  - discover_syndication_and_reprint_opportunities
+  - discover_affiliate_opportunities
   - discover_authors_and_publishers
   - discover_copywriting_opportunities
   - discover_social_distribution_opportunities
@@ -38,6 +44,9 @@ discovery_sources:
   - creator_marketplaces
   - publisher_platforms
   - music_and_audio_platforms
+  - streaming_and_podcast_distributors
+  - ebook_and_audiobook_stores
+  - rights_and_licensing_marketplaces
   - book_and_knowledge_platforms
   - professional_networks
   - email_and_contact_forms
@@ -87,6 +96,9 @@ collaboration_modes:
   creator: "Find creators whose audience, expertise or production capability complements the selected content."
   publisher: "Find legitimate publishers/distributors for books, scripts, articles, audio and knowledge products."
   music: "Find legitimate music channels/platforms offering licensed listing, promotion or revenue opportunities."
+  streaming: "Find lawful streaming/distribution routes for original or licensed audio and record actual settlement evidence."
+  books: "Find lawful ebook, print, audiobook, publisher and education/library distribution opportunities for original, public-domain or licensed material."
+  licensing: "Find lawful licensing, reprint, syndication and translation opportunities with rights and territory recorded."
   copywriting: "Find legitimate writing briefs and paid content opportunities."
   social: "Find legitimate paid distribution, branded-content, affiliate and promotional opportunities."
   idea_exchange: "Evaluate incoming ideas and route strong ideas into research, creation, legal/rights, production and revenue workflows."
