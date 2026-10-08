@@ -7,7 +7,14 @@
 > hours. The last run that actually executed is check-run `112880681037`, completed
 > `2026-10-07T15:50:01Z` on main `04b7ae60`: `status=MATCH`, `data_match=true`, equal trees
 > `986288ee2cc4ec4d89400320150ea893f7a7a2de`, `traffic_switched=NONE`. That remains the most
-> recent verified state; **main has since advanced to `5935588` with no DR verification.**
+> recent verified state. Pushing this repair ran the credentialed probe (check-run `113209472563`)
+> and it reports **`tree=MISMATCH`, `packages=MISMATCH`, `writes=NONE`**: the secondary is still at
+> tree `986288ee…` — frozen at that last verified state — with 135 files missing, 105 changed, 0
+> secondary-only, and 4 of 54 package files absent plus 5 differing. **Primary and secondary are
+> not in sync and do not carry the same packages.** The absent `requirements-2026.txt` and
+> `requirements-2026-lock.txt` mean a rebuild from the DR copy would not reproduce the validated
+> dependency set. Repairing that requires an approved `mode=sync` dispatch, which this branch
+> deliberately does not perform.
 >
 > Root cause: the 7 October consolidation merges overwrote five files that were already the
 > source of truth for other code (the Universal Knowledge policy, the Panch-Brother capability
@@ -17,10 +24,10 @@
 > and the offline suite is back to 61/61. Full account:
 > [DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md](DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md).
 >
-> Package parity is now part of every DR run — see `package_parity.py` below. From Arena the
-> read-only DR test still returns `BLOCKED` / HTTP 404 on the secondary, as it has throughout;
-> that is a credential scope limit, not proof of absence. No sync was performed, and issue #6
-> remains OPEN/P0.
+> Package parity is now part of every DR run — see `package_parity.py` below. From Arena itself the
+> read-only test still returns `BLOCKED` / HTTP 404 on the secondary, as it has throughout; the
+> credentialed answer above came from Actions instead. No sync was performed, no traffic was
+> switched, no installed environment was compared, and issue #6 remains OPEN/P0.
 
 ## Package parity — "the same packages"
 

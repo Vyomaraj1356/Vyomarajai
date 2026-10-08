@@ -33,6 +33,41 @@ So the honest statement of the starting position is: **the secondary had not bee
 to the primary for roughly sixteen hours, across four merges to main.** No sync and no DR
 test could be claimed in that window, and none was.
 
+### 1.1 What the restored probe then found — the answer is NOT a match
+
+Pushing the repair to this branch ran `diagnose-existing-pat`, which holds the real
+`VYOMARAJ_PAT` and can read the secondary. **This is the first credentialed read of the
+secondary since 15:50 UTC yesterday**, and it says the two repositories have drifted apart.
+
+Check-run `113209472563` on `a8d66ad`:
+
+```
+read_access=READ_ACCESS_CONFIRMED; identity=READABLE;
+primary_repository=READABLE; primary_main=READABLE;
+secondary_repository=READABLE; secondary_main=READABLE;
+tree=MISMATCH; writes=NONE; write_permission=UNVERIFIED;
+primary_files=582; secondary_files=447;
+missing_on_secondary=135; secondary_only=0; changed_content_or_mode=105;
+secondary_commit=85faf21e42badacf40f0634b70a4e54b23da323b;
+secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de;
+packages=MISMATCH; package_primary_package_files=54;
+package_identical_package_files=45; package_missing_on_secondary=4;
+package_content_differs=5; installed_environment_verified=false
+```
+
+Two things in that line matter more than the rest:
+
+1. **`secondary_tree` is `986288ee…` — byte-for-byte the tree the 15:50 run reported as
+   `MATCH`.** The secondary is not merely behind; it is frozen at precisely the last state
+   that was verified before the pipeline broke. That is a clean, consistent explanation
+   rather than partial replication: no sync has reached it since.
+2. **`packages=MISMATCH`.** Of 54 tracked package files on the primary, 45 are identical,
+   **4 are absent from the secondary and 5 differ in content**. `secondary_only=0`, so the
+   secondary holds nothing the primary lacks — it is strictly stale, not divergent.
+
+The direct answer to "confirm the same packages" is therefore: **no — as of now they are
+not the same.** §6.4 lists exactly which nine files and what the consequence is.
+
 ## 2. Root cause: five canonical files were overwritten by the 7 October consolidation merges
 
 The breakage was not flaky CI. Four "FINAL: …consolidate/reconcile…" merges (PRs #45–#48)
@@ -131,6 +166,17 @@ to compute package parity as well, so its public annotation now ends with
 
 Annotations carry counts and enums only — never filenames, file contents or credentials.
 
+**It ran.** Pushing this branch executed it against the live secondary — the first successful
+credentialed DR read since the pipeline broke — and it returned `tree=MISMATCH` /
+`packages=MISMATCH` with `writes=NONE`. The full annotation and its interpretation are in
+§1.1 and §6.4. This is the DR test that the request asked for, and it is the one piece of
+primary↔secondary evidence in this record that did not come from a 404.
+
+Note what the same push also shows about the repair: `offline-tests` passed, so `verify-or-sync`
+was no longer skipped for a dependency failure. It reports `skipped` here for the correct
+reason — the job is gated to `refs/heads/main`, and this is a branch. Merging is what
+re-enables it on the 30-minute schedule.
+
 ## 6. Package parity — "the same packages"
 
 A new verifier, `ops/dr/package_parity.py`, answers this in both senses of the word.
@@ -174,17 +220,57 @@ This confirms the lock file is installable in principle. It did **not** download
 resolve the transitive tree, or verify hashes or signatures. It is a network check and is
 therefore deliberately excluded from the offline suite and from the committed inventory.
 
-### 6.4 Primary vs secondary — BLOCKED from here
+### 6.4 Primary vs secondary — MISMATCH (credentialed, read-only)
 
-`package_parity.py --remote` returns the same 404 as §5.1. It is now wired into
-`verify-or-sync` for both `verify` and `sync` modes, so every future DR run states the answer:
-a package `MISMATCH` or a broken declaration fails the job; an access failure is recorded as
-a warning and **never** reported as parity.
+`package_parity.py --remote` still returns 404 from this sandbox (§5.1). The answer came
+instead from `diagnose-existing-pat`, which runs in Actions with the real token. Because the
+probe reported `secondary_tree=986288ee…`, and that is the tree of main `04b7ae60`, the
+secondary's content is reproducible locally — and diffing package files between `04b7ae60`
+and `origin/main` returns **exactly** the probe's counts (45 / 4 / 0 / 5), which
+independently corroborates both the probe and the identification of the secondary's state.
+
+**4 package files absent from the secondary**
+
+| Path | Kind |
+| --- | --- |
+| `ops/engineering/requirements-2026.txt` | dependency manifest — **canonical** |
+| `ops/engineering/requirements-2026-lock.txt` | dependency manifest — **exact pins** |
+| `ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_07.zip` | release archive |
+| `ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_07.zip` | release archive |
+
+**5 package files whose content differs**
+
+| Path | Nature of the difference |
+| --- | --- |
+| `ops/engineering/requirements-2026-patch.txt` | one comment line; the 8 bounded requirements are identical |
+| `.../transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip` | rebuilt archive |
+| `.../transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip` | rebuilt archive |
+| `.../transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip` | rebuilt archive |
+| `.../transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip` | rebuilt archive |
+
+**Why the two manifests matter more than the seven archives.** The archives are rebuildable
+from the tree. The manifests are not — they *are* the dependency contract. The secondary
+currently carries only `requirements-2026-patch.txt`, which holds the 8 bounded ranges but
+**not** the exact pins, **not** the `mcp[cli]` extra, and **not** `pytest>=8,<9`. So a rebuild
+performed from the DR copy today would:
+
+- resolve each dependency to whatever currently satisfies its range, rather than the eight
+  validated versions (`cryptography 46.0.0`, `jsonschema 4.26.0`, `PyYAML 6.0.3`,
+  `temporalio 1.34.0`, `opentelemetry-api/sdk 1.45.1`, `mcp 2.3.0`, `a2a-sdk 1.2.2`);
+- install `mcp` without the `[cli]` extra; and
+- omit `pytest`, so the verification suite could not be run to discover any of this.
+
+That is a real recovery gap, and it is precisely the class of problem a package-parity check
+exists to surface. It is **not** repaired by this branch — only a sync can repair it.
+
+`--remote` is wired into `verify-or-sync` for both modes, so every future DR run states this
+directly: a package `MISMATCH` or a broken declaration fails the job; an access failure is
+recorded as a warning and **never** reported as parity.
 
 Note the logical relationship: package files are a subset of the tracked tree, so a tree
-`MATCH` already implies package equality. The value of reporting it separately is that when
-trees diverge, the next question — "did the dependency manifests or the release archives
-change?" — is answered directly instead of requiring a manual diff.
+`MATCH` already implies package equality. The value of reporting it separately is visible
+here — the trees diverged, and the package line answered "did the dependency manifests
+change?" without a manual diff.
 
 ## 7. What is still not true
 
@@ -196,7 +282,11 @@ change?" — is answered directly instead of requiring a manual diff.
   may override the in-repository fallback, and the Arena credential gets 403 on the Actions
   settings endpoints, so which repository the workflow actually writes to cannot be read
   from here. Owner confirmation remains required.
-- **Issue #6 stays OPEN/P0.** Nothing here closes it.
+- **The secondary is 16 hours stale and is not being repaired by this branch.** The probe
+  proves the drift; closing it requires an approved `mode=sync` dispatch, which this session
+  cannot authorise. Until then the DR copy cannot reproduce the primary's dependency set.
+- **Issue #6 stays OPEN/P0.** Nothing here closes it — and the `packages=MISMATCH` finding
+  strengthens the case for leaving it open.
 - **Installed-environment parity is unverified.** Every statement above is about repository
   content. No `site-packages` directory, container image, or deployed host was compared.
   `installed_environment_verified` is `false` everywhere, by construction.
