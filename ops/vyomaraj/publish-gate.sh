@@ -11,7 +11,10 @@ echo "Process: intent -> authorize -> execute -> verify -> audit -> measure -> l
 echo "Finance: Kuber FC -> every penny -> reconcile -> audit -> revenue assurance"
 
 echo "[1/7] Engineering foundation verification"
-python3 "$ROOT/ops/engineering/verify_2026_stack.py"
+python3 "$ROOT/ops/engineering/verify_2026_stack.py --check"
+python3 "$ROOT/ops/hanuman/capability_status.py" test
+python3 "$ROOT/ops/vyomaraj/capability_fabric.py" check
+python3 "$ROOT/ops/vyomaraj-core/handover/run_offline_suites.py" --ci
 
 echo "[2/7] Python syntax"
 python3 -m compileall -q "$ROOT/ops/engineering" "$ROOT/ops/vyomaraj"
@@ -44,5 +47,7 @@ echo "[6/7] Universal process control"
 "$ROOT/ops/vyomaraj/process-control.sh" payment-escalation
 
 echo "[7/7] Release classification"
-echo "PUBLISH GATE: PASS for repository/configuration/tests"
-echo "PRODUCTION RUNTIME: NOT VERIFIED until external providers, credentials, deployment, application DR and end-to-end control-plane tests are executed."
+echo "PUBLISH GATE: PASS (static public-preview scope only)"
+echo "PRODUCTION STATUS: BLOCKED"
+echo "No deployment was performed."
+echo "Unsupported option: this gate has no deploy or production override."
