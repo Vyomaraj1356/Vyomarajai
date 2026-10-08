@@ -29,6 +29,9 @@ core_roles:
     duties: [cost_control, revenue_attribution, receivables, settlement_reconciliation, roi, audit]
   owner_root:
     role: "sole authority for members, credentials, contracts, spending, publishing, integrations, deployment and recovery"
+  growth_sales_marketing:
+    role: "market intelligence, sales pipeline, marketing experiments, partnerships, conversion, retention and growth optimization within policy"
+    config: "config/agents/GROWTH_SALES_MARKETING_AGENT_v1.0.yaml"
 
 revenue_surfaces:
   video_social:
@@ -92,6 +95,7 @@ dynamic_shriyantra_routing:
     execution: [mcp, a2a, browser, coding, apis, automation]
     distribution: [youtube, social, podcast, music, publishing, newsletters]
     commerce: [affiliate, sponsorship, licensing, subscriptions, services, digital_products]
+    growth: [market_research, audience_research, sales, marketing, partnerships, conversion, retention, roi, experimentation]
     finance: [kuber, invoices, receivables, settlements, roi]
     resilience: [backup, dr, failover, failback, health, audit]
   jarvis_state_binding:
