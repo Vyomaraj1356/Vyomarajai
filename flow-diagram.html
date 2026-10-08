@@ -293,6 +293,7 @@ flowchart TD
 </div>
 
 <script>
+window.addEventListener('error',function(e){if(e.target&&e.target.tagName==='SCRIPT'){document.querySelectorAll('.mermaid').forEach(function(n){n.style.whiteSpace='pre-wrap';n.style.padding='12px';n.style.border='1px solid #36577f';});}});
 mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{primaryColor:'#132a4d',primaryTextColor:'#e8edf5',primaryBorderColor:'#f59e0b',lineColor:'#f59e0b',secondaryColor:'#0f2340',tertiaryColor:'#0a1628'}});
 </script>
 </body>
