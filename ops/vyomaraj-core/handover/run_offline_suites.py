@@ -72,6 +72,9 @@ BUILDER_COMMANDS = [
     ['python3', 'ops/vyomaraj/capability_fabric.py', 'check'],
     ['python3', 'ops/engineering/verify_2026_stack.py', '--check'],
     ['python3', 'ops/vyomaraj/agent_change.py', 'validate'],
+    # Primary/secondary package inventory. Offline mode only proves the committed manifest
+    # still describes the working tree; the secondary comparison needs credentials.
+    ['python3', 'ops/dr/package_parity.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_platform_check.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_issue_ledger.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/auto_align.py', '--check'],

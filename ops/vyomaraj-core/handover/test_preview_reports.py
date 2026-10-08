@@ -17,6 +17,7 @@ import build_full_handover as full_handover
 import build_ai_handoff as ai_handoff
 
 HERE = Path(preview.__file__).resolve().parent
+ROOT = HERE.parents[2]
 
 
 class InternalLinkParser(HTMLParser):
@@ -387,6 +388,38 @@ class PreviewTests(unittest.TestCase):
                     self.assertTrue(response.headers['Content-Type'].startswith('text/plain'))
                     self.assertIn('attachment', response.headers['Content-Disposition'])
                     self.assertIn(name, response.headers['Content-Disposition'])
+
+    def test_package_parity_report_states_the_skipped_dr_window_and_its_limits(self):
+        with urllib.request.urlopen(self.url + '/reports/package-parity') as response:
+            self.assertEqual(response.status, 200)
+            text = response.read().decode()
+        for marker in ('Primary &handover; secondary sync, DR test and package parity'.replace('&handover;', '↔'),
+                       '112880681037', '986288ee2cc4ec4d89400320150ea893f7a7a2de',
+                       'verify-or-sync', 'No sync was performed'):
+            self.assertIn(marker, text)
+        # The page must never let a reader mistake repository parity for installed parity.
+        self.assertIn('installed_environment_verified', text)
+        self.assertIn('OPEN/P0', text)
+
+    def test_package_inventory_page_shows_both_package_kinds(self):
+        with urllib.request.urlopen(self.url + '/reports/package-inventory') as response:
+            text = response.read().decode()
+        for marker in ('dependency_manifest', 'distributable_package', 'git_blob_sha',
+                       'runtime_package_parity_verified'):
+            self.assertIn(marker, text)
+
+    def test_package_parity_downloads_are_byte_identical(self):
+        cases = (('/reports/download/package-parity.md',
+                  ROOT / 'ops/dr/DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md', 'text/plain'),
+                 ('/reports/download/package-inventory.json',
+                  ROOT / 'ops/dr/PACKAGE_PARITY.json', 'application/json'))
+        for route, source, mime in cases:
+            with self.subTest(route=route):
+                with urllib.request.urlopen(self.url + route) as response:
+                    self.assertEqual(response.read(), source.read_bytes())
+                    self.assertTrue(response.headers['Content-Type'].startswith(mime))
+                    self.assertIn('attachment', response.headers['Content-Disposition'])
+                    self.assertIn(source.name, response.headers['Content-Disposition'])
 
     def test_reference_pages_never_serve_unallowlisted_paths(self):
         for path in ('/reports/chats/../../README.md', '/reports/chats/../.git/config',

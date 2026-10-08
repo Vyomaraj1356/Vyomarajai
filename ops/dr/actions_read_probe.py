@@ -7,6 +7,7 @@ from pathlib import Path
 import sys
 from dr_sync import GitHub, PRIMARY, CheckError, APIError, snapshot, assert_unchanged, validate_target, source_entries
 from dr_diagnostics import diagnose
+from package_parity import classify as classify_package
 
 class ReadOnlyClient:
     def __init__(self, client):
@@ -39,6 +40,25 @@ def probe(primary, secondary, target, candidate_commit=None):
                     'changed_content_or_mode': sum(any(a[k][f] != b[k][f] for f in ('sha','mode','type')) for k in a.keys() & b.keys()),
                 }
             result['secondary_snapshot'] = s
+            # Same-packages confirmation from the credentialed context. Package files are a
+            # subset of the tree, so a tree MATCH implies this; recording it explicitly means
+            # the answer is visible even when the overall trees diverge for other reasons.
+            pa = {x['path']: x['sha'] for x in source_entries(
+                primary.request('GET', f'repos/{PRIMARY}/git/trees/{p["tree"]}?recursive=1'))
+                if classify_package(x['path'])}
+            pb = {x['path']: x['sha'] for x in source_entries(
+                secondary.request('GET', f'repos/{target}/git/trees/{s["tree"]}?recursive=1'), allow_empty=True)
+                if classify_package(x['path'])}
+            result['package_parity'] = {
+                'primary_package_files': len(pa),
+                'secondary_package_files': len(pb),
+                'identical_package_files': sum(1 for k in pa.keys() & pb.keys() if pa[k] == pb[k]),
+                'missing_on_secondary': len(pa.keys() - pb.keys()),
+                'secondary_only': len(pb.keys() - pa.keys()),
+                'content_differs': sum(1 for k in pa.keys() & pb.keys() if pa[k] != pb[k]),
+                'status': 'MATCH' if pa == pb else 'MISMATCH',
+                'installed_environment_verified': False,
+            }
             if candidate_commit is not None:
                 if not re.fullmatch(r'[0-9a-f]{40}', candidate_commit): raise CheckError('Invalid candidate commit')
                 candidate_tree = primary.request('GET', f'repos/{PRIMARY}/git/commits/{candidate_commit}')['tree']['sha']
@@ -81,6 +101,12 @@ def annotation(result):
     for key in ('files','secondary_only','missing','changed'):
         value = result.get('candidate_counts',{}).get(key)
         if type(value) is int and 0 <= value <= 10000000: parts.append(f'candidate_{key}={value}')
+    parity = result.get('package_parity', {})
+    parts.append('packages=' + enum(parity.get('status')) if parity else 'packages=NOT_ATTEMPTED')
+    for key in ('primary_package_files','identical_package_files','missing_on_secondary','content_differs'):
+        value = parity.get(key)
+        if type(value) is int and 0 <= value <= 10000000: parts.append(f'package_{key}={value}')
+    parts.append('installed_environment_verified=false')
     return '; '.join(parts)
 
 def trusted_push():

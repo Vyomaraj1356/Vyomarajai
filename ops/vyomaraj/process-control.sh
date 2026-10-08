@@ -1,44 +1,36 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# Read-only process/status guard. It never starts, stops, restarts, or fails over services.
+set -u -o pipefail
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+cd "$ROOT"
+COMMAND="${1:-status}"
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-MODE="${1:-check}"
-
-echo "=== VYOMARAJ UNIVERSAL PROCESS CONTROL v1.0 ==="
-echo "Mode: $MODE"
-
-case "$MODE" in
-  check)
-    test -f "$ROOT/docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md"
-    test -f "$ROOT/docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md"
-    grep -q "KUBER" "$ROOT/docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md"
-    grep -q "INTENT" "$ROOT/docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md"
-    grep -q "RECONCILE" "$ROOT/docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md"
-    grep -q "Revenue underperformance procedure" "$ROOT/docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md"
-    grep -q "Payment-missing procedure" "$ROOT/docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md"
-    echo "PROCESS CONTROL STRUCTURE: PASS"
+case "$COMMAND" in
+  status)
+    exec python3 ops/engineering/verify_2026_stack.py --status
     ;;
-  revenue-audit)
-    echo "Revenue audit procedure:"
-    echo "1. Kuber: expected vs reported vs received"
-    echo "2. Vyomaraj/Jarvis: root-cause analysis"
-    echo "3. Research trends/history/new opportunities"
-    echo "4. Kuber: cost/risk/ROI review"
-    echo "5. Owner gate where required"
-    echo "6. Create -> Verify -> Publish -> Measure"
-    echo "7. Kuber: reconcile -> audit -> learn"
+  validate)
+    exec python3 ops/engineering/verify_2026_stack.py --check
     ;;
-  payment-escalation)
-    echo "Payment escalation procedure:"
-    echo "1. Eligibility -> settlement period -> expected date"
-    echo "2. Reconcile platform report vs Kuber ledger"
-    echo "3. Verify account/payment configuration"
-    echo "4. Use current official support/escalation channel"
-    echo "5. Record evidence/case/reference"
-    echo "6. Recover/confirm -> Kuber reconcile -> close"
+  start|stop|restart|failover|failback)
+    echo "BLOCKED: no authenticated process-control adapter, verified service identity, or owner-approved runtime transaction is configured." >&2
+    echo "No legacy gateway/studio writer service was contacted or changed." >&2
+    echo "PROCESS CONTROL: READ-ONLY STATUS ONLY" >&2
+    exit 4
+    ;;
+  --help|-h)
+    cat <<'HELP'
+Usage: ops/vyomaraj/process-control.sh [status|validate|start|stop|restart|failover|failback]
+
+status/validate are read-only repository checks. Mutating and recovery actions are
+intentionally blocked until owner authorization, an authenticated process adapter,
+peer fencing, audit, rollback, and runtime evidence are in place.
+HELP
+    exit 0
     ;;
   *)
-    echo "Usage: $0 {check|revenue-audit|payment-escalation}"
+    echo "Unsupported process-control command: $COMMAND" >&2
     exit 2
     ;;
 esac

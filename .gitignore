@@ -14,6 +14,7 @@ ops/vyomaraj-core/research/.state/
 ops/vyomaraj-core/research/.env
 research-run.json
 dr-diagnostic-evidence.json
+dr-package-parity.json
 research-candidates.json
 
 # Transient local validation evidence/screenshots
@@ -21,3 +22,6 @@ research-candidates.json
 
 # Transient CI diagnostics output (uploaded as an artifact by the workflow)
 ci-diagnostics.log
+
+# Local content-alignment scan output (the maintenance tool writes it on every run)
+reports/maintenance/

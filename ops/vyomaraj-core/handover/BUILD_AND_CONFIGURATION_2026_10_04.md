@@ -85,6 +85,8 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 | `shriyantra-crypto-baseline.yml` | ShriYantra Crypto Baseline | `no schedule` |
 | `shriyantra-owner-guard.yml` | ShriYantra owner guard tests | `no schedule` |
 | `vyomaraj-ci-diagnostics.yml` | Vyomaraj CI diagnostics (readable annotations) | `no schedule` |
+| `vyomaraj-content-alignment.yml` | Vyomaraj Content Alignment Maintenance | `no schedule` |
+| `vyomaraj-engineering-2026.yml` | Vyomaraj 2026 Engineering Foundation | `no schedule` |
 | `vyomaraj-master-state.yml` | Vyomaraj Master State Verification | `no schedule` |
 | `vyomaraj-research.yml` | Vyomaraj Metadata Discovery | `15 3 * * *` |
 | `vyomaraj-sync-both.yml` | Vyomaraj PRIMARY to DR Sync | `*/30 * * * *` |

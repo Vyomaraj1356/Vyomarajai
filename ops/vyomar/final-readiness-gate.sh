@@ -1,46 +1,27 @@
 #!/usr/bin/env bash
-set -euo pipefail
-ROOT="$(cd "$(dirname "\${BASH_SOURCE[0]}")/../.." && pwd)"
-fail=0
-require(){ if [[ ! -e "$ROOT/$1" ]]; then echo "MISSING: $1"; fail=1; else echo "PRESENT: $1"; fi; }
-echo 'VYOMARAJ FINAL READINESS CONTRACT GATE'
-require docs/architecture/VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md
-require docs/architecture/VYOMARAJ_FINAL_MASTER_ARCHITECTURE_v2.0.md
-require docs/architecture/VYOMARAJ_FINAL_SYSTEM_DIAGRAM_v2.0.md
-require config/company/VYOMARAJ_COMPANY_FEDERATION_v1.0.yaml
-require ops/vyomaraj/vyomaraj.sh
-require docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md
-require docs/architecture/VYOMARAJ_UNIVERSAL_KNOWLEDGE_MEDIA_ARCHITECTURE_v1.0.md
-require docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md
-require config/finance/KUBER_FINANCIAL_CONTROLLER_v1.0.md
-require config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml
-require config/engineering/SPECIAL_DOMAIN_MEDIA_CAPABILITY_INHERITANCE_v1.0.yaml
-require config/engineering/GEOSPATIAL_AND_DAILY_STARTUP.yaml
-require config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json
-require config/knowledge/CIVILIZATION_KNOWLEDGE_INHERITANCE_v1.0.yaml
-require ops/engineering/requirements-2026.txt
-require ops/engineering/bootstrap-2026.sh
-require ops/engineering/verify_2026_stack.py
-require ops/vyomaraj/AUTONOMOUS_EXECUTION_PLAN_v1.0.json
-require ops/vyomaraj/media_capability_inheritance.py
-require ops/vyomaraj/media-capability-gate.sh
-require ops/vyomaraj/process-control.sh
-require ops/vyomaraj/publish-gate.sh
-require ops/vyomaraj/daily_start.py
-require ops/vyomaraj/geospatial_gateway.py
-require ops/vyomaraj/location_authorization.py
-require ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json
-python3 - <<'PY'
-import json, pathlib
-p=pathlib.Path('ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json')
-d=json.loads(p.read_text())
-assert d['totals']['main_agents']==15
-assert d['totals']['sub_agents']==168
-assert d['totals']['named_sub_agents']==166
-assert d['totals']['unnamed_numbered_sub_agents']==2
-assert len(d['agents'])==168
-assert d['totals']['uncounted_parent_headings']==6
-print('PASS: registry 15 categories / 168 counted agents / 166 named / 2 legacy unnamed / 6 headings / 48 nested entertainment')
-PY
-if [[ $fail -ne 0 ]]; then echo 'BLOCKED: required contract file missing'; exit 2; fi
-echo 'PASS: architecture contract gate. This does NOT claim production runtime deployment.'
+# Deprecated path. "ops/vyomar/" is a typo of "ops/vyomaraj/" that was introduced by the
+# 7 October consolidation commit 9ee4fbc alongside a stale copy of the readiness gate.
+#
+# That copy asserted an aspirational registry (15 categories / 168 sub-agents) which
+# contradicts the reconciled current registry (13 categories / 128 counted sub-agents),
+# so it could never agree with the canonical gate. It also had a shell-escaping defect
+# that made every contract look MISSING while still exiting 0 — a gate that always
+# "passed" without checking anything.
+#
+# Rather than keep a second, divergent gate, this forwards to the canonical one. The
+# original content remains recoverable with:
+#   git show 9ee4fbc:ops/vyomar/final-readiness-gate.sh
+set -u -o pipefail
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+CANONICAL="$ROOT/vyomaraj/final-readiness-gate.sh"
+
+echo "DEPRECATED PATH: ops/vyomar/final-readiness-gate.sh" >&2
+echo "Use the canonical gate: ops/vyomaraj/final-readiness-gate.sh" >&2
+
+if [[ ! -x "$CANONICAL" ]]; then
+  echo "BLOCKED: canonical gate is missing or not executable: ops/vyomaraj/final-readiness-gate.sh" >&2
+  exit 2
+fi
+
+exec "$CANONICAL" "$@"

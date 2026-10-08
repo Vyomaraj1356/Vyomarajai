@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT="$(cd "$(dirname "\${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 echo "VYOMARAJ MEDIA + CIVILIZATION CAPABILITY GATE"
 test -f "$ROOT/config/knowledge/CIVILIZATION_KNOWLEDGE_INHERITANCE_v1.0.yaml"
 test -f "$ROOT/config/engineering/SPECIAL_DOMAIN_MEDIA_CAPABILITY_INHERITANCE_v1.0.yaml"
