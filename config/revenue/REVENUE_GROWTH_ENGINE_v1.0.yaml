@@ -1,0 +1,35 @@
+system: VYOMARAJ-AI-STUDIO
+version: "1.0"
+engine: REVENUE_GROWTH_ENGINE
+purpose: "Provider-neutral sales, marketing, partnership and revenue-growth capability added beneath the existing ShriYantra/Harness control model."
+architecture_change: false
+inherits: [OWNER_ROOT, SHRIYANTRA, VYOMARAJ_BHARATH, JARVIS_LAXMAN, HERMES, KUBER, AGENT_CAPABILITY_FABRIC, PROVIDER_FABRIC, MCP, A2A, APPLICATION_DR]
+north_star:
+  annual_revenue_aspiration_inr: "50000000-100000000"
+  interpretation: "strategic target range, not a forecast or guarantee"
+growth_flywheel:
+  flow: "DISCOVER -> RESEARCH -> SEGMENT -> POSITION -> OFFER -> TEST -> DISTRIBUTE -> ATTRACT -> QUALIFY -> CONVERT -> DELIVER -> RETAIN -> RECONCILE -> LEARN -> SCALE"
+engines:
+  content: {channels: [youtube, social, podcasts, newsletters], monetization: [eligible_programs, memberships, sponsorships, affiliate, services]}
+  audio: {channels: [spotify, youtube_music, apple_music, amazon_music, podcast_distributors], monetization: [distribution, licensing, sponsorship, services]}
+  publishing: {channels: [ebook, print, audiobook, publisher, education, library], monetization: [sales, licensing, syndication, affiliate]}
+  partnerships: {counterparties: [brands, creators, publishers, musicians, educators, production_houses, software_companies, ai_platforms], monetization: [co_creation, commissioning, licensing, sponsorship, syndication]}
+  knowledge: {products: [courses, workshops, research, reports, templates, digital_products], monetization: [direct_sales, subscriptions, licensing, services]}
+  enterprise: {products: [research, automation, content_production, localization, consulting], monetization: [contracts, retainers, projects]}
+portfolio_rule:
+  decision_states: [BUILD, TEST, SCALE, HOLD, REDESIGN, STOP, ESCALATE_OWNER]
+  scale_gate: [measured_demand, repeatable_conversion, positive_or_improving_unit_economics, rights_verified, policy_eligible, payment_path_verified, owner_authorization_for_required_actions]
+  stop_gate: [negative_unit_economics, high_unresolved_risk, rights_block, policy_block, unreliable_payment, strategic_mismatch]
+funnel_metrics:
+  acquisition: [qualified_reach, traffic, leads]
+  conversion: [qualified_leads, opportunities, proposals, wins]
+  economics: [cac, aov, ltv, gross_revenue, fees, refunds, net_revenue, contribution_margin]
+  retention: [repeat_rate, renewal_rate, churn_rate]
+  platform: [views, watch_time, streams, clicks, followers, subscribers]
+  truth_rule: "Platform metrics are evidence for performance, not proof of cash."
+attribution:
+  minimum_keys: [opportunity_id, content_id, campaign_id, platform, customer_or_counterparty, offer_id]
+  financial_chain: "metric -> attribution -> reported_earnings -> fees/adjustments -> settlement -> payment_evidence -> KUBER_RECONCILIATION"
+activation:
+  state_machine: [DISCOVERED, QUALIFIED, RIGHTS_VERIFIED, ELIGIBLE, ACCOUNT_CONNECTED, AUTHORIZED, TESTED, ENABLED, MONITORED, DEGRADED, DISABLED]
+  no_shortcut_from_config_to_enabled: true
