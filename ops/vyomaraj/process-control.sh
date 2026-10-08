@@ -2,12 +2,24 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-MODE="${1:-check}"
+MODE="${1:-status}"
 
 echo "=== VYOMARAJ UNIVERSAL PROCESS CONTROL v1.0 ==="
 echo "Mode: $MODE"
 
 case "$MODE" in
+  status)
+    echo '{'
+    echo '  "scope": "read-only repository inspection",'
+    echo '  "production_status": "NOT_VERIFIED",'
+    echo '  "architecture_change": false,'
+    echo '  "deployment": "NOT_PERFORMED"'
+    echo '}'
+    ;;
+  start|stop|restart|failover|failback)
+    echo "BLOCKED: read-only control gate; no legacy gateway/studio writer service was contacted" >&2
+    exit 4
+    ;;
   check)
     test -f "$ROOT/docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md"
     test -f "$ROOT/docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md"
@@ -38,7 +50,7 @@ case "$MODE" in
     echo "6. Recover/confirm -> Kuber reconcile -> close"
     ;;
   *)
-    echo "Usage: $0 {check|revenue-audit|payment-escalation}"
+    echo "Usage: $0 {status|check|revenue-audit|payment-escalation|start|stop|restart|failover|failback}"
     exit 2
     ;;
 esac
