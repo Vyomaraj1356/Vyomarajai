@@ -1,0 +1,64 @@
+# Preserved variant — not the authoritative contract
+#
+# This is the YAML "capability council" narrative that commit 94deaa8 (PR #46) wrote over
+# config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml. That overwrite replaced a
+# JSON-formatted reference contract (consumed by ops/vyomaraj/capability_fabric.py and
+# validated as JSON by the offline suite) and broke the registry and capability validators.
+#
+# The authoritative contract has been restored at
+#   config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml
+# and this narrative is preserved here. Nothing loads this file at build or validation time.
+#
+system: VYOMARAJ-AI-STUDIO
+status: IMPLEMENTED_DESIGN_NOT_RUNTIME_VERIFIED
+spiritual_context:
+  invocation: "श्री राम जय राम जय जय राम"
+  hanuman_invocation: "ॐ हनुमते नमः"
+  purpose: "auspicious devotional context; never a technical authorization mechanism"
+source_note:
+  basis: "Brahmanda Purana tradition identifies Hanuman as eldest and names five younger brothers: Matiman, Shrutiman, Ketuman, Gatiman and Dhritiman."
+  verified_web_source: "Brahmanda Purana translation references"
+  caution: "The capability mapping below is a Vyomaraj design metaphor, not a claim that these scriptures assign software functions to the brothers."
+
+capability_council:
+  - name: Matiman
+    sanskrit: मतिमान्
+    design_role: intelligence_and_strategy
+    capabilities: [reasoning, planning, architecture_review, decision_support, risk_analysis]
+  - name: Shrutiman
+    sanskrit: श्रुतिमान्
+    design_role: knowledge_and_learning
+    capabilities: [research, retrieval, source_comparison, knowledge_curation, provenance, education]
+  - name: Ketuman
+    sanskrit: केतुमान्
+    design_role: signal_and_guidance
+    capabilities: [detection, alerting, anomaly_signals, navigation, priority_routing]
+  - name: Gatiman
+    sanskrit: गतिमान्
+    design_role: execution_and_mobility
+    capabilities: [workflow_execution, tool_orchestration, browser_tasks, automation, geospatial_operations]
+  - name: Dhritiman
+    sanskrit: धृतिमान्
+    design_role: resilience_and_constancy
+    capabilities: [health_monitoring, persistence, recovery, failover, failback, audit_continuity]
+
+integration:
+  peer_cores: [bharath_vyomaraj, laxman_jarvis]
+  shared_foundation: ShriYantra
+  all_agents_inherit: true
+  sub_agents_inherit: true
+  authority:
+    root_owner_only: true
+    capability_grant_requires_policy: true
+    self_elevation_forbidden: true
+  routing:
+    mode: capability_based
+    parallel_when_safe: true
+    quorum_for_high_risk: true
+    human_owner_step_up_for_high_risk: true
+  resilience:
+    each_capability_has_primary_and_secondary_execution_path: true
+    peer_cores_can_recover_capability: true
+  provenance:
+    every_result_records_agent_and_capability: true
+    spiritual_context_never_substitutes_for_evidence: true

@@ -1,40 +1,45 @@
 #!/usr/bin/env bash
-set -euo pipefail
-ROOT="$(cd "$(dirname "\${BASH_SOURCE[0]}")/../.." && pwd)"
-fail=0
-require(){ if [[ ! -e "$ROOT/$1" ]]; then echo "MISSING: $1"; fail=1; else echo "PRESENT: $1"; fi; }
-echo 'VYOMARAJ FINAL READINESS CONTRACT GATE'
-require docs/architecture/VYOMARAJ_FINAL_INTEGRATION_GAP_MATRIX_v1.0.md
-require docs/architecture/VYOMARAJ_ARCHITECTURE_AND_PUBLISH_v1.2.md
-require docs/architecture/VYOMARAJ_UNIVERSAL_KNOWLEDGE_MEDIA_ARCHITECTURE_v1.0.md
-require docs/process/VYOMARAJ_UNIVERSAL_PROCESS_CONTROL_v1.0.md
-require config/finance/KUBER_FINANCIAL_CONTROLLER_v1.0.md
-require config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml
-require config/engineering/SPECIAL_DOMAIN_MEDIA_CAPABILITY_INHERITANCE_v1.0.yaml
-require config/engineering/GEOSPATIAL_AND_DAILY_STARTUP.yaml
-require config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json
-require config/knowledge/CIVILIZATION_KNOWLEDGE_INHERITANCE_v1.0.yaml
-require ops/engineering/requirements-2026.txt
-require ops/engineering/bootstrap-2026.sh
-require ops/engineering/verify_2026_stack.py
-require ops/vyomaraj/AUTONOMOUS_EXECUTION_PLAN_v1.0.json
-require ops/vyomaraj/media_capability_inheritance.py
-require ops/vyomaraj/media-capability-gate.sh
-require ops/vyomaraj/process-control.sh
-require ops/vyomaraj/publish-gate.sh
-require ops/vyomaraj/daily_start.py
-require ops/vyomaraj/geospatial_gateway.py
-require ops/vyomaraj/location_authorization.py
-require ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json
+# Final read-only integration gate. It never deploys, publishes, syncs, or starts services.
+set -u -o pipefail
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+cd "$ROOT"
+
+if [[ $# -gt 0 && "${1:-}" != "--help" && "${1:-}" != "-h" ]]; then
+  echo "Unsupported option: $1" >&2
+  echo "This gate has no deploy, publish, sync, or production override." >&2
+  exit 2
+fi
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  cat <<'HELP'
+Usage: ops/vyomaraj/final-readiness-gate.sh
+
+Runs read-only deterministic registry, capability-reference, owner-boundary,
+and resilience-activation checks. It reports known taxonomy/runtime blockers.
+A static PASS is not a production verification or deployment authorization.
+HELP
+  exit 0
+fi
+
+python3 ops/vyomaraj-core/agents/rebuild_registry.py --check || exit $?
+python3 ops/vyomaraj/capability_fabric.py check || exit $?
+python3 ops/engineering/verify_2026_stack.py --check || exit $?
+python3 ops/vyomaraj/agent_change.py validate || exit $?
+
 python3 - <<'PY'
-import json, pathlib
-p=pathlib.Path('ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json')
-d=json.loads(p.read_text())
-assert d['totals']['main_agents']==15
-assert d['totals']['sub_agents']==154
-assert len(d['agents'])==154
-assert d['totals']['uncounted_parent_headings']==6
-print('PASS: registry 15 categories / 154 counted agents / 6 headings')
+import json
+import subprocess
+import sys
+result = subprocess.run(
+    [sys.executable, "ops/engineering/verify_2026_stack.py", "--status"],
+    check=True, capture_output=True, text=True,
+)
+data = json.loads(result.stdout)
+for key in data.get("blockers", []):
+    print(f"BLOCKER: {key}")
+print("STATIC REPOSITORY CHECK: PASS")
+print("RUNTIME / PRODUCTION READINESS: BLOCKED — runtime identity, owner-authenticated transactional mutation, peer heartbeat/fencing, external providers, DR, and release-device evidence are not verified.")
+print("No deployment, publication, process restart, peer sync, or production mutation was performed.")
+if data.get("production_status") != "VERIFIED" or data.get("blockers"):
+    sys.exit(4)
 PY
-if [[ $fail -ne 0 ]]; then echo 'BLOCKED: required contract file missing'; exit 2; fi
-echo 'PASS: architecture contract gate. This does NOT claim production runtime deployment.'

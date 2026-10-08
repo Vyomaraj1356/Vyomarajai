@@ -103,6 +103,8 @@ def screenshot_gallery():
 REFERENCE_REPORTS = {
     '/reports/chats': ROOT / 'Vyomaraj-All-Chats-Database-One-Month.md',
     '/reports/issue-6': ROOT / 'ops/dr/ISSUE_6_RESOLUTION_2026_10_04.md',
+    '/reports/package-parity': ROOT / 'ops/dr/DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md',
+    '/reports/package-inventory': ROOT / 'ops/dr/PACKAGE_PARITY.json',
     '/reports/live-wiring': HERE / 'LIVE_WIRING_STATE_2026_10_06.json',
     '/reports/screenshots': SCREENSHOTS_DIR / 'SCREENSHOT_CAPTURE_RAW.json',
 }
@@ -115,6 +117,20 @@ PAGE_NOTES = {
                         'Issue #6 remains OPEN/P0. A 7 October scheduled workflow reports equal tracked Git trees, '
                         'but the effective secondary identity, target-only review, runtime health and failover remain '
                         'unverified. Do not post this historical text or close the issue.</p>',
+    '/reports/package-parity': '<p class="notice"><strong>Primary/secondary sync, DR test and package '
+                               'parity — 8 October 2026.</strong> The DR verification job had been skipped for '
+                               'about sixteen hours because the offline gate it depends on was failing; this '
+                               'records the root cause, the repair, and what the DR test and package check can '
+                               'and cannot prove. No sync was performed and issue #6 remains OPEN/P0. '
+                               '<a href="/reports/download/package-parity.md">Download the report</a> &middot; '
+                               '<a href="/reports/package-inventory">Tracked package inventory</a></p>',
+    '/reports/package-inventory': '<p class="notice"><strong>Tracked package inventory</strong> — every '
+                                  'dependency manifest and release archive in the Git snapshot, with its '
+                                  'SHA-256 and Git blob SHA so a secondary tree entry can be compared without '
+                                  'downloading the artifact. Repository content only: no installed environment '
+                                  'was inspected. '
+                                  '<a href="/reports/download/package-inventory.json">Download the inventory</a> &middot; '
+                                  '<a href="/reports/package-parity">Sync, DR test and parity report</a></p>',
     '/reports/test-evidence': '<p class="notice"><strong>Recorded test evidence</strong> — the counts '
                               'are those actually executed at the recorded time, not a standing '
                               'promise about later runs.</p>',
@@ -261,7 +277,13 @@ DOWNLOADS = {'/download/inventory.md': (REPORTS['/'], 'text/plain; charset=utf-8
              '/reports/download/session-update.md':
                  (SESSION_UPDATE, 'text/plain; charset=utf-8'),
              '/reports/download/session-update.txt':
-                 (SESSION_UPDATE, 'text/plain; charset=utf-8')}
+                 (SESSION_UPDATE, 'text/plain; charset=utf-8'),
+             # Absolute paths are allowed here so DR evidence can be downloaded from its own
+             # directory instead of being duplicated into the handover folder.
+             '/reports/download/package-parity.md':
+                 (ROOT / 'ops/dr/DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md', 'text/plain; charset=utf-8'),
+             '/reports/download/package-inventory.json':
+                 (ROOT / 'ops/dr/PACKAGE_PARITY.json', 'application/json')}
 # Literal, code-composed links only: no report text is ever turned into a hyperlink.
 RECOVERY_LINKS = ('<div class="notice"><strong>New-session runbook (in order):</strong> '
                   '<a href="/reports/issues">Issues and PRs ledger</a> &middot; '
@@ -423,7 +445,8 @@ class Handler(BaseHTTPRequestHandler):
         if filename is None and route not in REFERENCE_REPORTS and route not in DYNAMIC_REPORTS:
             self.send_error(404, 'Only the allowlisted reports are available'); return
         path = (REFERENCE_REPORTS[route] if route in REFERENCE_REPORTS else
-                HERE / filename if filename is not None else None)
+                (filename if isinstance(filename, Path) else HERE / filename)
+                if filename is not None else None)
         if path is not None and not path.is_file():
             self.send_error(404, 'Report not available'); return
         if route in DOWNLOADS:
@@ -445,7 +468,7 @@ class Handler(BaseHTTPRequestHandler):
                        '<meta name="theme-color" content="#0a1628">'
                        '<title>Vyomaraj — verified reports</title><style>' + STYLE + '</style><main>'
                        '<nav aria-label="Viewer sections"><a href="/sovereign/">Sovereign</a><a href="/contracts/">Contracts</a><a href="/reports/policy">Latest policy update</a><a href="/">Current inventory</a><a href="/reports/resilience">Latest DR & integration</a><a href="/reports/aghor">Aghor research</a><a href="/reports/agents">Agent reconciliation</a><a href="/reports/history">Historical audit</a><a href="/dr-status">DR resolution</a>'
-                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/integration-audit">Integration audit</a><a href="/reports/peer-architecture">Peer architecture</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/monitor">Local monitor</a><a href="/reports/full-handover">Full handover</a><a href="/reports/ai-handoff">AI handoff</a><a href="/reports/runbook">Runbook</a><a href="/reports/recovery-index">Session recovery</a><a href="/reports/go-live-gaps">Go-live gaps</a><a href="/reports/next-session-plan">Next session plan</a><a href="/reports/session-update">Session update</a><a href="/download/inventory.md">Download inventory</a></nav>'
+                       '<a href="/reports/research">Integrated research update</a><a href="/reports/contents">All experience contents</a><a href="/reports/film">Film</a><a href="/reports/music">Music</a><a href="/reports/bhakti">Bhakti</a><a href="/handover">Handover</a><a href="/reports/architecture">Architecture</a><a href="/reports/build">Build &amp; configuration</a><a href="/reports/next-session">Next session handover</a><a href="/reports/handover-notepad">Handover notepad</a><a href="/reports/dr-sync">DR sync results</a><a href="/reports/integration-audit">Integration audit</a><a href="/reports/peer-architecture">Peer architecture</a><a href="/reports/post-pr25-handover">Post-PR25 companion</a><a href="/reports/recovery">Recovery package</a><a href="/reports/chats">All chats</a><a href="/reports/issue-6">Issue #6 resolution</a><a href="/reports/test-evidence">Test evidence</a><a href="/reports/auto-align">Auto-align plan</a><a href="/reports/platform-check">Platform check</a><a href="/reports/issues">New-session runbook (in order)</a><a href="/reports/network-diagram">Network diagram</a><a href="/reports/screenshots">Real page captures</a><a href="/reports/market-readiness">Market readiness</a><a href="/reports/realtime">Live status</a><a href="/reports/monitor">Local monitor</a><a href="/reports/full-handover">Full handover</a><a href="/reports/ai-handoff">AI handoff</a><a href="/reports/runbook">Runbook</a><a href="/reports/recovery-index">Session recovery</a><a href="/reports/go-live-gaps">Go-live gaps</a><a href="/reports/next-session-plan">Next session plan</a><a href="/reports/session-update">Session update</a><a href="/reports/package-parity">Sync, DR test &amp; packages</a><a href="/reports/package-inventory">Package inventory</a><a href="/download/inventory.md">Download inventory</a></nav>'
                        '<p class="notice">Sanitized source inventory. Unknown names and unverified live services '
                        'are not presented as working integrations. The latest scheduled DR report records equal tracked Git trees; '
                        'the effective target identity, runtime/app equality and failover remain unverified.</p>'

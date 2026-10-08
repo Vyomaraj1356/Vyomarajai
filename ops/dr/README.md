@@ -1,6 +1,54 @@
 # Safe Primary → DR verification and replication
 
-> **Current status override — full access audit captured 7 October 2026 08:28 UTC; issue/PR/main/Pages metadata re-read at 10:06 UTC; latest scheduled DR annotation separately re-read.** Issue #6 remains OPEN/P0; do not post its historical close-out or close it. The latest successful scheduled workflow run `37605789908` / check-run `112741170924` completed at `10:13:11Z` on main `04b7ae60` and reported `MATCH`, `data_match=true`, equal primary/secondary tracked Git trees `986288ee2cc4ec4d89400320150ea893f7a7a2de`, `traffic_switched=NONE`, and annotation `http=UNAVAILABLE`; it was a no-write confirmation. This is a point-in-time tracked Git-tree match only, not deployed-app/runtime equality, service availability, authenticated heartbeat, failover, RPO or RTO. The matched tree includes the tracked APK blob `9c95df15c8cb1787bf85b7d44f9445ff9376f1f2` (24,567,022 bytes); signature validity, signer provenance and real-device installation remain unverified. Two earlier main-push runs performed automatic snapshot writes, recorded in the DR report; this session did not dispatch or initiate them. The later addendum checked only the new annotation; the previous 40 were not re-read. The earlier full annotation audit remains preserved separately. The 08:28 access audit found candidate secondary paths returning 404 and Actions variables/secrets returning 403; these do not negate the Actions evidence, but owner-confirmed target identity/access and target-only-data review remain open. PR #41 is OPEN/non-draft and based on `8e9a67a`, two commits behind current main; PRs #39/#42 are OPEN/DRAFT, and #39 was left untouched. Pages is built from `main:/` at `04b7ae60`; this working branch is not deployed. Existing gateway/report/lane preview ports were closed at the 08:22 UTC probe; a separate allowlisted sandbox web preview is not production. This status block supersedes older present-tense wording below.
+> **Current status — 8 October 2026.** **DR verification had stopped running.** `verify-or-sync`
+> declares `needs: offline-tests`; `offline-tests` began failing on main at `ae92895`
+> (2026-10-07 15:53 UTC) and stayed broken through PRs #45–#49, so the comparison job was
+> **skipped** 37 consecutive times and nothing compared primary to secondary for about sixteen
+> hours. The last run that actually executed is check-run `112880681037`, completed
+> `2026-10-07T15:50:01Z` on main `04b7ae60`: `status=MATCH`, `data_match=true`, equal trees
+> `986288ee2cc4ec4d89400320150ea893f7a7a2de`, `traffic_switched=NONE`. That remains the most
+> recent verified state. Pushing this repair ran the credentialed probe (check-run `113209472563`)
+> and it reports **`tree=MISMATCH`, `packages=MISMATCH`, `writes=NONE`**: the secondary is still at
+> tree `986288ee…` — frozen at that last verified state — with 135 files missing, 105 changed, 0
+> secondary-only, and 4 of 54 package files absent plus 5 differing. **Primary and secondary are
+> not in sync and do not carry the same packages.** The absent `requirements-2026.txt` and
+> `requirements-2026-lock.txt` mean a rebuild from the DR copy would not reproduce the validated
+> dependency set. Repairing that requires an approved `mode=sync` dispatch, which this branch
+> deliberately does not perform.
+>
+> Root cause: the 7 October consolidation merges overwrote five files that were already the
+> source of truth for other code (the Universal Knowledge policy, the Panch-Brother capability
+> model, `capability_fabric.py`, `verify_2026_stack.py`, and three deny-by-default gate scripts),
+> and introduced a literal `\${BASH_SOURCE[0]}` defect that made several gates pass without
+> checking anything. Those files are restored, the superseded content is preserved additively,
+> and the offline suite is back to 62/62. Full account:
+> [DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md](DR_SYNC_AND_PACKAGE_PARITY_2026_10_08.md).
+>
+> Package parity is now part of every DR run — see `package_parity.py` below. From Arena itself the
+> read-only test still returns `BLOCKED` / HTTP 404 on the secondary, as it has throughout; the
+> credentialed answer above came from Actions instead. No sync was performed, no traffic was
+> switched, no installed environment was compared, and issue #6 remains OPEN/P0.
+
+## Package parity — "the same packages"
+
+`ops/dr/package_parity.py` confirms primary and secondary carry the same packages in both
+senses: dependency manifests (`requirements*.txt`, `package.json`, lockfiles…) and
+distributable packages (`*.zip`, `*.apk`, `*.tar.gz`). It records each file's size, SHA-256
+and Git blob SHA, so a tree entry is compared without downloading a 24 MB artifact.
+
+```sh
+python3 ops/dr/package_parity.py                 # inventory + declaration report
+python3 ops/dr/package_parity.py --check         # offline: committed inventory still current
+python3 ops/dr/package_parity.py --index         # network: every locked pin exists on PyPI
+DR_REPO=confirmed-owner/repo python3 ops/dr/package_parity.py --remote
+```
+
+`--check` runs in the offline suite; `--remote` runs in `verify-or-sync` for both verify and
+sync modes. A package `MISMATCH` or an inconsistent declaration fails the job; an access
+failure is recorded as a warning and never reported as parity. None of this inspects an
+installed environment: `installed_environment_verified` is always `false`.
+
+> **Earlier status override — full access audit captured 7 October 2026 08:28 UTC; issue/PR/main/Pages metadata re-read at 10:06 UTC; latest scheduled DR annotation separately re-read.** Issue #6 remains OPEN/P0; do not post its historical close-out or close it. The latest successful scheduled workflow run `37605789908` / check-run `112741170924` completed at `10:13:11Z` on main `04b7ae60` and reported `MATCH`, `data_match=true`, equal primary/secondary tracked Git trees `986288ee2cc4ec4d89400320150ea893f7a7a2de`, `traffic_switched=NONE`, and annotation `http=UNAVAILABLE`; it was a no-write confirmation. This is a point-in-time tracked Git-tree match only, not deployed-app/runtime equality, service availability, authenticated heartbeat, failover, RPO or RTO. The matched tree includes the tracked APK blob `9c95df15c8cb1787bf85b7d44f9445ff9376f1f2` (24,567,022 bytes); signature validity, signer provenance and real-device installation remain unverified. Two earlier main-push runs performed automatic snapshot writes, recorded in the DR report; this session did not dispatch or initiate them. The later addendum checked only the new annotation; the previous 40 were not re-read. The earlier full annotation audit remains preserved separately. The 08:28 access audit found candidate secondary paths returning 404 and Actions variables/secrets returning 403; these do not negate the Actions evidence, but owner-confirmed target identity/access and target-only-data review remain open. PR #41 is OPEN/non-draft and based on `8e9a67a`, two commits behind current main; PRs #39/#42 are OPEN/DRAFT, and #39 was left untouched. Pages is built from `main:/` at `04b7ae60`; this working branch is not deployed. Existing gateway/report/lane preview ports were closed at the 08:22 UTC probe; a separate allowlisted sandbox web preview is not production. This status block supersedes older present-tense wording below.
 
 ## Historical MATCH checkpoint — 3 October 2026 (not current DR evidence)
 

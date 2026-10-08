@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "scope": "tracked package files in the Git snapshot; dependency declarations are checked for internal consistency, not installed or resolved",
+  "primary_repository": "Vyomaraj1356/Vyomarajai",
+  "branch": "main",
+  "package_file_count": 54,
+  "package_files_by_kind": {
+    "dependency_manifest": 4,
+    "distributable_package": 50
+  },
+  "total_package_bytes": 491188294,
+  "declaration_check": {
+    "status": "PASS",
+    "canonical_requirements": "ops/engineering/requirements-2026.txt",
+    "declared_distributions": [
+      "a2a-sdk",
+      "cryptography",
+      "jsonschema",
+      "mcp",
+      "opentelemetry-api",
+      "opentelemetry-sdk",
+      "pytest",
+      "pyyaml",
+      "temporalio"
+    ],
+    "locked_distributions": {
+      "cryptography": "46.0.0",
+      "jsonschema": "4.26.0",
+      "pyyaml": "6.0.3",
+      "temporalio": "1.34.0",
+      "opentelemetry-api": "1.45.1",
+      "opentelemetry-sdk": "1.45.1",
+      "mcp": "2.3.0",
+      "a2a-sdk": "1.2.2"
+    },
+    "declared_but_unlocked": [
+      "pytest"
+    ],
+    "unsupported_lines": {},
+    "findings": [],
+    "installed_environment_verified": false,
+    "index_availability_verified": false
+  },
+  "inventory": [
+    {
+      "path": "Vyomaraj-All-Chats-From-Arena-Database-Till-V16.7.22.zip",
+      "kind": "distributable_package",
+      "bytes": 5314,
+      "sha256": "d7018a01b394f89761327eee8d9d68651c6afb6e235a18c9223414e2917c414a",
+      "git_blob_sha": "1a47316f63ab495fbef77932d0728faba7547ccd"
+    },
+    {
+      "path": "Vyomaraj-App.apk",
+      "kind": "distributable_package",
+      "bytes": 24567022,
+      "sha256": "948e60b03ed62b8b209140924611b205211e2839e8f24a0f6d7de1d2f09a6153",
+      "git_blob_sha": "9c95df15c8cb1787bf85b7d44f9445ff9376f1f2"
+    },
+    {
+      "path": "Vyomaraj-Complete-All-Sessions-All-Handover-Zips-V16.7.22.zip",
+      "kind": "distributable_package",
+      "bytes": 13048185,
+      "sha256": "05e38de17a3481cf2199d9a9b1c95d79ce3c3d5acb46bcd53abc64f0f9ea4f07",
+      "git_blob_sha": "40b6ae5b5298fda2e52a49c4475993a391bc3690"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.5.3-v167.tar.gz",
+      "kind": "distributable_package",
+      "bytes": 360649,
+      "sha256": "32cda4391cd8e618c16b3b67ae2971fdc7c80fd43daa44707e4edf12d8c76579",
+      "git_blob_sha": "d11c8dcd115a45f6c66da033e55dd98e50251e38"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.5.3-v167.zip",
+      "kind": "distributable_package",
+      "bytes": 407729,
+      "sha256": "465f56e8ef9f99c1d3971c59369a125d49f200208cf26f49f41b601217d18d72",
+      "git_blob_sha": "44abd7219650c3c8ee93d5d1daf7af3ae1d06935"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.6-v168.zip",
+      "kind": "distributable_package",
+      "bytes": 472710,
+      "sha256": "9de7362323078c7d87e28fe4fd33b73e6f43dcf53812bc7a202c0ba4d838ff25",
+      "git_blob_sha": "2578b8c0e8c84119b48c6e5f085c7623591c6467"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7-v169.zip",
+      "kind": "distributable_package",
+      "bytes": 546712,
+      "sha256": "7fad96ecce832be969a561ff3a2c04c2e4f0e306ae3f509558e5e312c08dd935",
+      "git_blob_sha": "353b44146e7d7e4c01106401db678eddaf117779"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.1-v170.zip",
+      "kind": "distributable_package",
+      "bytes": 546712,
+      "sha256": "c6d3dd389e957add5fe87fae2794052670b9856f82c3911b0d6cc60e9033cd65",
+      "git_blob_sha": "6b8305e88281d2a234a0d958097db156d838974b"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.10-v180.zip",
+      "kind": "distributable_package",
+      "bytes": 577569,
+      "sha256": "70de9dca3c87fb20e71a2b3532b86f869a2dbecaaccd4ebfa5585ad8876b849c",
+      "git_blob_sha": "880e6ed9b6e487f1b236a9def1480985fd4cb06e"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.11-v181.zip",
+      "kind": "distributable_package",
+      "bytes": 578874,
+      "sha256": "617b54535443dac9b85c94e7eff360d5216e387de0bea4b11d81450918d6526c",
+      "git_blob_sha": "92d15c419e9b5f1aee8cf6d19637c437e705987f"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.12-v182.zip",
+      "kind": "distributable_package",
+      "bytes": 577007,
+      "sha256": "c7efb4e91db0ec3cbd9d154e4f17364be10292121100f2bf957976f3be85f093",
+      "git_blob_sha": "a69ee10016189d88e20216550726cb82d821f8cc"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.13-v183.zip",
+      "kind": "distributable_package",
+      "bytes": 577727,
+      "sha256": "758ecf7ff6d7ae77f40ef46c07cc2a1eb14425e4df8b963d0c30a55e06e9c7d9",
+      "git_blob_sha": "0b332cde515152c0650d3807903501931579b2a9"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.14-v184.zip",
+      "kind": "distributable_package",
+      "bytes": 577754,
+      "sha256": "243440032fbc6a1675cccfdd9d41697fecd6f0230c3ae270893eabc8d719a3f8",
+      "git_blob_sha": "cfd7aabef2c506eafee886d158df44e645aaae98"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.15-v185.zip",
+      "kind": "distributable_package",
+      "bytes": 436645,
+      "sha256": "a10c03b77ffa88d50cd0e6353b35c8ae96ee8459600155ba23d287e6358cb610",
+      "git_blob_sha": "1c262b6aae3912258cd9cf96f3a02cb15e60927f"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.16-v186.zip",
+      "kind": "distributable_package",
+      "bytes": 578890,
+      "sha256": "f5f3a784ace56240a212f73deeda4f617b6803d23c4f0e5f51499912b7341571",
+      "git_blob_sha": "ba592fefb7a5526d70ab9eca729d0a2f9f01f716"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.17-v187.zip",
+      "kind": "distributable_package",
+      "bytes": 579032,
+      "sha256": "9b20c0e2cedbce3bb583fbacc8092d2f679a5e3d44d5043f4638156147e37cf2",
+      "git_blob_sha": "e75f9a5bc07c7ed61d4402a402503ed8d9e83ed7"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.18-v188.zip",
+      "kind": "distributable_package",
+      "bytes": 579125,
+      "sha256": "cbf686c55c30571e34d6ffc330b6cdce13e72ff9a45b1d099781e839ee55a7d3",
+      "git_blob_sha": "7f75471cae43d8c4255f84f657cc8b759925e022"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.19-v189.zip",
+      "kind": "distributable_package",
+      "bytes": 579109,
+      "sha256": "e3676dcce3f62cbff6fa10d34c212b562dcae06ca23352421b76f3d8266809a6",
+      "git_blob_sha": "529d6e22633c2bb351f5605b4066ac0a7cbf0af4"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.2-v171.zip",
+      "kind": "distributable_package",
+      "bytes": 546712,
+      "sha256": "c6d3dd389e957add5fe87fae2794052670b9856f82c3911b0d6cc60e9033cd65",
+      "git_blob_sha": "6b8305e88281d2a234a0d958097db156d838974b"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.20-v190.zip",
+      "kind": "distributable_package",
+      "bytes": 579411,
+      "sha256": "b97348d8a8eba20970ea5a2a436d47778aa3021828c7c1d47c5628d709cf9c55",
+      "git_blob_sha": "b7e247328d0e8efa66a100ecd23bb5b45d6a47ca"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.21-v191.zip",
+      "kind": "distributable_package",
+      "bytes": 579333,
+      "sha256": "ec7c0cf2cd4e854aaf5959a208d1a2b61694ad48a6d20d7e6cacc3f21a1ed668",
+      "git_blob_sha": "112b90eebab9409fd79d0d1930771f2ada194649"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.22-v192.zip",
+      "kind": "distributable_package",
+      "bytes": 311660,
+      "sha256": "6f5c4297074e0d84fccec7dc1beffcb8ddc81af0782d54c1e383b41969a843d9",
+      "git_blob_sha": "54f07a5cbbdd2831f8e91a107c5018c378c06bf3"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.3-v172.zip",
+      "kind": "distributable_package",
+      "bytes": 552522,
+      "sha256": "c3753c1174dd9612e58960b049cf6ea219abbda654a793192a2fd6087da3e5e1",
+      "git_blob_sha": "25534fa717b1e1a0c849898dcb358a5ec69ed63f"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.4-v173.zip",
+      "kind": "distributable_package",
+      "bytes": 552522,
+      "sha256": "300de0418e4e1dd0b59b9101eb2e0626f96af4b9aea4bc72503704ffba7e9184",
+      "git_blob_sha": "bbfc96e88be4fd048fb8a6e1d8381df8632d2a93"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.5-v174.zip",
+      "kind": "distributable_package",
+      "bytes": 552580,
+      "sha256": "ad1b70ed9c4feb0ab1824a3db7b1c95bb9295b83004f3f7ba0f9aa5073ff4dab",
+      "git_blob_sha": "8a275889ad888e88c6c07050ee227f5813c4e49a"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.6-v176.zip",
+      "kind": "distributable_package",
+      "bytes": 559194,
+      "sha256": "555b9fa641a2a5be74ccf9cb260e6e7165395a242629ecca94135e8887aee981",
+      "git_blob_sha": "f3a3d60118ea966ad224e285838d5949f300ceab"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.7-v177.zip",
+      "kind": "distributable_package",
+      "bytes": 559421,
+      "sha256": "ff2c5697dd3def580198e08266dee1de473e80964525b3aa9fcc90b74701acda",
+      "git_blob_sha": "06e1a4f97729a0e39d3fc55eaa4e13de4ed76e1f"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.8-v178.zip",
+      "kind": "distributable_package",
+      "bytes": 575383,
+      "sha256": "ccb052d73da329a7592875cfb61674bfae411db0182150ef732c8eb5b0260a28",
+      "git_blob_sha": "05d60d6d85d3bc0788a7babfa84141b2c4595892"
+    },
+    {
+      "path": "Vyomaraj-Handover-V16.7.9-v179.zip",
+      "kind": "distributable_package",
+      "bytes": 577794,
+      "sha256": "fbc983103126efef468628ee2503d1da169e0e271fa08ab242b2087209445186",
+      "git_blob_sha": "7990a7f510d157123b8de23c47a8249aa5c2088c"
+    },
+    {
+      "path": "Vyomaraj-V10.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V11.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V12.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V12.1-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V13.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V14.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28963815,
+      "sha256": "c0b12507910381ba39515bb196483b7ccadee7df736751ca430a0e5dc6fc4fb2",
+      "git_blob_sha": "cfbe27c2ce4c56aa11c96f82500bac0feeb4248b"
+    },
+    {
+      "path": "Vyomaraj-V15.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 29088017,
+      "sha256": "cb3cba59b376e46b54e37b1245ff5976a7d8e8b63dba6731d4fc8b3a17f01ae1",
+      "git_blob_sha": "4422a00d849f0608be240b8cd59be1e28c583c53"
+    },
+    {
+      "path": "Vyomaraj-V15.1-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 29092780,
+      "sha256": "24d206172bac4a938c3101ec78249c639b41a6cb2409fc1d94c1706ec0852211",
+      "git_blob_sha": "e98390c55ef37948a590fc567403a9e5d4cdcb2c"
+    },
+    {
+      "path": "Vyomaraj-V6.6-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V6.7-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V6.8-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V6.9-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V7.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V8.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "Vyomaraj-V9.0-Final-Market-Ready.zip",
+      "kind": "distributable_package",
+      "bytes": 28907765,
+      "sha256": "6d2aa682a2e4fb6fa84dfc0f17b9bb6e7fd15bbd5b730d7f98496aeea9728627",
+      "git_blob_sha": "ee746c6c85780a6357cc551a624ac58ba201334f"
+    },
+    {
+      "path": "ops/engineering/requirements-2026-lock.txt",
+      "kind": "dependency_manifest",
+      "bytes": 259,
+      "sha256": "995a90ff18a10c55ca524026ab3d5fee0936b6c6662dce58b310cba9c8848f6e",
+      "git_blob_sha": "c25e34d90ea8c66dfacfd98772f02bc64f698cec"
+    },
+    {
+      "path": "ops/engineering/requirements-2026-patch.txt",
+      "kind": "dependency_manifest",
+      "bytes": 300,
+      "sha256": "c0c0178d6da1fc7462811a1c19a7f37a39b93da31daf391ea60f520fe04216f4",
+      "git_blob_sha": "f2fefbb8bd504466154781f8c1c79f575e76314f"
+    },
+    {
+      "path": "ops/engineering/requirements-2026.txt",
+      "kind": "dependency_manifest",
+      "bytes": 334,
+      "sha256": "0c964184dbc42d5620e4a140d06b4ca7190595c95b8c7485db5f51288236856b",
+      "git_blob_sha": "be5ed28a31a23d4985d0562c7650e0437aefe5e8"
+    },
+    {
+      "path": "ops/shriyantra/requirements.txt",
+      "kind": "dependency_manifest",
+      "bytes": 121,
+      "sha256": "1c085e33cd82491d788c377d23e2e3d4e068d111074ea5fe424aea790269391a",
+      "git_blob_sha": "368c8dba4329b014e5b0377ea2564f427ac488ee"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_06.zip",
+      "kind": "distributable_package",
+      "bytes": 690166,
+      "sha256": "6bb05dbd0fe56a5c519126b6dc2d1ede21032a09a7ef01f04e96fc3834804bc7",
+      "git_blob_sha": "86dc306f4c56b8dee8d22f956ddc8266bc1743a5"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover/transfer/AI_PLATFORM_HANDOFF_2026_10_07.zip",
+      "kind": "distributable_package",
+      "bytes": 825531,
+      "sha256": "842c1d035ec20aa1e0c1ef579f758e142e214977e6c96ff4f0a8e0715dd6b6c9",
+      "git_blob_sha": "ab8a0591c05d9728562710d8690678bc884e75a9"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_TRANSFER_2026_10_04.zip",
+      "kind": "distributable_package",
+      "bytes": 159433,
+      "sha256": "f6f002ca330f76fb027061da247ae649f66db5276e3f3f61f65692438612db7b",
+      "git_blob_sha": "090c0815a556de681981dc7126c8588859ea825d"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover/transfer/NEXT_SESSION_UPDATE_POST_PR25_2026_10_04.zip",
+      "kind": "distributable_package",
+      "bytes": 195643,
+      "sha256": "4d26d23a2c09c31500f78c01a7b3939347a4881ab054831d91c0544de9dababa",
+      "git_blob_sha": "9475d7d68f50d5b1017ffba50b48b3f473aa2cd1"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_06.zip",
+      "kind": "distributable_package",
+      "bytes": 1800054,
+      "sha256": "895e083caa44e6d989c49d87cf656357caf95a106eea7156ca00783f99ffcbb5",
+      "git_blob_sha": "8d19db052bd9cc553f8cabd9b313441e9d9e036c"
+    },
+    {
+      "path": "ops/vyomaraj-core/handover/transfer/VYOMARAJ_FULL_HANDOVER_2026_10_07.zip",
+      "kind": "distributable_package",
+      "bytes": 1935364,
+      "sha256": "65d25ed7560ea2ba292966e577eeb3337a9e847908431911d631306112729287",
+      "git_blob_sha": "d9b924e3872a3e297ad9cb08c7c2cf1ee2e904ff"
+    }
+  ],
+  "installed_environment_verified": false,
+  "runtime_package_parity_verified": false
+}

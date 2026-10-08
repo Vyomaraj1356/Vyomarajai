@@ -4,6 +4,7 @@ from unittest.mock import Mock, patch
 from actions_read_probe import ReadOnlyClient, probe, annotation, trusted_push
 from test_dr_sync import FakeGitHub,TARGET
 from dr_sync import PRIMARY,CheckError
+import dr_sync as dr_module
 
 
 class TrustedPushTests(unittest.TestCase):
@@ -77,6 +78,69 @@ class ProbeTests(unittest.TestCase):
     def test_annotation_closed_values_prevent_injection(self):
         text=annotation({'status':'DO_NOT_PRINT\n::error::oops','secondary_main':{'status':'BLOCKED','http_status':403},'tree_comparison':'MISMATCH'})
         self.assertNotIn('DO_NOT_PRINT',text);self.assertNotIn('\n',text);self.assertIn('HTTP_403',text)
+
+class PackageParityProbeTests(unittest.TestCase):
+    """The credentialed probe must state whether both repositories carry the same packages."""
+
+    class PackageGitHub(FakeGitHub):
+        def __init__(self, repo, tree, commit, packages):
+            super().__init__(repo, tree, commit)
+            self.packages = packages
+
+        def request(self, method, path, body=None):
+            if method == 'GET' and '/git/trees/' in path:
+                self.calls.append((method, path, body))
+                entries = [{'path': 'safe.txt', 'mode': '100644', 'type': 'blob', 'sha': 'c' * 40}]
+                entries += [{'path': name, 'mode': '100644', 'type': 'blob', 'sha': sha}
+                            for name, sha in sorted(self.packages.items())]
+                return {'truncated': False, 'tree': entries}
+            if method == 'GET' and path == 'user':
+                # Installation tokens have no /user identity; the probe must tolerate that.
+                self.calls.append((method, path, body))
+                raise dr_module.APIError(403)
+            return super().request(method, path, body)
+
+    def run_probe(self, primary_packages, secondary_packages, tree='source-tree'):
+        primary = self.PackageGitHub(PRIMARY, 'source-tree', 'a' * 40, primary_packages)
+        secondary = self.PackageGitHub(TARGET, tree, 'b' * 40, secondary_packages)
+        return probe(primary, secondary, TARGET)
+
+    def test_identical_package_files_report_match(self):
+        packages = {'ops/engineering/requirements-2026.txt': 'd' * 40, 'Vyomaraj-App.apk': 'e' * 40}
+        parity = self.run_probe(packages, dict(packages))['package_parity']
+        self.assertEqual(parity['status'], 'MATCH')
+        self.assertEqual(parity['identical_package_files'], 2)
+        self.assertEqual(parity['primary_package_files'], 2)
+        self.assertFalse(parity['installed_environment_verified'])
+
+    def test_differing_requirement_file_is_reported_as_mismatch(self):
+        parity = self.run_probe(
+            {'ops/engineering/requirements-2026.txt': 'd' * 40},
+            {'ops/engineering/requirements-2026.txt': 'f' * 40},
+            tree='old-tree')['package_parity']
+        self.assertEqual(parity['status'], 'MISMATCH')
+        self.assertEqual(parity['content_differs'], 1)
+
+    def test_package_missing_on_secondary_is_counted(self):
+        parity = self.run_probe(
+            {'Vyomaraj-App.apk': 'e' * 40, 'ops/shriyantra/requirements.txt': 'd' * 40},
+            {'Vyomaraj-App.apk': 'e' * 40},
+            tree='old-tree')['package_parity']
+        self.assertEqual(parity['status'], 'MISMATCH')
+        self.assertEqual(parity['missing_on_secondary'], 1)
+
+    def test_annotation_exposes_parity_without_filenames(self):
+        packages = {'ops/engineering/requirements-2026.txt': 'd' * 40}
+        text = annotation(self.run_probe(packages, dict(packages)))
+        self.assertIn('packages=MATCH', text)
+        self.assertIn('package_identical_package_files=1', text)
+        self.assertIn('installed_environment_verified=false', text)
+        self.assertNotIn('requirements-2026.txt', text)
+
+    def test_annotation_reports_not_attempted_when_probe_was_blocked(self):
+        text = annotation({'status': 'BLOCKED', 'tree_comparison': 'NOT_ATTEMPTED'})
+        self.assertIn('packages=NOT_ATTEMPTED', text)
+
 
 class ResultAnnotationTests(unittest.TestCase):
     def test_error_operation_and_http_without_raw_body(self):

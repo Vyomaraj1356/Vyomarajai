@@ -139,6 +139,19 @@ jobs:
             python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json
             python ops/dr/dr_sync.py --output dr-evidence.json
           fi
+          # Package parity runs after the tree comparison in BOTH modes, so every run states
+          # whether primary and secondary hold the same dependency manifests and release
+          # archives. It is read-only and never writes to the secondary. A package MISMATCH
+          # or a broken declaration (exit 1) fails the job; an access/transport BLOCK
+          # (exit 2) is recorded as a warning rather than being reported as parity.
+          parity_rc=0
+          python ops/dr/package_parity.py --remote --output dr-package-parity.json || parity_rc=$?
+          if [ "$parity_rc" = "1" ]; then
+            echo '::error::Primary and secondary do not carry the same packages, or a dependency declaration is inconsistent.'
+            exit 1
+          elif [ "$parity_rc" != "0" ]; then
+            echo "::warning::Package parity could not be determined (exit $parity_rc); no parity is claimed."
+          fi
       - name: Upload sanitized verification evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -147,5 +160,6 @@ jobs:
           path: |
             dr-evidence.json
             dr-diagnostic-evidence.json
+            dr-package-parity.json
           if-no-files-found: ignore
           retention-days: 14
