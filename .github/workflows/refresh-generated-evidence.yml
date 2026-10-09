@@ -30,6 +30,10 @@ jobs:
           python-version: '3.12'
       - name: Regenerate stack record and link/archive ledger
         run: python3 ops/vyomaraj-core/handover/build_stack_record.py
+      - name: Install ImageMagick for the PNG renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
       - name: Regenerate architecture diagram from current evidence
         run: python3 ops/vyomaraj-core/handover/architecture_diagram.py
       - name: Verify generated outputs
