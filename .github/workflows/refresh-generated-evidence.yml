@@ -1,0 +1,50 @@
+name: Refresh generated architecture and evidence records
+
+on:
+  push:
+    branches: [fix/public-launch-evidence-gates]
+    paths:
+      - 'index.html'
+      - 'ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json'
+      - 'ops/vyomaraj-core/handover/build_stack_record.py'
+      - 'ops/vyomaraj-core/handover/architecture_diagram.py'
+      - '.github/workflows/refresh-generated-evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-generated-evidence
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    if: github.repository == 'Vyomaraj1356/Vyomarajai' && github.ref == 'refs/heads/fix/public-launch-evidence-gates'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate stack record and link/archive ledger
+        run: python3 ops/vyomaraj-core/handover/build_stack_record.py
+      - name: Regenerate architecture diagram from current evidence
+        run: python3 ops/vyomaraj-core/handover/architecture_diagram.py
+      - name: Verify generated outputs
+        run: |
+          python3 ops/vyomaraj-core/handover/build_stack_record.py --check
+          python3 ops/vyomaraj-core/handover/architecture_diagram.py --check
+          git diff --check
+      - name: Commit only regenerated outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png
+          if git diff --cached --quiet; then
+            echo "Generated outputs already current."
+          else
+            git commit -m "docs: refresh generated evidence records"
+            git push origin HEAD:fix/public-launch-evidence-gates
+          fi
