@@ -36,7 +36,7 @@ def current_evidence() -> dict:
     try:
         ledger = json.loads(LIVE_LEDGER.read_text(encoding="utf-8"))
         live = ledger.get("current_live_recheck_2026_10_07", {})
-        dr = live.get("dr_snapshot", {})
+        dr = ledger.get("current_dr_validation_2026_10_09", live.get("dr_snapshot", {}))
     except (OSError, UnicodeError, json.JSONDecodeError):
         live, dr = {}, {}
     try:
@@ -121,7 +121,7 @@ def build_layout():
     check_summary = (f"{tests.get('python_tests_total', '—')} Python · "
                      f"{check_total - check_failures}/{check_total} gates · {check_failures} failures"
                      if check_total else "offline gate not recorded")
-    main_sha = live.get("main", {}).get("sha", dr.get("head_sha", "unknown"))[:8]
+    main_sha = live.get("pages", {}).get("build_commit", live.get("main", {}).get("sha", dr.get("primary_commit", "unknown")))[:8]
     tree = dr.get("primary_tree", "unknown")[:12]
     dr_time = dr.get("completed_at_utc", "unknown")
     dr_time_label = dr_time[11:16] if len(dr_time) >= 16 else "unknown"
@@ -129,7 +129,8 @@ def build_layout():
     issue_state = f"{live.get('issue_6', {}).get('state', 'unknown')}/{live.get('issue_6', {}).get('priority', 'unknown')}"
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     texts.append((W / 2, 58, "VYOMARAJ + JARVIS — SHARED PEER ARCHITECTURE", 38, GOLD, True, "middle"))
-    texts.append((W / 2, 90, f"generated {generated} · Pages main {main_sha} · scheduled DR tree MATCH {dr_time[11:16]} UTC · {issue_state} · branch not deployed", 16, GOLD_SOFT, False, "middle"))
+    dr_status = dr.get("tree_status", dr.get("status", "UNKNOWN"))
+    texts.append((W / 2, 90, f"generated {generated} · Pages build {main_sha} · latest DR tree {dr_status} {dr_time[11:16]} UTC · {issue_state} · branch not deployed", 16, GOLD_SOFT, False, "middle"))
 
     # 1 ─ people -----------------------------------------------------------
     band(118, 186, "1 · PEOPLE & DEVICES", "the only entry points that exist today")
