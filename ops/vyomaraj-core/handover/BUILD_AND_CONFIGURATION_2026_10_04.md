@@ -82,6 +82,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 | File | Name | Schedule |
 |---|---|---|
+| `refresh-generated-evidence.yml` | Refresh generated architecture and evidence records | `no schedule` |
 | `shriyantra-crypto-baseline.yml` | ShriYantra Crypto Baseline | `no schedule` |
 | `shriyantra-owner-guard.yml` | ShriYantra owner guard tests | `no schedule` |
 | `vyomaraj-ci-diagnostics.yml` | Vyomaraj CI diagnostics (readable annotations) | `no schedule` |
