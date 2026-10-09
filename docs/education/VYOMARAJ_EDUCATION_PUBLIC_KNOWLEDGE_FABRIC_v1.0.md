@@ -93,28 +93,19 @@ Recommended formats:
 
 Character-led storytelling must simplify presentation, not distort facts. Separate fictional dialogue from factual narration. Clearly label dramatizations, uncertainty and disputed interpretations.
 
-## Suggested agent alignment
+## Proposed hierarchy: VIDYA → Education sub-agents
 
-- **VIDYA / Education Orchestrator:** taxonomy, curriculum map, sequencing and coordination.
-- **ITIHASA / History & Timeline Research:** historical origins, timelines, primary-source checks.
-- **SHASANA / Governance & Civics:** departments, Parliament, legislatures, local bodies and constitutional concepts.
-- **ANNA / Food & Nutrition Literacy:** food taxonomy, agriculture-to-plate, evidence-reviewed nutrition.
-- **SHUCHI / Hygiene & Public Health Literacy:** hygiene, sanitation, safe habits and public-health review.
-- **VIGYANA / Science & Earth-Space:** science curriculum, evidence, experiments and uncertainty.
-- **SAMAJA / Society & Citizenship:** communities, inclusion, rights, civic participation and social context.
-- **PATHYA / Curriculum & Assessment:** grade bands, learning outcomes, assessment and differentiated learning.
-- **KATHA / Kids Story & Cartoon Studio:** original characters, scripts, storyboards and age-appropriate narration.
-- **CHITRA / Visual Learning:** diagrams, maps, timelines, infographics and animation briefs.
-- **BHASHA / Translation & Localization:** Hindi, Hinglish, English and regional-language adaptation.
-- **PRAMANA / Fact-Check & Provenance:** claims, sources, dates, uncertainty and correction tracking.
-- **SURAKSHA / Child Safety & Accessibility:** age suitability, privacy, inclusive design, accessibility and safety review.
-- **ADHIKARA / Rights & Licensing:** image, music, text, book and footage rights; public-domain/licensed status.
-- **MULYANKAN / Quiz & Learning Analytics:** comprehension, retention, quiz quality and feedback.
-- **PRAKASHAN / Publishing & Distribution:** packaging for approved web/video/audio/print channels after owner/policy gate.
-- **KUBER / Revenue & Rights Reconciliation:** optional monetization, licensing and settlement evidence; never influence educational accuracy.
-- **HERMES / Verification & Resilience:** provenance, versioning, rollback, safety checks and correction propagation.
+**VIDYA (Education Knowledge Fabric)** is the parent education agent under the Vyomaraj/Jarvis orchestration layer. The roles below are proposed **sub-agents/specialist roles inside VIDYA's education domain**, not independent top-level system agents. They must be registered only after the existing central registry schema and identifiers are checked.
 
-Use existing shared RESEARCH, WEB_RESEARCH, FACT_CHECK, CONTENT_SAFETY, CREATIVE, MEDIA, TRANSLATION, QUALITY, ANALYTICS and PUBLISH agents where available; do not duplicate agents unnecessarily. Add aliases/capabilities to the central registry only after validating existing registry schema and identifiers.
+- **Curriculum and learning:** PATHYA (curriculum/assessment), ITIHASA (history/timelines), VIGYANA (science/Earth/space), SHASANA (government/civics), SAMAJA (society/citizenship).
+- **Food, health and daily living:** ANNA (food/nutrition literacy), SHUCHI (hygiene/sanitation literacy), CHAI (tea/beverages), SWASTHYA (yoga/fitness/daily routines).
+- **Products, workplaces and industries:** UPKARAN (household tools/gadgets/stationery), KARYALAYA (office/workplace literacy), UDYOG (industry history/value chains/jobs), SHILPA (regional crafts/manufacturing), SURAKSHA (consumer/product safety; shared child-safety capability).
+- **Learning media and localization:** KATHA (stories/cartoon scripts), CHITRA (visual learning), BHASHA (translation/localization), MULYANKAN (quizzes/learning analytics).
+- **Trust, rights and release:** PRAMANA (fact-check/provenance), ADHIKARA (rights/licensing), PRAKASHAN (publishing/distribution, only after authorization).
+
+**Shared platform services—not education sub-agents:** HERMES remains the cross-system verification/resilience layer; KUBER remains the cross-system finance/revenue/rights-reconciliation layer. They may support education workflows but are not children of VIDYA.
+
+Reuse existing shared RESEARCH, WEB_RESEARCH, FACT_CHECK, CONTENT_SAFETY, CREATIVE, MEDIA, TRANSLATION, QUALITY, ANALYTICS and PUBLISH agents where available; do not duplicate agents unnecessarily. The proposed roles are design labels until validated and registered. Do not change registry counts or claim deployment merely because this specification names them.
 
 ## Sources and factual governance
 
