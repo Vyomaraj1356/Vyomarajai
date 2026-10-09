@@ -140,3 +140,44 @@ A lesson cannot be marked verified/published unless:
 - corrections can be propagated to scripts, videos, captions, quizzes and translations.
 
 **Initial status:** curriculum specification proposed; no claim that all lessons, cartoons, agents, integrations or publications already exist or are live.
+
+
+### EDU-DAILY-LIFE — Tea, yoga, fitness and everyday routines
+- **Tea and everyday beverages:** plant and cultural history; tea-growing regions and local traditions; types such as green, black, white, oolong and herbal infusions (clarify that “herbal tea” may contain no tea plant); leaf-to-cup processing; brewing tools; taste, caffeine, safe handling, storage, sustainability and responsible consumption. Distinguish cultural practices from medical claims and note that caffeine suitability varies by age and individual circumstances.
+- **Yoga, movement and fitness:** historical and cultural context; distinguish yoga's diverse traditions and philosophical dimensions from modern exercise formats; explain mobility, balance, strength, endurance, warm-up, cool-down, rest, hydration and age-appropriate activity. Include beginner-safe, inclusive modifications and guidance to stop if pain, dizziness or unusual symptoms occur; avoid claims that yoga or exercise guarantees cures.
+- **Daily routines:** sleep habits, personal organization, meal planning, hydration, breaks, posture, screen use, household routines, commuting and time management. Avoid one-size-fits-all prescriptions and shame-based messaging.
+- **Learning formats:** a tea leaf journey map, a safe desk-stretch cartoon, “movement breaks at school/office,” a morning-routine planner and a cultural tea traditions series.
+
+### EDU-HOUSEHOLD-OFFICE — Everyday-use goods, tools, gadgets and stationery
+Teach items used at home, school, office, shops, workshops and companies, including:
+- **Household essentials:** cookware, utensils, cleaning tools, storage, lighting, fans, appliances, furniture, plumbing basics, water filters and energy-saving devices.
+- **Office and company tools:** desks, chairs, filing/storage, printers/scanners, phones, monitors, routers, meeting-room equipment, access systems and shared workplace supplies.
+- **Stationery and learning tools:** paper, notebooks, pens, pencils, erasers, rulers, markers, staplers, folders, art materials, calculators, whiteboards and digital note-taking tools.
+- **Gadgets and electronics:** purpose, components, operating principles at a suitable level, categories, compatibility, power/battery use, maintenance, repairability, accessibility, privacy, cybersecurity, safe disposal and e-waste.
+- **For every product family:** origin and evolution; purpose and functions; users and roles; types/categories; key features; benefits and limitations; selection criteria; cost/total cost of ownership; safe use; cleaning and maintenance; troubleshooting boundaries; warranties and consumer rights; recycling and lifecycle impacts.
+- **Safety rule:** never encourage children to open mains-powered devices, handle hazardous chemicals, misuse tools or bypass safety guards. Use unplugged/demo equipment and adult supervision for practical lessons. Avoid unverified product endorsements.
+
+### EDU-INDUSTRY — Global, Indian, state, district and regional industries
+Build a searchable industry atlas from primary production to end user, covering traditional, modern and emerging sectors:
+- Agriculture and allied sectors; food and beverages (including tea); textiles, handloom and apparel; handicrafts; mining and minerals; metals and materials; construction and building materials; energy and utilities; water and waste; transport, logistics and mobility; manufacturing and industrial machinery; electronics and semiconductors; consumer goods and appliances; pharmaceuticals and healthcare; biotechnology; IT, software, AI and telecom; media, entertainment, gaming and publishing; education; tourism and hospitality; retail and e-commerce; banking, insurance and financial services; professional and public services; aerospace and defence; marine/fisheries; forestry and bioeconomy; renewable energy; recycling and circular economy.
+- **Geography:** compare global value chains with Indian national context and state/district/cluster/local specialties. Use reliable official statistics and industry sources; record year, geography, definitions and uncertainty. Do not present changing rankings or employment/output numbers without dates.
+- **Industry lifecycle:** natural/raw inputs → farming/mining/sourcing → processing → components → manufacturing/assembly → quality and safety checks → packaging → warehousing → transport → wholesale/retail/service → customer use → repair/reuse/recycling. Adapt the map to sectors that do not follow this exact sequence.
+- **Industry roles and operating model:** workers and skilled trades, farmers/artisans, engineers, designers, operators, supervisors, quality and safety teams, research and development, procurement, finance, HR, sales/marketing, logistics, regulators, standards bodies, customers, communities and investors. Explain that reporting structures differ by organization and sector; do not impose one universal hierarchy.
+- **History and impact:** invention and craft origins, industrial revolutions, mechanization/digitalization, local knowledge, trade and migration, entrepreneurship, working conditions, occupational safety, skills, wages (use verified data), environmental footprint, resource efficiency, labor rights, inclusion, innovation, market competition, consumer protection and resilience.
+- **Business literacy:** how a product is designed, costed, made, tested, priced, marketed, sold, serviced and accounted for; simple supply-demand and quality examples; explain jobs and skills without promising employment or investment returns.
+- **Local learning:** visit/virtual-tour lesson templates for farms, tea gardens, workshops, small businesses, factories, warehouses, offices, labs and recycling facilities. Do not enter hazardous or restricted workplaces; use permissioned footage and safety review.
+
+### EDU-CONSUMER-SAFETY — Product literacy and responsible buying
+Teach labels, instructions, age suitability, quality marks where applicable, electrical and battery safety, food/contact-material safety, counterfeit awareness, warranties, repair options, privacy permissions, data collection, planned obsolescence, accessibility, energy use, product recalls and end-of-life disposal. For India, use current official consumer-protection, BIS, electrical-safety and e-waste sources; explain that a mark or certification only means what its official scope says. Never imply every item needs the same certification.
+
+### Additional cartoon / explainer formats
+- “How it is made” — from raw material to finished product, including people and safety.
+- “Who does what?” — role cards for an industry or workplace, with no universal hierarchy assumed.
+- “Fix, reuse or recycle?” — safe decision-making for common household goods and gadgets.
+- “Tea around the world / Tea in India” — regions, farming, processing, livelihoods and trade.
+- “Yoga and movement for everyday life” — age-appropriate and inclusive, not a substitute for healthcare.
+- “Stationery detectives” — compare tools, materials, function, cost, durability and waste.
+- “One product, many jobs” — design, sourcing, manufacturing, quality, logistics, sales, repair and recycling.
+- “Local industry explorer” — a verified regional case study linked to national and global context.
+
+Add these domains to the common production workflow, rights checks, accessibility, source provenance, owner/policy gate and correction propagation. Health, exercise, electrical safety, product standards, labor and environmental claims require domain-specific review. Industry data and regulatory requirements must be date- and jurisdiction-stamped.
