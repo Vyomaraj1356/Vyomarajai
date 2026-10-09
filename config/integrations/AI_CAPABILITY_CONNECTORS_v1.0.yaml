@@ -1,0 +1,198 @@
+schema_version: "1.0"
+system_id: VYOMARAJ-AI-STUDIO
+registry_name: AI_CAPABILITY_CONNECTORS
+status: PROPOSED_REVIEW_REQUIRED
+owner_authority: sole_owner
+orchestration:
+  primary: VYOMARAJ
+  execution_coordinator: JARVIS
+  verification_resilience: HERMES
+  finance_rights_reconciliation: KUBER
+  shared_reasoning_methods:
+    - MECE
+    - SCQA
+    - FIVE_WHY
+    - OODA
+    - FALSIFICATION
+    - SOCRATIC_QUESTIONING
+    - SECOND_ORDER_THINKING
+    - REVERSE_ENGINEERING
+    - MISCONCEPTION_AUDIT
+    - SOURCE_TRIANGULATION
+    - RED_TEAM_PREMORTEM
+    - COST_QUALITY_PARETO
+lifecycle:
+  ordered_states:
+    - DISCOVERED
+    - SELECTED
+    - ACCOUNT_READY
+    - CREDENTIAL_CONFIGURED
+    - CONNECTED
+    - SMOKE_TESTED
+    - INTEGRATION_TESTED
+    - PRODUCTION_APPROVED
+    - MONITORED
+  default_state: DISCOVERED
+  prohibited_claims:
+    - "Do not mark connected without verified authentication."
+    - "Do not mark deployed without a verified runtime deployment."
+    - "Do not mark production-ready without acceptance tests and owner approval."
+    - "Do not store secret values in this file."
+connectors:
+  grok_xai:
+    provider: xAI
+    capabilities: [realtime_web_search, x_search, trend_intelligence, code_tool_optional]
+    adapter_id: research.xai
+    state: DISCOVERED
+    credential_secret_names: [XAI_API_KEY]
+    require_citations: true
+    controls:
+      date_window_required_for_trend_claims: true
+      independent_fact_check_for_high_impact_claims: true
+      cost_usage_logging: true
+    official_docs: https://docs.x.ai/developers/tools/overview
+  perplexity:
+    provider: Perplexity
+    capabilities: [web_grounded_research, cited_search, deep_research_if_supported_by_plan]
+    adapter_id: research.perplexity
+    state: DISCOVERED
+    credential_secret_names: [PERPLEXITY_API_KEY]
+    preserve_citations_and_source_dates: true
+    verify_api_plan_and_feature_parity: true
+    official_docs: https://www.perplexity.ai/hub
+  elevenlabs:
+    provider: ElevenLabs
+    capabilities: [text_to_speech, consented_voice_cloning, dubbing, conversational_voice_if_supported]
+    adapter_id: media.voice.elevenlabs
+    state: DISCOVERED
+    credential_secret_names: [ELEVENLABS_API_KEY]
+    owner_voice_consent_required: true
+    voice_id_stored_as_non_secret_config: true
+    voice_must_not_be_used_as_authentication: true
+  synthesys:
+    provider: Synthesys.io
+    capabilities: [talking_avatar_candidate, presenter_video_candidate]
+    adapter_id: media.avatar.synthesys
+    state: DISCOVERED
+    credential_secret_names: [SYNTHESYS_API_KEY]
+    api_and_plan_support_verified_before_implementation: false
+    human_likeness_consent_required: true
+  descript:
+    provider: Descript
+    capabilities: [transcription, transcript_based_editing, captions, clip_repurposing, dubbing_candidate]
+    adapter_id: media.editor.descript
+    state: DISCOVERED
+    credential_secret_names: [DESCRIPT_API_KEY]
+    integration_mode: "verify official API; otherwise approved assisted/manual workflow"
+    official_docs: https://www.descript.com/
+  heygen:
+    provider: HeyGen
+    capabilities: [avatar_video, presenter_video, localization_candidate]
+    adapter_id: media.avatar.heygen
+    state: DISCOVERED
+    credential_secret_names: [HEYGEN_API_KEY]
+    role: alternative_or_complement_to_synthesys
+    consent_and_commercial_rights_review_required: true
+  runway:
+    provider: Runway
+    capabilities: [video_generation, image_to_video, targeted_video_editing, localization_candidate]
+    adapter_id: media.video.runway
+    state: DISCOVERED
+    credential_secret_names: [RUNWAY_API_KEY]
+    role: candidate_visual_video_provider
+  openart:
+    provider: OpenArt
+    capabilities: [image_generation, video_generation, animation_candidate]
+    adapter_id: media.visual.openart
+    state: DISCOVERED
+    credential_secret_names: [OPENART_API_KEY]
+    role: candidate_visual_video_provider
+  metricool:
+    provider: Metricool
+    capabilities: [social_calendar, scheduling, posting_time_recommendations, analytics_if_supported]
+    adapter_id: growth.metricool
+    state: DISCOVERED
+    credential_secret_names: [METRICOOL_API_KEY]
+    platform_permissions_verified_per_channel: false
+    publishing_default: draft_only_until_owner_approval
+  ahrefs:
+    provider: Ahrefs
+    capabilities: [keyword_research, seo_analysis, backlink_analysis, competitor_visibility]
+    adapter_id: growth.ahrefs
+    state: DISCOVERED
+    credential_secret_names: [AHREFS_API_KEY]
+  todoist:
+    provider: Todoist
+    capabilities: [task_capture, priorities, recurring_tasks, workflow_planning]
+    adapter_id: productivity.todoist
+    state: DISCOVERED
+    credential_secret_names: [TODOIST_API_TOKEN]
+    write_operations_require_account_authorization: true
+  calendar:
+    provider: "Owner-selected calendar provider"
+    capabilities: [calendar_read, calendar_write_if_authorized, time_blocking]
+    adapter_id: productivity.calendar
+    state: DISCOVERED
+    credential_secret_names: []
+    note: "Select a provider; never assume calendar access is connected."
+  llm_provider_router:
+    provider: "Provider-neutral router"
+    capabilities: [openai, anthropic, google, local_models, fallback_routing, evaluation]
+    adapter_id: llm.router
+    state: DISCOVERED
+    credential_secret_names: [OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_AI_API_KEY]
+    local_models_require_separate_runtime_health_checks: true
+shared_workflows:
+  daily_planner:
+    owner: JARVIS
+    capabilities: [goal_alignment, top_three_outcomes, calendar_conflict_check, time_blocks, task_prioritization, followups, end_of_day_review]
+    require_calendar_data_before_claiming_calendar_awareness: true
+    require_owner_approval_for_external_actions: true
+  mentor_coach:
+    owner: JARVIS
+    methods: [SOCRATIC_QUESTIONING, SCQA, FIVE_WHY, SECOND_ORDER_THINKING, MISCONCEPTION_AUDIT]
+    outputs: [learning_path, practice, feedback, next_actions, progress_review]
+  content_studio:
+    owner: VYOMARAJ
+    stages: [idea, audience_goal, research, brief, script, fact_check, rights_safety_review, visual_video, voice, edit_captions_localization, quality_review, owner_approval, distribution, analytics, repurpose]
+    output_formats: [short_video, long_video, cartoon_lesson, avatar_explainer, podcast, article, carousel, infographic, audio, multilingual_caption]
+    default_publication_mode: draft_only
+  hashtag_seo_packager:
+    owner: VYOMARAJ
+    outputs: [platform_specific_titles, descriptions, hooks, keywords, hashtags, cta, thumbnail_brief, alt_text, captions, localization]
+    require_live_search_for_claimed_trends: true
+    prohibit_virality_or_income_guarantees: true
+  research_verification:
+    owner: HERMES
+    stages: [source_collection, source_date_check, triangulation, counterevidence, misconception_audit, confidence_label, audit_record]
+security:
+  secret_storage: deployment_secret_manager
+  never_store_secret_values_in_repo: true
+  never_expose_credentials_to_browser_or_mobile_client: true
+  require_least_privilege_scopes: true
+  require_secret_rotation_and_revocation_runbook: true
+  verify_webhook_signatures: true
+  redact_secrets_from_logs: true
+  log_provider_version_cost_latency_and_job_id: true
+  voice_clone_consent_required: true
+  public_post_requires_owner_policy_gate: true
+  high_impact_actions_require_explicit_confirmation: true
+resilience:
+  per_connector_timeout_and_retry_policy: required
+  idempotency_keys_for_mutating_jobs: required
+  queue_and_job_state_persistence: required
+  circuit_breaker_and_degraded_state: required
+  fallback_provider_only_after_capability_parity_check: required
+  rollback_and_provider_disable_switch: required
+  periodic_backup_restore_and_recovery_tests: required
+acceptance_gates:
+  - credential_is_loaded_only_server_side
+  - authentication_smoke_test_passes
+  - citations_and_provenance_are_preserved_where_applicable
+  - rate_limits_and_cost_caps_are_enforced
+  - retries_are_idempotent
+  - consent_rights_and_retention_review_passes
+  - owner_gate_blocks_unapproved_publication
+  - failure_is_visible_and_does_not_claim_success
+  - fallback_or_degraded_mode_is_tested
+  - audit_and_health_metrics_are_visible
