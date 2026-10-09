@@ -58,32 +58,36 @@ capabilities:
   - household_office_gadget_and_stationery_product_literacy
   - industry_history_geography_roles_and_value_chain_mapping
   - local_to_global_industry_comparisons_with_dated_evidence
-delegated_agents:
-  orchestration: VIDYA
-  history_and_timeline: ITIHASA
-  governance_and_civics: SHASANA
-  food_and_nutrition_literacy: ANNA
-  hygiene_and_public_health_literacy: SHUCHI
-  science_earth_and_space: VIGYANA
-  society_and_citizenship: SAMAJA
-  curriculum_and_assessment: PATHYA
-  story_and_cartoon_studio: KATHA
-  visual_learning: CHITRA
-  translation_and_localization: BHASHA
-  fact_check_and_provenance: PRAMANA
-  child_safety_and_accessibility: SURAKSHA
-  rights_and_licensing: ADHIKARA
-  quiz_and_learning_analytics: MULYANKAN
-  publishing_and_distribution: PRAKASHAN
-  revenue_and_rights_reconciliation: KUBER
+education_subagents:
+  curriculum_and_learning:
+    curriculum_and_assessment: PATHYA
+    history_and_timelines: ITIHASA
+    science_earth_and_space: VIGYANA
+    governance_and_civics: SHASANA
+    society_and_citizenship: SAMAJA
+  food_health_and_daily_living:
+    food_and_nutrition_literacy: ANNA
+    hygiene_and_sanitation_literacy: SHUCHI
+    tea_and_beverage_literacy: CHAI
+    yoga_fitness_and_daily_routines: SWASTHYA
+  products_workplaces_and_industries:
+    household_tools_gadgets_and_stationery: UPKARAN
+    office_and_workplace_literacy: KARYALAYA
+    industry_history_value_chains_and_jobs: UDYOG
+    regional_crafts_and_manufacturing: SHILPA
+    consumer_product_safety: SURAKSHA
+  learning_media_and_localization:
+    story_and_cartoon_studio: KATHA
+    visual_learning: CHITRA
+    translation_and_localization: BHASHA
+    quizzes_and_learning_analytics: MULYANKAN
+  trust_rights_and_release:
+    fact_check_and_provenance: PRAMANA
+    rights_and_licensing: ADHIKARA
+    publishing_and_distribution: PRAKASHAN
+shared_platform_services_not_education_subagents:
   verification_and_resilience: HERMES
-  tea_and_beverage_literacy: CHAI
-  yoga_fitness_and_daily_routines: SWASTHYA
-  household_tools_gadgets_and_stationery: UPKARAN
-  workplace_and_office_literacy: KARYALAYA
-  industry_history_and_value_chains: UDYOG
-  regional_craft_and_manufacturing_context: SHILPA
-  consumer_safety_and_lifecycle: SURAKSHA
+  revenue_and_rights_reconciliation: KUBER
 reuse_existing_agents:
   - RESEARCH
   - WEB_RESEARCH
