@@ -111,9 +111,12 @@ connectors:
     provider: Metricool
     capabilities: [social_calendar, scheduling, posting_time_recommendations, analytics_if_supported]
     adapter_id: growth.metricool
-    state: DISCOVERED
+    state: ACCOUNT_READY
     credential_secret_names: [METRICOOL_API_KEY]
     platform_permissions_verified_per_channel: false
+    chatgpt_connector_available: true
+    observed_blocker: "No social network is connected to the Metricool brand yet"
+    required_next_step: "Connect at least one social network in Metricool, then re-check brand settings and run a read-only analytics smoke test"
     publishing_default: draft_only_until_owner_approval
   ahrefs:
     provider: Ahrefs
