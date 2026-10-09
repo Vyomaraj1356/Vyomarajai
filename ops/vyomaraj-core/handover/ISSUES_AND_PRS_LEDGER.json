@@ -131,10 +131,10 @@
     {
       "id": "merge-chain-10-24",
       "type": "merged_pull_requests",
-      "reference": "#10\u2013#24",
+      "reference": "#10–#24",
       "title": "Published merge chain",
       "status": "RESOLVED_DOCUMENTED",
-      "summary": "The PR #10\u2013#24 merge chain is recorded in main and the DR verification record; PR #24 is the current main tip in this checkout.",
+      "summary": "The PR #10–#24 merge chain is recorded in main and the DR verification record; PR #24 is the current main tip in this checkout.",
       "next_action": "Keep the merge/checkpoint mapping in the generated DR report; no action required on these merged PRs.",
       "evidence": [
         "ops/dr/DEPLOYED_MATCH_2026_10_04.json",
@@ -206,7 +206,7 @@
     {
       "id": "provider-readiness",
       "type": "platform_readiness",
-      "reference": "Provider items P-01\u2013P-15",
+      "reference": "Provider items P-01–P-15",
       "title": "Research, media, publishing, scheduling and analytics providers",
       "status": "OWNER_ACTION_REQUIRED",
       "summary": "Provider setup paths are mapped; connection and operational readiness remain unverified.",
@@ -219,7 +219,7 @@
     {
       "id": "runtime-and-dr-readiness",
       "type": "platform_readiness",
-      "reference": "Studio/services S-01\u2013S-14; DR/ops D-01\u2013D-08",
+      "reference": "Studio/services S-01–S-14; DR/ops D-01–D-08",
       "title": "Studio, services, independent DR and operations",
       "status": "OWNER_ACTION_REQUIRED",
       "summary": "Local preview and Git snapshot evidence do not establish an installed studio, independent DR, runtime restore or 24x7 operations.",
@@ -253,7 +253,7 @@
     "current_blocker": "The connected identity cannot identify/verify the authoritative existing secondary or inspect required Actions configuration; secondary path probes returned 404 and Actions variables/secrets returned 403."
   },
   "current_live_recheck_2026_10_07": {
-    "source": "Read-only GitHub/Pages audit completed 2026-10-07 08:24\u201308:28 UTC; no GitHub writes or workflow dispatch by this session. Scheduled Actions results are reported separately from this read-only audit.",
+    "source": "Read-only GitHub/Pages audit completed 2026-10-07 08:24–08:28 UTC; no GitHub writes or workflow dispatch by this session. Scheduled Actions results are reported separately from this read-only audit.",
     "issue_6": {
       "state": "OPEN",
       "priority": "P0",
@@ -287,6 +287,16 @@
       "owner_admin_confirmation_and_current_target_only_review": "PENDING"
     },
     "pull_requests": {
+      "39": {
+        "state": "OPEN",
+        "draft": true,
+        "updated_at": "2026-10-06T16:06:13Z",
+        "head_sha": "afe02edfa65c64a9da08ecf0eeab5008e78848a3",
+        "head_ref": "final-shared-core-architecture-2026-10-06",
+        "base_sha": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f",
+        "base_ref": "main",
+        "note": "Left untouched."
+      },
       "41": {
         "state": "OPEN",
         "draft": false,
@@ -297,16 +307,6 @@
         "base_sha": "8e9a67aa559579c1e0079d3e90e8134fecfe6c44",
         "base_ref": "main",
         "mergeable": true
-      },
-      "39": {
-        "state": "OPEN",
-        "draft": true,
-        "updated_at": "2026-10-06T16:06:13Z",
-        "head_sha": "afe02edfa65c64a9da08ecf0eeab5008e78848a3",
-        "head_ref": "final-shared-core-architecture-2026-10-06",
-        "base_sha": "bf9e893f12a5a46e72d6c0a922f8a0c82317963f",
-        "base_ref": "main",
-        "note": "Left untouched."
       },
       "42": {
         "state": "OPEN",
@@ -472,5 +472,41 @@
     "failed_api_operation": "NONE_OR_UNCLASSIFIED",
     "previous_checkpoints_reread": 0,
     "scope": "Only this new annotation was checked; the previous 40 annotations were not reread. The separate full historical annotation audit remains timestamped 08:28 UTC."
+  },
+  "current_dr_validation_2026_10_09": {
+    "source": "Read-only GitHub Actions diagnostic for PR #56; run 37915358013, check 113770087413; completed 2026-10-09T10:05:03Z",
+    "mode": "GET_ONLY",
+    "workflow": "Vyomaraj CI diagnostics (readable annotations)",
+    "primary_repository": "Vyomaraj1356/Vyomarajai",
+    "primary_branch": "main",
+    "primary_commit": "a7baaeeaf249969218ba7147672a95245a525b30",
+    "primary_tree": "b3910816dd00782b1eb77db879c657af49569de9",
+    "secondary_repository_expected": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+    "secondary_commit": "85faf21e42badacf40f0634b70a4e54b23da323b",
+    "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+    "tree_status": "MISMATCH",
+    "primary_files": 597,
+    "secondary_files": 447,
+    "missing_on_secondary": 150,
+    "secondary_only": 0,
+    "changed_content_or_mode": 108,
+    "package_parity": {
+      "status": "MISMATCH",
+      "primary_package_files": 54,
+      "secondary_package_files": 50,
+      "identical_package_files": 45,
+      "missing_on_secondary": 4,
+      "secondary_only": 0,
+      "content_differs": 5,
+      "installed_environment_verified": false
+    },
+    "writes_attempted": false,
+    "write_permission_verified": false,
+    "read_after_write_verified": false,
+    "failover_verified": false,
+    "rpo_verified": false,
+    "rto_verified": false,
+    "scope": "Tracked Git tree and package inventory only. Does not establish runtime database/media replication, installed environment, write authorization, failover, RPO or RTO.",
+    "next_gate": "Confirm canonical target identity in Actions settings, review current tree diff and backup policy, then perform explicitly authorized non-force sync followed by independent read-after-write and package parity checks."
   }
 }
