@@ -30,6 +30,8 @@ jobs:
           python-version: '3.12'
       - name: Regenerate stack record and link/archive ledger
         run: python3 ops/vyomaraj-core/handover/build_stack_record.py
+      - name: Run the full offline verification suite
+        run: python3 ops/vyomaraj-core/handover/run_offline_suites.py --ci
       - name: Install ImageMagick for the PNG renderer
         run: |
           sudo apt-get update
@@ -45,7 +47,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png
+          git add ops/vyomaraj-core/handover/STACK_AND_PLATFORM_RECORD_2026_10_06.md ops/vyomaraj-core/handover/LINK_AND_ARCHIVE_LEDGER_2026_10_06.json ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.svg ops/vyomaraj-core/handover/ARCHITECTURE_DIAGRAM_2026_10_06.png ops/vyomaraj-core/handover/TEST_EVIDENCE_2026_10_04.json
           if git diff --cached --quiet; then
             echo "Generated outputs already current."
           else
