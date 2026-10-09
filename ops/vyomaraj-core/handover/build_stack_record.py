@@ -206,18 +206,22 @@ def build():
     surface = product_surface()
     issue_ledger = json.loads((HERE / 'ISSUES_AND_PRS_LEDGER.json').read_text(encoding='utf-8'))
     live = issue_ledger.get('current_live_recheck_2026_10_07', {})
-    dr = live.get('dr_snapshot', {})
+    dr = json.loads((HERE / 'ISSUES_AND_PRS_LEDGER.json').read_text(encoding='utf-8')).get('current_dr_validation_2026_10_09', live.get('dr_snapshot', {}))
     pages = live.get('pages', {})
     verified_stack = [list(row) for row in VERIFIED_STACK]
     for row in verified_stack:
         if row[0] == 'Public hosting':
             row[2] = f"Live read 2026-10-07: Pages API build {pages.get('build_commit', 'unknown')[:8]}, source main"
         elif row[0] == 'Automation':
-            row[3] = (f"scheduled run {dr.get('workflow_run_id')} reports a tracked-tree match; "
-                      "Actions variable may override fallback and settings API access is 403")
+            if dr.get('tree_status', dr.get('status')) == 'MATCH':
+                row[3] = f"latest read-only diagnostic reports equal tracked Git trees ({dr.get('primary_tree', 'unknown')}); write access and runtime DR remain unverified"
+            else:
+                row[3] = f"latest read-only diagnostic reports {dr.get('tree_status', dr.get('status', 'UNKNOWN'))}: {dr.get('missing_on_secondary', 'unknown')} files missing and {dr.get('changed_content_or_mode', 'unknown')} differing; no writes attempted"
         elif row[0] == 'DR mechanism':
-            row[3] = (f"scheduled check {dr.get('completed_at_utc')} reports equal tracked Git trees "
-                      f"({dr.get('primary_tree')}); canonical target identity and runtime DR are unverified")
+            if dr.get('tree_status', dr.get('status')) == 'MATCH':
+                row[3] = f"latest read-only check reports equal tracked Git trees ({dr.get('primary_tree', 'unknown')}); canonical target identity and runtime DR remain unverified"
+            else:
+                row[3] = f"latest read-only check reports {dr.get('tree_status', dr.get('status', 'UNKNOWN'))}: {dr.get('missing_on_secondary', 'unknown')} missing, {dr.get('changed_content_or_mode', 'unknown')} changed; writes and runtime DR remain unverified"
     link_classes = [list(row) for row in LINK_CLASSES]
     handover = [row for row in archives if row['name'].startswith('Vyomaraj-Handover-')
                 and row['name'].endswith('.zip')]
