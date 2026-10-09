@@ -25,10 +25,10 @@
 <rect x="900" y="1014" width="420" height="50" rx="12" fill="#b45309" stroke="#fbbf24" stroke-width="2"/>
 <rect x="40" y="1134" width="1640" height="168" rx="16" fill="#0f2036" stroke="#1e3a5f" stroke-width="2"/>
 <rect x="60" y="1208" width="470" height="78" rx="12" fill="#6d28d9" stroke="#a78bfa" stroke-width="2"/>
-<rect x="550" y="1208" width="380" height="78" rx="12" fill="#4338ca" stroke="#818cf8" stroke-width="2"/>
+<rect x="550" y="1208" width="380" height="78" rx="12" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/>
 <rect x="950" y="1208" width="370" height="78" rx="12" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/>
 <rect x="40" y="1330" width="1640" height="152" rx="16" fill="#0f2036" stroke="#1e3a5f" stroke-width="2"/>
-<rect x="60" y="1404" width="470" height="68" rx="12" fill="#4338ca" stroke="#818cf8" stroke-width="2"/>
+<rect x="60" y="1404" width="470" height="68" rx="12" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/>
 <rect x="550" y="1404" width="380" height="68" rx="12" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/>
 <rect x="950" y="1404" width="370" height="68" rx="12" fill="#7f1d1d" stroke="#f87171" stroke-width="2"/>
 <rect x="40" y="1502" width="1640" height="168" rx="16" fill="#0f2036" stroke="#1e3a5f" stroke-width="2"/>
@@ -53,7 +53,7 @@
 <line x1="390.0" y1="1304" x2="390.0" y2="1322.4" stroke="#818cf8" stroke-width="3"/>
 <polygon points="381.0,1317 399.0,1317 390.0,1326" fill="#818cf8"/>
 <text x="860.0" y="58" font-size="38" fill="#f59e0b" font-weight="bold" text-anchor="middle">VYOMARAJ + JARVIS — SHARED PEER ARCHITECTURE</text>
-<text x="860.0" y="90" font-size="16" fill="#ffe9a8" text-anchor="middle">generated 2026-10-07 14:10 UTC · Pages main 04b7ae60 · scheduled DR tree MATCH 10:13 UTC · OPEN/P0 · branch not deployed</text>
+<text x="860.0" y="90" font-size="16" fill="#ffe9a8" text-anchor="middle">generated 2026-10-09 10:19 UTC · Pages build 04b7ae60 · latest DR tree MISMATCH 10:05 UTC · OPEN/P0 · branch not deployed</text>
 <text x="60" y="150" font-size="20" fill="#f59e0b" font-weight="bold" text-anchor="start">1 · PEOPLE &amp; DEVICES</text>
 <text x="60" y="174" font-size="14" fill="#94a3b8" text-anchor="start">the only entry points that exist today</text>
 <text x="260.0" y="229.0" font-size="18" fill="#e6fbff" font-weight="bold" text-anchor="middle">Owner — Android phone</text>
@@ -103,20 +103,20 @@
 <text x="1110.0" y="1061.0" font-size="12" fill="#fff7e6" text-anchor="middle">guarded harness · no live agent runtime</text>
 <text x="690.0" y="1088" font-size="13" fill="#94a3b8" text-anchor="middle">local read-only monitor: peer URLs blank · not_configured · no authenticated heartbeat, quorum or failover</text>
 <text x="60" y="1166" font-size="20" fill="#f59e0b" font-weight="bold" text-anchor="start">5 · AUTOMATION &amp; ASSURANCE — CHECKS ARE NOT PRODUCTION</text>
-<text x="60" y="1190" font-size="14" fill="#94a3b8" text-anchor="start">main has a scheduled tracked-tree match; issue #6 target identity/access and target-only review remain open</text>
+<text x="60" y="1190" font-size="14" fill="#94a3b8" text-anchor="start">latest read-only DR check: MISMATCH; issue #6 target identity/access and independent write verification remain open</text>
 <text x="295.0" y="1244.0" font-size="18" fill="#f5efff" font-weight="bold" text-anchor="middle">Offline gate</text>
-<text x="295.0" y="1269.0" font-size="13" fill="#f5efff" text-anchor="middle">569 Python · 60/60 gates · 0 failures</text>
-<text x="740.0" y="1244.0" font-size="18" fill="#eef1ff" font-weight="bold" text-anchor="middle">DR verify-or-sync</text>
-<text x="740.0" y="1269.0" font-size="13" fill="#eef1ff" text-anchor="middle">10:13 UTC · equal tracked Git tree</text>
+<text x="295.0" y="1269.0" font-size="13" fill="#f5efff" text-anchor="middle">603 Python · 62/62 gates · 0 failures</text>
+<text x="740.0" y="1244.0" font-size="18" fill="#ffeeee" font-weight="bold" text-anchor="middle">DR verify-or-sync</text>
+<text x="740.0" y="1269.0" font-size="13" fill="#ffeeee" text-anchor="middle">10:05 UTC · MISMATCH tracked tree</text>
 <text x="1135.0" y="1244.0" font-size="18" fill="#ffeeee" font-weight="bold" text-anchor="middle">Actions settings</text>
 <text x="1135.0" y="1269.0" font-size="13" fill="#ffeeee" text-anchor="middle">403 · effective target override unknown</text>
-<text x="60" y="1362" font-size="20" fill="#f59e0b" font-weight="bold" text-anchor="start">6 · DR — TRACKED GIT TREE MATCH; APP / RUNTIME FAILOVER UNVERIFIED</text>
-<text x="60" y="1386" font-size="14" fill="#94a3b8" text-anchor="start">issue #6 OPEN/P0 · check-run 112741170924 · same tree 986288ee2cc4 · traffic switched NONE</text>
-<text x="295.0" y="1435.0" font-size="17" fill="#eef1ff" font-weight="bold" text-anchor="middle">Primary ↔ secondary tree</text>
-<text x="295.0" y="1460.0" font-size="13" fill="#eef1ff" text-anchor="middle">MATCH on main · tracked files only</text>
+<text x="60" y="1362" font-size="20" fill="#f59e0b" font-weight="bold" text-anchor="start">6 · DR — TRACKED GIT TREE MISMATCH; APP / RUNTIME FAILOVER UNVERIFIED</text>
+<text x="60" y="1386" font-size="14" fill="#94a3b8" text-anchor="start">issue #6 OPEN/P0 · check-run 113770087413 · primary b3910816dd00 · secondary 986288ee2cc4 · traffic switched NONE</text>
+<text x="295.0" y="1435.0" font-size="17" fill="#ffeeee" font-weight="bold" text-anchor="middle">Primary ↔ secondary tree</text>
+<text x="295.0" y="1460.0" font-size="13" fill="#ffeeee" text-anchor="middle">MISMATCH · 597 primary / 447 secondary files</text>
 <text x="740.0" y="1435.0" font-size="16" fill="#ffeeee" font-weight="bold" text-anchor="middle">Target identity/access</text>
 <text x="740.0" y="1460.0" font-size="12" fill="#ffeeee" text-anchor="middle">Actions override unreadable · owner review pending</text>
-<text x="1135.0" y="1435.0" font-size="16" fill="#ffeeee" font-weight="bold" text-anchor="middle">Not verified by this match</text>
+<text x="1135.0" y="1435.0" font-size="16" fill="#ffeeee" font-weight="bold" text-anchor="middle">Not verified by tree check</text>
 <text x="1135.0" y="1460.0" font-size="12" fill="#ffeeee" text-anchor="middle">deployment · runtime · RPO/RTO · failover</text>
 <text x="60" y="1534" font-size="20" fill="#f59e0b" font-weight="bold" text-anchor="start">7 · NOT OWNED — BUY IN THIS ORDER WHEN VYOMARAJ EARNS</text>
 <text x="60" y="1558" font-size="14" fill="#94a3b8" text-anchor="start">drawn dashed because none of it is paid for or switched on</text>

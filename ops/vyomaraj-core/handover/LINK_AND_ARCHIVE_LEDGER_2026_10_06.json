@@ -77,13 +77,13 @@
       "area": "Automation",
       "technology": "GitHub Actions workflow definitions, Python 3.12 and Node 20/24 runners",
       "evidence": "vyomaraj-sync-both.yml, vyomaraj-ci-diagnostics.yml, vyomaraj-research.yml",
-      "note": "scheduled run 37605789908 reports a tracked-tree match; Actions variable may override fallback and settings API access is 403"
+      "note": "latest read-only diagnostic reports MISMATCH: 150 files missing and 108 differing; no writes attempted"
     },
     {
       "area": "DR mechanism",
       "technology": "Git-snapshot replication workflow with scheduled tracked-tree match evidence",
       "evidence": "ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, live read-only annotations recorded in ISSUES_AND_PRS_LEDGER.json",
-      "note": "scheduled check 2026-10-07T10:13:11Z reports equal tracked Git trees (986288ee2cc4ec4d89400320150ea893f7a7a2de); canonical target identity and runtime DR are unverified"
+      "note": "latest read-only check reports MISMATCH: 150 missing, 108 changed; writes and runtime DR remain unverified"
     },
     {
       "area": "Tests and preview release gate",
@@ -244,24 +244,46 @@
       "last_build_updated_at": "2026-10-07T03:46:37Z"
     },
     "scheduled_dr_snapshot": {
-      "workflow": "Vyomaraj PRIMARY to DR Sync",
-      "workflow_file": ".github/workflows/vyomaraj-sync-both.yml",
-      "event": "schedule",
-      "workflow_run_id": 37605789908,
-      "check_run_id": 112741170924,
-      "status": "MATCH",
-      "conclusion": "success",
-      "completed_at_utc": "2026-10-07T10:13:11Z",
-      "head_branch": "main",
-      "head_sha": "04b7ae60ce2855b1d48043d80f790488e894ee79",
-      "primary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
+      "source": "Read-only GitHub Actions diagnostic for PR #56; run 37915358013, check 113770087413; completed 2026-10-09T10:05:03Z",
+      "mode": "GET_ONLY",
+      "workflow": "Vyomaraj CI diagnostics (readable annotations)",
+      "primary_repository": "Vyomaraj1356/Vyomarajai",
+      "primary_branch": "main",
+      "primary_commit": "a7baaeeaf249969218ba7147672a95245a525b30",
+      "primary_tree": "b3910816dd00782b1eb77db879c657af49569de9",
+      "secondary_repository_expected": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
+      "secondary_commit": "85faf21e42badacf40f0634b70a4e54b23da323b",
       "secondary_tree": "986288ee2cc4ec4d89400320150ea893f7a7a2de",
-      "data_match": true,
+      "tree_status": "MISMATCH",
+      "primary_files": 597,
+      "secondary_files": 447,
+      "missing_on_secondary": 150,
+      "secondary_only": 0,
+      "changed_content_or_mode": 108,
+      "package_parity": {
+        "status": "MISMATCH",
+        "primary_package_files": 54,
+        "secondary_package_files": 50,
+        "identical_package_files": 45,
+        "missing_on_secondary": 4,
+        "secondary_only": 0,
+        "content_differs": 5,
+        "installed_environment_verified": false
+      },
+      "writes_attempted": false,
+      "write_permission_verified": false,
+      "read_after_write_verified": false,
+      "failover_verified": false,
+      "rpo_verified": false,
+      "rto_verified": false,
+      "scope": "Tracked Git tree and package inventory only. Does not establish runtime database/media replication, installed environment, write authorization, failover, RPO or RTO.",
+      "next_gate": "Confirm canonical target identity in Actions settings, review current tree diff and backup policy, then perform explicitly authorized non-force sync followed by independent read-after-write and package parity checks.",
+      "completed_at_utc": "2026-10-09T10:05:03Z",
+      "status": "MISMATCH",
+      "data_match": false,
       "traffic_switched": "NONE",
-      "replication_write_in_this_run": false,
-      "annotation": "status=MATCH; failed_api_operation=NONE_OR_UNCLASSIFIED; http=UNAVAILABLE; traffic_switched=NONE; primary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; secondary_tree=986288ee2cc4ec4d89400320150ea893f7a7a2de; data_match=true",
-      "scope": "Equal tracked Git trees only; does not prove deployed application/runtime equality, service availability, mobile installation, failover, RPO or RTO.",
-      "run_created_at_utc": "2026-10-07T10:11:56Z"
+      "workflow_run_id": 37915358013,
+      "check_run_id": 113770087413
     },
     "dr_target_resolution": {
       "workflow_variable": "VYOMARAJ_DR_REPO",
@@ -563,7 +585,7 @@
   "product_surface": [
     {
       "name": "index.html",
-      "bytes": 12906
+      "bytes": 4570
     },
     {
       "name": "Index.html",
@@ -575,7 +597,7 @@
     },
     {
       "name": "flow-diagram.html",
-      "bytes": 61992
+      "bytes": 62232
     },
     {
       "name": "demo.html",

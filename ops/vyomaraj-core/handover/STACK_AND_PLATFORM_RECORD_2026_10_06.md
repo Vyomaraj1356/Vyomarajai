@@ -20,8 +20,8 @@ This is the answer to "what technologies and platforms did we use and configure?
 | Local owner-approval slice | Ed25519 exact-action verification + private transactional SQLite queue and local hash chain | `ops/shriyantra/owner_guard.py, ops/vyomaraj-core/approvals/approval_store.py, experience/studio_server.py` | issuer/key/owner/security epoch are not configured; local single-host control slice only; no agent handoff or publishing |
 | Bindings | Server-specific: studio and availability gateway enforce IPv4 loopback; public sandbox preview binds for session access | `studio_server.py and gateway.py validate_loopback_host; public_landing_server.py serves exact assets, GET /api/catalog, and POST /api/plan` | catalog is curated/read-only for two fixed packs; the planner accepts only two fixed experiences, performs no persistence/provider calls, and is not a privileged writer; never network-bind the local studio/gateway |
 | Public hosting | GitHub Pages from main (static) | `Live read 2026-10-07: Pages API build 04b7ae60, source main` | the current feature branch is not deployed there; the URL serves main only |
-| Automation | GitHub Actions workflow definitions, Python 3.12 and Node 20/24 runners | `vyomaraj-sync-both.yml, vyomaraj-ci-diagnostics.yml, vyomaraj-research.yml` | scheduled run 37605789908 reports a tracked-tree match; Actions variable may override fallback and settings API access is 403 |
-| DR mechanism | Git-snapshot replication workflow with scheduled tracked-tree match evidence | `ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, live read-only annotations recorded in ISSUES_AND_PRS_LEDGER.json` | scheduled check 2026-10-07T10:13:11Z reports equal tracked Git trees (986288ee2cc4ec4d89400320150ea893f7a7a2de); canonical target identity and runtime DR are unverified |
+| Automation | GitHub Actions workflow definitions, Python 3.12 and Node 20/24 runners | `vyomaraj-sync-both.yml, vyomaraj-ci-diagnostics.yml, vyomaraj-research.yml` | latest read-only diagnostic reports MISMATCH: 150 files missing and 108 differing; no writes attempted |
+| DR mechanism | Git-snapshot replication workflow with scheduled tracked-tree match evidence | `ops/dr/dr_sync.py, ops/dr/DR_POLICY.json, live read-only annotations recorded in ISSUES_AND_PRS_LEDGER.json` | latest read-only check reports MISMATCH: 150 missing, 108 changed; writes and runtime DR remain unverified |
 | Tests and preview release gate | Python unittest + node syntax/tests + builder checks; verification only | `ops/vyomaraj-core/handover/run_offline_suites.py, ops/vyomaraj/publish-gate.sh` | a preview PASS does not change the separate production status; the gate never deploys |
 | State stores | SQLite and JSON files on disk (no database server) | `ops/vyomaraj-core/research/discovery.py, approvals/approval_store.py, ops/vyomaraj-core/ledger` | research/approval state is single-host and outside Git-snapshot replication; approval DB is owner-only, but both need independent backup/restore evidence |
 | Browser voice | Web Speech API (speechSynthesis) where the page uses it | `product HTML/JS voice controls` | microphone capture needs device permission |
@@ -89,10 +89,10 @@ This is the answer to "what technologies and platforms did we use and configure?
 
 | File | Bytes |
 |---|---|
-| `index.html` | 12,906 |
+| `index.html` | 4,570 |
 | `Index.html` | 12,761 |
 | `landing.html` | 691 |
-| `flow-diagram.html` | 61,992 |
+| `flow-diagram.html` | 62,232 |
 | `demo.html` | 6,427 |
 | `launch.css` | 11,337 |
 | `launch.js` | 1,841 |
@@ -131,7 +131,7 @@ This is the answer to "what technologies and platforms did we use and configure?
 | Multi-AI provider coordination as a live bus | ops/vyomaraj-core/multi-ai-coordination.js states in its own header that it is metadata-only and that historical versions fabricated LIVE values |
 | SearXNG + Ollama research runtime | ops/vyomaraj-core/research/ — discovery is local; the provider runtime is not active |
 
-Everything in section 1 is the implemented repository stack: static pages, Python standard-library servers, GitHub Pages, GitHub Actions workflow definitions, a Git-snapshot replication mechanism, local planners, and browser APIs. The scheduled Actions check at `2026-10-07T10:13:11Z` (run `37605789908` / check `112741170924`) reports `status=MATCH`, `data_match=True`, equal tracked trees `986288ee2cc4ec4d89400320150ea893f7a7a2de` / `986288ee2cc4ec4d89400320150ea893f7a7a2de`, and traffic `NONE`. The workflow-selected target identity `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here` is not independently confirmed (Actions settings API 403; candidate paths 404 are ambiguous). This does not prove runtime/app equality, site failover, RPO or RTO; issue #6 stays OPEN/P0.
+Everything in section 1 is the implemented repository stack: static pages, Python standard-library servers, GitHub Pages, GitHub Actions workflow definitions, a Git-snapshot replication mechanism, local planners, and browser APIs. The scheduled Actions check at `2026-10-09T10:05:03Z` (run `37915358013` / check `113770087413`) reports `status=MISMATCH`, `data_match=False`, primary tree `b3910816dd00782b1eb77db879c657af49569de9` / secondary tree `986288ee2cc4ec4d89400320150ea893f7a7a2de`, and traffic `NONE`. The workflow-selected target identity `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here` is not independently confirmed (Actions settings API 403; candidate paths 404 are ambiguous). This does not prove runtime/app equality, site failover, RPO or RTO; issue #6 stays OPEN/P0.
 
 ## 4. Links: what lasts and what dies
 
@@ -150,7 +150,7 @@ Everything in section 1 is the implemented repository stack: static pages, Pytho
 | Need | Free route | Cost | Limit to state honestly |
 |---|---|---|---|
 | Public address | GitHub Pages from `main:/` at `04b7ae60` | ₹0 | This feature branch is not deployed; static files only, no server-side runtime |
-| Automation + DR | Scheduled run `37605789908` reports equal tracked Git trees | ₹0 | Effective target identity `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here` remains unconfirmed; runtime/failover/RPO/RTO are not proven |
+| Automation + DR | Latest read-only check `37915358013` reports tracked-tree `MISMATCH` | ₹0 | Effective target identity `UNCONFIRMED: an Actions variable may override the in-repo fallback and is unreadable here` remains unconfirmed; runtime/failover/RPO/RTO are not proven |
 | App distribution | Existing APK v2 signing-block entry; signature validity not established | ₹0 tooling | Run `apksigner verify`, confirm signer provenance, then test installation on a real device before distributing; never treat block presence alone as proof |
 | Local dry runs | Five legacy Python preview services plus the allowlisted :5310 demo are defined | ₹0 | Port 5310 is a session-scoped preview; listener state is transient and deliberately not persisted in this generated record.; session-only rehearsal, not production |
 | Voice enrollment | On-device only, consent screen + delete control | ₹0 | No cloud vendor, no cloning, no identity-document capture in the app |

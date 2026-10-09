@@ -36,7 +36,7 @@ def current_evidence() -> dict:
     try:
         ledger = json.loads(LIVE_LEDGER.read_text(encoding="utf-8"))
         live = ledger.get("current_live_recheck_2026_10_07", {})
-        dr = live.get("dr_snapshot", {})
+        dr = ledger.get("current_dr_validation_2026_10_09", live.get("dr_snapshot", {}))
     except (OSError, UnicodeError, json.JSONDecodeError):
         live, dr = {}, {}
     try:
@@ -121,15 +121,17 @@ def build_layout():
     check_summary = (f"{tests.get('python_tests_total', '—')} Python · "
                      f"{check_total - check_failures}/{check_total} gates · {check_failures} failures"
                      if check_total else "offline gate not recorded")
-    main_sha = live.get("main", {}).get("sha", dr.get("head_sha", "unknown"))[:8]
+    main_sha = live.get("pages", {}).get("build_commit", live.get("main", {}).get("sha", dr.get("primary_commit", "unknown")))[:8]
     tree = dr.get("primary_tree", "unknown")[:12]
-    dr_time = dr.get("completed_at_utc", "unknown")
+    secondary_tree = dr.get("secondary_tree", "unknown")[:12]
+    dr_time = dr.get("completed_at_utc", dr.get("run_completed_at_utc", "unknown"))
     dr_time_label = dr_time[11:16] if len(dr_time) >= 16 else "unknown"
     dr_check = dr.get("check_run_id", "unknown")
     issue_state = f"{live.get('issue_6', {}).get('state', 'unknown')}/{live.get('issue_6', {}).get('priority', 'unknown')}"
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     texts.append((W / 2, 58, "VYOMARAJ + JARVIS — SHARED PEER ARCHITECTURE", 38, GOLD, True, "middle"))
-    texts.append((W / 2, 90, f"generated {generated} · Pages main {main_sha} · scheduled DR tree MATCH {dr_time[11:16]} UTC · {issue_state} · branch not deployed", 16, GOLD_SOFT, False, "middle"))
+    dr_status = dr.get("tree_status", dr.get("status", "UNKNOWN"))
+    texts.append((W / 2, 90, f"generated {generated} · Pages build {main_sha} · latest DR tree {dr_status} {dr_time[11:16]} UTC · {issue_state} · branch not deployed", 16, GOLD_SOFT, False, "middle"))
 
     # 1 ─ people -----------------------------------------------------------
     band(118, 186, "1 · PEOPLE & DEVICES", "the only entry points that exist today")
@@ -173,17 +175,17 @@ def build_layout():
 
     # 5 ─ automation -------------------------------------------------------
     band(1134, 168, "5 · AUTOMATION & ASSURANCE — CHECKS ARE NOT PRODUCTION",
-         "main has a scheduled tracked-tree match; issue #6 target identity/access and target-only review remain open")
+         f"latest read-only DR check: {dr_status}; issue #6 target identity/access and independent write verification remain open")
     box(60, 1208, 470, 78, "auto", "Offline gate", check_summary, fs=18, subfs=13)
-    box(550, 1208, 380, 78, "dr", "DR verify-or-sync", f"{dr_time_label} UTC · equal tracked Git tree", fs=18, subfs=13)
+    box(550, 1208, 380, 78, "dr" if dr_status == "MATCH" else "claim", "DR verify-or-sync", f"{dr_time_label} UTC · {dr_status} tracked tree", fs=18, subfs=13)
     box(950, 1208, 370, 78, "claim", "Actions settings", "403 · effective target override unknown", fs=18, subfs=13)
 
     # 6 ─ DR ---------------------------------------------------------------
-    band(1330, 152, "6 · DR — TRACKED GIT TREE MATCH; APP / RUNTIME FAILOVER UNVERIFIED",
-         f"issue #6 {issue_state} · check-run {dr_check} · same tree {tree} · traffic switched NONE")
-    box(60, 1404, 470, 68, "dr", "Primary ↔ secondary tree", "MATCH on main · tracked files only", fs=17, subfs=13)
+    band(1330, 152, f"6 · DR — TRACKED GIT TREE {dr_status}; APP / RUNTIME FAILOVER UNVERIFIED",
+         f"issue #6 {issue_state} · check-run {dr_check} · primary {tree} · secondary {secondary_tree} · traffic switched NONE")
+    box(60, 1404, 470, 68, "dr" if dr_status == "MATCH" else "claim", "Primary ↔ secondary tree", f"{dr_status} · {dr.get('primary_files', '?')} primary / {dr.get('secondary_files', '?')} secondary files", fs=17, subfs=13)
     box(550, 1404, 380, 68, "claim", "Target identity/access", "Actions override unreadable · owner review pending", fs=16, subfs=12)
-    box(950, 1404, 370, 68, "claim", "Not verified by this match", "deployment · runtime · RPO/RTO · failover", fs=16, subfs=12)
+    box(950, 1404, 370, 68, "claim", "Not verified by tree check", "deployment · runtime · RPO/RTO · failover", fs=16, subfs=12)
 
     # 7 ─ not owned --------------------------------------------------------
     band(1502, 168, "7 · NOT OWNED — BUY IN THIS ORDER WHEN VYOMARAJ EARNS",
@@ -330,10 +332,11 @@ def facts() -> list[str]:
                   f"the APK is present; a v2 signing-block entry was detected, but cryptographic "
                   f"verification and device installation remain unverified")
     dr = current_evidence()["dr"]
-    matched = (dr.get("status") == "MATCH" and dr.get("data_match") is True
-               and dr.get("primary_tree") == dr.get("secondary_tree")
-               and dr.get("traffic_switched") == "NONE")
-    checks.append(f"{'OK  ' if matched else 'FAIL'} latest recorded scheduled DR annotation reports an equal tracked Git tree without traffic switch")
+    status = dr.get("tree_status", dr.get("status", "UNKNOWN"))
+    primary_tree = dr.get("primary_tree")
+    secondary_tree = dr.get("secondary_tree")
+    evidence_consistent = (status == "MATCH" and isinstance(primary_tree, str) and primary_tree == secondary_tree) or (status == "MISMATCH" and isinstance(primary_tree, str) and isinstance(secondary_tree, str) and primary_tree != secondary_tree)
+    checks.append(f"{'OK  ' if evidence_consistent else 'FAIL'} diagram DR status matches latest read-only tree comparison ({status})")
     tests = current_evidence()["tests"]
     gate_total = len(tests.get("python_suites", [])) + len(tests.get("node_checks", [])) + len(tests.get("builders", []))
     gate_failures = len(tests.get("failures", []))
@@ -350,10 +353,13 @@ def check() -> int:
     if SVG_PATH.is_file():
         svg = SVG_PATH.read_text()
         # The SVG escapes "&", so markers must be chosen to survive escaping.
+        dr = current_evidence()["dr"]
+        dr_status = dr.get("tree_status", dr.get("status", "UNKNOWN"))
+        secondary_tree = dr.get("secondary_tree", "unknown")[:12]
         for marker in ("SHARED PEER ARCHITECTURE", "GitHub Pages — MAIN", "CLAIMED ONLY",
                        "NOT OWNED", "v2 block detected", "unverified", "uidai.in", "04b7ae60",
                        "issue #6 OPEN/P0", "Sandbox preview :5310", "not_configured",
-                       "TRACKED GIT TREE MATCH", "986288ee2cc4", "traffic switched NONE",
+                       f"TRACKED GIT TREE {dr_status}", secondary_tree, "traffic switched NONE",
                        "RPO/RTO", "Native Android/macOS apps"):
             if marker not in svg:
                 problems.append(f"svg lost marker: {marker}")
@@ -363,7 +369,7 @@ def check() -> int:
         for p in problems:
             print("  -", p)
         return 1
-    print(f"OK: architecture diagram matches the latest recorded tracked-tree result, "
+    print(f"OK: architecture diagram matches the latest recorded DR result, "
           f"peer/preview limits and repository facts (svg {SVG_PATH.stat().st_size} B, "
           f"png {PNG_PATH.stat().st_size} B)")
     return 0

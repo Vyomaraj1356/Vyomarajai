@@ -206,18 +206,22 @@ def build():
     surface = product_surface()
     issue_ledger = json.loads((HERE / 'ISSUES_AND_PRS_LEDGER.json').read_text(encoding='utf-8'))
     live = issue_ledger.get('current_live_recheck_2026_10_07', {})
-    dr = live.get('dr_snapshot', {})
+    dr = json.loads((HERE / 'ISSUES_AND_PRS_LEDGER.json').read_text(encoding='utf-8')).get('current_dr_validation_2026_10_09', live.get('dr_snapshot', {}))
     pages = live.get('pages', {})
     verified_stack = [list(row) for row in VERIFIED_STACK]
     for row in verified_stack:
         if row[0] == 'Public hosting':
             row[2] = f"Live read 2026-10-07: Pages API build {pages.get('build_commit', 'unknown')[:8]}, source main"
         elif row[0] == 'Automation':
-            row[3] = (f"scheduled run {dr.get('workflow_run_id')} reports a tracked-tree match; "
-                      "Actions variable may override fallback and settings API access is 403")
+            if dr.get('tree_status', dr.get('status')) == 'MATCH':
+                row[3] = f"latest read-only diagnostic reports equal tracked Git trees ({dr.get('primary_tree', 'unknown')}); write access and runtime DR remain unverified"
+            else:
+                row[3] = f"latest read-only diagnostic reports {dr.get('tree_status', dr.get('status', 'UNKNOWN'))}: {dr.get('missing_on_secondary', 'unknown')} files missing and {dr.get('changed_content_or_mode', 'unknown')} differing; no writes attempted"
         elif row[0] == 'DR mechanism':
-            row[3] = (f"scheduled check {dr.get('completed_at_utc')} reports equal tracked Git trees "
-                      f"({dr.get('primary_tree')}); canonical target identity and runtime DR are unverified")
+            if dr.get('tree_status', dr.get('status')) == 'MATCH':
+                row[3] = f"latest read-only check reports equal tracked Git trees ({dr.get('primary_tree', 'unknown')}); canonical target identity and runtime DR remain unverified"
+            else:
+                row[3] = f"latest read-only check reports {dr.get('tree_status', dr.get('status', 'UNKNOWN'))}: {dr.get('missing_on_secondary', 'unknown')} missing, {dr.get('changed_content_or_mode', 'unknown')} changed; writes and runtime DR remain unverified"
     link_classes = [list(row) for row in LINK_CLASSES]
     handover = [row for row in archives if row['name'].startswith('Vyomaraj-Handover-')
                 and row['name'].endswith('.zip')]
@@ -250,6 +254,7 @@ def build():
 def render(ledger):
     current = ledger.get('current_external_snapshot', {})
     dr = current.get('scheduled_dr_snapshot', {})
+    dr_status = dr.get('tree_status', dr.get('status', 'UNKNOWN'))
     target = current.get('dr_target_resolution', {})
     pages = current.get('pages', {})
     lines = [
@@ -305,8 +310,8 @@ def render(ledger):
               'servers, GitHub Pages, GitHub Actions workflow definitions, a Git-snapshot replication mechanism, '
               'local planners, and browser APIs. The scheduled Actions check at '
               f"`{dr.get('completed_at_utc')}` (run `{dr.get('workflow_run_id')}` / check `{dr.get('check_run_id')}`) reports "
-              f"`status={dr.get('status')}`, `data_match={dr.get('data_match')}`, equal tracked trees "
-              f"`{dr.get('primary_tree')}` / `{dr.get('secondary_tree')}`, and traffic `{dr.get('traffic_switched')}`. "
+              f"`status={dr_status}`, `data_match={dr.get('data_match')}`, primary tree "
+              f"`{dr.get('primary_tree')}` / secondary tree `{dr.get('secondary_tree')}`, and traffic `{dr.get('traffic_switched', 'UNKNOWN')}`. "
               f"The workflow-selected target identity `{target.get('effective_target_identity', 'UNCONFIRMED')}` "
               'is not independently confirmed (Actions settings API 403; candidate paths 404 are ambiguous). '
               'This does not prove runtime/app equality, site failover, RPO or RTO; issue #6 stays OPEN/P0.', '',
@@ -317,7 +322,7 @@ def render(ledger):
     lines += ['', '## 5. The zero-cost launch path (no money spent)', '',
               '| Need | Free route | Cost | Limit to state honestly |', '|---|---|---|---|',
               f'| Public address | GitHub Pages from `main:/` at `{pages.get("build_commit", "unknown")[:8]}` | ₹0 | This feature branch is not deployed; static files only, no server-side runtime |',
-              f'| Automation + DR | Scheduled run `{dr.get("workflow_run_id")}` reports equal tracked Git trees | ₹0 | Effective target identity `{target.get("effective_target_identity", "UNCONFIRMED")}` remains unconfirmed; runtime/failover/RPO/RTO are not proven |',
+              f'| Automation + DR | Latest read-only check `{dr.get("workflow_run_id")}` reports tracked-tree `{dr_status}` | ₹0 | Effective target identity `{target.get("effective_target_identity", "UNCONFIRMED")}` remains unconfirmed; runtime/failover/RPO/RTO are not proven |',
               '| App distribution | Existing APK v2 signing-block entry; signature validity not established | ₹0 tooling | Run `apksigner verify`, confirm signer provenance, then test installation on a real device before distributing; never treat block presence alone as proof |',
               f'| Local dry runs | Five legacy Python preview services plus the allowlisted :5310 demo are defined | ₹0 | {current.get("local_preview_scope")}; session-only rehearsal, not production |',
               '| Voice enrollment | On-device only, consent screen + delete control | ₹0 | No cloud vendor, no cloning, no identity-document capture in the app |',
