@@ -508,6 +508,11 @@
     "rto_verified": false,
     "scope": "Tracked Git tree and package inventory only. Does not establish runtime database/media replication, installed environment, write authorization, failover, RPO or RTO.",
     "next_gate": "Confirm canonical target identity in Actions settings, review current tree diff and backup policy, then perform explicitly authorized non-force sync followed by independent read-after-write and package parity checks.",
-    "completed_at_utc": "2026-10-09T10:05:03Z"
+    "completed_at_utc": "2026-10-09T10:05:03Z",
+    "status": "MISMATCH",
+    "data_match": false,
+    "traffic_switched": "NONE",
+    "workflow_run_id": 37915358013,
+    "check_run_id": 113770087413
   }
 }
