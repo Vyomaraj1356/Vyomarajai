@@ -115,6 +115,16 @@ jobs:
           if [ -z "$DR_SYNC_APPROVED" ]; then
             export DR_SYNC_APPROVED="$(python -c 'import json; print(str(json.load(open("ops/dr/DR_POLICY.json"))["sync_approved_on_main"]).lower())')"
           fi
+          # GitHub Actions configuration variables are strings; normalize case so a
+          # deliberate UI value of "True" is not rejected by a literal lowercase gate.
+          DR_SYNC_APPROVED="$(printf '%s' "$DR_SYNC_APPROVED" | tr '[:upper:]' '[:lower:]')"
+          case "$DR_SYNC_APPROVED" in
+            true|false) ;;
+            *)
+              echo '::error::VYOMARAJ_DR_SYNC_ENABLED must be the literal boolean text true or false.'
+              exit 1
+              ;;
+          esac
           # No environment-file sourcing, token-owner guesses or response-body logging.
           if [ -z "$DR_TOKEN" ]; then
             echo '::error::VYOMARAJ_PAT is unavailable. Configure it in Actions secrets; never paste it in chat.'
@@ -129,9 +139,15 @@ jobs:
           if [ "$MODE" = sync ]; then
             test "$GITHUB_EVENT_NAME" = workflow_dispatch
             test "$GITHUB_REF" = refs/heads/main
-            test "$DR_SYNC_APPROVED" = true
+            if [ "$DR_SYNC_APPROVED" != true ]; then
+              echo '::error::DR sync is not approved. Set VYOMARAJ_DR_SYNC_ENABLED=true only after reviewing the target and exact-snapshot deletion behavior.'
+              exit 1
+            fi
             test -n "$DR_REPO"
-            test -z "${DIAGNOSTIC_TARGET:-}"
+            if [ -n "${DIAGNOSTIC_TARGET:-}" ]; then
+              echo '::error::diagnostic_target must be blank for sync; it is only for read-only diagnosis.'
+              exit 1
+            fi
             python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json
             python ops/dr/dr_sync.py --sync --output dr-evidence.json
           else
