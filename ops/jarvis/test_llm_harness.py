@@ -163,6 +163,23 @@ class HarnessTests(unittest.TestCase):
         self.assertIn("Audit factual reliability", payload["messages"][1]["content"])
         self.assertNotIn("tools", payload)
 
+    def test_list_presets_works_without_provider_configuration(self):
+        out = io.StringIO()
+        err = io.StringIO()
+        with patch.object(llm_harness, "_open_request") as opener:
+            status = llm_harness.main(
+                ["--list-presets"],
+                environment={},
+                stdin=io.StringIO(""),
+                stdout=out,
+                stderr=err,
+            )
+        self.assertEqual(status, 0)
+        self.assertIn("truthmode", out.getvalue())
+        self.assertIn("deploygate", out.getvalue())
+        self.assertEqual(err.getvalue(), "")
+        opener.assert_not_called()
+
     def test_unknown_preset_fails_without_network_call(self):
         out = io.StringIO()
         err = io.StringIO()
