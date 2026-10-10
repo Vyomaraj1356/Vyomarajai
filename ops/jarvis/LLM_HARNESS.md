@@ -32,6 +32,20 @@ printf '%s\\n' 'Prepare a release plan with rollback and acceptance gates.' | py
 
 Use `python3 -m unittest ops/jarvis/test_llm_harness.py` for offline tests. Presets are project-authored reusable instructions, not ChatGPT private system prompts or hidden reasoning. This feature does not add tool calling or execute actions. Provider configuration and production deployment remain separate owner-controlled steps; see [prompt runtime deployment gates](../../docs/ai/VYOMARAJ_JARVIS_PROMPT_RUNTIME_DEPLOYMENT_V1.md).
 
+## Discover and use prompts
+
+List available prompt presets without configuring a provider or making a network request:
+
+```sh
+python3 ops/jarvis/llm_harness.py --list-presets
+```
+
+Use a listed preset with `--preset <id>` and choose `--role vyomaraj` or `--role jarvis`. Example:
+
+```sh
+printf '%s\\n' 'Separate facts from assumptions and list missing evidence.' | python3 ops/jarvis/llm_harness.py --role jarvis --preset truthmode
+```
+
 ## Configure locally
 
 1. Copy `llm-harness.env.example` to `llm-harness.env`. The local file is Git-ignored.
