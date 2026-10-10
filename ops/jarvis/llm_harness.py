@@ -229,10 +229,22 @@ def main(
     parser = argparse.ArgumentParser(description="No-tools Vyomaraj/Jarvis LLM harness")
     parser.add_argument("--role", choices=tuple(ROLE_PROMPTS), default="jarvis")
     parser.add_argument("--preset", default=None, help="Use a named user-owned preset from config/ai/PROMPT_REGISTRY_V1.json")
+    parser.add_argument("--list-presets", action="store_true", help="List available named presets without provider configuration")
     args = parser.parse_args(argv)
     stdin = stdin or sys.stdin
     stdout = stdout or sys.stdout
     stderr = stderr or sys.stderr
+
+    if args.list_presets:
+        try:
+            registry = load_prompt_registry()
+        except HarnessError as exc:
+            print(f"LLM harness: {exc}", file=stderr)
+            return 2
+        for name, item in sorted(registry.items()):
+            description = str(item.get("description", "")).strip()
+            stdout.write(f"{name}\\t{description}\\n")
+        return 0
 
     try:
         config = load_config(read_environment(environment))
