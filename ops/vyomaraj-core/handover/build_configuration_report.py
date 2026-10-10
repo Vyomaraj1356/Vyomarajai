@@ -52,6 +52,13 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def jarvis_env_keys(root):
+    path = root / JARVIS_ENV.relative_to(ROOT)
+    if not path.is_file():
+        return 'not present; provider configuration must be supplied outside Git'
+    return ', '.join(sorted(set(re.findall(r'^([A-Za-z_]+)=', path.read_text(), re.M))))
+
+
 def experience_summary(directory):
     data = load(CORE / directory / 'content.json')
     parts = []
@@ -205,8 +212,8 @@ def render(root=ROOT):
         '',
         '## 4. Jarvis configuration',
         '',
-        f"- `ops/jarvis/jarvis.env` — configuration **key names only, no values are printed or copied**: "
-        f"{', '.join(sorted(set(re.findall(r'^([A-Za-z_]+)=', (root / JARVIS_ENV.relative_to(ROOT)).read_text(), re.M))))}",
+        f"- `ops/jarvis/jarvis.env` — configuration key names (values are never printed): "
+        f"{jarvis_env_keys(root)}",
         f"- `ops/jarvis/devices.json` — {len((root / JARVIS_DEVICES.relative_to(ROOT)).read_bytes())} bytes, "
         'primary/secondary device-number configuration. Values stay in the repository; they are not '
         'reproduced here.',
