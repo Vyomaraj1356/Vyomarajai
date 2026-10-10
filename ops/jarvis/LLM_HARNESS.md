@@ -20,6 +20,18 @@ The former Jarvis shell controller printed simulated device shifts and unsupport
 
 The repository already tracks `ops/jarvis/jarvis.env` with populated assignments, and the legacy example/controller contain personal-contact text. Their values are intentionally not reproduced here and were not altered by the harness change. An owner should review them before further publication; rotate any real credentials found. The new harness does not consume either legacy file.
 
+
+## Named prompt presets
+
+The versioned user-owned preset registry lives at `config/ai/PROMPT_REGISTRY_V1.json`. The harness accepts an optional preset ID; the role contract remains active and the preset is sent as a separate system message.
+
+```sh
+printf '%s\\n' 'Audit this proposal and label facts versus assumptions.' | python3 ops/jarvis/llm_harness.py --role vyomaraj --preset truthmode
+printf '%s\\n' 'Prepare a release plan with rollback and acceptance gates.' | python3 ops/jarvis/llm_harness.py --role jarvis --preset deploygate
+```
+
+Use `python3 -m unittest ops/jarvis/test_llm_harness.py` for offline tests. Presets are project-authored reusable instructions, not ChatGPT private system prompts or hidden reasoning. This feature does not add tool calling or execute actions. Provider configuration and production deployment remain separate owner-controlled steps; see [prompt runtime deployment gates](../../docs/ai/VYOMARAJ_JARVIS_PROMPT_RUNTIME_DEPLOYMENT_V1.md).
+
 ## Configure locally
 
 1. Copy `llm-harness.env.example` to `llm-harness.env`. The local file is Git-ignored.
