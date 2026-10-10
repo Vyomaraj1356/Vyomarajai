@@ -96,7 +96,7 @@ def main():
             "reason": "read_only_plan_failed; inspect sanitized workflow logs",
         }
         code = 2
-    text = json.dumps(result, indent=2, sort_keys=True) + "\\n"
+    text = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(text)
