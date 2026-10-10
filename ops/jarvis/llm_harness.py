@@ -56,7 +56,7 @@ def load_prompt_registry(path: Path = PROMPT_REGISTRY_PATH) -> dict[str, dict[st
             raise ValueError
         validated: dict[str, dict[str, object]] = {}
         for name, item in presets.items():
-            if not re.fullmatch(r"[a-z][a-z0-9_-]{0,63}", name):
+            if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,63}", name):
                 raise ValueError
             if not isinstance(item, dict) or not isinstance(item.get("prompt"), str):
                 raise ValueError
