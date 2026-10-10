@@ -22,7 +22,7 @@ Pages API reports `built` from `main:/` at `04b7ae60`; this feature branch is no
 |---|---|---|
 | `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `f2ed942ecf32f5e99017d854a15f27eb5b9f171faf651a731fd1bbac7b01b1bb` | 41 MATCH checkpoints, 27 replication writes, 1 blocked run, 1 read-only probe |
 | `ops/dr/DR_POLICY.json` | `efa7ec3f76a6a4e008fd989f06fb635fc95c0abf346b1a49793b1f85da4d01d2` | scope flags and the time-boxed one-snapshot removal approval |
-| `.github/workflows/vyomaraj-sync-both.yml` | `f02a9d0a859ff908a66dd14476c91dc17ef63f5559c6452b64d82aea520453f7` | triggers and schedule |
+| `.github/workflows/vyomaraj-sync-both.yml` | `c00dde7831855188f6a9b5e1065624db364e0f25beee72effcbffb9e6e9ac36e` | triggers and schedule |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | `9f51554ce080393c247fee9c66db4e98a6c4bd19980d1eb3caddc6e1a12ccb35` | timestamped current issue/PR/Pages and DR-access recheck |
 
 Method: Record one successful verify-or-sync checkpoint for each newly observed main tip, plus the latest scheduled confirmation on the final tip per section 5c. Read the public DR SNAPSHOT RESULT annotation; compare status, tree SHAs, data_match and rollback_commit exactly. A rollback_commit marks a write; absent means an idempotent no-op.
