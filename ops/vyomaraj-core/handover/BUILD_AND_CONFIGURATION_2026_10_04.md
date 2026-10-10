@@ -94,7 +94,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 
 ## 4. Jarvis configuration
 
-- `ops/jarvis/jarvis.env` — configuration **key names only, no values are printed or copied**: BHARAT, HANUMAN_QUALITY, JARVIS_CLOUD_HOME, JARVIS_EDGE_HOME, JARVIS_FUTURE_HOME, JARVIS_FUTURE_HOME_DESC, JARVIS_FUTURE_HOME_STATUS, JARVIS_HEARTBEAT_INTERVAL, JARVIS_HEARTBEAT_URL, JARVIS_LOCK_FILE, JARVIS_PRIMARY_DEVICE, JARVIS_PRIMARY_NUMBER, JARVIS_PRIMARY_ROLE, JARVIS_PRIMARY_STATUS, JARVIS_SECONDARY_DEVICE, JARVIS_SECONDARY_NUMBER, JARVIS_SECONDARY_STATUS, JARVIS_STATE_FILE, JARVIS_TEST, LAXMAN, RELATIONSHIP, SCALABLE_TECH, SHRI_RAM_JI, TRENDS
+- `ops/jarvis/jarvis.env` — configuration key names (values are never printed): not present; provider configuration must be supplied outside Git
 - `ops/jarvis/devices.json` — 51494 bytes, primary/secondary device-number configuration. Values stay in the repository; they are not reproduced here.
 - `ops/jarvis/jarvis-24x7-controller.sh` — controller script; not started as an unattended service in this session, and no switch/fencing URL in it was called.
 - Local roles: the two preview replicas act as the Vyomaraj and Jarvis sides of the availability rehearsal (`ops/availability/README.md`); both share one host and one queue.

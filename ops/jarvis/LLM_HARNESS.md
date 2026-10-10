@@ -18,7 +18,33 @@ The former Jarvis shell controller printed simulated device shifts and unsupport
 
 ## Existing configuration review required
 
-The repository already tracks `ops/jarvis/jarvis.env` with populated assignments, and the legacy example/controller contain personal-contact text. Their values are intentionally not reproduced here and were not altered by the harness change. An owner should review them before further publication; rotate any real credentials found. The new harness does not consume either legacy file.
+The populated legacy `ops/jarvis/jarvis.env` file has been removed from this branch's working tree and added to `.gitignore`; the harness does not consume it. This does not erase earlier Git history. An owner must review historical revisions for credentials or personal data and rotate any real credentials found. The legacy example/controller should also be reviewed before further publication.
+
+
+## Named prompt presets
+
+The versioned user-owned preset registry lives at `config/ai/PROMPT_REGISTRY_V1.json`. The harness accepts an optional preset ID; the role contract remains active and the preset is sent as a separate system message.
+
+```sh
+printf '%s\\n' 'Audit this proposal and label facts versus assumptions.' | python3 ops/jarvis/llm_harness.py --role vyomaraj --preset truthmode
+printf '%s\\n' 'Prepare a release plan with rollback and acceptance gates.' | python3 ops/jarvis/llm_harness.py --role jarvis --preset deploygate
+```
+
+Use `python3 -m unittest ops/jarvis/test_llm_harness.py` for offline tests. Presets are project-authored reusable instructions, not ChatGPT private system prompts or hidden reasoning. This feature does not add tool calling or execute actions. Provider configuration and production deployment remain separate owner-controlled steps; see [prompt runtime deployment gates](../../docs/ai/VYOMARAJ_JARVIS_PROMPT_RUNTIME_DEPLOYMENT_V1.md).
+
+## Discover and use prompts
+
+List available prompt presets without configuring a provider or making a network request:
+
+```sh
+python3 ops/jarvis/llm_harness.py --list-presets
+```
+
+Use a listed preset with `--preset <id>` and choose `--role vyomaraj` or `--role jarvis`. Example:
+
+```sh
+printf '%s\\n' 'Separate facts from assumptions and list missing evidence.' | python3 ops/jarvis/llm_harness.py --role jarvis --preset truthmode
+```
 
 ## Configure locally
 

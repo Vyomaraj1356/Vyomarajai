@@ -138,5 +138,63 @@ class HarnessTests(unittest.TestCase):
             llm_harness.load_config(env)
 
 
+    def test_prompt_registry_has_safe_named_presets(self):
+        registry = llm_harness.load_prompt_registry()
+        self.assertIn("truthmode", registry)
+        self.assertIn("deploygate", registry)
+        self.assertIn("executeverify", registry)
+        self.assertIn("Never claim an action or test succeeded", registry["executeverify"]["prompt"])
+
+    def test_named_preset_is_sent_as_separate_system_message(self):
+        provider_body = json.dumps(
+            {"choices": [{"message": {"content": "Audited answer."}}]}
+        ).encode()
+        registry = llm_harness.load_prompt_registry()
+        with patch.object(llm_harness, "_open_request", return_value=FakeResponse(provider_body)) as opener:
+            answer = llm_harness.complete(
+                "Check this proposal",
+                "jarvis",
+                llm_harness.load_config(self.env),
+                preset_prompt=str(registry["truthmode"]["prompt"]),
+            )
+        self.assertEqual(answer, "Audited answer.")
+        payload = json.loads(opener.call_args.args[0].data.decode("utf-8"))
+        self.assertEqual([item["role"] for item in payload["messages"]], ["system", "system", "user"])
+        self.assertIn("Audit factual reliability", payload["messages"][1]["content"])
+        self.assertNotIn("tools", payload)
+
+    def test_list_presets_works_without_provider_configuration(self):
+        out = io.StringIO()
+        err = io.StringIO()
+        with patch.object(llm_harness, "_open_request") as opener:
+            status = llm_harness.main(
+                ["--list-presets"],
+                environment={},
+                stdin=io.StringIO(""),
+                stdout=out,
+                stderr=err,
+            )
+        self.assertEqual(status, 0)
+        self.assertIn("truthmode", out.getvalue())
+        self.assertIn("deploygate", out.getvalue())
+        self.assertEqual(err.getvalue(), "")
+        opener.assert_not_called()
+
+    def test_unknown_preset_fails_without_network_call(self):
+        out = io.StringIO()
+        err = io.StringIO()
+        with patch.object(llm_harness, "_open_request") as opener:
+            status = llm_harness.main(
+                ["--role", "jarvis", "--preset", "not-a-real-preset"],
+                environment=self.env,
+                stdin=io.StringIO("check this"),
+                stdout=out,
+                stderr=err,
+            )
+        self.assertEqual(status, 2)
+        self.assertIn("Unknown preset", err.getvalue())
+        opener.assert_not_called()
+
+
 if __name__ == "__main__":
     unittest.main()

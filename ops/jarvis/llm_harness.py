@@ -44,6 +44,34 @@ ROLE_PROMPTS = {
 }
 
 
+PROMPT_REGISTRY_PATH = Path(__file__).resolve().parents[2] / "config" / "ai" / "PROMPT_REGISTRY_V1.json"
+
+
+def load_prompt_registry(path: Path = PROMPT_REGISTRY_PATH) -> dict[str, dict[str, object]]:
+    """Load the checked-in, user-owned preset registry; never accept prompt text from CLI."""
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        presets = payload["presets"]
+        if payload.get("schema_version") != 1 or not isinstance(presets, dict):
+            raise ValueError
+        validated: dict[str, dict[str, object]] = {}
+        for name, item in presets.items():
+            if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,63}", name):
+                raise ValueError
+            if not isinstance(item, dict) or not isinstance(item.get("prompt"), str):
+                raise ValueError
+            if not item["prompt"].strip() or not isinstance(item.get("roles"), list):
+                raise ValueError
+            if any(role not in ROLE_PROMPTS for role in item["roles"]):
+                raise ValueError
+            validated[name] = item
+        if not validated:
+            raise ValueError
+        return validated
+    except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+        raise HarnessError("The versioned prompt registry is missing or invalid; no request was sent.") from None
+
+
 class HarnessError(Exception):
     """Safe-to-display configuration or provider error (never contains a key)."""
 
@@ -144,7 +172,7 @@ def load_config(environment: Mapping[str, str]) -> Config:
     return Config(endpoint, model, api_key, timeout, max_tokens)
 
 
-def complete(prompt: str, role: str, config: Config) -> str:
+def complete(prompt: str, role: str, config: Config, preset_prompt: str | None = None) -> str:
     if role not in ROLE_PROMPTS:
         raise HarnessError("Unsupported assistant role.")
     if not prompt.strip():
@@ -157,6 +185,7 @@ def complete(prompt: str, role: str, config: Config) -> str:
             "model": config.model,
             "messages": [
                 {"role": "system", "content": ROLE_PROMPTS[role]},
+                *([{"role": "system", "content": preset_prompt}] if preset_prompt else []),
                 {"role": "user", "content": prompt},
             ],
             "max_tokens": config.max_tokens,
@@ -199,17 +228,37 @@ def main(
 ) -> int:
     parser = argparse.ArgumentParser(description="No-tools Vyomaraj/Jarvis LLM harness")
     parser.add_argument("--role", choices=tuple(ROLE_PROMPTS), default="jarvis")
+    parser.add_argument("--preset", default=None, help="Use a named user-owned preset from config/ai/PROMPT_REGISTRY_V1.json")
+    parser.add_argument("--list-presets", action="store_true", help="List available named presets without provider configuration")
     args = parser.parse_args(argv)
     stdin = stdin or sys.stdin
     stdout = stdout or sys.stdout
     stderr = stderr or sys.stderr
+
+    if args.list_presets:
+        try:
+            registry = load_prompt_registry()
+        except HarnessError as exc:
+            print(f"LLM harness: {exc}", file=stderr)
+            return 2
+        for name, item in sorted(registry.items()):
+            description = str(item.get("description", "")).strip()
+            stdout.write(f"{name}\t{description}\n")
+        return 0
 
     try:
         config = load_config(read_environment(environment))
         prompt = stdin.read(MAX_PROMPT_CHARS + 1)
         if len(prompt) > MAX_PROMPT_CHARS:
             raise HarnessError(f"Prompt exceeds the {MAX_PROMPT_CHARS}-character safety limit.")
-        answer = complete(prompt, args.role, config)
+        preset_prompt = None
+        if args.preset:
+            registry = load_prompt_registry()
+            preset = registry.get(args.preset)
+            if preset is None or args.role not in preset["roles"]:
+                raise HarnessError("Unknown preset or preset not permitted for this role.")
+            preset_prompt = str(preset["prompt"])
+        answer = complete(prompt, args.role, config, preset_prompt=preset_prompt)
     except HarnessError as exc:
         print(f"LLM harness: {exc}", file=stderr)
         return 2
