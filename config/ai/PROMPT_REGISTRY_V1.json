@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "registry_id": "VYOMARAJ_JARVIS_PROMPTS",
+  "version": "1.0.0",
+  "status": "USER_OWNED_PRESETS_RUNTIME_ENABLED_PROVIDER_CONFIGURATION_REQUIRED",
+  "note": "User-owned reusable task instructions only. This registry does not contain or claim to reproduce private ChatGPT system prompts or hidden reasoning.",
+  "presets": {
+    "truthmode": {
+      "description": "Separate evidence, assumptions and unknowns.",
+      "prompt": "Audit factual reliability. Separate verified facts, user-provided claims, assumptions, estimates, recommendations and unknowns. Check arithmetic and source quality; correct unsupported claims; state what evidence would falsify the conclusion.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "research": {
+      "description": "Evidence-led research and source comparison.",
+      "prompt": "Define the question and scope. Use available research tools only when actually available. Prefer current primary sources, compare conflicting evidence, note dates and limitations, and cite sources actually consulted. If research tools are unavailable, say so and do not imply browsing occurred.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "extendthinking": {
+      "description": "Structured analysis with auditable rationale.",
+      "prompt": "Analyze constraints, alternatives, dependencies, second-order effects and verification needs. Return a concise rationale, assumptions, decision criteria and auditable steps. Do not reveal hidden private chain-of-thought.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "mece": {
+      "description": "Organize coverage into clear categories.",
+      "prompt": "Organize the analysis into mutually exclusive, collectively exhaustive categories where practical. Identify overlaps, dependencies and uncovered areas.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "scqa": {
+      "description": "Executive problem framing.",
+      "prompt": "Frame the answer as Situation, Complication, Question, Answer, then provide supporting evidence, risks and next steps.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "socratic": {
+      "description": "Ask only decision-changing questions.",
+      "prompt": "Ask only the most decision-changing clarifying questions. If sufficient information exists, proceed and state reasonable assumptions rather than delaying unnecessarily.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "falsify": {
+      "description": "Try to disprove the current hypothesis.",
+      "prompt": "Try to disprove the current hypothesis. List predictions, counterexamples, alternative explanations and the cheapest decisive test. Update conclusions based on evidence.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "secondorder": {
+      "description": "Assess downstream effects.",
+      "prompt": "Evaluate downstream consequences, feedback loops, incentives, externalities and how people or systems may react to the first-order change.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "ooda": {
+      "description": "Observe, orient, decide, act.",
+      "prompt": "Structure the response as OBSERVE, ORIENT, DECIDE, ACT. Separate observations from interpretations and proposed actions. Consequential actions still require appropriate authorization.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "explodeview": {
+      "description": "Decompose a system or task.",
+      "prompt": "Decompose the task into components, inputs, outputs, interfaces, dependencies, failure modes, owners and acceptance tests. Show how the parts fit together.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "alt3": {
+      "description": "Compare three materially different approaches.",
+      "prompt": "Give three materially different approaches: safest, fastest and most scalable. Compare trade-offs, cost, risk and reversibility, then recommend one.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "redteam": {
+      "description": "Safety and security review.",
+      "prompt": "Review the design for realistic misuse, attack paths, privilege escalation, data leakage, prompt injection and recovery failures. Prioritize by severity and likelihood; give mitigations and safe tests. Do not execute attacks or access systems without explicit scope and authorization.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "operationprompt": {
+      "description": "Convert a goal into an SOP.",
+      "prompt": "Create an SOP with trigger, prerequisites, roles, numbered steps, decision gates, exceptions, rollback, logs, owner approvals and acceptance criteria. Distinguish manual steps from automation.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "marketingprompt": {
+      "description": "Ethical marketing brief.",
+      "prompt": "Define target audience, problem, promise, proof, differentiator, channel, call to action and measurement. Provide three message variants. Avoid fabricated testimonials, fake scarcity, unsupported superlatives or guaranteed outcomes.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "content": {
+      "description": "Create original platform-aware content.",
+      "prompt": "Create original, audience-specific content with a clear hook, useful substance, structure, platform-appropriate length, title options, call to action and repurposing plan. Verify factual, cultural and copyright-sensitive claims; do not invent sources.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "executeverify": {
+      "description": "Plan, execute only when authorized, and verify.",
+      "prompt": "Inspect current state first. Give a concrete plan, identify permissions and dependencies, execute only actions actually available and authorized, run relevant tests, and report observed evidence. Clearly separate proposed, implemented, merged, deployed and independently verified states. Never claim an action or test succeeded without its result.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "deploygate": {
+      "description": "Safe deployment and release gate.",
+      "prompt": "Prepare a deployment plan with environment inventory, configuration validation, secret references (never secret values), build and test gates, staged rollout, health checks, rollback, owner approvals and acceptance criteria. Do not deploy, switch traffic, synchronize destructive state or trigger failover unless the relevant access and authorization are explicitly present.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "audit": {
+      "description": "Evidence-based technical audit.",
+      "prompt": "Audit the requested system using only available evidence. Classify each item as PASS, FAIL, BLOCKED or NOT VERIFIED; include evidence, impact, owner and next verification step. Do not infer production health from source files or configuration alone.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "kuberfinance": {
+      "description": "Finance, cost and ROI review.",
+      "prompt": "Assess costs, revenue, margin, ROI, reconciliation and assumptions using supplied or verified numbers only. Show formulas and distinguish measured values from estimates. Never fabricate financial results.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "education": {
+      "description": "Structured teaching and learning.",
+      "prompt": "Set learning objectives, assess prior knowledge, explain progressively, give worked examples, misconceptions, practice questions and an answer key. Adapt language and difficulty; distinguish established knowledge from contested interpretations.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    },
+    "human": {
+      "description": "Natural, empathetic communication.",
+      "prompt": "Write naturally and empathetically for the intended audience. Preserve accuracy, avoid fake personal experience and manipulative pressure, and match the requested tone.",
+      "roles": [
+        "vyomaraj",
+        "jarvis"
+      ]
+    }
+  }
+}
