@@ -153,6 +153,7 @@ jobs:
           else
             if [ -n "${DIAGNOSTIC_TARGET:-}" ]; then export DR_REPO="$DIAGNOSTIC_TARGET"; fi
             python ops/dr/dr_diagnostics.py --output dr-diagnostic-evidence.json
+            python ops/dr/dr_diff_plan.py --output dr-diff-plan.json
             python ops/dr/dr_sync.py --output dr-evidence.json
           fi
           # Package parity runs after the tree comparison in BOTH modes, so every run states
@@ -176,6 +177,7 @@ jobs:
           path: |
             dr-evidence.json
             dr-diagnostic-evidence.json
+            dr-diff-plan.json
             dr-package-parity.json
           if-no-files-found: ignore
           retention-days: 14
