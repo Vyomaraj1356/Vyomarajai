@@ -243,7 +243,7 @@ def main(
             return 2
         for name, item in sorted(registry.items()):
             description = str(item.get("description", "")).strip()
-            stdout.write(f"{name}\\t{description}\\n")
+            stdout.write(f"{name}\t{description}\n")
         return 0
 
     try:
