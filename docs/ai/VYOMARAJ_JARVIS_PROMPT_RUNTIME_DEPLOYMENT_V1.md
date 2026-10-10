@@ -64,3 +64,10 @@ Preset IDs are the keys in `config/ai/PROMPT_REGISTRY_V1.json`. `--role` accepts
 - No provider request is made if configuration or preset validation fails.
 - No credentials or prompt content are written to logs or the repository.
 - PR checks, merge SHA, provider smoke test and deployed runtime identity are recorded separately.
+
+
+## Expanded preset catalogue update
+
+The prompt registry has been expanded to version 1.1.0 with 88 user-owned presets, including first-principles analysis, black-swan risk review, signal-versus-noise, scenario forecasting, constructive critique, tool discovery, child-focused education and safety, social publishing, collaboration, legal review and output-format aliases. See [Prompt Command Catalogue](./PROMPT_COMMAND_CATALOG_V1_1.md) and [Prompt Operating System](./PROMPT_OPERATING_SYSTEM_VYOMARAJ_JARVIS_v1.0.md).
+
+This update changes reusable text instructions only. It does not enable tool calling, image generation, live search, email sending, automatic legal monitoring, moderation enforcement or social publishing. Validate registry parsing, preset listing, unknown-preset rejection and representative educational/safety presets with offline tests before merging.
