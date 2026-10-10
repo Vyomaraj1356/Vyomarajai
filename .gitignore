@@ -5,7 +5,8 @@ __pycache__/
 .venv/
 dr-evidence.json
 
-# New private/local configuration (legacy tracked files need separate review)
+# New private/local configuration
+ops/jarvis/jarvis.env
 ops/jarvis/llm-harness.env
 ops/dr/dr.local.env
 
