@@ -18,7 +18,7 @@ The former Jarvis shell controller printed simulated device shifts and unsupport
 
 ## Existing configuration review required
 
-The repository already tracks `ops/jarvis/jarvis.env` with populated assignments, and the legacy example/controller contain personal-contact text. Their values are intentionally not reproduced here and were not altered by the harness change. An owner should review them before further publication; rotate any real credentials found. The new harness does not consume either legacy file.
+The populated legacy `ops/jarvis/jarvis.env` file has been removed from this branch's working tree and added to `.gitignore`; the harness does not consume it. This does not erase earlier Git history. An owner must review historical revisions for credentials or personal data and rotate any real credentials found. The legacy example/controller should also be reviewed before further publication.
 
 
 ## Named prompt presets
