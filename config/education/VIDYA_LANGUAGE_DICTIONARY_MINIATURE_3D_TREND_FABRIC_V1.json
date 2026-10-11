@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "status": "PROPOSED_ADDITIVE_CAPABILITY_SPEC_PENDING_REGISTRY_RECONCILIATION_AND_REVIEW",
+  "updated": "2026-10-11",
+  "parent": {
+    "category_id": "EDU",
+    "name": "VIDYA / विद्या — Education & World Wisdom",
+    "new_top_level_agent": false
+  },
+  "preservation": {
+    "preserve_existing_edu_slots": true,
+    "preserve_historical_v16_7_24_snapshot": true,
+    "renumber_existing_ids": false,
+    "activate_only_after_duplicate_id_check": true
+  },
+  "capability_group": {
+    "id": "VIDYA-BHASHA",
+    "name": "भाषा — Language Learning Fabric"
+  },
+  "child_capabilities": [
+    {
+      "id": "EDU-BHASHA-VOCAB",
+      "name": "शब्द-भंडार / Vocabulary Studio",
+      "scope": "Vocabulary, idioms, roots, word families, spaced repetition",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-DICT",
+      "name": "शब्दकोश / Dictionary Fabric",
+      "scope": "Monolingual, bilingual, multilingual, picture, learner and specialist dictionaries",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-GRAMMAR",
+      "name": "व्याकरण / Grammar for Every Age",
+      "scope": "Age-banded grammar, literacy, writing and language-specific rules",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-SANSKRIT",
+      "name": "संस्कृत विद्या / Sanskrit Learning",
+      "scope": "Sanskrit vocabulary, grammar, pronunciation and source-aware reading",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-HINDI",
+      "name": "हिंदी भाषा / Hindi Learning",
+      "scope": "Hindi literacy, grammar, vocabulary and usage",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-ENGLISH",
+      "name": "English Language Studio",
+      "scope": "English literacy, grammar, vocabulary and pronunciation",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-INDIC",
+      "name": "भारतीय भाषा सेतु / Indian Languages Bridge",
+      "scope": "Eighth Schedule languages plus reviewed additional regional/community languages",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-GLOBAL",
+      "name": "विश्व भाषा सेतु / Global Language Bridge",
+      "scope": "Extensible world-language learning and translation",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-BHASHA-SPEECH",
+      "name": "श्रवण-वाचन / Listen, Speak & Read",
+      "scope": "Pronunciation, listening, reading and accessibility",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-STORY-3D-FAMILY",
+      "name": "नन्हा ज्ञान-परिवार / Miniature Learning Family",
+      "scope": "Original toy-scale 3D cartoon family teaching language and school topics",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-STORY-VISUAL",
+      "name": "चित्र-कथा प्रयोगशाला / Visual Story Lab",
+      "scope": "Picture books, comics, animation, shorts and visual learning",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    },
+    {
+      "id": "EDU-TREND-INTEL",
+      "name": "पाठ्य-रुझान / Learning Trend Intelligence",
+      "scope": "Evidence-based trend discovery, review and age-appropriate curriculum opportunities",
+      "activation_status": "PROPOSED_NOT_YET_REGISTRY_RECONCILED"
+    }
+  ],
+  "language_coverage": {
+    "core": [
+      "Sanskrit",
+      "Hindi",
+      "English"
+    ],
+    "indian_eighth_schedule": [
+      "Assamese",
+      "Bengali",
+      "Bodo",
+      "Dogri",
+      "Gujarati",
+      "Hindi",
+      "Kannada",
+      "Kashmiri",
+      "Konkani",
+      "Maithili",
+      "Malayalam",
+      "Manipuri (Meitei)",
+      "Marathi",
+      "Nepali",
+      "Odia",
+      "Punjabi",
+      "Sanskrit",
+      "Santali",
+      "Sindhi",
+      "Tamil",
+      "Telugu",
+      "Urdu"
+    ],
+    "additional_indian_languages": "Extensible; include community/regional/tribal languages when reviewed data, scripts, rights and reviewers are available.",
+    "global": "Extensible language registry; prioritize by user demand, reliable data, script/font, speech support and evaluation.",
+    "rules": [
+      "Preserve original script and proper names",
+      "Separate transliteration from translation",
+      "Respect dialect variation",
+      "Record source/licence/confidence",
+      "Do not invent citations"
+    ]
+  },
+  "cartoon_family": {
+    "id": "EDU-STORY-3D-FAMILY",
+    "core_visual_prompt": "An original AI miniature 3D cartoon family standing on a giant kitchen table, toy-sized proportions, ultra-cute expressive faces, vibrant colours, cinematic lighting, highly detailed animated-movie style.",
+    "setting_role": "Recurring optional miniature-scale learning world; the kitchen table is a visual device, not a food-only topic constraint.",
+    "originality": "Use original character designs and voices; do not copy recognizable copyrighted characters, studio-specific designs or signature scenes.",
+    "episode_formats": [
+      "picture dictionary",
+      "flashcards",
+      "worksheet",
+      "captioned short",
+      "2–6 minute episode",
+      "long-form story",
+      "read-along",
+      "comic",
+      "audio lesson",
+      "interactive quiz",
+      "localized dub"
+    ],
+    "episode_flow": [
+      "hook and objective",
+      "introduce age-appropriate words",
+      "demonstrate in context",
+      "kind correction",
+      "child practice",
+      "recap and retrieval quiz",
+      "parent/teacher prompt"
+    ]
+  },
+  "content_styles": {
+    "visual": [
+      "original miniature 3D animation",
+      "stylized 2D",
+      "watercolor",
+      "paper cut-out",
+      "clay/toy look",
+      "storybook",
+      "comic",
+      "infographic",
+      "diagram",
+      "motion graphics",
+      "live-action demo",
+      "mixed media"
+    ],
+    "narrative": [
+      "gentle teacher",
+      "family adventure",
+      "call-and-response",
+      "mystery/puzzle",
+      "quest",
+      "comedy",
+      "fable",
+      "role-play",
+      "documentary explainer",
+      "song/rhyme",
+      "project-based learning"
+    ],
+    "delivery": [
+      "text",
+      "image sequence",
+      "captioned video",
+      "audio",
+      "dubbing",
+      "interactive practice",
+      "printable",
+      "offline pack",
+      "accessible/sign-supported where supported"
+    ],
+    "invariant": "Style may change presentation, never factual, safety, identity, or rights requirements."
+  },
+  "universal_curriculum_lifecycle": [
+    "Origin",
+    "Oldest known evidence / early forms",
+    "Historical evolution",
+    "Regional and global context",
+    "Present use",
+    "Current trends",
+    "Future possibilities"
+  ],
+  "trend_intelligence": {
+    "required_fields": [
+      "observed_at",
+      "region",
+      "language",
+      "topic",
+      "source_url",
+      "audience_signal",
+      "evidence_strength",
+      "confidence",
+      "age_suitability",
+      "rights_status",
+      "human_review_status",
+      "last_checked"
+    ],
+    "principle": "Trends are discovery signals, not authority; prioritize learning value, accuracy, safety, accessibility, culture, rights and effort.",
+    "prohibit": [
+      "copying viral scripts/music/characters/thumbnails",
+      "engagement bait aimed at children",
+      "unsafe challenges",
+      "child profiling for targeted advertising"
+    ]
+  },
+  "safety_and_release_gates": [
+    "fact, translation and grammar review",
+    "source, licence and asset provenance",
+    "child age suitability and cultural review",
+    "caption, accessibility and embedded text QA",
+    "child privacy and guardian/teacher controls",
+    "synthetic media disclosure where appropriate",
+    "owner approval before public publishing or monetized distribution"
+  ],
+  "monetization": {
+    "candidates": [
+      "books",
+      "printables",
+      "dictionary packs",
+      "school licensing",
+      "courses",
+      "audiobooks",
+      "subscriptions where appropriate",
+      "original character/asset licensing"
+    ],
+    "accounting_owner": "Kuber",
+    "must_reconcile_actual_results": true,
+    "revenue_guarantee": false,
+    "child_directed_ad_policy": "No inappropriate targeted advertising or exploitative monetization."
+  },
+  "readiness": {
+    "spec_created": true,
+    "registry_updated": false,
+    "live_agents_verified": false,
+    "external_trend_feeds_verified": false,
+    "publishing_integrations_verified": false,
+    "owner_approval_required_for_publication": true
+  }
+}
