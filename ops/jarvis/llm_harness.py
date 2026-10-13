@@ -105,6 +105,8 @@ def load_config(environment: Mapping[str, str]) -> Config:
     endpoint = environment.get("JARVIS_LLM_ENDPOINT", "").strip()
     model = environment.get("JARVIS_LLM_MODEL", "").strip()
     api_key = environment.get("JARVIS_LLM_API_KEY", "").strip()
+    if any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in api_key):
+        raise HarnessError("JARVIS_LLM_API_KEY contains whitespace or control characters; re-enter the key securely.")
     if not endpoint:
         raise HarnessError("Set JARVIS_LLM_ENDPOINT to a trusted OpenAI-compatible chat-completions URL.")
     if not model:
@@ -173,7 +175,39 @@ def complete(prompt: str, role: str, config: Config) -> str:
         with _open_request(request, timeout=config.timeout_seconds) as response:
             payload = response.read(MAX_RESPONSE_BYTES + 1)
     except HTTPError as exc:
-        raise HarnessError(f"LLM provider returned HTTP {exc.code}; response body was not logged.") from None
+        # Surface only a small, sanitized provider code/message to make live setup
+        # diagnosable without logging request data, credentials, or raw response bodies.
+        provider_code = ""
+        provider_message = ""
+        try:
+            raw_error = exc.read(16_384)
+            parsed_error = json.loads(raw_error.decode("utf-8"))
+            error = parsed_error.get("error") if isinstance(parsed_error, dict) else None
+            if isinstance(error, dict):
+                code = error.get("code")
+                if isinstance(code, (str, int)) and not isinstance(code, bool):
+                    provider_code = str(code)
+                message = error.get("message")
+                if isinstance(message, str):
+                    provider_message = message
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError):
+            pass
+
+        def _safe_provider_text(value: str) -> str:
+            value = value.replace(config.api_key, "[REDACTED]") if config.api_key else value
+            value = re.sub(r"(?i)Bearer\s+\S+", "Bearer [REDACTED]", value)
+            value = re.sub(r"sk-or-v1-[A-Za-z0-9_-]+", "[REDACTED]", value)
+            value = "".join(ch if ch >= " " and ord(ch) != 127 else " " for ch in value)
+            return value[:240].strip()
+
+        detail = f"LLM provider returned HTTP {exc.code}"
+        if provider_code:
+            detail += f" (provider code: {_safe_provider_text(provider_code)})"
+        if provider_message:
+            detail += f": {_safe_provider_text(provider_message)}"
+        else:
+            detail += "; provider error details unavailable."
+        raise HarnessError(detail) from None
     except (URLError, TimeoutError, OSError):
         raise HarnessError("Could not complete the LLM request; endpoint details and credentials were not logged.") from None
 
