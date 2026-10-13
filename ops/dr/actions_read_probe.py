@@ -110,15 +110,15 @@ def annotation(result):
     return '; '.join(parts)
 
 def trusted_push():
-    """A trusted review-branch push: this repository, a push event, an arena/ session branch.
+    """A trusted same-repository push to main or an Arena session branch.
 
-    The branch name is matched by prefix, never pinned to one session. Pinning it to a single
-    dead branch (arena/01a10140-vyomarajai) meant the probe refused on every later session, and
-    the job that calls it was skipped before it could even refuse; both are fixed together.
+    This probe is GET-only. It may diagnose existing credentials on trusted main/Arena pushes,
+    but never on pull requests, schedules, or foreign repositories, and it never writes.
     """
+    ref = os.environ.get('GITHUB_REF', '')
     return (os.environ.get('GITHUB_REPOSITORY') == PRIMARY
             and os.environ.get('GITHUB_EVENT_NAME') == 'push'
-            and os.environ.get('GITHUB_REF', '').startswith('refs/heads/arena/'))
+            and (ref == 'refs/heads/main' or ref.startswith('refs/heads/arena/')))
 
 
 def main():
