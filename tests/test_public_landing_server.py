@@ -67,6 +67,21 @@ class PublicLandingServerTests(unittest.TestCase):
             payload = response.read()
             return response.status, response.headers, json.loads(payload) if payload else None
 
+    def test_healthz_reports_process_liveness_only_for_get_and_head(self):
+        status, headers, payload = self.request_get_json("/healthz")
+        self.assertEqual(status, 200)
+        self.assertTrue(headers["Content-Type"].startswith("application/json"))
+        self.assertEqual(payload, {
+            "status": "ok",
+            "service": "vyomaraj-public-preview",
+            "scope": "process_liveness_only",
+        })
+        request = urllib.request.Request(self.url + "/healthz", method="HEAD")
+        with urllib.request.urlopen(request) as response:
+            self.assertEqual(response.status, 200)
+            self.assertEqual(response.read(), b"")
+            self.assertEqual(response.headers["Content-Type"], "application/json; charset=utf-8")
+
     def test_public_shell_and_sandbox_host_are_served_with_security_headers(self):
         request = urllib.request.Request(self.url + "/", headers={"Host": "5310-preview.test"})
         with urllib.request.urlopen(request) as response:
