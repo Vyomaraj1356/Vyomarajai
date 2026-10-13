@@ -141,7 +141,12 @@ jobs:
             MODE=verify
           fi
           if [ "$MODE" = sync ]; then
-            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            # Automatic sync is permitted only for trusted pushes to primary main or an
+            # explicit manual dispatch. PRs and schedules are forced to verify mode above.
+            if [ "$GITHUB_EVENT_NAME" != push ] && [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+              echo '::error::Sync is allowed only for a trusted main push or explicit workflow_dispatch.'
+              exit 1
+            fi
             test "$GITHUB_REF" = refs/heads/main
             if [ "$DR_SYNC_APPROVED" != true ]; then
               echo '::error::DR sync is not approved. Set VYOMARAJ_DR_SYNC_ENABLED=true only after reviewing the target and exact-snapshot deletion behavior.'
