@@ -195,7 +195,7 @@ def complete(prompt: str, role: str, config: Config) -> str:
 
         def _safe_provider_text(value: str) -> str:
             value = value.replace(config.api_key, "[REDACTED]") if config.api_key else value
-            value = re.sub(r"(?i)Bearer\\s+\\S+", "Bearer [REDACTED]", value)
+            value = re.sub(r"(?i)Bearer\s+\S+", "Bearer [REDACTED]", value)
             value = re.sub(r"sk-or-v1-[A-Za-z0-9_-]+", "[REDACTED]", value)
             value = "".join(ch if ch >= " " and ch != "\\x7f" else " " for ch in value)
             return value[:240].strip()
