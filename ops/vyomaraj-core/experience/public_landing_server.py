@@ -338,6 +338,14 @@ class PublicLandingHandler(BaseHTTPRequestHandler):
 
     def _serve(self, include_body: bool) -> None:
         path = urlsplit(self.path).path
+        if path == "/healthz":
+            # Process liveness only; this is not a dependency, provider, or DR readiness check.
+            self._send_json(200, {
+                "status": "ok",
+                "service": "vyomaraj-public-preview",
+                "scope": "process_liveness_only",
+            }, include_body=include_body)
+            return
         if path == API_ROUTE:
             self._send_json(405, {"error": "Use POST to build a bounded local plan."},
                             include_body=include_body, allow="POST")
