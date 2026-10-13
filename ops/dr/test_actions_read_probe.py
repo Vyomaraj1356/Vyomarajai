@@ -8,12 +8,7 @@ import dr_sync as dr_module
 
 
 class TrustedPushTests(unittest.TestCase):
-    """The probe must run on any arena/ session branch, and nowhere else.
-
-    It was pinned to one branch name (arena/01a10140-vyomarajai); when that session ended the
-    probe could never run again, so every later session lost the read-only credential
-    diagnostic. These cases lock the prefix rule in both directions.
-    """
+    """The GET-only probe runs on trusted main/Arena pushes, and nowhere else."""
     def setUp(self):
         self.env = patch.dict(os.environ, {'GITHUB_REPOSITORY': PRIMARY, 'GITHUB_EVENT_NAME': 'push',
                                            'GITHUB_REF': 'refs/heads/arena/582559e8-vyomarajai'})
@@ -27,8 +22,12 @@ class TrustedPushTests(unittest.TestCase):
             with self.subTest(ref=ref), patch.dict(os.environ, {'GITHUB_REF': ref}):
                 self.assertTrue(trusted_push())
 
-    def test_main_and_other_refs_are_not_probed(self):
-        for ref in ('refs/heads/main', 'refs/heads/feature/x', 'refs/pull/27/merge'):
+    def test_main_push_is_trusted(self):
+        with patch.dict(os.environ, {'GITHUB_REF': 'refs/heads/main'}):
+            self.assertTrue(trusted_push())
+
+    def test_other_refs_are_not_probed(self):
+        for ref in ('refs/heads/feature/x', 'refs/pull/27/merge'):
             with self.subTest(ref=ref), patch.dict(os.environ, {'GITHUB_REF': ref}):
                 self.assertFalse(trusted_push())
 
