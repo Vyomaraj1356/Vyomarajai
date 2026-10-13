@@ -116,7 +116,7 @@ class HarnessTests(unittest.TestCase):
         self.assertIn("HTTP 401", str(raised.exception))
 
     def test_api_key_rejects_whitespace_and_control_characters(self):
-        env = dict(self.env, JARVIS_LLM_API_KEY="key-with\\nnewline")
+        env = dict(self.env, JARVIS_LLM_API_KEY="key-with" + chr(10) + "newline")
         with self.assertRaisesRegex(llm_harness.HarnessError, "control characters"):
             llm_harness.load_config(env)
 
