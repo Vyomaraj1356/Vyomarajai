@@ -53,11 +53,13 @@ jobs:
 
   diagnose-existing-pat:
     needs: offline-tests
-    # Trusted same-repository push only; never execute a fork/PR credential probe.
+    # Trusted same-repository main/Arena pushes only; never execute a fork/PR credential probe.
+    # This makes the credential/read-access diagnostic visible on main instead of silently
+    # skipping it on the normal Primary -> DR workflow run.
     if: >-
       github.repository == 'Vyomaraj1356/Vyomarajai' &&
       github.event_name == 'push' &&
-      startsWith(github.ref, 'refs/heads/arena/')
+      (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/arena/'))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
