@@ -133,13 +133,20 @@ jobs:
             exit 1
           fi
           MODE="${REQUEST_MODE:-verify}"
-          # Main pushes and the schedule are verification-only. Replication requires an
-          # explicit owner/admin workflow_dispatch after confirming the effective target.
-          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+          # Trusted pushes to primary main perform guarded replication after owner approval.
+          # Scheduled runs remain read-only; manual dispatch keeps its explicit verify/sync mode.
+          if [ "$GITHUB_EVENT_NAME" = push ] && [ "$GITHUB_REF" = refs/heads/main ]; then
+            MODE=sync
+          elif [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
             MODE=verify
           fi
           if [ "$MODE" = sync ]; then
-            test "$GITHUB_EVENT_NAME" = workflow_dispatch
+            # Automatic sync is permitted only for trusted pushes to primary main or an
+            # explicit manual dispatch. PRs and schedules are forced to verify mode above.
+            if [ "$GITHUB_EVENT_NAME" != push ] && [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+              echo '::error::Sync is allowed only for a trusted main push or explicit workflow_dispatch.'
+              exit 1
+            fi
             test "$GITHUB_REF" = refs/heads/main
             if [ "$DR_SYNC_APPROVED" != true ]; then
               echo '::error::DR sync is not approved. Set VYOMARAJ_DR_SYNC_ENABLED=true only after reviewing the target and exact-snapshot deletion behavior.'

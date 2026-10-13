@@ -121,8 +121,8 @@ class DRTests(unittest.TestCase):
         policy = json.loads((root / 'ops/dr/DR_POLICY.json').read_text())
         self.assertIn('if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]', workflow)
         self.assertIn('MODE=verify', workflow)
-        self.assertIn('test "$GITHUB_EVENT_NAME" = workflow_dispatch', workflow)
-        self.assertFalse(policy['sync_approved_on_main'])
+        self.assertIn('if [ "$GITHUB_EVENT_NAME" != push ] && [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then', workflow)
+        self.assertTrue(policy['sync_approved_on_main'])
 
     def test_missing_token_guard(self):
         with self.assertRaisesRegex(dr.CheckError, 'credentials are missing'):
