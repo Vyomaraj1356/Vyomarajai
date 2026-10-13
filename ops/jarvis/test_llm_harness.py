@@ -115,6 +115,33 @@ class HarnessTests(unittest.TestCase):
         self.assertNotIn(secret, repr(raised.exception))
         self.assertIn("HTTP 401", str(raised.exception))
 
+    def test_api_key_rejects_whitespace_and_control_characters(self):
+        env = dict(self.env, JARVIS_LLM_API_KEY="key-with\\nnewline")
+        with self.assertRaisesRegex(llm_harness.HarnessError, "control characters"):
+            llm_harness.load_config(env)
+
+    def test_http_error_exposes_sanitized_provider_message(self):
+        secret = self.env["JARVIS_LLM_API_KEY"]
+        body = json.dumps({
+            "error": {
+                "code": "auth_failed",
+                "message": "Invalid key " + secret + " Bearer private-token"
+            }
+        }).encode()
+        error = HTTPError(
+            self.env["JARVIS_LLM_ENDPOINT"], 401, "unauthorized",
+            hdrs=None, fp=io.BytesIO(body)
+        )
+        with patch.object(llm_harness, "_open_request", side_effect=error):
+            with self.assertRaises(llm_harness.HarnessError) as raised:
+                llm_harness.complete("hello", "jarvis", llm_harness.load_config(self.env))
+        message = str(raised.exception)
+        self.assertIn("HTTP 401", message)
+        self.assertIn("auth_failed", message)
+        self.assertIn("Invalid key [REDACTED]", message)
+        self.assertNotIn(secret, message)
+        self.assertNotIn("private-token", message)
+
     def test_missing_configuration_fails_without_network_call(self):
         out = io.StringIO()
         err = io.StringIO()
