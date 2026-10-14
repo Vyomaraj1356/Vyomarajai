@@ -192,6 +192,15 @@ class DRTests(unittest.TestCase):
     def test_redirect_refused(self):
         self.assertIsNone(dr.NoRedirect().redirect_request(None, None, 302, '', {}, 'https://other'))
 
+    def test_422_diagnostics_are_allowlisted_and_redacted(self):
+        self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"Invalid tree info"}'),
+                         'tree_validation_rejected')
+        self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"Tree is too large: 100000"}'),
+                         'tree_size_limit')
+        self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"private/path secret details"}'),
+                         'github_validation_rejected')
+        self.assertIsNone(dr.safe_api_error_reason(403, b'{"message":"anything"}'))
+
 
 if __name__ == '__main__':
     unittest.main()
