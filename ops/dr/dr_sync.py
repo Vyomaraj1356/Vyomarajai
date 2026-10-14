@@ -75,7 +75,9 @@ def safe_validation_fields(status, body):
     for item in errors[:20] if isinstance(errors, list) else []:
         if not isinstance(item, dict):
             continue
-        resource = str(item.get('resource', '')).lower()
+        resource_raw = str(item.get('resource', '')).lower()
+        # GitHub serializes this resource as GitTree; normalize its lowercase form.
+        resource = {'gittree': 'git_tree'}.get(resource_raw, resource_raw)
         field = str(item.get('field', '')).lower()
         code = str(item.get('code', '')).lower()
         safe.append({
