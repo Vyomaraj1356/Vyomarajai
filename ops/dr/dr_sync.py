@@ -33,16 +33,44 @@ class TargetOnlyRemovalRequired(CheckError):
         super().__init__(f'Secondary has {count} target-only files; refusing removal without explicit DR_ALLOW_TARGET_ONLY_REMOVAL=true review approval.')
 
 
+def safe_api_error_reason(status, body):
+    """Return a coarse, allow-listed reason; never expose GitHub response bodies."""
+    if status != 422:
+        return None
+    try:
+        payload = json.loads(body.decode('utf-8', errors='replace'))
+    except (ValueError, TypeError, AttributeError):
+        return 'github_validation_rejected'
+    message = str(payload.get('message', '')).lower() if isinstance(payload, dict) else ''
+    errors = payload.get('errors', []) if isinstance(payload, dict) else []
+    details = ' '.join(
+        str(item.get('message', '')).lower()
+        for item in errors if isinstance(item, dict)
+    )
+    text = message + ' ' + details
+    if '100000' in text or ('tree' in text and 'too large' in text):
+        return 'tree_size_limit'
+    if 'tree' in text and ('invalid' in text or 'conflict' in text):
+        return 'tree_validation_rejected'
+    if 'path' in text and ('invalid' in text or 'conflict' in text):
+        return 'path_validation_rejected'
+    if 'sha' in text and ('invalid' in text or 'missing' in text):
+        return 'object_reference_rejected'
+    return 'github_validation_rejected'
+
+
 class APIError(CheckError):
-    def __init__(self, status, operation=None):
+    def __init__(self, status, operation=None, safe_reason=None):
         self.status = status
         self.operation = operation
+        self.safe_reason = safe_reason
         explanation = {
             401: 'Invalid or expired credentials; reconnect GitHub / review the Actions secret.',
             403: 'Access denied or rate limited; review repository/Actions permissions.',
             404: 'Repository/ref missing OR hidden by permissions; do not infer nonexistence.',
-        }.get(status, 'GitHub request failed; no response body was logged.')
-        super().__init__(f'GitHub HTTP {status}: {explanation}')
+        }.get(status, 'GitHub request failed; response details withheld.')
+        reason = f'; reason={safe_reason}' if safe_reason else ''
+        super().__init__(f'GitHub HTTP {status}: {explanation}{reason}')
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -95,7 +123,8 @@ class GitHub:
                         except ValueError: raise APIError(exc.code, operation) from None
                     if not 0 <= delay <= 60: raise APIError(exc.code, operation) from None
                     time.sleep(max(1, delay)); continue
-                raise APIError(exc.code, operation) from None
+                safe_reason = safe_api_error_reason(exc.code, exc.read())
+                raise APIError(exc.code, operation, safe_reason) from None
             except (urllib.error.URLError, TimeoutError, OSError):
                 if method == 'GET' and attempt < 2:
                     time.sleep(2 ** attempt); continue
