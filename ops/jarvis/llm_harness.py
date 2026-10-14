@@ -215,11 +215,53 @@ def complete(prompt: str, role: str, config: Config) -> str:
         raise HarnessError("LLM provider response exceeded the 1 MiB safety limit.")
     try:
         decoded = json.loads(payload.decode("utf-8"))
-        content = decoded["choices"][0]["message"]["content"]
-    except (UnicodeDecodeError, json.JSONDecodeError, KeyError, IndexError, TypeError):
+    except (UnicodeDecodeError, json.JSONDecodeError):
         raise HarnessError("LLM provider returned an unsupported or malformed response.") from None
-    if not isinstance(content, str):
-        raise HarnessError("LLM provider response did not contain text content.")
+
+    # Keep diagnostics structural only: never echo provider content, prompts, or headers.
+    if not isinstance(decoded, dict):
+        raise HarnessError("LLM provider returned an unsupported or malformed response.")
+    choices = decoded.get("choices")
+    if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
+        raise HarnessError("LLM provider response did not contain a valid chat-completion choice.")
+    choice = choices[0]
+    message = choice.get("message")
+    if not isinstance(message, dict):
+        raise HarnessError("LLM provider response did not contain a valid assistant message.")
+
+    content = message.get("content")
+    # Some OpenAI-compatible providers return text as typed content parts.
+    if isinstance(content, list):
+        text_parts: list[str] = []
+        for part in content:
+            if not isinstance(part, dict) or part.get("type") not in ("text", "output_text") or not isinstance(part.get("text"), str):
+                text_parts = []
+                break
+            text_parts.append(part["text"])
+        if text_parts:
+            content = "".join(text_parts)
+
+    if not isinstance(content, str) or not content.strip():
+        content_type = type(content).__name__
+        detail = f"LLM provider response contained no usable text (content type: {content_type}"
+        finish_reason = choice.get("finish_reason")
+        if isinstance(finish_reason, str) and finish_reason in {
+            "stop", "length", "content_filter", "tool_calls", "function_call", "error"
+        }:
+            detail += f"; finish_reason: {finish_reason}"
+        message_keys = sorted(
+            key for key in message
+            if isinstance(key, str) and re.fullmatch(r"[A-Za-z][A-Za-z0-9_]{0,39}", key)
+        )[:12]
+        if message_keys:
+            detail += "; message fields: " + ", ".join(message_keys)
+        if message.get("refusal"):
+            detail += "; refusal field present"
+        if message.get("tool_calls"):
+            detail += "; tool calls present"
+        if isinstance(message.get("reasoning"), str) and message["reasoning"].strip():
+            detail += "; reasoning field present without usable content"
+        raise HarnessError(detail + ").")
     return content
 
 
