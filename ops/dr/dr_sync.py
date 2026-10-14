@@ -93,7 +93,8 @@ def safe_request_metrics(body):
     if body is None:
         return {'request_payload_bytes': 0}
     try:
-        encoded = json.dumps(body, separators=(',', ':'), ensure_ascii=False).encode('utf-8')
+        # Match GitHub.request's exact json.dumps(body).encode() serialization.
+        encoded = json.dumps(body).encode('utf-8')
         metrics = {'request_payload_bytes': len(encoded)}
         if isinstance(body, dict) and isinstance(body.get('tree'), list):
             entries = body['tree']
