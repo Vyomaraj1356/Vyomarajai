@@ -222,6 +222,7 @@ class DRTests(unittest.TestCase):
             {'path':'b.txt','mode':'100644','type':'blob','sha':'c'*40},
         ]}
         metrics = dr.safe_request_metrics(body)
+        self.assertEqual(metrics['request_payload_bytes'], len(json.dumps(body).encode('utf-8')))
         self.assertEqual(metrics['tree_entry_count'], 3)
         self.assertEqual(metrics['unique_path_count'], 2)
         self.assertEqual(metrics['max_path_length'], len('private/name.txt'))
