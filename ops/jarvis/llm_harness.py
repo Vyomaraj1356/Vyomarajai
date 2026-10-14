@@ -275,6 +275,7 @@ def main(
 ) -> int:
     parser = argparse.ArgumentParser(description="No-tools Vyomaraj/Jarvis LLM harness")
     parser.add_argument("--role", choices=tuple(ROLE_PROMPTS), default="jarvis")
+    parser.add_argument("--expect", help="Require an exact response for a functional acceptance test.")
     args = parser.parse_args(argv)
     stdin = stdin or sys.stdin
     stdout = stdout or sys.stdout
@@ -286,6 +287,9 @@ def main(
         if len(prompt) > MAX_PROMPT_CHARS:
             raise HarnessError(f"Prompt exceeds the {MAX_PROMPT_CHARS}-character safety limit.")
         answer = complete(prompt, args.role, config)
+        if args.expect is not None and answer.strip() != args.expect:
+            print("LLM harness: response did not match expected text.", file=stderr)
+            return 3
     except HarnessError as exc:
         print(f"LLM harness: {exc}", file=stderr)
         return 2

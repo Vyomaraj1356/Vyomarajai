@@ -176,6 +176,36 @@ class HarnessTests(unittest.TestCase):
         self.assertNotIn(secret, message)
         self.assertNotIn("private-token", message)
 
+    def test_exact_output_acceptance_passes_only_on_exact_match(self):
+        out = io.StringIO()
+        err = io.StringIO()
+        with patch.object(llm_harness, "complete", return_value="VYOMARAJ_LLM_LIVE_TEST_OK"):
+            status = llm_harness.main(
+                ["--role", "jarvis", "--expect", "VYOMARAJ_LLM_LIVE_TEST_OK"],
+                environment=self.env,
+                stdin=io.StringIO("Reply with exactly: VYOMARAJ_LLM_LIVE_TEST_OK"),
+                stdout=out,
+                stderr=err,
+            )
+        self.assertEqual(status, 0)
+        self.assertEqual(out.getvalue().strip(), "VYOMARAJ_LLM_LIVE_TEST_OK")
+        self.assertEqual(err.getvalue(), "")
+
+    def test_exact_output_acceptance_rejects_wrong_nonempty_response(self):
+        out = io.StringIO()
+        err = io.StringIO()
+        with patch.object(llm_harness, "complete", return_value="User"):
+            status = llm_harness.main(
+                ["--role", "jarvis", "--expect", "VYOMARAJ_LLM_LIVE_TEST_OK"],
+                environment=self.env,
+                stdin=io.StringIO("Reply with exactly: VYOMARAJ_LLM_LIVE_TEST_OK"),
+                stdout=out,
+                stderr=err,
+            )
+        self.assertEqual(status, 3)
+        self.assertEqual(out.getvalue(), "")
+        self.assertIn("did not match expected text", err.getvalue())
+
     def test_missing_configuration_fails_without_network_call(self):
         out = io.StringIO()
         err = io.StringIO()
