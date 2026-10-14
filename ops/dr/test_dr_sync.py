@@ -201,6 +201,33 @@ class DRTests(unittest.TestCase):
                          'github_validation_rejected')
         self.assertIsNone(dr.safe_api_error_reason(403, b'{"message":"anything"}'))
 
+    def test_422_validation_fields_are_structured_allowlisted_only(self):
+        raw = (b'{"message":"do not persist this secret message",'
+               b'"errors":[{"resource":"GitTree","field":"tree","code":"invalid",'
+               b'"message":"private path /secret/token"},'
+               b'{"resource":"unexpected-resource","field":"secret-path",'
+               b'"code":"private-code","message":"sensitive"}]}')
+        fields = dr.safe_validation_fields(422, raw)
+        self.assertEqual(fields, [
+            {'resource':'git_tree','field':'tree','code':'invalid'},
+            {'resource':'other','field':'other','code':'other'},
+        ])
+        self.assertNotIn('secret', json.dumps(fields))
+        self.assertEqual(dr.safe_validation_fields(403, raw), [])
+
+    def test_tree_request_metrics_contain_no_paths_or_shas(self):
+        body = {'tree': [
+            {'path':'private/name.txt','mode':'100644','type':'blob','sha':'a'*40},
+            {'path':'b.txt','mode':'100644','type':'blob','sha':'b'*40},
+            {'path':'b.txt','mode':'100644','type':'blob','sha':'c'*40},
+        ]}
+        metrics = dr.safe_request_metrics(body)
+        self.assertEqual(metrics['tree_entry_count'], 3)
+        self.assertEqual(metrics['unique_path_count'], 2)
+        self.assertEqual(metrics['max_path_length'], len('private/name.txt'))
+        self.assertNotIn('private', json.dumps(metrics))
+        self.assertNotIn('aaaa', json.dumps(metrics))
+
 
 if __name__ == '__main__':
     unittest.main()
