@@ -229,5 +229,31 @@ class DRTests(unittest.TestCase):
         self.assertNotIn('aaaa', json.dumps(metrics))
 
 
+    def test_actions_annotation_exposes_only_sanitized_422_evidence(self):
+        result = {
+            'status': 'BLOCKED',
+            'failed_api_operation': 'POST:git/trees',
+            'failed_http_status': 422,
+            'safe_validation_fields': [
+                {'resource': 'git_tree', 'field': 'tree', 'code': 'invalid'},
+                {'resource': 'SECRET_PATH', 'field': '/private/file', 'code': 'raw message'},
+            ],
+            'request_metrics': {
+                'request_payload_bytes': 12345,
+                'tree_entry_count': 607,
+                'unique_path_count': 607,
+                'max_path_length': 88,
+                'private_path': '/private/file',
+            },
+        }
+        annotation = dr.actions_result_annotation(result)
+        self.assertIn('validation_fields=git_tree:tree:invalid,other:other:other', annotation)
+        self.assertIn('request_metrics=request_payload_bytes=12345,tree_entry_count=607,unique_path_count=607,max_path_length=88', annotation)
+        self.assertIn('http=422', annotation)
+        self.assertNotIn('SECRET_PATH', annotation)
+        self.assertNotIn('/private/file', annotation)
+        self.assertNotIn('raw message', annotation)
+
+
 if __name__ == '__main__':
     unittest.main()
