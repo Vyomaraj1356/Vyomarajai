@@ -99,6 +99,40 @@ class HarnessTests(unittest.TestCase):
         self.assertNotIn("tools", payload)
         self.assertEqual(request.get_header("Authorization"), "Bearer unit-test-only-secret")
 
+    def test_text_content_parts_are_joined(self):
+        provider_body = json.dumps({
+            "choices": [{"message": {"content": [
+                {"type": "text", "text": "Verified "},
+                {"type": "output_text", "text": "answer."}
+            ]}}]
+        }).encode()
+        with patch.object(llm_harness, "_open_request", return_value=FakeResponse(provider_body)):
+            answer = llm_harness.complete("hello", "jarvis", llm_harness.load_config(self.env))
+        self.assertEqual(answer, "Verified answer.")
+
+    def test_missing_text_reports_safe_structural_diagnostics(self):
+        secret = self.env["JARVIS_LLM_API_KEY"]
+        provider_body = json.dumps({
+            "choices": [{
+                "finish_reason": "stop",
+                "message": {
+                    "content": None,
+                    "refusal": "provider refusal detail that must not be echoed",
+                    "private_metadata": secret
+                }
+            }]
+        }).encode()
+        with patch.object(llm_harness, "_open_request", return_value=FakeResponse(provider_body)):
+            with self.assertRaises(llm_harness.HarnessError) as raised:
+                llm_harness.complete("hello", "jarvis", llm_harness.load_config(self.env))
+        detail = str(raised.exception)
+        self.assertIn("content type: NoneType", detail)
+        self.assertIn("finish_reason: stop", detail)
+        self.assertIn("message fields:", detail)
+        self.assertIn("refusal field present", detail)
+        self.assertNotIn(secret, detail)
+        self.assertNotIn("provider refusal detail", detail)
+
     def test_http_error_body_and_key_are_not_returned(self):
         secret = self.env["JARVIS_LLM_API_KEY"]
         error = HTTPError(
