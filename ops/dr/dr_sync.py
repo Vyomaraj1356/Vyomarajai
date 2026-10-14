@@ -48,7 +48,11 @@ def safe_api_error_reason(status, body):
         for item in errors if isinstance(item, dict)
     )
     text = message + ' ' + details
-    if '100000' in text or ('tree' in text and 'too large' in text):
+    # Do not infer a size-limit failure from the number 100000 alone: GitHub
+    # may mention its general API limit even when this request is far below it.
+    if 'tree' in text and any(phrase in text for phrase in (
+            'too large', 'size limit exceeded', 'maximum tree size',
+            'maximum number of tree entries exceeded')):
         return 'tree_size_limit'
     if 'tree' in text and ('invalid' in text or 'conflict' in text):
         return 'tree_validation_rejected'
@@ -59,11 +63,63 @@ def safe_api_error_reason(status, body):
     return 'github_validation_rejected'
 
 
+def safe_validation_fields(status, body):
+    """Extract only allowlisted structured GitHub validation fields; never messages."""
+    if status != 422:
+        return []
+    try:
+        payload = json.loads(body.decode('utf-8', errors='replace'))
+    except (ValueError, TypeError, AttributeError):
+        return []
+    errors = payload.get('errors', []) if isinstance(payload, dict) else []
+    allowed_resources = {'tree', 'git_tree', 'commit', 'blob', 'repository', 'other'}
+    allowed_fields = {'tree', 'path', 'sha', 'mode', 'type', 'base_tree', 'commit', 'parent', 'ref', 'message', 'content', 'encoding', 'other'}
+    allowed_codes = {'invalid', 'missing', 'already_exists', 'custom', 'unprocessable', 'other'}
+    safe = []
+    for item in errors[:20] if isinstance(errors, list) else []:
+        if not isinstance(item, dict):
+            continue
+        resource_raw = str(item.get('resource', '')).lower()
+        # GitHub serializes this resource as GitTree; normalize its lowercase form.
+        resource = {'gittree': 'git_tree'}.get(resource_raw, resource_raw)
+        field = str(item.get('field', '')).lower()
+        code = str(item.get('code', '')).lower()
+        safe.append({
+            'resource': resource if resource in allowed_resources else 'other',
+            'field': field if field in allowed_fields else 'other',
+            'code': code if code in allowed_codes else 'other',
+        })
+    return safe
+
+
+def safe_request_metrics(body):
+    """Return payload shape metrics only; do not retain paths, SHAs, or file contents."""
+    if body is None:
+        return {'request_payload_bytes': 0}
+    try:
+        # Match GitHub.request's exact json.dumps(body).encode() serialization.
+        encoded = json.dumps(body).encode('utf-8')
+        metrics = {'request_payload_bytes': len(encoded)}
+        if isinstance(body, dict) and isinstance(body.get('tree'), list):
+            entries = body['tree']
+            paths = [item.get('path') for item in entries if isinstance(item, dict) and isinstance(item.get('path'), str)]
+            metrics.update({
+                'tree_entry_count': len(entries),
+                'unique_path_count': len(set(paths)),
+                'max_path_length': max((len(path) for path in paths), default=0),
+            })
+        return metrics
+    except (TypeError, ValueError):
+        return {'request_payload_bytes': None}
+
+
 class APIError(CheckError):
-    def __init__(self, status, operation=None, safe_reason=None):
+    def __init__(self, status, operation=None, safe_reason=None, validation_fields=None, request_metrics=None):
         self.status = status
         self.operation = operation
         self.safe_reason = safe_reason
+        self.validation_fields = validation_fields or []
+        self.request_metrics = request_metrics or {}
         explanation = {
             401: 'Invalid or expired credentials; reconnect GitHub / review the Actions secret.',
             403: 'Access denied or rate limited; review repository/Actions permissions.',
@@ -123,8 +179,11 @@ class GitHub:
                         except ValueError: raise APIError(exc.code, operation) from None
                     if not 0 <= delay <= 60: raise APIError(exc.code, operation) from None
                     time.sleep(max(1, delay)); continue
-                safe_reason = safe_api_error_reason(exc.code, exc.read())
-                raise APIError(exc.code, operation, safe_reason) from None
+                response_body = exc.read()
+                safe_reason = safe_api_error_reason(exc.code, response_body)
+                validation_fields = safe_validation_fields(exc.code, response_body)
+                request_metrics = safe_request_metrics(body) if exc.code == 422 else {}
+                raise APIError(exc.code, operation, safe_reason, validation_fields, request_metrics) from None
             except (urllib.error.URLError, TimeoutError, OSError):
                 if method == 'GET' and attempt < 2:
                     time.sleep(2 ** attempt); continue
@@ -290,7 +349,7 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
 
 
 def actions_result_annotation(result):
-    """Closed-vocabulary public error/success signal, available without log downloads."""
+    """Closed-vocabulary public signal; include sanitized 422 shape evidence."""
     status = result.get('status')
     if status not in ('MATCH', 'MISMATCH', 'BLOCKED'): status = 'UNKNOWN'
     operation = result.get('failed_api_operation')
@@ -299,11 +358,39 @@ def actions_result_annotation(result):
     http = result.get('failed_http_status')
     http = str(http) if type(http) is int and 100 <= http <= 599 else 'UNAVAILABLE'
     count = result.get('target_only_files_awaiting_review')
-    gate = f'; target_only_files_awaiting_review={count}' if type(count) is int and count > 0 else ''
+    gate = f'; target_only_files_awaiting_review={count}' if type(count) is int and 0 < count <= 10000000 else ''
     evidence = ''
     for label, value in [('primary_tree', result.get('primary', {}).get('tree')), ('secondary_tree', result.get('secondary', {}).get('tree')), ('rollback_commit', result.get('rollback_commit'))]:
         if isinstance(value, str) and re.fullmatch(r'[0-9a-f]{40}', value): evidence += f'; {label}={value}'
     if result.get('data_match') is True: evidence += '; data_match=true'
+
+    # Only emit fixed allowlisted enums; never echo API messages, paths, SHAs from
+    # request payloads, or raw response bodies into public workflow annotations.
+    safe_values = {
+        'resource': {'tree', 'git_tree', 'commit', 'blob', 'repository', 'other'},
+        'field': {'tree', 'path', 'sha', 'mode', 'type', 'base_tree', 'commit', 'parent', 'ref', 'message', 'content', 'encoding', 'other'},
+        'code': {'invalid', 'missing', 'already_exists', 'custom', 'unprocessable', 'other'},
+    }
+    fields = []
+    raw_fields = result.get('safe_validation_fields', [])
+    if isinstance(raw_fields, list):
+        for item in raw_fields[:20]:
+            if not isinstance(item, dict): continue
+            values = []
+            for key in ('resource', 'field', 'code'):
+                value = item.get(key)
+                values.append(value if isinstance(value, str) and value in safe_values[key] else 'other')
+            fields.append(':'.join(values))
+    if fields: evidence += '; validation_fields=' + ','.join(fields)
+
+    metrics = result.get('request_metrics', {})
+    metric_parts = []
+    if isinstance(metrics, dict):
+        for key in ('request_payload_bytes', 'tree_entry_count', 'unique_path_count', 'max_path_length'):
+            value = metrics.get(key)
+            if type(value) is int and 0 <= value <= 1000000000:
+                metric_parts.append(f'{key}={value}')
+    if metric_parts: evidence += '; request_metrics=' + ','.join(metric_parts)
     return f'status={status}; failed_api_operation={operation}; http={http}; traffic_switched=NONE' + gate + evidence
 
 
@@ -322,7 +409,9 @@ def main():
         result = {'status': 'BLOCKED', 'detail': str(exc) if isinstance(exc, CheckError)
                   else 'Malformed source/API response; no success claimed',
                   'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None), 'failed_http_status': getattr(exc, 'status', None),
-                  'target_only_files_awaiting_review': exc.count if isinstance(exc, TargetOnlyRemovalRequired) else None}
+                  'target_only_files_awaiting_review': exc.count if isinstance(exc, TargetOnlyRemovalRequired) else None,
+                  'safe_validation_fields': getattr(exc, 'validation_fields', []),
+                  'request_metrics': getattr(exc, 'request_metrics', {})}
         code = 2
     result['checked_at_utc'] = datetime.now(timezone.utc).isoformat()
     result['requested_operation'] = 'sync' if args.sync else 'read_only_verification'

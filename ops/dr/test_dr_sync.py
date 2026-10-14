@@ -197,9 +197,65 @@ class DRTests(unittest.TestCase):
                          'tree_validation_rejected')
         self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"Tree is too large: 100000"}'),
                          'tree_size_limit')
+        self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"Request rejected with reference 100000"}'),
+                         'github_validation_rejected')
         self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"private/path secret details"}'),
                          'github_validation_rejected')
         self.assertIsNone(dr.safe_api_error_reason(403, b'{"message":"anything"}'))
+
+    def test_422_validation_fields_are_structured_allowlisted_only(self):
+        raw = (b'{"message":"do not persist this secret message",'
+               b'"errors":[{"resource":"GitTree","field":"tree","code":"invalid",'
+               b'"message":"private path /secret/token"},'
+               b'{"resource":"unexpected-resource","field":"secret-path",'
+               b'"code":"private-code","message":"sensitive"}]}')
+        fields = dr.safe_validation_fields(422, raw)
+        self.assertEqual(fields, [
+            {'resource':'git_tree','field':'tree','code':'invalid'},
+            {'resource':'other','field':'other','code':'other'},
+        ])
+        self.assertNotIn('secret', json.dumps(fields))
+        self.assertEqual(dr.safe_validation_fields(403, raw), [])
+
+    def test_tree_request_metrics_contain_no_paths_or_shas(self):
+        body = {'tree': [
+            {'path':'private/name.txt','mode':'100644','type':'blob','sha':'a'*40},
+            {'path':'b.txt','mode':'100644','type':'blob','sha':'b'*40},
+            {'path':'b.txt','mode':'100644','type':'blob','sha':'c'*40},
+        ]}
+        metrics = dr.safe_request_metrics(body)
+        self.assertEqual(metrics['request_payload_bytes'], len(json.dumps(body).encode('utf-8')))
+        self.assertEqual(metrics['tree_entry_count'], 3)
+        self.assertEqual(metrics['unique_path_count'], 2)
+        self.assertEqual(metrics['max_path_length'], len('private/name.txt'))
+        self.assertNotIn('private', json.dumps(metrics))
+        self.assertNotIn('aaaa', json.dumps(metrics))
+
+
+    def test_actions_annotation_exposes_only_sanitized_422_evidence(self):
+        result = {
+            'status': 'BLOCKED',
+            'failed_api_operation': 'POST:git/trees',
+            'failed_http_status': 422,
+            'safe_validation_fields': [
+                {'resource': 'git_tree', 'field': 'tree', 'code': 'invalid'},
+                {'resource': 'SECRET_PATH', 'field': '/private/file', 'code': 'raw message'},
+            ],
+            'request_metrics': {
+                'request_payload_bytes': 12345,
+                'tree_entry_count': 607,
+                'unique_path_count': 607,
+                'max_path_length': 88,
+                'private_path': '/private/file',
+            },
+        }
+        annotation = dr.actions_result_annotation(result)
+        self.assertIn('validation_fields=git_tree:tree:invalid,other:other:other', annotation)
+        self.assertIn('request_metrics=request_payload_bytes=12345,tree_entry_count=607,unique_path_count=607,max_path_length=88', annotation)
+        self.assertIn('http=422', annotation)
+        self.assertNotIn('SECRET_PATH', annotation)
+        self.assertNotIn('/private/file', annotation)
+        self.assertNotIn('raw message', annotation)
 
 
 if __name__ == '__main__':
