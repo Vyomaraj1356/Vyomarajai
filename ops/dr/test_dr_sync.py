@@ -197,6 +197,8 @@ class DRTests(unittest.TestCase):
                          'tree_validation_rejected')
         self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"Tree is too large: 100000"}'),
                          'tree_size_limit')
+        self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"Request rejected with reference 100000"}'),
+                         'github_validation_rejected')
         self.assertEqual(dr.safe_api_error_reason(422, b'{"message":"private/path secret details"}'),
                          'github_validation_rejected')
         self.assertIsNone(dr.safe_api_error_reason(403, b'{"message":"anything"}'))
