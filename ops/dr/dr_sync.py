@@ -344,7 +344,7 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
 
 
 def actions_result_annotation(result):
-    """Closed-vocabulary public error/success signal, available without log downloads."""
+    """Closed-vocabulary public signal; include sanitized 422 shape evidence."""
     status = result.get('status')
     if status not in ('MATCH', 'MISMATCH', 'BLOCKED'): status = 'UNKNOWN'
     operation = result.get('failed_api_operation')
@@ -353,11 +353,39 @@ def actions_result_annotation(result):
     http = result.get('failed_http_status')
     http = str(http) if type(http) is int and 100 <= http <= 599 else 'UNAVAILABLE'
     count = result.get('target_only_files_awaiting_review')
-    gate = f'; target_only_files_awaiting_review={count}' if type(count) is int and count > 0 else ''
+    gate = f'; target_only_files_awaiting_review={count}' if type(count) is int and 0 < count <= 10000000 else ''
     evidence = ''
     for label, value in [('primary_tree', result.get('primary', {}).get('tree')), ('secondary_tree', result.get('secondary', {}).get('tree')), ('rollback_commit', result.get('rollback_commit'))]:
         if isinstance(value, str) and re.fullmatch(r'[0-9a-f]{40}', value): evidence += f'; {label}={value}'
     if result.get('data_match') is True: evidence += '; data_match=true'
+
+    # Only emit fixed allowlisted enums; never echo API messages, paths, SHAs from
+    # request payloads, or raw response bodies into public workflow annotations.
+    safe_values = {
+        'resource': {'tree', 'git_tree', 'commit', 'blob', 'repository', 'other'},
+        'field': {'tree', 'path', 'sha', 'mode', 'type', 'base_tree', 'commit', 'parent', 'ref', 'message', 'content', 'encoding', 'other'},
+        'code': {'invalid', 'missing', 'already_exists', 'custom', 'unprocessable', 'other'},
+    }
+    fields = []
+    raw_fields = result.get('safe_validation_fields', [])
+    if isinstance(raw_fields, list):
+        for item in raw_fields[:20]:
+            if not isinstance(item, dict): continue
+            values = []
+            for key in ('resource', 'field', 'code'):
+                value = item.get(key)
+                values.append(value if isinstance(value, str) and value in safe_values[key] else 'other')
+            fields.append(':'.join(values))
+    if fields: evidence += '; validation_fields=' + ','.join(fields)
+
+    metrics = result.get('request_metrics', {})
+    metric_parts = []
+    if isinstance(metrics, dict):
+        for key in ('request_payload_bytes', 'tree_entry_count', 'unique_path_count', 'max_path_length'):
+            value = metrics.get(key)
+            if type(value) is int and 0 <= value <= 1000000000:
+                metric_parts.append(f'{key}={value}')
+    if metric_parts: evidence += '; request_metrics=' + ','.join(metric_parts)
     return f'status={status}; failed_api_operation={operation}; http={http}; traffic_switched=NONE' + gate + evidence
 
 
