@@ -48,7 +48,11 @@ def safe_api_error_reason(status, body):
         for item in errors if isinstance(item, dict)
     )
     text = message + ' ' + details
-    if '100000' in text or ('tree' in text and 'too large' in text):
+    # Do not infer a size-limit failure from the number 100000 alone: GitHub
+    # may mention its general API limit even when this request is far below it.
+    if 'tree' in text and any(phrase in text for phrase in (
+            'too large', 'size limit exceeded', 'maximum tree size',
+            'maximum number of tree entries exceeded')):
         return 'tree_size_limit'
     if 'tree' in text and ('invalid' in text or 'conflict' in text):
         return 'tree_validation_rejected'
