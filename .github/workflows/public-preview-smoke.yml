@@ -79,7 +79,7 @@ jobs:
               catalog = json_response(path)
               assert catalog.get("status") == "local_catalog_loaded", f"{experience}: catalog did not load"
               assert isinstance(catalog.get("items"), list), f"{experience}: catalog items missing or invalid"
-              assert isinstance(catalog.get("source_references"), list), f"{experience}: source references missing or invalid"
+              assert isinstance(catalog.get("overview_source_references"), list), f"{experience}: source references missing or invalid"
               assert catalog.get("provider") is None, f"{experience}: unexpected provider claim"
               assert catalog.get("ai_calls_made") is False, f"{experience}: unexpected AI-call claim"
               assert catalog.get("publishing_enabled") is False, f"{experience}: publishing must remain disabled"
