@@ -291,7 +291,7 @@ def main():
             diff = list(difflib.unified_diff(current.splitlines(), rendered.splitlines(),
                                             fromfile=OUTPUT.name + ' (checked-in)',
                                             tofile=OUTPUT.name + ' (generated)', lineterm=''))
-            print('\\n'.join(diff[:160]))
+            print('\n'.join(diff[:160]))
             raise SystemExit(f'{OUTPUT.name} is out of date; rerun without --check')
         print(f'OK: {OUTPUT.name} matches the repository sources')
     else:
