@@ -25,3 +25,6 @@ ci-diagnostics.log
 
 # Local content-alignment scan output (the maintenance tool writes it on every run)
 reports/maintenance/
+
+# Legacy owner-local Jarvis configuration (review history separately)
+ops/jarvis/jarvis.env
