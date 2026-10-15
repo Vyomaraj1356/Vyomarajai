@@ -26,8 +26,8 @@ Generated from the checked-in registry, content and configuration files by `buil
 
 ### Approved structural changes carried in this registry
 
-- **ENTERTAINMENT 38 → 35**: six hubs (Comedy, Cartoon, Music, Movie, Wit, Shayari) were reclassified from counted sub-agents to uncounted parent headings — kept, not deleted.
-- **FINANCE 8 → 7 and EDU 15 → 18**: the Government Schemes position moved from FINANCE to EDU as one owner-approved transfer (`EDU-GOV-S1`).
+- **ENTERTAINMENT 38 → 35**: six hubs (Comedy, Cartoon, Music, Movie, Wit, Shayari) were reclassified from counted agents to uncounted headings, then three Podcast capabilities (SCRIPT, PRODUCE, PUBLISH) were placed under Entertainment; the six hubs are kept, not deleted.
+- **FINANCE 8 → 7 and EDU 15 → 18**: Government Schemes moved from FINANCE to EDU as one owner-approved transfer (`EDU-GOV-S1`); Podcast RESEARCH and ANALYSIS also belong to EDU. the Podcast category is no longer standalone; the legacy source remains unchanged.
 - **BHAKTI 2 → 3**: `BHAKTI-AGHOR-S1` (Aghor & Aghori) added as an explicitly requested, view-only editorial route — not a deployed autonomous teacher.
 
 ### Named sub-agents (current)
@@ -37,7 +37,6 @@ Generated from the checked-in registry, content and configuration files by `buil
 - **ENTERTAINMENT**: ENT-INDICOM INDICOM; ENT-CRITICISM Criticism gate; PODCAST-REF-02 SCRIPT; PODCAST-REF-03 PRODUCE; PODCAST-REF-05 PUBLISH
 - **SOCIAL PLATFORM (stable ID: PLATFORM)**: PLATFORM-REF-01 YouTube; PLATFORM-REF-02 Instagram; PLATFORM-REF-03 Facebook; PLATFORM-REF-04 TikTok; PLATFORM-REF-05 X; PLATFORM-REF-06 LinkedIn; PLATFORM-REF-07 Telegram; PLATFORM-REF-08 WhatsApp; PLATFORM-REF-09 Discord; PLATFORM-REF-10 Pinterest; PLATFORM-REF-11 Threads; PLATFORM-REF-12 Snapchat; PLATFORM-REF-13 Reddit; PLATFORM-REF-14 Twitch; PLATFORM-REF-15 Vimeo; PLATFORM-REF-16 Tumblr; PLATFORM-REF-17 Mastodon; PLATFORM-REF-18 EARN; PLATFORM-REF-19 AI
 - **WAR**: WAR-REF-01 PAST; WAR-REF-02 HISTORY; WAR-REF-03 PRESENT; WAR-REF-04 FUTURE; WAR-REF-05 CROSS-CUTTING
-- **Podcast capability family (not a category)**: RESEARCH/ANALYSIS → EDU; SCRIPT/PRODUCE/PUBLISH → ENTERTAINMENT.
 
 Serial-only entries are shown in the viewer as `REF`/serial identifiers (`display_policy`: Show unnamed entries by serial only; null names remain unassigned. Display serials are not recovered slot identities.). Hierarchy: Only the six explicitly approved hubs acquire child edges. Other missing sub-sub-agent mappings remain UNMAPPED; do not invent a third tier.
 
