@@ -30,6 +30,9 @@ class ReportTests(unittest.TestCase):
 
     def test_no_secret_values_are_printed(self):
         text = report.render()
+        if not report.JARVIS_ENV.is_file():
+            self.assertIn('not present; provider configuration must be supplied outside Git', text)
+            return
         for line in report.JARVIS_ENV.read_text().splitlines():
             if '=' in line and not line.lstrip().startswith('#'):
                 value = line.split('=', 1)[1].strip()

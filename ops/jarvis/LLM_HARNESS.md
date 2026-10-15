@@ -61,3 +61,18 @@ python3 ops/jarvis/test_llm_harness.py
 ```
 
 Tests mock the HTTP client and make no network calls.
+
+
+## Named prompt presets
+
+The versioned user-owned preset registry lives at `config/ai/PROMPT_REGISTRY_V1.json`. The harness accepts `--preset ID`; the role contract remains active and the selected preset is sent as a separate system message. Presets are reusable project instructions, not private ChatGPT system prompts or hidden reasoning.
+
+```sh
+python3 ops/jarvis/llm_harness.py --list-presets
+printf '%s\n' 'Audit this proposal and label facts versus assumptions.' | python3 ops/jarvis/llm_harness.py --role vyomaraj --preset truthmode
+python3 -m unittest discover -s ops/jarvis -p 'test_*.py' -v
+```
+
+Listing presets works offline without provider configuration. Actual completion remains disabled until an owner-approved endpoint/model and any required key are configured in a protected environment. The harness still has no tools, does not publish, and does not execute captured prompts.
+
+The legacy `ops/jarvis/jarvis.env` file has been removed from the current tree and added to `.gitignore`; this does not erase historical Git revisions. The active controller does not source it. Review historical revisions for exposed personal data or credentials and rotate any real credentials found. The generated configuration report now handles the file being absent.
