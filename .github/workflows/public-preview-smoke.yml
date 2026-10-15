@@ -1,0 +1,107 @@
+name: Public Preview Smoke Gate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/public-preview-smoke.yml'
+      - 'ops/vyomaraj-core/experience/public_landing_server.py'
+      - 'ops/vyomaraj-core/experience/**'
+      - 'ops/vyomaraj-core/bhakti-experience/**'
+      - 'ops/vyomaraj-core/liquor-bar/**'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-preview-smoke
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check live public preview routes (read-only / ephemeral plan only)
+        env:
+          BASE_URL: https://vyomaraj-public-preview.onrender.com
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          base = os.environ["BASE_URL"].rstrip("/")
+
+          def request(path, method="GET", payload=None):
+              data = None if payload is None else json.dumps(payload).encode("utf-8")
+              headers = {"User-Agent": "Vyomaraj-Public-Preview-Smoke/1.0"}
+              if data is not None:
+                  headers["Content-Type"] = "application/json"
+              last_error = None
+              for attempt in range(3):
+                  try:
+                      req = urllib.request.Request(base + path, data=data, headers=headers, method=method)
+                      with urllib.request.urlopen(req, timeout=12) as response:
+                          raw = response.read(300_000)
+                          return response.status, response.headers.get("Content-Type", ""), raw
+                  except (urllib.error.URLError, TimeoutError, OSError) as exc:
+                      last_error = exc
+                      if attempt < 2:
+                          time.sleep(2 ** attempt)
+              raise RuntimeError(f"{method} {path} did not respond after retries: {type(last_error).__name__}")
+
+          def json_response(path, method="GET", payload=None):
+              status, content_type, raw = request(path, method, payload)
+              if status != 200:
+                  raise AssertionError(f"{method} {path}: expected HTTP 200, got {status}")
+              if "json" not in content_type.lower():
+                  raise AssertionError(f"{method} {path}: expected JSON content type")
+              try:
+                  return json.loads(raw)
+              except (ValueError, UnicodeDecodeError):
+                  raise AssertionError(f"{method} {path}: invalid JSON response") from None
+
+          health = json_response("/healthz")
+          assert health.get("status") == "ok", "health endpoint status mismatch"
+          assert health.get("service") == "vyomaraj-public-preview", "unexpected service identity"
+          assert health.get("scope") == "process_liveness_only", "health scope must not overclaim readiness"
+          print("PASS: /healthz — process liveness only")
+
+          for experience in ("bhakti", "liquor-bar"):
+              path = "/api/catalog?" + urllib.parse.urlencode({"experience": experience})
+              catalog = json_response(path)
+              assert catalog.get("status") == "local_catalog_loaded", f"{experience}: catalog did not load"
+              assert isinstance(catalog.get("items"), list), f"{experience}: catalog items missing or invalid"
+              assert isinstance(catalog.get("source_references"), list), f"{experience}: source references missing or invalid"
+              assert catalog.get("provider") is None, f"{experience}: unexpected provider claim"
+              assert catalog.get("ai_calls_made") is False, f"{experience}: unexpected AI-call claim"
+              assert catalog.get("publishing_enabled") is False, f"{experience}: publishing must remain disabled"
+              assert catalog.get("production_deployed") is False, f"{experience}: production must not be claimed"
+              print(f"PASS: /api/catalog?experience={experience} — {len(catalog['items'])} local items; no provider or publishing claim")
+
+          plan = json_response("/api/plan", method="POST", payload={
+              "experience": "bhakti",
+              "topic_id": "overview",
+              "mode": "3d",
+              "diet": "all"
+          })
+          assert plan.get("status") == "local_plan_created", "local planner did not create a plan"
+          assert plan.get("experience") == "bhakti", "planner experience mismatch"
+          assert isinstance(plan.get("role_handoff"), list) and len(plan["role_handoff"]) >= 1, "planner role handoff missing"
+          assert isinstance(plan.get("source_references"), list), "planner source references missing"
+          assert isinstance(plan.get("review_gates"), list) and plan["review_gates"], "planner review gates missing"
+          assert plan.get("provider") is None, "local planner must not claim a live provider"
+          assert plan.get("ai_calls_made") is False, "local planner must not claim AI calls"
+          assert plan.get("publishing_enabled") is False, "publishing must remain disabled"
+          assert plan.get("production_deployed") is False, "production must not be claimed"
+          assert plan.get("dr_sync_verified") is False, "local planner must not claim DR verification"
+          print("PASS: POST /api/plan — deterministic local plan; provider, publishing, production and DR remain unclaimed")
+          print("PASS: all public preview smoke checks completed; no credentials used and no persistent writes performed")
+          PY
