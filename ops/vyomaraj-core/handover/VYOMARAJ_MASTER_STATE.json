@@ -236,13 +236,13 @@
     "runtime_dr": false
   },
   "content": {
-    "current_categories": 13,
+    "current_categories": 12,
     "current_counted_slots": 128,
     "uncounted_parent_headings": 6,
     "historical_reported_products": 421,
     "historical_snapshot": "AGENT_CONTENT_REGISTRY_V16_7_24.json",
-    "current_indexed_references": 173,
+    "current_indexed_references": 197,
     "status": "VERIFIED_AS_REPOSITORY_INVENTORY_NOT_LIVE_RUNTIME"
   },
-  "last_change": "2026-10-06: PR #36 (Bharath/Laxman location-aware communication + feedback controls) and PR #37 (ShriYantra high-assurance cryptographic perimeter) confirmed MERGED into main and integrated. Two path defects they introduced were fixed and regression-tested: crypto_verify.py and verify_master_state.py resolved their state files through parents[3]/parents[2] (the parent of the repository) and so always failed — the ShriYantra Crypto Baseline and Master State workflows were red on main. PR #36 also committed a personal email literally into six public files; the privacy guard correctly failed the build. The address was redacted and an owner-controlled contact seam shipped (set_public_contact.py + config/public-contact.json + allowlist-aware sanitize_personal_data.py): nothing is allowlisted until the owner publishes it with --confirm-publish. Offline gate restored to 48/48 (0 failures); primary→secondary/DR replication unblocked (it needs offline-tests to pass). No live KMS/HSM, mTLS, Gmail, social, location or voice connectivity is claimed by any of this."
+  "last_change": "2026-10-15: current taxonomy reconciled to 12 categories / 128 counted slots; PLATFORM display label renamed to Social Platform without changing stable IDs; Podcast capabilities reparented to EDU and ENTERTAINMENT. This is repository metadata alignment only; the 14-category / 153-agent target remains blocked pending exact FOOD, EDU, REAL_ESTATE and Collaboration source reconciliation. 2026-10-06: PR #36 (Bharath/Laxman location-aware communication + feedback controls) and PR #37 (ShriYantra high-assurance cryptographic perimeter) confirmed MERGED into main and integrated. Two path defects they introduced were fixed and regression-tested: crypto_verify.py and verify_master_state.py resolved their state files through parents[3]/parents[2] (the parent of the repository) and so always failed — the ShriYantra Crypto Baseline and Master State workflows were red on main. PR #36 also committed a personal email literally into six public files; the privacy guard correctly failed the build. The address was redacted and an owner-controlled contact seam shipped (set_public_contact.py + config/public-contact.json + allowlist-aware sanitize_personal_data.py): nothing is allowlisted until the owner publishes it with --confirm-publish. Offline gate restored to 48/48 (0 failures); primary→secondary/DR replication unblocked (it needs offline-tests to pass). No live KMS/HSM, mTLS, Gmail, social, location or voice connectivity is claimed by any of this."
 }

@@ -11,13 +11,13 @@ class RegistryTests(unittest.TestCase):
         self.source=json.loads(r.SNAPSHOT.read_text());self.rules=json.loads((r.HERE/'RECONCILIATION_RULES.json').read_text())
         self.data=r.build(self.source,self.rules)
     def test_current_totals(self):
-        self.assertEqual(self.data['totals']['sub_agents'],128);self.assertEqual(self.data['totals']['main_agents'],13)
+        self.assertEqual(self.data['totals']['sub_agents'],128);self.assertEqual(self.data['totals']['main_agents'],12)
         self.assertEqual(self.data['totals']['uncounted_parent_headings'],6)
     def test_all_active_entities_inherit_one_shared_knowledge_reference(self):
         shared=self.data['shared_knowledge_inheritance']
         self.assertEqual(shared['policy_id'],'UNIVERSAL_KNOWLEDGE_EVOLUTION_V1')
         self.assertEqual(shared['inheritance_mode'],'shared_policy_reference')
-        self.assertEqual(shared['current_coverage']['category_count'],13)
+        self.assertEqual(shared['current_coverage']['category_count'],12)
         self.assertEqual(shared['current_coverage']['agent_count'],128)
         self.assertTrue(shared['future_entities_inherit_by_default'])
         self.assertFalse(shared['per_entity_copy_required'])
@@ -28,7 +28,7 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(shared['policy_ref'],r.KNOWLEDGE_POLICY_REF)
         self.assertEqual(shared['inheritance_mode'],'shared_policy_reference')
         self.assertEqual(shared['capability_domain_ids'],['MATIMAN','SHRUTIMAN','KETUMAN','GATIMAN','DHRITIMAN'])
-        self.assertEqual(shared['current_coverage']['category_count'],13)
+        self.assertEqual(shared['current_coverage']['category_count'],12)
         self.assertEqual(shared['current_coverage']['agent_count'],128)
         self.assertFalse(shared['permission_grants_inherited'])
         self.assertFalse(shared['root_owner_authority_inherited'])
@@ -39,7 +39,7 @@ class RegistryTests(unittest.TestCase):
                             for agent in self.data['agents']))
     def test_education_finance_transfer(self):
         cats={c['id']:c for c in self.data['categories']}
-        self.assertEqual((cats['EDU']['name'],cats['EDU']['sub_agents'],cats['FINANCE']['sub_agents']),('Education',16,7))
+        self.assertEqual((cats['EDU']['name'],cats['EDU']['sub_agents'],cats['FINANCE']['sub_agents']),('Education',18,7))
         scheme=[a for a in self.data['agents'] if a['id']=='EDU-GOV-S1'];self.assertEqual(len(scheme),1)
         self.assertEqual(scheme[0]['parent_id'],'EDU');self.assertFalse(any(a['name']=='Government Schemes' and a['category_id']!='EDU' for a in self.data['agents']))
     def test_all_six_hubs_uncounted(self):
@@ -56,7 +56,7 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(parents['ENT-LIQUOR-S1'],'ENTERTAINMENT');self.assertEqual(parents['ENT-BAR-S1'],'ENTERTAINMENT')
     def test_indicom_criticism_distinct(self):
         names=[a['name'] for a in self.data['agents'] if a['category_id']=='ENTERTAINMENT' and a['name']]
-        self.assertEqual(names,['INDICOM','Criticism gate'])
+        self.assertEqual(names,['INDICOM','Criticism gate','SCRIPT','PRODUCE','PUBLISH'])
     def test_no_names_coined_for_unknowns(self):
         unnamed=[a for a in self.data['agents'] if a['name'] is None]
         self.assertEqual(len(unnamed),86);self.assertTrue(all(a['name_status']=='UNKNOWN' for a in unnamed))
@@ -79,7 +79,7 @@ class RegistryTests(unittest.TestCase):
         for path,text in r.outputs().items():self.assertEqual(path.read_text(),text,path.name)
     def test_duplicate_category_exact_removed(self):
         self.source['categories'].append(copy.deepcopy(self.source['categories'][0]));d=r.build(self.source,self.rules)
-        self.assertEqual(d['totals']['main_agents'],13);self.assertEqual(len(d['count_reconciliation']['exact_duplicate_records_removed']),1)
+        self.assertEqual(d['totals']['main_agents'],12);self.assertEqual(len(d['count_reconciliation']['exact_duplicate_records_removed']),1)
     def test_conflicting_category_not_silently_deleted(self):
         c=copy.deepcopy(self.source['categories'][0]);c['products']=900;self.source['categories'].append(c)
         with self.assertRaisesRegex(ValueError,'Conflicting duplicate'):r.build(self.source,self.rules)

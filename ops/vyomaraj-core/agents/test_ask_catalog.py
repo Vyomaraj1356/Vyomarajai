@@ -42,7 +42,7 @@ class CatalogTests(unittest.TestCase):
         stats = self.catalog.stats()
         self.assertEqual(stats['positions'], 128)
         self.assertEqual(stats['content_references'], 197)
-        self.assertEqual(stats['categories'], 13)
+        self.assertEqual(stats['categories'], 12)
         self.assertEqual(stats['headings_uncounted'], 6)
         self.assertEqual(stats['named_positions'] + stats['unnamed_positions'], 128)
         self.assertEqual(stats['generation'], 'none — retrieval only, no model call')
