@@ -10,6 +10,8 @@ Make Vyomaraj the trend-intelligence orchestrator and Jarvis/Laxman the schedule
 
 Script: `ops/vyomaraj-core/trends/trend_intake.py`
 Tests: `ops/vyomaraj-core/trends/test_trend_intake.py`
+Prompt alias seed: `ops/vyomaraj-core/trends/prompt_alias_seed.json`
+Alias validator: `ops/vyomaraj-core/trends/prompt_alias_registry.py`
 
 The utility accepts JSONL records prepared by an authorized connector. It validates timestamps and score ranges, assigns a stable deduplication ID, calculates an explainable 0–100 priority score from seven 0–5 dimensions, records source authorization/terms flags, escalates recognized high-risk topics, and creates a review queue. It has no network, browser, provider, shell, or publishing capability. It treats all captured content as untrusted data.
 
