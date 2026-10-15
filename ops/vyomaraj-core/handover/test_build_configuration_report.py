@@ -49,7 +49,7 @@ class ReportTests(unittest.TestCase):
 
     def test_change_summary_is_present(self):
         text = report.render()
-        for expected in ('ENTERTAINMENT 38 → 32', 'FINANCE 8 → 7 and EDU 15 → 16', 'BHAKTI 2 → 3',
+        for expected in ('ENTERTAINMENT 38 → 35', 'FINANCE 8 → 7 and EDU 15 → 16', 'BHAKTI 2 → 3',
                          'runtime_status'):
             self.assertIn(expected, text)
 
