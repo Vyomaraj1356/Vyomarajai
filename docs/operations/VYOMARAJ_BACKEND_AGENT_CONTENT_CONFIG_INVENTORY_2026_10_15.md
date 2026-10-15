@@ -10,23 +10,23 @@
 - No secret values are reproduced. This audit does not change environment variables, deployments, access policy, DR targets, or publishing state.
 
 ## Agent and content categories
-Historical owner-supplied snapshot `AGENT_CONTENT_REGISTRY_V16_7_24.json` reports **13 categories, 133 sub-agent slots, 421 product counts**. These are source-reported counts, not runtime availability. Current structural registry reflects **128 counted sub-agent entries and 6 uncounted parent headings**; differences are intentional/recorded in its build report and should not be silently overwritten. Active item-level product totals remain unreconciled.
+Historical owner-supplied snapshot `AGENT_CONTENT_REGISTRY_V16_7_24.json` is a preserved legacy snapshot reporting **13 categories, 133 sub-agent slots, 421 product counts**. The current owner-approved taxonomy has **12 top-level categories**: PODCAST is no longer standalone and its five capability records are reparented across EDU (RESEARCH, ANALYSIS) and ENTERTAINMENT (SCRIPT, PRODUCE, PUBLISH). Current structural registry retains **128 counted sub-agent entries and 6 uncounted parent headings**. The legacy source file is deliberately preserved unchanged for audit/count reconciliation. Active item-level product totals remain unreconciled.
 
 | ID | Category | Historical sub-agents | Historical products | Registry note |
 |---|---|---:|---:|---|
 | FOOD | Food & Social Connect | 3 | 6 | Individual names incomplete |
-| EDU | Education & World Wisdom | 15 | 68 | Partial named roster; includes approved Government Schemes transfer in current structure |
+| EDU | Education & World Wisdom | 15 (legacy) | 68 (legacy) | Partial named roster; includes Government Schemes and podcast RESEARCH/ANALYSIS capabilities in current structure (18 structural entries) |
 | ASTRO | Astro-Celestial & Universal | 3 | 9 | Individual names incomplete |
 | FINANCE | Finance & Wealth | 8 | 15 | Current structural count differs after approved transfer |
 | LIFE | Life Coach & Wellness | 10 | 34 | Individual names incomplete |
 | BHAKTI | Bhakti Mandir — Ritual, Festival & Grantha | 2 | 8 | Current structure includes view-only Aghor route |
 | SPORTS | Sports & Legends | 14 | 29 | Individual names incomplete |
 | AGRI | Agriculture & Environment | 6 | 14 | Individual names incomplete |
-| ENTERTAINMENT | Comedy, Movies, Hollywood, Bollywood | 38 | 168 | Six parent headings are uncounted in current structural registry |
+| ENTERTAINMENT | Comedy, Movies, Hollywood, Bollywood | 38 (legacy) | 168 (legacy) | Six parent headings are uncounted; podcast SCRIPT/PRODUCE/PUBLISH capabilities are included in current structure (35 structural entries) |
 | PLATFORM | Social Hub, platforms & earning | 20 | 39 | 19 lanes named; one slot remains unmapped |
 | TOUR | Tour & Travel | 4 | 9 | Individual names incomplete |
 | WAR | War Room — Warriors | 5 | 13 | Five high-level lanes recorded |
-| PODCAST | Podcast & Entertainment Studio | 5 | 9 | Research, Script, Produce, Analysis, Publish |
+| PODCAST | — | — | — | Legacy-only row. Removed as a top-level category; capabilities now belong under EDU and ENTERTAINMENT. Legacy product count 9 is not redistributed without item-level mapping. |
 
 ### Named / structural roster highlights
 - EDU: Veda Rishi, Upanishad Guru, Gita Acharya, Mythology & Mystery Rishi, Vyomaraj Picker, Lectures Hub, Short Notes, Care & Bikes, Social Thinkers/Visionaries/Legends, Government Schemes; some source group slots remain unresolved.
@@ -34,8 +34,9 @@ Historical owner-supplied snapshot `AGENT_CONTENT_REGISTRY_V16_7_24.json` report
 - ENTERTAINMENT: INDICOM and Criticism gate are named; six hubs are represented as parent headings rather than counted agents.
 - PLATFORM: YouTube, Instagram, Facebook, TikTok, X, LinkedIn, Telegram, WhatsApp, Discord, Pinterest, Threads, Snapchat, Reddit, Twitch, Vimeo, Tumblr, Mastodon, EARN, AI; one of 20 slots remains unmapped.
 - WAR: PAST, HISTORY, PRESENT, FUTURE, CROSS-CUTTING.
-- PODCAST: RESEARCH, SCRIPT, PRODUCE, ANALYSIS, PUBLISH.
+- Podcast capabilities (not a standalone category): RESEARCH and ANALYSIS are under EDU; SCRIPT, PRODUCE and PUBLISH are under ENTERTAINMENT. The existing capability reference IDs are preserved.
 - All registry entries must be treated as `NOT_VERIFIED` for runtime unless there is separate successful live evidence.
+- Taxonomy migration: the current structural registry is updated to 12 top-level categories; the legacy `AGENT_CONTENT_REGISTRY_V16_7_24.json` source snapshot is intentionally not rewritten. The nine historical Podcast product counts remain legacy-only pending item-level mapping to EDU/Entertainment.
 
 ## Configuration and control files
 | File / area | What it controls | Evidence-based status / next action |
