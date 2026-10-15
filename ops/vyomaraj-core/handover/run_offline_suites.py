@@ -222,6 +222,9 @@ def main():
         summary = f'{total_tests} Python tests across {len(suites)} suites; {len(node_results)} Node checks; {len(builder_results)} builders; {len(failures)} failures'
         github_emit('notice' if not failures else 'error', 'offline suite summary', summary)
         for failure in failures[:3]:
+            print(f"FAILURE DETAIL: {failure['command']}", flush=True)
+            for line in failure['tail'].splitlines():
+                print(f"  {line}", flush=True)
             github_emit('error', f"failed: {failure['command'][:120]}", failure['tail'])
     print(f'{len(suites) + len(node_results) + len(builder_results) - len(failures)}/'
           f'{len(suites) + len(node_results) + len(builder_results)} suites/checks/builders passed')
