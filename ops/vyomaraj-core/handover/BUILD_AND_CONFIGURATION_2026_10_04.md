@@ -4,7 +4,7 @@ Generated from the checked-in registry, content and configuration files by `buil
 
 ## 1. Agents — current owner-approved structure
 
-- Registry status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-07)
+- Registry status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-15)
 - Main agents: **12** · counted sub-agent slots: **128** · named: **42** · serial-only (name UNKNOWN): **86**
 - Uncounted parent headings: **6** · historical reported products: **421** (active product count: None — not reconciled, deliberately not zero)
 - Source snapshot: `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json` (sha256 `9e301bfcb1c6e8b23c1bea4fbdcf0d9d12d4c457fe62d7ef60e3161ac3a908a9`); historical arithmetic validated: True
