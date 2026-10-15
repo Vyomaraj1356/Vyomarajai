@@ -146,7 +146,7 @@ def build(source,rules):
     require(sum(c['sub_agents'] for c in original)==133,'Source sub-agent count mismatch')
     for c in original:
         cid=c['id'];roster=source['rosters'].get(cid)
-        category={'id':cid,'name':rules['education_name'] if cid=='EDU' else c['description'],
+        category={'id':cid,'name':rules.get('category_names',{}).get(cid, rules['education_name'] if cid=='EDU' else c['description']),
                   'source_reported_sub_agents':c['sub_agents'],'source_reported_products':c['products'],
                   'active_product_count':None,'product_status':'UNRECONCILED_no_complete_item_level_mapping'}
         categories.append(category)
