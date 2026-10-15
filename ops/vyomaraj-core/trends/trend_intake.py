@@ -75,7 +75,8 @@ def normalize(record: dict[str, Any], now: datetime) -> dict[str, Any]:
     known_risks = sorted(set(risks) & RISK_FIELDS)
     # Risk terms from an adapter are labels only, never instructions.
     score = round(sum(clean_scores.values()) / len(SCORE_FIELDS) * 20, 1)
-    status = "HUMAN_REVIEW_REQUIRED" if known_risks else "REVIEW_QUEUE"
+    access_ok = record.get("terms_checked") is True and record.get("access_authorized") is True
+    status = "HOLD_SOURCE_ACCESS_UNVERIFIED" if not access_ok else ("HUMAN_REVIEW_REQUIRED" if known_risks else "REVIEW_QUEUE")
     return {
         "schema_version": 1,
         "record_id": stable_id(record),
@@ -98,7 +99,7 @@ def normalize(record: dict[str, Any], now: datetime) -> dict[str, Any]:
         "priority_score_0_to_100": score,
         "risk_flags": risks,
         "known_escalation_flags": known_risks,
-        "access_gate": "PASS" if record.get("terms_checked") is True and record.get("access_authorized") is True else "HOLD_SOURCE_ACCESS_UNVERIFIED",
+        "access_gate": "PASS" if access_ok else "HOLD_SOURCE_ACCESS_UNVERIFIED",
         "next_action": "human review; verify provenance, source terms, originality and claims",
         "content": {
             "prompt_or_instruction_executed": False,
