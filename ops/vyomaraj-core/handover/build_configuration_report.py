@@ -7,6 +7,7 @@ policy/integration configuration, the workflows and the recorded verification ev
 Run without arguments to write, with --check to verify the checked-in copy matches.
 """
 import argparse
+import difflib
 import hashlib
 import json
 import re
@@ -287,6 +288,10 @@ def main():
     if args.check:
         current = OUTPUT.read_text() if OUTPUT.is_file() else ''
         if current != rendered:
+            diff = list(difflib.unified_diff(current.splitlines(), rendered.splitlines(),
+                                            fromfile=OUTPUT.name + ' (checked-in)',
+                                            tofile=OUTPUT.name + ' (generated)', lineterm=''))
+            print('\\n'.join(diff[:160]))
             raise SystemExit(f'{OUTPUT.name} is out of date; rerun without --check')
         print(f'OK: {OUTPUT.name} matches the repository sources')
     else:
