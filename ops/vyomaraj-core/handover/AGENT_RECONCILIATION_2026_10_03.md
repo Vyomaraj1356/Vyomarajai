@@ -131,9 +131,10 @@ Serials are current display positions within each category, not recovered histor
 | 15 | Social Thinkers, Visionaries & Legends |  |
 | 16 | Government Schemes |  |
 
-Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and the Granthas”; no six individual names or assignments are inferred.
 | 17 | RESEARCH |  |
 | 18 | ANALYSIS |  |
+
+Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and the Granthas”; no six individual names or assignments are inferred.
 ### Astro-Celestial & Universal
 
 | Serial | Supplied/approved name (blank = not assigned) | Parent heading |
