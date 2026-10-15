@@ -78,7 +78,7 @@ The six-heading reclassification first gave 133 → 127. The later requested Agh
 | SPORTS | Sports & Legends | 14 | 0 | 29 |
 | AGRI | Agriculture & Environment | 6 | 0 | 14 |
 | ENTERTAINMENT | Entertainment — Comedy, Movies, Hollywood, Bollywood | 32 | 6 | 168 |
-| PLATFORM | Platform & Social Hub + Earn — All Platforms + Monetization | 20 | 0 | 39 |
+| PLATFORM | Social Platform — Social Channels, AI & Monetization | 20 | 0 | 39 |
 | TOUR | Tour and Travel | 4 | 0 | 9 |
 | WAR | War Room — Warriors | 5 | 0 | 13 |
 | PODCAST | Podcast & Entertainment Studio | 5 | 0 | 9 |
@@ -128,7 +128,7 @@ Education-related entertainment formats remain formats; that does not make Enter
 
 ## Serial-only roster
 
-Serials are current display positions within each category, not recovered historic slot numbers. Blank name cells deliberately remain blank. Internal IDs are available in the JSON/advanced viewer to preserve working integrations, not as newly coined names. PLATFORM display position 20 still has source slot UNMAPPED; it is not labelled historical S20.
+Serials are current display positions within each category, not recovered historic slot numbers. Blank name cells deliberately remain blank. Internal IDs are available in the JSON/advanced viewer to preserve working integrations, not as newly coined names. Social Platform (stable ID: PLATFORM) display position 20 still has source slot UNMAPPED; it is not labelled historical S20.
 
 ### Food & Social Connect
 
@@ -262,7 +262,7 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 | 30 |  |  |
 | 31 |  |  |
 | 32 |  |  |
-### Platform & Social Hub + Earn — All Platforms + Monetization
+### Social Platform — Social Channels, AI & Monetization
 
 | Serial | Supplied/approved name (blank = not assigned) | Parent heading |
 |---:|---|---|
