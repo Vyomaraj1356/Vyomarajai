@@ -75,4 +75,4 @@ python3 -m unittest discover -s ops/jarvis -p 'test_*.py' -v
 
 Listing presets works offline without provider configuration. Actual completion remains disabled until an owner-approved endpoint/model and any required key are configured in a protected environment. The harness still has no tools, does not publish, and does not execute captured prompts.
 
-The legacy `ops/jarvis/jarvis.env` file is ignored for future local use but is still tracked until its consumers and generated configuration reports are safely migrated. Review historical revisions for exposed personal data or credentials and rotate any real credentials found.
+The legacy `ops/jarvis/jarvis.env` file has been removed from the current tree and added to `.gitignore`; this does not erase historical Git revisions. The active controller does not source it. Review historical revisions for exposed personal data or credentials and rotate any real credentials found. The generated configuration report now handles the file being absent.
