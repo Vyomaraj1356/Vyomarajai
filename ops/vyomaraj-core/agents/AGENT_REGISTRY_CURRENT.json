@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "status": "CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory",
-  "updated": "2026-10-07",
+  "updated": "2026-10-15",
   "source_snapshot": "handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
   "historical_totals": {
     "main_agents": 13,
@@ -30,7 +30,7 @@
       "active_product_count": null,
       "product_status": "UNRECONCILED_no_complete_item_level_mapping",
       "unmapped_source_group_label": "Bharat Grantha, Chanakya and the Granthas",
-      "sub_agents": 16,
+      "sub_agents": 18,
       "headings": 0
     },
     {
@@ -100,7 +100,7 @@
       "source_reported_products": 168,
       "active_product_count": null,
       "product_status": "UNRECONCILED_no_complete_item_level_mapping",
-      "sub_agents": 32,
+      "sub_agents": 35,
       "headings": 6
     },
     {
@@ -128,16 +128,6 @@
       "name": "War Room — Warriors",
       "source_reported_sub_agents": 5,
       "source_reported_products": 13,
-      "active_product_count": null,
-      "product_status": "UNRECONCILED_no_complete_item_level_mapping",
-      "sub_agents": 5,
-      "headings": 0
-    },
-    {
-      "id": "PODCAST",
-      "name": "Podcast & Entertainment Studio",
-      "source_reported_sub_agents": 5,
-      "source_reported_products": 9,
       "active_product_count": null,
       "product_status": "UNRECONCILED_no_complete_item_level_mapping",
       "sub_agents": 5,
@@ -1939,8 +1929,8 @@
     },
     {
       "id": "PODCAST-REF-01",
-      "category_id": "PODCAST",
-      "parent_id": "PODCAST",
+      "category_id": "EDU",
+      "parent_id": "EDU",
       "name": "RESEARCH",
       "name_status": "SUPPLIED_OR_OWNER_APPROVED",
       "source_slot": null,
@@ -1953,8 +1943,8 @@
     },
     {
       "id": "PODCAST-REF-02",
-      "category_id": "PODCAST",
-      "parent_id": "PODCAST",
+      "category_id": "ENTERTAINMENT",
+      "parent_id": "ENTERTAINMENT",
       "name": "SCRIPT",
       "name_status": "SUPPLIED_OR_OWNER_APPROVED",
       "source_slot": null,
@@ -1967,8 +1957,8 @@
     },
     {
       "id": "PODCAST-REF-03",
-      "category_id": "PODCAST",
-      "parent_id": "PODCAST",
+      "category_id": "ENTERTAINMENT",
+      "parent_id": "ENTERTAINMENT",
       "name": "PRODUCE",
       "name_status": "SUPPLIED_OR_OWNER_APPROVED",
       "source_slot": null,
@@ -1981,8 +1971,8 @@
     },
     {
       "id": "PODCAST-REF-04",
-      "category_id": "PODCAST",
-      "parent_id": "PODCAST",
+      "category_id": "EDU",
+      "parent_id": "EDU",
       "name": "ANALYSIS",
       "name_status": "SUPPLIED_OR_OWNER_APPROVED",
       "source_slot": null,
@@ -1995,8 +1985,8 @@
     },
     {
       "id": "PODCAST-REF-05",
-      "category_id": "PODCAST",
-      "parent_id": "PODCAST",
+      "category_id": "ENTERTAINMENT",
+      "parent_id": "ENTERTAINMENT",
       "name": "PUBLISH",
       "name_status": "SUPPLIED_OR_OWNER_APPROVED",
       "source_slot": null,
@@ -2026,7 +2016,7 @@
     "future_entities_inherit_by_default": true,
     "per_entity_copy_required": false,
     "current_coverage": {
-      "category_count": 13,
+      "category_count": 12,
       "agent_count": 128,
       "mode": "all_current_registry_entries_inherit_by_reference"
     },
@@ -2060,7 +2050,7 @@
     "permission_grants_inherited": false,
     "root_owner_authority_inherited": false,
     "current_coverage": {
-      "category_count": 13,
+      "category_count": 12,
       "agent_count": 128,
       "mode": "all_current_registry_entries_resolve_one_shared_reference"
     },
@@ -2127,10 +2117,49 @@
       "source_basis": "Historical flow-diagram Finance S1 Govt Schemes; user approved the current ownership transfer.",
       "source_slot_identity": "Historical diagram label; canonical Finance individual mapping had been unspecified."
     },
-    "exact_duplicate_records_removed": []
+    "exact_duplicate_records_removed": [],
+    "podcast_capability_transfer": {
+      "legacy_category": "PODCAST",
+      "current_top_level_category": false,
+      "preserved_legacy_source": "ops/vyomaraj-core/handover/AGENT_CONTENT_REGISTRY_V16_7_24.json",
+      "mappings": [
+        {
+          "id": "PODCAST-REF-01",
+          "name": "RESEARCH",
+          "from_category": "PODCAST",
+          "to_category": "EDU"
+        },
+        {
+          "id": "PODCAST-REF-04",
+          "name": "ANALYSIS",
+          "from_category": "PODCAST",
+          "to_category": "EDU"
+        },
+        {
+          "id": "PODCAST-REF-02",
+          "name": "SCRIPT",
+          "from_category": "PODCAST",
+          "to_category": "ENTERTAINMENT"
+        },
+        {
+          "id": "PODCAST-REF-03",
+          "name": "PRODUCE",
+          "from_category": "PODCAST",
+          "to_category": "ENTERTAINMENT"
+        },
+        {
+          "id": "PODCAST-REF-05",
+          "name": "PUBLISH",
+          "from_category": "PODCAST",
+          "to_category": "ENTERTAINMENT"
+        }
+      ],
+      "action": "reparented_existing_records_preserved_ids",
+      "product_count_handling": "legacy reported 9 products remain unreconciled; no item-level reassignment invented"
+    }
   },
   "totals": {
-    "main_agents": 13,
+    "main_agents": 12,
     "sub_agents": 128,
     "uncounted_parent_headings": 6,
     "named_sub_agents": 42,
