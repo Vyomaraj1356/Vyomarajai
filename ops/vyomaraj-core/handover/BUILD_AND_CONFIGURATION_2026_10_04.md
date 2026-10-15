@@ -5,40 +5,39 @@ Generated from the checked-in registry, content and configuration files by `buil
 ## 1. Agents — current owner-approved structure
 
 - Registry status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-07)
-- Main agents: **13** · counted sub-agent slots: **128** · named: **42** · serial-only (name UNKNOWN): **86**
+- Main agents: **12** · counted sub-agent slots: **128** · named: **42** · serial-only (name UNKNOWN): **86**
 - Uncounted parent headings: **6** · historical reported products: **421** (active product count: None — not reconciled, deliberately not zero)
 - Source snapshot: `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json` (sha256 `9e301bfcb1c6e8b23c1bea4fbdcf0d9d12d4c457fe62d7ef60e3161ac3a908a9`); historical arithmetic validated: True
 
 | Main agent | Current sub-agents | Historical snapshot | Change | Named | Serial-only |
 |---|---:|---:|---|---:|---:|
 | FOOD — Food & Social Connect | 3 | 3 | unchanged | 0 | 3 |
-| EDU — Education | 16 | 15 | +1 | 10 | 6 |
+| EDU — Education | 18 | 15 | +3 | 12 | 6 |
 | ASTRO — Astro-Celestial & Universal | 3 | 3 | unchanged | 0 | 3 |
 | FINANCE — Finance & Wealth | 7 | 8 | -1 | 0 | 7 |
 | LIFE — Life Coach & Wellness | 10 | 10 | unchanged | 0 | 10 |
 | BHAKTI — Bhakti Mandir — Ritual, Festival & Grantha | 3 | 2 | +1 | 1 | 2 |
 | SPORTS — Sports & Legends | 14 | 14 | unchanged | 0 | 14 |
 | AGRI — Agriculture & Environment | 6 | 6 | unchanged | 0 | 6 |
-| ENTERTAINMENT — Entertainment — Comedy, Movies, Hollywood, Bollywood | 32 | 38 | -6 | 2 | 30 |
-| PLATFORM — Platform & Social Hub + Earn — All Platforms + Monetization | 20 | 20 | unchanged | 19 | 1 |
+| ENTERTAINMENT — Entertainment — Comedy, Movies, Hollywood, Bollywood | 35 | 38 | -3 | 5 | 30 |
+| PLATFORM — Social Platform — Social Channels, AI & Monetization | 20 | 20 | unchanged | 19 | 1 |
 | TOUR — Tour and Travel | 4 | 4 | unchanged | 0 | 4 |
 | WAR — War Room — Warriors | 5 | 5 | unchanged | 5 | 0 |
-| PODCAST — Podcast & Entertainment Studio | 5 | 5 | unchanged | 5 | 0 |
 
 ### Approved structural changes carried in this registry
 
-- **ENTERTAINMENT 38 → 32**: six hubs (Comedy, Cartoon, Music, Movie, Wit, Shayari) were reclassified from counted sub-agents to uncounted parent headings — kept, not deleted.
-- **FINANCE 8 → 7 and EDU 15 → 16**: the Government Schemes position moved from FINANCE to EDU as one owner-approved transfer (`EDU-GOV-S1`).
+- **ENTERTAINMENT 38 → 35**: six hubs (Comedy, Cartoon, Music, Movie, Wit, Shayari) were reclassified from counted sub-agents to uncounted parent headings — kept, not deleted.
+- **FINANCE 8 → 7 and EDU 15 → 18**: the Government Schemes position moved from FINANCE to EDU as one owner-approved transfer (`EDU-GOV-S1`).
 - **BHAKTI 2 → 3**: `BHAKTI-AGHOR-S1` (Aghor & Aghori) added as an explicitly requested, view-only editorial route — not a deployed autonomous teacher.
 
 ### Named sub-agents (current)
 
-- **EDU**: EDU-S1 Veda Rishi; EDU-S2 Upanishad Guru; EDU-S3 Gita Acharya; EDU-S4 Mythology & Mystery Rishi; EDU-S5 Vyomaraj Picker; EDU-S6 Lectures Hub; EDU-S7 Short Notes; EDU-S14 Care & Bikes — Bicycles & Two-Wheelers; EDU-S15 Social Thinkers, Visionaries & Legends; EDU-GOV-S1 Government Schemes
+- **EDU**: EDU-S1 Veda Rishi; EDU-S2 Upanishad Guru; EDU-S3 Gita Acharya; EDU-S4 Mythology & Mystery Rishi; EDU-S5 Vyomaraj Picker; EDU-S6 Lectures Hub; EDU-S7 Short Notes; EDU-S14 Care & Bikes — Bicycles & Two-Wheelers; EDU-S15 Social Thinkers, Visionaries & Legends; EDU-GOV-S1 Government Schemes; PODCAST-REF-01 RESEARCH; PODCAST-REF-04 ANALYSIS
 - **BHAKTI**: BHAKTI-AGHOR-S1 Aghor & Aghori
-- **ENTERTAINMENT**: ENT-INDICOM INDICOM; ENT-CRITICISM Criticism gate
-- **PLATFORM**: PLATFORM-REF-01 YouTube; PLATFORM-REF-02 Instagram; PLATFORM-REF-03 Facebook; PLATFORM-REF-04 TikTok; PLATFORM-REF-05 X; PLATFORM-REF-06 LinkedIn; PLATFORM-REF-07 Telegram; PLATFORM-REF-08 WhatsApp; PLATFORM-REF-09 Discord; PLATFORM-REF-10 Pinterest; PLATFORM-REF-11 Threads; PLATFORM-REF-12 Snapchat; PLATFORM-REF-13 Reddit; PLATFORM-REF-14 Twitch; PLATFORM-REF-15 Vimeo; PLATFORM-REF-16 Tumblr; PLATFORM-REF-17 Mastodon; PLATFORM-REF-18 EARN; PLATFORM-REF-19 AI
+- **ENTERTAINMENT**: ENT-INDICOM INDICOM; ENT-CRITICISM Criticism gate; PODCAST-REF-02 SCRIPT; PODCAST-REF-03 PRODUCE; PODCAST-REF-05 PUBLISH
+- **SOCIAL PLATFORM (stable ID: PLATFORM)**: PLATFORM-REF-01 YouTube; PLATFORM-REF-02 Instagram; PLATFORM-REF-03 Facebook; PLATFORM-REF-04 TikTok; PLATFORM-REF-05 X; PLATFORM-REF-06 LinkedIn; PLATFORM-REF-07 Telegram; PLATFORM-REF-08 WhatsApp; PLATFORM-REF-09 Discord; PLATFORM-REF-10 Pinterest; PLATFORM-REF-11 Threads; PLATFORM-REF-12 Snapchat; PLATFORM-REF-13 Reddit; PLATFORM-REF-14 Twitch; PLATFORM-REF-15 Vimeo; PLATFORM-REF-16 Tumblr; PLATFORM-REF-17 Mastodon; PLATFORM-REF-18 EARN; PLATFORM-REF-19 AI
 - **WAR**: WAR-REF-01 PAST; WAR-REF-02 HISTORY; WAR-REF-03 PRESENT; WAR-REF-04 FUTURE; WAR-REF-05 CROSS-CUTTING
-- **PODCAST**: PODCAST-REF-01 RESEARCH; PODCAST-REF-02 SCRIPT; PODCAST-REF-03 PRODUCE; PODCAST-REF-04 ANALYSIS; PODCAST-REF-05 PUBLISH
+- **Podcast capability family (not a category)**: RESEARCH/ANALYSIS → EDU; SCRIPT/PRODUCE/PUBLISH → ENTERTAINMENT.
 
 Serial-only entries are shown in the viewer as `REF`/serial identifiers (`display_policy`: Show unnamed entries by serial only; null names remain unassigned. Display serials are not recovered slot identities.). Hierarchy: Only the six explicitly approved hubs acquire child edges. Other missing sub-sub-agent mappings remain UNMAPPED; do not invent a third tier.
 
