@@ -24,6 +24,10 @@ class CurrentPodcastTaxonomyTests(unittest.TestCase):
         self.assertNotIn("PODCAST", ids)
         self.assertEqual(self.current["totals"]["main_agents"], 12)
 
+    def test_platform_category_uses_social_platform_display_name(self):
+        row = next(row for row in self.current["categories"] if row["id"] == "PLATFORM")
+        self.assertEqual(row["name"], "Social Platform — Social Channels, AI & Monetization")
+
     def test_all_five_podcast_capabilities_are_reparented_without_id_loss(self):
         expected = {
             "PODCAST-REF-01": ("RESEARCH", "EDU"),
