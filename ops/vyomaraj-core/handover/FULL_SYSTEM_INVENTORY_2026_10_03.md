@@ -156,7 +156,6 @@ Serials are current display positions within each category, not recovered histor
 | 14 | Care & Bikes — Bicycles & Two-Wheelers |  |
 | 15 | Social Thinkers, Visionaries & Legends |  |
 | 16 | Government Schemes |  |
-
 | 17 | RESEARCH |  |
 | 18 | ANALYSIS |  |
 
@@ -308,6 +307,7 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 | 3 | PRESENT |  |
 | 4 | FUTURE |  |
 | 5 | CROSS-CUTTING |  |
+
 ## Preserved integrations and boundaries
 
 - Music ENT-MUS-S1–S6, Movie ENT-MOVIE-S1–S6, Liquor ENT-LIQUOR-S1 and Bar ENT-BAR-S1 remain valid. Their functional/chapter bindings remain proposals, not newly assigned names.
