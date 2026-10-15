@@ -149,7 +149,8 @@ def render(root=ROOT):
         names = named[category['id']]
         if names:
             listed = '; '.join(f"{a['id']} {a['name']}" for a in names)
-            lines.append(f"- **{category['id']}**: {listed}")
+            label = 'SOCIAL PLATFORM (stable ID: PLATFORM)' if category['id'] == 'PLATFORM' else category['id']
+            lines.append(f"- **{label}**: {listed}")
     lines += [
         '',
         'Serial-only entries are shown in the viewer as `REF`/serial identifiers (`display_policy`: '
