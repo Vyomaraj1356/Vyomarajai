@@ -42,6 +42,7 @@ class TrendIntakeTests(unittest.TestCase):
     def test_missing_source_authorization_is_held(self):
         item = trend_intake.normalize(dict(self.record, terms_checked=False), self.now)
         self.assertEqual(item["access_gate"], "HOLD_SOURCE_ACCESS_UNVERIFIED")
+        self.assertEqual(item["status"], "HOLD_SOURCE_ACCESS_UNVERIFIED")
 
     def test_timezone_and_score_validation(self):
         with self.assertRaises(trend_intake.IntakeError):
