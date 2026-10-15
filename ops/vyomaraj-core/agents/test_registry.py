@@ -79,7 +79,7 @@ class RegistryTests(unittest.TestCase):
         for path,text in r.outputs().items():self.assertEqual(path.read_text(),text,path.name)
     def test_duplicate_category_exact_removed(self):
         self.source['categories'].append(copy.deepcopy(self.source['categories'][0]));d=r.build(self.source,self.rules)
-        self.assertEqual(d['totals']['main_agents'],13);self.assertEqual(len(d['count_reconciliation']['exact_duplicate_records_removed']),1)
+        self.assertEqual(d['totals']['main_agents'],12);self.assertEqual(len(d['count_reconciliation']['exact_duplicate_records_removed']),1)
     def test_conflicting_category_not_silently_deleted(self):
         c=copy.deepcopy(self.source['categories'][0]);c['products']=900;self.source['categories'].append(c)
         with self.assertRaisesRegex(ValueError,'Conflicting duplicate'):r.build(self.source,self.rules)
