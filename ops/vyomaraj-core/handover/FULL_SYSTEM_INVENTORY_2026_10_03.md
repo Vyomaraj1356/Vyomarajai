@@ -158,6 +158,8 @@ Serials are current display positions within each category, not recovered histor
 | 16 | Government Schemes |  |
 
 Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and the Granthas”; no six individual names or assignments are inferred.
+| 17 | RESEARCH |  |
+| 18 | ANALYSIS |  |
 ### Astro-Celestial & Universal
 
 | Serial | Supplied/approved name (blank = not assigned) | Parent heading |
@@ -261,6 +263,9 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 | 30 |  |  |
 | 31 |  |  |
 | 32 |  |  |
+| 33 | SCRIPT |  |
+| 34 | PRODUCE |  |
+| 35 | PUBLISH |  |
 ### Social Platform — Social Channels, AI & Monetization
 
 | Serial | Supplied/approved name (blank = not assigned) | Parent heading |
