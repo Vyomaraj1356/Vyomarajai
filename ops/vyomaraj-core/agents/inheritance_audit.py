@@ -8,6 +8,7 @@ read, and unknown values stay UNKNOWN. Run without arguments to write, with --ch
 checked-in copy still matches its sources.
 """
 import argparse
+import difflib
 from collections import Counter
 import json
 from pathlib import Path
@@ -192,6 +193,10 @@ def main():
     if args.check:
         current = output.read_text(encoding='utf-8') if output.is_file() else None
         if current != text:
+            diff = list(difflib.unified_diff((current or '').splitlines(), text.splitlines(),
+                                            fromfile=output.name + ' (checked-in)',
+                                            tofile=output.name + ' (generated)', lineterm=''))
+            print('\\n'.join(diff[:160]))
             raise SystemExit(f'{output} is out of date; run this script without --check')
         print(f'OK: {output.relative_to(ROOT)} matches its sources ({len(text)} bytes)')
     else:
