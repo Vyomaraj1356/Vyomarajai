@@ -328,7 +328,7 @@ def content_index(ownership,registry):
 
 
 def render_report(data,index):
-    t=data['totals'];lines=['# Vyomaraj — Current Agent Reconciliation','', '**7 October 2026 additive metadata alignment · owner-approved structure · not a deployment claim**','',
+    t=data['totals'];lines=['# Vyomaraj — Current Agent Reconciliation','', '**15 October 2026 additive metadata alignment · owner-approved structure · not a deployment claim**','',
     '## Applied decisions','',
     '- A later explicit user request adds **Aghor & Aghori** (`BHAKTI-AGHOR-S1`) under BHAKTI / Bhakti-Shakti. BHAKTI now has 3 counted positions; its earlier two unnamed positions are retained.',
     '- EDU is now displayed as **Education**. All Government Schemes are owned by Education, not Finance or Entertainment.',
@@ -352,7 +352,7 @@ def render_report(data,index):
     '## Current main-agent inventory','', '| Category | Current display name | Counted slots | Uncounted headings | Historical reported products |','|---|---|---:|---:|---:|']
     for c in data['categories']:lines.append(f"| {c['id']} | {c['name']} | {c['sub_agents']} | {c['headings']} | {c['source_reported_products']} |")
     lines+=['','Product figures above are source-history metadata, not current reallocated or deduplicated totals. In particular, Education 68 and Finance 15 cannot be apportioned after the scheme transfer without their item-level product lists.','',
-    '## Duplicate audit and scope','',f"- Active hierarchy: 13 category identities, 128 counted agent identities and 6 heading identities; all unique and parent-validated.",
+    '## Duplicate audit and scope','',f"- Active hierarchy: 12 category identities, 128 counted agent identities and 6 heading identities; all unique and parent-validated.",
     f"- Exact repeated source roster records removed: **{len(data['count_reconciliation']['exact_duplicate_records_removed'])}**. The six semantic double-counted hub positions were reclassified by the explicit approval above, not presented as byte-identical records.",
     f"- Current content index: **{index['indexed_reference_count']} references**, including **{index['education_topic_count']} Education topics** and the selected collections in the five editorial experiences. These are references, not all 421 products or new agents.",
     f"- Exact repeated indexed content records removed: **{len(index['duplicates_removed'])}**. Equal identities collapse only if records are equal; conflicting duplicates stop the builder.",
@@ -367,7 +367,7 @@ def render_report(data,index):
         if r['owner_category']=='EDU':lines.append(f"| {r['title']} | Education | Source-backed topic metadata; not a newly recovered full text |")
     lines+=['','Education-related entertainment formats remain formats; that does not make Entertainment the owner of the educational subject. Bhakti devotional material stays in BHAKTI. Non-scheme financial topics stay in FINANCE. The new scheme entry contains no researched benefits, eligibility, current availability or application advice.','',
     '## Serial-only roster','',
-    'Serials are current display positions within each category, not recovered historic slot numbers. Blank name cells deliberately remain blank. Internal IDs are available in the JSON/advanced viewer to preserve working integrations, not as newly coined names. PLATFORM display position 20 still has source slot UNMAPPED; it is not labelled historical S20.','']
+    'Serials are current display positions within each category, not recovered historic slot numbers. Blank name cells deliberately remain blank. Internal IDs are available in the JSON/advanced viewer to preserve working integrations, not as newly coined names. Social Platform (stable ID: PLATFORM) display position 20 still has source slot UNMAPPED; it is not labelled historical S20.','']
     headings={h['id']:h['name'] for h in data['headings']}
     for c in data['categories']:
         lines+=['### '+c['name'],'','| Serial | Supplied/approved name (blank = not assigned) | Parent heading |','|---:|---|---|']
@@ -404,7 +404,7 @@ def outputs():
     ownership=json.loads((HERE/'CONTENT_OWNERSHIP_CURRENT.json').read_text())
     active=build(source,rules);active['source_snapshot_sha256']=hashlib.sha256(raw).hexdigest()
     index=content_index(ownership,active);report=render_report(active,index)
-    current='# Vyomaraj / Jarvis — Current System Inventory\n\n**Current structure: 13 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**\n\n**7 October 2026 metadata alignment:** shared capability policy reference added; taxonomy counts and historical product aggregate are unchanged.\n\nThis is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.\n\n'
+    current='# Vyomaraj / Jarvis — Current System Inventory\n\n**Current structure: 12 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**\n\n**15 October 2026 metadata alignment:** shared capability policy reference added; taxonomy counts and historical product aggregate are unchanged.\n\nThis is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.\n\n'
     current+='## Integrated viewers\n\n| Area | Viewer / report |\n|---|---|\n| Sovereign policy / draft contracts | /sovereign/ · /contracts/ · /reports/policy |\n| Current hierarchy | /agents/ · /reports/agents |\n| Aghor & Aghori | /aghor/ · /reports/aghor |\n| Latest DR / Aghor update | /reports/resilience |\n| Education and all Government Schemes | /education/ |\n| All experience content | /reports/contents |\n| Research Desk | /research/ · /reports/research |\n| Film, stage and ads | /film/ · /reports/film |\n| Music | /music/ · /reports/music |\n| Bhakti-Shakti | /bhakti/ · /reports/bhakti |\n| Roots & Pairings | /pairings/ |\n| Earlier DR audit (latest status above) | /reports/dr |\n| Historical source audit | /reports/history |\n\n'
     current+=report.replace('# Vyomaraj — Current Agent Reconciliation','# Current Agent Reconciliation',1)
     return {ACTIVE:json.dumps(active,ensure_ascii=False,indent=2)+'\n',INDEX:json.dumps(index,ensure_ascii=False,indent=2)+'\n',REPORT:report,INVENTORY:current}
@@ -415,4 +415,4 @@ if __name__=='__main__':
     for path,text in outputs().items():
         if args.check:require(path.is_file() and path.read_text()==text,'Out of date: '+path.name)
         else:path.write_text(text)
-    print('PASS current hierarchy: 13 categories / 128 counted slots / 6 headings; Education 16, Finance 7, Entertainment 32. Historical snapshot preserved.')
+    print('PASS current hierarchy: 12 categories / 128 counted slots / 6 headings; Education 18, Finance 7, Entertainment 35. Historical snapshot preserved.')
