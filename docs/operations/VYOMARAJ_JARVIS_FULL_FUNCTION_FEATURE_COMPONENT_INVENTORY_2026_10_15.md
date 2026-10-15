@@ -27,7 +27,7 @@ Current owner-approved structure has **12 top-level categories**. The older V16.
 | SPORTS — Sports & Legends | 14 | 29 | Sports and sports figures; exact child names unresolved |
 | AGRI — Agriculture & Environment | 6 | 14 | Agriculture, environment and living-world knowledge |
 | ENTERTAINMENT | 38 (legacy source) | 168 (legacy source) | Comedy, cartoon, music, film, wit, shayari, criticism, and podcast scripting/production/publish preparation; six parent headings. Current structural entries: 35. |
-| PLATFORM — Social Hub + Earn | 20 | 39 | Social-channel routing, AI and monetization; one slot unmapped |
+| SOCIAL PLATFORM — Social Channels, AI & Monetization | 20 | 39 | Social-channel routing, AI and monetization; one slot unmapped |
 | TOUR — Tour & Travel | 4 | 9 | Travel and place experiences |
 | WAR — War Room | 5 | 13 | Non-operational historical/story analysis by past, history, present, future and cross-cutting |
 | PODCAST | — | — | **Removed as a top-level category.** Podcast is now a cross-category capability family under EDU and ENTERTAINMENT; the legacy source row is preserved only for historical reconciliation. |
@@ -36,7 +36,7 @@ Current owner-approved structure has **12 top-level categories**. The older V16.
 - **EDU:** `EDU-S1` Veda Rishi; `EDU-S2` Upanishad Guru; `EDU-S3` Gita Acharya; `EDU-S4` Mythology & Mystery Rishi; `EDU-S5` Vyomaraj Picker; `EDU-S6` Lectures Hub; `EDU-S7` Short Notes; `EDU-S14` Care & Bikes — Bicycles & Two-Wheelers; `EDU-S15` Social Thinkers, Visionaries & Legends; `EDU-GOV-S1` Government Schemes; podcast **RESEARCH** and **ANALYSIS** capabilities (reparented from the legacy podcast roster).
 - **BHAKTI:** `BHAKTI-AGHOR-S1` Aghor & Aghori. This is marked view-only/editorial; not a clinical service or ritual-instruction executor.
 - **ENTERTAINMENT:** `ENT-INDICOM` INDICOM; `ENT-CRITICISM` Criticism gate. Parent headings: Comedy, Cartoon, Music, Movie, Wit, Shayari (not counted as agents). Podcast **SCRIPT**, **PRODUCE**, and **PUBLISH** capabilities are also parented here; publish remains subject to platform and owner approval gates.
-- **PLATFORM:** `PLATFORM-REF-01` YouTube; `02` Instagram; `03` Facebook; `04` TikTok; `05` X; `06` LinkedIn; `07` Telegram; `08` WhatsApp; `09` Discord; `10` Pinterest; `11` Threads; `12` Snapchat; `13` Reddit; `14` Twitch; `15` Vimeo; `16` Tumblr; `17` Mastodon; `18` EARN; `19` AI. Slot 20 remains unmapped.
+- **SOCIAL PLATFORM (stable ID: `PLATFORM`):** `PLATFORM-REF-01` YouTube; `02` Instagram; `03` Facebook; `04` TikTok; `05` X; `06` LinkedIn; `07` Telegram; `08` WhatsApp; `09` Discord; `10` Pinterest; `11` Threads; `12` Snapchat; `13` Reddit; `14` Twitch; `15` Vimeo; `16` Tumblr; `17` Mastodon; `18` EARN; `19` AI. Slot 20 remains unmapped.
 - **WAR:** `WAR-REF-01` PAST; `02` HISTORY; `03` PRESENT; `04` FUTURE; `05` CROSS-CUTTING.
 - **Podcast capability mapping (not a top-level category):** `PODCAST-REF-01` RESEARCH → EDU; `PODCAST-REF-04` ANALYSIS → EDU; `PODCAST-REF-02` SCRIPT → ENTERTAINMENT; `PODCAST-REF-03` PRODUCE → ENTERTAINMENT; `PODCAST-REF-05` PUBLISH → ENTERTAINMENT. Existing reference IDs are preserved to avoid breaking references; their current `category_id`/`parent_id` is updated. The historical source snapshot remains unchanged.
 - All other source slots that do not have supplied names remain unknown. Do not invent names or sub-subagent hierarchies.
