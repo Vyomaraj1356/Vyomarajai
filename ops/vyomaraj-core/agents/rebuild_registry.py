@@ -170,8 +170,6 @@ def build(source,rules):
             move=rules['government_schemes'];require(move['from_category']=='FINANCE' and move['to_category']=='EDU' and move['count_transferred']==1,'Unexpected approved scheme transfer')
             add(move['id'],move['name'])
             agents[-1]['ownership_basis']='owner_approved_transfer_from_FINANCE_historical_Govt_Schemes_label'
-            for identity,name in [('PODCAST-REF-01','RESEARCH'),('PODCAST-REF-04','ANALYSIS')]:
-                add(identity,name)
         elif cid=='ENTERTAINMENT':
             groups=unique(roster['groups'],lambda g:g['ids'],audit,'ENTERTAINMENT.groups')
             require(sum(g['count'] for g in groups)==38,'Entertainment source count mismatch')
@@ -191,8 +189,6 @@ def build(source,rules):
             for group in groups:
                 if group['ids']=='S1-S8':continue
                 for identity in expand(group):add(identity,source_slot=identity,parent=child_groups.get(group['ids']),chapter_count=group.get('chapter_count'))
-            for identity,name in [('PODCAST-REF-02','SCRIPT'),('PODCAST-REF-03','PRODUCE'),('PODCAST-REF-05','PUBLISH')]:
-                add(identity,name)
         elif cid=='PLATFORM':
             roster=copy.deepcopy(roster);roster['lanes']=unique(roster['lanes'],lambda x:x,audit,'PLATFORM.lanes')
             require(len(roster['lanes'])==19 and roster['unmapped_slot_count']==1,'Platform source mismatch')
@@ -211,6 +207,24 @@ def build(source,rules):
                 agents[-1]['ownership_basis']=new['approval']
         category['sub_agents']=sum(a['category_id']==cid for a in agents)
         category['headings']=sum(h['category_id']==cid for h in hubs)
+    # Keep the five preserved Podcast IDs in their legacy source-order position at the end
+    # of the agent array, while assigning each capability to its current owner category.
+    podcast_targets=[
+        ('PODCAST-REF-01','RESEARCH','EDU'),
+        ('PODCAST-REF-02','SCRIPT','ENTERTAINMENT'),
+        ('PODCAST-REF-03','PRODUCE','ENTERTAINMENT'),
+        ('PODCAST-REF-04','ANALYSIS','EDU'),
+        ('PODCAST-REF-05','PUBLISH','ENTERTAINMENT'),
+    ]
+    for identity,name,cid in podcast_targets:
+        serial=1+sum(a['category_id']==cid for a in agents)
+        agents.append({'id':identity,'category_id':cid,'parent_id':cid,'name':name,
+                       'name_status':'SUPPLIED_OR_OWNER_APPROVED','source_slot':None,
+                       'id_status':'current_reference_id_not_recovered_slot','serial':serial,
+                       'kind':'sub_agent','counted':True,'source_reported_chapter_count':None,
+                       'runtime_status':'NOT_VERIFIED'})
+    for category in categories:
+        category['sub_agents']=sum(a['category_id']==category['id'] for a in agents)
     agents=unique(agents,lambda a:a['id'],audit,'active_agents')
     result={'schema_version':2,'status':'CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory','updated':'2026-10-15',
             'source_snapshot':'handover/AGENT_CONTENT_REGISTRY_V16_7_24.json','historical_totals':source['totals'],
