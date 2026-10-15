@@ -71,8 +71,9 @@ Treat 3D, 4D and 5D as explicit product/workflow definitions, not proof of a cap
 ## Current known limitations
 
 - The existing LLM harness is no-tools and provider-neutral only for OpenAI-compatible chat-completions endpoints; it does not automatically connect consumer apps or proprietary APIs.
-- Prompt runtime PR #61 remains draft/unmerged and non-mergeable at last inspection; reconcile it before claiming the prompt registry is live.
+- The versioned 88-preset project registry and `--preset`/`--list-presets` harness support are now merged and offline-tested. No provider endpoint/model/key is configured, so live AI completion and consumer-app integrations remain NOT PROVEN.
 - This intake script is not a scheduler or social connector. No social platform is contacted and no post/comment/subscription is made.
+- Prompt preset selection is implemented in the no-tools harness, but actual completions remain unavailable until the owner configures a supported endpoint/model and required credentials. It does not provide tool calling or connect consumer apps.
 - No credentials, model selection, provider connection, recurring trend job, external publishing or production failover is configured by this change.
 - Local JSONL storage is not a shared production database or disaster-recovery system. Back up and test recovery before production use.
 
