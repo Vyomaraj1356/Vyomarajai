@@ -115,6 +115,5 @@ A safe, offline-first intake/scoring utility now exists at
 `ops/vyomaraj-core/trends/test_trend_intake.py`; the offline suite runner includes that test directory.
 This is a first executable foundation, not a live trend connector: it consumes JSONL from an authorized
 adapter, defaults to dry-run, appends only when explicitly passed `--write`, and never calls external
-services or publishes. Provider adapters, scheduler, durable production queue, alerting, prompt-vault
-runtime, analytics ingestion, publishing and DR acceptance remain separate integration gates until
+services or publishes. Provider adapters, scheduler, durable production queue, alerting, scheduled prompt discovery/vault ingestion, analytics ingestion, publishing and DR acceptance remain separate integration gates until
 authenticated end-to-end evidence exists.
