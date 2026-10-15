@@ -8,37 +8,37 @@
 - **Jarvis** — continuity, workflow coordination, deterministic handoff, unresolved-state tracking, evidence/checkpoint coordination. Current implementation evidence: local provider-neutral harness and controller scripts exist; live provider, heartbeat, RPC, and production execution are not proven.
 - **Owner/root operator** — controls identity, permissions, spending, publication, production release and recovery approvals.
 - **Human reviewers** — review rights, factual accuracy, child safety, high-impact content, cultural/religious sensitivity, legal concerns and consequential external actions.
-- **Category agents** — 13 domain groups; canonical child names are partial. A registry slot is not proof of a running process.
+- **Category agents** — 12 top-level domain groups; canonical child names are partial. A registry slot is not proof of a running process.
 - **Tool adapters** — image, video, 3D, animation, render, AR, trends and publishing are defined as planned adapter interfaces; provider and execution are not configured in the experience orchestrator.
 - **No automatic authority inheritance:** Vyomaraj and Jarvis must not gain each other's/root permissions merely because they coordinate.
 
 ## 2. Agent hierarchy and domain sub-agents
 
-Historical snapshot reports 13 categories, 133 sub-agent counts and 421 product counts. Current registry structure counts 128 sub-agent entries and 6 uncounted Entertainment headings. Product totals are marked unreconciled at item level. Current agent entries are `NOT_VERIFIED` for runtime.
+Current owner-approved structure has **12 top-level categories**. The older V16.7.24 source snapshot remains preserved as a legacy 13-category/133-sub-agent/421-product report; its standalone PODCAST row is no longer a current top-level category. The current registry retains 128 sub-agent entries and 6 uncounted Entertainment headings. Podcast capabilities are redistributed across EDU and ENTERTAINMENT; no podcast content or workflow is deleted. Historical product counts remain unreconciled at item level, and current agent entries are `NOT_VERIFIED` for runtime.
 
 | Category | Historical sub-agent count | Reported products | Domain responsibility |
 |---|---:|---:|---|
 | FOOD — Food & Social Connect | 3 | 6 | Dishes, cuisines, chefs, food culture/science and culinary content |
-| EDU — Education & World Wisdom | 15 | 68 | Learning, Hindu/Puranic/Itihasa knowledge, books, lectures, notes, thinkers and government schemes |
+| EDU — Education & World Wisdom | 15 (legacy source) | 68 (legacy source) | Learning, Hindu/Puranic/Itihasa knowledge, books, lectures, notes, thinkers, government schemes, and podcast research/educational analysis. Current structural entries: 18. |
 | ASTRO — Astro-Celestial & Universal | 3 | 9 | Astrology/celestial/universal knowledge; exact child names unresolved |
 | FINANCE — Finance & Wealth | 8 | 15 | Finance and wealth content; exact child names unresolved; Government Schemes moved to EDU |
 | LIFE — Life Coach & Wellness | 10 | 34 | Life/wellness content; exact child names unresolved |
 | BHAKTI — Bhakti Mandir | 2 | 8 | Bhakti, festivals, grantha, sacred-cultural content |
 | SPORTS — Sports & Legends | 14 | 29 | Sports and sports figures; exact child names unresolved |
 | AGRI — Agriculture & Environment | 6 | 14 | Agriculture, environment and living-world knowledge |
-| ENTERTAINMENT | 38 | 168 | Comedy, cartoon, music, film, wit, shayari and criticism; six parent headings |
+| ENTERTAINMENT | 38 (legacy source) | 168 (legacy source) | Comedy, cartoon, music, film, wit, shayari, criticism, and podcast scripting/production/publish preparation; six parent headings. Current structural entries: 35. |
 | PLATFORM — Social Hub + Earn | 20 | 39 | Social-channel routing, AI and monetization; one slot unmapped |
 | TOUR — Tour & Travel | 4 | 9 | Travel and place experiences |
 | WAR — War Room | 5 | 13 | Non-operational historical/story analysis by past, history, present, future and cross-cutting |
-| PODCAST — Podcast Studio | 5 | 9 | Research, script, production, analysis and publish preparation |
+| PODCAST | — | — | **Removed as a top-level category.** Podcast is now a cross-category capability family under EDU and ENTERTAINMENT; the legacy source row is preserved only for historical reconciliation. |
 
 ### Explicitly named child agents/slots in the current registry
-- **EDU:** `EDU-S1` Veda Rishi; `EDU-S2` Upanishad Guru; `EDU-S3` Gita Acharya; `EDU-S4` Mythology & Mystery Rishi; `EDU-S5` Vyomaraj Picker; `EDU-S6` Lectures Hub; `EDU-S7` Short Notes; `EDU-S14` Care & Bikes — Bicycles & Two-Wheelers; `EDU-S15` Social Thinkers, Visionaries & Legends; `EDU-GOV-S1` Government Schemes.
+- **EDU:** `EDU-S1` Veda Rishi; `EDU-S2` Upanishad Guru; `EDU-S3` Gita Acharya; `EDU-S4` Mythology & Mystery Rishi; `EDU-S5` Vyomaraj Picker; `EDU-S6` Lectures Hub; `EDU-S7` Short Notes; `EDU-S14` Care & Bikes — Bicycles & Two-Wheelers; `EDU-S15` Social Thinkers, Visionaries & Legends; `EDU-GOV-S1` Government Schemes; podcast **RESEARCH** and **ANALYSIS** capabilities (reparented from the legacy podcast roster).
 - **BHAKTI:** `BHAKTI-AGHOR-S1` Aghor & Aghori. This is marked view-only/editorial; not a clinical service or ritual-instruction executor.
-- **ENTERTAINMENT:** `ENT-INDICOM` INDICOM; `ENT-CRITICISM` Criticism gate. Parent headings: Comedy, Cartoon, Music, Movie, Wit, Shayari (not counted as agents).
+- **ENTERTAINMENT:** `ENT-INDICOM` INDICOM; `ENT-CRITICISM` Criticism gate. Parent headings: Comedy, Cartoon, Music, Movie, Wit, Shayari (not counted as agents). Podcast **SCRIPT**, **PRODUCE**, and **PUBLISH** capabilities are also parented here; publish remains subject to platform and owner approval gates.
 - **PLATFORM:** `PLATFORM-REF-01` YouTube; `02` Instagram; `03` Facebook; `04` TikTok; `05` X; `06` LinkedIn; `07` Telegram; `08` WhatsApp; `09` Discord; `10` Pinterest; `11` Threads; `12` Snapchat; `13` Reddit; `14` Twitch; `15` Vimeo; `16` Tumblr; `17` Mastodon; `18` EARN; `19` AI. Slot 20 remains unmapped.
 - **WAR:** `WAR-REF-01` PAST; `02` HISTORY; `03` PRESENT; `04` FUTURE; `05` CROSS-CUTTING.
-- **PODCAST:** `PODCAST-REF-01` RESEARCH; `02` SCRIPT; `03` PRODUCE; `04` ANALYSIS; `05` PUBLISH.
+- **Podcast capability mapping (not a top-level category):** `PODCAST-REF-01` RESEARCH → EDU; `PODCAST-REF-04` ANALYSIS → EDU; `PODCAST-REF-02` SCRIPT → ENTERTAINMENT; `PODCAST-REF-03` PRODUCE → ENTERTAINMENT; `PODCAST-REF-05` PUBLISH → ENTERTAINMENT. Existing reference IDs are preserved to avoid breaking references; their current `category_id`/`parent_id` is updated. The historical source snapshot remains unchanged.
 - All other source slots that do not have supplied names remain unknown. Do not invent names or sub-subagent hierarchies.
 
 ## 3. Functions and features
@@ -209,6 +209,7 @@ A feature can be labelled `PRESENT`, `CONFIGURED`, `CONNECTED`, `TESTED` or `PRO
 ## 9. Known gaps and non-claims
 
 - Many source roster names and sub-subagent relationships are not supplied; do not fabricate them.
+- The legacy V16.7.24 snapshot still records PODCAST as a separate category; current owner-approved structure reparents its five capability records across EDU (RESEARCH, ANALYSIS) and ENTERTAINMENT (SCRIPT, PRODUCE, PUBLISH). The source snapshot is preserved for history and count reconciliation, not treated as the current taxonomy.
 - The 421 products are not fully enumerated by title; active product total remains unreconciled.
 - A preset or prompt does not prove a connected model, external tool or autonomous agent.
 - Controller/bootstrap files being present does not prove they were invoked or that a heartbeat is live.
