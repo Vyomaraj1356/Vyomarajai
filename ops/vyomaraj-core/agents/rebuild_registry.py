@@ -145,7 +145,10 @@ def build(source,rules):
     require(len(original)==13,'Expected 13 source categories')
     require(sum(c['sub_agents'] for c in original)==133,'Source sub-agent count mismatch')
     for c in original:
-        cid=c['id'];roster=source['rosters'].get(cid)
+        cid=c['id']
+        if cid=='PODCAST':
+            continue  # Retain the legacy row only in the pinned source snapshot.
+        roster=source['rosters'].get(cid)
         category={'id':cid,'name':rules.get('category_names',{}).get(cid, rules['education_name'] if cid=='EDU' else c['description']),
                   'source_reported_sub_agents':c['sub_agents'],'source_reported_products':c['products'],
                   'active_product_count':None,'product_status':'UNRECONCILED_no_complete_item_level_mapping'}
@@ -167,6 +170,8 @@ def build(source,rules):
             move=rules['government_schemes'];require(move['from_category']=='FINANCE' and move['to_category']=='EDU' and move['count_transferred']==1,'Unexpected approved scheme transfer')
             add(move['id'],move['name'])
             agents[-1]['ownership_basis']='owner_approved_transfer_from_FINANCE_historical_Govt_Schemes_label'
+            for identity,name in [('PODCAST-REF-01','RESEARCH'),('PODCAST-REF-04','ANALYSIS')]:
+                add(identity,name)
         elif cid=='ENTERTAINMENT':
             groups=unique(roster['groups'],lambda g:g['ids'],audit,'ENTERTAINMENT.groups')
             require(sum(g['count'] for g in groups)==38,'Entertainment source count mismatch')
@@ -186,6 +191,8 @@ def build(source,rules):
             for group in groups:
                 if group['ids']=='S1-S8':continue
                 for identity in expand(group):add(identity,source_slot=identity,parent=child_groups.get(group['ids']),chapter_count=group.get('chapter_count'))
+            for identity,name in [('PODCAST-REF-02','SCRIPT'),('PODCAST-REF-03','PRODUCE'),('PODCAST-REF-05','PUBLISH')]:
+                add(identity,name)
         elif cid=='PLATFORM':
             roster=copy.deepcopy(roster);roster['lanes']=unique(roster['lanes'],lambda x:x,audit,'PLATFORM.lanes')
             require(len(roster['lanes'])==19 and roster['unmapped_slot_count']==1,'Platform source mismatch')
@@ -205,7 +212,7 @@ def build(source,rules):
         category['sub_agents']=sum(a['category_id']==cid for a in agents)
         category['headings']=sum(h['category_id']==cid for h in hubs)
     agents=unique(agents,lambda a:a['id'],audit,'active_agents')
-    result={'schema_version':2,'status':'CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory','updated':'2026-10-07',
+    result={'schema_version':2,'status':'CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory','updated':'2026-10-15',
             'source_snapshot':'handover/AGENT_CONTENT_REGISTRY_V16_7_24.json','historical_totals':source['totals'],
             'categories':categories,'headings':hubs,'agents':agents,
             'shared_knowledge_inheritance':shared_knowledge_inheritance(len(categories),len(agents)),
@@ -274,7 +281,7 @@ def validate(data):
         require(len(names)==len(set(names)),'Repeated named agent in category requires review')
     require(sum(c['sub_agents'] for c in cats.values())==data['totals']['sub_agents']==128,'Active total mismatch')
     require(data['totals']['named_sub_agents']==42 and data['totals']['unnamed_numbered_sub_agents']==86,'Name arithmetic mismatch')
-    require(cats['EDU']['sub_agents']==16 and cats['FINANCE']['sub_agents']==7 and cats['ENTERTAINMENT']['sub_agents']==32,'Approved reallocation mismatch')
+    require(cats['EDU']['sub_agents']==18 and cats['FINANCE']['sub_agents']==7 and cats['ENTERTAINMENT']['sub_agents']==35,'Approved reallocation mismatch')
     for h in hubs:
         require(any(a['parent_id']==h for a in agents.values()),'Empty parent heading')
 
@@ -330,10 +337,10 @@ def render_report(data,index):
     '- Unnamed records display serial numbers only. Their machine-readable names remain null; no replacement names have been coined.',
     '- Historical snapshot files and archives are retained as evidence. Current applications use the new active registry, not a rewritten V16.7.24 snapshot.','',
     '## Reconciled counts','', '| Measure | Historical snapshot | Current |','|---|---:|---:|',
-    '| Main categories | 13 | 13 |','| Counted sub-agent slots | 133 | 128 |','| Entertainment slots | 38 | 32 |','| Education slots | 15 | 16 |','| Finance slots | 8 | 7 |',
+    '| Main categories | 13 | 12 |','| Counted sub-agent slots | 133 | 128 |','| Entertainment slots | 38 | 35 |','| Education slots | 15 | 18 |','| Finance slots | 8 | 7 |',
     '| Separate uncounted Entertainment headings | Not separated | 6 |','| Supplied/approved individual names | 46 | 42 |','| Unnamed numbered positions | 87 | 86 |',
     '| Reported products | 421 | Reallocation / unique total UNRECONCILED |','',
-    'The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 128. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.','',
+    'The six-heading reclassification first gave 133 → 127. The later requested Aghor sub-agent adds one: 127 → 128. Government Schemes is a one-position transfer, not an extra agent: Finance −1, Education +1. Podcast research/analysis are assigned to EDU, and script/produce/publish to Entertainment; the legacy PODCAST category row remains preserved only in the historical snapshot. The source canonical Finance roster was count-only; its historical diagram labels S1 as Govt Schemes. This current transfer is explicitly owner-approved, not a claim that the old canonical registry supplied that individual mapping.','',
     '## Universal Knowledge Evolution inheritance','',
     f"- The active registry attaches one shared policy reference (`{data['shared_knowledge_inheritance']['policy_ref']}`) to all **{t['main_agents']} categories** and **{t['sub_agents']} counted agents**; it is not copied into individual agent records.",
     f"- The bounded content index applies the same reference to **{index['indexed_reference_count']} indexed references**. Topics, content, chapters, products, and future entities inherit by the policy default rather than manual per-agent edits.",
