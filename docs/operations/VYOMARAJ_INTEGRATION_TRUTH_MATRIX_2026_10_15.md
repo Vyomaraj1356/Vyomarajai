@@ -25,18 +25,18 @@ The correct strategic move is to finish one narrow, revenue-producing vertical s
 |---|---|---|
 | Public web preview | CONNECTED / NARROWLY TESTED | Production identity, data persistence, monitoring, operational SLOs and release certification |
 | Vyomaraj/Jarvis role profiles | PRESENT | Live service integration, authenticated peer identity, durable shared state and authorization tests |
-| Provider-neutral LLM harness | PRESENT | Approved endpoint/model/key in protected runtime; successful provider smoke test; budget and privacy review |
+| Provider-neutral LLM harness with named presets | PRESENT / OFFLINE-TESTED | Approved endpoint/model/key in protected runtime; successful provider smoke test; budget and privacy review |
 | OpenAI API | NOT PROVEN as connected | Owner-approved model and API credential in secret manager, live test and cost guardrails |
 | ChatGPT product, custom GPTs, connectors, Actions and OpenAI API | DISTINCT integration surfaces | Select exact surface and supported auth/API contract; one surface does not imply access to another |
 | Claude / Anthropic | NOT PROVEN | Reviewed Anthropic adapter or compatible endpoint, secret reference, model selection, live smoke and failure tests |
 | Gemini / Google | NOT PROVEN | Reviewed adapter, approved project/credentials, live smoke and quotas |
 | Local/open-weight models | OPTIONAL / NOT PROVEN in deployed runtime | Managed local inference endpoint, capacity/security controls and tested fallback |
 | Multi-model routing / fallback | DESIGN TARGET | Provider registry, routing policy, timeout/circuit breaker, idempotency, cost caps and provider outage tests |
-| ChatGPT prompt library / reusable presets | PARTIAL | Prompt runtime PR #61 is open; verify merge, CI and runtime adoption before treating as mainline |
+| User-owned prompt registry and preset selection | PRESENT / OFFLINE-TESTED (88 presets) | Live provider configuration and smoke test; consumer ChatGPT app/system settings remain separate and are not controlled by this registry |
 | Claude prompt library | NOT VERIFIED as a dedicated tested registry | Build provider-neutral task prompts, then provider-specific adapters only where justified; do not copy private vendor system prompts |
 | MCP / A2A / external plugins | DESIGN TARGET / NOT PROVEN connected | Inventory each connector, permissions, owner, secret reference, health test, scope, budget and rollback |
 | Tools and autonomous execution | LIMITED / NOT PROVEN as production execution | Approved tool registry, least privilege, dry-run, approval gates, idempotency, audit and sandbox tests |
-| Content generation | PARTIAL | Local catalog/planner exists; live model/media integrations, rights review, human publication gate and performance measurement remain |
+| Trend intake / prompt alias capture | PRESENT / OFFLINE-TESTED | Authorized platform/feed adapters, scheduler, durable production queue, freshness checks, alert delivery and end-to-end provenance tests |\n| Content generation | PARTIAL | Local catalog/planner exists; live model/media integrations, rights review, human publication gate and performance measurement remain |
 | Sales/CRM/outreach | NOT PROVEN connected | Authorized CRM or lead source, consent/opt-out handling, truthful outreach, pipeline ledger and conversion measurement |
 | Revenue/Kuber finance | DESIGN TARGET / NOT PROVEN connected | Actual payment/platform reports, expense records, reconciliation, invoice/tax treatment, cost allocation and discrepancy alerts |
 | KMDB / knowledge management | NOT PROVEN as a durable connected backend | Approved sources, persistent metadata/content store, ingestion, provenance, ACLs, freshness, deletion, retrieval and restore tests |
