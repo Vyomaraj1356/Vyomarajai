@@ -1,4 +1,5 @@
 """The build/configuration report must match its generator and the registry it cites."""
+import difflib
 import json
 import unittest
 
@@ -10,7 +11,13 @@ class ReportTests(unittest.TestCase):
         self.registry = json.loads(report.REGISTRY.read_text())
 
     def test_checked_in_report_matches_generator(self):
-        self.assertEqual(report.OUTPUT.read_text(), report.render())
+        current = report.OUTPUT.read_text()
+        generated = report.render()
+        diff = "\\n".join(difflib.unified_diff(
+            current.splitlines(), generated.splitlines(),
+            fromfile=report.OUTPUT.name + " (checked-in)",
+            tofile=report.OUTPUT.name + " (generated)", lineterm=""))
+        self.assertEqual(current, generated, diff[:6000])
 
     def test_totals_match_the_registry(self):
         text = report.render()
