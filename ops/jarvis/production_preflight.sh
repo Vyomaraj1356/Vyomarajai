@@ -10,7 +10,7 @@ ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || {
   exit 2
 }
 cd "$ROOT"
-PYTHON="\${PYTHON:-python3}"
+PYTHON="${PYTHON:-python3}"
 command -v "$PYTHON" >/dev/null 2>&1 || { echo "BLOCKED: Python 3.10+ is required." >&2; exit 2; }
 
 "$PYTHON" - <<'PY'
@@ -68,9 +68,9 @@ echo "== 4/5: Verify preset discovery is offline =="
 echo "PASS: --list-presets runs without provider configuration"
 
 echo "== 5/5: Provider smoke test (opt-in only) =="
-if [[ "\${1:-}" == "--provider-smoke-test" ]]; then
+if [[ "${1:-}" == "--provider-smoke-test" ]]; then
   [[ "$#" -eq 1 ]] || { echo "Usage: $0 [--provider-smoke-test]" >&2; exit 2; }
-  if [[ -z "\${JARVIS_LLM_ENDPOINT:-}" && ! -f ops/jarvis/llm-harness.env ]]; then
+  if [[ -z "${JARVIS_LLM_ENDPOINT:-}" && ! -f ops/jarvis/llm-harness.env ]]; then
     echo "BLOCKED: configure an approved provider in the ignored local env file or secret manager." >&2
     exit 4
   fi
