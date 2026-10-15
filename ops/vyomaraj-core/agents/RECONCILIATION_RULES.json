@@ -59,5 +59,8 @@
       "name": "Aghor & Aghori",
       "approval": "Explicit user request on 2026-10-03; new sub-agent, not a rename of either existing unnamed Bhakti slot."
     }
-  ]
+  ],
+  "category_names": {
+    "PLATFORM": "Social Platform — Social Channels, AI & Monetization"
+  }
 }
