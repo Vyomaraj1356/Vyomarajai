@@ -19,7 +19,7 @@ Status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-1
 | SPORTS — Sports & Legends | 14 | 0 | 14 | 14 | 29 |
 | AGRI — Agriculture & Environment | 6 | 0 | 6 | 6 | 14 |
 | ENTERTAINMENT — Entertainment — Comedy, Movies, Hollywood, Bollywood | 32 | 2 | 30 | 38 | 168 |
-| PLATFORM — Platform & Social Hub + Earn — All Platforms + Monetization | 20 | 19 | 1 | 20 | 39 |
+| PLATFORM — Social Platform — Social Channels, AI & Monetization | 20 | 19 | 1 | 20 | 39 |
 | TOUR — Tour and Travel | 4 | 0 | 4 | 4 | 9 |
 | WAR — War Room — Warriors | 5 | 5 | 0 | 5 | 13 |
 | PODCAST — Podcast & Entertainment Studio | 5 | 5 | 0 | 5 | 9 |
