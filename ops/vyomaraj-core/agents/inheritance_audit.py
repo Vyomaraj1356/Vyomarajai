@@ -196,7 +196,7 @@ def main():
             diff = list(difflib.unified_diff((current or '').splitlines(), text.splitlines(),
                                             fromfile=output.name + ' (checked-in)',
                                             tofile=output.name + ' (generated)', lineterm=''))
-            print('\\n'.join(diff[:160]))
+            print('\n'.join(diff[:160]))
             raise SystemExit(f'{output} is out of date; run this script without --check')
         print(f'OK: {output.relative_to(ROOT)} matches its sources ({len(text)} bytes)')
     else:
