@@ -125,9 +125,9 @@ def _builder_check() -> tuple[bool, str]:
         return False, "registry builder could not be checked"
     if proc.returncode == 0:
         return True, "deterministic registry output matches"
-    diagnostic = (proc.stderr or proc.stdout or "").strip().splitlines()
-    detail = diagnostic[-1][:240] if diagnostic else "builder exited without diagnostic text"
-    return False, f"registry builder output is stale or invalid: {detail}"
+    diagnostic = (proc.stdout + "\\n" + proc.stderr).strip().splitlines()
+    detail = "\\n".join(diagnostic[-35:])[:2200] if diagnostic else "builder exited without diagnostic text"
+    return False, f"registry builder output is stale or invalid:\\n{detail}"
 
 
 def inspect() -> dict[str, Any]:
