@@ -2,6 +2,7 @@
 """Build current, owner-approved hierarchy. Never rewrite pinned historical sources."""
 import argparse
 import copy
+import difflib
 import hashlib
 import json
 from pathlib import Path
@@ -438,6 +439,15 @@ def outputs():
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');args=parser.parse_args()
     for path,text in outputs().items():
-        if args.check:require(path.is_file() and path.read_text()==text,'Out of date: '+path.name)
+        if args.check:
+            if not path.is_file():
+                require(False,'Missing generated artifact: '+path.name)
+            existing=path.read_text()
+            if existing!=text:
+                diff=list(difflib.unified_diff(existing.splitlines(),text.splitlines(),
+                                               fromfile=path.name+' (checked-in)',
+                                               tofile=path.name+' (generated)',lineterm=''))
+                print('\n'.join(diff[:160]))
+                require(False,'Out of date: '+path.name)
         else:path.write_text(text)
     print('PASS current hierarchy: 12 categories / 128 counted slots / 6 headings; Education 18, Finance 7, Entertainment 35. Historical snapshot preserved.')
