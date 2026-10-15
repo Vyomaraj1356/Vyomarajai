@@ -2,7 +2,7 @@
 
 **Current structure: 12 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**
 
-**15 October 2026 metadata alignment:** shared capability policy reference added; Podcast is now a capability family under EDU and ENTERTAINMENT; the legacy category remains only in the pinned historical source.
+**15 October 2026 metadata alignment:** Podcast is a capability family under EDU and ENTERTAINMENT; the historical product aggregate remains unreconciled.
 
 This is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.
 
