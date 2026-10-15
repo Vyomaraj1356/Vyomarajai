@@ -21,6 +21,7 @@ SUITES = [
     'ops/vyomaraj-core/liquor-bar',
     'ops/vyomaraj-core/experience',
     'ops/vyomaraj-core/research',
+    'ops/vyomaraj-core/trends',
     'ops/vyomaraj-core/agents',
     'ops/availability',
     'ops/vyomaraj-core/approvals',
@@ -76,6 +77,8 @@ BUILDER_COMMANDS = [
     # still describes the working tree; the secondary comparison needs credentials.
     ['python3', 'ops/dr/package_parity.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/check_suite_integrity.py', '--check'],
+    ['python3', 'ops/vyomaraj-core/trends/prompt_alias_registry.py'],
+    ['python3', '-m', 'json.tool', 'ops/vyomaraj-core/trends/prompt_alias_seed.json'],
     ['python3', 'ops/vyomaraj-core/handover/build_platform_check.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/build_issue_ledger.py', '--check'],
     ['python3', 'ops/vyomaraj-core/handover/auto_align.py', '--check'],
@@ -84,7 +87,7 @@ BUILDER_COMMANDS = [
     ['python3', '-m', 'json.tool', 'manifest.webmanifest'],
     ['python3', '-m', 'json.tool', 'ops/hanuman/hanuman-panch-shakti.json'],
     ['python3', '-m', 'json.tool', 'config/engineering/HANUMAN_PANCH_BROTHER_CAPABILITY_MODEL.yaml'],
-    ['python3', '-m', 'py_compile', 'ops/vyomaraj-core/experience/public_landing_server.py', 'ops/jarvis/heartbeat_monitor.py', 'ops/hanuman/capability_status.py', 'ops/vyomaraj/capability_fabric.py', 'ops/vyomaraj/agent_change.py', 'ops/engineering/verify_2026_stack.py', 'ops/vyomaraj-core/handover/check_suite_integrity.py', 'ops/vyomaraj-core/handover/preview_reports.py', 'ops/vyomaraj-core/handover/realtime_status.py', 'ops/vyomaraj-core/handover/verify_live_wiring.py', 'ops/vyomaraj-core/handover/verify_preview.py'],
+    ['python3', '-m', 'py_compile', 'ops/vyomaraj-core/experience/public_landing_server.py', 'ops/jarvis/heartbeat_monitor.py', 'ops/hanuman/capability_status.py', 'ops/vyomaraj/capability_fabric.py', 'ops/vyomaraj/agent_change.py', 'ops/engineering/verify_2026_stack.py', 'ops/vyomaraj-core/handover/check_suite_integrity.py', 'ops/vyomaraj-core/handover/preview_reports.py', 'ops/vyomaraj-core/handover/realtime_status.py', 'ops/vyomaraj-core/handover/verify_live_wiring.py', 'ops/vyomaraj-core/handover/verify_preview.py', 'ops/vyomaraj-core/trends/trend_intake.py', 'ops/vyomaraj-core/trends/prompt_alias_registry.py'],
     ['bash', '-n', 'ops/dr/run-dr.sh', 'ops/dr/failover-controller.sh', 'ops/vyomaraj-core/upgrades/upgrade-controller.sh', 'ops/jarvis/jarvis-24x7-controller.sh', 'ops/hanuman/hanuman-controller.sh', 'ops/vyomaraj/publish-gate.sh', 'ops/vyomaraj/agent-change.sh', 'ops/vyomaraj/process-control.sh', 'ops/vyomaraj/final-readiness-gate.sh'],
 ]
 SECRET = re.compile(r'(ghp_[A-Za-z0-9]{16,}|github_pat_[A-Za-z0-9_]{16,}|x-access-token:[^@\s]+@'

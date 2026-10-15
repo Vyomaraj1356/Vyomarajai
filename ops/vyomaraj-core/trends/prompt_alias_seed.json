@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "registry_id": "VYOMARAJ_JARVIS_PROMPT_ALIAS_SEED",
+  "status": "CANDIDATE_ALIASES_NOT_RUNTIME_VERIFIED",
+  "policy": "These are user-provided aliases and public workflow ideas, not native ChatGPT commands or proof of installed features. Each alias maps to a task template; unsupported integrations must remain blocked and clearly labeled.",
+  "aliases": [
+    [
+      "truthmode",
+      "truth_and_evidence",
+      "Separate facts, user claims, assumptions, estimates and unknowns; identify missing evidence and avoid unsupported completion claims."
+    ],
+    [
+      "firstprinciple",
+      "reasoning",
+      "Break the task into assumptions, constraints and fundamental truths; derive a practical solution and verify it."
+    ],
+    [
+      "blackswan",
+      "risk_review",
+      "Identify low-probability, high-impact failure modes, leading indicators and reversible mitigations."
+    ],
+    [
+      "signalvsnoise",
+      "research",
+      "Separate high-signal evidence from repetition, hype and low-quality sources; preserve provenance."
+    ],
+    [
+      "predict",
+      "forecast",
+      "Provide scenarios, assumptions, confidence and falsifiable indicators; do not present forecasts as facts."
+    ],
+    [
+      "tldr",
+      "summary",
+      "Return the shortest accurate summary, key caveats and next action."
+    ],
+    [
+      "x10think",
+      "deep_analysis",
+      "Explore materially different options, dependencies and second-order effects; return auditable conclusions, not hidden chain-of-thought."
+    ],
+    [
+      "kill-critic",
+      "draft_revision",
+      "Identify unproductive criticism, retain valid objections, then revise constructively."
+    ],
+    [
+      "alt3",
+      "decision_support",
+      "Compare safest, fastest and most scalable approaches with cost, risk and reversibility."
+    ],
+    [
+      "roadmap",
+      "planning",
+      "Create phased milestones, dependencies, owners, acceptance tests and rollback criteria."
+    ],
+    [
+      "all-plugins",
+      "capability_inventory",
+      "List only tools available to this runtime, their permissions and verification status; do not infer installation."
+    ],
+    [
+      "all-chatgpt-prompts",
+      "prompt_inventory",
+      "Inventory user-owned prompts and documented presets; do not claim access to private system prompts."
+    ],
+    [
+      "all-chatgpt-commands",
+      "command_inventory",
+      "Distinguish actual platform features, user-defined aliases and unsupported commands."
+    ],
+    [
+      "human",
+      "writing",
+      "Write naturally for the target audience without invented personal experience or manipulative pressure."
+    ],
+    [
+      "redteam",
+      "security_review",
+      "Probe assumptions, abuse cases, data exposure, permission boundaries and failure modes."
+    ],
+    [
+      "eli10",
+      "education",
+      "Explain in plain language with an example and an important caveat."
+    ],
+    [
+      "extendthinking",
+      "deep_analysis",
+      "Use structured analysis and return key rationale, alternatives and verifiable steps."
+    ],
+    [
+      "futureyou",
+      "strategy",
+      "Review the decision at one, three and five years; identify lock-in and maintenance risks."
+    ],
+    [
+      "explodeview",
+      "architecture",
+      "Decompose systems into components, inputs, outputs, dependencies, owners and tests."
+    ],
+    [
+      "xray",
+      "diagnostics",
+      "Expose hidden assumptions, missing dependencies, edge cases and failure paths."
+    ],
+    [
+      "handwritten",
+      "visual_format",
+      "Prepare content for a handwritten-style visual only when an authorized image tool is available."
+    ],
+    [
+      "sticky-notes",
+      "organization",
+      "Split ideas into small labeled cards with status and next action."
+    ],
+    [
+      "steelman",
+      "argument_review",
+      "Construct the strongest fair version of each side before evaluating evidence."
+    ],
+    [
+      "devils-advocate",
+      "argument_review",
+      "Challenge the proposal with its strongest objections and observable disconfirming evidence."
+    ],
+    [
+      "bubblehead",
+      "idea_generation",
+      "Generate playful, unconventional ideas, then screen for feasibility and safety."
+    ],
+    [
+      "marketingprompts",
+      "marketing",
+      "Create audience-specific messaging, hooks and ethical experiments; do not promise virality."
+    ],
+    [
+      "operationprompt",
+      "operations",
+      "Convert a goal into a repeatable SOP with controls, checkpoints and escalation."
+    ],
+    [
+      "content",
+      "content_creation",
+      "Produce original content from sourced research with rights, fact-check and review metadata."
+    ],
+    [
+      "education",
+      "education",
+      "Build age-appropriate learning content with source references, learning objectives and assessment."
+    ],
+    [
+      "sales",
+      "sales",
+      "Create truthful sales enablement with qualification, value proposition and compliance checks."
+    ],
+    [
+      "eli10visual",
+      "visual_explanation",
+      "Create a simple visual brief or diagram specification with accessible labels."
+    ],
+    [
+      "flavouring",
+      "style_revision",
+      "Adjust tone, rhythm and cultural nuance without changing factual meaning."
+    ],
+    [
+      "powerflow",
+      "workflow_design",
+      "Map trigger, inputs, decisions, actions, failure paths and measurable outputs."
+    ],
+    [
+      "eruption",
+      "brainstorming",
+      "Generate a high-diversity idea batch, then rank novelty, evidence, cost and risk."
+    ],
+    [
+      "howto",
+      "instructions",
+      "Give ordered steps, prerequisites, expected result and recovery guidance."
+    ],
+    [
+      "transparent",
+      "audit",
+      "Show sources, assumptions, decisions, confidence and unresolved issues."
+    ],
+    [
+      "anime-explainer",
+      "creative_explanation",
+      "Draft an anime-inspired explainer brief; use only licensed or original assets."
+    ],
+    [
+      "timelinereview",
+      "timeline",
+      "Create a sourced chronology and flag uncertain dates."
+    ],
+    [
+      "mindmap",
+      "visual_organization",
+      "Create a hierarchical concept map with cross-links and unresolved questions."
+    ],
+    [
+      "visualcheatsheet",
+      "visual_summary",
+      "Prepare a concise visual-reference brief with readable labels and source notes."
+    ],
+    [
+      "explodedview",
+      "architecture",
+      "Show components separated by function and explain their interfaces."
+    ],
+    [
+      "360view",
+      "review",
+      "Review a subject across stakeholder, technical, commercial, ethical and operational perspectives."
+    ],
+    [
+      "cheatsheet",
+      "reference",
+      "Create a compact, accurate reference sheet with caveats."
+    ],
+    [
+      "blueprint",
+      "architecture",
+      "Define components, contracts, dependencies, security boundaries and acceptance criteria."
+    ],
+    [
+      "flashcards",
+      "education",
+      "Generate question-answer cards from verified source material."
+    ],
+    [
+      "summary",
+      "summary",
+      "Summarize key points, decisions, risks and next actions."
+    ],
+    [
+      "explainplan",
+      "planning",
+      "Explain the plan, rationale, dependencies, owner decisions and acceptance evidence."
+    ],
+    [
+      "example",
+      "education",
+      "Give a representative example and state where it does not generalize."
+    ],
+    [
+      "analogy",
+      "education",
+      "Explain using an analogy and map the analogy's limits."
+    ],
+    [
+      "steps",
+      "instructions",
+      "Return ordered, actionable steps with prerequisites and checks."
+    ],
+    [
+      "quiz",
+      "education",
+      "Create an answerable quiz and an answer key grounded in the supplied material."
+    ],
+    [
+      "questions",
+      "research",
+      "Generate focused research questions and identify evidence needed."
+    ],
+    [
+      "infographics",
+      "visual_summary",
+      "Create an infographic brief with source notes and accessible hierarchy."
+    ],
+    [
+      "timeline",
+      "timeline",
+      "Show events in chronological order with dates and provenance."
+    ],
+    [
+      "compare",
+      "decision_support",
+      "Compare options on consistent criteria and disclose missing data."
+    ],
+    [
+      "decision-matrix",
+      "decision_support",
+      "Score options using explicit criteria, weights and uncertainty."
+    ],
+    [
+      "canvas",
+      "document_workflow",
+      "Use an available editing canvas only if the runtime exposes it; otherwise return editable content."
+    ],
+    [
+      "layers",
+      "architecture",
+      "Separate the system into layers with responsibilities and interfaces."
+    ],
+    [
+      "cycle",
+      "workflow_design",
+      "Represent recurring workflows, feedback and stop conditions."
+    ],
+    [
+      "sketchnotes",
+      "visual_summary",
+      "Create a structured sketchnote brief with short labels and clear hierarchy."
+    ],
+    [
+      "iceberg",
+      "analysis",
+      "Separate visible symptoms from underlying causes and assumptions."
+    ],
+    [
+      "goal",
+      "planning",
+      "Define outcome, baseline, metric, deadline, constraints and acceptance."
+    ],
+    [
+      "brief",
+      "writing",
+      "Create a concise actionable brief with audience, purpose, constraints and evidence."
+    ],
+    [
+      "plan",
+      "planning",
+      "Create a sequenced plan with owners, dependencies, checks and fallback."
+    ],
+    [
+      "next",
+      "execution",
+      "Identify the single highest-value safe next action and perform it if authorized."
+    ],
+    [
+      "focus",
+      "prioritization",
+      "Rank work by impact, urgency, dependencies, risk and effort."
+    ],
+    [
+      "priority",
+      "prioritization",
+      "Make the priority order explicit and explain trade-offs."
+    ],
+    [
+      "simple",
+      "simplification",
+      "Simplify wording while preserving meaning, evidence and caveats."
+    ],
+    [
+      "ideas",
+      "brainstorming",
+      "Generate diverse ideas and group them by value and effort."
+    ],
+    [
+      "brainstorm",
+      "brainstorming",
+      "Expand the option set before evaluating feasibility and risk."
+    ],
+    [
+      "hook",
+      "content_creation",
+      "Draft truthful audience hooks without deceptive claims or bait."
+    ],
+    [
+      "job-hunting",
+      "career",
+      "Tailor job-search materials to real experience and a specific role."
+    ],
+    [
+      "image",
+      "media_creation",
+      "Use an available authorized image-generation tool; otherwise return a prompt and asset brief."
+    ],
+    [
+      "study",
+      "education",
+      "Use available study-mode features if exposed; otherwise guide learning with questions and feedback."
+    ],
+    [
+      "search",
+      "research",
+      "Use an available search connector and cite sources; if unavailable, say so."
+    ],
+    [
+      "python",
+      "data_analysis",
+      "Use an available execution environment for calculations; never claim code ran without evidence."
+    ],
+    [
+      "visualizelearning",
+      "education",
+      "Create a concept-map or visual-learning brief using verified source material."
+    ],
+    [
+      "generatehandwrittenimage",
+      "media_creation",
+      "Generate handwritten-style notes only when the authorized image tool supports it."
+    ],
+    [
+      "quizme",
+      "education",
+      "Test comprehension and explain incorrect answers."
+    ],
+    [
+      "summarize",
+      "summary",
+      "Summarize supplied content and preserve important caveats."
+    ],
+    [
+      "translate",
+      "localization",
+      "Translate while preserving meaning, register and cultural context."
+    ],
+    [
+      "rewrite",
+      "writing",
+      "Rewrite for the requested tone while preserving factual claims."
+    ],
+    [
+      "diagram",
+      "architecture",
+      "Produce a diagram specification or render only with an available visualization tool."
+    ],
+    [
+      "presentation",
+      "document_workflow",
+      "Create slide structure, speaker notes and source references."
+    ]
+  ]
+}
