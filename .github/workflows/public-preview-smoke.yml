@@ -1,6 +1,14 @@
 name: Public Preview Smoke Gate
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/public-preview-smoke.yml'
+      - 'ops/vyomaraj-core/experience/public_landing_server.py'
+      - 'ops/vyomaraj-core/experience/**'
+      - 'ops/vyomaraj-core/bhakti-experience/**'
+      - 'ops/vyomaraj-core/liquor-bar/**'
   pull_request:
     branches: [main]
     paths:
