@@ -265,52 +265,67 @@ def git_blob_sha(raw):
     return hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
 
 
-def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_only_removal=False):
-    """Build exact tree, verify before publication, preserve prior DR history.
+def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_only_removal=False,
+             preserve_protected_path=False):
+    """Publish an approved snapshot, optionally retaining protected DR paths.
 
-    Target-only files are removed from the new snapshot, not its history. This
-    is an explicit mirror operation. Unknown/empty targets are never initialized.
+    Protected blob contents are never fetched. The complete approved tree manifest
+    is checked before publication and after read-back. With an exception, this is
+    approved-scope replication, not exact Primary/DR tree parity.
     """
-    source = primary.request('GET', f'repos/{PRIMARY}/git/trees/{src["tree"]}?recursive=1')
+    source_tree_sha = src['tree']
+    target_tree_sha = dst['tree']
+    source = primary.request('GET', f'repos/{PRIMARY}/git/trees/{source_tree_sha}?recursive=1')
     entries = source_entries(source)
-    old_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{dst["tree"]}?recursive=1'), allow_empty=True)
-    extra = {entry['path'] for entry in old_entries} - {entry['path'] for entry in entries}
+    old_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{target_tree_sha}?recursive=1'), allow_empty=True)
+    target_entries, extra = compose_target_entries(entries, old_entries, preserve_protected_path)
     if extra and not allow_target_only_removal:
         raise TargetOnlyRemovalRequired(len(extra))
     available = {entry['sha'] for entry in old_entries}
+    protected = PROTECTED_DR_PATHS if preserve_protected_path else frozenset()
     metrics = {} if metrics is None else metrics
-    metrics.update(uploaded_blobs=0, reused_blobs=0, target_only_files_removed_from_snapshot=len(extra))
-    target_entries = []
-    for entry in entries:
-        if entry['sha'] in available:
-            target_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+    metrics.update(uploaded_blobs=0, reused_blobs=0,
+                   target_only_files_removed_from_snapshot=len(extra),
+                   protected_paths_preserved=sorted(protected & {e['path'] for e in old_entries}))
+    published_entries = []
+    for entry in target_entries:
+        if entry['path'] in protected:
+            published_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
             metrics['reused_blobs'] += 1
             continue
-        blob = primary.request('GET', f'repos/{PRIMARY}/git/blobs/{entry["sha"]}')
+        if entry['sha'] in available:
+            published_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+            metrics['reused_blobs'] += 1
+            continue
+        source_blob_sha = entry['sha']
+        blob = primary.request('GET', f'repos/{PRIMARY}/git/blobs/{source_blob_sha}')
         if blob.get('encoding') != 'base64':
             raise CheckError('Unsupported blob encoding')
         raw = base64.b64decode(''.join(blob['content'].split()), validate=True)
-        if git_blob_sha(raw) != entry['sha']:
+        if git_blob_sha(raw) != source_blob_sha:
             raise CheckError('Source blob integrity mismatch')
         created = secondary.request('POST', f'repos/{target}/git/blobs',
                                     {'encoding': 'base64', 'content': base64.b64encode(raw).decode()})
-        if created['sha'] != entry['sha']:
+        if created['sha'] != source_blob_sha:
             raise CheckError('Target blob integrity mismatch')
-        available.add(entry['sha'])
+        available.add(source_blob_sha)
         metrics['uploaded_blobs'] += 1
-        target_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
-    # No base_tree: retaining it would preserve deleted source files on DR.
-    tree = secondary.request('POST', f'repos/{target}/git/trees', {'tree': target_entries})['sha']
-    if tree != src['tree']:
+        published_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+    tree = secondary.request('POST', f'repos/{target}/git/trees', {'tree': published_entries})['sha']
+    created_tree = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{tree}?recursive=1'),
+                                  allow_empty=not published_entries)
+    if not entries_match(published_entries, created_tree):
+        raise CheckError('New DR tree does not match the approved manifest; refusing to update DR ref')
+    if not preserve_protected_path and tree != source_tree_sha:
         raise CheckError('New DR tree differs from source; refusing to update DR ref')
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
-    commit = secondary.request('POST', f'repos/{target}/git/commits', {
-        'message': f'chore(dr): snapshot {PRIMARY}:{BRANCH} at {src["commit"]}',
-        'tree': tree, 'parents': [dst['commit']],
-    })['sha']
-    # Recheck immediately before publication. force:false also rejects a
-    # concurrent divergent target advance; it never force-overwrites a branch.
+    source_commit_sha = src['commit']
+    message = f'chore(dr): approved snapshot {PRIMARY}:{BRANCH} at {source_commit_sha}'
+    if preserve_protected_path:
+        message += ' with protected DR configuration retained'
+    commit = secondary.request('POST', f'repos/{target}/git/commits',
+                               {'message': message, 'tree': tree, 'parents': [dst['commit']]})['sha']
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
     secondary.request('PATCH', f'repos/{target}/git/refs/heads/{BRANCH}',
@@ -318,9 +333,12 @@ def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_o
     observed = snapshot(secondary, target)
     if observed != {'commit': commit, 'tree': tree}:
         raise CheckError('Read-after-write mismatch; no sync success claimed')
+    observed_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{tree}?recursive=1'),
+                                      allow_empty=not published_entries)
+    if not entries_match(published_entries, observed_entries):
+        raise CheckError('Read-after-write manifest mismatch; no sync success claimed')
     assert_unchanged(primary, PRIMARY, src)
     return observed
-
 
 def pinned_removal_approval(target, dst, env, policy=None, now=None):
     """One-snapshot owner approval, never a standing permission to remove files."""
