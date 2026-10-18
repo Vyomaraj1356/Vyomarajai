@@ -363,7 +363,10 @@ def pinned_removal_approval(target, dst, env, policy=None, now=None):
 def execute(target, sync=False, primary=None, secondary=None, environ=None):
     env = os.environ if environ is None else environ
     target = validate_target(target)
+    preserve_protected_path = env.get('DR_PROTECTED_PATH_EXCEPTION_APPROVED') == 'true'
     if sync:
+        if preserve_protected_path and env.get('GITHUB_EVENT_NAME') != 'workflow_dispatch':
+            raise CheckError('Protected-path exception approval is accepted only from explicit workflow_dispatch')
         if env.get('GITHUB_REPOSITORY') != PRIMARY or env.get('GITHUB_REF') != 'refs/heads/main':
             raise CheckError('Replication is restricted to the primary repository main workflow')
         if env.get('DR_SYNC_APPROVED') != 'true':
@@ -384,20 +387,29 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
     changed = False
     transfer = {'uploaded_blobs': 0, 'reused_blobs': 0, 'target_only_files_removed_from_snapshot': 0}
     if src['tree'] != dst['tree'] and sync:
-        dst = replicate(primary, secondary, target, src, dst, transfer, env.get('DR_ALLOW_TARGET_ONLY_REMOVAL') == 'true' or pinned_removal_approval(target, dst, env))
+        target_tree_sha = dst['tree']
+        target_tree = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{target_tree_sha}?recursive=1'), allow_empty=True)
+        has_protected = bool(PROTECTED_DR_PATHS & {entry['path'] for entry in target_tree})
+        if has_protected and not preserve_protected_path:
+            raise ProtectedPathApprovalRequired()
+        dst = replicate(primary, secondary, target, src, dst, transfer,
+                        env.get('DR_ALLOW_TARGET_ONLY_REMOVAL') == 'true' or pinned_removal_approval(target, dst, env),
+                        preserve_protected_path=preserve_protected_path)
         changed = True
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
     return {'primary_repository': PRIMARY, 'secondary_repository': target, 'branch': BRANCH,
             'primary': src, 'secondary': dst, 'data_match': src['tree'] == dst['tree'],
             'replication_performed': changed, 'rollback_commit': previous_secondary['commit'] if changed else None, 'traffic_switched': False, 'transfer': transfer,
-            'status': 'MATCH' if src['tree'] == dst['tree'] else 'MISMATCH'}
+            'status': ('PROTECTED_PATH_EXCEPTION' if changed and preserve_protected_path else ('MATCH' if src['tree'] == dst['tree'] else 'MISMATCH')),
+            'protected_path_exception_applied': bool(changed and preserve_protected_path),
+            'approved_scope_match': bool(changed and preserve_protected_path) or src['tree'] == dst['tree']}
 
 
 def actions_result_annotation(result):
     """Closed-vocabulary public signal; include sanitized 422 shape evidence."""
     status = result.get('status')
-    if status not in ('MATCH', 'MISMATCH', 'BLOCKED'): status = 'UNKNOWN'
+    if status not in ('MATCH', 'MISMATCH', 'BLOCKED', 'PROTECTED_PATH_EXCEPTION'): status = 'UNKNOWN'
     operation = result.get('failed_api_operation')
     allowed = {m + ':' + p for m in ('GET','POST','PATCH') for p in ('git/blobs','git/trees','git/commits','git/refs','git/ref','identity','repository')}
     if operation not in allowed: operation = 'NONE_OR_UNCLASSIFIED'
@@ -409,6 +421,7 @@ def actions_result_annotation(result):
     for label, value in [('primary_tree', result.get('primary', {}).get('tree')), ('secondary_tree', result.get('secondary', {}).get('tree')), ('rollback_commit', result.get('rollback_commit'))]:
         if isinstance(value, str) and re.fullmatch(r'[0-9a-f]{40}', value): evidence += f'; {label}={value}'
     if result.get('data_match') is True: evidence += '; data_match=true'
+    if result.get('protected_path_exception_applied') is True: evidence += '; protected_path_exception=APPLIED; full_tree_match=NOT_CLAIMED; approved_scope_match=true'
 
     # Only emit fixed allowlisted enums; never echo API messages, paths, SHAs from
     # request payloads, or raw response bodies into public workflow annotations.
@@ -459,14 +472,14 @@ def main():
             if diff_result.returncode != 0:
                 raise CheckError('Read-only DR preflight diff failed; refusing sync')
         result = execute(args.target, args.sync)
-        code = 0 if result['data_match'] else 1
+        code = 0 if result['data_match'] or result.get('protected_path_exception_applied') else 1
     except (CheckError, ValueError, KeyError, TypeError) as exc:
         # Only CheckError messages are controlled. Other failures may embed raw
         # input in exception messages; never emit them or provider response bodies.
         result = {'status': 'BLOCKED', 'detail': str(exc) if isinstance(exc, CheckError)
                   else 'Malformed source/API response; no success claimed',
                   'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None), 'failed_http_status': getattr(exc, 'status', None),
-                  'target_only_files_awaiting_review': exc.count if isinstance(exc, TargetOnlyRemovalRequired) else None,
+                  'target_only_files_awaiting_review': exc.count if isinstance(exc, (TargetOnlyRemovalRequired, ProtectedPathApprovalRequired)) else None,
                   'safe_validation_fields': getattr(exc, 'validation_fields', []),
                   'request_metrics': getattr(exc, 'request_metrics', {})}
         code = 2
