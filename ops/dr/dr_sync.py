@@ -401,6 +401,17 @@ def main():
     parser.add_argument('--output', type=Path, help='Write sanitized evidence JSON')
     args = parser.parse_args()
     try:
+        # In the trusted Actions sync job, capture a GET-only path diff before
+        # any replication attempt. A target-only-file block must still leave a
+        # reviewable artifact; no file contents or credentials are emitted.
+        if args.sync and os.environ.get('GITHUB_ACTIONS') == 'true':
+            diff_result = subprocess.run(
+                [sys.executable, str(Path(__file__).with_name('dr_diff_plan.py')),
+                 '--target', args.target, '--output', 'dr-diff-plan.json'],
+                capture_output=True, text=True, timeout=180,
+            )
+            if diff_result.returncode != 0:
+                raise CheckError('Read-only DR preflight diff failed; refusing sync')
         result = execute(args.target, args.sync)
         code = 0 if result['data_match'] else 1
     except (CheckError, ValueError, KeyError, TypeError) as exc:
