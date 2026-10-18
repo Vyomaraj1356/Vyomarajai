@@ -20,6 +20,7 @@ import urllib.request
 
 PRIMARY = 'Vyomaraj1356/Vyomarajai'
 BRANCH = 'main'
+PROTECTED_DR_PATHS = frozenset({'ops/jarvis/jarvis.env'})
 API = 'https://api.github.com'
 
 
@@ -30,7 +31,34 @@ class CheckError(Exception):
 class TargetOnlyRemovalRequired(CheckError):
     def __init__(self, count):
         self.count = count
-        super().__init__(f'Secondary has {count} target-only files; refusing removal without explicit DR_ALLOW_TARGET_ONLY_REMOVAL=true review approval.')
+        super().__init__(f'Secondary has {count} unprotected target-only files; refusing removal without explicit DR_ALLOW_TARGET_ONLY_REMOVAL=true review approval.')
+
+
+class ProtectedPathApprovalRequired(CheckError):
+    def __init__(self):
+        self.count = 1
+        super().__init__('DR contains a protected configuration path; sync is blocked until explicit workflow_dispatch approval preserves it. No file content is read or logged.')
+
+
+def compose_target_entries(source_entries_list, target_entries_list, preserve_protected_path=False):
+    """Compose the approved mirror manifest from tree metadata only."""
+    source = {entry['path']: entry for entry in source_entries_list}
+    target = {entry['path']: entry for entry in target_entries_list}
+    protected = PROTECTED_DR_PATHS if preserve_protected_path else frozenset()
+    if protected - set(target):
+        raise CheckError('Protected DR path is missing from the destination; refusing to synthesize or overwrite it.')
+    extras = (set(target) - set(source)) - protected
+    combined = {path: entry for path, entry in source.items() if path not in protected}
+    for path in protected:
+        combined[path] = target[path]
+    return [dict(combined[path]) for path in sorted(combined)], extras
+
+
+def entries_match(expected, observed):
+    """Compare path/mode/type/blob identity without fetching file contents."""
+    def key(entry):
+        return (entry.get('path'), entry.get('mode'), entry.get('type'), entry.get('sha'))
+    return sorted(map(key, expected)) == sorted(map(key, observed))
 
 
 def safe_api_error_reason(status, body):
