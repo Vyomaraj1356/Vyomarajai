@@ -16,7 +16,11 @@ on:
         options: [verify, sync]
         default: verify
       allow_target_only_removal:
-        description: 'SYNC ONLY: after reviewing/backing up secondary-only files, approve removal from its current snapshot (history retained)'
+        description: 'SYNC ONLY: after reviewing/backing up unprotected secondary-only files, approve their removal from the current snapshot (history retained)'
+        type: boolean
+        default: false
+      preserve_jarvis_env:
+        description: 'SYNC ONLY: preserve ops/jarvis/jarvis.env from DR using a documented protected-path exception; does not authorize other writes by itself'
         type: boolean
         default: false
       diagnostic_target:
@@ -105,6 +109,7 @@ jobs:
           DR_REPO: ${{ vars.VYOMARAJ_DR_REPO }}
           DR_SYNC_APPROVED: ${{ vars.VYOMARAJ_DR_SYNC_ENABLED }}
           DR_ALLOW_TARGET_ONLY_REMOVAL: ${{ inputs.allow_target_only_removal }}
+          DR_PROTECTED_PATH_EXCEPTION_APPROVED: ${{ inputs.preserve_jarvis_env }}
           REQUEST_MODE: ${{ inputs.mode }}
           DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
         run: |
@@ -133,11 +138,9 @@ jobs:
             exit 1
           fi
           MODE="${REQUEST_MODE:-verify}"
-          # Trusted pushes to primary main perform guarded replication after owner approval.
-          # Scheduled runs remain read-only; manual dispatch keeps its explicit verify/sync mode.
-          if [ "$GITHUB_EVENT_NAME" = push ] && [ "$GITHUB_REF" = refs/heads/main ]; then
-            MODE=sync
-          elif [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+          # Main pushes, pull requests and schedules are read-only. A DR write is
+          # possible only from an explicit workflow_dispatch with mode=sync.
+          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
             MODE=verify
           fi
           if [ "$MODE" = sync ]; then
@@ -153,6 +156,10 @@ jobs:
               exit 1
             fi
             test -n "$DR_REPO"
+            if [ "${DR_PROTECTED_PATH_EXCEPTION_APPROVED:-false}" = true ] && [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+              echo '::error::Protected-path exception requires explicit workflow_dispatch approval.'
+              exit 1
+            fi
             if [ -n "${DIAGNOSTIC_TARGET:-}" ]; then
               echo '::error::diagnostic_target must be blank for sync; it is only for read-only diagnosis.'
               exit 1

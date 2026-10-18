@@ -9,7 +9,7 @@ class TargetOnlyGateTests(unittest.TestCase):
         original=secondary.request
         def request(method,path,body=None):
             response=original(method,path,body)
-            if method=='GET' and '/git/trees/' in path:
+            if method=='GET' and '/git/trees/' in path and '/git/trees/old-tree?' in path:
                 response['tree'].append({'path':'secondary-only.txt','mode':'100644','type':'blob','sha':BLOB})
             return response
         secondary.request=request

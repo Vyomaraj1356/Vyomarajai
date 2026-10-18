@@ -20,6 +20,7 @@ import urllib.request
 
 PRIMARY = 'Vyomaraj1356/Vyomarajai'
 BRANCH = 'main'
+PROTECTED_DR_PATHS = frozenset({'ops/jarvis/jarvis.env'})
 API = 'https://api.github.com'
 
 
@@ -30,7 +31,34 @@ class CheckError(Exception):
 class TargetOnlyRemovalRequired(CheckError):
     def __init__(self, count):
         self.count = count
-        super().__init__(f'Secondary has {count} target-only files; refusing removal without explicit DR_ALLOW_TARGET_ONLY_REMOVAL=true review approval.')
+        super().__init__(f'Secondary has {count} unprotected target-only files; refusing removal without explicit DR_ALLOW_TARGET_ONLY_REMOVAL=true review approval.')
+
+
+class ProtectedPathApprovalRequired(CheckError):
+    def __init__(self):
+        self.count = 1
+        super().__init__('DR contains a protected configuration path; sync is blocked until explicit workflow_dispatch approval preserves it. No file content is read or logged.')
+
+
+def compose_target_entries(source_entries_list, target_entries_list, preserve_protected_path=False):
+    """Compose the approved mirror manifest from tree metadata only."""
+    source = {entry['path']: entry for entry in source_entries_list}
+    target = {entry['path']: entry for entry in target_entries_list}
+    protected = PROTECTED_DR_PATHS if preserve_protected_path else frozenset()
+    if protected - set(target):
+        raise CheckError('Protected DR path is missing from the destination; refusing to synthesize or overwrite it.')
+    extras = (set(target) - set(source)) - protected
+    combined = {path: entry for path, entry in source.items() if path not in protected}
+    for path in protected:
+        combined[path] = target[path]
+    return [dict(combined[path]) for path in sorted(combined)], extras
+
+
+def entries_match(expected, observed):
+    """Compare path/mode/type/blob identity without fetching file contents."""
+    def key(entry):
+        return (entry.get('path'), entry.get('mode'), entry.get('type'), entry.get('sha'))
+    return sorted(map(key, expected)) == sorted(map(key, observed))
 
 
 def safe_api_error_reason(status, body):
@@ -237,52 +265,67 @@ def git_blob_sha(raw):
     return hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
 
 
-def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_only_removal=False):
-    """Build exact tree, verify before publication, preserve prior DR history.
+def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_only_removal=False,
+             preserve_protected_path=False):
+    """Publish an approved snapshot, optionally retaining protected DR paths.
 
-    Target-only files are removed from the new snapshot, not its history. This
-    is an explicit mirror operation. Unknown/empty targets are never initialized.
+    Protected blob contents are never fetched. The complete approved tree manifest
+    is checked before publication and after read-back. With an exception, this is
+    approved-scope replication, not exact Primary/DR tree parity.
     """
-    source = primary.request('GET', f'repos/{PRIMARY}/git/trees/{src["tree"]}?recursive=1')
+    source_tree_sha = src['tree']
+    target_tree_sha = dst['tree']
+    source = primary.request('GET', f'repos/{PRIMARY}/git/trees/{source_tree_sha}?recursive=1')
     entries = source_entries(source)
-    old_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{dst["tree"]}?recursive=1'), allow_empty=True)
-    extra = {entry['path'] for entry in old_entries} - {entry['path'] for entry in entries}
+    old_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{target_tree_sha}?recursive=1'), allow_empty=True)
+    target_entries, extra = compose_target_entries(entries, old_entries, preserve_protected_path)
     if extra and not allow_target_only_removal:
         raise TargetOnlyRemovalRequired(len(extra))
     available = {entry['sha'] for entry in old_entries}
+    protected = PROTECTED_DR_PATHS if preserve_protected_path else frozenset()
     metrics = {} if metrics is None else metrics
-    metrics.update(uploaded_blobs=0, reused_blobs=0, target_only_files_removed_from_snapshot=len(extra))
-    target_entries = []
-    for entry in entries:
-        if entry['sha'] in available:
-            target_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+    metrics.update(uploaded_blobs=0, reused_blobs=0,
+                   target_only_files_removed_from_snapshot=len(extra),
+                   protected_paths_preserved=sorted(protected & {e['path'] for e in old_entries}))
+    published_entries = []
+    for entry in target_entries:
+        if entry['path'] in protected:
+            published_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
             metrics['reused_blobs'] += 1
             continue
-        blob = primary.request('GET', f'repos/{PRIMARY}/git/blobs/{entry["sha"]}')
+        if entry['sha'] in available:
+            published_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+            metrics['reused_blobs'] += 1
+            continue
+        source_blob_sha = entry['sha']
+        blob = primary.request('GET', f'repos/{PRIMARY}/git/blobs/{source_blob_sha}')
         if blob.get('encoding') != 'base64':
             raise CheckError('Unsupported blob encoding')
         raw = base64.b64decode(''.join(blob['content'].split()), validate=True)
-        if git_blob_sha(raw) != entry['sha']:
+        if git_blob_sha(raw) != source_blob_sha:
             raise CheckError('Source blob integrity mismatch')
         created = secondary.request('POST', f'repos/{target}/git/blobs',
                                     {'encoding': 'base64', 'content': base64.b64encode(raw).decode()})
-        if created['sha'] != entry['sha']:
+        if created['sha'] != source_blob_sha:
             raise CheckError('Target blob integrity mismatch')
-        available.add(entry['sha'])
+        available.add(source_blob_sha)
         metrics['uploaded_blobs'] += 1
-        target_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
-    # No base_tree: retaining it would preserve deleted source files on DR.
-    tree = secondary.request('POST', f'repos/{target}/git/trees', {'tree': target_entries})['sha']
-    if tree != src['tree']:
+        published_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
+    tree = secondary.request('POST', f'repos/{target}/git/trees', {'tree': published_entries})['sha']
+    created_tree = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{tree}?recursive=1'),
+                                  allow_empty=not published_entries)
+    if not entries_match(published_entries, created_tree):
+        raise CheckError('New DR tree does not match the approved manifest; refusing to update DR ref')
+    if not preserve_protected_path and tree != source_tree_sha:
         raise CheckError('New DR tree differs from source; refusing to update DR ref')
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
-    commit = secondary.request('POST', f'repos/{target}/git/commits', {
-        'message': f'chore(dr): snapshot {PRIMARY}:{BRANCH} at {src["commit"]}',
-        'tree': tree, 'parents': [dst['commit']],
-    })['sha']
-    # Recheck immediately before publication. force:false also rejects a
-    # concurrent divergent target advance; it never force-overwrites a branch.
+    source_commit_sha = src['commit']
+    message = f'chore(dr): approved snapshot {PRIMARY}:{BRANCH} at {source_commit_sha}'
+    if preserve_protected_path:
+        message += ' with protected DR configuration retained'
+    commit = secondary.request('POST', f'repos/{target}/git/commits',
+                               {'message': message, 'tree': tree, 'parents': [dst['commit']]})['sha']
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
     secondary.request('PATCH', f'repos/{target}/git/refs/heads/{BRANCH}',
@@ -290,9 +333,12 @@ def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_o
     observed = snapshot(secondary, target)
     if observed != {'commit': commit, 'tree': tree}:
         raise CheckError('Read-after-write mismatch; no sync success claimed')
+    observed_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{tree}?recursive=1'),
+                                      allow_empty=not published_entries)
+    if not entries_match(published_entries, observed_entries):
+        raise CheckError('Read-after-write manifest mismatch; no sync success claimed')
     assert_unchanged(primary, PRIMARY, src)
     return observed
-
 
 def pinned_removal_approval(target, dst, env, policy=None, now=None):
     """One-snapshot owner approval, never a standing permission to remove files."""
@@ -317,7 +363,10 @@ def pinned_removal_approval(target, dst, env, policy=None, now=None):
 def execute(target, sync=False, primary=None, secondary=None, environ=None):
     env = os.environ if environ is None else environ
     target = validate_target(target)
+    preserve_protected_path = env.get('DR_PROTECTED_PATH_EXCEPTION_APPROVED') == 'true'
     if sync:
+        if preserve_protected_path and env.get('GITHUB_EVENT_NAME') != 'workflow_dispatch':
+            raise CheckError('Protected-path exception approval is accepted only from explicit workflow_dispatch')
         if env.get('GITHUB_REPOSITORY') != PRIMARY or env.get('GITHUB_REF') != 'refs/heads/main':
             raise CheckError('Replication is restricted to the primary repository main workflow')
         if env.get('DR_SYNC_APPROVED') != 'true':
@@ -338,20 +387,29 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
     changed = False
     transfer = {'uploaded_blobs': 0, 'reused_blobs': 0, 'target_only_files_removed_from_snapshot': 0}
     if src['tree'] != dst['tree'] and sync:
-        dst = replicate(primary, secondary, target, src, dst, transfer, env.get('DR_ALLOW_TARGET_ONLY_REMOVAL') == 'true' or pinned_removal_approval(target, dst, env))
+        target_tree_sha = dst['tree']
+        target_tree = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{target_tree_sha}?recursive=1'), allow_empty=True)
+        has_protected = bool(PROTECTED_DR_PATHS & {entry['path'] for entry in target_tree})
+        if has_protected and not preserve_protected_path:
+            raise ProtectedPathApprovalRequired()
+        dst = replicate(primary, secondary, target, src, dst, transfer,
+                        env.get('DR_ALLOW_TARGET_ONLY_REMOVAL') == 'true' or pinned_removal_approval(target, dst, env),
+                        preserve_protected_path=preserve_protected_path)
         changed = True
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
     return {'primary_repository': PRIMARY, 'secondary_repository': target, 'branch': BRANCH,
             'primary': src, 'secondary': dst, 'data_match': src['tree'] == dst['tree'],
             'replication_performed': changed, 'rollback_commit': previous_secondary['commit'] if changed else None, 'traffic_switched': False, 'transfer': transfer,
-            'status': 'MATCH' if src['tree'] == dst['tree'] else 'MISMATCH'}
+            'status': ('PROTECTED_PATH_EXCEPTION' if changed and preserve_protected_path else ('MATCH' if src['tree'] == dst['tree'] else 'MISMATCH')),
+            'protected_path_exception_applied': bool(changed and preserve_protected_path),
+            'approved_scope_match': bool(changed and preserve_protected_path) or src['tree'] == dst['tree']}
 
 
 def actions_result_annotation(result):
     """Closed-vocabulary public signal; include sanitized 422 shape evidence."""
     status = result.get('status')
-    if status not in ('MATCH', 'MISMATCH', 'BLOCKED'): status = 'UNKNOWN'
+    if status not in ('MATCH', 'MISMATCH', 'BLOCKED', 'PROTECTED_PATH_EXCEPTION'): status = 'UNKNOWN'
     operation = result.get('failed_api_operation')
     allowed = {m + ':' + p for m in ('GET','POST','PATCH') for p in ('git/blobs','git/trees','git/commits','git/refs','git/ref','identity','repository')}
     if operation not in allowed: operation = 'NONE_OR_UNCLASSIFIED'
@@ -363,6 +421,7 @@ def actions_result_annotation(result):
     for label, value in [('primary_tree', result.get('primary', {}).get('tree')), ('secondary_tree', result.get('secondary', {}).get('tree')), ('rollback_commit', result.get('rollback_commit'))]:
         if isinstance(value, str) and re.fullmatch(r'[0-9a-f]{40}', value): evidence += f'; {label}={value}'
     if result.get('data_match') is True: evidence += '; data_match=true'
+    if result.get('protected_path_exception_applied') is True: evidence += '; protected_path_exception=APPLIED; full_tree_match=NOT_CLAIMED; approved_scope_match=true'
 
     # Only emit fixed allowlisted enums; never echo API messages, paths, SHAs from
     # request payloads, or raw response bodies into public workflow annotations.
@@ -413,14 +472,14 @@ def main():
             if diff_result.returncode != 0:
                 raise CheckError('Read-only DR preflight diff failed; refusing sync')
         result = execute(args.target, args.sync)
-        code = 0 if result['data_match'] else 1
+        code = 0 if result['data_match'] or result.get('protected_path_exception_applied') else 1
     except (CheckError, ValueError, KeyError, TypeError) as exc:
         # Only CheckError messages are controlled. Other failures may embed raw
         # input in exception messages; never emit them or provider response bodies.
         result = {'status': 'BLOCKED', 'detail': str(exc) if isinstance(exc, CheckError)
                   else 'Malformed source/API response; no success claimed',
                   'traffic_switched': False, 'failed_api_operation': getattr(exc, 'operation', None), 'failed_http_status': getattr(exc, 'status', None),
-                  'target_only_files_awaiting_review': exc.count if isinstance(exc, TargetOnlyRemovalRequired) else None,
+                  'target_only_files_awaiting_review': exc.count if isinstance(exc, (TargetOnlyRemovalRequired, ProtectedPathApprovalRequired)) else None,
                   'safe_validation_fields': getattr(exc, 'validation_fields', []),
                   'request_metrics': getattr(exc, 'request_metrics', {})}
         code = 2
