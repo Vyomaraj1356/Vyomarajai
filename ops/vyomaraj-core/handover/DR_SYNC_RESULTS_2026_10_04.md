@@ -21,8 +21,8 @@ Pages API reports `built` from `main:/` at `04b7ae60`; this feature branch is no
 | Source | SHA256 | What it contributes |
 |---|---|---|
 | `ops/dr/DEPLOYED_MATCH_2026_10_04.json` | `f2ed942ecf32f5e99017d854a15f27eb5b9f171faf651a731fd1bbac7b01b1bb` | 41 MATCH checkpoints, 27 replication writes, 1 blocked run, 1 read-only probe |
-| `ops/dr/DR_POLICY.json` | `3ed138ba83a240186ca0fcc896903a6a33f20b9e54341732cfdc50990124d2ca` | scope flags and the time-boxed one-snapshot removal approval |
-| `.github/workflows/vyomaraj-sync-both.yml` | `8c4489e096f459fbc9ea1bc3b156631696ba063e404872f028824e4bd3d77c63` | triggers and schedule |
+| `ops/dr/DR_POLICY.json` | `75ec9c6efa9e9ba623a2954ff9208cfaf63579c8bae2af49221577b10f644899` | scope flags and the time-boxed one-snapshot removal approval |
+| `.github/workflows/vyomaraj-sync-both.yml` | `adeddc66243f46a786a78446636eec0ed678b183def266d2d0c0494db7d89d5e` | triggers and schedule |
 | `ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json` | `9f51554ce080393c247fee9c66db4e98a6c4bd19980d1eb3caddc6e1a12ccb35` | timestamped current issue/PR/Pages and DR-access recheck |
 
 Method: Record one successful verify-or-sync checkpoint for each newly observed main tip, plus the latest scheduled confirmation on the final tip per section 5c. Read the public DR SNAPSHOT RESULT annotation; compare status, tree SHAs, data_match and rollback_commit exactly. A rollback_commit marks a write; absent means an idempotent no-op.
