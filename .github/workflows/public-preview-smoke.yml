@@ -94,22 +94,24 @@ jobs:
               assert catalog.get("production_deployed") is False, f"{experience}: production must not be claimed"
               print(f"PASS: /api/catalog?experience={experience} — {len(catalog['items'])} local items; no provider or publishing claim")
 
-          plan = json_response("/api/plan", method="POST", payload={
-              "experience": "bhakti",
-              "topic_id": "overview",
-              "mode": "3d",
-              "diet": "all"
-          })
-          assert plan.get("status") == "local_plan_created", "local planner did not create a plan"
-          assert plan.get("experience") == "bhakti", "planner experience mismatch"
-          assert isinstance(plan.get("role_handoff"), list) and len(plan["role_handoff"]) >= 1, "planner role handoff missing"
-          assert isinstance(plan.get("source_references"), list), "planner source references missing"
-          assert isinstance(plan.get("review_gates"), list) and plan["review_gates"], "planner review gates missing"
-          assert plan.get("provider") is None, "local planner must not claim a live provider"
-          assert plan.get("ai_calls_made") is False, "local planner must not claim AI calls"
-          assert plan.get("publishing_enabled") is False, "publishing must remain disabled"
-          assert plan.get("production_deployed") is False, "production must not be claimed"
-          assert plan.get("dr_sync_verified") is False, "local planner must not claim DR verification"
-          print("PASS: POST /api/plan — deterministic local plan; provider, publishing, production and DR remain unclaimed")
+          for mode in ("3d", "4d", "5d"):
+              plan = json_response("/api/plan", method="POST", payload={
+                  "experience": "bhakti",
+                  "topic_id": "overview",
+                  "mode": mode,
+                  "diet": "all"
+              })
+              assert plan.get("status") == "local_plan_created", f"{mode}: local planner did not create a plan"
+              assert plan.get("experience") == "bhakti", f"{mode}: planner experience mismatch"
+              assert plan.get("mode") == mode, f"{mode}: planner mode mismatch"
+              assert isinstance(plan.get("role_handoff"), list) and len(plan["role_handoff"]) >= 1, f"{mode}: planner role handoff missing"
+              assert isinstance(plan.get("source_references"), list), f"{mode}: planner source references missing"
+              assert isinstance(plan.get("review_gates"), list) and plan["review_gates"], f"{mode}: planner review gates missing"
+              assert plan.get("provider") is None, f"{mode}: local planner must not claim a live provider"
+              assert plan.get("ai_calls_made") is False, f"{mode}: local planner must not claim AI calls"
+              assert plan.get("publishing_enabled") is False, f"{mode}: publishing must remain disabled"
+              assert plan.get("production_deployed") is False, f"{mode}: production must not be claimed"
+              assert plan.get("dr_sync_verified") is False, f"{mode}: local planner must not claim DR verification"
+              print(f"PASS: POST /api/plan mode={mode} — deterministic local plan; no live AI/provider or production claim")
           print("PASS: all public preview smoke checks completed; no credentials used and no persistent writes performed")
           PY
