@@ -18,6 +18,7 @@ class FakeGitHub:
         self.calls = []
         self.created_tree = 'source-tree'
         self.created_entries = None
+        self.extra_entries = []
         self.truncated = False
         self.entry_type = 'blob'
         self.fail_status = None
@@ -39,8 +40,10 @@ class FakeGitHub:
         if method == 'GET' and '/git/trees/' in path:
             if self.created_entries is not None and f'/git/trees/{self.created_tree}?' in path:
                 return {'truncated': self.truncated, 'tree': self.created_entries}
-            return {'truncated': self.truncated, 'tree': [
-                {'path': 'safe.txt', 'mode': '100644', 'type': self.entry_type, 'sha': BLOB if self.existing_source_blob else 'old-blob'}]}
+            base_entries = [{'path': 'safe.txt', 'mode': '100644', 'type': self.entry_type, 'sha': BLOB if self.existing_source_blob else 'old-blob'}]
+            if self.repo != dr.PRIMARY:
+                base_entries.extend(self.extra_entries)
+            return {'truncated': self.truncated, 'tree': base_entries}
         if method == 'GET' and '/git/blobs/' in path:
             return {'encoding': 'base64', 'content': base64.b64encode(RAW).decode()}
         if method == 'POST' and path.endswith('/git/blobs'):
@@ -74,6 +77,34 @@ class DRTests(unittest.TestCase):
         self.assertEqual(by_path['ops/jarvis/jarvis.env']['sha'], 'b'*40)
         self.assertEqual(extras, {'dr-only.txt'})
         self.assertTrue(dr.entries_match(manifest, list(reversed(manifest))))
+
+    def test_protected_path_sync_preserves_blob_and_does_not_fetch_it(self):
+        protected_sha = 'a' * 40
+        self.secondary.extra_entries = [
+            {'path':'ops/jarvis/jarvis.env','mode':'100644','type':'blob','sha':protected_sha}
+        ]
+        self.secondary.created_tree = 'protected-tree'
+        env = {**ENV, 'GITHUB_EVENT_NAME':'workflow_dispatch',
+               'DR_PROTECTED_PATH_EXCEPTION_APPROVED':'true'}
+        result = self.run_check(True, env)
+        self.assertEqual(result['status'], 'PROTECTED_PATH_EXCEPTION')
+        self.assertFalse(result['data_match'])
+        self.assertTrue(result['approved_scope_match'])
+        self.assertTrue(result['protected_path_exception_applied'])
+        created = next(body for method, path, body in self.secondary.calls
+                       if method == 'POST' and path.endswith('/git/trees'))
+        protected = next(entry for entry in created['tree']
+                         if entry['path'] == 'ops/jarvis/jarvis.env')
+        self.assertEqual(protected['sha'], protected_sha)
+        self.assertFalse(any('/git/blobs/' + protected_sha in path
+                             for _, path, _ in self.primary.calls + self.secondary.calls))
+        self.assertEqual(result['transfer']['protected_paths_preserved'], ['ops/jarvis/jarvis.env'])
+
+    def test_protected_path_exception_rejected_outside_manual_dispatch(self):
+        env = {**ENV, 'GITHUB_EVENT_NAME':'push',
+               'DR_PROTECTED_PATH_EXCEPTION_APPROVED':'true'}
+        with self.assertRaisesRegex(dr.CheckError, 'explicit workflow_dispatch'):
+            self.run_check(True, env)
 
     def test_protected_path_requires_destination_blob(self):
         with self.assertRaisesRegex(dr.CheckError, 'missing from the destination'):
