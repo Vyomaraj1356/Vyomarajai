@@ -12,7 +12,7 @@
   "zero_rto_verified": false,
   "scope": "Git main snapshot only; not runtime databases, secret stores, live media sessions or production traffic",
   "automatic_target_only_file_removal": false,
-  "target_only_file_removal": "Explicit manual workflow-dispatch approval after reviewing current diff and preserving a backup; false by default. Retain old secondary commit history.",
+  "target_only_file_removal": "Unprotected target-only files require explicit manual workflow-dispatch approval after review and backup. Protected path ops/jarvis/jarvis.env is retained and is never eligible for removal by the generic removal checkbox.",
   "one_snapshot_removal_approval": {
     "approved": false,
     "secondary": "deepakGoyal1356/Vyomaraj-Agent-6d64e",
@@ -30,5 +30,15 @@
     "consumed": true,
     "fulfilled_by_run": 37182374090,
     "outcome": "MATCH after replication; primary_tree == secondary_tree == 434fc389fa45e80300dac3e7d7bf6387a42bdf0c; rollback_commit 4363387e... retained as parent"
-  }
+  },
+  "protected_path_exceptions": [
+    {
+      "path": "ops/jarvis/jarvis.env",
+      "policy": "preserve_in_dr",
+      "scope": "tree-entry metadata only; never fetch or log file contents",
+      "approval": "explicit workflow_dispatch input preserve_jarvis_env=true plus existing DR_SYNC_APPROVED=true",
+      "semantics": "When source and DR differ, keep the destination blob/mode for this path; if source has the same path, destination version wins. The approved mirror may differ from primary at this path. Missing protected destination path blocks rather than synthesizing it.",
+      "automatic": false
+    }
+  ]
 }
