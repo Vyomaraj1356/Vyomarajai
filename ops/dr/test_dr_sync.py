@@ -17,6 +17,7 @@ class FakeGitHub:
         self.repo, self.tree, self.commit = repo, tree, commit
         self.calls = []
         self.created_tree = 'source-tree'
+        self.created_entries = None
         self.truncated = False
         self.entry_type = 'blob'
         self.fail_status = None
@@ -36,6 +37,8 @@ class FakeGitHub:
         if method == 'GET' and '/git/commits/' in path:
             return {'tree': {'sha': self.tree}}
         if method == 'GET' and '/git/trees/' in path:
+            if self.created_entries is not None and f'/git/trees/{self.created_tree}?' in path:
+                return {'truncated': self.truncated, 'tree': self.created_entries}
             return {'truncated': self.truncated, 'tree': [
                 {'path': 'safe.txt', 'mode': '100644', 'type': self.entry_type, 'sha': BLOB if self.existing_source_blob else 'old-blob'}]}
         if method == 'GET' and '/git/blobs/' in path:
@@ -45,6 +48,7 @@ class FakeGitHub:
         if method == 'POST' and path.endswith('/git/trees'):
             if self.advance_after_tree:
                 self.commit = 'concurrent-target-update'
+            self.created_entries = body['tree']
             return {'sha': self.created_tree}
         if method == 'POST' and path.endswith('/git/commits'):
             return {'sha': 'new-commit'}
@@ -202,7 +206,7 @@ class DRTests(unittest.TestCase):
     def test_existing_blob_reused_without_upload(self):
         self.secondary.existing_source_blob=True
         result=self.run_check(True)
-        self.assertEqual(result['transfer'],{'uploaded_blobs':0,'reused_blobs':1,'target_only_files_removed_from_snapshot':0})
+        self.assertEqual(result['transfer'],{'uploaded_blobs':0,'reused_blobs':1,'target_only_files_removed_from_snapshot':0,'protected_paths_preserved':[]})
         self.assertFalse(any('/git/blobs/' in p for m,p,b in self.primary.calls))
         self.assertFalse(any(m=='POST' and p.endswith('/blobs') for m,p,b in self.secondary.calls))
 
