@@ -26,6 +26,18 @@ Read-only inspection of the current Primary repository and historical Arena bran
 - The Arena branch `arena/01a0f634-vyomarajai` is substantially diverged from current `main` (44 commits ahead, 245 behind at comparison time). Do not merge the branch wholesale; inspect unique artifacts individually.
 - This audit does not establish current live-provider acceptance, runtime persistence, DR write/read-back, recovery/failover, or production readiness.
 
+## Follow-up verification — read-only DR probe
+
+A subsequent read-only CI probe completed successfully on 2026-10-18 (workflow run #285; job `dr-read-only-diagnostic`). This supersedes the earlier access limitation above for repository readability only:
+
+- Primary and secondary repository refs were readable; secondary `main` commit: `81057ea4d86f079e5e4662d0874a4d4e12dc4c92`; secondary tree: `5e7465c2a7319a8baf48f8ec9b163de7bb3010c8`.
+- Inventory: 621 primary files vs. 622 secondary files; 0 primary files missing on secondary; 1 secondary-only path; 0 changed content/mode paths.
+- The 54-file package comparison matched exactly (54/54).
+- Probe flags: `writes=NONE`, `write_permission=UNVERIFIED`, `installed_environment_verified=false`. The probe did not verify the protected environment file's contents or installed runtime, and it did not authorize a write.
+- Candidate-set comparison reports 1 candidate missing and 1 secondary-only path; inspect that path before deciding whether it is an approved exception or drift. Exact tree equality is not established and must not be claimed.
+
+This read-only evidence improves repository access confidence but does not satisfy Policy B's protected-path validation, write authorization, read-after-write, or recovery-drill gates.
+
 ## Safe recovery rules
 
 1. Preserve current `main` as the working baseline; do not force-merge a stale/diverged branch.
