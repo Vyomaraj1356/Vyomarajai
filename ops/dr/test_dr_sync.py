@@ -56,6 +56,26 @@ class FakeGitHub:
 
 
 class DRTests(unittest.TestCase):
+    def test_protected_path_manifest_preserves_target_blob_and_overrides_primary(self):
+        primary = [
+            {'path':'safe.txt','mode':'100644','type':'blob','sha':BLOB},
+            {'path':'ops/jarvis/jarvis.env','mode':'100600','type':'blob','sha':'a'*40},
+        ]
+        secondary = [
+            {'path':'ops/jarvis/jarvis.env','mode':'100600','type':'blob','sha':'b'*40},
+            {'path':'dr-only.txt','mode':'100644','type':'blob','sha':'c'*40},
+        ]
+        manifest, extras = dr.compose_target_entries(primary, secondary, preserve_protected_path=True)
+        by_path = {entry['path']: entry for entry in manifest}
+        self.assertEqual(by_path['ops/jarvis/jarvis.env']['sha'], 'b'*40)
+        self.assertEqual(extras, {'dr-only.txt'})
+        self.assertTrue(dr.entries_match(manifest, list(reversed(manifest))))
+
+    def test_protected_path_requires_destination_blob(self):
+        with self.assertRaisesRegex(dr.CheckError, 'missing from the destination'):
+            dr.compose_target_entries([{'path':'safe.txt','mode':'100644','type':'blob','sha':BLOB}], [], True)
+
+
     def setUp(self):
         self.primary = FakeGitHub(dr.PRIMARY, 'source-tree', 'source-commit')
         self.secondary = FakeGitHub(TARGET, 'old-tree', 'old-commit')
@@ -121,6 +141,8 @@ class DRTests(unittest.TestCase):
         policy = json.loads((root / 'ops/dr/DR_POLICY.json').read_text())
         self.assertIn('if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]', workflow)
         self.assertIn('MODE=verify', workflow)
+        self.assertIn('preserve_jarvis_env', workflow)
+        self.assertIn('DR_PROTECTED_PATH_EXCEPTION_APPROVED', workflow)
         self.assertIn('if [ "$GITHUB_EVENT_NAME" != push ] && [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then', workflow)
         self.assertTrue(policy['sync_approved_on_main'])
 
