@@ -92,7 +92,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 | `vyomaraj-engineering-2026.yml` | Vyomaraj 2026 Engineering Foundation | `no schedule` |
 | `vyomaraj-master-state.yml` | Vyomaraj Master State Verification | `no schedule` |
 | `vyomaraj-research.yml` | Vyomaraj Metadata Discovery | `15 3 * * *` |
-| `vyomaraj-sync-both.yml` | Vyomaraj PRIMARY to DR Sync | `*/30 * * * *`
+| `vyomaraj-sync-both.yml` | Vyomaraj PRIMARY to DR Sync | `*/30 * * * *` |
 
 ## 4. Jarvis configuration
 
