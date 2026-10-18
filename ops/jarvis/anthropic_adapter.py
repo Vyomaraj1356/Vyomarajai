@@ -10,7 +10,6 @@ import argparse
 import json
 import os
 import sys
-from http.client import HTTPResponse
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -61,7 +60,7 @@ def build_payload(prompt: str, model: str, task: str = "scriptwriter") -> dict[s
         raise AdapterError(f"Prompt exceeds the {MAX_PROMPT_CHARS}-character limit.")
     if task not in {"scriptwriter", "general"}:
         raise AdapterError("Unsupported task preset; no provider request was sent.")
-    if not model or len(model) > 160 or any(ord(ch) < 32 for ch in model):
+    if not isinstance(model, str) or not model.strip() or len(model) > 160 or any(ord(ch) < 32 for ch in model):
         raise AdapterError("ANTHROPIC_MODEL is missing or invalid; no request was sent.")
     return {
         "model": model,
@@ -72,9 +71,9 @@ def build_payload(prompt: str, model: str, task: str = "scriptwriter") -> dict[s
 
 def request_messages(prompt: str, *, api_key: str, model: str, task: str = "scriptwriter",
                      timeout: int = DEFAULT_TIMEOUT, opener=None) -> str:
-    if not api_key or not api_key.strip():
+    if not isinstance(api_key, str) or not api_key.strip():
         raise AdapterError("ANTHROPIC_API_KEY is not configured; no provider request was sent.")
-    if not 1 <= timeout <= 120:
+    if not isinstance(timeout, int) or not 1 <= timeout <= 120:
         raise AdapterError("Timeout must be between 1 and 120 seconds.")
     payload = build_payload(prompt, model, task)
     body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
