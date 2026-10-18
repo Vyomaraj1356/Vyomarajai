@@ -138,11 +138,9 @@ jobs:
             exit 1
           fi
           MODE="${REQUEST_MODE:-verify}"
-          # Trusted pushes to primary main perform guarded replication after owner approval.
-          # Scheduled runs remain read-only; manual dispatch keeps its explicit verify/sync mode.
-          if [ "$GITHUB_EVENT_NAME" = push ] && [ "$GITHUB_REF" = refs/heads/main ]; then
-            MODE=sync
-          elif [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
+          # Main pushes, pull requests and schedules are read-only. A DR write is
+          # possible only from an explicit workflow_dispatch with mode=sync.
+          if [ "$GITHUB_EVENT_NAME" != workflow_dispatch ]; then
             MODE=verify
           fi
           if [ "$MODE" = sync ]; then
