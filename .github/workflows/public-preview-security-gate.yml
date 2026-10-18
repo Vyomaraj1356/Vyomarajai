@@ -34,6 +34,7 @@ jobs:
           python3 - <<'PY'
           import json
           import os
+          import time
           import urllib.error
           import urllib.request
 
@@ -63,15 +64,22 @@ jobs:
                   headers["Content-Type"] = "application/json"
               if content_type is not None:
                   headers["Content-Type"] = content_type
-              request = urllib.request.Request(base + path, data=data, headers=headers, method=method)
-              try:
-                  with urllib.request.urlopen(request, timeout=12) as response:
-                      return response.status, response.headers, response.read(300_000)
-              except urllib.error.HTTPError as exc:
+              last_error = None
+              for attempt in range(3):
+                  request = urllib.request.Request(base + path, data=data, headers=headers, method=method)
                   try:
-                      return exc.code, exc.headers, exc.read(300_000)
-                  finally:
-                      exc.close()
+                      with urllib.request.urlopen(request, timeout=12) as response:
+                          return response.status, response.headers, response.read(300_000)
+                  except urllib.error.HTTPError as exc:
+                      try:
+                          return exc.code, exc.headers, exc.read(300_000)
+                      finally:
+                          exc.close()
+                  except (urllib.error.URLError, TimeoutError, OSError) as exc:
+                      last_error = exc
+                      if attempt < 2:
+                          time.sleep(2 ** attempt)
+              raise RuntimeError(f"{method} {path} unavailable after retries: {type(last_error).__name__}")
 
           def assert_security_headers(headers, label):
               for name, expected in REQUIRED_HEADERS.items():
