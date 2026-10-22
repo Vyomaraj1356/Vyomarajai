@@ -67,6 +67,24 @@ class PublicLandingServerTests(unittest.TestCase):
             payload = response.read()
             return response.status, response.headers, json.loads(payload) if payload else None
 
+    def test_metrics_endpoint_exposes_only_safe_low_cardinality_process_metrics(self):
+        request = urllib.request.Request(self.url + "/metrics")
+        with urllib.request.urlopen(request) as response:
+            payload = response.read().decode("ascii")
+            self.assertEqual(response.status, 200)
+            self.assertTrue(response.headers["Content-Type"].startswith("text/plain; version=0.0.4"))
+            self.assertIn("vyomaraj_preview_up 1", payload)
+            self.assertIn("vyomaraj_preview_process_start_time_seconds ", payload)
+            self.assertIn("vyomaraj_preview_uptime_seconds ", payload)
+            self.assertNotIn("prompt", payload.lower())
+            self.assertNotIn("token", payload.lower())
+            self.assertNotIn("password", payload.lower())
+            self.assertNotIn("ip_address", payload.lower())
+        head = urllib.request.Request(self.url + "/metrics", method="HEAD")
+        with urllib.request.urlopen(head) as response:
+            self.assertEqual(response.status, 200)
+            self.assertEqual(response.read(), b"")
+
     def test_healthz_reports_process_liveness_only_for_get_and_head(self):
         status, headers, payload = self.request_get_json("/healthz")
         self.assertEqual(status, 200)
