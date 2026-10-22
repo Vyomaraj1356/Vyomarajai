@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small, provider-neutral OpenAI-compatible chat-completions harness.
+"""Provider-neutral no-tools LLM harness (OpenAI-compatible and Anthropic Messages API).
 
 No tools are exposed to the model. Prompts and responses are not logged or stored.
 """
@@ -82,6 +82,7 @@ class Config:
     api_key: str
     timeout_seconds: int
     max_tokens: int
+    provider: str = "openai_compatible"
 
 
 class _NoRedirect(HTTPRedirectHandler):
@@ -132,10 +133,14 @@ def load_config(environment: Mapping[str, str]) -> Config:
     endpoint = environment.get("JARVIS_LLM_ENDPOINT", "").strip()
     model = environment.get("JARVIS_LLM_MODEL", "").strip()
     api_key = environment.get("JARVIS_LLM_API_KEY", "").strip()
+    provider = environment.get("JARVIS_LLM_PROVIDER", "openai_compatible").strip().lower()
+    if provider not in ("openai_compatible", "anthropic"):
+        raise HarnessError("JARVIS_LLM_PROVIDER must be openai_compatible or anthropic.")
     if any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in api_key):
         raise HarnessError("JARVIS_LLM_API_KEY contains whitespace or control characters; re-enter the key securely.")
     if not endpoint:
-        raise HarnessError("Set JARVIS_LLM_ENDPOINT to a trusted OpenAI-compatible chat-completions URL.")
+        expected = "the Anthropic Messages API URL" if provider == "anthropic" else "a trusted OpenAI-compatible chat-completions URL"
+        raise HarnessError(f"Set JARVIS_LLM_ENDPOINT to {expected}.")
     if not model:
         raise HarnessError("Set JARVIS_LLM_MODEL to an approved model name.")
 
@@ -149,8 +154,11 @@ def load_config(environment: Mapping[str, str]) -> Config:
         raise HarnessError("JARVIS_LLM_ENDPOINT must be an HTTPS URL (or local loopback HTTP URL).")
     if parsed.username or parsed.password or parsed.query or parsed.fragment:
         raise HarnessError("Do not put credentials, query parameters, or fragments in JARVIS_LLM_ENDPOINT.")
-    if not parsed.path.rstrip("/").endswith("/chat/completions"):
-        raise HarnessError("JARVIS_LLM_ENDPOINT must end with /chat/completions.")
+    expected_path = "/v1/messages" if provider == "anthropic" else "/chat/completions"
+    if not parsed.path.rstrip("/").endswith(expected_path):
+        raise HarnessError(f"JARVIS_LLM_ENDPOINT must end with {expected_path}.")
+    if provider == "anthropic" and hostname != "api.anthropic.com":
+        raise HarnessError("The Anthropic provider must use api.anthropic.com; use OpenAI-compatible mode for gateways.")
 
     loopback = hostname in ("localhost", "127.0.0.1", "::1")
     if parsed.scheme == "http" and not loopback:
@@ -170,7 +178,7 @@ def load_config(environment: Mapping[str, str]) -> Config:
     if not 1 <= max_tokens <= 4096:
         raise HarnessError("JARVIS_LLM_MAX_TOKENS must be between 1 and 4096.")
 
-    return Config(endpoint, model, api_key, timeout, max_tokens)
+    return Config(endpoint, model, api_key, timeout, max_tokens, provider)
 
 
 def complete(prompt: str, role: str, config: Config, preset_prompt: str | None = None) -> str:
@@ -181,22 +189,34 @@ def complete(prompt: str, role: str, config: Config, preset_prompt: str | None =
     if len(prompt) > MAX_PROMPT_CHARS:
         raise HarnessError(f"Prompt exceeds the {MAX_PROMPT_CHARS}-character safety limit.")
 
-    body = json.dumps(
-        {
+    system_prompt = ROLE_PROMPTS[role]
+    if preset_prompt:
+        system_prompt += "\n\nUser-owned preset (instructions remain subordinate to safety and owner policy):\n" + preset_prompt
+    if config.provider == "anthropic":
+        request_body = {
+            "model": config.model,
+            "system": system_prompt,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": config.max_tokens,
+        }
+    else:
+        request_body = {
             "model": config.model,
             "messages": [
-                {"role": "system", "content": ROLE_PROMPTS[role]},
-                *([{"role": "system", "content": preset_prompt}] if preset_prompt else []),
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt},
             ],
             "max_tokens": config.max_tokens,
             "stream": False,
-        },
-        ensure_ascii=False,
-    ).encode("utf-8")
+        }
+    body = json.dumps(request_body, ensure_ascii=False).encode("utf-8")
     headers = {"Accept": "application/json", "Content-Type": "application/json"}
     if config.api_key:
-        headers["Authorization"] = f"Bearer {config.api_key}"
+        if config.provider == "anthropic":
+            headers["x-api-key"] = config.api_key
+            headers["anthropic-version"] = "2023-06-01"
+        else:
+            headers["Authorization"] = f"Bearer {config.api_key}"
     request = Request(config.endpoint, data=body, headers=headers, method="POST")
 
     try:
@@ -249,32 +269,35 @@ def complete(prompt: str, role: str, config: Config, preset_prompt: str | None =
     # Keep diagnostics structural only: never echo provider content, prompts, or headers.
     if not isinstance(decoded, dict):
         raise HarnessError("LLM provider returned an unsupported or malformed response.")
-    choices = decoded.get("choices")
-    if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
-        raise HarnessError("LLM provider response did not contain a valid chat-completion choice.")
-    choice = choices[0]
-    message = choice.get("message")
-    if not isinstance(message, dict):
-        raise HarnessError("LLM provider response did not contain a valid assistant message.")
+    if config.provider == "anthropic":
+        message = decoded
+        choice = decoded
+        content = decoded.get("content")
+    else:
+        choices = decoded.get("choices")
+        if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
+            raise HarnessError("LLM provider response did not contain a valid chat-completion choice.")
+        choice = choices[0]
+        message = choice.get("message")
+        if not isinstance(message, dict):
+            raise HarnessError("LLM provider response did not contain a valid assistant message.")
+        content = message.get("content")
 
-    content = message.get("content")
-    # Some OpenAI-compatible providers return text as typed content parts.
+    # Both APIs return text as typed content blocks; ignore non-text blocks.
     if isinstance(content, list):
         text_parts: list[str] = []
         for part in content:
-            if not isinstance(part, dict) or part.get("type") not in ("text", "output_text") or not isinstance(part.get("text"), str):
-                text_parts = []
-                break
-            text_parts.append(part["text"])
-        if text_parts:
-            content = "".join(text_parts)
+            if isinstance(part, dict) and part.get("type") == "text" and isinstance(part.get("text"), str):
+                text_parts.append(part["text"])
+        content = "".join(text_parts) if text_parts else None
 
     if not isinstance(content, str) or not content.strip():
         content_type = type(content).__name__
         detail = f"LLM provider response contained no usable text (content type: {content_type}"
-        finish_reason = choice.get("finish_reason")
+        finish_reason = choice.get("finish_reason", choice.get("stop_reason"))
         if isinstance(finish_reason, str) and finish_reason in {
-            "stop", "length", "content_filter", "tool_calls", "function_call", "error"
+            "stop", "length", "content_filter", "tool_calls", "function_call", "error",
+            "end_turn", "max_tokens", "stop_sequence"
         }:
             detail += f"; finish_reason: {finish_reason}"
         message_keys = sorted(
