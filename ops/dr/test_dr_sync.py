@@ -24,6 +24,7 @@ class FakeGitHub:
         self.fail_status = None
         self.bad_blob = False
         self.bad_readback = False
+        self.bad_patch_response = False
         self.advance_after_tree = False
         self.existing_source_blob = repo == dr.PRIMARY
 
@@ -58,7 +59,7 @@ class FakeGitHub:
         if method == 'PATCH':
             if not self.bad_readback:
                 self.commit, self.tree = body['sha'], self.created_tree
-            return {}
+            return {'object': {'sha': 'wrong-commit' if self.bad_patch_response else body['sha']}}
         raise AssertionError((method, path))
 
 
@@ -225,6 +226,14 @@ class DRTests(unittest.TestCase):
         with self.assertRaisesRegex(dr.CheckError, 'Read-after-write mismatch'):
             self.run_check(True)
 
+    def test_patch_response_must_confirm_intended_commit(self):
+        self.secondary.bad_patch_response = True
+        with self.assertRaisesRegex(dr.CheckError, 'ref update response did not confirm'):
+            self.run_check(True)
+        self.assertTrue(any(m == 'PATCH' for m, _, _ in self.secondary.calls))
+        self.assertFalse(any(m == 'GET' and '/git/ref/heads/' in p
+                             for m, p, _ in self.secondary.calls[1:]))
+
     def test_empty_source_refused(self):
         with self.assertRaisesRegex(dr.CheckError, 'Empty'):
             dr.source_entries({'tree': []})
@@ -237,7 +246,19 @@ class DRTests(unittest.TestCase):
     def test_existing_blob_reused_without_upload(self):
         self.secondary.existing_source_blob=True
         result=self.run_check(True)
-        self.assertEqual(result['transfer'],{'uploaded_blobs':0,'reused_blobs':1,'target_only_files_removed_from_snapshot':0,'protected_paths_preserved':[]})
+        self.assertEqual(result['transfer'], {
+            'uploaded_blobs': 0, 'reused_blobs': 1,
+            'target_only_files_removed_from_snapshot': 0, 'protected_paths_preserved': [],
+            'intended_tree': 'source-tree', 'intended_commit': 'new-commit',
+            'ref_update_confirmed': True, 'readback_commit': 'new-commit',
+            'readback_tree': 'source-tree', 'readback_manifest_match': True,
+        })
+        self.assertEqual(result['pre_sync_secondary_commit'], 'old-commit')
+        self.assertEqual(result['pre_sync_secondary_tree'], 'old-tree')
+        self.assertEqual(result['intended_secondary_commit'], 'new-commit')
+        self.assertEqual(result['readback_commit'], 'new-commit')
+        self.assertTrue(result['ref_update_confirmed'])
+        self.assertTrue(result['readback_manifest_match'])
         self.assertFalse(any('/git/blobs/' in p for m,p,b in self.primary.calls))
         self.assertFalse(any(m=='POST' and p.endswith('/blobs') for m,p,b in self.secondary.calls))
 
