@@ -11,6 +11,7 @@ import argparse
 import json
 import re
 import sys
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
@@ -55,6 +56,7 @@ RECIPE_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}\Z")
 MAX_FILE_BYTES = 2 * 1024 * 1024
 MAX_REQUEST_BYTES = 16 * 1024
 MAX_RESPONSE_BYTES = 256 * 1024
+PROCESS_START_TIME_SECONDS = time.time()
 
 
 def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
@@ -338,6 +340,24 @@ class PublicLandingHandler(BaseHTTPRequestHandler):
 
     def _serve(self, include_body: bool) -> None:
         path = urlsplit(self.path).path
+        if path == "/metrics":
+            # Intentionally tiny, low-cardinality public metrics only. Never export request
+            # content, URLs, IPs, prompts, environment values, provider state, or secrets.
+            body = (
+                "# HELP vyomaraj_preview_up Whether the bounded preview process is serving metrics.\n"
+                "# TYPE vyomaraj_preview_up gauge\n"
+                "vyomaraj_preview_up 1\n"
+                "# HELP vyomaraj_preview_process_start_time_seconds Unix time when this process started.\n"
+                "# TYPE vyomaraj_preview_process_start_time_seconds gauge\n"
+                f"vyomaraj_preview_process_start_time_seconds {PROCESS_START_TIME_SECONDS:.3f}\n"
+                "# HELP vyomaraj_preview_uptime_seconds Seconds since this preview process started.\n"
+                "# TYPE vyomaraj_preview_uptime_seconds gauge\n"
+                f"vyomaraj_preview_uptime_seconds {max(0.0, time.time() - PROCESS_START_TIME_SECONDS):.3f}\n"
+            ).encode("ascii")
+            self._headers("text/plain; version=0.0.4; charset=utf-8", len(body))
+            if include_body:
+                self.wfile.write(body)
+            return
         if path == "/healthz":
             # Process liveness only; this is not a dependency, provider, or DR readiness check.
             self._send_json(200, {
