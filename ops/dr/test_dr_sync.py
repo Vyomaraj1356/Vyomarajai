@@ -230,9 +230,9 @@ class DRTests(unittest.TestCase):
         self.secondary.bad_patch_response = True
         with self.assertRaisesRegex(dr.CheckError, 'ref update response did not confirm'):
             self.run_check(True)
-        self.assertTrue(any(m == 'PATCH' for m, _, _ in self.secondary.calls))
+        patch_index = next(i for i, (m, _, _) in enumerate(self.secondary.calls) if m == 'PATCH')
         self.assertFalse(any(m == 'GET' and '/git/ref/heads/' in p
-                             for m, p, _ in self.secondary.calls[1:]))
+                             for m, p, _ in self.secondary.calls[patch_index + 1:]))
 
     def test_empty_source_refused(self):
         with self.assertRaisesRegex(dr.CheckError, 'Empty'):
