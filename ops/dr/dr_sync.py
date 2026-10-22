@@ -312,6 +312,7 @@ def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_o
         metrics['uploaded_blobs'] += 1
         published_entries.append({k: entry[k] for k in ('path', 'mode', 'type', 'sha')})
     tree = secondary.request('POST', f'repos/{target}/git/trees', {'tree': published_entries})['sha']
+    metrics['intended_tree'] = tree
     created_tree = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{tree}?recursive=1'),
                                   allow_empty=not published_entries)
     if not entries_match(published_entries, created_tree):
@@ -326,16 +327,24 @@ def replicate(primary, secondary, target, src, dst, metrics=None, allow_target_o
         message += ' with protected DR configuration retained'
     commit = secondary.request('POST', f'repos/{target}/git/commits',
                                {'message': message, 'tree': tree, 'parents': [dst['commit']]})['sha']
+    metrics['intended_commit'] = commit
     assert_unchanged(primary, PRIMARY, src)
     assert_unchanged(secondary, target, dst)
-    secondary.request('PATCH', f'repos/{target}/git/refs/heads/{BRANCH}',
-                      {'sha': commit, 'force': False})
+    patch_result = secondary.request('PATCH', f'repos/{target}/git/refs/heads/{BRANCH}',
+                                    {'sha': commit, 'force': False})
+    patch_object = patch_result.get('object', {}) if isinstance(patch_result, dict) else {}
+    metrics['ref_update_confirmed'] = patch_object.get('sha') == commit
+    if not metrics['ref_update_confirmed']:
+        raise CheckError('DR ref update response did not confirm the intended commit; no sync success claimed')
     observed = snapshot(secondary, target)
+    metrics['readback_commit'] = observed.get('commit')
+    metrics['readback_tree'] = observed.get('tree')
     if observed != {'commit': commit, 'tree': tree}:
         raise CheckError('Read-after-write mismatch; no sync success claimed')
     observed_entries = source_entries(secondary.request('GET', f'repos/{target}/git/trees/{tree}?recursive=1'),
                                       allow_empty=not published_entries)
-    if not entries_match(published_entries, observed_entries):
+    metrics['readback_manifest_match'] = entries_match(published_entries, observed_entries)
+    if not metrics['readback_manifest_match']:
         raise CheckError('Read-after-write manifest mismatch; no sync success claimed')
     assert_unchanged(primary, PRIMARY, src)
     return observed
@@ -400,7 +409,14 @@ def execute(target, sync=False, primary=None, secondary=None, environ=None):
     assert_unchanged(secondary, target, dst)
     return {'primary_repository': PRIMARY, 'secondary_repository': target, 'branch': BRANCH,
             'primary': src, 'secondary': dst, 'data_match': src['tree'] == dst['tree'],
-            'replication_performed': changed, 'rollback_commit': previous_secondary['commit'] if changed else None, 'traffic_switched': False, 'transfer': transfer,
+            'replication_performed': changed, 'rollback_commit': previous_secondary['commit'] if changed else None,
+            'pre_sync_secondary_commit': previous_secondary['commit'], 'pre_sync_secondary_tree': previous_secondary['tree'],
+            'intended_secondary_commit': transfer.get('intended_commit'),
+            'intended_secondary_tree': transfer.get('intended_tree'),
+            'ref_update_confirmed': transfer.get('ref_update_confirmed', False),
+            'readback_commit': transfer.get('readback_commit'), 'readback_tree': transfer.get('readback_tree'),
+            'readback_manifest_match': transfer.get('readback_manifest_match', False),
+            'traffic_switched': False, 'transfer': transfer,
             'status': ('PROTECTED_PATH_EXCEPTION' if changed and preserve_protected_path else ('MATCH' if src['tree'] == dst['tree'] else 'MISMATCH')),
             'protected_path_exception_applied': bool(changed and preserve_protected_path),
             'approved_scope_match': bool(changed and preserve_protected_path) or src['tree'] == dst['tree']}
@@ -418,10 +434,13 @@ def actions_result_annotation(result):
     count = result.get('target_only_files_awaiting_review')
     gate = f'; target_only_files_awaiting_review={count}' if type(count) is int and 0 < count <= 10000000 else ''
     evidence = ''
-    for label, value in [('primary_tree', result.get('primary', {}).get('tree')), ('secondary_tree', result.get('secondary', {}).get('tree')), ('rollback_commit', result.get('rollback_commit'))]:
+    for label, value in [('primary_tree', result.get('primary', {}).get('tree')), ('secondary_tree', result.get('secondary', {}).get('tree')), ('pre_sync_secondary_commit', result.get('pre_sync_secondary_commit')), ('pre_sync_secondary_tree', result.get('pre_sync_secondary_tree')), ('intended_secondary_commit', result.get('intended_secondary_commit')), ('intended_secondary_tree', result.get('intended_secondary_tree')), ('readback_commit', result.get('readback_commit')), ('readback_tree', result.get('readback_tree')), ('rollback_commit', result.get('rollback_commit'))]:
         if isinstance(value, str) and re.fullmatch(r'[0-9a-f]{40}', value): evidence += f'; {label}={value}'
     if result.get('data_match') is True: evidence += '; data_match=true'
     if result.get('protected_path_exception_applied') is True: evidence += '; protected_path_exception=APPLIED; full_tree_match=NOT_CLAIMED; approved_scope_match=true'
+    if result.get('replication_performed') is True:
+        evidence += '; ref_update_confirmed=' + ('true' if result.get('ref_update_confirmed') is True else 'false')
+        evidence += '; readback_manifest_match=' + ('true' if result.get('readback_manifest_match') is True else 'false')
 
     # Only emit fixed allowlisted enums; never echo API messages, paths, SHAs from
     # request payloads, or raw response bodies into public workflow annotations.
