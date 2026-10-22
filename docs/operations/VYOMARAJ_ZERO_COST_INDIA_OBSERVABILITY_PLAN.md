@@ -9,11 +9,11 @@
 
 Do not depend on Datadog for this deployment. Use vendor-neutral OpenTelemetry instrumentation and choose one of these paths:
 
-1. **Hosted candidate:** Grafana Cloud Free, but only if an India-region stack is available at signup, its current free quotas fit, and payment/overage controls can keep spend at zero.
+1. **Preferred hosted candidate:** Grafana Cloud Free. Official Grafana documentation currently lists India on AWS `ap-south-1` and GCP `asia-south1`. The public pricing page describes Free as always $0, with no credit card required and no charges; published examples include 10,000 active metric series/month, 50 GB logs/month, 50 GB traces/month, and 14-day retention. Recheck the current product-specific quota at signup; reaching a Free-tier limit may block or constrain ingestion rather than provide unlimited service.
 2. **Self-hosted fallback:** Prometheus + Grafana OSS for metrics/dashboards, Loki for logs, Tempo for traces, and Uptime Kuma for external uptime checks. Software licences are free; compute, storage, backups, and operations are not automatically free. Run only on already-available free/zero-incremental-cost capacity.
 3. **Alternative candidate:** SigNoz Community Edition self-hosted. Do not select its paid cloud tier for the $0 target without separate owner approval.
 
-Do not assume a free tier remains free indefinitely or that a provider's organization region equals its telemetry storage region. Verify current terms before connecting.
+Official references checked 2026-10-22: [Grafana Cloud regional availability](https://grafana.com/docs/grafana-cloud/platform/security-and-account-management/account-management/regional-availability/), [Grafana pricing](https://grafana.com/pricing/), [pricing and usage](https://grafana.com/docs/grafana-cloud/platform/pricing-and-usage/). The India region is listed; this does not create a stack or prove that this user's account has been configured. Verify the exact region on the created stack and each telemetry service before connecting. Free plan is the only hosted tier allowed by this project’s budget policy; never switch to Pro.
 
 ## Existing baseline
 
@@ -36,7 +36,7 @@ Do not assume a free tier remains free indefinitely or that a provider's organiz
 ## $0 guardrails
 
 - No paid trial, paid tier, metered add-on, or automatic upgrade.
-- Confirm whether a payment method is required and whether overage can be disabled; if not, do not send telemetry to that service.
+- Select the Free plan only. Grafana's current public pricing page says no credit card is required and describes Free as $0 with no charges. Do not upgrade to Pro; keep usage within the published limits and stop optional telemetry if a quota is approached.
 - Set conservative sampling, short retention, bounded labels/cardinality, and log-volume limits.
 - Alert before free-tier quotas; stop optional export before reaching the limit. Keep local health checks operating if hosted export is disabled.
 - Never collect secrets, authorization headers, cookies, passwords, raw database connection strings, private prompts, or unredacted personal data.
@@ -48,9 +48,9 @@ Do not assume a free tier remains free indefinitely or that a provider's organiz
 ## Implementation sequence
 
 ### Gate 0 — Account and cost preflight
-- Verify India region and telemetry data residency for the selected product.
-- Capture current free-tier limits, payment-method requirements, overage behavior, and retention.
-- If any setting could create charges and cannot be disabled, stop and use the self-hosted path only where existing compute has no incremental cost.
+- Create a new stack explicitly in India (`ap-south-1` AWS or `asia-south1` GCP) only after account owner review; an existing stack's region cannot be changed.
+- Confirm the stack details show India for Grafana, metrics, logs and traces endpoints; review data retention and access scope.
+- Confirm the plan is Free and do not enable Pro, paid add-ons or Marketplace billing. Stay within current quotas; stop optional export rather than upgrade.
 
 ### Gate 1 — Baseline probes
 - Add external checks for `/` and `/healthz` at a conservative interval.
