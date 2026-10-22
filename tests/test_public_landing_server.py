@@ -5,6 +5,7 @@ import os
 import subprocess
 import threading
 import unittest
+from unittest import mock
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit
 import urllib.error
@@ -88,7 +89,7 @@ class PublicLandingServerTests(unittest.TestCase):
 
     def test_metrics_endpoint_requires_bearer_token_when_configured(self):
         secret = "test-only-metrics-token-123456789"
-        with unittest.mock.patch.dict(os.environ, {"VYOMARAJ_METRICS_BEARER_TOKEN": secret}):
+        with mock.patch.dict(os.environ, {"VYOMARAJ_METRICS_BEARER_TOKEN": secret}):
             for headers in ({}, {"Authorization": "Bearer wrong-token"}):
                 request = urllib.request.Request(self.url + "/metrics", headers=headers)
                 with self.subTest(headers=headers), self.assertRaises(urllib.error.HTTPError) as error:
