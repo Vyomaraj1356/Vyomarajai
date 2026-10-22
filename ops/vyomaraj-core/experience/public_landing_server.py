@@ -8,7 +8,9 @@ queue, publish, notify, call providers, or expose any privileged writer.
 from __future__ import annotations
 
 import argparse
+import hmac
 import json
+import os
 import re
 import sys
 import time
@@ -341,8 +343,20 @@ class PublicLandingHandler(BaseHTTPRequestHandler):
     def _serve(self, include_body: bool) -> None:
         path = urlsplit(self.path).path
         if path == "/metrics":
-            # Intentionally tiny, low-cardinality public metrics only. Never export request
-            # content, URLs, IPs, prompts, environment values, provider state, or secrets.
+            # Optional bearer protection for hosted scraping. Until the operator configures
+            # VYOMARAJ_METRICS_BEARER_TOKEN in the hosting environment, retain the existing
+            # public endpoint behavior; once set, fail closed on missing/invalid credentials.
+            expected_token = os.environ.get("VYOMARAJ_METRICS_BEARER_TOKEN", "")
+            if expected_token:
+                authorization = self.headers.get("Authorization", "")
+                supplied_token = authorization[7:] if authorization.startswith("Bearer ") else ""
+                if not supplied_token or not hmac.compare_digest(supplied_token, expected_token):
+                    self._send_json(401, {"error": "Metrics authentication required."},
+                                    include_body=include_body,
+                                    allow=None)
+                    return
+            # Intentionally tiny, low-cardinality metrics only. Never export request content,
+            # URLs, IPs, prompts, environment values, provider state, or secrets.
             body = (
                 "# HELP vyomaraj_preview_up Whether the bounded preview process is serving metrics.\n"
                 "# TYPE vyomaraj_preview_up gauge\n"

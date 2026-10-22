@@ -1,9 +1,11 @@
 import hashlib
 import importlib.util
 import json
+import os
 import subprocess
 import threading
 import unittest
+from unittest import mock
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit
 import urllib.error
@@ -84,6 +86,31 @@ class PublicLandingServerTests(unittest.TestCase):
         with urllib.request.urlopen(head) as response:
             self.assertEqual(response.status, 200)
             self.assertEqual(response.read(), b"")
+
+    def test_metrics_endpoint_requires_bearer_token_when_configured(self):
+        secret = "test-only-metrics-token-123456789"
+        with mock.patch.dict(os.environ, {"VYOMARAJ_METRICS_BEARER_TOKEN": secret}):
+            for headers in ({}, {"Authorization": "Bearer wrong-token"}):
+                request = urllib.request.Request(self.url + "/metrics", headers=headers)
+                with self.subTest(headers=headers), self.assertRaises(urllib.error.HTTPError) as error:
+                    urllib.request.urlopen(request)
+                error.exception.close()
+                self.assertEqual(error.exception.code, 401)
+                self.assertIn("no-store", error.exception.headers["Cache-Control"])
+            request = urllib.request.Request(
+                self.url + "/metrics", headers={"Authorization": "Bearer " + secret}
+            )
+            with urllib.request.urlopen(request) as response:
+                payload = response.read().decode("ascii")
+                self.assertEqual(response.status, 200)
+                self.assertIn("vyomaraj_preview_up 1", payload)
+            head = urllib.request.Request(
+                self.url + "/metrics", method="HEAD",
+                headers={"Authorization": "Bearer " + secret},
+            )
+            with urllib.request.urlopen(head) as response:
+                self.assertEqual(response.status, 200)
+                self.assertEqual(response.read(), b"")
 
     def test_healthz_reports_process_liveness_only_for_get_and_head(self):
         status, headers, payload = self.request_get_json("/healthz")
