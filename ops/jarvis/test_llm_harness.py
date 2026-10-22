@@ -110,6 +110,51 @@ class HarnessTests(unittest.TestCase):
             answer = llm_harness.complete("hello", "jarvis", llm_harness.load_config(self.env))
         self.assertEqual(answer, "Verified answer.")
 
+    def test_anthropic_native_messages_request_and_response(self):
+        env = {
+            "JARVIS_LLM_PROVIDER": "anthropic",
+            "JARVIS_LLM_ENDPOINT": "https://api.anthropic.com/v1/messages",
+            "JARVIS_LLM_MODEL": "claude-test-model",
+            "JARVIS_LLM_API_KEY": "anthropic-unit-test-secret",
+        }
+        provider_body = json.dumps({
+            "id": "msg_test",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+                {"type": "thinking", "thinking": "ignored"},
+                {"type": "text", "text": "Claude connected response."}
+            ],
+            "stop_reason": "end_turn",
+        }).encode()
+        with patch.object(llm_harness, "_open_request", return_value=FakeResponse(provider_body)) as opener:
+            answer = llm_harness.complete("hello", "jarvis", llm_harness.load_config(env), preset_prompt="Use concise evidence.")
+        self.assertEqual(answer, "Claude connected response.")
+        request = opener.call_args.args[0]
+        payload = json.loads(request.data.decode("utf-8"))
+        self.assertEqual(payload["model"], "claude-test-model")
+        self.assertEqual(payload["messages"], [{"role": "user", "content": "hello"}])
+        self.assertIn("Use concise evidence.", payload["system"])
+        self.assertNotIn("tools", payload)
+        self.assertEqual(request.get_header("X-api-key"), "anthropic-unit-test-secret")
+        self.assertEqual(request.get_header("Anthropic-version"), "2023-06-01")
+        self.assertIsNone(request.get_header("Authorization"))
+
+    def test_anthropic_provider_requires_official_https_endpoint(self):
+        base = {
+            "JARVIS_LLM_PROVIDER": "anthropic",
+            "JARVIS_LLM_ENDPOINT": "https://api.anthropic.com/v1/messages",
+            "JARVIS_LLM_MODEL": "claude-test-model",
+            "JARVIS_LLM_API_KEY": "unit-test-secret",
+        }
+        self.assertEqual(llm_harness.load_config(base).provider, "anthropic")
+        with self.assertRaisesRegex(llm_harness.HarnessError, "api.anthropic.com"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://gateway.example/v1/messages"))
+        with self.assertRaisesRegex(llm_harness.HarnessError, "must end with /v1/messages"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://api.anthropic.com/v1/chat/completions"))
+        with self.assertRaisesRegex(llm_harness.HarnessError, "must be openai_compatible or anthropic"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_PROVIDER="unknown"))
+
     def test_missing_text_reports_safe_structural_diagnostics(self):
         secret = self.env["JARVIS_LLM_API_KEY"]
         provider_body = json.dumps({
