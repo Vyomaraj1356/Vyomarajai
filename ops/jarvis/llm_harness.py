@@ -283,11 +283,12 @@ def complete(prompt: str, role: str, config: Config, preset_prompt: str | None =
             raise HarnessError("LLM provider response did not contain a valid assistant message.")
         content = message.get("content")
 
-    # Both APIs return text as typed content blocks; ignore non-text blocks.
+    # Parse only recognized text blocks; keep OpenAI-compatible output_text support.
     if isinstance(content, list):
         text_parts: list[str] = []
+        allowed_types = ("text",) if config.provider == "anthropic" else ("text", "output_text")
         for part in content:
-            if isinstance(part, dict) and part.get("type") == "text" and isinstance(part.get("text"), str):
+            if isinstance(part, dict) and part.get("type") in allowed_types and isinstance(part.get("text"), str):
                 text_parts.append(part["text"])
         content = "".join(text_parts) if text_parts else None
 
