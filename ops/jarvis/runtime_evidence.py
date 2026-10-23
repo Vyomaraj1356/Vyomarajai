@@ -29,9 +29,15 @@ class ProviderEvidence:
     blocked: bool = False
 
     def state(self) -> RuntimeState:
-        """Resolve the strongest state justified by consistent evidence."""
+        """Resolve the strongest state justified by consistent evidence.
+
+        This is a reporting model only. Its result must never grant tools, publishing,
+        deployment, financial, or disaster-recovery permissions.
+        """
         if self.blocked:
             return RuntimeState.BLOCKED
+        if self.request_attempted and not self.configured:
+            raise ValueError("A request attempt requires a configured provider.")
         if self.request_succeeded and not self.request_attempted:
             raise ValueError("A successful request requires an attempted request.")
         if (self.provider_confirmed or self.model_confirmed) and not self.request_succeeded:
