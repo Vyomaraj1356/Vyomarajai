@@ -36,6 +36,7 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "configured_unverified")
+        self.assertTrue(result["checks"]["endpoint_valid"])
 
     def test_anthropic_rejects_gateway_and_noncanonical_path(self):
         base = {
@@ -51,6 +52,7 @@ class ProviderPreflightTests(unittest.TestCase):
             with self.subTest(endpoint=endpoint):
                 result = inspect_environment(dict(base, JARVIS_LLM_ENDPOINT=endpoint))
                 self.assertEqual(result["status"], "invalid")
+                self.assertFalse(result["checks"]["endpoint_valid"])
 
     def test_rejects_endpoint_credentials_query_and_fragment(self):
         base = {
