@@ -1,11 +1,22 @@
 # Jarvis provider preflight
 
-The provider preflight is a read-only static configuration check. It must never send a model request, enable tools, publish content, or infer live connectivity from environment variables.
+`ops/jarvis/provider_preflight.py` performs static configuration validation only. It does not send a model request, enable tools, publish content, or infer live connectivity from environment variables.
 
-Expected status values:
-- `not_configured`: no provider endpoint or model is configured.
-- `incomplete`: only part of the minimum configuration is present.
-- `invalid`: static validation rejected the selected provider configuration.
-- `configured_unverified`: static validation passed, but no live provider request was made.
+Run from the repository root:
 
-Use the `--json` option for machine-readable output and `--require-configured` in a release gate when static configuration is required. Keep configuration values out of logs. A live acceptance test remains a separate owner-approved step and must record only sanitized evidence.
+```sh
+python -m ops.jarvis.provider_preflight --json
+python -m ops.jarvis.provider_preflight --require-configured
+```
+
+Status values:
+- `not_configured`: no provider settings are supplied.
+- `incomplete`: required settings are missing.
+- `invalid`: static validation rejected a supplied setting.
+- `configured_unverified`: static validation passed; live provider connectivity remains unverified.
+
+The checker supports the existing OpenAI-compatible chat-completions endpoint format and the official Anthropic Messages endpoint. Anthropic must use HTTPS at `api.anthropic.com/v1/messages`; a gateway is not treated as direct Anthropic connectivity. Remote providers require a key, but its value is never included in output. Local loopback HTTP is permitted only for local OpenAI-compatible endpoints.
+
+`--json` emits machine-readable status and field-presence checks without printing endpoint, model, or API-key values. `--require-configured` returns a nonzero exit code unless static validation passes. Exit code zero for `configured_unverified` means configuration is structurally acceptable only—not that a provider call succeeded.
+
+A live acceptance test remains a separate owner-approved step. It must use an approved secret store, a model authorized for the account, a bounded budget, and sanitized evidence. Runtime, tool execution, publishing, deployment, and disaster-recovery permissions are never granted by this preflight.
