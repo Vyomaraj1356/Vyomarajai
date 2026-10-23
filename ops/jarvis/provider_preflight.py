@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import sys
 from urllib.parse import urlsplit
 from typing import Mapping
 
@@ -52,7 +51,7 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
         try:
             parsed = urlsplit(endpoint)
             hostname = (parsed.hostname or "").lower()
-            parsed.port  # force validation of malformed ports
+            parsed.port  # validate malformed ports without echoing the URL
         except ValueError:
             issues.append("JARVIS_LLM_ENDPOINT is not a valid URL.")
         if parsed is not None:
@@ -65,12 +64,15 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
                 if parsed.scheme == "http" and not loopback:
                     issues.append("Unencrypted HTTP is allowed only for a local loopback endpoint.")
                 if provider == "anthropic":
-                    if parsed.scheme != "https" or hostname != "api.anthropic.com" or parsed.path != "/v1/messages":
+                    if parsed.scheme == "https" and hostname == "api.anthropic.com" and parsed.path == "/v1/messages":
+                        checks["endpoint_valid"] = True
+                    else:
                         issues.append("Anthropic requires https://api.anthropic.com/v1/messages.")
-                elif provider == "openai_compatible" and not parsed.path.rstrip("/").endswith("/chat/completions"):
-                    issues.append("OpenAI-compatible endpoints must end with /chat/completions.")
-                else:
-                    checks["endpoint_valid"] = True
+                elif provider == "openai_compatible":
+                    if parsed.path.rstrip("/").endswith("/chat/completions"):
+                        checks["endpoint_valid"] = True
+                    else:
+                        issues.append("OpenAI-compatible endpoints must end with /chat/completions.")
     else:
         issues.append("JARVIS_LLM_ENDPOINT is missing.")
 
