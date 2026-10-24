@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.error import HTTPError
 from unittest.mock import patch
 
-import llm_harness
+from ops.jarvis import llm_harness
 
 
 class FakeResponse:
@@ -27,11 +27,12 @@ class FakeResponse:
         return self.body if limit < 0 else self.body[:limit]
 
 
-class HarnessTests(unittest.TestCase):
+class TestLLMHarness(unittest.TestCase):
     def setUp(self):
         self.env = {
-            "JARVIS_LLM_ENDPOINT": "https://llm.example.test/v1/chat/completions",
+            "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "test-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "test-model",
             "JARVIS_LLM_API_KEY": "unit-test-only-secret",
         }
 
@@ -54,6 +55,54 @@ class HarnessTests(unittest.TestCase):
                 "https://file.example.test/v1/chat/completions",
             )
 
+    def test_rejects_untrusted_remote_hostname_before_request(self):
+        endpoint = "https://attacker.example/v1/chat/completions"
+        with self.assertRaisesRegex(llm_harness.HarnessError, "host is not trusted") as raised:
+            llm_harness.load_config(dict(self.env, JARVIS_LLM_ENDPOINT=endpoint))
+        self.assertNotIn(endpoint, str(raised.exception))
+        self.assertNotIn(self.env["JARVIS_LLM_API_KEY"], str(raised.exception))
+
+    def test_remote_provider_rejects_nondefault_https_port(self):
+        endpoint = "https://api.openai.com:8443/v1/chat/completions"
+        with self.assertRaisesRegex(llm_harness.HarnessError, "default HTTPS port"):
+            llm_harness.load_config(dict(self.env, JARVIS_LLM_ENDPOINT=endpoint))
+
+    def test_custom_gateway_requires_exact_explicit_host_allowlist(self):
+        env = dict(
+            self.env,
+            JARVIS_LLM_ENDPOINT="https://llm.example.test/v1/chat/completions",
+            JARVIS_LLM_ALLOWED_HOSTS="llm.example.test",
+        )
+        self.assertEqual(llm_harness.load_config(env).endpoint, env["JARVIS_LLM_ENDPOINT"])
+
+    def test_host_allowlist_rejects_wildcards_urls_ports_and_ip_literals(self):
+        for configured in (
+            "*.example.test",
+            "https://llm.example.test",
+            "llm.example.test:443",
+            "10.0.0.1",
+        ):
+            with self.subTest(configured=configured):
+                env = dict(self.env, JARVIS_LLM_ALLOWED_HOSTS=configured)
+                with self.assertRaises(llm_harness.HarnessError):
+                    llm_harness.load_config(env)
+
+    def test_rejects_non_public_and_noncanonical_ip_literal_endpoints(self):
+        for endpoint in (
+            "https://169.254.169.254/v1/chat/completions",
+            "https://10.0.0.8/v1/chat/completions",
+            "https://192.168.1.2/v1/chat/completions",
+            "https://[fd00::1]/v1/chat/completions",
+            "https://127.1/v1/chat/completions",
+            "https://2130706433/v1/chat/completions",
+            "https://0x7f000001/v1/chat/completions",
+        ):
+            with self.subTest(endpoint=endpoint):
+                with self.assertRaises(llm_harness.HarnessError) as raised:
+                    llm_harness.load_config(dict(self.env, JARVIS_LLM_ENDPOINT=endpoint))
+                self.assertNotIn(endpoint, str(raised.exception))
+                self.assertNotIn(self.env["JARVIS_LLM_API_KEY"], str(raised.exception))
+
     def test_rejects_remote_plain_http_and_url_credentials(self):
         env = dict(self.env, JARVIS_LLM_ENDPOINT="http://provider.example/v1/chat/completions")
         with self.assertRaises(llm_harness.HarnessError):
@@ -66,6 +115,7 @@ class HarnessTests(unittest.TestCase):
         env = {
             "JARVIS_LLM_ENDPOINT": "http://127.0.0.1:11434/v1/chat/completions",
             "JARVIS_LLM_MODEL": "local-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "local-model",
         }
         config = llm_harness.load_config(env)
         self.assertEqual(config.api_key, "")
@@ -109,6 +159,57 @@ class HarnessTests(unittest.TestCase):
         with patch.object(llm_harness, "_open_request", return_value=FakeResponse(provider_body)):
             answer = llm_harness.complete("hello", "jarvis", llm_harness.load_config(self.env))
         self.assertEqual(answer, "Verified answer.")
+
+    def test_anthropic_native_messages_request_and_response(self):
+        env = {
+            "JARVIS_LLM_PROVIDER": "anthropic",
+            "JARVIS_LLM_ENDPOINT": "https://api.anthropic.com/v1/messages",
+            "JARVIS_LLM_MODEL": "claude-test-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "claude-test-model",
+            "JARVIS_LLM_API_KEY": "anthropic-unit-test-secret",
+        }
+        provider_body = json.dumps({
+            "id": "msg_test",
+            "type": "message",
+            "role": "assistant",
+            "content": [
+                {"type": "thinking", "thinking": "ignored"},
+                {"type": "text", "text": "Claude connected response."}
+            ],
+            "stop_reason": "end_turn",
+        }).encode()
+        with patch.object(llm_harness, "_open_request", return_value=FakeResponse(provider_body)) as opener:
+            answer = llm_harness.complete("hello", "jarvis", llm_harness.load_config(env), preset_prompt="Use concise evidence.")
+        self.assertEqual(answer, "Claude connected response.")
+        request = opener.call_args.args[0]
+        payload = json.loads(request.data.decode("utf-8"))
+        self.assertEqual(payload["model"], "claude-test-model")
+        self.assertEqual(payload["messages"], [{"role": "user", "content": "hello"}])
+        self.assertIn("Use concise evidence.", payload["system"])
+        self.assertNotIn("tools", payload)
+        self.assertEqual(request.get_header("X-api-key"), "anthropic-unit-test-secret")
+        self.assertEqual(request.get_header("Anthropic-version"), "2023-06-01")
+        self.assertIsNone(request.get_header("Authorization"))
+
+    def test_anthropic_provider_requires_official_https_endpoint(self):
+        base = {
+            "JARVIS_LLM_PROVIDER": "anthropic",
+            "JARVIS_LLM_ENDPOINT": "https://api.anthropic.com/v1/messages",
+            "JARVIS_LLM_MODEL": "claude-test-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "claude-test-model",
+            "JARVIS_LLM_API_KEY": "unit-test-secret",
+        }
+        self.assertEqual(llm_harness.load_config(base).provider, "anthropic")
+        with self.assertRaisesRegex(llm_harness.HarnessError, "api.anthropic.com"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://gateway.example/v1/messages"))
+        with self.assertRaisesRegex(llm_harness.HarnessError, "must end with /v1/messages"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://api.anthropic.com/v1/chat/completions"))
+        with self.assertRaisesRegex(llm_harness.HarnessError, "default HTTPS port"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://api.anthropic.com:444/v1/messages"))
+        with self.assertRaisesRegex(llm_harness.HarnessError, "not a valid URL"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://api.anthropic.com:invalid/v1/messages"))
+        with self.assertRaisesRegex(llm_harness.HarnessError, "must be openai_compatible or anthropic"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_PROVIDER="unknown"))
 
     def test_missing_text_reports_safe_structural_diagnostics(self):
         secret = self.env["JARVIS_LLM_API_KEY"]
@@ -221,6 +322,23 @@ class HarnessTests(unittest.TestCase):
         self.assertIn("JARVIS_LLM_ENDPOINT", err.getvalue())
         self.assertNotIn("private prompt", err.getvalue())
         opener.assert_not_called()
+
+    def test_model_must_be_explicitly_allowlisted(self):
+        env = dict(self.env)
+        env.pop("JARVIS_LLM_ALLOWED_MODELS")
+        with self.assertRaises(llm_harness.HarnessError):
+            llm_harness.load_config(env)
+        env["JARVIS_LLM_ALLOWED_MODELS"] = "different-model"
+        with self.assertRaises(llm_harness.HarnessError):
+            llm_harness.load_config(env)
+
+    def test_model_allowlist_rejects_wildcards_and_duplicate_entries(self):
+        for configured in ("*", "test-model,*", "test-model,", "test-model,test-model"):
+            with self.subTest(configured=configured):
+                env = dict(self.env, JARVIS_LLM_ALLOWED_MODELS=configured)
+                with self.assertRaises(llm_harness.HarnessError) as raised:
+                    llm_harness.load_config(env)
+                self.assertNotIn(self.env["JARVIS_LLM_API_KEY"], str(raised.exception))
 
     def test_remote_endpoint_requires_a_key(self):
         env = dict(self.env)
