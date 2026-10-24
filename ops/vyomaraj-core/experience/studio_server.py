@@ -93,6 +93,8 @@ for prefix, directory in [('/aghor/', 'aghor-experience'), ('/bhakti/', 'bhakti-
     ASSETS[prefix] = ASSETS[prefix + 'index.html']
 for name, mime in [('index.html','text/html'),('app.js','application/javascript'),('styles.css','text/css')]:
     ASSETS['/research/' + name] = (CORE / 'research' / name, mime)
+ASSETS['/approvals/devices.html'] = (CORE / 'approvals/devices.html', 'text/html')
+ASSETS['/approvals/devices.js'] = (CORE / 'approvals/devices.js', 'application/javascript')
 ASSETS['/research/'] = ASSETS['/research/index.html']
 ASSETS['/assets/pairings.css'] = (CORE / 'liquor-bar/styles.css', 'text/css')
 ASSETS['/assets/fonts.css'] = (CORE / 'experience/assets/fonts.css', 'text/css')
