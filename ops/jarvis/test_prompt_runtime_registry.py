@@ -32,7 +32,7 @@ class PromptRuntimeRegistryTests(unittest.TestCase):
 
     def test_unknown_preset_fails_without_network(self):
         out, err = io.StringIO(), io.StringIO()
-        env = {"JARVIS_LLM_ENDPOINT":"https://llm.example.test/v1/chat/completions",
+        env = {"JARVIS_LLM_ENDPOINT":"https://api.openai.com/v1/chat/completions",
                "JARVIS_LLM_MODEL":"test-model","JARVIS_LLM_API_KEY":"unit-test-only-secret"}
         with patch.object(llm_harness, "_open_request") as opener:
             status = llm_harness.main(["--role","jarvis","--preset","not-a-real-preset"],
