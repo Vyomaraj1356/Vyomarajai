@@ -323,6 +323,15 @@ class TestLLMHarness(unittest.TestCase):
         self.assertNotIn("private prompt", err.getvalue())
         opener.assert_not_called()
 
+    def test_model_must_be_explicitly_allowlisted(self):
+        env = dict(self.env)
+        env.pop("JARVIS_LLM_ALLOWED_MODELS")
+        with self.assertRaises(llm_harness.HarnessError):
+            llm_harness.load_config(env)
+        env["JARVIS_LLM_ALLOWED_MODELS"] = "different-model"
+        with self.assertRaises(llm_harness.HarnessError):
+            llm_harness.load_config(env)
+
     def test_remote_endpoint_requires_a_key(self):
         env = dict(self.env)
         env.pop("JARVIS_LLM_API_KEY")
