@@ -1,0 +1,58 @@
+{
+  "schema": "vyomaraj-device-capabilities/1",
+  "updated_at": "2026-10-24",
+  "policy": {
+    "camera_microphone_permission": "explicit_user_and_os_permission_required",
+    "media_upload": "disabled_by_device_test",
+    "publishing": "separate_owner_approval_gate",
+    "production_claims": "require_dated_device_and_deployment_evidence",
+    "secrets_in_logs": false
+  },
+  "capabilities": [
+    {
+      "id": "camera.live_preview",
+      "label": "Real camera live preview",
+      "status": "CONFIGURED_UNVERIFIED",
+      "verification": "Open /approvals/devices.html on the target device, grant permission, confirm stream and actual resolution; export report."
+    },
+    {
+      "id": "camera.local_recording",
+      "label": "Local reels/video recording and playback",
+      "status": "CONFIGURED_UNVERIFIED",
+      "verification": "Record an authorized test clip, play it locally, verify supported format/resolution and synchronization."
+    },
+    {
+      "id": "camera.owner_approval",
+      "label": "Owner review and approval queue",
+      "status": "INTEGRATED_UNVERIFIED",
+      "verification": "Run owner-token issuer and approval-store test; publishing remains a separate gate."
+    },
+    {
+      "id": "audio.browser_output",
+      "label": "Audio output routing and test tone",
+      "status": "CONFIGURED_UNVERIFIED",
+      "verification": "Send test tone and physically confirm selected output; verify OS route."
+    },
+    {
+      "id": "audio.microphone",
+      "label": "Microphone permission and input meter",
+      "status": "CONFIGURED_UNVERIFIED",
+      "verification": "Grant permission, speak and confirm meter response; stop capture."
+    },
+    {
+      "id": "audio.dolby",
+      "label": "Dolby processing/hardware/license",
+      "status": "NOT_PRESENT",
+      "verification": "Do not infer from browser APIs. Change status only after authoritative OS/vendor/licence diagnostic and repeatable test."
+    }
+  ],
+  "allowed_statuses": [
+    "NOT_PRESENT",
+    "CONFIGURED_UNVERIFIED",
+    "INTEGRATED_UNVERIFIED",
+    "VERIFIED_IN_TEST",
+    "VERIFIED_IN_PRODUCTION",
+    "BLOCKED_OWNER_ACTION"
+  ],
+  "note": "Registry entries do not claim physical installation or production deployment. Each target device must pass tests."
+}
