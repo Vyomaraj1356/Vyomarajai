@@ -157,8 +157,13 @@ def load_config(environment: Mapping[str, str]) -> Config:
     expected_path = "/v1/messages" if provider == "anthropic" else "/chat/completions"
     if not parsed.path.rstrip("/").endswith(expected_path):
         raise HarnessError(f"JARVIS_LLM_ENDPOINT must end with {expected_path}.")
-    if provider == "anthropic" and hostname != "api.anthropic.com":
-        raise HarnessError("The Anthropic provider must use api.anthropic.com; use OpenAI-compatible mode for gateways.")
+    if provider == "anthropic" and (
+        hostname != "api.anthropic.com" or parsed.port not in (None, 443)
+    ):
+        raise HarnessError(
+            "The Anthropic provider must use api.anthropic.com on the default HTTPS port; "
+            "use OpenAI-compatible mode for gateways."
+        )
 
     loopback = hostname in ("localhost", "127.0.0.1", "::1")
     if parsed.scheme == "http" and not loopback:
