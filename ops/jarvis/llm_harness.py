@@ -23,6 +23,52 @@ MAX_RESPONSE_BYTES = 1_048_576
 DEFAULT_TIMEOUT_SECONDS = 30
 DEFAULT_MAX_TOKENS = 512
 
+# Built-in exact-host allowlist for common OpenAI-compatible provider APIs.
+# Custom gateways require an explicit JARVIS_LLM_ALLOWED_HOSTS entry.
+DEFAULT_ALLOWED_HOSTS = frozenset({
+    "api.anthropic.com",
+    "api.openai.com",
+    "openrouter.ai",
+    "api.groq.com",
+    "api.together.xyz",
+    "api.deepseek.com",
+    "api.mistral.ai",
+    "api.fireworks.ai",
+    "api.perplexity.ai",
+    "api.x.ai",
+    "generativelanguage.googleapis.com",
+    "api.cohere.com",
+})
+
+
+def _trusted_remote_hosts(environment: Mapping[str, str]) -> set[str]:
+    """Return exact trusted hostnames; reject wildcard, URL, port, and IP entries."""
+    hosts = set(DEFAULT_ALLOWED_HOSTS)
+    configured = environment.get("JARVIS_LLM_ALLOWED_HOSTS", "")
+    if not configured.strip():
+        return hosts
+    for entry in configured.split(","):
+        host = entry.strip().lower()
+        if (
+            not host
+            or host.endswith(".")
+            or "*" in host
+            or "/" in host
+            or ":" in host
+            or "@" in host
+            or any(ch.isspace() for ch in host)
+            or not re.fullmatch(r"(?=.{1,253}$)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*", host)
+        ):
+            raise HarnessError("JARVIS_LLM_ALLOWED_HOSTS must contain exact DNS hostnames only.")
+        try:
+            ipaddress.ip_address(host)
+        except ValueError:
+            pass
+        else:
+            raise HarnessError("JARVIS_LLM_ALLOWED_HOSTS must not contain IP literals.")
+        hosts.add(host)
+    return hosts
+
 ROLE_PROMPTS = {
     "vyomaraj": (
         "You are Vyomaraj/Bharath, a user-owned platform and coordination peer, not the root owner. "
@@ -168,22 +214,26 @@ def load_config(environment: Mapping[str, str]) -> Config:
 
     loopback = hostname in ("localhost", "127.0.0.1", "::1")
     if not loopback:
-        # Defense in depth: reject non-public IP literals and ambiguous numeric
-        # host forms before an API key can be sent to a configured endpoint.
-        # DNS names are not resolved here; deployment egress policy must also
-        # prevent DNS rebinding and private-network destinations.
+        # Never send provider credentials to an arbitrary configured hostname.
+        # Exact host allowlisting reduces accidental exfiltration but does not
+        # replace deployment egress controls or DNS-rebinding protection.
         try:
-            ip_literal = ipaddress.ip_address(hostname)
+            ipaddress.ip_address(hostname)
         except ValueError:
             if re.fullmatch(r"(?:[0-9.]+|0x[0-9a-f.]+)", hostname, re.IGNORECASE):
                 raise HarnessError(
-                    "JARVIS_LLM_ENDPOINT must not use a noncanonical numeric host; use a provider hostname or local loopback."
+                    "JARVIS_LLM_ENDPOINT must not use a noncanonical numeric host; use a trusted provider hostname or local loopback."
                 ) from None
         else:
-            if not ip_literal.is_global:
-                raise HarnessError(
-                    "JARVIS_LLM_ENDPOINT must not target a non-public IP literal; use an approved provider hostname or local loopback."
-                )
+            raise HarnessError(
+                "Remote IP-literal endpoints are not allowed; use a trusted provider hostname or local loopback."
+            )
+        if hostname.endswith("."):
+            raise HarnessError("JARVIS_LLM_ENDPOINT must use a canonical hostname without a trailing dot.")
+        if hostname not in _trusted_remote_hosts(environment):
+            raise HarnessError(
+                "JARVIS_LLM_ENDPOINT host is not trusted; use a built-in provider host or add the exact hostname to JARVIS_LLM_ALLOWED_HOSTS."
+            )
     if parsed.scheme == "http" and not loopback:
         raise HarnessError("Unencrypted HTTP is allowed only for a local loopback LLM endpoint.")
     if not api_key and not loopback:
