@@ -30,7 +30,7 @@ class FakeResponse:
 class TestLLMHarness(unittest.TestCase):
     def setUp(self):
         self.env = {
-            "JARVIS_LLM_ENDPOINT": "https://llm.example.test/v1/chat/completions",
+            "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "test-model",
             "JARVIS_LLM_API_KEY": "unit-test-only-secret",
         }
@@ -53,6 +53,33 @@ class TestLLMHarness(unittest.TestCase):
                 loaded["JARVIS_LLM_ENDPOINT"],
                 "https://file.example.test/v1/chat/completions",
             )
+
+    def test_rejects_untrusted_remote_hostname_before_request(self):
+        endpoint = "https://attacker.example/v1/chat/completions"
+        with self.assertRaisesRegex(llm_harness.HarnessError, "host is not trusted") as raised:
+            llm_harness.load_config(dict(self.env, JARVIS_LLM_ENDPOINT=endpoint))
+        self.assertNotIn(endpoint, str(raised.exception))
+        self.assertNotIn(self.env["JARVIS_LLM_API_KEY"], str(raised.exception))
+
+    def test_custom_gateway_requires_exact_explicit_host_allowlist(self):
+        env = dict(
+            self.env,
+            JARVIS_LLM_ENDPOINT="https://llm.example.test/v1/chat/completions",
+            JARVIS_LLM_ALLOWED_HOSTS="llm.example.test",
+        )
+        self.assertEqual(llm_harness.load_config(env).endpoint, env["JARVIS_LLM_ENDPOINT"])
+
+    def test_host_allowlist_rejects_wildcards_urls_ports_and_ip_literals(self):
+        for configured in (
+            "*.example.test",
+            "https://llm.example.test",
+            "llm.example.test:443",
+            "10.0.0.1",
+        ):
+            with self.subTest(configured=configured):
+                env = dict(self.env, JARVIS_LLM_ALLOWED_HOSTS=configured)
+                with self.assertRaises(llm_harness.HarnessError):
+                    llm_harness.load_config(env)
 
     def test_rejects_non_public_and_noncanonical_ip_literal_endpoints(self):
         for endpoint in (
