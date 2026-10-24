@@ -71,6 +71,28 @@ class ProviderPreflightTests(unittest.TestCase):
                 result = inspect_environment(dict(base, JARVIS_LLM_ENDPOINT=endpoint))
                 self.assertEqual(result["status"], "invalid")
 
+    def test_rejects_non_public_and_noncanonical_ip_literal_hosts(self):
+        base = {
+            "JARVIS_LLM_PROVIDER": "openai_compatible",
+            "JARVIS_LLM_MODEL": "model",
+            "JARVIS_LLM_API_KEY": "test-secret",
+        }
+        for endpoint in (
+            "https://169.254.169.254/v1/chat/completions",
+            "https://10.0.0.8/v1/chat/completions",
+            "https://192.168.1.2/v1/chat/completions",
+            "https://[fd00::1]/v1/chat/completions",
+            "https://127.1/v1/chat/completions",
+            "https://2130706433/v1/chat/completions",
+            "https://0x7f000001/v1/chat/completions",
+        ):
+            with self.subTest(endpoint=endpoint):
+                result = inspect_environment(dict(base, JARVIS_LLM_ENDPOINT=endpoint))
+                self.assertEqual(result["status"], "invalid")
+                self.assertFalse(result["checks"]["endpoint_valid"])
+                self.assertNotIn(endpoint, json.dumps(result))
+                self.assertNotIn(base["JARVIS_LLM_API_KEY"], json.dumps(result))
+
     def test_remote_http_is_rejected(self):
         result = inspect_environment({
             "JARVIS_LLM_PROVIDER": "openai_compatible",
