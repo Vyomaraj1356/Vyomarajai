@@ -176,6 +176,19 @@ def read_environment(environment: Mapping[str, str] | None = None) -> dict[str, 
     return file_values
 
 
+def _approved_models(environment: Mapping[str, str]) -> set[str]:
+    """Return an exact, owner-configured model allowlist; never echo its values."""
+    configured = environment.get("JARVIS_LLM_ALLOWED_MODELS", "")
+    if not configured.strip():
+        raise HarnessError("Set JARVIS_LLM_ALLOWED_MODELS to exact approved model IDs before making a request.")
+    entries = [item.strip() for item in configured.split(",")]
+    if any(not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:/+-]{0,159}", item) for item in entries):
+        raise HarnessError("JARVIS_LLM_ALLOWED_MODELS must contain exact model IDs only; wildcards and empty entries are not allowed.")
+    if len(set(entries)) != len(entries):
+        raise HarnessError("JARVIS_LLM_ALLOWED_MODELS must not contain duplicate model IDs.")
+    return set(entries)
+
+
 def load_config(environment: Mapping[str, str]) -> Config:
     endpoint = environment.get("JARVIS_LLM_ENDPOINT", "").strip()
     model = environment.get("JARVIS_LLM_MODEL", "").strip()
@@ -190,6 +203,10 @@ def load_config(environment: Mapping[str, str]) -> Config:
         raise HarnessError(f"Set JARVIS_LLM_ENDPOINT to {expected}.")
     if not model:
         raise HarnessError("Set JARVIS_LLM_MODEL to an approved model name.")
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:/+-]{0,159}", model):
+        raise HarnessError("JARVIS_LLM_MODEL has an invalid format.")
+    if model not in _approved_models(environment):
+        raise HarnessError("JARVIS_LLM_MODEL is not in the exact approved model allowlist.")
 
     try:
         parsed = urlsplit(endpoint)
