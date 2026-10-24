@@ -13,20 +13,50 @@ class ProviderPreflightTests(unittest.TestCase):
         self.assertFalse(result["request_sent"])
 
     def test_partial_configuration_is_incomplete(self):
-        result = inspect_environment({"JARVIS_LLM_ENDPOINT": "https://api.example.com/v1/chat/completions"})
+        result = inspect_environment({"JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions"})
         self.assertEqual(result["status"], "incomplete")
         self.assertIn("JARVIS_LLM_MODEL is missing.", result["issues"])
 
     def test_valid_openai_compatible_configuration_is_unverified(self):
         result = inspect_environment({
             "JARVIS_LLM_PROVIDER": "openai_compatible",
-            "JARVIS_LLM_ENDPOINT": "https://api.example.com/v1/chat/completions",
+            "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "approved-model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "configured_unverified")
         self.assertTrue(result["checks"]["endpoint_valid"])
         self.assertFalse(result["request_sent"])
+
+    def test_custom_compatible_host_requires_exact_explicit_allowlist(self):
+        base = {
+            "JARVIS_LLM_PROVIDER": "openai_compatible",
+            "JARVIS_LLM_ENDPOINT": "https://llm.example.test/v1/chat/completions",
+            "JARVIS_LLM_MODEL": "approved-model",
+            "JARVIS_LLM_API_KEY": "test-secret",
+        }
+        blocked = inspect_environment(base)
+        self.assertEqual(blocked["status"], "invalid")
+        self.assertFalse(blocked["checks"]["endpoint_valid"])
+        self.assertNotIn("llm.example.test", json.dumps(blocked))
+        allowed = inspect_environment(dict(base, JARVIS_LLM_ALLOWED_HOSTS="llm.example.test"))
+        self.assertEqual(allowed["status"], "configured_unverified")
+        self.assertTrue(allowed["checks"]["endpoint_valid"])
+        self.assertFalse(allowed["request_sent"])
+
+    def test_custom_host_allowlist_rejects_wildcards_urls_ports_and_ip_literals(self):
+        base = {
+            "JARVIS_LLM_PROVIDER": "openai_compatible",
+            "JARVIS_LLM_ENDPOINT": "https://llm.example.test/v1/chat/completions",
+            "JARVIS_LLM_MODEL": "approved-model",
+            "JARVIS_LLM_API_KEY": "test-secret",
+        }
+        for configured in ("*.example.test", "https://llm.example.test", "llm.example.test:443", "10.0.0.1"):
+            with self.subTest(configured=configured):
+                result = inspect_environment(dict(base, JARVIS_LLM_ALLOWED_HOSTS=configured))
+                self.assertEqual(result["status"], "invalid")
+                self.assertFalse(result["checks"]["endpoint_valid"])
+                self.assertNotIn("test-secret", json.dumps(result))
 
     def test_valid_anthropic_configuration_requires_official_exact_endpoint(self):
         result = inspect_environment({
@@ -63,9 +93,9 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_API_KEY": "test-secret",
         }
         for endpoint in (
-            "https://user:pass@api.example.com/v1/chat/completions",
-            "https://api.example.com/v1/chat/completions?key=secret",
-            "https://api.example.com/v1/chat/completions#fragment",
+            "https://user:pass@api.openai.com/v1/chat/completions",
+            "https://api.openai.com/v1/chat/completions?key=secret",
+            "https://api.openai.com/v1/chat/completions#fragment",
         ):
             with self.subTest(endpoint=endpoint):
                 result = inspect_environment(dict(base, JARVIS_LLM_ENDPOINT=endpoint))
@@ -96,7 +126,7 @@ class ProviderPreflightTests(unittest.TestCase):
     def test_remote_http_is_rejected(self):
         result = inspect_environment({
             "JARVIS_LLM_PROVIDER": "openai_compatible",
-            "JARVIS_LLM_ENDPOINT": "http://api.example.com/v1/chat/completions",
+            "JARVIS_LLM_ENDPOINT": "http://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
@@ -113,7 +143,7 @@ class ProviderPreflightTests(unittest.TestCase):
     def test_unsupported_provider_is_invalid(self):
         result = inspect_environment({
             "JARVIS_LLM_PROVIDER": "unknown",
-            "JARVIS_LLM_ENDPOINT": "https://api.example.com/v1/chat/completions",
+            "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
@@ -123,7 +153,7 @@ class ProviderPreflightTests(unittest.TestCase):
         secret = "top-secret-do-not-print"
         result = inspect_environment({
             "JARVIS_LLM_PROVIDER": "openai_compatible",
-            "JARVIS_LLM_ENDPOINT": "https://api.example.com/v1/chat/completions",
+            "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "model",
             "JARVIS_LLM_API_KEY": secret,
             "JARVIS_LLM_TIMEOUT_SECONDS": "0",
@@ -132,7 +162,7 @@ class ProviderPreflightTests(unittest.TestCase):
         rendered = json.dumps(result)
         self.assertEqual(result["status"], "invalid")
         self.assertNotIn(secret, rendered)
-        self.assertNotIn("api.example.com", rendered)
+        self.assertNotIn("api.openai.com", rendered)
 
     def test_api_key_is_never_echoed_in_json_cli_output(self):
         secret = "top-secret-do-not-print"
@@ -140,7 +170,7 @@ class ProviderPreflightTests(unittest.TestCase):
         with redirect_stdout(output):
             code = main(["--json"], {
                 "JARVIS_LLM_PROVIDER": "openai_compatible",
-                "JARVIS_LLM_ENDPOINT": "https://api.example.com/v1/chat/completions",
+                "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
                 "JARVIS_LLM_MODEL": "model",
                 "JARVIS_LLM_API_KEY": secret,
             })
@@ -161,7 +191,7 @@ class ProviderPreflightTests(unittest.TestCase):
         with redirect_stdout(output):
             code = main(["--json", "--require-configured"], {
                 "JARVIS_LLM_PROVIDER": "openai_compatible",
-                "JARVIS_LLM_ENDPOINT": "https://api.example.com/v1/chat/completions",
+                "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
                 "JARVIS_LLM_MODEL": "model",
                 "JARVIS_LLM_API_KEY": "test-secret",
             })
