@@ -145,6 +145,7 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
                         host_safe = False
                         issues.append("JARVIS_LLM_ENDPOINT host is not trusted; use a built-in provider host or exact JARVIS_LLM_ALLOWED_HOSTS entry.")
                 if parsed.scheme == "http" and not loopback:
+                    host_safe = False
                     issues.append("Unencrypted HTTP is allowed only for a local loopback endpoint.")
                 if not loopback and parsed.port not in (None, 443):
                     host_safe = False
