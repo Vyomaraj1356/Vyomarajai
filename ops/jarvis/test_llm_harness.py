@@ -54,6 +54,22 @@ class HarnessTests(unittest.TestCase):
                 "https://file.example.test/v1/chat/completions",
             )
 
+    def test_rejects_non_public_and_noncanonical_ip_literal_endpoints(self):
+        for endpoint in (
+            "https://169.254.169.254/v1/chat/completions",
+            "https://10.0.0.8/v1/chat/completions",
+            "https://192.168.1.2/v1/chat/completions",
+            "https://[fd00::1]/v1/chat/completions",
+            "https://127.1/v1/chat/completions",
+            "https://2130706433/v1/chat/completions",
+            "https://0x7f000001/v1/chat/completions",
+        ):
+            with self.subTest(endpoint=endpoint):
+                with self.assertRaises(llm_harness.HarnessError) as raised:
+                    llm_harness.load_config(dict(self.env, JARVIS_LLM_ENDPOINT=endpoint))
+                self.assertNotIn(endpoint, str(raised.exception))
+                self.assertNotIn(self.env["JARVIS_LLM_API_KEY"], str(raised.exception))
+
     def test_rejects_remote_plain_http_and_url_credentials(self):
         env = dict(self.env, JARVIS_LLM_ENDPOINT="http://provider.example/v1/chat/completions")
         with self.assertRaises(llm_harness.HarnessError):
