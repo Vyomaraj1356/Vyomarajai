@@ -32,6 +32,7 @@ class TestLLMHarness(unittest.TestCase):
         self.env = {
             "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "test-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "test-model",
             "JARVIS_LLM_API_KEY": "unit-test-only-secret",
         }
 
