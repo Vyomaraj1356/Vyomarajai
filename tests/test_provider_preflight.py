@@ -38,7 +38,7 @@ class ProviderPreflightTests(unittest.TestCase):
         self.assertEqual(result["status"], "configured_unverified")
         self.assertTrue(result["checks"]["endpoint_valid"])
 
-    def test_anthropic_rejects_gateway_and_noncanonical_path(self):
+    def test_anthropic_rejects_gateway_noncanonical_path_and_invalid_ports(self):
         base = {
             "JARVIS_LLM_PROVIDER": "anthropic",
             "JARVIS_LLM_MODEL": "approved-claude-model",
@@ -48,6 +48,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "https://gateway.example/v1/messages",
             "https://api.anthropic.com/proxy/v1/messages",
             "http://api.anthropic.com/v1/messages",
+            "https://api.anthropic.com:444/v1/messages",
+            "https://api.anthropic.com:invalid/v1/messages",
         ):
             with self.subTest(endpoint=endpoint):
                 result = inspect_environment(dict(base, JARVIS_LLM_ENDPOINT=endpoint))
