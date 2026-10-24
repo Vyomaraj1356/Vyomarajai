@@ -12,6 +12,12 @@ class ProviderPreflightTests(unittest.TestCase):
         self.assertEqual(result["status"], "not_configured")
         self.assertFalse(result["request_sent"])
 
+    def test_malformed_allowlist_is_invalid_even_when_other_settings_are_absent(self):
+        result = inspect_environment({"JARVIS_LLM_ALLOWED_HOSTS": "*.example.test"})
+        self.assertEqual(result["status"], "invalid")
+        self.assertFalse(result["request_sent"])
+        self.assertIn("JARVIS_LLM_ALLOWED_HOSTS must contain exact DNS hostnames only.", result["issues"])
+
     def test_partial_configuration_is_incomplete(self):
         result = inspect_environment({"JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions"})
         self.assertEqual(result["status"], "incomplete")
