@@ -6,6 +6,7 @@ No tools are exposed to the model. Prompts and responses are not logged or store
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 import os
 import re
@@ -166,6 +167,23 @@ def load_config(environment: Mapping[str, str]) -> Config:
         )
 
     loopback = hostname in ("localhost", "127.0.0.1", "::1")
+    if not loopback:
+        # Defense in depth: reject non-public IP literals and ambiguous numeric
+        # host forms before an API key can be sent to a configured endpoint.
+        # DNS names are not resolved here; deployment egress policy must also
+        # prevent DNS rebinding and private-network destinations.
+        try:
+            ip_literal = ipaddress.ip_address(hostname)
+        except ValueError:
+            if re.fullmatch(r"(?:[0-9.]+|0x[0-9a-f.]+)", hostname, re.IGNORECASE):
+                raise HarnessError(
+                    "JARVIS_LLM_ENDPOINT must not use a noncanonical numeric host; use a provider hostname or local loopback."
+                ) from None
+        else:
+            if not ip_literal.is_global:
+                raise HarnessError(
+                    "JARVIS_LLM_ENDPOINT must not target a non-public IP literal; use an approved provider hostname or local loopback."
+                )
     if parsed.scheme == "http" and not loopback:
         raise HarnessError("Unencrypted HTTP is allowed only for a local loopback LLM endpoint.")
     if not api_key and not loopback:
