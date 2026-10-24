@@ -219,7 +219,8 @@ def load_config(environment: Mapping[str, str]) -> Config:
     if parsed.username or parsed.password or parsed.query or parsed.fragment:
         raise HarnessError("Do not put credentials, query parameters, or fragments in JARVIS_LLM_ENDPOINT.")
     expected_path = "/v1/messages" if provider == "anthropic" else "/chat/completions"
-    if not parsed.path.rstrip("/").endswith(expected_path):
+    path_matches = parsed.path == expected_path if provider == "anthropic" else parsed.path.rstrip("/").endswith(expected_path)
+    if not path_matches:
         raise HarnessError(f"JARVIS_LLM_ENDPOINT must end with {expected_path}.")
     if provider == "anthropic" and (
         hostname != "api.anthropic.com" or parsed.port not in (None, 443)
