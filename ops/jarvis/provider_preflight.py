@@ -68,7 +68,13 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
     timeout_text = environment.get("JARVIS_LLM_TIMEOUT_SECONDS", str(DEFAULT_TIMEOUT_SECONDS)).strip()
     max_tokens_text = environment.get("JARVIS_LLM_MAX_TOKENS", str(DEFAULT_MAX_TOKENS)).strip()
 
-    supplied = any((endpoint, model, api_key, environment.get("JARVIS_LLM_PROVIDER", "").strip()))
+    supplied = any((
+        endpoint,
+        model,
+        api_key,
+        environment.get("JARVIS_LLM_PROVIDER", "").strip(),
+        environment.get("JARVIS_LLM_ALLOWED_HOSTS", "").strip(),
+    ))
     checks = {
         "provider_supported": provider in SUPPORTED_PROVIDERS,
         "endpoint_valid": False,
