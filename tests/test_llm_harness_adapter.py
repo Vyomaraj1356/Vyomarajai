@@ -61,6 +61,11 @@ class TestLLMHarness(unittest.TestCase):
         self.assertNotIn(endpoint, str(raised.exception))
         self.assertNotIn(self.env["JARVIS_LLM_API_KEY"], str(raised.exception))
 
+    def test_remote_provider_rejects_nondefault_https_port(self):
+        endpoint = "https://api.openai.com:8443/v1/chat/completions"
+        with self.assertRaisesRegex(llm_harness.HarnessError, "default HTTPS port"):
+            llm_harness.load_config(dict(self.env, JARVIS_LLM_ENDPOINT=endpoint))
+
     def test_custom_gateway_requires_exact_explicit_host_allowlist(self):
         env = dict(
             self.env,
