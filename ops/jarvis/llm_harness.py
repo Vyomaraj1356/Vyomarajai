@@ -438,7 +438,6 @@ def main(
         return 0
 
     try:
-        config = load_config(read_environment(environment))
         prompt = stdin.read(MAX_PROMPT_CHARS + 1)
         if len(prompt) > MAX_PROMPT_CHARS:
             raise HarnessError(f"Prompt exceeds the {MAX_PROMPT_CHARS}-character safety limit.")
@@ -449,6 +448,9 @@ def main(
             if preset is None or args.role not in preset["roles"]:
                 raise HarnessError("Unknown preset or preset not permitted for this role.")
             preset_prompt = str(preset["prompt"])
+        # Validate the requested preset and input before requiring provider configuration.
+        # This keeps offline policy errors diagnosable without credentials or network access.
+        config = load_config(read_environment(environment))
         answer = complete(prompt, args.role, config, preset_prompt=preset_prompt)
         if args.expect is not None and answer.strip() != args.expect:
             print("LLM harness: response did not match expected text.", file=stderr)
