@@ -34,6 +34,17 @@ class ProviderPreflightTests(unittest.TestCase):
         self.assertTrue(result["checks"]["endpoint_valid"])
         self.assertFalse(result["request_sent"])
 
+    def test_remote_provider_rejects_nondefault_https_port(self):
+        result = inspect_environment({
+            "JARVIS_LLM_PROVIDER": "openai_compatible",
+            "JARVIS_LLM_ENDPOINT": "https://api.openai.com:8443/v1/chat/completions",
+            "JARVIS_LLM_MODEL": "approved-model",
+            "JARVIS_LLM_API_KEY": "test-secret",
+        })
+        self.assertEqual(result["status"], "invalid")
+        self.assertFalse(result["checks"]["endpoint_valid"])
+        self.assertIn("Remote provider endpoints must use the default HTTPS port.", result["issues"])
+
     def test_custom_compatible_host_requires_exact_explicit_allowlist(self):
         base = {
             "JARVIS_LLM_PROVIDER": "openai_compatible",
