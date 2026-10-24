@@ -332,6 +332,14 @@ class TestLLMHarness(unittest.TestCase):
         with self.assertRaises(llm_harness.HarnessError):
             llm_harness.load_config(env)
 
+    def test_model_allowlist_rejects_wildcards_and_duplicate_entries(self):
+        for configured in ("*", "test-model,*", "test-model,", "test-model,test-model"):
+            with self.subTest(configured=configured):
+                env = dict(self.env, JARVIS_LLM_ALLOWED_MODELS=configured)
+                with self.assertRaises(llm_harness.HarnessError) as raised:
+                    llm_harness.load_config(env)
+                self.assertNotIn(self.env["JARVIS_LLM_API_KEY"], str(raised.exception))
+
     def test_remote_endpoint_requires_a_key(self):
         env = dict(self.env)
         env.pop("JARVIS_LLM_API_KEY")
