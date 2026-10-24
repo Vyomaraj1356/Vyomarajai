@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 import os
+import re
 from urllib.parse import urlsplit
 from typing import Mapping
 
@@ -68,9 +70,23 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
                 issues.append("JARVIS_LLM_ENDPOINT must not contain credentials, query parameters, or fragments.")
             else:
                 loopback = hostname in LOOPBACK_HOSTS
+                host_safe = True
+                if not loopback:
+                    # Match the runtime harness policy: reject non-public IP literals
+                    # and ambiguous numeric host forms without performing DNS lookups.
+                    try:
+                        ip_literal = ipaddress.ip_address(hostname)
+                    except ValueError:
+                        if re.fullmatch(r"(?:[0-9.]+|0x[0-9a-f.]+)", hostname, re.IGNORECASE):
+                            host_safe = False
+                            issues.append("JARVIS_LLM_ENDPOINT must not use a noncanonical numeric host.")
+                    else:
+                        if not ip_literal.is_global:
+                            host_safe = False
+                            issues.append("JARVIS_LLM_ENDPOINT must not target a non-public IP literal.")
                 if parsed.scheme == "http" and not loopback:
                     issues.append("Unencrypted HTTP is allowed only for a local loopback endpoint.")
-                if provider == "anthropic":
+                if host_safe and provider == "anthropic":
                     if (
                         parsed.scheme == "https"
                         and hostname == "api.anthropic.com"
@@ -82,7 +98,7 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
                         issues.append(
                             "Anthropic requires https://api.anthropic.com/v1/messages on the default HTTPS port."
                         )
-                elif provider == "openai_compatible":
+                elif host_safe and provider == "openai_compatible":
                     if parsed.path.rstrip("/").endswith("/chat/completions"):
                         checks["endpoint_valid"] = True
                     else:
