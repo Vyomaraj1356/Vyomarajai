@@ -9,6 +9,7 @@ relies on: the authoritative state file is read, every component keeps its evide
 probe happens unless the operator supplies a URL, and the safety block never claims live DR.
 """
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -22,8 +23,13 @@ STATE = HERE / 'VYOMARAJ_MASTER_STATE.json'
 
 
 def run(cwd, env=None):
+    # Keep unit tests hermetic: explicit endpoint probes are exercised only by tests
+    # that pass a URL deliberately, never by ambient CI/repository environment values.
+    isolated = os.environ.copy() if env is None else env.copy()
+    for name in ("VYOMARAJ_PROBE_URL", "JARVIS_PROBE_URL", "QUEUE_PROBE_URL"):
+        isolated.pop(name, None)
     return subprocess.run([sys.executable, str(VERIFIER)], cwd=str(cwd), capture_output=True,
-                          text=True, timeout=120, env=env)
+                          text=True, timeout=120, env=isolated)
 
 
 class VerifyMasterStateTests(unittest.TestCase):

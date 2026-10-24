@@ -6,26 +6,25 @@ Scope: what the repository's own current metadata records about **inheritance** 
 
 ## 1. Structural inheritance — agent registry
 
-Status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-07). Source snapshot: `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json`.
+Status: `CURRENT_OWNER_APPROVED_STRUCTURE_not_runtime_inventory` (updated 2026-10-15). Source snapshot: `handover/AGENT_CONTENT_REGISTRY_V16_7_24.json`.
 
 | Category | Counted sub-agents | Named | Name UNKNOWN | Source-reported (historical) | Products (historical) |
 |---|---|---|---|---|---|
 | FOOD — Food & Social Connect | 3 | 0 | 3 | 3 | 6 |
-| EDU — Education | 16 | 10 | 6 | 15 | 68 |
+| EDU — Education | 18 | 12 | 6 | 15 | 68 |
 | ASTRO — Astro-Celestial & Universal | 3 | 0 | 3 | 3 | 9 |
 | FINANCE — Finance & Wealth | 7 | 0 | 7 | 8 | 15 |
 | LIFE — Life Coach & Wellness | 10 | 0 | 10 | 10 | 34 |
 | BHAKTI — Bhakti Mandir — Ritual, Festival & Grantha | 3 | 1 | 2 | 2 | 8 |
 | SPORTS — Sports & Legends | 14 | 0 | 14 | 14 | 29 |
 | AGRI — Agriculture & Environment | 6 | 0 | 6 | 6 | 14 |
-| ENTERTAINMENT — Entertainment — Comedy, Movies, Hollywood, Bollywood | 32 | 2 | 30 | 38 | 168 |
-| PLATFORM — Platform & Social Hub + Earn — All Platforms + Monetization | 20 | 19 | 1 | 20 | 39 |
+| ENTERTAINMENT — Entertainment — Comedy, Movies, Hollywood, Bollywood | 35 | 5 | 30 | 38 | 168 |
+| PLATFORM — Social Platform — Social Channels, AI & Monetization | 20 | 19 | 1 | 20 | 39 |
 | TOUR — Tour and Travel | 4 | 0 | 4 | 4 | 9 |
 | WAR — War Room — Warriors | 5 | 5 | 0 | 5 | 13 |
-| PODCAST — Podcast & Entertainment Studio | 5 | 5 | 0 | 5 | 9 |
 | **Total (counted)** | **128** | **42** | **86** | 133 | 421 |
 
-- Every one of the 128 counted rows resolves to one of the 13 category ids; the category sum equals the total.
+- Every one of the 128 counted rows resolves to one of the 12 category ids; the category sum equals the total.
 - 86 rows carry `name_status: UNKNOWN` and no name — nothing is invented to fill a slot; serial-only entries are display placeholders, not recovered identities.
 - 6 parent headings are uncounted after reclassification (reclassified, not deleted).
 - Product policy: 421 is a historical aggregate, not a verified deduplicated/current owner-assigned product inventory.

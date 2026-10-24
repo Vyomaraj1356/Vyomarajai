@@ -7,6 +7,7 @@ policy/integration configuration, the workflows and the recorded verification ev
 Run without arguments to write, with --check to verify the checked-in copy matches.
 """
 import argparse
+import difflib
 import hashlib
 import json
 import re
@@ -134,10 +135,10 @@ def render(root=ROOT):
         '',
         '### Approved structural changes carried in this registry',
         '',
-        '- **ENTERTAINMENT 38 → 32**: six hubs (Comedy, Cartoon, Music, Movie, Wit, Shayari) were '
-        'reclassified from counted sub-agents to uncounted parent headings — kept, not deleted.',
-        '- **FINANCE 8 → 7 and EDU 15 → 16**: the Government Schemes position moved from FINANCE to EDU '
-        'as one owner-approved transfer (`EDU-GOV-S1`).',
+        '- **ENTERTAINMENT 38 → 35**: six hubs (Comedy, Cartoon, Music, Movie, Wit, Shayari) were reclassified from counted agents to uncounted headings, then three Podcast capabilities (SCRIPT, PRODUCE, PUBLISH) were placed under Entertainment; '
+        'the six hubs are kept, not deleted.',
+        '- **FINANCE 8 → 7 and EDU 15 → 18**: Government Schemes moved from FINANCE to EDU as one owner-approved transfer (`EDU-GOV-S1`); Podcast RESEARCH and ANALYSIS also belong to EDU. '
+        'the Podcast category is no longer standalone; the legacy source remains unchanged.',
         '- **BHAKTI 2 → 3**: `BHAKTI-AGHOR-S1` (Aghor & Aghori) added as an explicitly requested, view-only '
         'editorial route — not a deployed autonomous teacher.',
         '',
@@ -148,7 +149,8 @@ def render(root=ROOT):
         names = named[category['id']]
         if names:
             listed = '; '.join(f"{a['id']} {a['name']}" for a in names)
-            lines.append(f"- **{category['id']}**: {listed}")
+            label = 'SOCIAL PLATFORM (stable ID: PLATFORM)' if category['id'] == 'PLATFORM' else category['id']
+            lines.append(f"- **{label}**: {listed}")
     lines += [
         '',
         'Serial-only entries are shown in the viewer as `REF`/serial identifiers (`display_policy`: '
@@ -287,6 +289,10 @@ def main():
     if args.check:
         current = OUTPUT.read_text() if OUTPUT.is_file() else ''
         if current != rendered:
+            diff = list(difflib.unified_diff(current.splitlines(), rendered.splitlines(),
+                                            fromfile=OUTPUT.name + ' (checked-in)',
+                                            tofile=OUTPUT.name + ' (generated)', lineterm=''))
+            print('\n'.join(diff[:160]))
             raise SystemExit(f'{OUTPUT.name} is out of date; rerun without --check')
         print(f'OK: {OUTPUT.name} matches the repository sources')
     else:

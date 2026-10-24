@@ -19,7 +19,7 @@
     "future_entities_inherit_by_default": true,
     "per_entity_copy_required": false,
     "current_coverage": {
-      "category_count": 13,
+      "category_count": 12,
       "agent_count": 128,
       "mode": "all_current_registry_entries_inherit_by_reference",
       "indexed_content_reference_count": 197,
@@ -55,7 +55,7 @@
     "permission_grants_inherited": false,
     "root_owner_authority_inherited": false,
     "current_coverage": {
-      "category_count": 13,
+      "category_count": 12,
       "agent_count": 128,
       "mode": "all_current_registry_entries_resolve_one_shared_reference",
       "indexed_content_reference_count": 197

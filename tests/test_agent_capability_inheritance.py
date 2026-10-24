@@ -11,7 +11,7 @@ This file merges two generations of coverage that briefly replaced one another:
   for ``ops/vyomaraj/agent_capability_inheritance``.
 
 The replacement also asserted ``registry_agents == 168``. The reconciled registry is
-13 categories / 128 sub-agents, so that assertion could never pass; 168 is the older
+12 categories / 128 sub-agents, so that assertion could never pass; 168 is the older
 unreconciled claim. Counts below are derived from the registry and pinned to the
 canonical totals, so neither a stale literal nor a silent registry edit can slip through.
 """
@@ -31,7 +31,7 @@ REGISTRY = ROOT / "ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json"
 EXPECTED_DOMAINS = ["MATIMAN", "SHRUTIMAN", "KETUMAN", "GATIMAN", "DHRITIMAN"]
 
 # The reconciled owner-approved totals. See ops/vyomaraj-core/agents/AGENT_REGISTRY_CURRENT.json.
-CANONICAL_CATEGORIES = 13
+CANONICAL_CATEGORIES = 12
 CANONICAL_SUB_AGENTS = 128
 
 

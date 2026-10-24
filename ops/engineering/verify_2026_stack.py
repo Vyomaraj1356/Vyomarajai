@@ -123,7 +123,11 @@ def _builder_check() -> tuple[bool, str]:
         )
     except (OSError, subprocess.TimeoutExpired):
         return False, "registry builder could not be checked"
-    return proc.returncode == 0, "deterministic registry output matches" if proc.returncode == 0 else "registry builder output is stale or invalid"
+    if proc.returncode == 0:
+        return True, "deterministic registry output matches"
+    diagnostic = (proc.stdout + "\\n" + proc.stderr).strip().splitlines()
+    detail = "\\n".join(diagnostic[-35:])[:2200] if diagnostic else "builder exited without diagnostic text"
+    return False, f"registry builder output is stale or invalid:\\n{detail}"
 
 
 def inspect() -> dict[str, Any]:

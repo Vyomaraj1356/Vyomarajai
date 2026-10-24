@@ -1,8 +1,8 @@
 # Vyomaraj / Jarvis — Current System Inventory
 
-**Current structure: 13 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**
+**Current structure: 12 categories · 128 counted sub-agent slots · 6 uncounted parent headings.**
 
-**7 October 2026 metadata alignment:** shared capability policy reference added; taxonomy counts and historical product aggregate are unchanged.
+**15 October 2026 metadata alignment:** Podcast is a capability family under EDU and ENTERTAINMENT; the historical product aggregate remains unreconciled.
 
 This is the current owner-approved view. The former 133-slot inventory is preserved at `/reports/history`; it is not silently deleted or presented as the active structure. Historical 421-product and 32-file catalogue counts are not a complete, deduplicated item-level product list.
 
@@ -26,7 +26,7 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 
 # Current Agent Reconciliation
 
-**7 October 2026 additive metadata alignment · owner-approved structure · not a deployment claim**
+**15 October 2026 additive metadata alignment · owner-approved structure · not a deployment claim**
 
 ## Applied decisions
 
@@ -41,10 +41,10 @@ This is the current owner-approved view. The former 133-slot inventory is preser
 
 | Measure | Historical snapshot | Current |
 |---|---:|---:|
-| Main categories | 13 | 13 |
+| Main categories | 13 | 12 |
 | Counted sub-agent slots | 133 | 128 |
-| Entertainment slots | 38 | 32 |
-| Education slots | 15 | 16 |
+| Entertainment slots | 38 | 35 |
+| Education slots | 15 | 18 |
 | Finance slots | 8 | 7 |
 | Separate uncounted Entertainment headings | Not separated | 6 |
 | Supplied/approved individual names | 46 | 42 |
@@ -55,7 +55,7 @@ The six-heading reclassification first gave 133 → 127. The later requested Agh
 
 ## Universal Knowledge Evolution inheritance
 
-- The active registry attaches one shared policy reference (`config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json`) to all **13 categories** and **128 counted agents**; it is not copied into individual agent records.
+- The active registry attaches one shared policy reference (`config/knowledge/UNIVERSAL_KNOWLEDGE_EVOLUTION_INHERITANCE_V1.json`) to all **12 categories** and **128 counted agents**; it is not copied into individual agent records.
 - The bounded content index applies the same reference to **197 indexed references**. Topics, content, chapters, products, and future entities inherit by the policy default rather than manual per-agent edits.
 - Policy status: `reference_contract_not_deployed`. This is not evidence of production runtime enforcement or a live shared Vyomaraj/Jarvis store.
 
@@ -70,24 +70,23 @@ The six-heading reclassification first gave 133 → 127. The later requested Agh
 | Category | Current display name | Counted slots | Uncounted headings | Historical reported products |
 |---|---|---:|---:|---:|
 | FOOD | Food & Social Connect | 3 | 0 | 6 |
-| EDU | Education | 16 | 0 | 68 |
+| EDU | Education | 18 | 0 | 68 |
 | ASTRO | Astro-Celestial & Universal | 3 | 0 | 9 |
 | FINANCE | Finance & Wealth | 7 | 0 | 15 |
 | LIFE | Life Coach & Wellness | 10 | 0 | 34 |
 | BHAKTI | Bhakti Mandir — Ritual, Festival & Grantha | 3 | 0 | 8 |
 | SPORTS | Sports & Legends | 14 | 0 | 29 |
 | AGRI | Agriculture & Environment | 6 | 0 | 14 |
-| ENTERTAINMENT | Entertainment — Comedy, Movies, Hollywood, Bollywood | 32 | 6 | 168 |
-| PLATFORM | Platform & Social Hub + Earn — All Platforms + Monetization | 20 | 0 | 39 |
+| ENTERTAINMENT | Entertainment — Comedy, Movies, Hollywood, Bollywood | 35 | 6 | 168 |
+| PLATFORM | Social Platform — Social Channels, AI & Monetization | 20 | 0 | 39 |
 | TOUR | Tour and Travel | 4 | 0 | 9 |
 | WAR | War Room — Warriors | 5 | 0 | 13 |
-| PODCAST | Podcast & Entertainment Studio | 5 | 0 | 9 |
 
 Product figures above are source-history metadata, not current reallocated or deduplicated totals. In particular, Education 68 and Finance 15 cannot be apportioned after the scheme transfer without their item-level product lists.
 
 ## Duplicate audit and scope
 
-- Active hierarchy: 13 category identities, 128 counted agent identities and 6 heading identities; all unique and parent-validated.
+- Active hierarchy: 12 category identities, 128 counted agent identities and 6 heading identities; all unique and parent-validated.
 - Exact repeated source roster records removed: **0**. The six semantic double-counted hub positions were reclassified by the explicit approval above, not presented as byte-identical records.
 - Current content index: **197 references**, including **21 Education topics** and the selected collections in the five editorial experiences. These are references, not all 421 products or new agents.
 - Exact repeated indexed content records removed: **0**. Equal identities collapse only if records are equal; conflicting duplicates stop the builder.
@@ -128,7 +127,7 @@ Education-related entertainment formats remain formats; that does not make Enter
 
 ## Serial-only roster
 
-Serials are current display positions within each category, not recovered historic slot numbers. Blank name cells deliberately remain blank. Internal IDs are available in the JSON/advanced viewer to preserve working integrations, not as newly coined names. PLATFORM display position 20 still has source slot UNMAPPED; it is not labelled historical S20.
+Serials are current display positions within each category, not recovered historic slot numbers. Blank name cells deliberately remain blank. Internal IDs are available in the JSON/advanced viewer to preserve working integrations, not as newly coined names. Social Platform (stable ID: PLATFORM) display position 20 still has source slot UNMAPPED; it is not labelled historical S20.
 
 ### Food & Social Connect
 
@@ -157,6 +156,8 @@ Serials are current display positions within each category, not recovered histor
 | 14 | Care & Bikes — Bicycles & Two-Wheelers |  |
 | 15 | Social Thinkers, Visionaries & Legends |  |
 | 16 | Government Schemes |  |
+| 17 | RESEARCH |  |
+| 18 | ANALYSIS |  |
 
 Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and the Granthas”; no six individual names or assignments are inferred.
 ### Astro-Celestial & Universal
@@ -262,7 +263,10 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 | 30 |  |  |
 | 31 |  |  |
 | 32 |  |  |
-### Platform & Social Hub + Earn — All Platforms + Monetization
+| 33 | SCRIPT |  |
+| 34 | PRODUCE |  |
+| 35 | PUBLISH |  |
+### Social Platform — Social Channels, AI & Monetization
 
 | Serial | Supplied/approved name (blank = not assigned) | Parent heading |
 |---:|---|---|
@@ -303,15 +307,6 @@ Positions 8–13 retain the shared source label “Bharat Grantha, Chanakya and 
 | 3 | PRESENT |  |
 | 4 | FUTURE |  |
 | 5 | CROSS-CUTTING |  |
-### Podcast & Entertainment Studio
-
-| Serial | Supplied/approved name (blank = not assigned) | Parent heading |
-|---:|---|---|
-| 1 | RESEARCH |  |
-| 2 | SCRIPT |  |
-| 3 | PRODUCE |  |
-| 4 | ANALYSIS |  |
-| 5 | PUBLISH |  |
 
 ## Preserved integrations and boundaries
 
