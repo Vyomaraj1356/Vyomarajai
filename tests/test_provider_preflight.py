@@ -148,6 +148,7 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "invalid")
+        self.assertFalse(result["checks"]["endpoint_valid"])
 
     def test_loopback_http_can_be_configured_without_remote_key(self):
         result = inspect_environment({
