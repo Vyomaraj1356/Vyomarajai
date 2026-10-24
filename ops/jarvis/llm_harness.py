@@ -57,7 +57,7 @@ def _trusted_remote_hosts(environment: Mapping[str, str]) -> set[str]:
             or ":" in host
             or "@" in host
             or any(ch.isspace() for ch in host)
-            or not re.fullmatch(r"(?=.{1,253}$)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*", host)
+            or not re.fullmatch(r"(?=.{1,253}$)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*", host)
         ):
             raise HarnessError("JARVIS_LLM_ALLOWED_HOSTS must contain exact DNS hostnames only.")
         try:
