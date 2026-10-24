@@ -28,17 +28,44 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "approved-model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "approved-model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "configured_unverified")
         self.assertTrue(result["checks"]["endpoint_valid"])
         self.assertFalse(result["request_sent"])
 
+    def test_model_must_be_in_exact_approved_model_allowlist(self):
+        base = {
+            "JARVIS_LLM_PROVIDER": "openai_compatible",
+            "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
+            "JARVIS_LLM_MODEL": "chosen-model",
+            "JARVIS_LLM_API_KEY": "test-secret",
+        }
+        missing = inspect_environment(base)
+        self.assertEqual(missing["status"], "incomplete")
+        self.assertFalse(missing["checks"]["model_approved"])
+        rejected = inspect_environment(dict(base, JARVIS_LLM_ALLOWED_MODELS="other-model"))
+        self.assertEqual(rejected["status"], "invalid")
+        self.assertFalse(rejected["checks"]["model_approved"])
+        for allowlist in ("*", "chosen-model,*", "chosen-model,"):
+            with self.subTest(allowlist=allowlist):
+                result = inspect_environment(dict(base, JARVIS_LLM_ALLOWED_MODELS=allowlist))
+                self.assertEqual(result["status"], "invalid")
+                self.assertFalse(result["checks"]["model_approved"])
+                self.assertNotIn("test-secret", json.dumps(result))
+        accepted = inspect_environment(dict(base, JARVIS_LLM_ALLOWED_MODELS="chosen-model"))
+        self.assertEqual(accepted["status"], "configured_unverified")
+        self.assertTrue(accepted["checks"]["model_approved"])
+
     def test_remote_provider_rejects_nondefault_https_port(self):
         result = inspect_environment({
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_ENDPOINT": "https://api.openai.com:8443/v1/chat/completions",
             "JARVIS_LLM_MODEL": "approved-model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "approved-model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "invalid")
@@ -50,6 +77,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_ENDPOINT": "https://llm.example.test/v1/chat/completions",
             "JARVIS_LLM_MODEL": "approved-model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "approved-model",
             "JARVIS_LLM_API_KEY": "test-secret",
         }
         blocked = inspect_environment(base)
@@ -66,6 +95,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_ENDPOINT": "https://llm.example.test/v1/chat/completions",
             "JARVIS_LLM_MODEL": "approved-model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "approved-model",
             "JARVIS_LLM_API_KEY": "test-secret",
         }
         for configured in ("*.example.test", "https://llm.example.test", "llm.example.test:443", "10.0.0.1"):
@@ -80,6 +111,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "anthropic",
             "JARVIS_LLM_ENDPOINT": "https://api.anthropic.com/v1/messages",
             "JARVIS_LLM_MODEL": "approved-claude-model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "approved-claude-model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "configured_unverified")
@@ -89,6 +122,8 @@ class ProviderPreflightTests(unittest.TestCase):
         base = {
             "JARVIS_LLM_PROVIDER": "anthropic",
             "JARVIS_LLM_MODEL": "approved-claude-model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "approved-claude-model",
             "JARVIS_LLM_API_KEY": "test-secret",
         }
         for endpoint in (
@@ -107,6 +142,8 @@ class ProviderPreflightTests(unittest.TestCase):
         base = {
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_MODEL": "model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "model",
             "JARVIS_LLM_API_KEY": "test-secret",
         }
         for endpoint in (
@@ -122,6 +159,8 @@ class ProviderPreflightTests(unittest.TestCase):
         base = {
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_MODEL": "model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "model",
             "JARVIS_LLM_API_KEY": "test-secret",
         }
         for endpoint in (
@@ -145,6 +184,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_ENDPOINT": "http://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "invalid")
@@ -155,6 +196,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_ENDPOINT": "http://127.0.0.1:8000/v1/chat/completions",
             "JARVIS_LLM_MODEL": "local-model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "local-model",
         })
         self.assertEqual(result["status"], "configured_unverified")
 
@@ -163,6 +206,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "unknown",
             "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "model",
             "JARVIS_LLM_API_KEY": "test-secret",
         })
         self.assertEqual(result["status"], "invalid")
@@ -173,6 +218,8 @@ class ProviderPreflightTests(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "openai_compatible",
             "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
             "JARVIS_LLM_MODEL": "model",
+
+            "JARVIS_LLM_ALLOWED_MODELS": "model",
             "JARVIS_LLM_API_KEY": secret,
             "JARVIS_LLM_TIMEOUT_SECONDS": "0",
             "JARVIS_LLM_MAX_TOKENS": "99999",
@@ -190,6 +237,8 @@ class ProviderPreflightTests(unittest.TestCase):
                 "JARVIS_LLM_PROVIDER": "openai_compatible",
                 "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
                 "JARVIS_LLM_MODEL": "model",
+
+                "JARVIS_LLM_ALLOWED_MODELS": "model",
                 "JARVIS_LLM_API_KEY": secret,
             })
         self.assertEqual(code, 0)
@@ -211,6 +260,8 @@ class ProviderPreflightTests(unittest.TestCase):
                 "JARVIS_LLM_PROVIDER": "openai_compatible",
                 "JARVIS_LLM_ENDPOINT": "https://api.openai.com/v1/chat/completions",
                 "JARVIS_LLM_MODEL": "model",
+
+                "JARVIS_LLM_ALLOWED_MODELS": "model",
                 "JARVIS_LLM_API_KEY": "test-secret",
             })
         self.assertEqual(code, 0)
