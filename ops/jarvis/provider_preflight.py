@@ -48,12 +48,19 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
     parsed = None
     hostname = ""
     if endpoint:
+        # Only retain a parsed endpoint after all URL components (including port)
+        # have validated. urlsplit() alone accepts malformed ports; allowing a
+        # later hostname/path check to set endpoint_valid=True would be misleading.
         try:
-            parsed = urlsplit(endpoint)
-            hostname = (parsed.hostname or "").lower()
-            parsed.port  # validate malformed ports without echoing the URL
+            candidate = urlsplit(endpoint)
+            candidate_hostname = (candidate.hostname or "").lower()
+            candidate.port  # validate malformed ports without echoing the URL
         except ValueError:
             issues.append("JARVIS_LLM_ENDPOINT is not a valid URL.")
+        else:
+            parsed = candidate
+            hostname = candidate_hostname
+
         if parsed is not None:
             if parsed.scheme not in ("https", "http") or not parsed.netloc or not hostname:
                 issues.append("JARVIS_LLM_ENDPOINT must be an HTTPS URL, except local loopback HTTP.")
@@ -64,10 +71,17 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
                 if parsed.scheme == "http" and not loopback:
                     issues.append("Unencrypted HTTP is allowed only for a local loopback endpoint.")
                 if provider == "anthropic":
-                    if parsed.scheme == "https" and hostname == "api.anthropic.com" and parsed.path == "/v1/messages":
+                    if (
+                        parsed.scheme == "https"
+                        and hostname == "api.anthropic.com"
+                        and parsed.path == "/v1/messages"
+                        and parsed.port in (None, 443)
+                    ):
                         checks["endpoint_valid"] = True
                     else:
-                        issues.append("Anthropic requires https://api.anthropic.com/v1/messages.")
+                        issues.append(
+                            "Anthropic requires https://api.anthropic.com/v1/messages on the default HTTPS port."
+                        )
                 elif provider == "openai_compatible":
                     if parsed.path.rstrip("/").endswith("/chat/completions"):
                         checks["endpoint_valid"] = True
