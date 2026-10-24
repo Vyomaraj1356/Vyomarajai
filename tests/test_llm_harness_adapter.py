@@ -115,6 +115,7 @@ class TestLLMHarness(unittest.TestCase):
         env = {
             "JARVIS_LLM_ENDPOINT": "http://127.0.0.1:11434/v1/chat/completions",
             "JARVIS_LLM_MODEL": "local-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "local-model",
         }
         config = llm_harness.load_config(env)
         self.assertEqual(config.api_key, "")
@@ -164,6 +165,7 @@ class TestLLMHarness(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "anthropic",
             "JARVIS_LLM_ENDPOINT": "https://api.anthropic.com/v1/messages",
             "JARVIS_LLM_MODEL": "claude-test-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "claude-test-model",
             "JARVIS_LLM_API_KEY": "anthropic-unit-test-secret",
         }
         provider_body = json.dumps({
@@ -194,6 +196,7 @@ class TestLLMHarness(unittest.TestCase):
             "JARVIS_LLM_PROVIDER": "anthropic",
             "JARVIS_LLM_ENDPOINT": "https://api.anthropic.com/v1/messages",
             "JARVIS_LLM_MODEL": "claude-test-model",
+            "JARVIS_LLM_ALLOWED_MODELS": "claude-test-model",
             "JARVIS_LLM_API_KEY": "unit-test-secret",
         }
         self.assertEqual(llm_harness.load_config(base).provider, "anthropic")
