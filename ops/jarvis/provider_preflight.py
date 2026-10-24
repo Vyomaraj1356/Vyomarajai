@@ -59,12 +59,26 @@ def _trusted_remote_hosts(environment: Mapping[str, str]) -> set[str]:
     return hosts
 
 
+def _approved_models(environment: Mapping[str, str]) -> set[str]:
+    """Return exact approved model IDs; never include configured values in errors."""
+    configured = environment.get("JARVIS_LLM_ALLOWED_MODELS", "")
+    if not configured.strip():
+        raise ValueError("missing")
+    entries = [item.strip() for item in configured.split(",")]
+    if any(not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:/+-]{0,159}", item) for item in entries):
+        raise ValueError("invalid")
+    if len(set(entries)) != len(entries):
+        raise ValueError("invalid")
+    return set(entries)
+
+
 def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
     """Inspect provider settings without network I/O or disclosure of configuration values."""
     provider = environment.get("JARVIS_LLM_PROVIDER", "openai_compatible").strip().lower()
     endpoint = environment.get("JARVIS_LLM_ENDPOINT", "").strip()
     model = environment.get("JARVIS_LLM_MODEL", "").strip()
     api_key = environment.get("JARVIS_LLM_API_KEY", "").strip()
+    allowed_models_configured = bool(environment.get("JARVIS_LLM_ALLOWED_MODELS", "").strip())
     timeout_text = environment.get("JARVIS_LLM_TIMEOUT_SECONDS", str(DEFAULT_TIMEOUT_SECONDS)).strip()
     max_tokens_text = environment.get("JARVIS_LLM_MAX_TOKENS", str(DEFAULT_MAX_TOKENS)).strip()
 
@@ -74,11 +88,14 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
         api_key,
         environment.get("JARVIS_LLM_PROVIDER", "").strip(),
         environment.get("JARVIS_LLM_ALLOWED_HOSTS", "").strip(),
+        environment.get("JARVIS_LLM_ALLOWED_MODELS", "").strip(),
     ))
     checks = {
         "provider_supported": provider in SUPPORTED_PROVIDERS,
         "endpoint_valid": False,
         "model_present": bool(model),
+        "model_approved": False,
+        "allowed_models_configured": allowed_models_configured,
         "api_key_present": bool(api_key),
         "timeout_valid": False,
         "max_tokens_valid": False,
@@ -172,9 +189,21 @@ def inspect_environment(environment: Mapping[str, str]) -> dict[str, object]:
 
     if not model:
         issues.append("JARVIS_LLM_MODEL is missing.")
-    elif len(model) > 160 or any(ord(ch) < 32 or ord(ch) == 127 for ch in model):
+    elif not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:/+-]{0,159}", model):
         issues.append("JARVIS_LLM_MODEL is invalid.")
         checks["model_present"] = False
+
+    try:
+        approved_models = _approved_models(environment)
+    except ValueError as exc:
+        if str(exc) == "missing":
+            issues.append("JARVIS_LLM_ALLOWED_MODELS is missing.")
+        else:
+            issues.append("JARVIS_LLM_ALLOWED_MODELS must contain unique exact model IDs only.")
+    else:
+        checks["model_approved"] = model in approved_models
+        if model and not checks["model_approved"]:
+            issues.append("JARVIS_LLM_MODEL is not in the exact approved model allowlist.")
 
     if api_key and any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in api_key):
         issues.append("JARVIS_LLM_API_KEY contains whitespace or control characters.")
