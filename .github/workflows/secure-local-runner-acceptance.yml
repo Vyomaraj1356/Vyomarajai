@@ -1,0 +1,49 @@
+name: Vyomaraj Secure Local Runner Acceptance
+
+on:
+  workflow_dispatch:
+
+# This workflow is intentionally manual and read-only. Do not add secrets,
+# deployment credentials, repository writes, or untrusted pull_request triggers.
+permissions:
+  contents: read
+
+concurrency:
+  group: vyomaraj-local-runner-acceptance
+  cancel-in-progress: false
+
+jobs:
+  accept-runner:
+    # Register the Windows runner with all three labels only after local setup
+    # and hardening are complete. Do not use this label on a shared workstation.
+    runs-on: [self-hosted, Windows, X64, vyomaraj]
+    timeout-minutes: 5
+    steps:
+      - name: Checkout source without persisted credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify machine and toolchain
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $os = Get-CimInstance Win32_OperatingSystem
+          if (-not $os.Caption) { throw 'OS identity could not be verified.' }
+          $python = Get-Command python -ErrorAction Stop
+          $git = Get-Command git -ErrorAction Stop
+          $pythonVersion = (& $python.Source --version 2>&1 | Out-String).Trim()
+          $gitVersion = (& $git.Source --version 2>&1 | Out-String).Trim()
+          if ($LASTEXITCODE -ne 0) { throw 'Toolchain version check failed.' }
+          Write-Output "RUNNER_ACCEPTANCE=PASS"
+          Write-Output "OS=$($os.Caption)"
+          Write-Output "PYTHON=$pythonVersion"
+          Write-Output "GIT=$gitVersion"
+          Write-Output "WORKSPACE=$env:GITHUB_WORKSPACE"
+      - name: Verify repository safety gates
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python ops/vyomaraj-core/handover/auto_align.py --check
+          if ($LASTEXITCODE -ne 0) { throw 'auto_align check failed.' }
+          python ops/vyomaraj-core/handover/build_issue_ledger.py --check
+          if ($LASTEXITCODE -ne 0) { throw 'issue ledger check failed.' }
