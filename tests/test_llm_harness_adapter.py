@@ -204,6 +204,8 @@ class TestLLMHarness(unittest.TestCase):
             llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://gateway.example/v1/messages"))
         with self.assertRaisesRegex(llm_harness.HarnessError, "must end with /v1/messages"):
             llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://api.anthropic.com/v1/chat/completions"))
+        with self.assertRaisesRegex(llm_harness.HarnessError, "must end with /v1/messages"):
+            llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://api.anthropic.com/proxy/v1/messages"))
         with self.assertRaisesRegex(llm_harness.HarnessError, "default HTTPS port"):
             llm_harness.load_config(dict(base, JARVIS_LLM_ENDPOINT="https://api.anthropic.com:444/v1/messages"))
         with self.assertRaisesRegex(llm_harness.HarnessError, "not a valid URL"):
