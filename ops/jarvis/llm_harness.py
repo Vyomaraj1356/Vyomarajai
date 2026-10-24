@@ -236,6 +236,8 @@ def load_config(environment: Mapping[str, str]) -> Config:
             )
     if parsed.scheme == "http" and not loopback:
         raise HarnessError("Unencrypted HTTP is allowed only for a local loopback LLM endpoint.")
+    if not loopback and parsed.port not in (None, 443):
+        raise HarnessError("Remote provider endpoints must use the default HTTPS port.")
     if not api_key and not loopback:
         raise HarnessError("Set JARVIS_LLM_API_KEY in the local environment for a remote HTTPS provider.")
 
