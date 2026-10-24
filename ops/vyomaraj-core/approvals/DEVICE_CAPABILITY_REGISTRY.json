@@ -42,7 +42,7 @@
     {
       "id": "audio.dolby",
       "label": "Dolby processing/hardware/license",
-      "status": "NOT_PRESENT",
+      "status": "BLOCKED_OWNER_ACTION",
       "verification": "Do not infer from browser APIs. Change status only after authoritative OS/vendor/licence diagnostic and repeatable test."
     }
   ],
@@ -54,5 +54,5 @@
     "VERIFIED_IN_PRODUCTION",
     "BLOCKED_OWNER_ACTION"
   ],
-  "note": "Registry entries do not claim physical installation or production deployment. Each target device must pass tests."
+  "note": "Registry entries do not claim physical installation or production deployment. Each target device must pass tests. Dolby presence is unknown until an authoritative target-device check; BLOCKED_OWNER_ACTION means target hardware/vendor evidence is required."
 }
