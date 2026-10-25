@@ -229,6 +229,12 @@ def load_config(environment: Mapping[str, str]) -> Config:
             "The Anthropic provider must use api.anthropic.com on the default HTTPS port; "
             "use OpenAI-compatible mode for gateways."
         )
+    if provider == "openai_compatible" and hostname == "api.anthropic.com":
+        # Do not send an OpenAI-compatible Authorization bearer token to the
+        # Anthropic API host; Anthropic must use its native x-api-key adapter.
+        raise HarnessError(
+            "The Anthropic API host requires JARVIS_LLM_PROVIDER=anthropic."
+        )
 
     loopback = hostname in ("localhost", "127.0.0.1", "::1")
     if not loopback:
