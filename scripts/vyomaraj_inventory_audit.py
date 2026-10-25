@@ -22,7 +22,7 @@ EXPECTED = {
 
 def git(root, *args):
     try:
-        return subprocess.run(["git", *args], cwd=root, check=True, capture_output=True, text=True, timeout=3).stdout.strip() or None
+        return subprocess.run(["git", *args], cwd=root, check=True, capture_output=True, text=True, timeout=3).stdout.strip()
     except (OSError, subprocess.SubprocessError):
         return None
 
