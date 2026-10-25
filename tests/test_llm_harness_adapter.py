@@ -309,6 +309,19 @@ class TestLLMHarness(unittest.TestCase):
         self.assertEqual(out.getvalue(), "")
         self.assertIn("did not match expected text", err.getvalue())
 
+    def test_anthropic_api_host_requires_native_provider_mode(self):
+        # OpenAI-compatible mode would send a Bearer token, while Anthropic
+        # requires its native x-api-key header. Reject before any request.
+        env = dict(
+            self.env,
+            JARVIS_LLM_ENDPOINT="https://api.anthropic.com/v1/chat/completions",
+        )
+        with self.assertRaisesRegex(
+            llm_harness.HarnessError,
+            "Anthropic API host requires JARVIS_LLM_PROVIDER=anthropic",
+        ):
+            llm_harness.load_config(env)
+
     def test_missing_configuration_fails_without_network_call(self):
         out = io.StringIO()
         err = io.StringIO()
