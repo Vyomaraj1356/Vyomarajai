@@ -36,12 +36,13 @@ class PublicSecretDiffGuardTests(unittest.TestCase):
         self.assertNotIn(fake_value, repr(findings))
 
     def test_private_key_header_is_reported_without_line_content(self):
+        header = "-" * 5 + "BEGIN PRIVATE KEY" + "-" * 5
         diff = (
             "diff --git a/docs/key-example.txt b/docs/key-example.txt\n"
             "--- a/docs/key-example.txt\n"
             "+++ b/docs/key-example.txt\n"
             "@@ -5,0 +6 @@\n"
-            "+-----BEGIN PRIVATE KEY-----\n"
+            f"+{header}\n"
         )
         findings = scan_unified_diff(diff)
         self.assertEqual(findings, [("docs/key-example.txt", 6, "private-key-header")])
