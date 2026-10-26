@@ -65,8 +65,9 @@ class PublicSecretDiffGuardTests(unittest.TestCase):
         self.assertFalse(sensitive_path("docs/keys.sample"))
 
     def test_env_and_private_key_extensions_are_blocked(self):
-        for path in (".env", "config/production.env", "keys/signing.pem",
-                     "backup/client.p12", "backup/client.pfx", "keys/agent.key"):
+        for path in (".env", ".env.local", ".env.production", "config/production.env",
+                     "service.env.local", "keys/signing.pem", "backup/client.p12",
+                     "backup/client.pfx", "keys/agent.key"):
             with self.subTest(path=path):
                 self.assertTrue(sensitive_path(path))
 
