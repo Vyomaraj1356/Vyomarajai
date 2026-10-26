@@ -50,7 +50,7 @@ def sensitive_path(path: str) -> bool:
         return False
     if basename in SENSITIVE_BASENAMES:
         return True
-    if basename.endswith(".env"):
+    if basename.startswith(".env.") or ".env." in basename or basename.endswith(".env"):
         return True
     if basename.endswith(SENSITIVE_SUFFIXES):
         return True
