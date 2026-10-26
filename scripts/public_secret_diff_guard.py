@@ -36,7 +36,7 @@ SENSITIVE_BASENAMES = frozenset({
     "id_ecdsa",
 })
 
-SENSITIVE_SUFFIXES = (".pem", ".p12", ".pfx", ".keystore")
+SENSITIVE_SUFFIXES = (".pem", ".p12", ".pfx", ".key", ".keystore")
 
 
 def sensitive_path(path: str) -> bool:
