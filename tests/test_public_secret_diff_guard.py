@@ -94,6 +94,45 @@ class PublicSecretDiffGuardTests(unittest.TestCase):
         )
         self.assertEqual(scan_unified_diff(diff), [])
 
+    def test_high_risk_github_actions_constructs_are_blocked(self):
+        samples = (
+            ("pull_request_target:", "workflow-pull-request-target"),
+            ("runs-on: [self-hosted, Linux, X64]", "workflow-self-hosted-runner"),
+            ("permissions: write-all", "workflow-write-all-permissions"),
+            ("contents: write", "workflow-contents-write"),
+            ("id-token: write", "workflow-id-token-write"),
+            ("persist-credentials: true", "workflow-persisted-checkout-credentials"),
+        )
+        for added_line, expected_rule in samples:
+            with self.subTest(rule=expected_rule):
+                diff = (
+                    "diff --git a/.github/workflows/new.yml b/.github/workflows/new.yml\\n"
+                    "--- /dev/null\\n"
+                    "+++ b/.github/workflows/new.yml\\n"
+                    "@@ -0,0 +1 @@\\n"
+                    f"+{added_line}\\n"
+                )
+                findings = scan_unified_diff(diff)
+                self.assertEqual(findings, [(".github/workflows/new.yml", 1, expected_rule)])
+
+    def test_workflow_policy_ignores_comments_and_non_workflow_docs(self):
+        comment_diff = (
+            "diff --git a/.github/workflows/new.yml b/.github/workflows/new.yml\\n"
+            "--- /dev/null\\n"
+            "+++ b/.github/workflows/new.yml\\n"
+            "@@ -0,0 +1 @@\\n"
+            "+# pull_request_target: is discussed here, not configured\\n"
+        )
+        docs_diff = (
+            "diff --git a/docs/security.md b/docs/security.md\\n"
+            "--- /dev/null\\n"
+            "+++ b/docs/security.md\\n"
+            "@@ -0,0 +1 @@\\n"
+            "+pull_request_target: is a dangerous workflow trigger\\n"
+        )
+        self.assertEqual(scan_unified_diff(comment_diff), [])
+        self.assertEqual(scan_unified_diff(docs_diff), [])
+
     def test_invalid_commit_reference_is_rejected_before_git(self):
         with self.assertRaisesRegex(ValueError, "full 40-character commit SHAs"):
             compare_commits("--help", "0" * 40)
