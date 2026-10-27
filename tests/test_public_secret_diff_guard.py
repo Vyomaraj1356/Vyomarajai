@@ -106,29 +106,29 @@ class PublicSecretDiffGuardTests(unittest.TestCase):
         for added_line, expected_rule in samples:
             with self.subTest(rule=expected_rule):
                 diff = (
-                    "diff --git a/.github/workflows/new.yml b/.github/workflows/new.yml\\n"
-                    "--- /dev/null\\n"
-                    "+++ b/.github/workflows/new.yml\\n"
-                    "@@ -0,0 +1 @@\\n"
-                    f"+{added_line}\\n"
+                    "diff --git a/.github/workflows/new.yml b/.github/workflows/new.yml\n"
+                    "--- /dev/null\n"
+                    "+++ b/.github/workflows/new.yml\n"
+                    "@@ -0,0 +1 @@\n"
+                    f"+{added_line}\n"
                 )
                 findings = scan_unified_diff(diff)
                 self.assertEqual(findings, [(".github/workflows/new.yml", 1, expected_rule)])
 
     def test_workflow_policy_ignores_comments_and_non_workflow_docs(self):
         comment_diff = (
-            "diff --git a/.github/workflows/new.yml b/.github/workflows/new.yml\\n"
-            "--- /dev/null\\n"
-            "+++ b/.github/workflows/new.yml\\n"
-            "@@ -0,0 +1 @@\\n"
-            "+# pull_request_target: is discussed here, not configured\\n"
+            "diff --git a/.github/workflows/new.yml b/.github/workflows/new.yml\n"
+            "--- /dev/null\n"
+            "+++ b/.github/workflows/new.yml\n"
+            "@@ -0,0 +1 @@\n"
+            "+# pull_request_target: is discussed here, not configured\n"
         )
         docs_diff = (
-            "diff --git a/docs/security.md b/docs/security.md\\n"
-            "--- /dev/null\\n"
-            "+++ b/docs/security.md\\n"
-            "@@ -0,0 +1 @@\\n"
-            "+pull_request_target: is a dangerous workflow trigger\\n"
+            "diff --git a/docs/security.md b/docs/security.md\n"
+            "--- /dev/null\n"
+            "+++ b/docs/security.md\n"
+            "@@ -0,0 +1 @@\n"
+            "+pull_request_target: is a dangerous workflow trigger\n"
         )
         self.assertEqual(scan_unified_diff(comment_diff), [])
         self.assertEqual(scan_unified_diff(docs_diff), [])
