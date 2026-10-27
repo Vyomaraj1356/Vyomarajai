@@ -19,6 +19,20 @@ It inspects only **added lines in a pull-request diff** and newly added sensitiv
 
 Explicit `.example`, `.sample`, `.template`, and `.dist` templates are allowed by path policy.
 
+## Workflow-change risk rules
+
+For newly added lines in GitHub Actions workflow YAML or composite-action YAML, the same guard also blocks these high-risk constructs by default:
+
+- `pull_request_target` triggers
+- Self-hosted runners
+- `permissions: write-all`
+- Explicit `contents: write` or `id-token: write`
+- `persist-credentials: true` in checkout configuration
+
+These rules are intentionally conservative. A legitimate use requires a separate, explicit security review and a deliberate policy change; do not bypass the scanner by hiding the setting in comments or documentation. The scanner ignores commented lines and does not apply workflow-specific rules to ordinary docs/tests.
+
+This remains a diff guard, not a complete GitHub Actions policy engine. It does not parse the entire YAML execution graph, validate action pinning, evaluate repository rulesets, or prove that branch protection requires the check. Protect the workflow and guard implementation with owner review and repository rulesets.
+
 ## Limitations and safe operation
 
 - This is a **best-effort accidental-leak guard**, not a complete secret scanner.
