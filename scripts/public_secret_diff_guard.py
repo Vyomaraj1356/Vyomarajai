@@ -38,6 +38,18 @@ SENSITIVE_BASENAMES = frozenset({
 
 SENSITIVE_SUFFIXES = (".pem", ".p12", ".pfx", ".key", ".keystore")
 
+# High-risk GitHub Actions constructs are blocked when newly introduced into
+# workflow/composite-action YAML. This is intentionally conservative; legitimate
+# exceptions require a separate security review rather than a silent bypass.
+WORKFLOW_RISK_PATTERNS = (
+    ("workflow-pull-request-target", re.compile(r"^\\s*pull_request_target\\s*:", re.IGNORECASE)),
+    ("workflow-self-hosted-runner", re.compile(r"^\\s*runs-on\\s*:\\s*.*\\bself-hosted\\b", re.IGNORECASE)),
+    ("workflow-write-all-permissions", re.compile(r"^\\s*permissions\\s*:\\s*write-all\\s*(?:#.*)?$", re.IGNORECASE)),
+    ("workflow-contents-write", re.compile(r"^\\s*contents\\s*:\\s*write\\b", re.IGNORECASE)),
+    ("workflow-id-token-write", re.compile(r"^\\s*id-token\\s*:\\s*write\\b", re.IGNORECASE)),
+    ("workflow-persisted-checkout-credentials", re.compile(r"^\\s*persist-credentials\\s*:\\s*true\\b", re.IGNORECASE)),
+)
+
 
 def sensitive_path(path: str) -> bool:
     """Return whether a newly added path looks like a private environment/key file."""
@@ -92,6 +104,18 @@ def scan_unified_diff(diff_text: str) -> list[tuple[str, int, str]]:
         if line.startswith("+") and not line.startswith("+++"):
             new_line += 1
             added_text = line[1:]
+            is_action_yaml = (
+                current_path.startswith((".github/workflows/", ".github/actions/"))
+                and current_path.lower().endswith((".yml", ".yaml"))
+            )
+            if is_action_yaml and not added_text.lstrip().startswith("#"):
+                for rule_id, pattern in WORKFLOW_RISK_PATTERNS:
+                    if pattern.search(added_text):
+                        finding = (current_path, new_line, rule_id)
+                        if finding not in seen:
+                            findings.append(finding)
+                            seen.add(finding)
+                        break
             for rule_id, pattern in SECRET_PATTERNS:
                 if pattern.search(added_text):
                     finding = (current_path, new_line, rule_id)
