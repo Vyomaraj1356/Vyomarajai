@@ -97,7 +97,11 @@ class PublicSecretDiffGuardTests(unittest.TestCase):
     def test_high_risk_github_actions_constructs_are_blocked(self):
         samples = (
             ("pull_request_target:", "workflow-pull-request-target"),
+            ("on: pull_request_target", "workflow-pull-request-target"),
+            ("on: [pull_request, pull_request_target]", "workflow-pull-request-target"),
+            ("- pull_request_target", "workflow-pull-request-target"),
             ("runs-on: [self-hosted, Linux, X64]", "workflow-self-hosted-runner"),
+            ("- self-hosted", "workflow-self-hosted-runner"),
             ("permissions: write-all", "workflow-write-all-permissions"),
             ("contents: write", "workflow-contents-write"),
             ("id-token: write", "workflow-id-token-write"),
