@@ -42,8 +42,8 @@ SENSITIVE_SUFFIXES = (".pem", ".p12", ".pfx", ".key", ".keystore")
 # workflow/composite-action YAML. This is intentionally conservative; legitimate
 # exceptions require a separate security review rather than a silent bypass.
 WORKFLOW_RISK_PATTERNS = (
-    ("workflow-pull-request-target", re.compile(r"^\s*pull_request_target\s*:", re.IGNORECASE)),
-    ("workflow-self-hosted-runner", re.compile(r"^\s*runs-on\s*:\s*.*\bself-hosted\b", re.IGNORECASE)),
+    ("workflow-pull-request-target", re.compile(r"(?i)(?:^\s*pull_request_target\s*:|^\s*on\s*:\s*.*\bpull_request_target\b|^\s*-\s*pull_request_target\b)")),
+    ("workflow-self-hosted-runner", re.compile(r"(?i)(?:^\s*runs-on\s*:\s*.*\bself-hosted\b|^\s*-\s*self-hosted\b)")),
     ("workflow-write-all-permissions", re.compile(r"^\s*permissions\s*:\s*write-all\s*(?:#.*)?$", re.IGNORECASE)),
     ("workflow-contents-write", re.compile(r"^\s*contents\s*:\s*write\b", re.IGNORECASE)),
     ("workflow-id-token-write", re.compile(r"^\s*id-token\s*:\s*write\b", re.IGNORECASE)),
