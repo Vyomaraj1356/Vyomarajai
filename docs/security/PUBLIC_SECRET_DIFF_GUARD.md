@@ -23,8 +23,8 @@ Explicit `.example`, `.sample`, `.template`, and `.dist` templates are allowed b
 
 For newly added lines in GitHub Actions workflow YAML or composite-action YAML, the same guard also blocks these high-risk constructs by default:
 
-- `pull_request_target` triggers
-- Self-hosted runners
+- `pull_request_target` triggers, including inline and list-style trigger declarations
+- Self-hosted runners, including list entries used with a multi-line `runs-on` value
 - `permissions: write-all`
 - Explicit `contents: write` or `id-token: write`
 - `persist-credentials: true` in checkout configuration
