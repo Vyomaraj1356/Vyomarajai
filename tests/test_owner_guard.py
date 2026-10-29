@@ -58,6 +58,13 @@ class OwnerGuardTests(unittest.TestCase):
                         target=self.claims["target"], required_scope="arena.execute",
                         now=self.now)
 
+    def test_space_delimited_scope_string_remains_supported(self):
+        claims = dict(self.claims, scope="arena.execute read:only")
+        validate_claims(
+            claims, action="arena.execute", target=claims["target"],
+            required_scope="arena.execute", now=self.now,
+        )
+
     def test_scope_claim_rejects_non_string_container_and_mixed_entries(self):
         malformed_scopes = (
             {"arena.execute": False},
