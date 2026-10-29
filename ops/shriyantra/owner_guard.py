@@ -88,7 +88,11 @@ def validate_claims(
         raise AuthorizationDenied("Required approval scope is invalid.")
     scope_claim = claims.get("scope")
     if isinstance(scope_claim, str):
-        scopes = scope_claim.split()
+        if (not scope_claim or scope_claim.strip(" ") != scope_claim or "  " in scope_claim
+                or any((ch.isspace() and ch != " ") or ord(ch) < 32 or ord(ch) == 127
+                       for ch in scope_claim)):
+            raise AuthorizationDenied("Approval scope string must use single spaces between scope tokens.")
+        scopes = scope_claim.split(" ")
     elif isinstance(scope_claim, list):
         if any(not isinstance(scope, str) or not scope or scope.strip() != scope
                or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in scope)
