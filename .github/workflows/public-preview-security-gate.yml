@@ -5,11 +5,15 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/public-preview-security-gate.yml'
+      - 'scripts/public_preview_security_smoke.py'
+      - 'tests/test_public_preview_security_smoke.py'
       - 'ops/vyomaraj-core/experience/public_landing_server.py'
   push:
     branches: [main]
     paths:
       - '.github/workflows/public-preview-security-gate.yml'
+      - 'scripts/public_preview_security_smoke.py'
+      - 'tests/test_public_preview_security_smoke.py'
       - 'ops/vyomaraj-core/experience/public_landing_server.py'
   workflow_dispatch:
   schedule:
@@ -25,106 +29,17 @@ concurrency:
 jobs:
   security-smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
-      - name: Verify public preview security headers and rejected methods (no credentials)
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test security smoke retry and route assertions without network
+        run: python3 -m unittest discover -s tests -p 'test_public_preview_security_smoke.py'
+      - name: Verify live public preview security headers and rejected methods (no credentials)
         env:
           BASE_URL: https://vyomaraj-public-preview.onrender.com
-        run: |
-          python3 - <<'PY'
-          import json
-          import os
-          import time
-          import urllib.error
-          import urllib.request
-
-          base = os.environ["BASE_URL"].rstrip("/")
-          REQUIRED_HEADERS = {
-              "X-Content-Type-Options": "nosniff",
-              "X-Frame-Options": "DENY",
-              "Referrer-Policy": "no-referrer",
-              "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-              "Cross-Origin-Resource-Policy": "same-origin",
-              "X-Robots-Tag": "noindex, nofollow",
-              "Cache-Control": "no-store",
-          }
-          REQUIRED_CSP = (
-              "default-src 'self'",
-              "object-src 'none'",
-              "base-uri 'none'",
-              "form-action 'none'",
-              "frame-ancestors 'none'",
-          )
-
-          def call(path, method="GET", payload=None, raw=None, content_type=None):
-              data = raw
-              headers = {"User-Agent": "Vyomaraj-Public-Preview-Security-Gate/1.0"}
-              if payload is not None:
-                  data = json.dumps(payload).encode("utf-8")
-                  headers["Content-Type"] = "application/json"
-              if content_type is not None:
-                  headers["Content-Type"] = content_type
-              last_error = None
-              for attempt in range(3):
-                  request = urllib.request.Request(base + path, data=data, headers=headers, method=method)
-                  try:
-                      with urllib.request.urlopen(request, timeout=12) as response:
-                          return response.status, response.headers, response.read(300_000)
-                  except urllib.error.HTTPError as exc:
-                      try:
-                          return exc.code, exc.headers, exc.read(300_000)
-                      finally:
-                          exc.close()
-                  except (urllib.error.URLError, TimeoutError, OSError) as exc:
-                      last_error = exc
-                      if attempt < 2:
-                          time.sleep(2 ** attempt)
-              raise RuntimeError(f"{method} {path} unavailable after retries: {type(last_error).__name__}")
-
-          def assert_security_headers(headers, label):
-              for name, expected in REQUIRED_HEADERS.items():
-                  actual = headers.get(name)
-                  assert actual == expected, f"{label}: {name} expected {expected!r}, got {actual!r}"
-              csp = headers.get("Content-Security-Policy", "")
-              for directive in REQUIRED_CSP:
-                  assert directive in csp, f"{label}: CSP missing {directive!r}"
-              print(f"PASS: {label}: security headers and restrictive CSP")
-
-          status, headers, body = call("/healthz")
-          assert status == 200, f"/healthz expected 200, got {status}"
-          assert_security_headers(headers, "/healthz")
-          health = json.loads(body)
-          assert health == {
-              "status": "ok",
-              "service": "vyomaraj-public-preview",
-              "scope": "process_liveness_only",
-          }, "health response must remain explicitly liveness-only"
-
-          status, headers, _ = call("/api/plan")
-          assert status == 405, f"GET /api/plan expected 405, got {status}"
-          assert headers.get("Allow") == "POST", "GET /api/plan must advertise POST only"
-          assert_security_headers(headers, "GET /api/plan")
-
-          status, headers, _ = call("/api/catalog", method="POST", payload={"experience": "bhakti"})
-          assert status == 405, f"POST /api/catalog expected 405, got {status}"
-          assert headers.get("Allow") == "GET", "catalog must remain read-only"
-          assert_security_headers(headers, "POST /api/catalog")
-
-          status, headers, _ = call("/api/plan?unexpected=1", method="POST", payload={"experience": "bhakti"})
-          assert status == 400, f"planner query string expected 400, got {status}"
-          assert_security_headers(headers, "POST /api/plan with query string")
-
-          status, headers, _ = call("/api/plan", method="POST", payload={"experience": "bhakti"}, content_type="text/plain")
-          assert status == 415, f"unsupported content type expected 415, got {status}"
-          assert_security_headers(headers, "POST /api/plan with unsupported content type")
-
-          status, headers, _ = call("/api/plan", method="POST", raw=b'{"experience":"bhakti","experience":"liquor-bar"}', content_type="application/json")
-          assert status == 400, f"duplicate JSON keys expected 400, got {status}"
-          assert_security_headers(headers, "POST /api/plan with duplicate JSON keys")
-
-          status, headers, _ = call("/__not_an_allowlisted_route__")
-          assert status == 404, f"unknown route expected 404, got {status}"
-          assert_security_headers(headers, "unknown route")
-
-          print("PASS: public preview security gate; no credentials, external AI calls, persistent writes, publishing, or traffic changes")
-          PY
+        run: python3 scripts/public_preview_security_smoke.py
