@@ -83,9 +83,20 @@ def validate_claims(
         raise AuthorizationDenied("Approval must include a bounded unique jti.")
     if claims.get("action") != action or claims.get("target") != target:
         raise AuthorizationDenied("Approval does not match this exact action and target.")
-    scopes = claims.get("scope", [])
-    if isinstance(scopes, str):
-        scopes = scopes.split()
+    if (not isinstance(required_scope, str) or not required_scope or len(required_scope) > 120
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in required_scope)):
+        raise AuthorizationDenied("Required approval scope is invalid.")
+    scope_claim = claims.get("scope")
+    if isinstance(scope_claim, str):
+        scopes = scope_claim.split()
+    elif isinstance(scope_claim, list):
+        if any(not isinstance(scope, str) or not scope or scope.strip() != scope
+               or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in scope)
+               for scope in scope_claim):
+            raise AuthorizationDenied("Approval scope claim must contain only non-empty scope strings.")
+        scopes = scope_claim
+    else:
+        raise AuthorizationDenied("Approval scope claim must be a string or list of strings.")
     if required_scope not in scopes:
         raise AuthorizationDenied("Approval does not grant the required scope.")
     if claims.get("security_epoch") != epoch:
