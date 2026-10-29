@@ -58,6 +58,33 @@ class OwnerGuardTests(unittest.TestCase):
                         target=self.claims["target"], required_scope="arena.execute",
                         now=self.now)
 
+    def test_scope_claim_rejects_non_string_container_and_mixed_entries(self):
+        malformed_scopes = (
+            {"arena.execute": False},
+            7,
+            None,
+            ["arena.execute", 3],
+            ["arena.execute", ""],
+            ["arena.execute", "other scope"],
+        )
+        for scope_claim in malformed_scopes:
+            with self.subTest(scope_claim=repr(scope_claim)):
+                claims = dict(self.claims, scope=scope_claim)
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
+    def test_required_scope_rejects_empty_or_ambiguous_values(self):
+        for required_scope in ("", "arena.execute admin", "arena.execute\\nadmin"):
+            with self.subTest(required_scope=repr(required_scope)):
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        self.claims, action="arena.execute", target=self.claims["target"],
+                        required_scope=required_scope, now=self.now,
+                    )
+
     def test_non_owner_is_denied(self):
         claims = dict(self.claims, sub="agent")
         with self.assertRaises(AuthorizationDenied):
