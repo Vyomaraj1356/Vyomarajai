@@ -65,6 +65,24 @@ class OwnerGuardTests(unittest.TestCase):
             required_scope="arena.execute", now=self.now,
         )
 
+    def test_scope_string_rejects_noncanonical_whitespace(self):
+        malformed_scopes = (
+            "",
+            " arena.execute",
+            "arena.execute ",
+            "arena.execute  read:only",
+            "arena.execute\\nadmin",
+            "arena.execute\\tadmin",
+        )
+        for scope_claim in malformed_scopes:
+            with self.subTest(scope_claim=repr(scope_claim)):
+                claims = dict(self.claims, scope=scope_claim)
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
     def test_scope_claim_rejects_non_string_container_and_mixed_entries(self):
         malformed_scopes = (
             {"arena.execute": False},
