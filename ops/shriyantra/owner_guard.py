@@ -11,6 +11,7 @@ import base64
 import hashlib
 import json
 import os
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -18,6 +19,16 @@ from typing import Any
 
 class AuthorizationDenied(RuntimeError):
     """Raised when an owner approval is missing, invalid, stale, or out of scope."""
+
+
+def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Reject duplicate JSON member names to prevent ambiguous signed claims."""
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON object member")
+        result[key] = value
+    return result
 
 
 def _b64url_decode(value: str) -> bytes:
@@ -56,6 +67,13 @@ def validate_claims(
     now: int | None = None,
 ) -> None:
     """Validate identity, audience, expiry, action, target, scope, and step-up."""
+    if not isinstance(claims, dict):
+        raise AuthorizationDenied("Approval claims must be a JSON object.")
+    if (not isinstance(action, str) or not action or len(action) > 120
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in action)):
+        raise AuthorizationDenied("Approval action is invalid.")
+    if not isinstance(target, str) or re.fullmatch(r"[0-9a-f]{64}", target) is None:
+        raise AuthorizationDenied("Approval target hash is invalid.")
     now = int(time.time()) if now is None else now
     owner = os.environ.get("VYOMARAJ_OWNER_SUBJECT", "")
     issuer = os.environ.get("VYOMARAJ_AUTH_ISSUER", "")
@@ -71,21 +89,45 @@ def validate_claims(
     if claims.get("iss") != issuer:
         raise AuthorizationDenied("Untrusted approval issuer.")
     aud = claims.get("aud")
-    if not (aud == audience or isinstance(aud, list) and audience in aud):
+    if isinstance(aud, str):
+        valid_audience = bool(aud) and aud == audience
+    elif isinstance(aud, list):
+        valid_audience = bool(aud) and all(isinstance(item, str) and item for item in aud) and audience in aud
+    else:
+        valid_audience = False
+    if not valid_audience:
         raise AuthorizationDenied("Approval audience mismatch.")
-    if not isinstance(claims.get("exp"), int) or claims["exp"] <= now:
+    # bool is a subclass of int in Python; JWT NumericDate claims must be actual integers.
+    if type(claims.get("exp")) is not int or claims["exp"] <= now:
         raise AuthorizationDenied("Approval is expired or has no valid expiry.")
-    if not isinstance(claims.get("iat"), int) or claims["iat"] > now + 30:
+    if type(claims.get("iat")) is not int or claims["iat"] > now + 30:
         raise AuthorizationDenied("Approval issue time is invalid.")
     if now - claims["iat"] > 300:
         raise AuthorizationDenied("Approval is too old; request fresh owner approval.")
-    if not isinstance(claims.get("jti"), str) or not claims["jti"] or len(claims["jti"]) > 256:
-        raise AuthorizationDenied("Approval must include a bounded unique jti.")
+    jti = claims.get("jti")
+    if (not isinstance(jti, str) or not jti or len(jti) > 256
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in jti)):
+        raise AuthorizationDenied("Approval must include a bounded, unambiguous unique jti.")
     if claims.get("action") != action or claims.get("target") != target:
         raise AuthorizationDenied("Approval does not match this exact action and target.")
-    scopes = claims.get("scope", [])
-    if isinstance(scopes, str):
-        scopes = scopes.split()
+    if (not isinstance(required_scope, str) or not required_scope or len(required_scope) > 120
+            or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in required_scope)):
+        raise AuthorizationDenied("Required approval scope is invalid.")
+    scope_claim = claims.get("scope")
+    if isinstance(scope_claim, str):
+        if (not scope_claim or scope_claim.strip(" ") != scope_claim or "  " in scope_claim
+                or any((ch.isspace() and ch != " ") or ord(ch) < 32 or ord(ch) == 127
+                       for ch in scope_claim)):
+            raise AuthorizationDenied("Approval scope string must use single spaces between scope tokens.")
+        scopes = scope_claim.split(" ")
+    elif isinstance(scope_claim, list):
+        if any(not isinstance(scope, str) or not scope or scope.strip() != scope
+               or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in scope)
+               for scope in scope_claim):
+            raise AuthorizationDenied("Approval scope claim must contain only non-empty scope strings.")
+        scopes = scope_claim
+    else:
+        raise AuthorizationDenied("Approval scope claim must be a string or list of strings.")
     if required_scope not in scopes:
         raise AuthorizationDenied("Approval does not grant the required scope.")
     if claims.get("security_epoch") != epoch:
@@ -130,10 +172,10 @@ def verify_owner_approval(
 
     header_part, payload_part, signature_part = token.split(".")
     try:
-        header = json.loads(_b64url_decode(header_part))
-        claims = json.loads(_b64url_decode(payload_part))
-    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-        raise AuthorizationDenied("Malformed authorization token JSON.") from exc
+        header = json.loads(_b64url_decode(header_part), object_pairs_hook=_unique_json_object)
+        claims = json.loads(_b64url_decode(payload_part), object_pairs_hook=_unique_json_object)
+    except (ValueError, UnicodeDecodeError) as exc:
+        raise AuthorizationDenied("Malformed or ambiguous authorization token JSON.") from exc
     if not isinstance(header, dict) or not isinstance(claims, dict):
         raise AuthorizationDenied("Approval header and claims must be JSON objects.")
     if header.get("alg") != "EdDSA" or header.get("typ", "JWT") != "JWT":

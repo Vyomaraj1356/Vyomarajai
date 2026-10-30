@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from ops.shriyantra.owner_guard import (
     AuthorizationDenied, canonical_action_target, canonical_target,
-    consume_approval_jti, require_owner_approval, validate_claims,
+    consume_approval_jti, require_owner_approval, validate_claims, _unique_json_object,
 )
 
 
@@ -53,10 +53,130 @@ class OwnerGuardTests(unittest.TestCase):
                     )
             self.assertEqual(verify.call_args.args[0], "request-bearer-token")
 
+    def test_duplicate_json_object_members_are_rejected(self):
+        with self.assertRaisesRegex(ValueError, "duplicate JSON object member"):
+            _unique_json_object([("aud", "shriyantra"), ("aud", "other")])
+
     def test_valid_owner_approval_claims(self):
         validate_claims(self.claims, action="arena.execute",
                         target=self.claims["target"], required_scope="arena.execute",
                         now=self.now)
+
+    def test_space_delimited_scope_string_remains_supported(self):
+        claims = dict(self.claims, scope="arena.execute read:only")
+        validate_claims(
+            claims, action="arena.execute", target=claims["target"],
+            required_scope="arena.execute", now=self.now,
+        )
+
+    def test_scope_string_rejects_noncanonical_whitespace(self):
+        malformed_scopes = (
+            "",
+            " arena.execute",
+            "arena.execute ",
+            "arena.execute  read:only",
+            "arena.execute\\nadmin",
+            "arena.execute\\tadmin",
+        )
+        for scope_claim in malformed_scopes:
+            with self.subTest(scope_claim=repr(scope_claim)):
+                claims = dict(self.claims, scope=scope_claim)
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
+    def test_scope_claim_rejects_non_string_container_and_mixed_entries(self):
+        malformed_scopes = (
+            {"arena.execute": False},
+            7,
+            None,
+            ["arena.execute", 3],
+            ["arena.execute", ""],
+            ["arena.execute", "other scope"],
+        )
+        for scope_claim in malformed_scopes:
+            with self.subTest(scope_claim=repr(scope_claim)):
+                claims = dict(self.claims, scope=scope_claim)
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
+    def test_required_scope_rejects_empty_or_ambiguous_values(self):
+        for required_scope in ("", "arena.execute admin", "arena.execute\\nadmin"):
+            with self.subTest(required_scope=repr(required_scope)):
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        self.claims, action="arena.execute", target=self.claims["target"],
+                        required_scope=required_scope, now=self.now,
+                    )
+
+    def test_claims_must_be_a_json_object(self):
+        for claims in (None, [], "claims", 7):
+            with self.subTest(claims_type=type(claims).__name__):
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=self.claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
+    def test_audience_claim_rejects_invalid_containers_and_mixed_entries(self):
+        for audience in ({ "shriyantra": True }, 7, None, [], ["shriyantra", 3],
+                          ["shriyantra", None], ["other"]):
+            with self.subTest(audience=repr(audience)):
+                claims = dict(self.claims, aud=audience)
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
+    def test_audience_string_and_string_list_are_supported(self):
+        for audience in ("shriyantra", ["other", "shriyantra"]):
+            with self.subTest(audience=repr(audience)):
+                claims = dict(self.claims, aud=audience)
+                validate_claims(
+                    claims, action="arena.execute", target=claims["target"],
+                    required_scope="arena.execute", now=self.now,
+                )
+
+    def test_numeric_date_claims_reject_boolean_and_float_values(self):
+        malformed = (
+            {"exp": True}, {"exp": float(self.now + 60)},
+            {"iat": False}, {"iat": float(self.now - 10)},
+        )
+        for override in malformed:
+            with self.subTest(override=override):
+                claims = dict(self.claims, **override)
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
+    def test_jti_rejects_whitespace_control_characters_and_oversize_values(self):
+        for jti in ("", "   ", "one time", "id" + chr(10) + "next", "x" * 257):
+            with self.subTest(jti=repr(jti)):
+                claims = dict(self.claims, jti=jti)
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        claims, action="arena.execute", target=claims["target"],
+                        required_scope="arena.execute", now=self.now,
+                    )
+
+    def test_action_and_target_inputs_must_be_canonical(self):
+        for action, target in (("arena execute", self.claims["target"]),
+                               ("", self.claims["target"]),
+                               ("arena.execute", "not-a-sha256")):
+            with self.subTest(action=repr(action), target=repr(target)):
+                with self.assertRaises(AuthorizationDenied):
+                    validate_claims(
+                        self.claims, action=action, target=target,
+                        required_scope="arena.execute", now=self.now,
+                    )
 
     def test_non_owner_is_denied(self):
         claims = dict(self.claims, sub="agent")
