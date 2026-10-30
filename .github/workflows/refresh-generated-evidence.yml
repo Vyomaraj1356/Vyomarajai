@@ -2,7 +2,7 @@ name: Refresh generated architecture and evidence records
 
 on:
   push:
-    branches: [fix/public-launch-evidence-gates]
+    branches: [fix/public-launch-evidence-gates, ops/secure-local-runner-bootstrap]
     paths:
       - 'index.html'
       - 'ops/vyomaraj-core/handover/ISSUES_AND_PRS_LEDGER.json'
@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   regenerate:
-    if: github.repository == 'Vyomaraj1356/Vyomarajai' && github.ref == 'refs/heads/fix/public-launch-evidence-gates'
+    if: github.repository == 'Vyomaraj1356/Vyomarajai' && github.ref_name == 'ops/secure-local-runner-bootstrap' && github.actor == 'Vyomaraj1356'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -56,5 +56,5 @@ jobs:
             echo "Generated outputs already current."
           else
             git commit -m "docs: refresh generated evidence records"
-            git push origin HEAD:fix/public-launch-evidence-gates
+            git push origin HEAD:${GITHUB_REF_NAME}
           fi
