@@ -154,7 +154,7 @@ class OwnerGuardTests(unittest.TestCase):
                     )
 
     def test_jti_rejects_whitespace_control_characters_and_oversize_values(self):
-        for jti in ("", "   ", "one time", "id\\nnext", "x" * 257):
+        for jti in ("", "   ", "one time", "id" + chr(10) + "next", "x" * 257):
             with self.subTest(jti=repr(jti)):
                 claims = dict(self.claims, jti=jti)
                 with self.assertRaises(AuthorizationDenied):
