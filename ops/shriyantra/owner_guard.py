@@ -21,6 +21,16 @@ class AuthorizationDenied(RuntimeError):
     """Raised when an owner approval is missing, invalid, stale, or out of scope."""
 
 
+def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Reject duplicate JSON member names to prevent ambiguous signed claims."""
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON object member")
+        result[key] = value
+    return result
+
+
 def _b64url_decode(value: str) -> bytes:
     try:
         return base64.urlsafe_b64decode(value + "=" * (-len(value) % 4))
@@ -162,10 +172,10 @@ def verify_owner_approval(
 
     header_part, payload_part, signature_part = token.split(".")
     try:
-        header = json.loads(_b64url_decode(header_part))
-        claims = json.loads(_b64url_decode(payload_part))
-    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-        raise AuthorizationDenied("Malformed authorization token JSON.") from exc
+        header = json.loads(_b64url_decode(header_part), object_pairs_hook=_unique_json_object)
+        claims = json.loads(_b64url_decode(payload_part), object_pairs_hook=_unique_json_object)
+    except (ValueError, UnicodeDecodeError) as exc:
+        raise AuthorizationDenied("Malformed or ambiguous authorization token JSON.") from exc
     if not isinstance(header, dict) or not isinstance(claims, dict):
         raise AuthorizationDenied("Approval header and claims must be JSON objects.")
     if header.get("alg") != "EdDSA" or header.get("typ", "JWT") != "JWT":
