@@ -85,6 +85,7 @@ Serial-only entries are shown in the viewer as `REF`/serial identifiers (`displa
 | `public-preview-security-gate.yml` | Public Preview Security Gate | `41 4 * * *` |
 | `public-preview-smoke.yml` | Public Preview Smoke Gate | `17 */6 * * *` |
 | `refresh-generated-evidence.yml` | Refresh generated architecture and evidence records | `no schedule` |
+| `secure-local-runner-acceptance.yml` | Vyomaraj Secure Local Runner Acceptance | `no schedule` |
 | `shriyantra-crypto-baseline.yml` | ShriYantra Crypto Baseline | `no schedule` |
 | `shriyantra-owner-guard.yml` | ShriYantra owner guard tests | `no schedule` |
 | `vyomaraj-ci-diagnostics.yml` | Vyomaraj CI diagnostics (readable annotations) | `no schedule` |
