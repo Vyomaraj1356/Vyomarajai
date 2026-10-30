@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from ops.shriyantra.owner_guard import (
     AuthorizationDenied, canonical_action_target, canonical_target,
-    consume_approval_jti, require_owner_approval, validate_claims,
+    consume_approval_jti, require_owner_approval, validate_claims, _unique_json_object,
 )
 
 
@@ -52,6 +52,10 @@ class OwnerGuardTests(unittest.TestCase):
                         required_scope="arena.execute", token="request-bearer-token",
                     )
             self.assertEqual(verify.call_args.args[0], "request-bearer-token")
+
+    def test_duplicate_json_object_members_are_rejected(self):
+        with self.assertRaisesRegex(ValueError, "duplicate JSON object member"):
+            _unique_json_object([("aud", "shriyantra"), ("aud", "other")])
 
     def test_valid_owner_approval_claims(self):
         validate_claims(self.claims, action="arena.execute",
