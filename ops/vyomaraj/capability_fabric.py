@@ -223,26 +223,50 @@ CAPABILITIES = {
     "gatiman": {"execution", "automation", "tool_orchestration", "browser", "geospatial"},
     "dhritiman": {"health", "resilience", "recovery", "failover", "failback", "audit_continuity"},
 }
+KNOWN_CAPABILITIES = frozenset().union(*CAPABILITIES.values())
 
 
-def capability_domains(required: set[str]) -> list[str]:
-    """Return the design domains that cover `required`; this performs no authorization."""
-    if not required:
+def _validated_required_capabilities(required: Any) -> set[str]:
+    """Reject malformed or partially unknown routing requests before domain matching."""
+    if not isinstance(required, (set, frozenset)):
+        raise TypeError("required capabilities must be a set or frozenset of strings")
+    if any(not isinstance(item, str) or not item or item.strip() != item
+           or any(ch.isspace() or ord(ch) < 32 or ord(ch) == 127 for ch in item)
+           for item in required):
+        raise ValueError("required capabilities must be non-empty canonical strings")
+    if not required.issubset(KNOWN_CAPABILITIES):
+        raise ValueError("request contains an unsupported capability")
+    return set(required)
+
+
+def capability_domains(required: set[str] | frozenset[str]) -> list[str]:
+    """Return design domains for a fully recognized request; this performs no authorization."""
+    validated = _validated_required_capabilities(required)
+    if not validated:
         return []
     return [name for name, capabilities in CAPABILITIES.items()
-            if required.intersection(capabilities)]
+            if validated.intersection(capabilities)]
 
 
-def authorize_capabilities(required: set[str], owner_authorized: bool,
+def authorize_capabilities(required: set[str] | frozenset[str], owner_authorized: bool,
                            high_risk: bool = False, step_up_confirmed: bool = False) -> list[str]:
-    """Fail closed unless the owner authorized the request (and stepped up when high risk).
+    """Fail closed on malformed inputs and caller assertions.
 
-    A returned domain list is a routing decision only: it is not a permission grant, a
-    credential, or evidence that any runtime enforces the boundary.
+    This design-time helper does not authenticate the owner: owner_authorized is only
+    a caller-supplied boolean assertion. A returned domain list is routing metadata, not a
+    permission grant, credential, execution approval, or evidence of runtime enforcement.
+    Production authorization must verify an owner-signed approval through the protected
+    owner-guard boundary before any tool or provider can execute.
     """
-    if not owner_authorized:
+    if not isinstance(owner_authorized, bool):
+        raise TypeError("owner authorization input must be a boolean")
+    if not isinstance(high_risk, bool):
+        raise TypeError("high-risk input must be a boolean")
+    if not isinstance(step_up_confirmed, bool):
+        raise TypeError("step-up input must be a boolean")
+    if owner_authorized is not True:
         raise PermissionError("owner authorization required")
-    if high_risk and not step_up_confirmed:
+    if high_risk and step_up_confirmed is not True:
         raise PermissionError("step-up confirmation required")
     domains = capability_domains(required)
     if not domains:
